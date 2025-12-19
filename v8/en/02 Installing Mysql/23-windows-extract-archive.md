@@ -1,0 +1,15 @@
+#### 2.3.3.1 Extracting the Install Archive
+
+To install MySQL manually, do the following:
+
+1. If you are upgrading from a previous version then refer to Section 3.11, “Upgrading MySQL on Windows” before beginning the upgrade process.
+2. Make sure that you are logged in as a user with administrator privileges.
+3. Choose an installation location. Traditionally, the MySQL server is installed in `C:\mysql`. If you do not install MySQL at `C:\mysql`, you must specify the path to the install directory during startup or in an option file. See Section 2.3.3.2, “Creating an Option File”.
+
+   ::: info Note
+
+   The MSI installs MySQL under `C:\Program Files\MySQL\MySQL Server 8.4`.
+
+   :::
+   
+4. Extract the install archive to the chosen installation location using your preferred file-compression tool. Some tools may extract the archive to a folder within your chosen installation location. If this occurs, you can move the contents of the subfolder into the chosen installation location.

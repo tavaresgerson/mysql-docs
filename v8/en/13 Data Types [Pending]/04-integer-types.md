@@ -1,0 +1,12 @@
+--- title: MySQL 8.4 Reference Manual :: 13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT url: https://dev.mysql.com/doc/refman/8.4/en/integer-types.html order: 4 ---
+
+
+
+### 13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT
+
+MySQL supports the SQL standard integer types `INTEGER` (or `INT`) and `SMALLINT`. As an extension to the standard, MySQL also supports the integer types `TINYINT`, `MEDIUMINT`, and `BIGINT`. The following table shows the required storage and range for each integer type.
+
+**Table 13.1 Required Storage and Range for Integer Types Supported by MySQL**
+
+<table><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><thead><tr> <th scope="col">Type</th> <th scope="col">Storage (Bytes)</th> <th scope="col">Minimum Value Signed</th> <th scope="col">Minimum Value Unsigned</th> <th scope="col">Maximum Value Signed</th> <th scope="col">Maximum Value Unsigned</th> </tr></thead><tbody><tr> <th><code>TINYINT</code></th> <td>1</td> <td><code>-128</code></td> <td><code>0</code></td> <td><code>127</code></td> <td><code>255</code></td> </tr><tr> <th><code>SMALLINT</code></th> <td>2</td> <td><code>-32768</code></td> <td><code>0</code></td> <td><code>32767</code></td> <td><code>65535</code></td> </tr><tr> <th><code>MEDIUMINT</code></th> <td>3</td> <td><code>-8388608</code></td> <td><code>0</code></td> <td><code>8388607</code></td> <td><code>16777215</code></td> </tr><tr> <th><code>INT</code></th> <td>4</td> <td><code>-2147483648</code></td> <td><code>0</code></td> <td><code>2147483647</code></td> <td><code>4294967295</code></td> </tr><tr> <th><code>BIGINT</code></th> <td>8</td> <td><code>-2<sup>63</sup></code></td> <td><code>0</code></td> <td><code>2<sup>63</sup>-1</code></td> <td><code>2<sup>64</sup>-1</code></td> </tr></tbody></table>
+

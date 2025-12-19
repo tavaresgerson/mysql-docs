@@ -1,0 +1,17 @@
+{
+  "name": "mysql-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev v8/br --host",
+    "docs:build": "vitepress build v8/br",
+    "docs:preview": "vitepress preview v8/br"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "^1.0.0-rc.45"
+  }
+}
