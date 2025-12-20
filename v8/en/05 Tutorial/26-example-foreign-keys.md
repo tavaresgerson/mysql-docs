@@ -8,7 +8,7 @@ This following example relates `parent` and `child` tables through a single-colu
 
 Create the parent and child tables using the following SQL statements:
 
-```
+```sql
 CREATE TABLE parent (
     id INT NOT NULL,
     PRIMARY KEY (id)
@@ -26,13 +26,13 @@ CREATE TABLE child (
 
 Insert a row into the parent table, like this:
 
-```
+```sql
 mysql> INSERT INTO parent (id) VALUES ROW(1);
 ```
 
 Verify that the data was inserted. You can do this simply by selecting all rows from `parent`, as shown here:
 
-```
+```sql
 mysql> TABLE parent;
 +----+
 | id |
@@ -43,7 +43,7 @@ mysql> TABLE parent;
 
 Insert a row into the child table using the following SQL statement:
 
-```
+```sql
 mysql> INSERT INTO child (id,parent_id) VALUES ROW(1,1);
 ```
 
@@ -51,7 +51,7 @@ The insert operation is successful because `parent_id` 1 is present in the paren
 
 Insertion of a row into the child table with a `parent_id` value that is not present in the parent table is rejected with an error, as you can see here:
 
-```
+```sql
 mysql> INSERT INTO child (id,parent_id) VALUES ROW(2,2);
 ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails
 (`test`.`child`, CONSTRAINT `child_ibfk_1` FOREIGN KEY (`parent_id`)
@@ -62,7 +62,7 @@ The operation fails because the specified `parent_id` value does not exist in th
 
 Trying to delete the previously inserted row from the parent table also fails, as shown here:
 
-```
+```sql
 mysql> DELETE FROM parent WHERE id VALUES = 1;
 ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails
 (`test`.`child`, CONSTRAINT `child_ibfk_1` FOREIGN KEY (`parent_id`)
@@ -75,7 +75,7 @@ When an operation affects a key value in the parent table that has matching rows
 
 To demonstrate `ON DELETE` and `ON UPDATE` referential actions, drop the child table and recreate it to include `ON UPDATE` and `ON DELETE` subclauses with the `CASCADE` option. The `CASCADE` option automatically deletes or updates matching rows in the child table when deleting or updating rows in the parent table.
 
-```
+```sql
 DROP TABLE child;
 
 CREATE TABLE child (
@@ -91,13 +91,13 @@ CREATE TABLE child (
 
 Insert some rows into the child table using the statement shown here:
 
-```
+```sql
 mysql> INSERT INTO child (id,parent_id) VALUES ROW(1,1), ROW(2,1), ROW(3,1);
 ```
 
 Verify that the data was inserted, like this:
 
-```
+```sql
 mysql> TABLE child;
 +------+-----------+
 | id   | parent_id |
@@ -110,7 +110,7 @@ mysql> TABLE child;
 
 Update the ID in the parent table, changing it from 1 to 2, using the SQL statement shown here:
 
-```
+```sql
 mysql> UPDATE parent SET id = 2 WHERE id = 1;
 ```
 
@@ -127,7 +127,7 @@ mysql> TABLE parent;
 
 Verify that the `ON UPDATE CASCADE` referential action updated the child table, like this:
 
-```
+```sql
 mysql> TABLE child;
 +------+-----------+
 | id   | parent_id |
@@ -140,13 +140,13 @@ mysql> TABLE child;
 
 To demonstrate the `ON DELETE CASCADE` referential action, delete records from the parent table where `parent_id = 2`; this deletes all records in the parent table.
 
-```
+```sql
 mysql> DELETE FROM parent WHERE id = 2;
 ```
 
 Because all records in the child table are associated with `parent_id = 2`, the `ON DELETE CASCADE` referential action removes all records from the child table, as shown here:
 
-```
+```sql
 mysql> TABLE child;
 Empty set (0.00 sec)
 ```

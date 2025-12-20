@@ -11,5 +11,3 @@ SELECT MAX(article) AS article FROM shop;
 |       4 |
 +---------+
 ```
-
-

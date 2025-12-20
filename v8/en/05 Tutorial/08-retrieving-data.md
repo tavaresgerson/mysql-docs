@@ -1,8 +1,8 @@
 ### 5.3.4 Retrieving Information from a Table
 
-The  `SELECT` statement is used to pull information from a table. The general form of the statement is:
+The `SELECT` statement is used to pull information from a table. The general form of the statement is:
 
-```
+```sql
 SELECT what_to_select
 FROM which_table
 WHERE conditions_to_satisfy;

@@ -2,7 +2,7 @@
 
 *Task: Find the highest price per article.*
 
-```
+```sql
 SELECT article, MAX(price) AS price
 FROM   shop
 GROUP BY article

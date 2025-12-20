@@ -1,6 +1,6 @@
 #### 5.3.4.2 Selecting Particular Rows
 
-As shown in the preceding section, it is easy to retrieve an entire table. Just omit the `WHERE` clause from the  `SELECT` statement. But typically you don't want to see the entire table, particularly when it becomes large. Instead, you're usually more interested in answering a particular question, in which case you specify some constraints on the information you want. Let's look at some selection queries in terms of questions about your pets that they answer.
+As shown in the preceding section, it is easy to retrieve an entire table. Just omit the `WHERE` clause from the `SELECT` statement. But typically you don't want to see the entire table, particularly when it becomes large. Instead, you're usually more interested in answering a particular question, in which case you specify some constraints on the information you want. Let's look at some selection queries in terms of questions about your pets that they answer.
 
 You can select only particular rows from your table. For example, if you want to verify the change that you made to Bowser's birth date, select Bowser's record like this:
 
@@ -53,7 +53,7 @@ mysql> SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
 +----------+-------+---------+------+------------+-------+
 ```
 
- `AND` and `OR` may be intermixed, although `AND` has higher precedence than `OR`. If you use both operators, it is a good idea to use parentheses to indicate explicitly how conditions should be grouped:
+`AND` and `OR` may be intermixed, although `AND` has higher precedence than `OR`. If you use both operators, it is a good idea to use parentheses to indicate explicitly how conditions should be grouped:
 
 ```
 mysql> SELECT * FROM pet WHERE (species = 'cat' AND sex = 'm')

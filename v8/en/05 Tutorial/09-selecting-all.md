@@ -1,6 +1,6 @@
 #### 5.3.4.1 Selecting All Data
 
-The simplest form of  `SELECT` retrieves everything from a table:
+The simplest form of `SELECT` retrieves everything from a table:
 
 ```
 mysql> SELECT * FROM pet;
@@ -19,7 +19,7 @@ mysql> SELECT * FROM pet;
 +----------+--------+---------+------+------------+------------+
 ```
 
-This form of  `SELECT` uses `*`, which is shorthand for “select all columns.” This is useful if you want to review your entire table, for example, after you've just loaded it with your initial data set. For example, you may happen to think that the birth date for Bowser doesn't seem quite right. Consulting your original pedigree papers, you find that the correct birth year should be 1989, not 1979.
+This form of `SELECT` uses `*`, which is shorthand for “select all columns.” This is useful if you want to review your entire table, for example, after you've just loaded it with your initial data set. For example, you may happen to think that the birth date for Bowser doesn't seem quite right. Consulting your original pedigree papers, you find that the correct birth year should be 1989, not 1979.
 
 There are at least two ways to fix this:
 
@@ -37,6 +37,6 @@ There are at least two ways to fix this:
   mysql> UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';
   ```
 
-  The  `UPDATE` changes only the record in question and does not require you to reload the table.
+  The `UPDATE` changes only the record in question and does not require you to reload the table.
 
 There is an exception to the principle that `SELECT *` selects all columns. If a table contains invisible columns, `*` does not include them. For more information, see  Section 15.1.20.10, “Invisible Columns”.

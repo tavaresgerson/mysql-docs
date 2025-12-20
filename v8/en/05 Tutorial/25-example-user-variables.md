@@ -1,10 +1,10 @@
 ### 5.6.5 Using User-Defined Variables
 
-You can employ MySQL user variables to remember results without having to store them in temporary variables in the client. (See Section 11.4, “User-Defined Variables”.)
+You can employ MySQL user variables to remember results without having to store them in temporary variables in the client.
 
 For example, to find the articles with the highest and lowest price you can do this:
 
-```
+```sql
 mysql> SELECT @min_price:=MIN(price),@max_price:=MAX(price) FROM shop;
 mysql> SELECT * FROM shop WHERE price=@min_price OR price=@max_price;
 +---------+--------+-------+

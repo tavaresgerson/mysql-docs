@@ -10,7 +10,7 @@ Suppose that you have several pets in your home (your menagerie) and you would l
 * Retrieve data from the table in various ways
 * Use multiple tables
 
-The menagerie database is simple (deliberately), but it is not difficult to think of real-world situations in which a similar type of database might be used. For example, a database like this could be used by a farmer to keep track of livestock, or by a veterinarian to keep track of patient records. A menagerie distribution containing some of the queries and sample data used in the following sections can be obtained from the MySQL website. It is available in both compressed **tar** file and Zip formats at  https://dev.mysql.com/doc/.
+The menagerie database is simple (deliberately), but it is not difficult to think of real-world situations in which a similar type of database might be used. For example, a database like this could be used by a farmer to keep track of livestock, or by a veterinarian to keep track of patient records. A menagerie distribution containing some of the queries and sample data used in the following sections can be obtained from the MySQL website. It is available in both compressed `tar` file and Zip formats at  https://dev.mysql.com/doc/.
 
 Use the  `SHOW` statement to find out what databases currently exist on the server:
 
@@ -27,7 +27,7 @@ mysql> SHOW DATABASES;
 
 The `mysql` database describes user access privileges. The `test` database often is available as a workspace for users to try things out.
 
-The list of databases displayed by the statement may be different on your machine;  `SHOW DATABASES` does not show databases that you have no privileges for if you do not have the  `SHOW DATABASES` privilege. See  Section 15.7.7.15, “SHOW DATABASES Statement”.
+The list of databases displayed by the statement may be different on your machine; `SHOW DATABASES` does not show databases that you have no privileges for if you do not have the `SHOW DATABASES` privilege. See  Section 15.7.7.15, “SHOW DATABASES Statement”.
 
 If the `test` database exists, try to access it:
 
@@ -36,7 +36,7 @@ mysql> USE test
 Database changed
 ```
 
- `USE`, like `QUIT`, does not require a semicolon. (You can terminate such statements with a semicolon if you like; it does no harm.) The `USE` statement is special in another way, too: it must be given on a single line.
+`USE`, like `QUIT`, does not require a semicolon. (You can terminate such statements with a semicolon if you like; it does no harm.) The `USE` statement is special in another way, too: it must be given on a single line.
 
 You can use the `test` database (if you have access to it) for the examples that follow, but anything you create in that database can be removed by anyone else with access to it. For this reason, you should probably ask your MySQL administrator for permission to use a database of your own. Suppose that you want to call yours `menagerie`. The administrator needs to execute a statement like this:
 

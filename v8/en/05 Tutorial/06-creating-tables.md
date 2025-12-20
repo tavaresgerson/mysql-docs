@@ -25,13 +25,13 @@ mysql> CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),
        species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
 ```
 
- `VARCHAR` is a good choice for the `name`, `owner`, and `species` columns because the column values vary in length. The lengths in those column definitions need not all be the same, and need not be `20`. You can normally pick any length from `1` to `65535`, whatever seems most reasonable to you. If you make a poor choice and it turns out later that you need a longer field, MySQL provides an [`ALTER TABLE`](alter-table.html "15.1.9 ALTER TABLE Statement") statement.
+`VARCHAR` is a good choice for the `name`, `owner`, and `species` columns because the column values vary in length. The lengths in those column definitions need not all be the same, and need not be `20`. You can normally pick any length from `1` to `65535`, whatever seems most reasonable to you. If you make a poor choice and it turns out later that you need a longer field, MySQL provides an `ALTER TABLE` statement.
 
 Several types of values can be chosen to represent sex in animal records, such as `'m'` and `'f'`, or perhaps `'male'` and `'female'`. It is simplest to use the single characters `'m'` and `'f'`.
 
 The use of the  `DATE` data type for the `birth` and `death` columns is a fairly obvious choice.
 
-Once you have created a table, [`SHOW TABLES`](show-tables.html "15.7.7.39 SHOW TABLES Statement") should produce some output:
+Once you have created a table, `SHOW TABLES` should produce some output:
 
 ```
 mysql> SHOW TABLES;
@@ -42,7 +42,7 @@ mysql> SHOW TABLES;
 +---------------------+
 ```
 
-To verify that your table was created the way you expected, use a  `DESCRIBE` statement:
+To verify that your table was created the way you expected, use a `DESCRIBE` statement:
 
 ```
 mysql> DESCRIBE pet;
@@ -58,6 +58,6 @@ mysql> DESCRIBE pet;
 +---------+-------------+------+-----+---------+-------+
 ```
 
-You can use  `DESCRIBE` any time, for example, if you forget the names of the columns in your table or what types they have.
+You can use `DESCRIBE` any time, for example, if you forget the names of the columns in your table or what types they have.
 
 For more information about MySQL data types, see Chapter 13, *Data Types*.

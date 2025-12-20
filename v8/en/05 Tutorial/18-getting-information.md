@@ -49,6 +49,6 @@ mysql> DESCRIBE pet;
 
 `DESC` is a short form of `DESCRIBE`. See Section 15.8.1, “DESCRIBE Statement”, for more information.
 
-You can obtain the  `CREATE TABLE` statement necessary to create an existing table using the `SHOW CREATE TABLE` statement. See Section 15.7.7.11, “SHOW CREATE TABLE Statement”.
+You can obtain the `CREATE TABLE` statement necessary to create an existing table using the `SHOW CREATE TABLE` statement.
 
 If you have indexes on a table, `SHOW INDEX FROM tbl_name` produces information about them. See  Section 15.7.7.23, “SHOW INDEX Statement”, for more about this statement.

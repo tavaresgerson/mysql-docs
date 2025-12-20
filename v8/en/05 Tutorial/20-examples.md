@@ -4,7 +4,7 @@ Here are examples of how to solve some common problems with MySQL.
 
 Some of the examples use the table `shop` to hold the price of each article (item number) for certain traders (dealers). Supposing that each trader has a single fixed price per article, then (`article`, `dealer`) is a primary key for the records.
 
-Start the command-line tool  **mysql** and select a database:
+Start the command-line tool `mysql` and select a database:
 
 ```
 $> mysql your-database-name

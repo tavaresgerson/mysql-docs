@@ -4,7 +4,7 @@
 
 This is easily done with a subquery:
 
-```
+```sql
 SELECT article, dealer, price
 FROM   shop
 WHERE  price=(SELECT MAX(price) FROM shop);
@@ -18,7 +18,7 @@ WHERE  price=(SELECT MAX(price) FROM shop);
 
 Another solution is to use a `LEFT JOIN`, as shown here:
 
-```
+```sql
 SELECT s1.article, s1.dealer, s1.price
 FROM shop s1
 LEFT JOIN shop s2 ON s1.price < s2.price
@@ -27,7 +27,7 @@ WHERE s2.article IS NULL;
 
 You can also do this by sorting all rows descending by price and get only the first row using the MySQL-specific `LIMIT` clause, like this:
 
-```
+```sql
 SELECT article, dealer, price
 FROM shop
 ORDER BY price DESC

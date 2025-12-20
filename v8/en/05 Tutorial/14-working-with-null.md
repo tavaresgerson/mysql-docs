@@ -2,7 +2,7 @@
 
 The `NULL` value can be surprising until you get used to it. Conceptually, `NULL` means “a missing unknown value” and it is treated somewhat differently from other values.
 
-To test for `NULL`, use the `IS NULL` and [`IS NOT NULL`](comparison-operators.html#operator_is-not-null) operators, as shown here:
+To test for `NULL`, use the `IS NULL` and `IS NOT NULL` operators, as shown here:
 
 ```
 mysql> SELECT 1 IS NULL, 1 IS NOT NULL;

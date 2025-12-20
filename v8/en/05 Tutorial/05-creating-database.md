@@ -21,7 +21,7 @@ mysql> USE menagerie
 Database changed
 ```
 
-Your database needs to be created only once, but you must select it for use each time you begin a  **mysql** session. You can do this by issuing a `USE` statement as shown in the example. Alternatively, you can select the database on the command line when you invoke  **mysql**. Just specify its name after any connection parameters that you might need to provide. For example:
+Your database needs to be created only once, but you must select it for use each time you begin a `mysql` session. You can do this by issuing a `USE` statement as shown in the example. Alternatively, you can select the database on the command line when you invoke `mysql`. Just specify its name after any connection parameters that you might need to provide. For example:
 
 ```
 $> mysql -h host -u user -p menagerie
@@ -30,7 +30,7 @@ Enter password: ********
 
 Important
 
-`menagerie` in the command just shown is **not** your password. If you want to supply your password on the command line after the `-p` option, you must do so with no intervening space (for example, as `-ppassword`, not as `-p password`). However, putting your password on the command line is not recommended, because doing so exposes it to snooping by other users logged in on your machine.
+`menagerie` in the command just shown is not your password. If you want to supply your password on the command line after the `-p` option, you must do so with no intervening space (for example, as `-ppassword`, not as `-p password`). However, putting your password on the command line is not recommended, because doing so exposes it to snooping by other users logged in on your machine.
 
 ::: info Note
 

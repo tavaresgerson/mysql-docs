@@ -4,7 +4,7 @@
 
 This problem can be solved with a subquery like this one:
 
-```
+```sql
 SELECT article, dealer, price
 FROM   shop s1
 WHERE  price=(SELECT MAX(s2.price)
@@ -26,7 +26,7 @@ The preceding example uses a correlated subquery, which can be inefficient (see 
 
 Uncorrelated subquery:
 
-```
+```sql
 SELECT s1.article, dealer, s1.price
 FROM shop s1
 JOIN (
@@ -39,7 +39,7 @@ ORDER BY article;
 
 `LEFT JOIN`:
 
-```
+```sql
 SELECT s1.article, s1.dealer, s1.price
 FROM shop s1
 LEFT JOIN shop s2 ON s1.article = s2.article AND s1.price < s2.price
@@ -51,7 +51,7 @@ The `LEFT JOIN` works on the basis that when `s1.price` is at its maximum value,
 
 Common table expression with window function:
 
-```
+```sql
 WITH s1 AS (
    SELECT article, dealer, price,
           RANK() OVER (PARTITION BY article
