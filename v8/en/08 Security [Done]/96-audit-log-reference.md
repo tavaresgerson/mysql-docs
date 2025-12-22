@@ -45,7 +45,7 @@ Each audit log function returns a string that indicates whether the operation su
 
 Audit log functions convert string arguments to `utf8mb4` and string return values are `utf8mb4` strings. Previously, audit log functions treated string arguments as binary strings (which means they did not distinguish lettercase), and string return values were binary strings.
 
-If an audit log function is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+If an audit log function is invoked from within the `mysql` client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
 These audit log functions are available:
 

@@ -1,6 +1,6 @@
 ### 6.5.4 mysqldump — A Database Backup Program
 
-The  **mysqldump** client utility performs logical backups, producing a set of SQL statements that can be executed to reproduce the original database object definitions and table data. It dumps one or more MySQL databases for backup or transfer to another SQL server. The  **mysqldump** command can also generate output in CSV, other delimited text, or XML format.
+The  `mysqldump` client utility performs logical backups, producing a set of SQL statements that can be executed to reproduce the original database object definitions and table data. It dumps one or more MySQL databases for backup or transfer to another SQL server. The  `mysqldump` command can also generate output in CSV, other delimited text, or XML format.
 
 Tip
 
@@ -24,11 +24,11 @@ Consider using the  MySQL Shell dump utilities, which provide parallel dumping w
 *  Examples
 *  Restrictions
 
-**mysqldump** requires at least the `SELECT` privilege for dumped tables,  `SHOW VIEW` for dumped views,  `TRIGGER` for dumped triggers,  `LOCK TABLES` if the `--single-transaction` option is not used,  `PROCESS` if the `--no-tablespaces` option is not used, and the `RELOAD` or `FLUSH_TABLES` privilege with `--single-transaction` if both  `gtid_mode=ON` and  `gtid_purged=ON|AUTO`. Certain options might require other privileges as noted in the option descriptions.
+`mysqldump` requires at least the `SELECT` privilege for dumped tables,  `SHOW VIEW` for dumped views,  `TRIGGER` for dumped triggers,  `LOCK TABLES` if the `--single-transaction` option is not used,  `PROCESS` if the `--no-tablespaces` option is not used, and the `RELOAD` or `FLUSH_TABLES` privilege with `--single-transaction` if both  `gtid_mode=ON` and  `gtid_purged=ON|AUTO`. Certain options might require other privileges as noted in the option descriptions.
 
 To reload a dump file, you must have the privileges required to execute the statements that it contains, such as the appropriate `CREATE` privileges for objects created by those statements.
 
- **mysqldump** output can include `ALTER DATABASE` statements that change the database collation. These may be used when dumping stored programs to preserve their character encodings. To reload a dump file containing such statements, the `ALTER` privilege for the affected database is required.
+ `mysqldump` output can include `ALTER DATABASE` statements that change the database collation. These may be used when dumping stored programs to preserve their character encodings. To reload a dump file containing such statements, the `ALTER` privilege for the affected database is required.
 
 ::: info Note
 
@@ -46,7 +46,7 @@ mysqldump [options] --result-file=dump.sql
 
 :::
 
-It is not recommended to load a dump file when GTIDs are enabled on the server ( `gtid_mode=ON`), if your dump file includes system tables. **mysqldump** issues DML instructions for the system tables which use the non-transactional MyISAM storage engine, and this combination is not permitted when GTIDs are enabled.
+It is not recommended to load a dump file when GTIDs are enabled on the server ( `gtid_mode=ON`), if your dump file includes system tables. `mysqldump` issues DML instructions for the system tables which use the non-transactional MyISAM storage engine, and this combination is not permitted when GTIDs are enabled.
 
 #### Performance and Scalability Considerations
 
@@ -56,15 +56,15 @@ For large-scale backup and restore, a physical backup is more appropriate, to co
 
 If your tables are primarily  `InnoDB` tables, or if you have a mix of `InnoDB` and `MyISAM` tables, consider using **mysqlbackup**, which is available as part of MySQL Enterprise. This tool provides high performance for `InnoDB` backups with minimal disruption; it can also back up tables from `MyISAM` and other storage engines; it also provides a number of convenient options to accommodate different backup scenarios. See Section 32.1, “MySQL Enterprise Backup Overview”.
 
- **mysqldump** can retrieve and dump table contents row by row, or it can retrieve the entire content from a table and buffer it in memory before dumping it. Buffering in memory can be a problem if you are dumping large tables. To dump tables row by row, use the `--quick` option (or `--opt`, which enables `--quick`). The `--opt` option (and hence `--quick`) is enabled by default, so to enable memory buffering, use `--skip-quick`.
+ `mysqldump` can retrieve and dump table contents row by row, or it can retrieve the entire content from a table and buffer it in memory before dumping it. Buffering in memory can be a problem if you are dumping large tables. To dump tables row by row, use the `--quick` option (or `--opt`, which enables `--quick`). The `--opt` option (and hence `--quick`) is enabled by default, so to enable memory buffering, use `--skip-quick`.
 
-If you are using a recent version of **mysqldump** to generate a dump to be reloaded into a very old MySQL server, use the `--skip-opt` option instead of the  `--opt` or `--extended-insert` option.
+If you are using a recent version of `mysqldump` to generate a dump to be reloaded into a very old MySQL server, use the `--skip-opt` option instead of the  `--opt` or `--extended-insert` option.
 
-For additional information about  **mysqldump**, see  Section 9.4, “Using mysqldump for Backups”.
+For additional information about  `mysqldump`, see  Section 9.4, “Using mysqldump for Backups”.
 
 #### Invocation Syntax
 
-There are in general three ways to use **mysqldump**—in order to dump a set of one or more tables, a set of one or more complete databases, or an entire MySQL server—as shown here:
+There are in general three ways to use `mysqldump`—in order to dump a set of one or more tables, a set of one or more complete databases, or an entire MySQL server—as shown here:
 
 ```
 mysqldump [options] db_name [tbl_name ...]
@@ -74,11 +74,11 @@ mysqldump [options] --all-databases
 
 To dump entire databases, do not name any tables following *`db_name`*, or use the `--databases` or `--all-databases` option.
 
-To see a list of the options your version of **mysqldump** supports, issue the command **mysqldump** `--help`.
+To see a list of the options your version of `mysqldump` supports, issue the command `mysqldump` `--help`.
 
 #### Option Syntax - Alphabetical Summary
 
- **mysqldump** supports the following options, which can be specified on the command line or in the `[mysqldump]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
+ `mysqldump` supports the following options, which can be specified on the command line or in the `[mysqldump]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
 
 **Table 6.13 mysqldump Options**
 
@@ -86,7 +86,7 @@ To see a list of the options your version of **mysqldump** supports, issue the c
 
 #### Connection Options
 
-The  **mysqldump** command logs into a MySQL server to extract information. The following options specify how to connect to the MySQL server, either on the same machine or a remote system.
+The  `mysqldump` command logs into a MySQL server to extract information. The following options specify how to connect to the MySQL server, either on the same machine or a remote system.
 
 *  `--bind-address=ip_address`
 
@@ -151,18 +151,18 @@ The  **mysqldump** command logs into a MySQL server to extract information. The 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqldump** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
+  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, `mysqldump` prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysqldump** should not prompt for one, use the `--skip-password` option.
+  To explicitly specify that there is no password and that `mysqldump` should not prompt for one, use the `--skip-password` option.
 *  `--password1[=pass_val]`
 
-  The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqldump** prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
+  The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, `mysqldump` prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysqldump** should not prompt for one, use the `--skip-password1` option.
+  To explicitly specify that there is no password and that `mysqldump` should not prompt for one, use the `--skip-password1` option.
 
    `--password1` and `--password` are synonymous, as are `--skip-password1` and `--skip-password`.
 *  `--password2[=pass_val]`
@@ -189,7 +189,7 @@ The  **mysqldump** command logs into a MySQL server to extract information. The 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqldump** does not find it. See Section 8.2.17, “Pluggable Authentication”.
+  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but `mysqldump` does not find it. See Section 8.2.17, “Pluggable Authentication”.
 *  `--port=port_num`, `-P port_num`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
@@ -296,7 +296,7 @@ These options are used to control which option files to read.
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqldump** normally reads the `[client]` and `[mysqldump]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqldump** also reads the `[client_other]` and `[mysqldump_other]` groups.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, `mysqldump` normally reads the `[client]` and `[mysqldump]` groups. If this option is given as `--defaults-group-suffix=_other`, `mysqldump` also reads the `[client_other]` and `[mysqldump_other]` groups.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--no-defaults`
@@ -318,7 +318,7 @@ These options are used to control which option files to read.
 
 #### DDL Options
 
-Usage scenarios for  **mysqldump** include setting up an entire new MySQL instance (including database tables), and replacing data inside an existing instance with existing databases and tables. The following options let you specify which things to tear down and set up when restoring a dump, by encoding various DDL statements within the dump file.
+Usage scenarios for  `mysqldump` include setting up an entire new MySQL instance (including database tables), and replacing data inside an existing instance with existing databases and tables. The following options let you specify which things to tear down and set up when restoring a dump, by encoding various DDL statements within the dump file.
 
 *  `--add-drop-database`
 
@@ -348,7 +348,7 @@ Usage scenarios for  **mysqldump** include setting up an entire new MySQL instan
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-tablespaces</code></td> </tr></tbody></table>
 
-  Adds to a table dump all SQL statements needed to create any tablespaces used by an  `NDB` table. This information is not otherwise included in the output from  **mysqldump**. This option is currently relevant only to NDB Cluster tables.
+  Adds to a table dump all SQL statements needed to create any tablespaces used by an  `NDB` table. This information is not otherwise included in the output from  `mysqldump`. This option is currently relevant only to NDB Cluster tables.
 *  `--no-create-db`, `-n`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-create-db</code></td> </tr></tbody></table>
@@ -362,7 +362,7 @@ Usage scenarios for  **mysqldump** include setting up an entire new MySQL instan
 
   ::: info Note
 
-  This option does *not* exclude statements creating log file groups or tablespaces from **mysqldump** output; however, you can use the  `--no-tablespaces` option for this purpose.
+  This option does *not* exclude statements creating log file groups or tablespaces from `mysqldump` output; however, you can use the  `--no-tablespaces` option for this purpose.
 
   :::
 
@@ -370,7 +370,7 @@ Usage scenarios for  **mysqldump** include setting up an entire new MySQL instan
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-tablespaces</code></td> </tr></tbody></table>
 
-  This option suppresses all `CREATE LOGFILE GROUP` and `CREATE TABLESPACE` statements in the output of **mysqldump**.
+  This option suppresses all `CREATE LOGFILE GROUP` and `CREATE TABLESPACE` statements in the output of `mysqldump`.
 *  `--replace`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--replace</code></td> </tr></tbody></table>
@@ -416,7 +416,7 @@ The following options print debugging information, encode debugging information 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--dump-date</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-  If the  `--comments` option is given,  **mysqldump** produces a comment at the end of the dump of the following form:
+  If the  `--comments` option is given,  `mysqldump` produces a comment at the end of the dump of the following form:
 
   ```
   -- Dump completed on DATE
@@ -429,7 +429,7 @@ The following options print debugging information, encode debugging information 
 
   Ignore all errors; continue even if an SQL error occurs during a table dump.
 
-  One use for this option is to cause **mysqldump** to continue executing even when it encounters a view that has become invalid because the definition refers to a table that has been dropped. Without `--force`,  **mysqldump** exits with an error message. With `--force`, **mysqldump** prints the error message, but it also writes an SQL comment containing the view definition to the dump output and continues executing.
+  One use for this option is to cause `mysqldump` to continue executing even when it encounters a view that has become invalid because the definition refers to a table that has been dropped. Without `--force`,  `mysqldump` exits with an error message. With `--force`, `mysqldump` prints the error message, but it also writes an SQL comment containing the view definition to the dump output and continues executing.
 
   If the  `--ignore-error` option is also given to ignore specific errors, `--force` takes precedence.
 *  `--log-error=file_name`
@@ -450,7 +450,7 @@ The following options print debugging information, encode debugging information 
 
 #### Help Options
 
-The following options display information about the **mysqldump** command itself.
+The following options display information about the `mysqldump` command itself.
 
 *  `--help`, `-?`
 
@@ -465,7 +465,7 @@ The following options display information about the **mysqldump** command itself
 
 #### Internationalization Options
 
-The following options change how the **mysqldump** command represents character data with national language settings.
+The following options change how the `mysqldump` command represents character data with national language settings.
 
 *  `--character-sets-dir=dir_name`
 
@@ -476,7 +476,7 @@ The following options change how the **mysqldump** command represents character 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-character-set=charset_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>utf8</code></td> </tr></tbody></table>
 
-  Use *`charset_name`* as the default character set. See  Section 12.15, “Character Set Configuration”. If no character set is specified, **mysqldump** uses `utf8mb4`.
+  Use *`charset_name`* as the default character set. See  Section 12.15, “Character Set Configuration”. If no character set is specified, `mysqldump` uses `utf8mb4`.
 *  `--no-set-names`, `-N`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-set-names</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
@@ -490,7 +490,7 @@ The following options change how the **mysqldump** command represents character 
 
 #### Replication Options
 
-The  **mysqldump** command is frequently used to create an empty instance, or an instance including data, on a replica server in a replication configuration. The following options apply to dumping and restoring data on replication source servers and replicas.
+The  `mysqldump` command is frequently used to create an empty instance, or an instance including data, on a replica server in a replication configuration. The following options apply to dumping and restoring data on replication source servers and replicas.
 
 *  `--apply-replica-statements`
 
@@ -532,7 +532,7 @@ The  **mysqldump** command is frequently used to create an empty instance, or an
 
   The option value is handled the same way as for `--source-data`. Setting no value or 1 causes a `CHANGE REPLICATION SOURCE TO` statement to be written to the dump. Setting 2 causes the statement to be written but encased in SQL comments. It has the same effect as `--source-data` in terms of enabling or disabling other options and in how locking is handled.
 
-  `--dump-replica` causes **mysqldump** to stop the replication SQL thread before the dump and restart it again after.
+  `--dump-replica` causes `mysqldump` to stop the replication SQL thread before the dump and restart it again after.
 
   `--dump-replica` sends a `SHOW REPLICA STATUS` statement to the server to obtain information, so they require privileges sufficient to execute that statement.
 
@@ -587,13 +587,13 @@ The  **mysqldump** command is frequently used to create an empty instance, or an
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--set-gtid-purged=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>AUTO</code></p></td> </tr></tbody></table>
 
-  This option is for servers that use GTID-based replication ( `gtid_mode=ON`). It controls the inclusion of a `SET @@GLOBAL.gtid_purged` statement in the dump output, which updates the value of `gtid_purged` on a server where the dump file is reloaded, to add the GTID set from the source server's `gtid_executed` system variable.  `gtid_purged` holds the GTIDs of all transactions that have been applied on the server, but do not exist on any binary log file on the server.  **mysqldump** therefore adds the GTIDs for the transactions that were executed on the source server, so that the target server records these transactions as applied, although it does not have them in its binary logs. `--set-gtid-purged` also controls the inclusion of a `SET @@SESSION.sql_log_bin=0` statement, which disables binary logging while the dump file is being reloaded. This statement prevents new GTIDs from being generated and assigned to the transactions in the dump file as they are executed, so that the original GTIDs for the transactions are used.
+  This option is for servers that use GTID-based replication ( `gtid_mode=ON`). It controls the inclusion of a `SET @@GLOBAL.gtid_purged` statement in the dump output, which updates the value of `gtid_purged` on a server where the dump file is reloaded, to add the GTID set from the source server's `gtid_executed` system variable.  `gtid_purged` holds the GTIDs of all transactions that have been applied on the server, but do not exist on any binary log file on the server.  `mysqldump` therefore adds the GTIDs for the transactions that were executed on the source server, so that the target server records these transactions as applied, although it does not have them in its binary logs. `--set-gtid-purged` also controls the inclusion of a `SET @@SESSION.sql_log_bin=0` statement, which disables binary logging while the dump file is being reloaded. This statement prevents new GTIDs from being generated and assigned to the transactions in the dump file as they are executed, so that the original GTIDs for the transactions are used.
 
   If you do not set the `--set-gtid-purged` option, the default is that a `SET @@GLOBAL.gtid_purged` statement is included in the dump output if GTIDs are enabled on the server you are backing up, and the set of GTIDs in the global value of the `gtid_executed` system variable is not empty. A `SET @@SESSION.sql_log_bin=0` statement is also included if GTIDs are enabled on the server.
 
-  You can either replace the value of `gtid_purged` with a specified GTID set, or add a plus sign (+) to the statement to append a specified GTID set to the GTID set that is already held by `gtid_purged`. The `SET @@GLOBAL.gtid_purged` statement recorded by  **mysqldump** includes a plus sign (`+`) in a version-specific comment, such that MySQL adds the GTID set from the dump file to the existing `gtid_purged` value.
+  You can either replace the value of `gtid_purged` with a specified GTID set, or add a plus sign (+) to the statement to append a specified GTID set to the GTID set that is already held by `gtid_purged`. The `SET @@GLOBAL.gtid_purged` statement recorded by  `mysqldump` includes a plus sign (`+`) in a version-specific comment, such that MySQL adds the GTID set from the dump file to the existing `gtid_purged` value.
 
-  It is important to note that the value that is included by **mysqldump** for the `SET @@GLOBAL.gtid_purged` statement includes the GTIDs of all transactions in the `gtid_executed` set on the server, even those that changed suppressed parts of the database, or other databases on the server that were not included in a partial dump. This can mean that after the `gtid_purged` value has been updated on the server where the dump file is replayed, GTIDs are present that do not relate to any data on the target server. If you do not replay any further dump files on the target server, the extraneous GTIDs do not cause any problems with the future operation of the server, but they make it harder to compare or reconcile GTID sets on different servers in the replication topology. If you do replay a further dump file on the target server that contains the same GTIDs (for example, another partial dump from the same origin server), any `SET @@GLOBAL.gtid_purged` statement in the second dump file fails. In this case, either remove the statement manually before replaying the dump file, or output the dump file without the statement.
+  It is important to note that the value that is included by `mysqldump` for the `SET @@GLOBAL.gtid_purged` statement includes the GTIDs of all transactions in the `gtid_executed` set on the server, even those that changed suppressed parts of the database, or other databases on the server that were not included in a partial dump. This can mean that after the `gtid_purged` value has been updated on the server where the dump file is replayed, GTIDs are present that do not relate to any data on the target server. If you do not replay any further dump files on the target server, the extraneous GTIDs do not cause any problems with the future operation of the server, but they make it harder to compare or reconcile GTID sets on different servers in the replication topology. If you do replay a further dump file on the target server that contains the same GTIDs (for example, another partial dump from the same origin server), any `SET @@GLOBAL.gtid_purged` statement in the second dump file fails. In this case, either remove the statement manually before replaying the dump file, or output the dump file without the statement.
 
   If the `SET @@GLOBAL.gtid_purged` statement would not have the desired result on your target server, you can exclude the statement from the output, or include it but comment it out so that it is not actioned automatically. You can also include the statement but manually edit it in the dump file to achieve the desired result.
 
@@ -664,16 +664,16 @@ The following options specify how to represent the entire dump file or certain k
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--show-create-skip-secondary-engine</code></td> </tr></tbody></table>
 
-  Excludes the `SECONDARY ENGINE` clause from `CREATE TABLE` statements. It does so by enabling the `show_create_table_skip_secondary_engine` system variable for the duration of the dump operation. Alternatively, you can enable the `show_create_table_skip_secondary_engine` system variable prior to using  **mysqldump**.
+  Excludes the `SECONDARY ENGINE` clause from `CREATE TABLE` statements. It does so by enabling the `show_create_table_skip_secondary_engine` system variable for the duration of the dump operation. Alternatively, you can enable the `show_create_table_skip_secondary_engine` system variable prior to using  `mysqldump`.
 *  `--tab=dir_name`, `-T dir_name`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tab=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  Produce tab-separated text-format data files. For each dumped table,  **mysqldump** creates a `tbl_name.sql` file that contains the `CREATE TABLE` statement that creates the table, and the server writes a `tbl_name.txt` file that contains its data. The option value is the directory in which to write the files.
+  Produce tab-separated text-format data files. For each dumped table,  `mysqldump` creates a `tbl_name.sql` file that contains the `CREATE TABLE` statement that creates the table, and the server writes a `tbl_name.txt` file that contains its data. The option value is the directory in which to write the files.
 
   ::: info Note
 
-  This option should be used only when **mysqldump** is run on the same machine as the  **mysqld** server. Because the server creates `*.txt` files in the directory that you specify, the directory must be writable by the server and the MySQL account that you use must have the `FILE` privilege. Because **mysqldump** creates `*.sql` in the same directory, it must be writable by your system login account.
+  This option should be used only when `mysqldump` is run on the same machine as the  `mysqld` server. Because the server creates `*.txt` files in the directory that you specify, the directory must be writable by the server and the MySQL account that you use must have the `FILE` privilege. Because `mysqldump` creates `*.sql` in the same directory, it must be writable by your system login account.
 
   :::
 
@@ -684,7 +684,7 @@ The following options specify how to represent the entire dump file or certain k
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tz-utc</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-tz-utc</code></td> </tr></tbody></table>
 
-  This option enables  `TIMESTAMP` columns to be dumped and reloaded between servers in different time zones.  **mysqldump** sets its connection time zone to UTC and adds `SET TIME_ZONE='+00:00'` to the dump file. Without this option,  `TIMESTAMP` columns are dumped and reloaded in the time zones local to the source and destination servers, which can cause the values to change if the servers are in different time zones. `--tz-utc` also protects against changes due to daylight saving time. `--tz-utc` is enabled by default. To disable it, use `--skip-tz-utc`.
+  This option enables  `TIMESTAMP` columns to be dumped and reloaded between servers in different time zones.  `mysqldump` sets its connection time zone to UTC and adds `SET TIME_ZONE='+00:00'` to the dump file. Without this option,  `TIMESTAMP` columns are dumped and reloaded in the time zones local to the source and destination servers, which can cause the values to change if the servers are in different time zones. `--tz-utc` also protects against changes due to daylight saving time. `--tz-utc` is enabled by default. To disable it, use `--skip-tz-utc`.
 *  `--xml`, `-X`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--xml</code></td> </tr></tbody></table>
@@ -695,9 +695,9 @@ The following options specify how to represent the entire dump file or certain k
 
   <table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Value:</th> <th>XML Representation:</th> </tr></thead><tbody><tr> <td><code>NULL</code> (<span><em>unknown value</em></span>)</td> <td><p> <code>&lt;field name="<em><code>column_name</code></em>" xsi:nil="true" /&gt;</code> </p></td> </tr><tr> <td><code>''</code> (<span><em>empty string</em></span>)</td> <td><p> <code>&lt;field name="<em><code>column_name</code></em>"&gt;&lt;/field&gt;</code> </p></td> </tr><tr> <td><code>'NULL'</code> (<span><em>string value</em></span>)</td> <td><p> <code>&lt;field name="<em><code>column_name</code></em>"&gt;NULL&lt;/field&gt;</code> </p></td> </tr></tbody></table>
 
-  The output from the  **mysql** client when run using the  `--xml` option also follows the preceding rules. (See Section 6.5.1.1, “mysql Client Options”.)
+  The output from the  `mysql` client when run using the  `--xml` option also follows the preceding rules. (See Section 6.5.1.1, “mysql Client Options”.)
 
-  XML output from  **mysqldump** includes the XML namespace, as shown here:
+  XML output from  `mysqldump` includes the XML namespace, as shown here:
 
   ```
   $> mysqldump --xml -u root world City
@@ -757,12 +757,12 @@ The following options control which kinds of schema objects are written to the d
 
   :::
 
-  Prior to MySQL 8.4, the `--routines` and `--events` options for **mysqldump** were not required to include stored routines and events when using the `--all-databases` option: The dump included the `mysql` system database, and therefore also the `mysql.proc` and `mysql.event` tables containing stored routine and event definitions. As of MySQL 8.4, the `mysql.event` and `mysql.proc` tables are not used. Definitions for the corresponding objects are stored in data dictionary tables, but those tables are not dumped. To include stored routines and events in a dump made using `--all-databases`, use the `--routines` and `--events` options explicitly.
+  Prior to MySQL 8.4, the `--routines` and `--events` options for `mysqldump` were not required to include stored routines and events when using the `--all-databases` option: The dump included the `mysql` system database, and therefore also the `mysql.proc` and `mysql.event` tables containing stored routine and event definitions. As of MySQL 8.4, the `mysql.event` and `mysql.proc` tables are not used. Definitions for the corresponding objects are stored in data dictionary tables, but those tables are not dumped. To include stored routines and events in a dump made using `--all-databases`, use the `--routines` and `--events` options explicitly.
 *  `--databases`, `-B`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--databases</code></td> </tr></tbody></table>
 
-  Dump several databases. Normally, **mysqldump** treats the first name argument on the command line as a database name and following names as table names. With this option, it treats all name arguments as database names. `CREATE DATABASE` and  `USE` statements are included in the output before each new database.
+  Dump several databases. Normally, `mysqldump` treats the first name argument on the command line as a database name and following names as table names. With this option, it treats all name arguments as database names. `CREATE DATABASE` and  `USE` statements are included in the output before each new database.
 
   This option may be used to dump the `performance_schema` database, which normally is not dumped even with the `--all-databases` option. (Also use the `--skip-lock-tables` option.)
 
@@ -782,7 +782,7 @@ The following options control which kinds of schema objects are written to the d
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-error=error[,error]...</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Ignore the specified errors. The option value is a list of comma-separated error numbers specifying the errors to ignore during  **mysqldump** execution. If the `--force` option is also given to ignore all errors, `--force` takes precedence.
+  Ignore the specified errors. The option value is a list of comma-separated error numbers specifying the errors to ignore during  `mysqldump` execution. If the `--force` option is also given to ignore all errors, `--force` takes precedence.
 *  `--ignore-table=db_name.tbl_name`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-table=db_name.tbl_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
@@ -824,7 +824,7 @@ The following options control which kinds of schema objects are written to the d
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tables</code></td> </tr></tbody></table>
 
-  Override the  `--databases` or `-B` option.  **mysqldump** regards all name arguments following the option as table names.
+  Override the  `--databases` or `-B` option.  `mysqldump` regards all name arguments following the option as table names.
 *  `--triggers`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--triggers</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-triggers</code></td> </tr></tbody></table>
@@ -833,7 +833,7 @@ The following options control which kinds of schema objects are written to the d
 
   To be able to dump a table's triggers, you must have the `TRIGGER` privilege for the table.
 
-  Multiple triggers are permitted. **mysqldump** dumps triggers in activation order so that when the dump file is reloaded, triggers are created in the same activation order. However, if a **mysqldump** dump file contains multiple triggers for a table that have the same trigger event and action time, an error occurs for attempts to load the dump file into an older server that does not support multiple triggers. (For a workaround, see Downgrade Notes; you can convert triggers to be compatible with older servers.)
+  Multiple triggers are permitted. `mysqldump` dumps triggers in activation order so that when the dump file is reloaded, triggers are created in the same activation order. However, if a `mysqldump` dump file contains multiple triggers for a table that have the same trigger event and action time, an error occurs for attempts to load the dump file into an older server that does not support multiple triggers. (For a workaround, see Downgrade Notes; you can convert triggers to be compatible with older servers.)
 *  `--where='where_condition'`, `-w 'where_condition'`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--where='where_condition'</code></td> </tr></tbody></table>
@@ -882,21 +882,21 @@ Performance is also affected by the transactional options, primarily for the dum
 
   ::: info Note
 
-  The value of this option is specific to **mysqldump** and should not be confused with the MySQL server's `max_allowed_packet` system variable; the server value cannot be exceeded by a single packet from  **mysqldump**, regardless of any setting for the  **mysqldump** option, even if the latter is larger.
+  The value of this option is specific to `mysqldump` and should not be confused with the MySQL server's `max_allowed_packet` system variable; the server value cannot be exceeded by a single packet from  `mysqldump`, regardless of any setting for the  `mysqldump` option, even if the latter is larger.
 
   :::
 *  `--mysqld-long-query-time=value`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysqld-long-query-time=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>Server global setting</code></td> </tr></tbody></table>
 
-  Set the session value of the `long_query_time` system variable. Use this option if you want to increase the time allowed for queries from  **mysqldump** before they are logged to the slow query log file. **mysqldump** performs a full table scan, which means its queries can often exceed a global `long_query_time` setting that is useful for regular queries. The default global setting is 10 seconds.
+  Set the session value of the `long_query_time` system variable. Use this option if you want to increase the time allowed for queries from  `mysqldump` before they are logged to the slow query log file. `mysqldump` performs a full table scan, which means its queries can often exceed a global `long_query_time` setting that is useful for regular queries. The default global setting is 10 seconds.
 
-  You can use `--mysqld-long-query-time` to specify a session value from 0 (meaning that every query from  **mysqldump** is logged to the slow query log) to 31536000, which is 365 days in seconds. For **mysqldump**’s option, you can only specify whole seconds. When you do not specify this option, the server’s global setting applies to **mysqldump**’s queries.
+  You can use `--mysqld-long-query-time` to specify a session value from 0 (meaning that every query from  `mysqldump` is logged to the slow query log) to 31536000, which is 365 days in seconds. For `mysqldump`’s option, you can only specify whole seconds. When you do not specify this option, the server’s global setting applies to `mysqldump`’s queries.
 *  `--net-buffer-length=value`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--net-buffer-length=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>16384</code></td> </tr></tbody></table>
 
-  The initial size of the buffer for client/server communication. When creating multiple-row `INSERT` statements (as with the  `--extended-insert` or `--opt` option), **mysqldump** creates rows up to `--net-buffer-length` bytes long. If you increase this variable, ensure that the MySQL server  `net_buffer_length` system variable has a value at least this large.
+  The initial size of the buffer for client/server communication. When creating multiple-row `INSERT` statements (as with the  `--extended-insert` or `--opt` option), `mysqldump` creates rows up to `--net-buffer-length` bytes long. If you increase this variable, ensure that the MySQL server  `net_buffer_length` system variable has a value at least this large.
 *  `--network-timeout`, `-M`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--network-timeout[={0|1}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
@@ -913,7 +913,7 @@ Performance is also affected by the transactional options, primarily for the dum
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--quick</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-quick</code></td> </tr></tbody></table>
 
-  This option is useful for dumping large tables. It forces **mysqldump** to retrieve rows for a table from the server a row at a time rather than retrieving the entire row set and buffering it in memory before writing it out.
+  This option is useful for dumping large tables. It forces `mysqldump` to retrieve rows for a table from the server a row at a time rather than retrieving the entire row set and buffering it in memory before writing it out.
 *  `--skip-opt`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-opt</code></td> </tr></tbody></table>
@@ -982,7 +982,7 @@ The following options trade off the performance of the dump operation, against t
 
   When using this option, you should keep in mind that only `InnoDB` tables are dumped in a consistent state. For example, any `MyISAM` or `MEMORY` tables dumped while using this option may still change state.
 
-  While a `--single-transaction` dump is in process, to ensure a valid dump file (correct table contents and binary log coordinates), no other connection should use the following statements: `ALTER TABLE`, `CREATE TABLE`, `DROP TABLE`, `RENAME TABLE`, `TRUNCATE TABLE`. A consistent read is not isolated from those statements, so use of them on a table to be dumped can cause the `SELECT` that is performed by **mysqldump** to retrieve the table contents to obtain incorrect contents or fail.
+  While a `--single-transaction` dump is in process, to ensure a valid dump file (correct table contents and binary log coordinates), no other connection should use the following statements: `ALTER TABLE`, `CREATE TABLE`, `DROP TABLE`, `RENAME TABLE`, `TRUNCATE TABLE`. A consistent read is not isolated from those statements, so use of them on a table to be dumped can cause the `SELECT` that is performed by `mysqldump` to retrieve the table contents to obtain incorrect contents or fail.
 
   The `--single-transaction` option and the `--lock-tables` option are mutually exclusive because `LOCK TABLES` causes any pending transactions to be committed implicitly.
 
@@ -1015,7 +1015,7 @@ Another way to reload the dump file:
 mysql -e "source /path-to-backup/backup-file.sql" db_name
 ```
 
- **mysqldump** is also very useful for populating databases by copying data from one MySQL server to another:
+ `mysqldump` is also very useful for populating databases by copying data from one MySQL server to another:
 
 ```
 mysqldump --opt db_name | mysql --host=remote_host -C db_name
@@ -1033,7 +1033,7 @@ To dump all databases, use the `--all-databases` option:
 mysqldump --all-databases > all_databases.sql
 ```
 
-For `InnoDB` tables, **mysqldump** provides a way of making an online backup:
+For `InnoDB` tables, `mysqldump` provides a way of making an online backup:
 
 ```
 mysqldump --all-databases --source-data --single-transaction > all_databases.sql
@@ -1062,14 +1062,14 @@ For more information on making backups, see Section 9.2, “Database Backup Met
 
 #### Restrictions
 
- **mysqldump** does not dump the `performance_schema` or `sys` schema by default. To dump any of these, name them explicitly on the command line. You can also name them with the `--databases` option. For `performance_schema`, also use the `--skip-lock-tables` option.
+ `mysqldump` does not dump the `performance_schema` or `sys` schema by default. To dump any of these, name them explicitly on the command line. You can also name them with the `--databases` option. For `performance_schema`, also use the `--skip-lock-tables` option.
 
- **mysqldump** does not dump the `INFORMATION_SCHEMA` schema.
+ `mysqldump` does not dump the `INFORMATION_SCHEMA` schema.
 
- **mysqldump** does not dump `InnoDB` `CREATE TABLESPACE` statements.
+ `mysqldump` does not dump `InnoDB` `CREATE TABLESPACE` statements.
 
- **mysqldump** does not dump the NDB Cluster `ndbinfo` information database.
+ `mysqldump` does not dump the NDB Cluster `ndbinfo` information database.
 
- **mysqldump** includes statements to recreate the `general_log` and `slow_query_log` tables for dumps of the `mysql` database. Log table contents are not dumped.
+ `mysqldump` includes statements to recreate the `general_log` and `slow_query_log` tables for dumps of the `mysql` database. Log table contents are not dumped.
 
 If you encounter problems backing up views due to insufficient privileges, see  Section 27.9, “Restrictions on Views” for a workaround.

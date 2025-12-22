@@ -30,7 +30,7 @@ Para obter mais informações sobre a configuração do modo SQL, ver a Secção
 
 ### Executar o MySQL no modo ANSI
 
-Para executar o MySQL Server no modo ANSI, inicie **mysqld** com a opção `--ansi`.
+Para executar o MySQL Server no modo ANSI, inicie `mysqld` com a opção `--ansi`.
 
 ```
 --transaction-isolation=SERIALIZABLE --sql-mode=ANSI

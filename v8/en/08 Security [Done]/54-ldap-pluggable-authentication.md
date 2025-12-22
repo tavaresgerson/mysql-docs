@@ -495,7 +495,7 @@ GRANT PROXY
   TO ''@'%';
 ```
 
-Use the  **mysql** command-line client to connect to the MySQL server as `basha`.
+Use the  `mysql` command-line client to connect to the MySQL server as `basha`.
 
 ```
 $> mysql --user=basha --password

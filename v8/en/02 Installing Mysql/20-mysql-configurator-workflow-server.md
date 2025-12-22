@@ -51,7 +51,7 @@ This dialogue prompts for the protocol (default: TCP/IP), port (default: 3306), 
 
 This upgrade may replace the file paths. For example, "MySQL Server 8.2\Data\" changes to "MySQL Server 8.3\Data\" when upgrading 8.2 to 8.3.
 
-This upgrade functionality also provides these additional options: "Backup Data" allows running **mysqldump** before performing the upgrade, and "Server File Permissions" to optionally customize file permissions.
+This upgrade functionality also provides these additional options: "Backup Data" allows running `mysqldump` before performing the upgrade, and "Server File Permissions" to optionally customize file permissions.
 
 ###### Add a Separate MySQL Server Installation
 

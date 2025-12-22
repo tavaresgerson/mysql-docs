@@ -41,9 +41,9 @@ ERROR 1820 (HY000): You must reset your password using ALTER USER
 statement before executing this statement.
 ```
 
-That is what normally happens for interactive invocations of the **mysql** client because by default such invocations are put in sandbox mode. To resume normal functioning, select a new password.
+That is what normally happens for interactive invocations of the `mysql` client because by default such invocations are put in sandbox mode. To resume normal functioning, select a new password.
 
-For noninteractive invocations of the  **mysql** client (for example, in batch mode), the server normally disconnects the client if the password is expired. To permit noninteractive  **mysql** invocations to stay connected so that the password can be changed (using the statements permitted in sandbox mode), add the `--connect-expired-password` option to the  **mysql** command.
+For noninteractive invocations of the  `mysql` client (for example, in batch mode), the server normally disconnects the client if the password is expired. To permit noninteractive  `mysql` invocations to stay connected so that the password can be changed (using the statements permitted in sandbox mode), add the `--connect-expired-password` option to the  `mysql` command.
 
 As mentioned previously, whether the server disconnects an expired-password client or restricts it to sandbox mode depends on a combination of client and server settings. The following discussion describes the relevant settings and how they interact.
 
@@ -64,7 +64,7 @@ On the client side, a given client indicates whether it can handle sandbox mode 
                 &arg);
   ```
 
-  This is the technique used within the  **mysql** client, which enables `MYSQL_OPT_CAN_HANDLE_EXPIRED_PASSWORDS` if invoked interactively or with the `--connect-expired-password` option.
+  This is the technique used within the  `mysql` client, which enables `MYSQL_OPT_CAN_HANDLE_EXPIRED_PASSWORDS` if invoked interactively or with the `--connect-expired-password` option.
 * Pass the `CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS` flag to `mysql_real_connect()` at connect time:
 
   ```

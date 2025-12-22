@@ -26,7 +26,7 @@ $> mysqladmin --host=host_name --port=port_number variables
 
 With the information displayed by that command, you can tell what option values *not* to use when configuring an additional server.
 
-If you specify `localhost` as the host name, **mysqladmin** defaults to using a Unix socket file rather than TCP/IP. To explicitly specify the transport protocol, use the `--protocol={TCP|SOCKET|PIPE|MEMORY}` option.
+If you specify `localhost` as the host name, `mysqladmin` defaults to using a Unix socket file rather than TCP/IP. To explicitly specify the transport protocol, use the `--protocol={TCP|SOCKET|PIPE|MEMORY}` option.
 
 You need not compile a new MySQL server just to start with a different Unix socket file and TCP/IP port number. It is also possible to use the same server binary and start each invocation of it with different parameter values at runtime. One way to do so is by using command-line options:
 

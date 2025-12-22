@@ -4,7 +4,7 @@ After the data directory is initialized and you have started the server, perform
 
 Alternatively, add the `bin` directory to your `PATH` environment variable setting. That enables your shell (command interpreter) to find MySQL programs properly, so that you can run a program by typing only its name, not its path name. See  Section 6.2.9, “Setting Environment Variables”.
 
-Use  **mysqladmin** to verify that the server is running. The following commands provide simple tests to check whether the server is up and responding to connections:
+Use  `mysqladmin` to verify that the server is running. The following commands provide simple tests to check whether the server is up and responding to connections:
 
 ```
 $> bin/mysqladmin version
@@ -18,7 +18,7 @@ $> bin/mysqladmin -u root -p version
 Enter password: (enter root password here)
 ```
 
-The output from  **mysqladmin version** varies slightly depending on your platform and version of MySQL, but should be similar to that shown here:
+The output from  `mysqladmin version` varies slightly depending on your platform and version of MySQL, but should be similar to that shown here:
 
 ```
 $> bin/mysqladmin version
@@ -36,7 +36,7 @@ Opens: 0  Flush tables: 1  Open tables: 19
 Queries per second avg: 0.000
 ```
 
-To see what else you can do with  **mysqladmin**, invoke it with the  `--help` option.
+To see what else you can do with  `mysqladmin`, invoke it with the  `--help` option.
 
 Verify that you can shut down the server (include a `-p` option if the `root` account has a password already):
 
@@ -44,7 +44,7 @@ Verify that you can shut down the server (include a `-p` option if the `root` ac
 $> bin/mysqladmin -u root shutdown
 ```
 
-Verify that you can start the server again. Do this by using **mysqld_safe** or by invoking **mysqld** directly. For example:
+Verify that you can start the server again. Do this by using **mysqld_safe** or by invoking `mysqld` directly. For example:
 
 ```
 $> bin/mysqld_safe --user=mysql &
@@ -115,7 +115,7 @@ Database: mysql
 +---------------------------+
 ```
 
-Use the  **mysql** program to select information from a table in the `mysql` schema:
+Use the  `mysql` program to select information from a table in the `mysql` schema:
 
 ```
 $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
@@ -128,4 +128,4 @@ $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 
 At this point, your server is running and you can access it. To tighten security if you have not yet assigned a password to the initial account, follow the instructions in Section 2.9.4, “Securing the Initial MySQL Account”.
 
-For more information about  **mysql**, **mysqladmin**, and  **mysqlshow**, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”,  Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.
+For more information about  `mysql`, `mysqladmin`, and  **mysqlshow**, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”,  Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.

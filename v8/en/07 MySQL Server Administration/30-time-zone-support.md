@@ -17,7 +17,7 @@ MySQL Server maintains several time zone settings:
 
 * The server system time zone. When the server starts, it attempts to determine the time zone of the host machine and uses it to set the `system_time_zone` system variable.
 
-  To explicitly specify the system time zone for MySQL Server at startup, set the `TZ` environment variable before you start  **mysqld**. If you start the server using  **mysqld\_safe**, its `--timezone` option provides another way to set the system time zone. The permissible values for `TZ` and `--timezone` are system dependent. Consult your operating system documentation to see what values are acceptable.
+  To explicitly specify the system time zone for MySQL Server at startup, set the `TZ` environment variable before you start  `mysqld`. If you start the server using  **mysqld\_safe**, its `--timezone` option provides another way to set the system time zone. The permissible values for `TZ` and `--timezone` are system dependent. Consult your operating system documentation to see what values are acceptable.
 * The server current time zone. The global `time_zone` system variable indicates the time zone the server currently is operating in. The initial  `time_zone` value is `'SYSTEM'`, which indicates that the server time zone is the same as the system time zone.
 
   ::: info Note
@@ -84,15 +84,15 @@ Loading the time zone information is not necessarily a one-time operation becaus
 
 If your system has its own zoneinfo database (the set of files describing time zones), use the **mysql\_tzinfo\_to\_sql** program to load the time zone tables. Examples of such systems are Linux, macOS, FreeBSD, and Solaris. One likely location for these files is the `/usr/share/zoneinfo` directory. If your system has no zoneinfo database, you can use a downloadable package, as described later in this section.
 
-To load the time zone tables from the command line, pass the zoneinfo directory path name to **mysql\_tzinfo\_to\_sql** and send the output into the  **mysql** program. For example:
+To load the time zone tables from the command line, pass the zoneinfo directory path name to **mysql\_tzinfo\_to\_sql** and send the output into the  `mysql` program. For example:
 
 ```
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
 ```
 
-The  **mysql** command shown here assumes that you connect to the server using an account such as `root` that has privileges for modifying tables in the `mysql` system schema. Adjust the connection parameters as required.
+The  `mysql` command shown here assumes that you connect to the server using an account such as `root` that has privileges for modifying tables in the `mysql` system schema. Adjust the connection parameters as required.
 
- **mysql\_tzinfo\_to\_sql** reads your system's time zone files and generates SQL statements from them. **mysql** processes those statements to load the time zone tables.
+ **mysql\_tzinfo\_to\_sql** reads your system's time zone files and generates SQL statements from them. `mysql` processes those statements to load the time zone tables.
 
  **mysql\_tzinfo\_to\_sql** also can be used to load a single time zone file or generate leap second information:
 
@@ -138,13 +138,13 @@ Do *not* use a downloadable time zone package that contains `MyISAM` tables. Tha
 When time zone rules change, applications that use the old rules become out of date. To stay current, it is necessary to make sure that your system uses current time zone information is used. For MySQL, there are multiple factors to consider in staying current:
 
 * The operating system time affects the value that the MySQL server uses for times if its time zone is set to `SYSTEM`. Make sure that your operating system is using the latest time zone information. For most operating systems, the latest update or service pack prepares your system for the time changes. Check the website for your operating system vendor for an update that addresses the time changes.
-* If you replace the system's `/etc/localtime` time zone file with a version that uses rules differing from those in effect at **mysqld** startup, restart **mysqld** so that it uses the updated rules. Otherwise,  **mysqld** might not notice when the system changes its time.
+* If you replace the system's `/etc/localtime` time zone file with a version that uses rules differing from those in effect at `mysqld` startup, restart `mysqld` so that it uses the updated rules. Otherwise,  `mysqld` might not notice when the system changes its time.
 * If you use named time zones with MySQL, make sure that the time zone tables in the `mysql` database are up to date:
 
   + If your system has its own zoneinfo database, reload the MySQL time zone tables whenever the zoneinfo database is updated.
   + For systems that do not have their own zoneinfo database, check the MySQL Developer Zone for updates. When a new update is available, download it and use it to replace the content of your current time zone tables.
 
-  For instructions for both methods, see Populating the Time Zone Tables. **mysqld** caches time zone information that it looks up, so after updating the time zone tables, restart **mysqld** to make sure that it does not continue to serve outdated time zone data.
+  For instructions for both methods, see Populating the Time Zone Tables. `mysqld` caches time zone information that it looks up, so after updating the time zone tables, restart `mysqld` to make sure that it does not continue to serve outdated time zone data.
 
 If you are uncertain whether named time zones are available, for use either as the server's time zone setting or by clients that set their own time zone, check whether your time zone tables are empty. The following query determines whether the table that contains time zone names has any rows:
 

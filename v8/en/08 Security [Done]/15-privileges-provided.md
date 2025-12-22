@@ -142,10 +142,10 @@ Particular SQL statements might have more specific privilege requirements than i
   The  `RELOAD` enables the following operations:
 
   + Use of the  `FLUSH` statement.
-  + Use of  **mysqladmin** commands that are equivalent to  `FLUSH` operations: `flush-hosts`, `flush-logs`, `flush-privileges`, `flush-status`, `flush-tables`, `refresh`, and `reload`.
+  + Use of  `mysqladmin` commands that are equivalent to  `FLUSH` operations: `flush-hosts`, `flush-logs`, `flush-privileges`, `flush-status`, `flush-tables`, `refresh`, and `reload`.
 
     The `reload` command tells the server to reload the grant tables into memory. `flush-privileges` is a synonym for `reload`. The `refresh` command closes and reopens the log files and flushes all tables. The other `flush-xxx` commands perform functions similar to `refresh`, but are more specific and may be preferable in some instances. For example, if you want to flush just the log files, `flush-logs` is a better choice than `refresh`.
-  + Use of  **mysqldump** options that perform various  `FLUSH` operations: `--flush-logs` and `--source-data`.
+  + Use of  `mysqldump` options that perform various  `FLUSH` operations: `--flush-logs` and `--source-data`.
   + Use of the `RESET BINARY LOGS AND GTIDS` and `RESET REPLICA` statements.
 *  `REPLICATION CLIENT`
 

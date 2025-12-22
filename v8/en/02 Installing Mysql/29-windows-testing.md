@@ -9,7 +9,7 @@ C:\> "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysqladmin" version status pro
 C:\> "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysql" test
 ```
 
-If  **mysqld** is slow to respond to TCP/IP connections from client programs, there is probably a problem with your DNS. In this case, start  **mysqld** with the  `skip_name_resolve` system variable enabled and use only `localhost` and IP addresses in the `Host` column of the MySQL grant tables. (Be sure that an account exists that specifies an IP address or you may not be able to connect.)
+If  `mysqld` is slow to respond to TCP/IP connections from client programs, there is probably a problem with your DNS. In this case, start  `mysqld` with the  `skip_name_resolve` system variable enabled and use only `localhost` and IP addresses in the `Host` column of the MySQL grant tables. (Be sure that an account exists that specifies an IP address or you may not be able to connect.)
 
 You can force a MySQL client to use a named-pipe connection rather than TCP/IP by specifying the `--pipe` or `--protocol=PIPE` option, or by specifying `.` (period) as the host name. Use the  `--socket` option to specify the name of the pipe if you do not want to use the default pipe name.
 

@@ -283,7 +283,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
 
   When you invoke a MySQL client program with the `--ssl-session-data` option, the client attempts to deserialize session data from the file, if provided, and then use it to establish a new connection. If you supply a file, but the session is not reused, then the connection fails unless you also specified the `--ssl-session-data-continue-on-failed-reuse` option on the command line when you invoked the client program.
 
-  The  **mysql** command, `ssl_session_data_print`, generates the session data file (see  Section 6.5.1.2, “mysql Client Commands”).
+  The  `mysql` command, `ssl_session_data_print`, generates the session data file (see  Section 6.5.1.2, “mysql Client Commands”).
 *  `ssl-session-data-continue-on-failed-reuse`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-session-data-continue-on-failed-reuse</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>

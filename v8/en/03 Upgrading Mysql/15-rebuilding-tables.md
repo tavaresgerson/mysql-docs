@@ -3,7 +3,7 @@
 This section describes how to rebuild or repair tables or indexes, which may be necessitated by:
 
 * Changes to how MySQL handles data types or character sets. For example, an error in a collation might have been corrected, necessitating a table rebuild to update the indexes for character columns that use the collation.
-* Required table repairs or upgrades reported by `CHECK TABLE` or **mysqlcheck**.
+* Required table repairs or upgrades reported by `CHECK TABLE` or `mysqlcheck`.
 
 Methods for rebuilding a table include:
 
@@ -17,9 +17,9 @@ If you are rebuilding tables because a different version of MySQL cannot handle 
 
 If you use the dump-and-reload method of rebuilding tables only for the purpose of rebuilding indexes, you can perform the dump either before or after upgrading or downgrading. Reloading still must be done afterward.
 
-If you need to rebuild an `InnoDB` table because a  `CHECK TABLE` operation indicates that a table upgrade is required, use **mysqldump** to create a dump file and **mysql** to reload the file. If the `CHECK TABLE` operation indicates that there is a corruption or causes `InnoDB` to fail, refer to  Section 17.20.3, “Forcing InnoDB Recovery” for information about using the `innodb_force_recovery` option to restart `InnoDB`. To understand the type of problem that  `CHECK TABLE` may be encountering, refer to the `InnoDB` notes in Section 15.7.3.2, “CHECK TABLE Statement”.
+If you need to rebuild an `InnoDB` table because a  `CHECK TABLE` operation indicates that a table upgrade is required, use `mysqldump` to create a dump file and `mysql` to reload the file. If the `CHECK TABLE` operation indicates that there is a corruption or causes `InnoDB` to fail, refer to  Section 17.20.3, “Forcing InnoDB Recovery” for information about using the `innodb_force_recovery` option to restart `InnoDB`. To understand the type of problem that  `CHECK TABLE` may be encountering, refer to the `InnoDB` notes in Section 15.7.3.2, “CHECK TABLE Statement”.
 
-To rebuild a table by dumping and reloading it, use **mysqldump** to create a dump file and **mysql** to reload the file:
+To rebuild a table by dumping and reloading it, use `mysqldump` to create a dump file and `mysql` to reload the file:
 
 ```
 mysqldump db_name t1 > dump.sql

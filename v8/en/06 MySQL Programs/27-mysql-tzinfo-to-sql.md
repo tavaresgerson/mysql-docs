@@ -10,13 +10,13 @@ mysql_tzinfo_to_sql tz_file tz_name
 mysql_tzinfo_to_sql --leap tz_file
 ```
 
-For the first invocation syntax, pass the zoneinfo directory path name to  **mysql_tzinfo_to_sql** and send the output into the  **mysql** program. For example:
+For the first invocation syntax, pass the zoneinfo directory path name to  **mysql_tzinfo_to_sql** and send the output into the  `mysql` program. For example:
 
 ```
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
 ```
 
- **mysql_tzinfo_to_sql** reads your system's time zone files and generates SQL statements from them. **mysql** processes those statements to load the time zone tables.
+ **mysql_tzinfo_to_sql** reads your system's time zone files and generates SQL statements from them. `mysql` processes those statements to load the time zone tables.
 
 The second syntax causes  **mysql_tzinfo_to_sql** to load a single time zone file *`tz_file`* that corresponds to a time zone name *`tz_name`*:
 

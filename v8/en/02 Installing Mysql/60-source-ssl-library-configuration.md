@@ -26,7 +26,7 @@ To compile using OpenSSL, use this procedure:
    Alternative OpenSSL system packages are supported by using `WITH_SSL=openssl11` on EL7 or `WITH_SSL=openssl3` on EL8. Authentication plugins, such as LDAP and Kerberos, are disabled since they do not support these alternative versions of OpenSSL.
 3. Compile and install the distribution.
 
-To check whether a  **mysqld** server supports encrypted connections, examine the value of the `tls_version` system variable:
+To check whether a  `mysqld` server supports encrypted connections, examine the value of the `tls_version` system variable:
 
 ```
 mysql> SHOW VARIABLES LIKE 'tls_version';

@@ -47,7 +47,7 @@ Regardless of whether an error originates from within the client library or is r
 
 For descriptions of the client library error functions, see  MySQL 8.4 C API Developer Guide.
 
-A MySQL client program may respond to an error in varying ways. The client may display the error message so the user can take corrective measures, internally attempt to resolve or retry a failed operation, or take other action. For example, (using the  **mysql** client), a failure to connect to the server might result in this message:
+A MySQL client program may respond to an error in varying ways. The client may display the error message so the user can take corrective measures, internally attempt to resolve or retry a failed operation, or take other action. For example, (using the  `mysql` client), a failure to connect to the server might result in this message:
 
 ```
 $> mysql -h no-such-host

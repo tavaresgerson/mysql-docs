@@ -12,7 +12,7 @@
 
   The  `BENCHMARK()` function executes the expression *`expr`* repeatedly *`count`* times. It may be used to time how quickly MySQL processes the expression. The result value is `0`, or `NULL` for inappropriate arguments such as a `NULL` or negative repeat count.
 
-  The intended use is from within the  **mysql** client, which reports query execution times:
+  The intended use is from within the  `mysql` client, which reports query execution times:
 
   ```
   mysql> SELECT BENCHMARK(1000000,AES_ENCRYPT('hello','goodbye'));
@@ -428,13 +428,13 @@
   +  `SELECT`: -1 if the statement returns a result set, or the number of rows “affected” if it does not. For example, for `SELECT * FROM t1`, `ROW_COUNT()` returns -1. For `SELECT * FROM t1 INTO OUTFILE 'file_name'`, `ROW_COUNT()` returns the number of rows written to the file.
   +  `SIGNAL` statements: 0.
 
-  For  `UPDATE` statements, the affected-rows value by default is the number of rows actually changed. If you specify the `CLIENT_FOUND_ROWS` flag to `mysql_real_connect()` when connecting to  **mysqld**, the affected-rows value is the number of rows “found”; that is, matched by the `WHERE` clause.
+  For  `UPDATE` statements, the affected-rows value by default is the number of rows actually changed. If you specify the `CLIENT_FOUND_ROWS` flag to `mysql_real_connect()` when connecting to  `mysqld`, the affected-rows value is the number of rows “found”; that is, matched by the `WHERE` clause.
 
   For  `REPLACE` statements, the affected-rows value is 2 if the new row replaced an old row, because in this case, one row was inserted after the duplicate was deleted.
 
   For [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "15.2.7.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statements, the affected-rows value per row is 1 if the row is inserted as a new row, 2 if an existing row is updated, and 0 if an existing row is set to its current values. If you specify the `CLIENT_FOUND_ROWS` flag, the affected-rows value is 1 (not 0) if an existing row is set to its current values.
 
-  The  `ROW_COUNT()` value is similar to the value from the `mysql_affected_rows()` C API function and the row count that the  **mysql** client displays following statement execution.
+  The  `ROW_COUNT()` value is similar to the value from the `mysql_affected_rows()` C API function and the row count that the  `mysql` client displays following statement execution.
 
   ```
   mysql> INSERT INTO t VALUES(1),(2),(3);

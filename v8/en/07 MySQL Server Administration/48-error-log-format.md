@@ -6,7 +6,7 @@ Each error log sink (writer) component has a characteristic output format it use
 * The information relevant to the log sink. Not every sink writes all fields available in error events.
 * System variables may affect log sinks. See System Variables That Affect Error Log Format.
 
-For names and descriptions of the fields in error events, see Section 7.4.2.3, “Error Event Fields”. For all log sinks, the thread ID included in error log messages is that of the thread within  **mysqld** responsible for writing the message. This ID indicates which part of the server produced the message, and is consistent with general query log and slow query log messages, which include the connection thread ID.
+For names and descriptions of the fields in error events, see Section 7.4.2.3, “Error Event Fields”. For all log sinks, the thread ID included in error log messages is that of the thread within  `mysqld` responsible for writing the message. This ID indicates which part of the server produced the message, and is consistent with general query log and slow query log messages, which include the connection thread ID.
 
 *  log\_sink\_internal Output Format
 *  log\_sink\_json Output Format

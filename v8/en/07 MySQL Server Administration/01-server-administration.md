@@ -1,6 +1,6 @@
 # Chapter 7 MySQL Server Administration
 
-MySQL Server ( **mysqld**) is the main program that does most of the work in a MySQL installation. This chapter provides an overview of MySQL Server and covers general server administration:
+MySQL Server ( `mysqld`) is the main program that does most of the work in a MySQL installation. This chapter provides an overview of MySQL Server and covers general server administration:
 
 * Server configuration
 * The data directory, particularly the `mysql` system schema

@@ -42,7 +42,7 @@ If the value retrieved must be the same as the value specified for storage with 
 
 ::: info Note
 
-Within the  **mysql** client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+Within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
 
 :::

@@ -60,7 +60,7 @@ The upgrade process does not upgrade the contents of the time zone tables. For u
 
 ### Logical Upgrade
 
-A logical upgrade involves exporting SQL from the old MySQL instance using a backup or export utility such as **mysqldump**, installing the new MySQL server, and applying the SQL to your new MySQL instance. For details about what may need upgrading, see Section 3.4, “What the MySQL Upgrade Process Upgrades”.
+A logical upgrade involves exporting SQL from the old MySQL instance using a backup or export utility such as `mysqldump`, installing the new MySQL server, and applying the SQL to your new MySQL instance. For details about what may need upgrading, see Section 3.4, “What the MySQL Upgrade Process Upgrades”.
 
 ::: info Note
 
@@ -87,13 +87,13 @@ To perform a logical upgrade:
 
    ::: info Note
 
-   Use the  `--routines` and `--events` options with **mysqldump** (as shown above) if your databases include stored programs. The `--all-databases` option includes all databases in the dump, including the `mysql` database that holds the system tables.
+   Use the  `--routines` and `--events` options with `mysqldump` (as shown above) if your databases include stored programs. The `--all-databases` option includes all databases in the dump, including the `mysql` database that holds the system tables.
 
    ::: 
    
    Important
 
-   If you have tables that contain generated columns, use the **mysqldump** utility provided with MySQL 5.7.9 or higher to create your dump files. The **mysqldump** utility provided in earlier releases uses incorrect syntax for generated column definitions (Bug #20769542). You can use the Information Schema  `COLUMNS` table to identify tables with generated columns.
+   If you have tables that contain generated columns, use the `mysqldump` utility provided with MySQL 5.7.9 or higher to create your dump files. The `mysqldump` utility provided in earlier releases uses incorrect syntax for generated column definitions (Bug #20769542). You can use the Information Schema  `COLUMNS` table to identify tables with generated columns.
 3. Shut down the old MySQL server. For example:
 
    ```
@@ -130,7 +130,7 @@ To perform a logical upgrade:
 
    ::: info Note
 
-   It is not recommended to load a dump file when GTIDs are enabled on the server ( `gtid_mode=ON`), if your dump file includes system tables. **mysqldump** issues DML instructions for the system tables which use the non-transactional MyISAM storage engine, and this combination is not permitted when GTIDs are enabled. Also be aware that loading a dump file from a server with GTIDs enabled, into another server with GTIDs enabled, causes different transaction identifiers to be generated.
+   It is not recommended to load a dump file when GTIDs are enabled on the server ( `gtid_mode=ON`), if your dump file includes system tables. `mysqldump` issues DML instructions for the system tables which use the non-transactional MyISAM storage engine, and this combination is not permitted when GTIDs are enabled. Also be aware that loading a dump file from a server with GTIDs enabled, into another server with GTIDs enabled, causes different transaction identifiers to be generated.
 
    :::
 
@@ -172,5 +172,5 @@ There are two steps to upgrading each individual `mysqld`:
    ```
    Failed to Populate DD tables.
    ```
-2. Upgrade the system tables by restarting each individual **mysqld** without the `--upgrade=MINIMAL` option.
+2. Upgrade the system tables by restarting each individual `mysqld` without the `--upgrade=MINIMAL` option.
 

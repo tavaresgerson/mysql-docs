@@ -4,10 +4,10 @@ To obtain a description of a `MyISAM` table or statistics about it, use the comm
 
 * **myisamchk -d *`tbl_name`***
 
-  Runs  **myisamchk** in “describe mode” to produce a description of your table. If you start the MySQL server with external locking disabled, **myisamchk** may report an error for a table that is updated while it runs. However, because **myisamchk** does not change the table in describe mode, there is no risk of destroying data.
+  Runs  `myisamchk` in “describe mode” to produce a description of your table. If you start the MySQL server with external locking disabled, `myisamchk` may report an error for a table that is updated while it runs. However, because `myisamchk` does not change the table in describe mode, there is no risk of destroying data.
 * **myisamchk -dv *`tbl_name`***
 
-  Adding `-v` runs  **myisamchk** in verbose mode so that it produces more information about the table. Adding `-v` a second time produces even more information.
+  Adding `-v` runs  `myisamchk` in verbose mode so that it produces more information about the table. Adding `-v` a second time produces even more information.
 * **myisamchk -eis *`tbl_name`***
 
   Shows only the most important information from a table. This operation is slow because it must read the entire table.
@@ -17,7 +17,7 @@ To obtain a description of a `MyISAM` table or statistics about it, use the comm
 
 The *`tbl_name`* argument can be either the name of a `MyISAM` table or the name of its index file, as described in  Section 6.6.4, “myisamchk — MyISAM Table-Maintenance Utility”. Multiple *`tbl_name`* arguments can be given.
 
-Suppose that a table named `person` has the following structure. (The `MAX_ROWS` table option is included so that in the example output from **myisamchk** shown later, some values are smaller and fit the output format more easily.)
+Suppose that a table named `person` has the following structure. (The `MAX_ROWS` table option is included so that in the example output from `myisamchk` shown later, some values are smaller and fit the output format more easily.)
 
 ```
 CREATE TABLE person
@@ -73,7 +73,7 @@ Field Start Length Nullpos Nullbit Type
 6     171   3      1       2       no zeros
 ```
 
-Explanations for the types of information **myisamchk** produces are given here. “Keyfile” refers to the index file. “Record” and “row” are synonymous, as are “field” and “column.”
+Explanations for the types of information `myisamchk` produces are given here. “Keyfile” refers to the index file. “Record” and “row” are synonymous, as are “field” and “column.”
 
 The initial part of the table description contains these values:
 
@@ -129,7 +129,7 @@ The initial part of the table description contains these values:
 
   How much space each row takes, in bytes.
 
-The `table description` part of the output includes a list of all keys in the table. For each key, **myisamchk** displays some low-level information:
+The `table description` part of the output includes a list of all keys in the table. For each key, `myisamchk` displays some low-level information:
 
 * `Key`
 
@@ -259,7 +259,7 @@ Maximum memory usage: 1046926 bytes (1023k)
   The key number.
 * `Keyblocks used`
 
-  What percentage of the keyblocks are used. When a table has just been reorganized with  **myisamchk**, the values are very high (very near theoretical maximum).
+  What percentage of the keyblocks are used. When a table has just been reorganized with  `myisamchk`, the values are very high (very near theoretical maximum).
 * `Packed`
 
   MySQL tries to pack key values that have a common suffix. This can only be used for indexes on `CHAR` and `VARCHAR` columns. For long indexed strings that have similar leftmost parts, this can significantly reduce the space used. In the preceding example, the second key is 40 bytes long and a 97% reduction in space is achieved.

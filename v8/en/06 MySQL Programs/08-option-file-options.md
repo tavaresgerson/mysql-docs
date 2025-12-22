@@ -24,14 +24,14 @@ When specifying file names as option values, avoid the use of the `~` shell meta
 
   Read only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. *`file_name`* is interpreted relative to the current directory if given as a relative path name rather than a full path name.
 
-  Exceptions: Even with `--defaults-file`, **mysqld** reads `mysqld-auto.cnf` and client programs read `.mylogin.cnf`.
+  Exceptions: Even with `--defaults-file`, `mysqld` reads `mysqld-auto.cnf` and client programs read `.mylogin.cnf`.
 
   See the introduction to this section regarding constraints on the position in which this option may be specified.
 *  `--defaults-group-suffix=str`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, the **mysql** client normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql** also reads the `[client_other]` and `[mysql_other]` groups.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, the `mysql` client normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, `mysql` also reads the `[client_other]` and `[mysql_other]` groups.
 *  `--login-path=name`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
@@ -44,7 +44,7 @@ When specifying file names as option values, avoid the use of the `~` shell meta
   mysql --login-path=mypath
   ```
 
-  By default, the  **mysql** client reads the `[client]` and `[mysql]` option groups. So for the command shown, **mysql** reads `[client]` and `[mysql]` from other option files, and `[client]`, `[mysql]`, and `[mypath]` from the login path file.
+  By default, the  `mysql` client reads the `[client]` and `[mysql]` option groups. So for the command shown, `mysql` reads `[client]` and `[mysql]` from other option files, and `[client]`, `[mysql]`, and `[mypath]` from the login path file.
 
   Client programs read the login path file even when the `--no-defaults` option is used, unless `--no-login-paths` is set.
 

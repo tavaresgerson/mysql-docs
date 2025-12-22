@@ -30,7 +30,7 @@ If a client successfully connects but later disconnects improperly or is termina
 
 Other reasons for problems with aborted connections or aborted clients:
 
-* The  `max_allowed_packet` variable value is too small or queries require more memory than you have allocated for  **mysqld**. See  Section B.3.2.8, “Packet Too Large”.
+* The  `max_allowed_packet` variable value is too small or queries require more memory than you have allocated for  `mysqld`. See  Section B.3.2.8, “Packet Too Large”.
 * Use of Ethernet protocol with Linux, both half and full duplex. Some Linux Ethernet drivers have this bug. You should test for this bug by transferring a huge file using FTP between the client and server machines. If a transfer goes in burst-pause-burst-pause mode, you are experiencing a Linux duplex syndrome. Switch the duplex mode for both your network card and hub/switch to either full duplex or to half duplex and test the results to determine the best setting.
 * A problem with the thread library that causes interrupts on reads.
 * Badly configured TCP/IP.

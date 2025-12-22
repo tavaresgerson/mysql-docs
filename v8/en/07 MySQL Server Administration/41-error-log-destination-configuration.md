@@ -12,7 +12,7 @@ The server interprets options that determine the default error log destination s
 
 ##### Default Error Log Destination on Windows
 
-On Windows,  **mysqld** uses the `--log-error`, `--pid-file`, and `--console` options to determine whether the default error log destination is the console or a file, and, if a file, the file name:
+On Windows,  `mysqld` uses the `--log-error`, `--pid-file`, and `--console` options to determine whether the default error log destination is the console or a file, and, if a file, the file name:
 
 * If  `--console` is given, the default destination is the console. ( `--console` takes precedence over  `--log-error` if both are given, and the following items regarding `--log-error` do not apply.)
 * If  `--log-error` is not given, or is given without naming a file, the default destination is a file named `host_name.err` in the data directory, unless the `--pid-file` option is specified. In that case, the file name is the PID file base name with a suffix of `.err` in the data directory.
@@ -22,12 +22,12 @@ If the default error log destination is the console, the server sets the  `log_e
 
 ##### Default Error Log Destination on Unix and Unix-Like Systems
 
-On Unix and Unix-like systems,  **mysqld** uses the  `--log-error` option to determine whether the default error log destination is the console or a file, and, if a file, the file name:
+On Unix and Unix-like systems,  `mysqld` uses the  `--log-error` option to determine whether the default error log destination is the console or a file, and, if a file, the file name:
 
 * If  `--log-error` is not given, the default destination is the console.
 * If  `--log-error` is given without naming a file, the default destination is a file named `host_name.err` in the data directory.
 * If  `--log-error` is given to name a file, the default destination is that file (with an `.err` suffix added if the name has no suffix). The file location is under the data directory unless an absolute path name is given to specify a different location.
-* If  `--log-error` is given in an option file in a `[mysqld]`, `[server]`, or `[mysqld_safe]` section, on systems that use  **mysqld\_safe** to start the server, **mysqld\_safe** finds and uses the option, and passes it to  **mysqld**.
+* If  `--log-error` is given in an option file in a `[mysqld]`, `[server]`, or `[mysqld_safe]` section, on systems that use  **mysqld\_safe** to start the server, **mysqld\_safe** finds and uses the option, and passes it to  `mysqld`.
 
 ::: info Note
 

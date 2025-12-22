@@ -1,6 +1,6 @@
 #### 7.4.2.8 Error Logging to the System Log
 
-It is possible to have  **mysqld** write the error log to the system log (the Event Log on Windows, and `syslog` on Unix and Unix-like systems).
+It is possible to have  `mysqld` write the error log to the system log (the Event Log on Windows, and `syslog` on Unix and Unix-like systems).
 
 This section describes how to configure error logging using the built-in filter, `log_filter_internal`, and the system log sink, `log_sink_syseventlog`, to take effect immediately and for subsequent server startups. For general information about configuring error logging, see Section 7.4.2.1, “Error Log Configuration”.
 

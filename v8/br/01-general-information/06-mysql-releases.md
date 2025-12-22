@@ -50,4 +50,4 @@ O lançamento de inovações requer um descarte e uma carga lógicos.
 
 **Informações adicionais e exemplos**
 
-Para obter informações adicionais e exemplos de cenários compatíveis, consulte a Seção 3.2, "Caminhos de Atualização" ou o Capítulo 4, *Downgrading MySQL*. Eles descrevem as opções disponíveis para executar atualizações no local (que substituem binários com os pacotes mais recentes), um despejo e carga lógicos (como usar **mysqldump** ou utilitários de despejo do MySQL Shell, clonagem de dados com o plugin clone e replicação assíncrona para servidores em uma topologia de replicação.
+Para obter informações adicionais e exemplos de cenários compatíveis, consulte a Seção 3.2, "Caminhos de Atualização" ou o Capítulo 4, *Downgrading MySQL*. Eles descrevem as opções disponíveis para executar atualizações no local (que substituem binários com os pacotes mais recentes), um despejo e carga lógicos (como usar `mysqldump` ou utilitários de despejo do MySQL Shell, clonagem de dados com o plugin clone e replicação assíncrona para servidores em uma topologia de replicação.

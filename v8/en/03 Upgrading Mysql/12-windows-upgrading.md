@@ -29,7 +29,7 @@ To perform an upgrade using the Windows ZIP archive distribution:
 
    Alternatively, use **NET STOP *`mysqld_service_name`*** .
 
-   If you are not running the MySQL server as a service, use **mysqladmin** to stop it. For example, before upgrading from MySQL 8.3 to 8.4, use  **mysqladmin** from MySQL 8.3 as follows:
+   If you are not running the MySQL server as a service, use `mysqladmin` to stop it. For example, before upgrading from MySQL 8.3 to 8.4, use  `mysqladmin` from MySQL 8.3 as follows:
 
    ```
    C:\> "C:\Program Files\MySQL\MySQL Server 8.3\bin\mysqladmin" -u root shutdown
@@ -37,10 +37,10 @@ To perform an upgrade using the Windows ZIP archive distribution:
 
    ::: info Note
 
-   If the MySQL `root` user account has a password, invoke  **mysqladmin** with the `-p` option and enter the password when prompted.
+   If the MySQL `root` user account has a password, invoke  `mysqladmin` with the `-p` option and enter the password when prompted.
 
    :::
 3. Extract the ZIP archive. You may either overwrite your existing MySQL installation (usually located at `C:\mysql`), or install it into a different directory, such as `C:\mysql8`. Overwriting the existing installation is recommended.
-4. Restart the server. For example, use the **SC START *`mysqld_service_name`***  or **NET START *`mysqld_service_name`*** command if you run MySQL as a service, or invoke **mysqld** directly otherwise.
+4. Restart the server. For example, use the **SC START *`mysqld_service_name`***  or **NET START *`mysqld_service_name`*** command if you run MySQL as a service, or invoke `mysqld` directly otherwise.
 5. If you encounter errors, see Section 2.3.4, “Troubleshooting a Microsoft Windows MySQL Server Installation”.
 

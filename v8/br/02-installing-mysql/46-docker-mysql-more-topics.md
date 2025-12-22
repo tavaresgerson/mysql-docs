@@ -111,7 +111,7 @@ docker run --name=mysql1 --network=my-custom-net -d container-registry.oracle.co
 docker run --name=myapp1 --network=my-custom-net -d myapp
 ```
 
-O contêiner `myapp1` pode então se conectar ao contêiner `mysql1` com o nome de host `mysql1` e vice-versa, pois o Docker configura automaticamente um DNS para os nomes de contêiner dados. No exemplo a seguir, executamos o cliente **mysql** a partir do contêiner `myapp1` para se conectar ao host `mysql1` em seu próprio contêiner:
+O contêiner `myapp1` pode então se conectar ao contêiner `mysql1` com o nome de host `mysql1` e vice-versa, pois o Docker configura automaticamente um DNS para os nomes de contêiner dados. No exemplo a seguir, executamos o cliente `mysql` a partir do contêiner `myapp1` para se conectar ao host `mysql1` em seu próprio contêiner:
 
 ```
 docker exec -it myapp1 mysql --host=mysql1 --user=myuser --password
@@ -205,15 +205,15 @@ Para restaurar uma instância do MySQL Server em um contêiner do Docker usando 
 
    Faça login no servidor para verificar se o servidor está em execução com os dados restaurados.
 
-##### Usando **mysqldump** com o Docker
+##### Usando `mysqldump` com o Docker
 
-Além de usar o MySQL Enterprise Backup para fazer backup de um servidor MySQL em execução em um contêiner Docker, você pode executar um backup lógico do seu servidor usando o utilitário **mysqldump**, executado dentro de um contêiner Docker.
+Além de usar o MySQL Enterprise Backup para fazer backup de um servidor MySQL em execução em um contêiner Docker, você pode executar um backup lógico do seu servidor usando o utilitário `mysqldump`, executado dentro de um contêiner Docker.
 
 As instruções a seguir assumem que você já tem um servidor MySQL em execução em um contêiner Docker e, quando o contêiner foi iniciado pela primeira vez, um diretório host \* `/path-on-host-machine/datadir/` \* foi montado no diretório de dados do servidor `/var/lib/mysql` (consulte a ligação e montagem de um diretório host no diretório de dados do servidor MySQL para detalhes), que contém o arquivo de soquete Unix pelo qual \*\* mysqldump \*\* e \*\* mysql \*\* podem se conectar ao servidor. Também assumimos que, depois que o servidor foi iniciado, um usuário com os privilégios apropriados (`admin` neste exemplo) foi criado, com o qual \*\* mysqldump \*\* pode acessar o servidor. Use as seguintes etapas para fazer backup e restaurar dados do MySQL Server:
 
-- Fazer backup de dados do MySQL Server usando **mysqldump** com o Docker\*:
+- Fazer backup de dados do MySQL Server usando `mysqldump` com o Docker\*:
 
-1. No mesmo host onde o contêiner do MySQL Server está em execução, inicie outro contêiner com uma imagem do MySQL Server para executar um backup com o utilitário **mysqldump** (consulte a documentação do utilitário para suas funcionalidades, opções e limitações). Forneça acesso ao diretório de dados do servidor com a montagem de ligação \* `/path-on-host-machine/datadir/` *. Também, monte um diretório de host (* `/path-on-host-machine/backups/` \* neste exemplo) em uma pasta de armazenamento para backups dentro do contêiner (`/data/backups` é usado neste exemplo) para persistir os backups que você está criando. Aqui está um comando de exemplo para fazer backup de todos os bancos de dados no servidor usando esta configuração:
+1. No mesmo host onde o contêiner do MySQL Server está em execução, inicie outro contêiner com uma imagem do MySQL Server para executar um backup com o utilitário `mysqldump` (consulte a documentação do utilitário para suas funcionalidades, opções e limitações). Forneça acesso ao diretório de dados do servidor com a montagem de ligação \* `/path-on-host-machine/datadir/` *. Também, monte um diretório de host (* `/path-on-host-machine/backups/` \* neste exemplo) em uma pasta de armazenamento para backups dentro do contêiner (`/data/backups` é usado neste exemplo) para persistir os backups que você está criando. Aqui está um comando de exemplo para fazer backup de todos os bancos de dados no servidor usando esta configuração:
 
    ```
    $> docker run --entrypoint "/bin/sh" \
@@ -223,7 +223,7 @@ As instruções a seguir assumem que você já tem um servidor MySQL em execuç�
    -c "mysqldump -uadmin --password='password' --all-databases > /data/backups/all-databases.sql"
    ```
 
-   No comando, a opção `--entrypoint` é usada para que o shell do sistema seja invocado após o contêiner ser iniciado, e a opção `-c` é usada para especificar o comando **mysqldump** a ser executado no shell, cuja saída é redirecionada para o arquivo `all-databases.sql` no diretório de backup.
+   No comando, a opção `--entrypoint` é usada para que o shell do sistema seja invocado após o contêiner ser iniciado, e a opção `-c` é usada para especificar o comando `mysqldump` a ser executado no shell, cuja saída é redirecionada para o arquivo `all-databases.sql` no diretório de backup.
 2. O contêiner sai quando o trabalho de backup é terminado e, com a opção `--rm` usada para iniciá-lo, ele é removido depois de sair. Um backup lógico foi criado e pode ser encontrado no diretório host montado para armazenar o backup, como mostrado aqui:
 
    ```
@@ -231,10 +231,10 @@ As instruções a seguir assumem que você já tem um servidor MySQL em execuç�
    all-databases.sql
    ```
 
-*Restaurar dados do MySQL Server usando **mysqldump** com o Docker*:
+*Restaurar dados do MySQL Server usando `mysqldump` com o Docker*:
 
 1. Certifique-se de ter um servidor MySQL em execução em um contêiner, no qual você deseja que seus dados de backup sejam restaurados.
-2. Inicie um contêiner com uma imagem do MySQL Server para executar a restauração com um cliente **mysql**. Bind-mount diretório de dados do servidor, bem como a pasta de armazenamento que contém o seu backup:
+2. Inicie um contêiner com uma imagem do MySQL Server para executar a restauração com um cliente `mysql`. Bind-mount diretório de dados do servidor, bem como a pasta de armazenamento que contém o seu backup:
 
    ```
    $> docker run  \

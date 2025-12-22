@@ -39,7 +39,7 @@ innodb_ft_min_token_size=2
 ft_min_word_len=2
 ```
 
-Then restart the server and rebuild your `FULLTEXT` indexes. For `MyISAM` tables, note the remarks regarding **myisamchk** in the instructions that follow for rebuilding `MyISAM` full-text indexes.
+Then restart the server and rebuild your `FULLTEXT` indexes. For `MyISAM` tables, note the remarks regarding `myisamchk` in the instructions that follow for rebuilding `MyISAM` full-text indexes.
 
 #### Configuring the Natural Language Search Threshold
 
@@ -117,15 +117,15 @@ Alternatively, use  `ALTER TABLE` as just described. In some cases, this may be 
 
 Each table that contains any `FULLTEXT` index must be repaired as just shown. Otherwise, queries for the table may yield incorrect results, and modifications to the table causes the server to see the table as corrupt and in need of repair.
 
-If you use  **myisamchk** to perform an operation that modifies `MyISAM`  table indexes (such as repair or analyze), the `FULLTEXT` indexes are rebuilt using the *default* full-text parameter values for minimum word length, maximum word length, and stopword file unless you specify otherwise. This can result in queries failing.
+If you use  `myisamchk` to perform an operation that modifies `MyISAM`  table indexes (such as repair or analyze), the `FULLTEXT` indexes are rebuilt using the *default* full-text parameter values for minimum word length, maximum word length, and stopword file unless you specify otherwise. This can result in queries failing.
 
-The problem occurs because these parameters are known only by the server. They are not stored in `MyISAM` index files. To avoid the problem if you have modified the minimum or maximum word length or stopword file values used by the server, specify the same `ft_min_word_len`, `ft_max_word_len`, and `ft_stopword_file` values for **myisamchk** that you use for **mysqld**. For example, if you have set the minimum word length to 3, you can repair a table with **myisamchk** like this:
+The problem occurs because these parameters are known only by the server. They are not stored in `MyISAM` index files. To avoid the problem if you have modified the minimum or maximum word length or stopword file values used by the server, specify the same `ft_min_word_len`, `ft_max_word_len`, and `ft_stopword_file` values for `myisamchk` that you use for `mysqld`. For example, if you have set the minimum word length to 3, you can repair a table with `myisamchk` like this:
 
 ```
 myisamchk --recover --ft_min_word_len=3 tbl_name.MYI
 ```
 
-To ensure that  **myisamchk** and the server use the same values for full-text parameters, place each one in both the `[mysqld]` and `[myisamchk]` sections of an option file:
+To ensure that  `myisamchk` and the server use the same values for full-text parameters, place each one in both the `[mysqld]` and `[myisamchk]` sections of an option file:
 
 ```
 [mysqld]
@@ -135,6 +135,6 @@ ft_min_word_len=3
 ft_min_word_len=3
 ```
 
-An alternative to using  **myisamchk** for `MyISAM` table index modification is to use the  `REPAIR TABLE`, `ANALYZE TABLE`, `OPTIMIZE TABLE`, or `ALTER TABLE` statements. These statements are performed by the server, which knows the proper full-text parameter values to use.
+An alternative to using  `myisamchk` for `MyISAM` table index modification is to use the  `REPAIR TABLE`, `ANALYZE TABLE`, `OPTIMIZE TABLE`, or `ALTER TABLE` statements. These statements are performed by the server, which knows the proper full-text parameter values to use.
 
 

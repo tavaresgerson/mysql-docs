@@ -4,7 +4,7 @@
 
 ### 10.13.1 Measuring the Speed of Expressions and Functions
 
-To measure the speed of a specific MySQL expression or function, invoke the  `BENCHMARK()` function using the  **mysql** client program. Its syntax is `BENCHMARK(loop_count,expr)`. The return value is always zero, but  **mysql** prints a line displaying approximately how long the statement took to execute. For example:
+To measure the speed of a specific MySQL expression or function, invoke the  `BENCHMARK()` function using the  `mysql` client program. Its syntax is `BENCHMARK(loop_count,expr)`. The return value is always zero, but  `mysql` prints a line displaying approximately how long the statement took to execute. For example:
 
 ```
 mysql> SELECT BENCHMARK(1000000,1+1);

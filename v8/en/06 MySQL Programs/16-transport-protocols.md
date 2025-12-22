@@ -1,6 +1,6 @@
 ### 6.2.7 Connection Transport Protocols
 
-For programs that use the MySQL client library (for example, **mysql** and  **mysqldump**), MySQL supports connections to the server based on several transport protocols: TCP/IP, Unix socket file, named pipe, and shared memory. This section describes how to select these protocols, and how they are similar and different.
+For programs that use the MySQL client library (for example, `mysql` and  `mysqldump`), MySQL supports connections to the server based on several transport protocols: TCP/IP, Unix socket file, named pipe, and shared memory. This section describes how to select these protocols, and how they are similar and different.
 
 *  Transport Protocol Selection
 *  Transport Support for Local and Remote Connections

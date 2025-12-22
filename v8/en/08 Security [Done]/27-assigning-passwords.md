@@ -28,7 +28,7 @@ If you are not connected as an anonymous user, you can change your own password 
 ALTER USER USER() IDENTIFIED BY 'password';
 ```
 
-To change an account password from the command line, use the **mysqladmin** command:
+To change an account password from the command line, use the `mysqladmin` command:
 
 ```
 mysqladmin -u user_name -h host_name password "password"
@@ -38,6 +38,6 @@ The account for which this command sets the password is the one with a row in th
 
 Warning
 
-Setting a password using  **mysqladmin** should be considered *insecure*. On some systems, your password becomes visible to system status programs such as **ps** that may be invoked by other users to display command lines. MySQL clients typically overwrite the command-line password argument with zeros during their initialization sequence. However, there is still a brief interval during which the value is visible. Also, on some systems this overwriting strategy is ineffective and the password remains visible to **ps**. (SystemV Unix systems and perhaps others are subject to this problem.)
+Setting a password using  `mysqladmin` should be considered *insecure*. On some systems, your password becomes visible to system status programs such as **ps** that may be invoked by other users to display command lines. MySQL clients typically overwrite the command-line password argument with zeros during their initialization sequence. However, there is still a brief interval during which the value is visible. Also, on some systems this overwriting strategy is ineffective and the password remains visible to **ps**. (SystemV Unix systems and perhaps others are subject to this problem.)
 
 If you are using MySQL Replication, be aware that a password used by a replica as part of `CHANGE REPLICATION SOURCE TO` is effectively limited to 32 characters in length; if the password is longer, any excess characters are truncated. This is not due to any limit imposed by MySQL Server generally, but rather is an issue specific to MySQL Replication.

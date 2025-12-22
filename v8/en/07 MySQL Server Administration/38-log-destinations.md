@@ -78,4 +78,4 @@ The log table implementation has the following characteristics:
 * Entries written to the log tables are not written to the binary log and thus are not replicated to replicas.
 * To flush the log tables or log files, use `FLUSH TABLES` or `FLUSH LOGS`, respectively.
 * Partitioning of log tables is not permitted.
-* A  **mysqldump** dump includes statements to recreate those tables so that they are not missing after reloading the dump file. Log table contents are not dumped.
+* A  `mysqldump` dump includes statements to recreate those tables so that they are not missing after reloading the dump file. Log table contents are not dumped.

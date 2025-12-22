@@ -34,7 +34,7 @@ When using event groups, the file offsets of events may be grouped together and 
 
 :::
 
-The output from  **mysqlbinlog** can be re-executed (for example, by using it as input to **mysql**) to redo the statements in the log. This is useful for recovery operations after an unexpected server exit. For other usage examples, see the discussion later in this section and in  Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery"). To execute the internal-use `BINLOG` statements used by **mysqlbinlog**, the user requires the `BINLOG_ADMIN` privilege (or the deprecated  `SUPER` privilege), or the  `REPLICATION_APPLIER` privilege plus the appropriate privileges to execute each log event.
+The output from  **mysqlbinlog** can be re-executed (for example, by using it as input to `mysql`) to redo the statements in the log. This is useful for recovery operations after an unexpected server exit. For other usage examples, see the discussion later in this section and in  Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery"). To execute the internal-use `BINLOG` statements used by **mysqlbinlog**, the user requires the `BINLOG_ADMIN` privilege (or the deprecated  `SUPER` privilege), or the  `REPLICATION_APPLIER` privilege plus the appropriate privileges to execute each log event.
 
 You can use  **mysqlbinlog** to read binary log files directly and apply them to the local MySQL server. You can also read binary logs from a remote server by using the `--read-from-remote-server` option. To read remote binary logs, the connection parameter options can be given to indicate how to connect to the server. These options are  `--host`, `--password`, `--port`, `--protocol`, `--socket`, and `--user`.
 
@@ -127,7 +127,7 @@ When running  **mysqlbinlog** against a large binary log, be careful that the fi
 
   This option causes  **mysqlbinlog** to output entries from the binary log (local log only) that occur while *`db_name`* is been selected as the default database by  `USE`.
 
-  The  `--database` option for  **mysqlbinlog** is similar to the `--binlog-do-db` option for **mysqld**, but can be used to specify only one database. If `--database` is given multiple times, only the last instance is used.
+  The  `--database` option for  **mysqlbinlog** is similar to the `--binlog-do-db` option for `mysqld`, but can be used to specify only one database. If `--database` is given multiple times, only the last instance is used.
 
   The effects of this option depend on whether the statement-based or row-based logging format is in use, in the same way that the effects of `--binlog-do-db` depend on whether statement-based or row-based logging is in use.
 
@@ -271,7 +271,7 @@ When running  **mysqlbinlog** against a large binary log, be careful that the fi
 
   For data loading operations corresponding to `LOAD DATA` statements, **mysqlbinlog** extracts the files from the binary log events, writes them as temporary files to the local file system, and writes `LOAD DATA LOCAL` statements to cause the files to be loaded. By default,  **mysqlbinlog** writes these temporary files to an operating system-specific directory. The  `--local-load` option can be used to explicitly specify the directory where **mysqlbinlog** should prepare local temporary files.
 
-  Because other processes can write files to the default system-specific directory, it is advisable to specify the `--local-load` option to **mysqlbinlog** to designate a different directory for data files, and then designate that same directory by specifying the `--load-data-local-dir` option to  **mysql** when processing the output from **mysqlbinlog**. For example:
+  Because other processes can write files to the default system-specific directory, it is advisable to specify the `--local-load` option to **mysqlbinlog** to designate a different directory for data files, and then designate that same directory by specifying the `--load-data-local-dir` option to  `mysql` when processing the output from **mysqlbinlog**. For example:
 
   ```
   mysqlbinlog --local-load=/my/local/data ...
@@ -423,7 +423,7 @@ When running  **mysqlbinlog** against a large binary log, be careful that the fi
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--server-id-bits=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>32</code></td> </tr><tr><th>Minimum Value</th> <td><code>7</code></td> </tr><tr><th>Maximum Value</th> <td><code>32</code></td> </tr></tbody></table>
 
-  Use only the first *`N`* bits of the `server_id` to identify the server. If the binary log was written by a **mysqld** with server-id-bits set to less than 32 and user data stored in the most significant bit, running  **mysqlbinlog** with `--server-id-bits` set to 32 enables this data to be seen.
+  Use only the first *`N`* bits of the `server_id` to identify the server. If the binary log was written by a `mysqld` with server-id-bits set to less than 32 and user data stored in the most significant bit, running  **mysqlbinlog** with `--server-id-bits` set to 32 enables this data to be seen.
 
   This option is supported only by the version of **mysqlbinlog** supplied with the NDB Cluster distribution, or built with NDB Cluster support.
 *  `--server-public-key-path=file_name`
@@ -597,7 +597,7 @@ When running  **mysqlbinlog** against a large binary log, be careful that the fi
 
   For more information, see Section 6.2.8, “Connection Compression Control”.
 
-You can pipe the output of  **mysqlbinlog** into the  **mysql** client to execute the events contained in the binary log. This technique is used to recover from an unexpected exit when you have an old backup (see Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery")). For example:
+You can pipe the output of  **mysqlbinlog** into the  `mysql` client to execute the events contained in the binary log. This technique is used to recover from an unexpected exit when you have an old backup (see Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery")). For example:
 
 ```
 mysqlbinlog binlog.000001 | mysql -u root -p
@@ -609,9 +609,9 @@ Or:
 mysqlbinlog binlog.[0-9]* | mysql -u root -p
 ```
 
-If the statements produced by  **mysqlbinlog** may contain  `BLOB` values, these may cause problems when  **mysql** processes them. In this case, invoke  **mysql** with the `--binary-mode` option.
+If the statements produced by  **mysqlbinlog** may contain  `BLOB` values, these may cause problems when  `mysql` processes them. In this case, invoke  `mysql` with the `--binary-mode` option.
 
-You can also redirect the output of **mysqlbinlog** to a text file instead, if you need to modify the statement log first (for example, to remove statements that you do not want to execute for some reason). After editing the file, execute the statements that it contains by using it as input to the  **mysql** program:
+You can also redirect the output of **mysqlbinlog** to a text file instead, if you need to modify the statement log first (for example, to remove statements that you do not want to execute for some reason). After editing the file, execute the statements that it contains by using it as input to the  `mysql` program:
 
 ```
 mysqlbinlog binlog.000001 > tmpfile
@@ -628,9 +628,9 @@ mysqlbinlog binlog.000001 | mysql -u root -p # DANGER!!
 mysqlbinlog binlog.000002 | mysql -u root -p # DANGER!!
 ```
 
-Processing binary logs this way using multiple connections to the server causes problems if the first log file contains a `CREATE TEMPORARY TABLE` statement and the second log contains a statement that uses the temporary table. When the first **mysql** process terminates, the server drops the temporary table. When the second  **mysql** process attempts to use the table, the server reports “unknown table.”
+Processing binary logs this way using multiple connections to the server causes problems if the first log file contains a `CREATE TEMPORARY TABLE` statement and the second log contains a statement that uses the temporary table. When the first `mysql` process terminates, the server drops the temporary table. When the second  `mysql` process attempts to use the table, the server reports “unknown table.”
 
-To avoid problems like this, use a *single* **mysql** process to execute the contents of all binary logs that you want to process. Here is one way to do so:
+To avoid problems like this, use a *single* `mysql` process to execute the contents of all binary logs that you want to process. Here is one way to do so:
 
 ```
 mysqlbinlog binlog.000001 binlog.000002 | mysql -u root -p
@@ -644,7 +644,7 @@ mysqlbinlog binlog.000002 >> /tmp/statements.sql
 mysql -u root -p -e "source /tmp/statements.sql"
 ```
 
-You can also supply multiple binary log files to **mysqlbinlog** as streamed input using a shell pipe. An archive of compressed binary log files can be decompressed and provided directly to **mysqlbinlog**. In this example, `binlog-files_1.gz` contains multiple binary log files for processing. The pipeline extracts the contents of `binlog-files_1.gz`, pipes the binary log files to  **mysqlbinlog** as standard input, and pipes the output of  **mysqlbinlog** into the **mysql** client for execution:
+You can also supply multiple binary log files to **mysqlbinlog** as streamed input using a shell pipe. An archive of compressed binary log files can be decompressed and provided directly to **mysqlbinlog**. In this example, `binlog-files_1.gz` contains multiple binary log files for processing. The pipeline extracts the contents of `binlog-files_1.gz`, pipes the binary log files to  **mysqlbinlog** as standard input, and pipes the output of  **mysqlbinlog** into the `mysql` client for execution:
 
 ```
 gzip -cd binlog-files_1.gz | ./mysqlbinlog - | ./mysql -uroot  -p

@@ -1,6 +1,6 @@
 ## 7.1 The MySQL Server
 
-**mysqld** is the MySQL server. The following discussion covers these MySQL server configuration topics:
+`mysqld` is the MySQL server. The following discussion covers these MySQL server configuration topics:
 
 * Startup options that the server supports. You can specify these options on the command line, through configuration files, or both.
 * Server system variables. These variables reflect the current state and values of the startup options, some of which can be modified while the server is running.

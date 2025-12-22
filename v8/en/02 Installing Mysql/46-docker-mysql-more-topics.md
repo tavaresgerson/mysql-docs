@@ -111,7 +111,7 @@ docker run --name=mysql1 --network=my-custom-net -d container-registry.oracle.co
 docker run --name=myapp1 --network=my-custom-net -d myapp
 ```
 
-The `myapp1` container can then connect to the `mysql1` container with the `mysql1` hostname and vice versa, as Docker automatically sets up a DNS for the given container names. In the following example, we run the  **mysql** client from inside the `myapp1` container to connect to host `mysql1` in its own container:
+The `myapp1` container can then connect to the `mysql1` container with the `mysql1` hostname and vice versa, as Docker automatically sets up a DNS for the given container names. In the following example, we run the  `mysql` client from inside the `myapp1` container to connect to host `mysql1` in its own container:
 
 ```
 docker exec -it myapp1 mysql --host=mysql1 --user=myuser --password
@@ -205,15 +205,15 @@ To restore a MySQL Server instance in a Docker container using MySQL Enterprise 
 
    Log on to the server to check that the server is running with the restored data.
 
-##### Using  **mysqldump** with Docker
+##### Using  `mysqldump` with Docker
 
-Besides using MySQL Enterprise Backup to back up a MySQL Server running in a Docker container, you can perform a logical backup of your server by using the **mysqldump** utility, run inside a Docker container.
+Besides using MySQL Enterprise Backup to back up a MySQL Server running in a Docker container, you can perform a logical backup of your server by using the `mysqldump` utility, run inside a Docker container.
 
-The following instructions assume that you already have a MySQL Server running in a Docker container and, when the container was first started, a host directory *`/path-on-host-machine/datadir/`* has been mounted onto the server's data directory `/var/lib/mysql` (see bind-mounting a host directory on the data directory of the MySQL Server for details), which contains the Unix socket file by which  **mysqldump** and **mysql** can connect to the server. We also assume that, after the server has been started, a user with the proper privileges (`admin` in this example) has been created, with which  **mysqldump** can access the server. Use the following steps to back up and restore MySQL Server data:
+The following instructions assume that you already have a MySQL Server running in a Docker container and, when the container was first started, a host directory *`/path-on-host-machine/datadir/`* has been mounted onto the server's data directory `/var/lib/mysql` (see bind-mounting a host directory on the data directory of the MySQL Server for details), which contains the Unix socket file by which  `mysqldump` and `mysql` can connect to the server. We also assume that, after the server has been started, a user with the proper privileges (`admin` in this example) has been created, with which  `mysqldump` can access the server. Use the following steps to back up and restore MySQL Server data:
 
-*Backing up MySQL Server data using **mysqldump** with Docker*:
+*Backing up MySQL Server data using `mysqldump` with Docker*:
 
-1. On the same host where the MySQL Server container is running, start another container with an image of MySQL Server to perform a backup with the **mysqldump** utility (see documentation of the utility for its functionality, options, and limitations). Provide access to the server's data directory by bind mounting *`/path-on-host-machine/datadir/`*. Also, mount a host directory (*`/path-on-host-machine/backups/`* in this example) onto a storage folder for backups inside the container (`/data/backups` is used in this example) to persist the backups you are creating. Here is a sample command for backing up all databases on the server using this setup:
+1. On the same host where the MySQL Server container is running, start another container with an image of MySQL Server to perform a backup with the `mysqldump` utility (see documentation of the utility for its functionality, options, and limitations). Provide access to the server's data directory by bind mounting *`/path-on-host-machine/datadir/`*. Also, mount a host directory (*`/path-on-host-machine/backups/`* in this example) onto a storage folder for backups inside the container (`/data/backups` is used in this example) to persist the backups you are creating. Here is a sample command for backing up all databases on the server using this setup:
 
    ```
    $> docker run --entrypoint "/bin/sh" \
@@ -223,7 +223,7 @@ The following instructions assume that you already have a MySQL Server running i
    -c "mysqldump -uadmin --password='password' --all-databases > /data/backups/all-databases.sql"
    ```
 
-   In the command, the `--entrypoint` option is used so that the system shell is invoked after the container is started, and the `-c` option is used to specify the  **mysqldump** command to be run in the shell, whose output is redirected to the file `all-databases.sql` in the backup directory.
+   In the command, the `--entrypoint` option is used so that the system shell is invoked after the container is started, and the `-c` option is used to specify the  `mysqldump` command to be run in the shell, whose output is redirected to the file `all-databases.sql` in the backup directory.
 2. The container exits once the backup job is finished and, with the `--rm` option used to start it, it is removed after it exits. A logical backup been created, and can be found in the host directory mounted for storing the backup, as shown here:
 
    ```
@@ -231,10 +231,10 @@ The following instructions assume that you already have a MySQL Server running i
    all-databases.sql
    ```
 
-*Restoring MySQL Server data using **mysqldump** with Docker*:
+*Restoring MySQL Server data using `mysqldump` with Docker*:
 
 1. Make sure you have a MySQL Server running in a container, onto which you want your backed-up data to be restored.
-2. Start a container with an image of MySQL Server to perform the restore with a  **mysql** client. Bind-mount the server's data directory, as well as the storage folder that contains your backup:
+2. Start a container with an image of MySQL Server to perform the restore with a  `mysql` client. Bind-mount the server's data directory, as well as the storage folder that contains your backup:
 
    ```
    $> docker run  \

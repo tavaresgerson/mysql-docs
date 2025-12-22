@@ -12,7 +12,7 @@ setsebool -P mysql_connect_any=ON
 
 ##### Setting the TCP Port Context for Group Replication
 
-If SELinux is enabled, you must set the port context for the Group Replication communication port, which is defined by the `group_replication_local_address` variable.  **mysqld** must be able to bind to the Group Replication communication port and listen there. InnoDB Cluster relies on Group Replication so this applies equally to instances used in a cluster. To view ports currently used by MySQL, issue:
+If SELinux is enabled, you must set the port context for the Group Replication communication port, which is defined by the `group_replication_local_address` variable.  `mysqld` must be able to bind to the Group Replication communication port and listen there. InnoDB Cluster relies on Group Replication so this applies equally to instances used in a cluster. To view ports currently used by MySQL, issue:
 
 ```
 semanage port -l | grep mysqld
@@ -26,7 +26,7 @@ semanage port -a -t mysqld_port_t -p tcp 33061
 
 ##### Setting the TCP Port Context for Document Store
 
-If SELinux is enabled, you must set the port context for the communication port used by X Plugin, which is defined by the `mysqlx_port` variable. **mysqld** must be able to bind to the X Plugin communication port and listen there.
+If SELinux is enabled, you must set the port context for the communication port used by X Plugin, which is defined by the `mysqlx_port` variable. `mysqld` must be able to bind to the X Plugin communication port and listen there.
 
 Assuming the X Plugin communication port is 33060, set the port context by issuing:
 

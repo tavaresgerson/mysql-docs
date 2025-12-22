@@ -4,13 +4,13 @@ On Windows, a MySQL server can run as a Windows service. The procedures for inst
 
 To set up multiple MySQL services, you must make sure that each instance uses a different service name in addition to the other parameters that must be unique per instance.
 
-For the following instructions, suppose that you want to run the **mysqld** server from two different versions of MySQL that are installed at `C:\mysql-5.7.9` and `C:\mysql-8.4.6`, respectively. (This might be the case if you are running 5.7.9 as your production server, but also want to conduct tests using 8.4.6.)
+For the following instructions, suppose that you want to run the `mysqld` server from two different versions of MySQL that are installed at `C:\mysql-5.7.9` and `C:\mysql-8.4.6`, respectively. (This might be the case if you are running 5.7.9 as your production server, but also want to conduct tests using 8.4.6.)
 
 To install MySQL as a Windows service, use the `--install` or `--install-manual` option. For information about these options, see Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 
 Based on the preceding information, you have several ways to set up multiple services. The following instructions describe some examples. Before trying any of them, shut down and remove any existing MySQL services.
 
-* **Approach 1:** Specify the options for all services in one of the standard option files. To do this, use a different service name for each server. Suppose that you want to run the 5.7.9 **mysqld** using the service name of `mysqld1` and the 8.4.6 **mysqld** using the service name `mysqld2`. In this case, you can use the `[mysqld1]` group for 5.7.9 and the `[mysqld2]` group for 8.4.6. For example, you can set up `C:\my.cnf` like this:
+* **Approach 1:** Specify the options for all services in one of the standard option files. To do this, use a different service name for each server. Suppose that you want to run the 5.7.9 `mysqld` using the service name of `mysqld1` and the 8.4.6 `mysqld` using the service name `mysqld2`. In this case, you can use the `[mysqld1]` group for 5.7.9 and the `[mysqld2]` group for 8.4.6. For example, you can set up `C:\my.cnf` like this:
 
   ```
   # options for mysqld1 service
@@ -50,7 +50,7 @@ Based on the preceding information, you have several ways to set up multiple ser
   ```
 * **Approach 2:** Specify options for each server in separate files and use `--defaults-file` when you install the services to tell each server what file to use. In this case, each file should list options using a `[mysqld]` group.
 
-  With this approach, to specify options for the 5.7.9 **mysqld**, create a file `C:\my-opts1.cnf` that looks like this:
+  With this approach, to specify options for the 5.7.9 `mysqld`, create a file `C:\my-opts1.cnf` that looks like this:
 
   ```
   [mysqld]
@@ -60,7 +60,7 @@ Based on the preceding information, you have several ways to set up multiple ser
   socket = mypipe1
   ```
 
-  For the 8.4.6  **mysqld**, create a file `C:\my-opts2.cnf` that looks like this:
+  For the 8.4.6  `mysqld`, create a file `C:\my-opts2.cnf` that looks like this:
 
   ```
   [mysqld]

@@ -196,7 +196,7 @@ The following list describes thread `State` values that are associated with gene
 
   The thread has called `mysql_lock_tables()` and the thread state has not been updated since. This is a very general state that can occur for many reasons.
 
-  For example, the thread is going to request or is waiting for an internal or external system lock for the table. This can occur when  `InnoDB` waits for a table-level lock during execution of `LOCK TABLES`. If this state is being caused by requests for external locks and you are not using multiple  **mysqld** servers that are accessing the same  `MyISAM` tables, you can disable external system locks with the `--skip-external-locking` option. However, external locking is disabled by default, so it is likely that this option has no effect. For `SHOW PROFILE`, this state means the thread is requesting the lock (not waiting for it).
+  For example, the thread is going to request or is waiting for an internal or external system lock for the table. This can occur when  `InnoDB` waits for a table-level lock during execution of `LOCK TABLES`. If this state is being caused by requests for external locks and you are not using multiple  `mysqld` servers that are accessing the same  `MyISAM` tables, you can disable external system locks with the `--skip-external-locking` option. However, external locking is disabled by default, so it is likely that this option has no effect. For `SHOW PROFILE`, this state means the thread is requesting the lock (not waiting for it).
 
   For system tables, the `Locking system tables` state is used instead.
 * `update`

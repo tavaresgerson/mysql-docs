@@ -4,7 +4,7 @@ Depois que o diretório de dados for inicializado e você tiver iniciado o servi
 
 Alternativamente, adicione o diretório `bin` à sua configuração de variável de ambiente `PATH`. Isso permite que seu shell (interpretador de comandos) encontre programas MySQL corretamente, para que você possa executar um programa digitando apenas seu nome, não seu nome de caminho. Veja Seção 6.2.9, Codificação de Variaveis de Ambiente.
 
-Use **mysqladmin** para verificar se o servidor está em execução. Os seguintes comandos fornecem testes simples para verificar se o servidor está ativo e respondendo a conexões:
+Use `mysqladmin` para verificar se o servidor está em execução. Os seguintes comandos fornecem testes simples para verificar se o servidor está ativo e respondendo a conexões:
 
 ```
 $> bin/mysqladmin version
@@ -36,7 +36,7 @@ Opens: 0  Flush tables: 1  Open tables: 19
 Queries per second avg: 0.000
 ```
 
-Para ver o que mais você pode fazer com **mysqladmin**, invoque-o com a opção `--help`.
+Para ver o que mais você pode fazer com `mysqladmin`, invoque-o com a opção `--help`.
 
 Verifique se você pode desligar o servidor (incluir uma opção `-p` se a conta `root` já tiver uma senha):
 
@@ -44,7 +44,7 @@ Verifique se você pode desligar o servidor (incluir uma opção `-p` se a conta
 $> bin/mysqladmin -u root shutdown
 ```
 
-Verifique se você pode reiniciar o servidor. Faça isso usando **mysqld\_safe** ou invocando **mysqld** diretamente. Por exemplo:
+Verifique se você pode reiniciar o servidor. Faça isso usando **mysqld\_safe** ou invocando `mysqld` diretamente. Por exemplo:
 
 ```
 $> bin/mysqld_safe --user=mysql &
@@ -115,7 +115,7 @@ Database: mysql
 +---------------------------+
 ```
 
-Use o programa **mysql** para selecionar informações de uma tabela no esquema `mysql`:
+Use o programa `mysql` para selecionar informações de uma tabela no esquema `mysql`:
 
 ```
 $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
@@ -128,4 +128,4 @@ $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 
 Neste ponto, o seu servidor está em execução e você pode acessá-lo. Para reforçar a segurança, se você ainda não atribuiu uma senha para a conta inicial, siga as instruções na Seção 2.9.4, "Securing the Initial MySQL Account".
 
-Para mais informações sobre **mysql**, **mysqladmin** e **mysqlshow**, veja Seção 6.5.1, mysql  O Cliente de Linha de Comando MySQL, Seção 6.5.2, mysqladmin  Um Programa de Administração do Servidor MySQL e Seção 6.5.6, mysqlshow  Exibir Informações de Base de Dados, Tabela e Coluna.
+Para mais informações sobre `mysql`, `mysqladmin` e **mysqlshow**, veja Seção 6.5.1, mysql  O Cliente de Linha de Comando MySQL, Seção 6.5.2, mysqladmin  Um Programa de Administração do Servidor MySQL e Seção 6.5.6, mysqlshow  Exibir Informações de Base de Dados, Tabela e Coluna.

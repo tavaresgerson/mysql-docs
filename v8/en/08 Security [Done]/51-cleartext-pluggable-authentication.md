@@ -23,5 +23,5 @@ Sending passwords as cleartext may be a security problem in some configurations.
 To make inadvertent use of the `mysql_clear_password` plugin less likely, MySQL clients must explicitly enable it. This can be done in several ways:
 
 * Set the `LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN` environment variable to a value that begins with `1`, `Y`, or `y`. This enables the plugin for all client connections.
-* The  **mysql**,  **mysqladmin**, **mysqlcheck**,  **mysqldump**, **mysqlshow**, and **mysqlslap** client programs support an `--enable-cleartext-plugin` option that enables the plugin on a per-invocation basis.
+* The  `mysql`,  `mysqladmin`, `mysqlcheck`,  `mysqldump`, **mysqlshow**, and **mysqlslap** client programs support an `--enable-cleartext-plugin` option that enables the plugin on a per-invocation basis.
 * The  `mysql_options()` C API function supports a `MYSQL_ENABLE_CLEARTEXT_PLUGIN` option that enables the plugin on a per-connection basis. Also, any program that uses `libmysqlclient` and reads option files can enable the plugin by including an `enable-cleartext-plugin` option in an option group read by the client library.

@@ -56,6 +56,6 @@ The following list describes some of the ways that MySQL uses memory. Where appl
   + The `max_binlog_cache_size` system variable specifies the upper limit of memory usage by an individual transaction.
   + The `max_binlog_stmt_cache_size` system variable specifies the upper limit of memory usage by the statement cache.
 
-**ps** and other system status programs may report that  **mysqld** uses a lot of memory. This may be caused by thread stacks on different memory addresses. For example, the Solaris version of **ps** counts the unused memory between stacks as used memory. To verify this, check available swap with `swap -s`. We test  **mysqld** with several memory-leakage detectors (both commercial and Open Source), so there should be no memory leaks.
+**ps** and other system status programs may report that  `mysqld` uses a lot of memory. This may be caused by thread stacks on different memory addresses. For example, the Solaris version of **ps** counts the unused memory between stacks as used memory. To verify this, check available swap with `swap -s`. We test  `mysqld` with several memory-leakage detectors (both commercial and Open Source), so there should be no memory leaks.
 
 

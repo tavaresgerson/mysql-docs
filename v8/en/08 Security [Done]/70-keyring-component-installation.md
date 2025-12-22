@@ -57,7 +57,7 @@ Server manifest files have these properties:
 * Server access to a manifest file should be read only. For example, a `mysqld.my` server manifest file may be owned by `root` and be read/write to `root`, but should be read only to the account used to run the MySQL server. If the manifest file is found during startup to be read/write to that account, the server writes a warning to the error log suggesting that the file be made read only.
 * The database administrator has the responsibility for creating any manifest files to be used, and for ensuring that their access mode and contents are correct. If an error occurs, server startup fails and the administrator must correct any issues indicated by diagnostics in the server error log.
 
-Given the preceding manifest file properties, to configure the server to load `component_keyring_file`, create a global manifest file named `mysqld.my` in the  **mysqld** installation directory, and optionally create a local manifest file, also named `mysqld.my`, in the data directory. The following instructions describe how to load `component_keyring_file`. To load a different keyring component, substitute its name for `component_keyring_file`.
+Given the preceding manifest file properties, to configure the server to load `component_keyring_file`, create a global manifest file named `mysqld.my` in the  `mysqld` installation directory, and optionally create a local manifest file, also named `mysqld.my`, in the data directory. The following instructions describe how to load `component_keyring_file`. To load a different keyring component, substitute its name for `component_keyring_file`.
 
 * To use a global manifest file only, the file contents look like this:
 
@@ -67,7 +67,7 @@ Given the preceding manifest file properties, to configure the server to load `c
   }
   ```
 
-  Create this file in the directory where **mysqld** is installed.
+  Create this file in the directory where `mysqld` is installed.
 * Alternatively, to use a global and local manifest file pair, the global file looks like this:
 
   ```
@@ -76,7 +76,7 @@ Given the preceding manifest file properties, to configure the server to load `c
   }
   ```
 
-  Create this file in the directory where **mysqld** is installed.
+  Create this file in the directory where `mysqld` is installed.
 
   The local file looks like this:
 

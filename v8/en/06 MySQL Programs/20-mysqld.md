@@ -1,16 +1,16 @@
 ### 6.3.1 mysqld — The MySQL Server
 
- **mysqld**, also known as MySQL Server, is a single multithreaded program that does most of the work in a MySQL installation. It does not spawn additional processes. MySQL Server manages access to the MySQL data directory that contains databases and tables. The data directory is also the default location for other information such as log files and status files.
+ `mysqld`, also known as MySQL Server, is a single multithreaded program that does most of the work in a MySQL installation. It does not spawn additional processes. MySQL Server manages access to the MySQL data directory that contains databases and tables. The data directory is also the default location for other information such as log files and status files.
 
 ::: info Note
 
-Some installation packages contain a debugging version of the server named  **mysqld-debug**. Invoke this version instead of  **mysqld** for debugging support, memory allocation checking, and trace file support (see  Section 7.9.1.2, “Creating Trace Files”).
+Some installation packages contain a debugging version of the server named  **mysqld-debug**. Invoke this version instead of  `mysqld` for debugging support, memory allocation checking, and trace file support (see  Section 7.9.1.2, “Creating Trace Files”).
 
 :::
 
 When MySQL server starts, it listens for network connections from client programs and manages access to databases on behalf of those clients.
 
-The  **mysqld** program has many options that can be specified at startup. For a complete list of options, run this command:
+The  `mysqld` program has many options that can be specified at startup. For a complete list of options, run this command:
 
 ```
 mysqld --verbose --help

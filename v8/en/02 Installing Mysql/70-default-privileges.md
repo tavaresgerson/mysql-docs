@@ -20,7 +20,7 @@ A password may already be assigned to the initial account under these circumstan
 * Installation using the macOS installer generates an initial random password, which the installer displays to the user in a dialog box.
 * Installation using RPM packages generates an initial random password, which is written to the server error log.
 * Installations using Debian packages give you the option of assigning a password.
-* For data directory initialization performed manually using **mysqld --initialize**, **mysqld** generates an initial random password, marks it expired, and writes it to the server error log. See  Section 2.9.1, “Initializing the Data Directory”.
+* For data directory initialization performed manually using **mysqld --initialize**, `mysqld` generates an initial random password, marks it expired, and writes it to the server error log. See  Section 2.9.1, “Initializing the Data Directory”.
 
 The `mysql.user` grant table defines the initial MySQL user account and its access privileges. Installation of MySQL creates only a `'root'@'localhost'` superuser account that has all privileges and can do anything. If the `root` account has an empty password, your MySQL installation is unprotected: Anyone can connect to the MySQL server as `root` *without a password* and be granted all privileges.
 
@@ -59,14 +59,14 @@ The initial `root` account may or may not have a password. Choose whichever of t
      mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'root-password';
      ```
 
-After assigning the `root` account a password, you must supply that password whenever you connect to the server using the account. For example, to connect to the server using the **mysql** client, use this command:
+After assigning the `root` account a password, you must supply that password whenever you connect to the server using the account. For example, to connect to the server using the `mysql` client, use this command:
 
 ```
 $> mysql -u root -p
 Enter password: (enter root password here)
 ```
 
-To shut down the server with  **mysqladmin**, use this command:
+To shut down the server with  `mysqladmin`, use this command:
 
 ```
 $> mysqladmin -u root -p shutdown

@@ -1,6 +1,6 @@
 ### 6.4.1 comp_err — Compile MySQL Error Message File
 
- **comp_err** creates the `errmsg.sys` file that is used by **mysqld** to determine the error messages to display for different error codes.  **comp_err** normally is run automatically when MySQL is built. It compiles the `errmsg.sys` file from text-format error information in MySQL source distributions:
+ **comp_err** creates the `errmsg.sys` file that is used by `mysqld` to determine the error messages to display for different error codes.  **comp_err** normally is run automatically when MySQL is built. It compiles the `errmsg.sys` file from text-format error information in MySQL source distributions:
 
 The error information comes from the `messages_to_error_log.txt` and `messages_to_clients.txt` files in the `share` directory.
 

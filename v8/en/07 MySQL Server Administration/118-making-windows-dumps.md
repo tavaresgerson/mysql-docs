@@ -9,7 +9,7 @@ The PDB files are available in a separate file labeled "ZIP Archive Debug Binari
 
 :::
 
-The PDB file contains more detailed information about `mysqld` and other tools that enables more detailed trace and dump files to be created. You can use these with **WinDbg** or Visual Studio to debug **mysqld**.
+The PDB file contains more detailed information about `mysqld` and other tools that enables more detailed trace and dump files to be created. You can use these with **WinDbg** or Visual Studio to debug `mysqld`.
 
 For more information on PDB files and the debugging options available, see [Debugging Tools for Windows](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/).
 

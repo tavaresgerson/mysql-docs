@@ -1,6 +1,6 @@
 ### 8.1.4 Security-Related mysqld Options and Variables
 
-The following table shows  **mysqld** options and system variables that affect security. For descriptions of each of these, see  Section 7.1.7, “Server Command Options”, and Section 7.1.8, “Server System Variables”.
+The following table shows  `mysqld` options and system variables that affect security. For descriptions of each of these, see  Section 7.1.7, “Server Command Options”, and Section 7.1.8, “Server System Variables”.
 
 **Table 8.1 Security Option and Variable Summary**
 

@@ -94,7 +94,7 @@ Assuming that your Linux kernel has large page support enabled, configure it for
 
    With this option enabled, `InnoDB` uses large pages automatically for its buffer pool and additional memory pool. If `InnoDB` cannot do this, it falls back to use of traditional memory and writes a warning to the error log: Warning: Using conventional memory pool.
 
-You can verify that MySQL is now using large pages by checking `/proc/meminfo` again after restarting **mysqld**, like this:
+You can verify that MySQL is now using large pages by checking `/proc/meminfo` again after restarting `mysqld`, like this:
 
 ```
 $> grep -i huge /proc/meminfo

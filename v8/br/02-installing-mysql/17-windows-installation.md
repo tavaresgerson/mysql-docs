@@ -53,7 +53,7 @@ $> msiexec  /i "C:\mysql\mysql-8.4-winx64.msi" /qn /lv "C:\mysql\install.log" IN
 
 Por padrão, o MySQL Configurator configura o servidor MySQL como um serviço do Windows. Ao usar um serviço, você pode monitorar e controlar a operação do servidor por meio das ferramentas padrão de gerenciamento de serviços do Windows.
 
-Para acomodar a instrução `RESTART`, o servidor MySQL se bifurca quando executado como um serviço ou autônomo, para habilitar um processo monitor para supervisionar o processo do servidor. Neste caso, existem dois processos **mysqld**. Se a capacidade `RESTART` não for necessária, o servidor pode ser iniciado com a opção `--no-monitor`.
+Para acomodar a instrução `RESTART`, o servidor MySQL se bifurca quando executado como um serviço ou autônomo, para habilitar um processo monitor para supervisionar o processo do servidor. Neste caso, existem dois processos `mysqld`. Se a capacidade `RESTART` não for necessária, o servidor pode ser iniciado com a opção `--no-monitor`.
 
 Geralmente, você deve instalar o MySQL no Windows usando uma conta que tenha direitos de administrador. Caso contrário, você pode encontrar problemas com certas operações, como editar a variável de ambiente `PATH` ou acessar o **Service Control Manager**. Quando instalado, o MySQL não precisa ser executado usando um usuário com privilégios de administrador.
 

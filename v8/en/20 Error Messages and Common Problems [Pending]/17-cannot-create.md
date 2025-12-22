@@ -8,7 +8,7 @@ Can't create/write to file '\\sqla3fe_0.ism'.
 
 The preceding error is a typical message for Windows; the Unix message is similar.
 
-One fix is to start  **mysqld** with the  `--tmpdir` option or to add the option to the `[mysqld]` section of your option file. For example, to specify a directory of `C:\temp`, use these lines:
+One fix is to start  `mysqld` with the  `--tmpdir` option or to add the option to the `[mysqld]` section of your option file. For example, to specify a directory of `C:\temp`, use these lines:
 
 ```
 [mysqld]

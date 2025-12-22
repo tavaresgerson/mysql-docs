@@ -1,6 +1,6 @@
 ### 6.2.5 Connecting to the Server Using URI-Like Strings or Key-Value Pairs
 
-This section describes use of URI-like connection strings or key-value pairs to specify how to establish connections to the MySQL server, for clients such as MySQL Shell. For information on establishing connections using command-line options, for clients such as  **mysql** or  **mysqldump**, see  Section 6.2.4, “Connecting to the MySQL Server Using Command Options”. For additional information if you are unable to connect, see Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”.
+This section describes use of URI-like connection strings or key-value pairs to specify how to establish connections to the MySQL server, for clients such as MySQL Shell. For information on establishing connections using command-line options, for clients such as  `mysql` or  `mysqldump`, see  Section 6.2.4, “Connecting to the MySQL Server Using Command Options”. For additional information if you are unable to connect, see Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”.
 
 ::: info Note
 

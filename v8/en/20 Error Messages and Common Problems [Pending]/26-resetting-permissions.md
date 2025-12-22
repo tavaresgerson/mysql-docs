@@ -32,7 +32,7 @@ On Windows, use the following procedure to reset the password for the MySQL `'ro
 
    The server executes the contents of the file named by the  `init_file` system variable at startup, changing the `'root'@'localhost'` account password.
 
-   To have server output to appear in the console window rather than in a log file, add the  `--console` option to the  **mysqld** command.
+   To have server output to appear in the console window rather than in a log file, add the  `--console` option to the  `mysqld` command.
 
    If you installed MySQL using the MySQL Installation Wizard, you may need to specify a  `--defaults-file` option. For example:
 
@@ -51,12 +51,12 @@ You should now be able to connect to the MySQL server as `root` using the new pa
 
 On Unix, use the following procedure to reset the password for the MySQL `'root'@'localhost'` account. To change the password for a `root` account with a different host name part, modify the instructions to use that host name.
 
-The instructions assume that you start the MySQL server from the Unix login account that you normally use for running it. For example, if you run the server using the `mysql` login account, you should log in as `mysql` before using the instructions. Alternatively, you can log in as `root`, but in this case you *must* start  **mysqld** with the  `--user=mysql` option. If you start the server as `root` without using  `--user=mysql`, the server may create `root`-owned files in the data directory, such as log files, and these may cause permission-related problems for future server startups. If that happens, you must either change the ownership of the files to `mysql` or remove them.
+The instructions assume that you start the MySQL server from the Unix login account that you normally use for running it. For example, if you run the server using the `mysql` login account, you should log in as `mysql` before using the instructions. Alternatively, you can log in as `root`, but in this case you *must* start  `mysqld` with the  `--user=mysql` option. If you start the server as `root` without using  `--user=mysql`, the server may create `root`-owned files in the data directory, such as log files, and these may cause permission-related problems for future server startups. If that happens, you must either change the ownership of the files to `mysql` or remove them.
 
 1. Log on to your system as the Unix user that the MySQL server runs as (for example, `mysql`).
 2. Stop the MySQL server if it is running. Locate the `.pid` file that contains the server's process ID. The exact location and name of this file depend on your distribution, host name, and configuration. Common locations are `/var/lib/mysql/`, `/var/run/mysqld/`, and `/usr/local/mysql/data/`. Generally, the file name has an extension of `.pid` and begins with either `mysqld` or your system's host name.
 
-   Stop the MySQL server by sending a normal `kill` (not `kill -9`) to the  **mysqld** process. Use the actual path name of the `.pid` file in the following command:
+   Stop the MySQL server by sending a normal `kill` (not `kill -9`) to the  `mysqld` process. Use the actual path name of the `.pid` file in the following command:
 
    ```
    $> kill `cat /mysql-data-directory/host_name.pid`
@@ -84,10 +84,10 @@ You should now be able to connect to the MySQL server as `root` using the new pa
 
 ##### B.3.3.2.3 Resetting the Root Password: Generic Instructions
 
-The preceding sections provide password-resetting instructions specifically for Windows and Unix and Unix-like systems. Alternatively, on any platform, you can reset the password using the  **mysql** client (but this approach is less secure):
+The preceding sections provide password-resetting instructions specifically for Windows and Unix and Unix-like systems. Alternatively, on any platform, you can reset the password using the  `mysql` client (but this approach is less secure):
 
 1. Stop the MySQL server if necessary, then restart it with the  `--skip-grant-tables` option. This enables anyone to connect without a password and with all privileges, and disables account-management statements such as  `ALTER USER` and  `SET PASSWORD`. Because this is insecure, if the server is started with the  `--skip-grant-tables` option, it also disables remote connections by enabling  `skip_networking`. On Windows platforms, this means you must also enable  `shared_memory` or  `named_pipe`; otherwise the server cannot start.
-2. Connect to the MySQL server using the  **mysql** client; no password is necessary because the server was started with  `--skip-grant-tables`:
+2. Connect to the MySQL server using the  `mysql` client; no password is necessary because the server was started with  `--skip-grant-tables`:
 
    ```
    $> mysql

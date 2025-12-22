@@ -14,7 +14,7 @@ These performance tips supplement the general guidelines for fast inserts in  Se
   COMMIT;
   ```
 
-  The  **mysqldump** option `--opt` creates dump files that are fast to import into an `InnoDB` table, even without wrapping them with the [`SET autocommit`](commit.html "15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") and `COMMIT` statements.
+  The  `mysqldump` option `--opt` creates dump files that are fast to import into an `InnoDB` table, even without wrapping them with the [`SET autocommit`](commit.html "15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") and `COMMIT` statements.
 * If you have `UNIQUE` constraints on secondary keys, you can speed up table imports by temporarily turning off the uniqueness checks during the import session:
 
   ```

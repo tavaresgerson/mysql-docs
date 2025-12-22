@@ -20,7 +20,7 @@ Uma senha já pode ser atribuída à conta inicial nas seguintes circunstâncias
 - A instalação usando o instalador do macOS gera uma senha inicial aleatória, que o instalador exibe ao usuário em uma caixa de diálogo.
 - A instalação usando pacotes RPM gera uma senha inicial aleatória, que é escrita no registro de erros do servidor.
 - As instalações que usam pacotes Debian dão-lhe a opção de atribuir uma senha.
-- Para a inicialização do diretório de dados realizada manualmente usando **mysqld --initialize**, **mysqld** gera uma senha aleatória inicial, marca sua expiração e a escreve no registro de erros do servidor.
+- Para a inicialização do diretório de dados realizada manualmente usando **mysqld --initialize**, `mysqld` gera uma senha aleatória inicial, marca sua expiração e a escreve no registro de erros do servidor.
 
 A `mysql.user` tabela de concessão define a conta de usuário inicial do MySQL e seus privilégios de acesso. A instalação do MySQL cria apenas uma conta de superusuário `'root'@'localhost'` que tem todos os privilégios e pode fazer qualquer coisa. Se a conta `root` tem uma senha vazia, sua instalação do MySQL não está protegida: Qualquer pessoa pode se conectar ao servidor MySQL como `root` \* sem uma senha \* e receber todos os privilégios.
 
@@ -59,14 +59,14 @@ A conta inicial pode ou não ter uma senha. Escolha qual dos seguintes procedime
      mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'root-password';
      ```
 
-Depois de atribuir uma senha à conta `root`, você deve fornecer essa senha sempre que se conectar ao servidor usando a conta. Por exemplo, para se conectar ao servidor usando o cliente **mysql**, use este comando:
+Depois de atribuir uma senha à conta `root`, você deve fornecer essa senha sempre que se conectar ao servidor usando a conta. Por exemplo, para se conectar ao servidor usando o cliente `mysql`, use este comando:
 
 ```
 $> mysql -u root -p
 Enter password: (enter root password here)
 ```
 
-Para desligar o servidor com **mysqladmin**, use este comando:
+Para desligar o servidor com `mysqladmin`, use este comando:
 
 ```
 $> mysqladmin -u root -p shutdown

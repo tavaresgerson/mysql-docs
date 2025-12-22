@@ -134,7 +134,7 @@ A política de senha padrão implementada por PH exige que as senhas contenham p
 
 Se algo der errado durante a instalação, você pode encontrar informações de depuração no arquivo de registro de erros `/var/log/mysqld.log`.
 
-Para algumas distribuições Linux, pode ser necessário aumentar o limite de número de descritores de arquivos disponíveis para **mysqld**. Ver Seção B.3.2.16, "File Not Found and Similar Errors"
+Para algumas distribuições Linux, pode ser necessário aumentar o limite de número de descritores de arquivos disponíveis para `mysqld`. Ver Seção B.3.2.16, "File Not Found and Similar Errors"
 
 É possível instalar várias versões de bibliotecas de clientes, como no caso de você querer manter a compatibilidade com aplicativos mais antigos vinculados a bibliotecas anteriores. Para instalar uma biblioteca de clientes mais antiga, use a opção `--oldpackage` com **rpm**. Por exemplo, para instalar `mysql-community-libs-5.5` em um sistema EL6 que tem `libmysqlclient.21` do MySQL 8.0, use um comando como este:
 

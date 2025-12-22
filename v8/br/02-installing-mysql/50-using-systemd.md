@@ -58,7 +58,7 @@ O suporte para o systemd inclui estes arquivos:
 - `mysqld.service` (plataformas RPM), `mysql.service` (plataformas Debian): arquivo de configuração da unidade de serviço do sistema, com detalhes sobre o serviço MySQL.
 - `mysqld@.service` (plataformas RPM), `mysql@.service` (plataformas Debian): Como `mysqld.service` ou `mysql.service`, mas usado para gerenciar várias instâncias do MySQL.
 - `mysqld.tmpfiles.d`: Arquivo contendo informações para suportar o recurso `tmpfiles`. Este arquivo é instalado sob o nome `mysql.conf`.
-- `mysqld_pre_systemd` (plataformas RPM), `mysql-system-start` (plataformas Debian): Script de suporte para o arquivo unitário. Este script auxilia na criação do arquivo de log de erro somente se a localização do log corresponder a um padrão (`/var/log/mysql*.log` para plataformas RPM, `/var/log/mysql/*.log` para plataformas Debian). Em outros casos, o diretório de log de erro deve ser escrevível ou o log de erro deve estar presente e escrevível para o usuário executando o processo **mysqld**.
+- `mysqld_pre_systemd` (plataformas RPM), `mysql-system-start` (plataformas Debian): Script de suporte para o arquivo unitário. Este script auxilia na criação do arquivo de log de erro somente se a localização do log corresponder a um padrão (`/var/log/mysql*.log` para plataformas RPM, `/var/log/mysql/*.log` para plataformas Debian). Em outros casos, o diretório de log de erro deve ser escrevível ou o log de erro deve estar presente e escrevível para o usuário executando o processo `mysqld`.
 
 #### Configurar systemd para MySQL
 
@@ -97,22 +97,22 @@ systemctl restart mysql   # Debian platforms
 Com o systemd, o método de configuração `override.conf` deve ser usado para certos parâmetros, em vez de configurações em um grupo `[mysqld]`, `[mysqld_safe]`, ou `[safe_mysqld]` em um arquivo de opções do MySQL:
 
 - Para alguns parâmetros, `override.conf` deve ser usado porque o próprio systemd deve saber seus valores e não pode ler os arquivos de opção do MySQL para obtê-los.
-- Parâmetros que especificam valores que de outra forma só poderiam ser definidos usando opções conhecidas por **mysqld\_safe** devem ser especificados usando systemd porque não há um parâmetro **mysqld** correspondente.
+- Parâmetros que especificam valores que de outra forma só poderiam ser definidos usando opções conhecidas por **mysqld\_safe** devem ser especificados usando systemd porque não há um parâmetro `mysqld` correspondente.
 
 Para informações adicionais sobre o uso do systemd em vez do **mysqld\_safe**, consulte Migrar do mysqld\_safe para o systemd.
 
 Você pode definir os seguintes parâmetros em `override.conf`:
 
-- Para definir o número de descritores de arquivos disponíveis para o servidor MySQL, use `LimitNOFILE` em `override.conf` em vez da variável de sistema `open_files_limit` para **mysqld** ou `--open-files-limit` opção para **mysqld\_safe**.
+- Para definir o número de descritores de arquivos disponíveis para o servidor MySQL, use `LimitNOFILE` em `override.conf` em vez da variável de sistema `open_files_limit` para `mysqld` ou `--open-files-limit` opção para **mysqld\_safe**.
 - Para definir o tamanho máximo do arquivo do núcleo, use `LimitCore` em `override.conf` em vez da opção `--core-file-size` para **mysqld\_safe**.
 - Para definir a prioridade de agendamento para o servidor MySQL, use `Nice` em `override.conf` em vez da opção `--nice` para **mysqld\_safe**.
 
 Alguns parâmetros do MySQL são configurados usando variáveis de ambiente:
 
 - `LD_PRELOAD`: Defina esta variável se o servidor MySQL usar uma biblioteca de alocação de memória específica.
-- `NOTIFY_SOCKET`: Esta variável de ambiente especifica o soquete que **mysqld** usa para comunicar a notificação de conclusão de inicialização e mudança de status do serviço com o systemd. É definido pelo systemd quando o serviço **mysqld** é iniciado. O serviço **mysqld** lê a configuração da variável e escreve para o local definido.
+- `NOTIFY_SOCKET`: Esta variável de ambiente especifica o soquete que `mysqld` usa para comunicar a notificação de conclusão de inicialização e mudança de status do serviço com o systemd. É definido pelo systemd quando o serviço `mysqld` é iniciado. O serviço `mysqld` lê a configuração da variável e escreve para o local definido.
 
-  No MySQL 8.4, **mysqld** usa o tipo de inicialização do processo `Type=notify`. (`Type=forking` foi usado no MySQL 5.7.) Com `Type=notify`, o systemd configura automaticamente um arquivo de socket e exporta o caminho para a variável de ambiente `NOTIFY_SOCKET`.
+  No MySQL 8.4, `mysqld` usa o tipo de inicialização do processo `Type=notify`. (`Type=forking` foi usado no MySQL 5.7.) Com `Type=notify`, o systemd configura automaticamente um arquivo de socket e exporta o caminho para a variável de ambiente `NOTIFY_SOCKET`.
 - `TZ`: Defina esta variável para especificar o fuso horário padrão para o servidor.
 
 Existem várias maneiras de especificar valores de variáveis de ambiente para uso pelo processo do servidor MySQL gerenciado pelo systemd:
@@ -132,7 +132,7 @@ Existem várias maneiras de especificar valores de variáveis de ambiente para u
   systemctl restart mysql   # Debian platforms
   ```
 
-Para especificar opções para **mysqld** sem modificar os arquivos de configuração do systemd diretamente, defina ou desfina a variável systemd `MYSQLD_OPTS`. Por exemplo:
+Para especificar opções para `mysqld` sem modificar os arquivos de configuração do systemd diretamente, defina ou desfina a variável systemd `MYSQLD_OPTS`. Por exemplo:
 
 ```
 systemctl set-environment MYSQLD_OPTS="--general_log=1"
@@ -260,7 +260,7 @@ Nas plataformas Debian, os scripts de empacotamento para desinstalação do MySQ
 
 Como **mysqld\_safe** não é instalado em plataformas que usam systemd para gerenciar o MySQL, as opções especificadas anteriormente para esse programa (por exemplo, em um grupo de opções `[mysqld_safe]` ou `[safe_mysqld]`) devem ser especificadas de outra maneira:
 
-- Algumas opções **mysqld\_safe** também são compreendidas por **mysqld** e podem ser movidas do grupo de opções `[mysqld_safe]` ou `[safe_mysqld]` para o grupo de opções `[mysqld]`.
+- Algumas opções **mysqld\_safe** também são compreendidas por `mysqld` e podem ser movidas do grupo de opções `[mysqld_safe]` ou `[safe_mysqld]` para o grupo de opções `[mysqld]`.
 
   ::: info Note
 
@@ -268,6 +268,6 @@ Como **mysqld\_safe** não é instalado em plataformas que usam systemd para ger
 
   :::
 
-- Para algumas opções de **mysqld\_safe**, existem procedimentos alternativos de **mysqld**. Por exemplo, a opção de **mysqld\_safe** para habilitar o registro de `syslog` é `--syslog`, que está desatualizado. Para escrever a saída do log de erro no log do sistema, use as instruções na Seção 7.4.2.8, Error Logging to the System Log.
+- Para algumas opções de **mysqld\_safe**, existem procedimentos alternativos de `mysqld`. Por exemplo, a opção de **mysqld\_safe** para habilitar o registro de `syslog` é `--syslog`, que está desatualizado. Para escrever a saída do log de erro no log do sistema, use as instruções na Seção 7.4.2.8, Error Logging to the System Log.
 
-- **mysqld\_safe** opções não compreendidas por **mysqld** podem ser especificadas em `override.conf` ou variáveis de ambiente. Por exemplo, com **mysqld\_safe**, se o servidor deve usar uma biblioteca de alocação de memória específica, isso é especificado usando a `--malloc-lib` opção. Para instalações que gerenciam o servidor com systemd, providencie para definir a variável de ambiente `LD_PRELOAD` em vez disso, como descrito anteriormente.
+- **mysqld\_safe** opções não compreendidas por `mysqld` podem ser especificadas em `override.conf` ou variáveis de ambiente. Por exemplo, com **mysqld\_safe**, se o servidor deve usar uma biblioteca de alocação de memória específica, isso é especificado usando a `--malloc-lib` opção. Para instalações que gerenciam o servidor com systemd, providencie para definir a variável de ambiente `LD_PRELOAD` em vez disso, como descrito anteriormente.

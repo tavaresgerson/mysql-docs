@@ -1,10 +1,10 @@
 ### 7.1.7 Server Command Options
 
-When you start the  **mysqld** server, you can specify program options using any of the methods described in Section 6.2.2, “Specifying Program Options”. The most common methods are to provide options in an option file or on the command line. However, in most cases it is desirable to make sure that the server uses the same options each time it runs. The best way to ensure this is to list them in an option file. See Section 6.2.2.2, “Using Option Files”. That section also describes option file format and syntax.
+When you start the  `mysqld` server, you can specify program options using any of the methods described in Section 6.2.2, “Specifying Program Options”. The most common methods are to provide options in an option file or on the command line. However, in most cases it is desirable to make sure that the server uses the same options each time it runs. The best way to ensure this is to list them in an option file. See Section 6.2.2.2, “Using Option Files”. That section also describes option file format and syntax.
 
- **mysqld** reads options from the `[mysqld]` and `[server]` groups.  **mysqld\_safe** reads options from the `[mysqld]`, `[server]`, `[mysqld_safe]`, and `[safe_mysqld]` groups. **mysql.server** reads options from the `[mysqld]` and `[mysql.server]` groups.
+ `mysqld` reads options from the `[mysqld]` and `[server]` groups.  **mysqld\_safe** reads options from the `[mysqld]`, `[server]`, `[mysqld_safe]`, and `[safe_mysqld]` groups. **mysql.server** reads options from the `[mysqld]` and `[mysql.server]` groups.
 
- **mysqld** accepts many command options. For a brief summary, execute this command:
+ `mysqld` accepts many command options. For a brief summary, execute this command:
 
 ```
 mysqld --help
@@ -16,7 +16,7 @@ To see the full list, use this command:
 mysqld --verbose --help
 ```
 
-Some of the items in the list are actually system variables that can be set at server startup. These can be displayed at runtime using the  `SHOW VARIABLES` statement. Some items displayed by the preceding  **mysqld** command do not appear in `SHOW VARIABLES` output; this is because they are options only and not system variables.
+Some of the items in the list are actually system variables that can be set at server startup. These can be displayed at runtime using the  `SHOW VARIABLES` statement. Some items displayed by the preceding  `mysqld` command do not appear in `SHOW VARIABLES` output; this is because they are options only and not system variables.
 
 The following list shows some of the most common server options. Additional options are described in other sections:
 
@@ -81,19 +81,19 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  Put the  **mysqld** server in a closed environment during startup by using the `chroot()` system call. This is a recommended security measure. Use of this option somewhat limits `LOAD DATA` and `SELECT ... INTO OUTFILE`.
+  Put the  `mysqld` server in a closed environment during startup by using the `chroot()` system call. This is a recommended security measure. Use of this option somewhat limits `LOAD DATA` and `SELECT ... INTO OUTFILE`.
 *  `--console`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--console</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
 
-  (Windows only.) Cause the default error log destination to be the console. This affects log sinks that base their own output destination on the default destination. See Section 7.4.2, “The Error Log”.  **mysqld** does not close the console window if this option is used.
+  (Windows only.) Cause the default error log destination to be the console. This affects log sinks that base their own output destination on the default destination. See Section 7.4.2, “The Error Log”.  `mysqld` does not close the console window if this option is used.
 
    `--console` takes precedence over `--log-error` if both are given.
 *  `--core-file`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
-  When this option is used, write a core file if **mysqld** dies; no arguments are needed (or accepted). The name and location of the core file is system dependent. On Linux, a core file named `core.pid` is written to the current working directory of the process, which for  **mysqld** is the data directory. *`pid`* represents the process ID of the server process. On macOS, a core file named `core.pid` is written to the `/cores` directory. On Solaris, use the **coreadm** command to specify where to write the core file and how to name it.
+  When this option is used, write a core file if `mysqld` dies; no arguments are needed (or accepted). The name and location of the core file is system dependent. On Linux, a core file named `core.pid` is written to the current working directory of the process, which for  `mysqld` is the data directory. *`pid`* represents the process ID of the server process. On macOS, a core file named `core.pid` is written to the `/cores` directory. On Solaris, use the **coreadm** command to specify where to write the core file and how to name it.
 
   For some systems, to get a core file you must also specify the `--core-file-size` option to **mysqld\_safe**. See Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”. On some systems, such as Solaris, you do not get a core file if you are also using the `--user` option. There might be additional restrictions or limitations. For example, it might be necessary to execute **ulimit -c unlimited** before starting the server. Consult your system documentation.
 
@@ -118,7 +118,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>System Variable</th> <td><code>debug</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value (Unix)</th> <td><code>d:t:i:o,/tmp/mysqld.trace</code></td> </tr><tr><th>Default Value (Windows)</th> <td><code>d:t:i:O,\mysqld.trace</code></td> </tr></tbody></table>
 
-  If MySQL is configured with the `-DWITH_DEBUG=1` **CMake** option, you can use this option to get a trace file of what  **mysqld** is doing. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:i:o,/tmp/mysqld.trace` on Unix and `d:t:i:O,\mysqld.trace` on Windows.
+  If MySQL is configured with the `-DWITH_DEBUG=1` **CMake** option, you can use this option to get a trace file of what  `mysqld` is doing. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:i:o,/tmp/mysqld.trace` on Unix and `d:t:i:O,\mysqld.trace` on Windows.
 
   Using  `-DWITH_DEBUG=1` to configure MySQL with debugging support enables you to use the `--debug="d,parser_debug"` option when you start the server. This causes the Bison parser that is used to process SQL statements to dump a parser trace to the server's standard error output. Typically, this output is written to the error log.
 
@@ -148,7 +148,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   Read only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
-  Exception: Even with `--defaults-file`, **mysqld** reads `mysqld-auto.cnf`.
+  Exception: Even with `--defaults-file`, `mysqld` reads `mysqld-auto.cnf`.
 
   ::: info Note
 
@@ -159,7 +159,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--defaults-group-suffix=str`
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqld** normally reads the `[mysqld]` group. If this option is given as `--defaults-group-suffix=_other`, **mysqld** also reads the `[mysqld_other]` group.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, `mysqld` normally reads the `[mysqld]` group. If this option is given as `--defaults-group-suffix=_other`, `mysqld` also reads the `[mysqld_other]` group.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--early-plugin-load=plugin_list`
@@ -178,7 +178,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   Quotes surround the argument value because otherwise some command interpreters interpret semicolon (`;`) as a special character. (For example, Unix shells treat it as a command terminator.)
 
-  Each named plugin is loaded early for a single invocation of **mysqld** only. After a restart, the plugin is not loaded early unless `--early-plugin-load` is used again.
+  Each named plugin is loaded early for a single invocation of `mysqld` only. After a restart, the plugin is not loaded early unless `--early-plugin-load` is used again.
 
   If the server is started using `--initialize` or `--initialize-insecure`, plugins specified by `--early-plugin-load` are not loaded.
 
@@ -198,12 +198,12 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--exit-info[=flags]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
 
-  This is a bitmask of different flags that you can use for debugging the  **mysqld** server. Do not use this option unless you know *exactly* what it does!
+  This is a bitmask of different flags that you can use for debugging the  `mysqld` server. Do not use this option unless you know *exactly* what it does!
 *  `--external-locking`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--external-locking[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Enable external locking (system locking), which is disabled by default. If you use this option on a system on which `lockd` does not fully work (such as Linux), it is easy for  **mysqld** to deadlock.
+  Enable external locking (system locking), which is disabled by default. If you use this option on a system on which `lockd` does not fully work (such as Linux), it is easy for  `mysqld` to deadlock.
 
   To disable external locking explicitly, use `--skip-external-locking`.
 
@@ -224,7 +224,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--gdb[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Install an interrupt handler for `SIGINT` (needed to stop  **mysqld** with `^C` to set breakpoints) and disable stack tracing and core file handling. See Section 7.9.1.4, “Debugging mysqld under gdb”.
+  Install an interrupt handler for `SIGINT` (needed to stop  `mysqld` with `^C` to set breakpoints) and disable stack tracing and core file handling. See Section 7.9.1.4, “Debugging mysqld under gdb”.
 
   On Windows, this option also suppresses the forking that is used to implement the  `RESTART` statement: Forking enables one process to act as a monitor to the other, which acts as the server. However, forking makes determining the server process to attach to for debugging more difficult, so starting the server with `--gdb` suppresses forking. For a server started with this option, `RESTART` simply exits and does not restart.
 
@@ -237,7 +237,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   This option limits the effects of, or is not compatible with, a number of other startup options for the MySQL server. Some of the most common issues of this sort are noted here:
 
-  + We strongly recommend, when initializing the data directory with `--initialize`, that you specify no additional options other than `--datadir`, other options used for setting directory locations such as `--basedir`, and possibly `--user`, if required. Options for the running MySQL server can be specified when starting it once initialization has been completed and **mysqld** has shut down. This also applies when using `--initialize-insecure` instead of `--initialize`.
+  + We strongly recommend, when initializing the data directory with `--initialize`, that you specify no additional options other than `--datadir`, other options used for setting directory locations such as `--basedir`, and possibly `--user`, if required. Options for the running MySQL server can be specified when starting it once initialization has been completed and `mysqld` has shut down. This also applies when using `--initialize-insecure` instead of `--initialize`.
   + When the server is started with `--initialize`, some functionality is unavailable that limits the statements permitted in any file named by the `init_file` system variable. For more information, see the description of that variable. In addition, the `disabled_storage_engines` system variable has no effect.
   + The  `--ndbcluster` option is ignored when used together with `--initialize`.
   + `--initialize` is mutually exclusive with `--bootstrap` and `--daemonize`.
@@ -352,7 +352,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--memlock[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Lock the  **mysqld** process in memory. This option might help if you have a problem where the operating system is causing  **mysqld** to swap to disk.
+  Lock the  `mysqld` process in memory. This option might help if you have a problem where the operating system is causing  `mysqld` to swap to disk.
 
    `--memlock` works on systems that support the `mlockall()` system call; this includes Solaris, most Linux distributions that use a 2.4 or higher kernel, and perhaps other Unix systems. On Linux systems, you can tell whether or not `mlockall()` (and thus this option) is supported by checking to see whether or not it is defined in the system `mman.h` file, like this:
 
@@ -372,7 +372,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   On Linux and perhaps other systems, you can avoid the need to run the server as `root` by changing the `limits.conf` file. See the notes regarding the memlock limit in Section 10.12.3.3, “Enabling Large Page Support”.
 
-  You must not use this option on a system that does not support the `mlockall()` system call; if you do so,  **mysqld** is very likely to exit as soon as you try to start it.
+  You must not use this option on a system that does not support the `mlockall()` system call; if you do so,  `mysqld` is very likely to exit as soon as you try to start it.
 *  `--myisam-block-size=N`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--myisam-block-size=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1024</code></td> </tr><tr><th>Maximum Value</th> <td><code>16384</code></td> </tr></tbody></table>
@@ -414,7 +414,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   Quotes surround the argument value because otherwise some command interpreters interpret semicolon (`;`) as a special character. (For example, Unix shells treat it as a command terminator.)
 
-  Each named plugin is loaded for a single invocation of **mysqld** only. After a restart, the plugin is not loaded unless  `--plugin-load` is used again. This is in contrast to `INSTALL PLUGIN`, which adds an entry to the `mysql.plugins` table to cause the plugin to be loaded for every normal server startup.
+  Each named plugin is loaded for a single invocation of `mysqld` only. After a restart, the plugin is not loaded unless  `--plugin-load` is used again. This is in contrast to `INSTALL PLUGIN`, which adds an entry to the `mysql.plugins` table to cause the plugin to be loaded for every normal server startup.
 
   During the normal startup sequence, the server determines which plugins to load by reading the `mysql.plugins` system table. If the server is started with the `--skip-grant-tables` option, plugins registered in the `mysql.plugins` table are not loaded and are unavailable. `--plugin-load` enables plugins to be loaded even when `--skip-grant-tables` is given. `--plugin-load` also enables plugins to be loaded at startup that cannot be loaded at runtime.
 
@@ -505,7 +505,7 @@ You can change the values of most system variables at runtime with the  `SET` st
     To cause a server started with `--skip-grant-tables` to load the grant tables at runtime, perform a privilege-flushing operation, which can be done in these ways:
 
     - Issue a MySQL `FLUSH PRIVILEGES` statement after connecting to the server.
-    - Execute a **mysqladmin flush-privileges** or **mysqladmin reload** command from the command line.
+    - Execute a **mysqladmin flush-privileges** or `mysqladmin reload` command from the command line.
 
     Privilege flushing might also occur implicitly as a result of other actions performed after startup, thus causing the server to start using the grant tables. For example, the server flushes the privileges if it performs an upgrade during the startup sequence.
   +  `--skip-grant-tables` disables failed-login tracking and temporary account locking because those capabilities depend on the grant tables. See  Section 8.2.15, “Password Management”.
@@ -535,7 +535,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-stack-trace</code></td> </tr></tbody></table>
 
-  Do not write stack traces. This option is useful when you are running  **mysqld** under a debugger. On some systems, you also must use this option to get a core file. See Section 7.9, “Debugging MySQL”.
+  Do not write stack traces. This option is useful when you are running  `mysqld` under a debugger. On some systems, you also must use this option to get a core file. See Section 7.9, “Debugging MySQL”.
 *  `--slow-start-timeout=timeout`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--slow-start-timeout=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>15000</code></td> </tr></tbody></table>
@@ -678,11 +678,11 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--user=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Run the  **mysqld** server as the user having the name *`user_name`* or the numeric user ID *`user_id`*. (“User” in this context refers to a system login account, not a MySQL user listed in the grant tables.)
+  Run the  `mysqld` server as the user having the name *`user_name`* or the numeric user ID *`user_id`*. (“User” in this context refers to a system login account, not a MySQL user listed in the grant tables.)
 
-  This option is *mandatory* when starting **mysqld** as `root`. The server changes its user ID during its startup sequence, causing it to run as that particular user rather than as `root`. See Section 8.1.1, “Security Guidelines”.
+  This option is *mandatory* when starting `mysqld` as `root`. The server changes its user ID during its startup sequence, causing it to run as that particular user rather than as `root`. See Section 8.1.1, “Security Guidelines”.
 
-  To avoid a possible security hole where a user adds a `--user=root` option to a `my.cnf` file (thus causing the server to run as `root`),  **mysqld** uses only the first  `--user` option specified and produces a warning if there are multiple `--user` options. Options in `/etc/my.cnf` and `$MYSQL_HOME/my.cnf` are processed before command-line options, so it is recommended that you put a `--user` option in `/etc/my.cnf` and specify a value other than `root`. The option in `/etc/my.cnf` is found before any other `--user` options, which ensures that the server runs as a user other than `root`, and that a warning results if any other  `--user` option is found.
+  To avoid a possible security hole where a user adds a `--user=root` option to a `my.cnf` file (thus causing the server to run as `root`),  `mysqld` uses only the first  `--user` option specified and produces a warning if there are multiple `--user` options. Options in `/etc/my.cnf` and `$MYSQL_HOME/my.cnf` are processed before command-line options, so it is recommended that you put a `--user` option in `/etc/my.cnf` and specify a value other than `root`. The option in `/etc/my.cnf` is found before any other `--user` options, which ensures that the server runs as a user other than `root`, and that a warning results if any other  `--user` option is found.
 *  `--validate-config`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--validate-config[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>

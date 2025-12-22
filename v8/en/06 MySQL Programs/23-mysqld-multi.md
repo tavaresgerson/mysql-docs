@@ -1,6 +1,6 @@
 ### 6.3.4 mysqld_multi — Manage Multiple MySQL Servers
 
-**mysqld_multi** is designed to manage several **mysqld** processes that listen for connections on different Unix socket files and TCP/IP ports. It can start or stop servers, or report their current status.
+**mysqld_multi** is designed to manage several `mysqld` processes that listen for connections on different Unix socket files and TCP/IP ports. It can start or stop servers, or report their current status.
 
 ::: info Note
 
@@ -8,7 +8,7 @@ For some Linux platforms, MySQL installation from RPM or Debian packages include
 
 :::
 
-**mysqld_multi** searches for groups named `[mysqldN]` in `my.cnf` (or in the file named by the `--defaults-file` option). *`N`* can be any positive integer. This number is referred to in the following discussion as the option group number, or *`GNR`*. Group numbers distinguish option groups from one another and are used as arguments to  **mysqld_multi** to specify which servers you want to start, stop, or obtain a status report for. Options listed in these groups are the same that you would use in the `[mysqld]` group used for starting **mysqld**. (See, for example, Section 2.9.5, “Starting and Stopping MySQL Automatically”.) However, when using multiple servers, it is necessary that each one use its own value for options such as the Unix socket file and TCP/IP port number. For more information on which options must be unique per server in a multiple-server environment, see Section 7.8, “Running Multiple MySQL Instances on One Machine”.
+**mysqld_multi** searches for groups named `[mysqldN]` in `my.cnf` (or in the file named by the `--defaults-file` option). *`N`* can be any positive integer. This number is referred to in the following discussion as the option group number, or *`GNR`*. Group numbers distinguish option groups from one another and are used as arguments to  **mysqld_multi** to specify which servers you want to start, stop, or obtain a status report for. Options listed in these groups are the same that you would use in the `[mysqld]` group used for starting `mysqld`. (See, for example, Section 2.9.5, “Starting and Stopping MySQL Automatically”.) However, when using multiple servers, it is necessary that each one use its own value for options such as the Unix socket file and TCP/IP port number. For more information on which options must be unique per server in a multiple-server environment, see Section 7.8, “Running Multiple MySQL Instances on One Machine”.
 
 To invoke  **mysqld_multi**, use the following syntax:
 
@@ -52,9 +52,9 @@ mysqld_multi --example
 
 For additional information about these and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-Option files read are searched for `[mysqld_multi]` and `[mysqldN]` option groups. The `[mysqld_multi]` group can be used for options to  **mysqld_multi** itself. `[mysqldN]` groups can be used for options passed to specific **mysqld** instances.
+Option files read are searched for `[mysqld_multi]` and `[mysqldN]` option groups. The `[mysqld_multi]` group can be used for options to  **mysqld_multi** itself. `[mysqldN]` groups can be used for options passed to specific `mysqld` instances.
 
-The `[mysqld]` or `[mysqld_safe]` groups can be used for common options read by all instances of  **mysqld** or **mysqld_safe**. You can specify a `--defaults-file=file_name` option to use a different configuration file for that instance, in which case the `[mysqld]` or `[mysqld_safe]` groups from that file are used for that instance.
+The `[mysqld]` or `[mysqld_safe]` groups can be used for common options read by all instances of  `mysqld` or **mysqld_safe**. You can specify a `--defaults-file=file_name` option to use a different configuration file for that instance, in which case the `[mysqld]` or `[mysqld_safe]` groups from that file are used for that instance.
 
  **mysqld_multi** supports the following options.
 
@@ -77,12 +77,12 @@ The `[mysqld]` or `[mysqld_safe]` groups can be used for common options read by 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysqladmin=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The  **mysqladmin** binary to be used to stop servers.
+  The  `mysqladmin` binary to be used to stop servers.
 *  `--mysqld=prog_name`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysqld=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The  **mysqld** binary to be used. Note that you can specify  **mysqld_safe** as the value for this option also. If you use **mysqld_safe** to start the server, you can include the `mysqld` or `ledir` options in the corresponding `[mysqldN]` option group. These options indicate the name of the server that  **mysqld_safe** should start and the path name of the directory where the server is located. (See the descriptions for these options in Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”.) Example:
+  The  `mysqld` binary to be used. Note that you can specify  **mysqld_safe** as the value for this option also. If you use **mysqld_safe** to start the server, you can include the `mysqld` or `ledir` options in the corresponding `[mysqldN]` option group. These options indicate the name of the server that  **mysqld_safe** should start and the path name of the directory where the server is located. (See the descriptions for these options in Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”.) Example:
 
   ```
   [mysqld38]
@@ -98,7 +98,7 @@ The `[mysqld]` or `[mysqld_safe]` groups can be used for common options read by 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The password of the MySQL account to use when invoking **mysqladmin**. Note that the password value is not optional for this option, unlike for other MySQL programs.
+  The password of the MySQL account to use when invoking `mysqladmin`. Note that the password value is not optional for this option, unlike for other MySQL programs.
 *  `--silent`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--silent</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
@@ -113,7 +113,7 @@ The `[mysqld]` or `[mysqld_safe]` groups can be used for common options read by 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--user=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>root</code></td> </tr></tbody></table>
 
-  The user name of the MySQL account to use when invoking **mysqladmin**.
+  The user name of the MySQL account to use when invoking `mysqladmin`.
 *  `--verbose`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
@@ -127,12 +127,12 @@ The `[mysqld]` or `[mysqld_safe]` groups can be used for common options read by 
 
 Some notes about  **mysqld_multi**:
 
-* **Most important**: Before using  **mysqld_multi** be sure that you understand the meanings of the options that are passed to the  **mysqld** servers and *why* you would want to have separate **mysqld** processes. Beware of the dangers of using multiple  **mysqld** servers with the same data directory. Use separate data directories, unless you *know* what you are doing. Starting multiple servers with the same data directory does *not* give you extra performance in a threaded system. See  Section 7.8, “Running Multiple MySQL Instances on One Machine”.
+* **Most important**: Before using  **mysqld_multi** be sure that you understand the meanings of the options that are passed to the  `mysqld` servers and *why* you would want to have separate `mysqld` processes. Beware of the dangers of using multiple  `mysqld` servers with the same data directory. Use separate data directories, unless you *know* what you are doing. Starting multiple servers with the same data directory does *not* give you extra performance in a threaded system. See  Section 7.8, “Running Multiple MySQL Instances on One Machine”.
 
   Important
 
-  Make sure that the data directory for each server is fully accessible to the Unix account that the specific **mysqld** process is started as. *Do not* use the Unix *`root`* account for this, unless you *know* what you are doing. See Section 8.1.5, “How to Run MySQL as a Normal User”.
-* Make sure that the MySQL account used for stopping the **mysqld** servers (with the **mysqladmin** program) has the same user name and password for each server. Also, make sure that the account has the  `SHUTDOWN` privilege. If the servers that you want to manage have different user names or passwords for the administrative accounts, you might want to create an account on each server that has the same user name and password. For example, you might set up a common `multi_admin` account by executing the following commands for each server:
+  Make sure that the data directory for each server is fully accessible to the Unix account that the specific `mysqld` process is started as. *Do not* use the Unix *`root`* account for this, unless you *know* what you are doing. See Section 8.1.5, “How to Run MySQL as a Normal User”.
+* Make sure that the MySQL account used for stopping the `mysqld` servers (with the `mysqladmin` program) has the same user name and password for each server. Also, make sure that the account has the  `SHUTDOWN` privilege. If the servers that you want to manage have different user names or passwords for the administrative accounts, you might want to create an account on each server that has the same user name and password. For example, you might set up a common `multi_admin` account by executing the following commands for each server:
 
   ```
   $> mysql -u root -S /tmp/mysql.sock -p
@@ -141,12 +141,12 @@ Some notes about  **mysqld_multi**:
   mysql> GRANT SHUTDOWN ON *.* TO 'multi_admin'@'localhost';
   ```
 
-  See  Section 8.2, “Access Control and Account Management”. You have to do this for each  **mysqld** server. Change the connection parameters appropriately when connecting to each one. Note that the host name part of the account name must permit you to connect as `multi_admin` from the host where you want to run **mysqld_multi**.
-* The Unix socket file and the TCP/IP port number must be different for every  **mysqld**. (Alternatively, if the host has multiple network addresses, you can set the `bind_address` system variable to cause different servers to listen to different interfaces.)
-* The  `--pid-file` option is very important if you are using **mysqld_safe** to start **mysqld** (for example, `--mysqld=mysqld_safe`) Every  **mysqld** should have its own process ID file. The advantage of using **mysqld_safe** instead of **mysqld** is that **mysqld_safe** monitors its **mysqld** process and restarts it if the process terminates due to a signal sent using `kill -9` or for other reasons, such as a segmentation fault.
-* You might want to use the `--user` option for **mysqld**, but to do this you need to run the  **mysqld_multi** script as the Unix superuser (`root`). Having the option in the option file doesn't matter; you just get a warning if you are not the superuser and the  **mysqld** processes are started under your own Unix account.
+  See  Section 8.2, “Access Control and Account Management”. You have to do this for each  `mysqld` server. Change the connection parameters appropriately when connecting to each one. Note that the host name part of the account name must permit you to connect as `multi_admin` from the host where you want to run **mysqld_multi**.
+* The Unix socket file and the TCP/IP port number must be different for every  `mysqld`. (Alternatively, if the host has multiple network addresses, you can set the `bind_address` system variable to cause different servers to listen to different interfaces.)
+* The  `--pid-file` option is very important if you are using **mysqld_safe** to start `mysqld` (for example, `--mysqld=mysqld_safe`) Every  `mysqld` should have its own process ID file. The advantage of using **mysqld_safe** instead of `mysqld` is that **mysqld_safe** monitors its `mysqld` process and restarts it if the process terminates due to a signal sent using `kill -9` or for other reasons, such as a segmentation fault.
+* You might want to use the `--user` option for `mysqld`, but to do this you need to run the  **mysqld_multi** script as the Unix superuser (`root`). Having the option in the option file doesn't matter; you just get a warning if you are not the superuser and the  `mysqld` processes are started under your own Unix account.
 
-The following example shows how you might set up an option file for use with  **mysqld_multi**. The order in which the  **mysqld** programs are started or stopped depends on the order in which they appear in the option file. Group numbers need not form an unbroken sequence. The first and fifth `[mysqldN]` groups were intentionally omitted from the example to illustrate that you can have “gaps” in the option file. This gives you more flexibility.
+The following example shows how you might set up an option file for use with  **mysqld_multi**. The order in which the  `mysqld` programs are started or stopped depends on the order in which they appear in the option file. Group numbers need not form an unbroken sequence. The first and fifth `[mysqldN]` groups were intentionally omitted from the example to illustrate that you can have “gaps” in the option file. This gives you more flexibility.
 
 ```
 # This is an example of a my.cnf file for mysqld_multi.

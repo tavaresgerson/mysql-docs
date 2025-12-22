@@ -286,7 +286,7 @@ clean shutdown :   A **shutdown** that completes without errors and applies all 
 
     See Also  crash,  fast shutdown,  shutdown,  slow shutdown.
 
-client :   A program that runs outside the database server, communicating with the database by sending requests through a **Connector**, or an **API** made available through **client libraries**. It can run on the same physical machine as the database server, or on a remote machine connected over a network. It can be a special-purpose database application, or a general-purpose program like the  **mysql** command-line processor.
+client :   A program that runs outside the database server, communicating with the database by sending requests through a **Connector**, or an **API** made available through **client libraries**. It can run on the same physical machine as the database server, or on a remote machine connected over a network. It can be a special-purpose database application, or a general-purpose program like the  `mysql` command-line processor.
 
     See Also  API,  client libraries,  connector,  mysql,  server.
 
@@ -600,7 +600,7 @@ document id :   In the `InnoDB` **full-text search** feature, a special column i
 
     See Also  full-text search,  FULLTEXT index,  ilist.
 
-doublewrite buffer :   `InnoDB` uses a file flush technique called doublewrite. Before writing **pages** to the **data files**, `InnoDB` first writes them to a storage area called the doublewrite buffer. Only after the write and the flush to the doublewrite buffer have completed, does `InnoDB` write the pages to their proper positions in the data file. If there is an operating system, storage subsystem or  **mysqld** process crash in the middle of a page write, `InnoDB` can find a good copy of the page from the doublewrite buffer during **crash recovery**.
+doublewrite buffer :   `InnoDB` uses a file flush technique called doublewrite. Before writing **pages** to the **data files**, `InnoDB` first writes them to a storage area called the doublewrite buffer. Only after the write and the flush to the doublewrite buffer have completed, does `InnoDB` write the pages to their proper positions in the data file. If there is an operating system, storage subsystem or  `mysqld` process crash in the middle of a page write, `InnoDB` can find a good copy of the page from the doublewrite buffer during **crash recovery**.
 
     Although data is always written twice, the doublewrite buffer does not require twice as much I/O overhead or twice as many I/O operations. Data is written to the buffer itself as a large sequential chunk, with a single `fsync()` call to the operating system.
 
@@ -1034,7 +1034,7 @@ insert intention lock :   A type of **gap lock** that is set by  `INSERT` operat
 
     See Also  gap lock,  lock,  next-key lock.
 
-instance :   A single **mysqld** daemon managing a **data directory** representing one or more **databases** with a set of **tables**. It is common in development, testing, and some **replication** scenarios to have multiple instances on the same **server** machine, each managing its own data directory and listening on its own port or socket. With one instance running a **disk-bound** workload, the server might still have extra CPU and memory capacity to run additional instances.
+instance :   A single `mysqld` daemon managing a **data directory** representing one or more **databases** with a set of **tables**. It is common in development, testing, and some **replication** scenarios to have multiple instances on the same **server** machine, each managing its own data directory and listening on its own port or socket. With one instance running a **disk-bound** workload, the server might still have extra CPU and memory capacity to run additional instances.
 
     See Also  data directory,  database,  disk-bound,  mysqld,  replication,  server,  table.
 
@@ -1322,7 +1322,7 @@ MyODBC drivers :   Obsolete name for **Connector/ODBC**.
 
     See Also  Connector/ODBC.
 
-mysql :   The  **mysql** program is the command-line interpreter for the MySQL database. It processes **SQL** statements, and also MySQL-specific commands such as  `SHOW TABLES`, by passing requests to the  **mysqld** daemon.
+mysql :   The  `mysql` program is the command-line interpreter for the MySQL database. It processes **SQL** statements, and also MySQL-specific commands such as  `SHOW TABLES`, by passing requests to the  `mysqld` daemon.
 
     See Also  mysqld,  SQL.
 
@@ -1334,9 +1334,9 @@ mysqlclient :   The informal name for the library that is implemented by the fil
 
     See Also  libmysqlclient.
 
-mysqld :    **mysqld**, also known as MySQL Server, is a single multithreaded program that does most of the work in a MySQL installation. It does not spawn additional processes. MySQL Server manages access to the MySQL data directory that contains databases, tables, and other information such as log files and status files.
+mysqld :    `mysqld`, also known as MySQL Server, is a single multithreaded program that does most of the work in a MySQL installation. It does not spawn additional processes. MySQL Server manages access to the MySQL data directory that contains databases, tables, and other information such as log files and status files.
 
-     **mysqld** runs as a Unix daemon or Windows service, constantly waiting for requests and performing maintenance work in the background.
+     `mysqld` runs as a Unix daemon or Windows service, constantly waiting for requests and performing maintenance work in the background.
 
     See Also  instance,  mysql.
 

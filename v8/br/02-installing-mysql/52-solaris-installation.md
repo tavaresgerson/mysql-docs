@@ -28,7 +28,7 @@ Notas adicionais a serem conhecidas ao instalar e usar o MySQL no Solaris:
   ```
 - Você deve montar todos os sistemas de arquivos em que pretende armazenar arquivos `InnoDB` com a opção `forcedirectio`. (Por padrão, a montagem é feita sem essa opção.) Não fazê-lo causa uma queda significativa no desempenho ao usar o mecanismo de armazenamento `InnoDB` nesta plataforma.
 - Se você quiser que o MySQL inicie automaticamente, você pode copiar `support-files/mysql.server` para `/etc/init.d` e criar um link simbólico para ele chamado `/etc/rc3.d/S99mysql.server`.
-- Se muitos processos tentam se conectar muito rapidamente ao **mysqld**, você deve ver este erro no log do MySQL:
+- Se muitos processos tentam se conectar muito rapidamente ao `mysqld`, você deve ver este erro no log do MySQL:
 
   ```
   Error in accept: Protocol error

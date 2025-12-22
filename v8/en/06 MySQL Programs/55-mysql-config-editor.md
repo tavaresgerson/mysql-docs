@@ -17,7 +17,7 @@ host = localhost
 
 When you invoke a client program to connect to the server, the client uses `.mylogin.cnf` in conjunction with other option files. Its precedence is higher than other option files, but less than options specified explicitly on the client command line. For information about the order in which option files are used, see  Section 6.2.2.2, “Using Option Files”.
 
-To specify an alternate login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is recognized by **mysql\_config\_editor**, by standard MySQL clients ( **mysql**, **mysqladmin**, and so forth), and by the **mysql-test-run.pl** testing utility.
+To specify an alternate login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is recognized by **mysql\_config\_editor**, by standard MySQL clients ( `mysql`, `mysqladmin`, and so forth), and by the **mysql-test-run.pl** testing utility.
 
 Programs use groups in the login path file as follows:
 
@@ -28,14 +28,14 @@ Programs use groups in the login path file as follows:
   mysql
   ```
 
-  By default, the  **mysql** client reads the `[client]` and `[mysql]` groups from other option files, so it reads them from the login path file as well.
+  By default, the  `mysql` client reads the `[client]` and `[mysql]` groups from other option files, so it reads them from the login path file as well.
 * With a  `--login-path` option, client programs additionally read the named login path from the login path file. The option groups read from other option files remain the same. Consider this command:
 
   ```
   mysql --login-path=mypath
   ```
 
-  The  **mysql** client reads `[client]` and `[mysql]` from other option files, and `[client]`, `[mysql]`, and `[mypath]` from the login path file.
+  The  `mysql` client reads `[client]` and `[mysql]` from other option files, and `[client]`, `[mysql]`, and `[mypath]` from the login path file.
 * Client programs read the login path file even when the `--no-defaults` option is used, unless `--no-login-paths` is set. This permits passwords to be specified in a safer way than on the command line even if `--no-defaults` is present.
 
  **mysql\_config\_editor** obfuscates the `.mylogin.cnf` file so it cannot be read as cleartext, and its contents when unobfuscated by client programs are used only in memory. In this way, passwords can be stored in a file in non-cleartext format and used later without ever needing to be exposed on the command line or in an environment variable.  **mysql\_config\_editor** provides a `print` command for displaying the login path file contents, but even in this case, password values are masked so as never to appear in a way that other users can see them.
@@ -109,7 +109,7 @@ As shown by the preceding example, the login path file can contain multiple logi
 mysql --login-path=remote
 ```
 
-Here,  **mysql** reads the `[client]` and `[mysql]` option groups from other option files, and the `[client]`, `[mysql]`, and `[remote]` groups from the login path file.
+Here,  `mysql` reads the `[client]` and `[mysql]` option groups from other option files, and the `[client]`, `[mysql]`, and `[remote]` groups from the login path file.
 
 To connect to the local server, use this command:
 
@@ -117,7 +117,7 @@ To connect to the local server, use this command:
 mysql --login-path=client
 ```
 
-Because  **mysql** reads the `client` and `mysql` login paths by default, the `--login-path` option does not add anything in this case. That command is equivalent to this one:
+Because  `mysql` reads the `client` and `mysql` login paths by default, the `--login-path` option does not add anything in this case. That command is equivalent to this one:
 
 ```
 mysql
@@ -125,7 +125,7 @@ mysql
 
 Options read from the login path file take precedence over options read from other option files. Options read from login path groups appearing later in the login path file take precedence over options read from groups appearing earlier in the file.
 
- **mysql\_config\_editor** adds login paths to the login path file in the order you create them, so you should create more general login paths first and more specific paths later. If you need to move a login path within the file, you can remove it, then recreate it to add it to the end. For example, a `client` login path is more general because it is read by all client programs, whereas a `mysqldump` login path is read only by **mysqldump**. Options specified later override options specified earlier, so putting the login paths in the order `client`, `mysqldump` enables  **mysqldump**-specific options to override `client` options.
+ **mysql\_config\_editor** adds login paths to the login path file in the order you create them, so you should create more general login paths first and more specific paths later. If you need to move a login path within the file, you can remove it, then recreate it to add it to the end. For example, a `client` login path is more general because it is read by all client programs, whereas a `mysqldump` login path is read only by `mysqldump`. Options specified later override options specified earlier, so putting the login paths in the order `client`, `mysqldump` enables  `mysqldump`-specific options to override `client` options.
 
 When you use the `set` command with **mysql\_config\_editor** to create a login path, you need not specify all possible option values (host name, user name, password, port, socket). Only those values given are written to the path. Any missing values required later can be specified when you invoke a client path to connect to the MySQL server, either in other option files or on the command line. Any options specified on the command line override those specified in the login path file or other option files. For example, if the credentials in the `remote` login path also apply for the host `remote2.example.com`, connect to the server on that host like this:
 

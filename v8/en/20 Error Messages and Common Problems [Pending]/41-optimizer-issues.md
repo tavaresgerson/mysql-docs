@@ -21,5 +21,5 @@ For the cases when MySQL does not do the "right" thing, tools that you have avai
 
   `USE INDEX` and `IGNORE INDEX` may also be useful. See  Section 10.9.4, “Index Hints”.
 * Global and table-level `STRAIGHT_JOIN`. See  Section 15.2.13, “SELECT Statement”.
-* You can tune global or thread-specific system variables. For example, start  **mysqld** with the  `--max-seeks-for-key=1000` option or use `SET max_seeks_for_key=1000` to tell the optimizer to assume that no key scan causes more than 1,000 key seeks. See  Section 7.1.8, “Server System Variables”.
+* You can tune global or thread-specific system variables. For example, start  `mysqld` with the  `--max-seeks-for-key=1000` option or use `SET max_seeks_for_key=1000` to tell the optimizer to assume that no key scan causes more than 1,000 key seeks. See  Section 7.1.8, “Server System Variables”.
 

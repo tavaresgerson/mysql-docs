@@ -12,7 +12,7 @@ Setting `binlog_transaction_compression` or `binlog_transaction_compression_leve
 
 ::: info Note
 
-You can enable binary logging of compressed transactions for tables using the `NDB` storage engine at run time using the `ndb_log_transaction_compression` system variable, and control the level of compression using `ndb_log_transaction_compression_level_zstd`. Starting  **mysqld** with `--binlog-transaction-compression` on the command line or in a `my.cnf` file causes `ndb_log_transaction_compression` to be enabled automatically and any setting for the `--ndb-log-transaction-compression` option to be ignored; to disable binary log transaction compression for the `NDB` storage engine *only*, set `ndb_log_transaction_compression=OFF` in a client session after starting  **mysqld**.
+You can enable binary logging of compressed transactions for tables using the `NDB` storage engine at run time using the `ndb_log_transaction_compression` system variable, and control the level of compression using `ndb_log_transaction_compression_level_zstd`. Starting  `mysqld` with `--binlog-transaction-compression` on the command line or in a `my.cnf` file causes `ndb_log_transaction_compression` to be enabled automatically and any setting for the `--ndb-log-transaction-compression` option to be ignored; to disable binary log transaction compression for the `NDB` storage engine *only*, set `ndb_log_transaction_compression=OFF` in a client session after starting  `mysqld`.
 
 :::
 

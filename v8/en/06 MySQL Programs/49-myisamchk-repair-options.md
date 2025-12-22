@@ -1,6 +1,6 @@
 #### 6.6.4.3 myisamchk Repair Options
 
- **myisamchk** supports the following options for table repair operations (operations performed when an option such as  `--recover` or `--safe-recover` is given):
+ `myisamchk` supports the following options for table repair operations (operations performed when an option such as  `--recover` or `--safe-recover` is given):
 
 *  `--backup`, `-B`
 
@@ -40,22 +40,22 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--keys-used=val</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
-  For  **myisamchk**, the option value is a bit value that indicates which indexes to update. Each binary bit of the option value corresponds to a table index, where the first index is bit 0. An option value of 0 disables updates to all indexes, which can be used to get faster inserts. Deactivated indexes can be reactivated by using **myisamchk -r**.
+  For  `myisamchk`, the option value is a bit value that indicates which indexes to update. Each binary bit of the option value corresponds to a table index, where the first index is bit 0. An option value of 0 disables updates to all indexes, which can be used to get faster inserts. Deactivated indexes can be reactivated by using **myisamchk -r**.
 *  `--max-record-length=len`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--max-record-length=len</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
-  Skip rows larger than the given length if **myisamchk** cannot allocate memory to hold them.
+  Skip rows larger than the given length if `myisamchk` cannot allocate memory to hold them.
 *  `--quick`, `-q`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--quick</code></td> </tr></tbody></table>
 
-  Achieve a faster repair by modifying only the index file, not the data file. You can specify this option twice to force  **myisamchk** to modify the original data file in case of duplicate keys.
+  Achieve a faster repair by modifying only the index file, not the data file. You can specify this option twice to force  `myisamchk` to modify the original data file in case of duplicate keys.
 *  `--recover`, `-r`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--recover</code></td> </tr></tbody></table>
 
-  Do a repair that can fix almost any problem except unique keys that are not unique (which is an extremely unlikely error with `MyISAM` tables). If you want to recover a table, this is the option to try first. You should try  `--safe-recover` only if **myisamchk** reports that the table cannot be recovered using `--recover`. (In the unlikely case that `--recover` fails, the data file remains intact.)
+  Do a repair that can fix almost any problem except unique keys that are not unique (which is an extremely unlikely error with `MyISAM` tables). If you want to recover a table, this is the option to try first. You should try  `--safe-recover` only if `myisamchk` reports that the table cannot be recovered using `--recover`. (In the unlikely case that `--recover` fails, the data file remains intact.)
 
   If you have lots of memory, you should increase the value of `myisam_sort_buffer_size`.
 *  `--safe-recover`, `-o`
@@ -74,12 +74,12 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--sort-recover</code></td> </tr></tbody></table>
 
-  Force  **myisamchk** to use sorting to resolve the keys even if the temporary files would be very large.
+  Force  `myisamchk` to use sorting to resolve the keys even if the temporary files would be very large.
 *  `--tmpdir=dir_name`, `-t dir_name`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tmpdir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The path of the directory to be used for storing temporary files. If this is not set,  **myisamchk** uses the value of the `TMPDIR` environment variable.  `--tmpdir` can be set to a list of directory paths that are used successively in round-robin fashion for creating temporary files. The separator character between directory names is the colon (`:`) on Unix and the semicolon (`;`) on Windows.
+  The path of the directory to be used for storing temporary files. If this is not set,  `myisamchk` uses the value of the `TMPDIR` environment variable.  `--tmpdir` can be set to a list of directory paths that are used successively in round-robin fashion for creating temporary files. The separator character between directory names is the colon (`:`) on Unix and the semicolon (`;`) on Windows.
 *  `--unpack`, `-u`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--unpack</code></td> </tr></tbody></table>

@@ -59,7 +59,7 @@ For more information about introducers, see Section 12.3.8, “Character Set In
 
 ::: info Note
 
-Within the  **mysql** client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+Within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
 
 :::

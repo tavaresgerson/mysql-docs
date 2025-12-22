@@ -4,7 +4,7 @@ On Unix, MySQL uses the value of the `TMPDIR` environment variable as the path n
 
 On Windows, MySQL checks in order the values of the `TMPDIR`, `TEMP`, and `TMP` environment variables. For the first one found to be set, MySQL uses it and does not check those remaining. If none of `TMPDIR`, `TEMP`, or `TMP` are set, MySQL uses the Windows system default, which is usually `C:\windows\temp\`.
 
-If the file system containing your temporary file directory is too small, you can use the  **mysqld**  `--tmpdir` option to specify a directory in a file system where you have enough space.
+If the file system containing your temporary file directory is too small, you can use the  `mysqld`  `--tmpdir` option to specify a directory in a file system where you have enough space.
 
 The  `--tmpdir` option can be set to a list of several paths that are used in round-robin fashion. Paths should be separated by colon characters (`:`) on Unix and semicolon characters (`;`) on Windows.
 
@@ -17,7 +17,7 @@ To spread the load effectively, these paths should be located on different *phys
 
 If the MySQL server is acting as a replica, you can set the system variable  `replica_load_tmpdir` to specify a separate directory for holding temporary files when replicating  `LOAD DATA` statements. This directory should be in a disk-based file system (not a memory-based file system) so that the temporary files used to replicate LOAD DATA can survive machine restarts. The directory also should not be one that is cleared by the operating system during the system startup process. However, replication can now continue after a restart if the temporary files have been removed.
 
-MySQL arranges that temporary files are removed if  **mysqld** is terminated. On platforms that support it (such as Unix), this is done by unlinking the file after opening it. The disadvantage of this is that the name does not appear in directory listings and you do not see a big temporary file that fills up the file system in which the temporary file directory is located. (In such cases, **lsof +L1** may be helpful in identifying large files associated with  **mysqld**.)
+MySQL arranges that temporary files are removed if  `mysqld` is terminated. On platforms that support it (such as Unix), this is done by unlinking the file after opening it. The disadvantage of this is that the name does not appear in directory listings and you do not see a big temporary file that fills up the file system in which the temporary file directory is located. (In such cases, **lsof +L1** may be helpful in identifying large files associated with  `mysqld`.)
 
 When sorting (`ORDER BY` or `GROUP BY`), MySQL normally uses one or two temporary files. The maximum disk space required is determined by the following expression:
 

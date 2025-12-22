@@ -10,6 +10,6 @@ mv host_name.err-old backup-directory
 
 On Windows, use **rename** rather than **mv**.
 
-If the location of the error log file is not writable by the server, the log-flushing operation fails to create a new log file. For example, on Linux, the server might write the error log to the `/var/log/mysqld.log` file, where the `/var/log` directory is owned by `root` and is not writable by **mysqld**. For information about handling this case, see  Section 7.4.6, “Server Log Maintenance”.
+If the location of the error log file is not writable by the server, the log-flushing operation fails to create a new log file. For example, on Linux, the server might write the error log to the `/var/log/mysqld.log` file, where the `/var/log` directory is owned by `root` and is not writable by `mysqld`. For information about handling this case, see  Section 7.4.6, “Server Log Maintenance”.
 
 If the server is not writing to a named error log file, no error log file renaming occurs when the error log is flushed.

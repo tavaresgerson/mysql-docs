@@ -1,12 +1,12 @@
 ## 3.15 Copying MySQL Databases to Another Machine
 
-In cases where you need to transfer databases between different architectures, you can use  **mysqldump** to create a file containing SQL statements. You can then transfer the file to the other machine and feed it as input to the **mysql** client.
+In cases where you need to transfer databases between different architectures, you can use  `mysqldump` to create a file containing SQL statements. You can then transfer the file to the other machine and feed it as input to the `mysql` client.
 
 Use  **mysqldump --help** to see what options are available.
 
 ::: info Note
 
-If GTIDs are in use on the server where you create the dump ( `gtid_mode=ON`), by default, **mysqldump** includes the contents of the `gtid_executed` set in the dump to transfer these to the new machine. The results of this can vary depending on the MySQL Server versions involved. Check the description for the  **mysqldump** `--set-gtid-purged` option to find what happens with the versions you are using, and how to change the behavior if the outcome of the default behavior is not suitable for your situation.
+If GTIDs are in use on the server where you create the dump ( `gtid_mode=ON`), by default, `mysqldump` includes the contents of the `gtid_executed` set in the dump to transfer these to the new machine. The results of this can vary depending on the MySQL Server versions involved. Check the description for the  `mysqldump` `--set-gtid-purged` option to find what happens with the versions you are using, and how to change the behavior if the outcome of the default behavior is not suitable for your situation.
 
 :::
 
@@ -37,7 +37,7 @@ mysqladmin create db_name
 gunzip < db_name.gz | mysql db_name
 ```
 
-You can also use  **mysqldump** and **mysqlimport** to transfer the database. For large tables, this is much faster than simply using **mysqldump**. In the following commands, *`DUMPDIR`* represents the full path name of the directory you use to store the output from **mysqldump**.
+You can also use  `mysqldump` and **mysqlimport** to transfer the database. For large tables, this is much faster than simply using `mysqldump`. In the following commands, *`DUMPDIR`* represents the full path name of the directory you use to store the output from `mysqldump`.
 
 First, create the directory for the output files and dump the database:
 

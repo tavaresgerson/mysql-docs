@@ -14,7 +14,7 @@ SET @email = CONVERT(gen_rnd_email() USING utf8mb4);
 
 It may also be necessary to convert string arguments, as illustrated in Using Masked Data for Customer Identification.
 
-If a MySQL Enterprise Data Masking and De-Identification function is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+If a MySQL Enterprise Data Masking and De-Identification function is invoked from within the `mysql` client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
 ##### Data Masking Plugin Functions
 

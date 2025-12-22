@@ -7,7 +7,7 @@ On Unix and Unix-like systems, a process can be the recipient of signals sent to
 
 ### Server Response to Signals
 
- **mysqld** responds to signals as follows:
+ `mysqld` responds to signals as follows:
 
 * `SIGTERM` causes the server to shut down. This is like executing a `SHUTDOWN` statement without having to connect to the server (which for shutdown requires an account that has the `SHUTDOWN` privilege).
 * `SIGHUP` causes the server to reload the grant tables and to flush tables, logs, the thread cache, and the host cache. These actions are like various forms of the  `FLUSH` statement. Sending the signal enables the flush operations to be performed without having to connect to the server, which requires a MySQL account that has privileges sufficient for those operations.
@@ -20,7 +20,7 @@ On Unix and Unix-like systems, a process can be the recipient of signals sent to
 
 MySQL client programs respond to signals as follows:
 
-* The  **mysql** client interprets `SIGINT` (typically the result of typing **Control+C**) as instruction to interrupt the current statement if there is one, or to cancel any partial input line otherwise. This behavior can be disabled using the  `--sigint-ignore` option to ignore `SIGINT` signals.
+* The  `mysql` client interprets `SIGINT` (typically the result of typing **Control+C**) as instruction to interrupt the current statement if there is one, or to cancel any partial input line otherwise. This behavior can be disabled using the  `--sigint-ignore` option to ignore `SIGINT` signals.
 * Client programs that use the MySQL client library block `SIGPIPE` signals by default. These variations are possible:
 
   + Client can install their own `SIGPIPE` handler to override the default behavior. See Writing C API Threaded Client Programs.

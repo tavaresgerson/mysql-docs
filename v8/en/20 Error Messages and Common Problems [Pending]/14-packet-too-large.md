@@ -4,11 +4,11 @@ A communication packet is a single SQL statement sent to the MySQL server, a sin
 
 The largest possible packet that can be transmitted to or from a MySQL 8.4 server or client is 1GB.
 
-When a MySQL client or the  **mysqld** server receives a packet bigger than  `max_allowed_packet` bytes, it issues an  `ER_NET_PACKET_TOO_LARGE` error and closes the connection. With some clients, you may also get a `Lost connection to MySQL server during query` error if the communication packet is too large.
+When a MySQL client or the  `mysqld` server receives a packet bigger than  `max_allowed_packet` bytes, it issues an  `ER_NET_PACKET_TOO_LARGE` error and closes the connection. With some clients, you may also get a `Lost connection to MySQL server during query` error if the communication packet is too large.
 
 Both the client and the server have their own  `max_allowed_packet` variable, so if you want to handle big packets, you must increase this variable both in the client and in the server.
 
-If you are using the  **mysql** client program, its default  `max_allowed_packet` variable is 16MB. To set a larger value, start  **mysql** like this:
+If you are using the  `mysql` client program, its default  `max_allowed_packet` variable is 16MB. To set a larger value, start  `mysql` like this:
 
 ```
 $> mysql --max_allowed_packet=32M
@@ -29,8 +29,8 @@ You can also use an option file to set  `max_allowed_packet`. For example, to se
 max_allowed_packet=128M
 ```
 
-It is safe to increase the value of this variable because the extra memory is allocated only when needed. For example,  **mysqld** allocates more memory only when you issue a long query or when  **mysqld** must return a large result row. The small default value of the variable is a precaution to catch incorrect packets between the client and server and also to ensure that you do not run out of memory by using large packets accidentally.
+It is safe to increase the value of this variable because the extra memory is allocated only when needed. For example,  `mysqld` allocates more memory only when you issue a long query or when  `mysqld` must return a large result row. The small default value of the variable is a precaution to catch incorrect packets between the client and server and also to ensure that you do not run out of memory by using large packets accidentally.
 
-You can also get strange problems with large packets if you are using large  `BLOB` values but have not given  **mysqld** access to enough memory to handle the query. If you suspect this is the case, try adding **ulimit -d 256000** to the beginning of the  **mysqld\_safe** script and restarting  **mysqld**.
+You can also get strange problems with large packets if you are using large  `BLOB` values but have not given  `mysqld` access to enough memory to handle the query. If you suspect this is the case, try adding **ulimit -d 256000** to the beginning of the  **mysqld\_safe** script and restarting  `mysqld`.
 
 

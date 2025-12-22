@@ -12,7 +12,7 @@ This section discusses XML and related functionality in MySQL.
 
 ::: info Note
 
-It is possible to obtain XML-formatted output from MySQL in the **mysql** and  **mysqldump** clients by invoking them with the `--xml` option. See Section 6.5.1, “mysql — The MySQL Command-Line Client”, and  Section 6.5.4, “mysqldump — A Database Backup Program”.
+It is possible to obtain XML-formatted output from MySQL in the `mysql` and  `mysqldump` clients by invoking them with the `--xml` option. See Section 6.5.1, “mysql — The MySQL Command-Line Client”, and  Section 6.5.4, “mysqldump — A Database Backup Program”.
 
 
 :::

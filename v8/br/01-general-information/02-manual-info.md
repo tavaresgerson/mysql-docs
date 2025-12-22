@@ -18,11 +18,11 @@ Este manual utiliza certas convenções tipográficas:
 
 - `Text in this style` é usado para instruções SQL; bancos de dados, tabelas e nomes de colunas; listagens de programas e código fonte; e variáveis de ambiente. Exemplo: "Para recarregar as tabelas de concessão, use a instrução `FLUSH PRIVILEGES`."
 - `Text in this style` indica a entrada que você digita em exemplos.
-- **Texto neste estilo** indica os nomes de programas e scripts executáveis, sendo exemplos **mysql** (o programa cliente de linha de comando MySQL) e **mysqld** (o executável do servidor MySQL).
+- **Texto neste estilo** indica os nomes de programas e scripts executáveis, sendo exemplos `mysql` (o programa cliente de linha de comando MySQL) e `mysqld` (o executável do servidor MySQL).
 - `Text in this style` é usado para entrada de variável para a qual você deve substituir um valor de sua própria escolha.
 - O texto deste estilo é usado para dar ênfase.
 - ** O texto deste estilo** é usado nos títulos das tabelas e para transmitir uma ênfase especialmente forte.
-- `Text in this style` é usado para indicar uma opção de programa que afeta a forma como o programa é executado, ou que fornece informações necessárias para que o programa funcione de uma certa maneira. *Exemplo*: "A opção `--host` (abreviatura `-h`) informa ao programa cliente **mysql** o nome de host ou endereço IP do servidor MySQL ao qual deve se conectar.
+- `Text in this style` é usado para indicar uma opção de programa que afeta a forma como o programa é executado, ou que fornece informações necessárias para que o programa funcione de uma certa maneira. *Exemplo*: "A opção `--host` (abreviatura `-h`) informa ao programa cliente `mysql` o nome de host ou endereço IP do servidor MySQL ao qual deve se conectar.
 - Nomes de arquivos e diretórios são escritos assim: "O arquivo global `my.cnf` está localizado no diretório `/etc`."
 - Sequências de caracteres são escritas assim: "Para especificar um wildcard, use o caractere "`%`"."
 
@@ -88,7 +88,7 @@ Uma elípse também pode indicar que o elemento de sintaxe anterior de uma instr
 RESET reset_option [,reset_option] ...
 ```
 
-Os comandos para definir variáveis de shell são mostrados usando a sintaxe do shell Bourne. Por exemplo, a sequência para definir a variável de ambiente `CC` e executar o comando **configure** parece assim na sintaxe do shell Bourne:
+Os comandos para definir variáveis de shell são mostrados usando a sintaxe do shell Bourne. Por exemplo, a sequência para definir a variável de ambiente `CC` e executar o comando `configure` parece assim na sintaxe do shell Bourne:
 
 ```
 $> CC=gcc ./configure

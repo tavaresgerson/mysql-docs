@@ -8,7 +8,7 @@ You should keep the following issues and notes in mind:
 * **Launchd**: A launchd daemon is installed that alters MySQL configuration options. Consider editing it if needed, see the documentation below for additional information. Also, macOS 10.10 removed startup item support in favor of launchd daemons. The optional MySQL preference pane under macOS System Preferences uses the launchd daemon.
 * **Users**: You may need (or want) to create a specific `mysql` user to own the MySQL directory and data. You can do this through the **Directory Utility**, and the `mysql` user should already exist. For use in single user mode, an entry for `_mysql` (note the underscore prefix) should already exist within the system `/etc/passwd` file.
 * **Data**: Because the MySQL package installer installs the MySQL contents into a version and platform specific directory, you can use this to upgrade and migrate your database between versions. You need either to copy the `data` directory from the old version to the new version, or to specify an alternative `datadir` value to set location of the data directory. By default, the MySQL directories are installed under `/usr/local/`.
-* **Aliases**: You might want to add aliases to your shell's resource file to make it easier to access commonly used programs such as  **mysql** and  **mysqladmin** from the command line. The syntax for **bash** is:
+* **Aliases**: You might want to add aliases to your shell's resource file to make it easier to access commonly used programs such as  `mysql` and  `mysqladmin` from the command line. The syntax for **bash** is:
 
   ```
   alias mysql=/usr/local/mysql/bin/mysql

@@ -12,7 +12,7 @@ Pode também influenciar a **CMake** utilizando determinadas variáveis ambienta
 
 Para opções booleanas, o valor pode ser especificado como `1` ou `ON` para ativar a opção, ou como `0` ou `OFF` para desativar a opção.
 
-Muitas opções configuram padrões de tempo de compilação que podem ser substituídos na inicialização do servidor. Por exemplo, as opções `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, e `MYSQL_UNIX_ADDR` que configuram a localização padrão do diretório de base de instalação, o número da porta TCP/IP e o arquivo de soquete do Unix podem ser alterados na inicialização do servidor com as opções `--basedir`, `--port`, e `--socket` para **mysqld**. Quando aplicável, as descrições de opções de configuração indicam a opção de inicialização **mysqld** correspondente.
+Muitas opções configuram padrões de tempo de compilação que podem ser substituídos na inicialização do servidor. Por exemplo, as opções `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, e `MYSQL_UNIX_ADDR` que configuram a localização padrão do diretório de base de instalação, o número da porta TCP/IP e o arquivo de soquete do Unix podem ser alterados na inicialização do servidor com as opções `--basedir`, `--port`, e `--socket` para `mysqld`. Quando aplicável, as descrições de opções de configuração indicam a opção de inicialização `mysqld` correspondente.
 
 As secções seguintes fornecem mais informações sobre as opções **CMake**.
 
@@ -149,7 +149,7 @@ A localização do diretório dinâmico da biblioteca.
 
 \*\* Localização padrão. \*\* Para builds RPM, este é `/usr/lib64/mysql/private/`, para DEB é `/usr/lib/mysql/private/`, e para TAR é `lib/private/`.
 
-\*\* Protobuf. \*\* Como este é um local privado, o carregador (como `ld-linux.so` no Linux) pode não encontrar os arquivos `libprotobuf.so` sem ajuda. Para orientar o carregador, `RPATH=$ORIGIN/../$INSTALL_PRIV_LIBDIR` é adicionado ao **mysqld** e **mysqlxtest**. Isso funciona para a maioria dos casos, mas ao usar o recurso de Grupo de Recursos, **mysqld** é `setsuid`, e o carregador ignora qualquer `RPATH` que contenha `$ORIGIN`. Para superar isso, um caminho completo explícito para o diretório é definido nas versões DEB e RPM do **mysqld**, uma vez que o destino é conhecido. Para instalar tarballs, é necessário corrigir o **mysqld** com uma ferramenta como o **patchelf**.
+\*\* Protobuf. \*\* Como este é um local privado, o carregador (como `ld-linux.so` no Linux) pode não encontrar os arquivos `libprotobuf.so` sem ajuda. Para orientar o carregador, `RPATH=$ORIGIN/../$INSTALL_PRIV_LIBDIR` é adicionado ao `mysqld` e **mysqlxtest**. Isso funciona para a maioria dos casos, mas ao usar o recurso de Grupo de Recursos, `mysqld` é `setsuid`, e o carregador ignora qualquer `RPATH` que contenha `$ORIGIN`. Para superar isso, um caminho completo explícito para o diretório é definido nas versões DEB e RPM do `mysqld`, uma vez que o destino é conhecido. Para instalar tarballs, é necessário corrigir o `mysqld` com uma ferramenta como o **patchelf**.
 
 - `-DINSTALL_SBINDIR=dir_name`
 
@@ -173,7 +173,7 @@ Onde instalar ficheiros de suporte adicionais.
 
 - `-DLINK_RANDOMIZE=bool`
 
-Se deve aleatorizar a ordem dos símbolos no **mysqld** binário. O padrão é `OFF`. Esta opção deve ser habilitada apenas para fins de depuração.
+Se deve aleatorizar a ordem dos símbolos no `mysqld` binário. O padrão é `OFF`. Esta opção deve ser habilitada apenas para fins de depuração.
 
 - `-DLINK_RANDOMIZE_SEED=val`
 
@@ -285,7 +285,7 @@ Esta opção determina se deve habilitar a geração de uma seção `.gdb_index`
 
 - `-DCOMPILATION_COMMENT=string`
 
-Um comentário descritivo sobre o ambiente de compilação. Enquanto **mysqld** usa `COMPILATION_COMMENT_SERVER`, outros programas usam `COMPILATION_COMMENT`.
+Um comentário descritivo sobre o ambiente de compilação. Enquanto `mysqld` usa `COMPILATION_COMMENT_SERVER`, outros programas usam `COMPILATION_COMMENT`.
 
 - `-DCOMPRESS_DEBUG_SECTIONS=bool`
 
@@ -295,7 +295,7 @@ O padrão é `OFF`. Se essa opção não for definida explicitamente, mas a vari
 
 - `-DCOMPILATION_COMMENT_SERVER=string`
 
-Um comentário descritivo sobre o ambiente de compilação para uso por **mysqld** (por exemplo, para definir a variável de sistema `version_comment`). Programas que não o servidor usam `COMPILATION_COMMENT`.
+Um comentário descritivo sobre o ambiente de compilação para uso por `mysqld` (por exemplo, para definir a variável de sistema `version_comment`). Programas que não o servidor usam `COMPILATION_COMMENT`.
 
 - `-DDEFAULT_CHARSET=charset_name`
 
@@ -403,7 +403,7 @@ Esta opção controla a capacidade `LOCAL` compilada padrão para a biblioteca d
 
 Por padrão, a biblioteca do cliente em distribuições binárias do MySQL é compilada com o `ENABLED_LOCAL_INFILE` desativado. Se você compilar o MySQL a partir do código-fonte, configure-o com o `ENABLED_LOCAL_INFILE` desativado ou habilitado com base em se os clientes que não fazem arranjos explícitos devem ter a capacidade do `LOCAL` desativada ou habilitada, respectivamente.
 
-Para fazer com que o servidor explicitamente recuse ou permita as instruções do código 4 (independentemente de como os programas e bibliotecas do cliente são configurados no tempo de compilação ou no tempo de execução), inicie o **mysqld** com o código 5 desativado ou ativado, respectivamente. O código 6 também pode ser definido no tempo de execução.
+Para fazer com que o servidor explicitamente recuse ou permita as instruções do código 4 (independentemente de como os programas e bibliotecas do cliente são configurados no tempo de compilação ou no tempo de execução), inicie o `mysqld` com o código 5 desativado ou ativado, respectivamente. O código 6 também pode ser definido no tempo de execução.
 
 - `-DENABLED_PROFILING=bool`
 
@@ -562,7 +562,7 @@ Configurar o MySQL com suporte de depuração permite que você use a opção `-
 
 A verificação de depuração de sincronização para o motor de armazenamento `InnoDB` é definida em `UNIV_DEBUG` e está disponível quando o suporte de depuração é compilado usando a opção `WITH_DEBUG`.
 
-Para ativá-lo, inicie **mysqld** com a opção `--debug-sync-timeout=N`, onde `N` é um valor de tempo de espera maior que 0. (O valor padrão é 0, que desativa o Debug Sync.) `N` torna-se o tempo de espera padrão para pontos de sincronização individuais.
+Para ativá-lo, inicie `mysqld` com a opção `--debug-sync-timeout=N`, onde `N` é um valor de tempo de espera maior que 0. (O valor padrão é 0, que desativa o Debug Sync.) `N` torna-se o tempo de espera padrão para pontos de sincronização individuais.
 
 A verificação de depuração de sincronização para o motor de armazenamento `InnoDB` está disponível quando o suporte de depuração é compilado usando a opção `WITH_DEBUG`.
 
@@ -878,7 +878,7 @@ Controla (apenas) se o motor de armazenamento `NDBCLUSTER` está incluído na co
 
 - \[`-DWITH_NDBCLUSTER={ON|OFF}`]] (DEPRECADO)
 
-Construir e vincular em suporte para o motor de armazenamento `NDB` em **mysqld**.
+Construir e vincular em suporte para o motor de armazenamento `NDB` em `mysqld`.
 
 Esta opção está desatualizada e sujeita a eventual remoção; use `WITH_NDB` em vez disso.
 

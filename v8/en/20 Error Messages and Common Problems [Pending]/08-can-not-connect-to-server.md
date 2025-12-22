@@ -1,16 +1,16 @@
 #### B.3.2.2 Can't connect to [local] MySQL server
 
-A MySQL client on Unix can connect to the  **mysqld** server in two different ways: By using a Unix socket file to connect through a file in the file system (default `/tmp/mysql.sock`), or by using TCP/IP, which connects through a port number. A Unix socket file connection is faster than TCP/IP, but can be used only when connecting to a server on the same computer. A Unix socket file is used if you do not specify a host name or if you specify the special host name `localhost`.
+A MySQL client on Unix can connect to the  `mysqld` server in two different ways: By using a Unix socket file to connect through a file in the file system (default `/tmp/mysql.sock`), or by using TCP/IP, which connects through a port number. A Unix socket file connection is faster than TCP/IP, but can be used only when connecting to a server on the same computer. A Unix socket file is used if you do not specify a host name or if you specify the special host name `localhost`.
 
-If the MySQL server is running on Windows, you can connect using TCP/IP. If the server is started with the  `named_pipe` system variable enabled, you can also connect with named pipes if you run the client on the host where the server is running. The name of the named pipe is `MySQL` by default. If you do not give a host name when connecting to  **mysqld**, a MySQL client first tries to connect to the named pipe. If that does not work, it connects to the TCP/IP port. You can force the use of named pipes on Windows by using `.` as the host name.
+If the MySQL server is running on Windows, you can connect using TCP/IP. If the server is started with the  `named_pipe` system variable enabled, you can also connect with named pipes if you run the client on the host where the server is running. The name of the named pipe is `MySQL` by default. If you do not give a host name when connecting to  `mysqld`, a MySQL client first tries to connect to the named pipe. If that does not work, it connects to the TCP/IP port. You can force the use of named pipes on Windows by using `.` as the host name.
 
 The error (2002) `Can't connect to ...` normally means that there is no MySQL server running on the system or that you are using an incorrect Unix socket file name or TCP/IP port number when trying to connect to the server. You should also check that the TCP/IP port you are using has not been blocked by a firewall or port blocking service.
 
 The error (2003) `Can't connect to MySQL server on 'server' (10061)` indicates that the network connection has been refused. You should check that there is a MySQL server running, that it has network connections enabled, and that the network port you specified is the one configured on the server.
 
-Start by checking whether there is a process named  **mysqld** running on your server host. (Use **ps xa | grep mysqld** on Unix or the Task Manager on Windows.) If there is no such process, you should start the server. See  Section 2.9.2, “Starting the Server”.
+Start by checking whether there is a process named  `mysqld` running on your server host. (Use **ps xa | grep mysqld** on Unix or the Task Manager on Windows.) If there is no such process, you should start the server. See  Section 2.9.2, “Starting the Server”.
 
-If a  **mysqld** process is running, you can check it by trying the following commands. The port number or Unix socket file name might be different in your setup. `host_ip` represents the IP address of the machine where the server is running.
+If a  `mysqld` process is running, you can check it by trying the following commands. The port number or Unix socket file name might be different in your setup. `host_ip` represents the IP address of the machine where the server is running.
 
 ```
 $> mysqladmin version
@@ -21,7 +21,7 @@ $> mysqladmin -h host_ip version
 $> mysqladmin --protocol=SOCKET --socket=/tmp/mysql.sock version
 ```
 
-Note the use of backticks rather than forward quotation marks with the **hostname** command; these cause the output of **hostname** (that is, the current host name) to be substituted into the  **mysqladmin** command. If you have no **hostname** command or are running on Windows, you can manually type the host name of your machine (without backticks) following the `-h` option. You can also try `-h 127.0.0.1` to connect with TCP/IP to the local host.
+Note the use of backticks rather than forward quotation marks with the **hostname** command; these cause the output of **hostname** (that is, the current host name) to be substituted into the  `mysqladmin` command. If you have no **hostname** command or are running on Windows, you can manually type the host name of your machine (without backticks) following the `-h` option. You can also try `-h 127.0.0.1` to connect with TCP/IP to the local host.
 
 Make sure that the server has not been configured to ignore network connections or (if you are attempting to connect remotely) that it has not been configured to listen only locally on its network interfaces. If the server was started with the  `skip_networking` system variable enabled, it cannot accept TCP/IP connections at all. If the server was started with the  `bind_address` system variable set to `127.0.0.1`, it listens for TCP/IP connections only locally on the loopback interface and does not accept remote connections.
 
@@ -29,18 +29,18 @@ Check to make sure that there is no firewall blocking access to MySQL. Your fire
 
 Here are some reasons the `Can't connect to local MySQL server` error might occur:
 
-*  **mysqld** is not running on the local host. Check your operating system's process list to ensure the  **mysqld** process is present.
+*  `mysqld` is not running on the local host. Check your operating system's process list to ensure the  `mysqld` process is present.
 * You're running a MySQL server on Windows with many TCP/IP connections to it. If you're experiencing that quite often your clients get that error, you can find a workaround here:  Section B.3.2.2.1, “Connection to MySQL Server Failing on Windows”.
-* Someone has removed the Unix socket file that  **mysqld** uses (`/tmp/mysql.sock` by default). For example, you might have a **cron** job that removes old files from the `/tmp` directory. You can always run  **mysqladmin version** to check whether the Unix socket file that  **mysqladmin** is trying to use really exists. The fix in this case is to change the **cron** job to not remove `mysql.sock` or to place the socket file somewhere else. See  Section B.3.3.6, “How to Protect or Change the MySQL Unix Socket File”.
-* You have started the  **mysqld** server with the  `--socket=/path/to/socket` option, but forgotten to tell client programs the new name of the socket file. If you change the socket path name for the server, you must also notify the MySQL clients. You can do this by providing the same  `--socket` option when you run client programs. You also need to ensure that clients have permission to access the `mysql.sock` file. To find out where the socket file is, you can do:
+* Someone has removed the Unix socket file that  `mysqld` uses (`/tmp/mysql.sock` by default). For example, you might have a **cron** job that removes old files from the `/tmp` directory. You can always run  `mysqladmin version` to check whether the Unix socket file that  `mysqladmin` is trying to use really exists. The fix in this case is to change the **cron** job to not remove `mysql.sock` or to place the socket file somewhere else. See  Section B.3.3.6, “How to Protect or Change the MySQL Unix Socket File”.
+* You have started the  `mysqld` server with the  `--socket=/path/to/socket` option, but forgotten to tell client programs the new name of the socket file. If you change the socket path name for the server, you must also notify the MySQL clients. You can do this by providing the same  `--socket` option when you run client programs. You also need to ensure that clients have permission to access the `mysql.sock` file. To find out where the socket file is, you can do:
 
   ```
   $> netstat -ln | grep mysql
   ```
 
   See  Section B.3.3.6, “How to Protect or Change the MySQL Unix Socket File”.
-* You are using Linux and one server thread has died (dumped core). In this case, you must kill the other  **mysqld** threads (for example, with  **kill**) before you can restart the MySQL server. See  Section B.3.3.3, “What to Do If MySQL Keeps Crashing”.
-* The server or client program might not have the proper access privileges for the directory that holds the Unix socket file or the socket file itself. In this case, you must either change the access privileges for the directory or socket file so that the server and clients can access them, or restart  **mysqld** with a  `--socket` option that specifies a socket file name in a directory where the server can create it and where client programs can access it.
+* You are using Linux and one server thread has died (dumped core). In this case, you must kill the other  `mysqld` threads (for example, with  **kill**) before you can restart the MySQL server. See  Section B.3.3.3, “What to Do If MySQL Keeps Crashing”.
+* The server or client program might not have the proper access privileges for the directory that holds the Unix socket file or the socket file itself. In this case, you must either change the access privileges for the directory or socket file so that the server and clients can access them, or restart  `mysqld` with a  `--socket` option that specifies a socket file name in a directory where the server can create it and where client programs can access it.
 
 If you get the error message `Can't connect to MySQL server on some_host`, you can try the following things to find out what the problem is:
 

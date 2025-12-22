@@ -220,7 +220,7 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
    ```
 
    Here, the authentication string contains only the PAM service name, `mysql-unix`, which authenticates Unix passwords.
-4. Use the  **mysql** command-line client to connect to the MySQL server as `antonio`. For example:
+4. Use the  `mysql` command-line client to connect to the MySQL server as `antonio`. For example:
 
    ```
    $> mysql --user=antonio --password --enable-cleartext-plugin
@@ -369,7 +369,7 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
      ON 'data_entry'@'localhost'
      TO ''@'';
    ```
-7. Use the  **mysql** command-line client to connect to the MySQL server as `antonio`.
+7. Use the  `mysql` command-line client to connect to the MySQL server as `antonio`.
 
    ```
    $> mysql --user=antonio --password --enable-cleartext-plugin

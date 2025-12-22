@@ -59,7 +59,7 @@ MySQL bit functions and operators permit binary string type arguments ( `BINARY`
 
   For more information discussion about argument evaluation and result types, see the introductory discussion in Section 14.12, “Bit Functions and Operators”.
 
-  If  `BIT_AND()` is invoked from within the  **mysql** client, binary string results display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `BIT_AND()` is invoked from within the  `mysql` client, binary string results display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
   This function executes as a window function if *`over_clause`* is present. *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.
 * [`BIT_OR(expr) [over_clause]`](aggregate-functions.html#function_bit-or)
@@ -77,7 +77,7 @@ MySQL bit functions and operators permit binary string type arguments ( `BINARY`
 
   For more information discussion about argument evaluation and result types, see the introductory discussion in Section 14.12, “Bit Functions and Operators”.
 
-  If  `BIT_OR()` is invoked from within the  **mysql** client, binary string results display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `BIT_OR()` is invoked from within the  `mysql` client, binary string results display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
   This function executes as a window function if *`over_clause`* is present. *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.
 * [`BIT_XOR(expr) [over_clause]`](aggregate-functions.html#function_bit-xor)
@@ -95,7 +95,7 @@ MySQL bit functions and operators permit binary string type arguments ( `BINARY`
 
   For more information discussion about argument evaluation and result types, see the introductory discussion in Section 14.12, “Bit Functions and Operators”.
 
-  If  `BIT_XOR()` is invoked from within the  **mysql** client, binary string results display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `BIT_XOR()` is invoked from within the  `mysql` client, binary string results display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
   This function executes as a window function if *`over_clause`* is present. *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.
 * [`COUNT(expr) [over_clause]`](aggregate-functions.html#function_count)
@@ -183,7 +183,7 @@ MySQL bit functions and operators permit binary string type arguments ( `BINARY`
 
   The return value is a nonbinary or binary string, depending on whether the arguments are nonbinary or binary strings. The result type is  `TEXT` or `BLOB` unless `group_concat_max_len` is less than or equal to 512, in which case the result type is `VARCHAR` or `VARBINARY`.
 
-  If  `GROUP_CONCAT()` is invoked from within the  **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `GROUP_CONCAT()` is invoked from within the  `mysql` client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
   See also  `CONCAT()` and `CONCAT_WS()`: Section 14.8, “String Functions and Operators”.
 * [`JSON_ARRAYAGG(col_or_expr) [over_clause]`](aggregate-functions.html#function_json-arrayagg)

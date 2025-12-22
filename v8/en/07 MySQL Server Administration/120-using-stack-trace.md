@@ -1,6 +1,6 @@
 #### 7.9.1.5 Using a Stack Trace
 
-On some operating systems, the error log contains a stack trace if  **mysqld** dies unexpectedly. You can use this to find out where (and maybe why)  **mysqld** died. See  Section 7.4.2, “The Error Log”. To get a stack trace, you must not compile  **mysqld** with the `-fomit-frame-pointer` option to gcc. See Section 7.9.1.1, “Compiling MySQL for Debugging”.
+On some operating systems, the error log contains a stack trace if  `mysqld` dies unexpectedly. You can use this to find out where (and maybe why)  `mysqld` died. See  Section 7.4.2, “The Error Log”. To get a stack trace, you must not compile  `mysqld` with the `-fomit-frame-pointer` option to gcc. See Section 7.9.1.1, “Compiling MySQL for Debugging”.
 
 A stack trace in the error log looks something like this:
 

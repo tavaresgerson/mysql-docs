@@ -103,5 +103,5 @@ If you have converted to `utf8mb4`, `utf16`, `utf16le`, or `utf32`, and then dec
 
 * `utf8mb3` and `ucs2` data should present no problems.
 * The server must be recent enough to recognize definitions referring to the character set from which you are converting.
-* For object definitions that refer to the `utf8mb4` character set, you can dump them with  **mysqldump** prior to downgrading, edit the dump file to change instances of `utf8mb4` to `utf8`, and reload the file in the older server, as long as there are no 4-byte characters in the data. The older server sees `utf8` in the dump file object definitions and create new objects that use the (3-byte) `utf8` character set.
+* For object definitions that refer to the `utf8mb4` character set, you can dump them with  `mysqldump` prior to downgrading, edit the dump file to change instances of `utf8mb4` to `utf8`, and reload the file in the older server, as long as there are no 4-byte characters in the data. The older server sees `utf8` in the dump file object definitions and create new objects that use the (3-byte) `utf8` character set.
 

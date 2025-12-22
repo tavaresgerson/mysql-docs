@@ -11,7 +11,7 @@ Suppose that you want to place the database directory for a database named `mydb
 On Windows, you can create a symlink using the **mklink** command. This command requires administrative privileges.
 
 1. Make sure that the desired path to the database exists. For this example, we use `D:\data\mydb`, and a database named `mydb`.
-2. If the database does not already exist, issue `CREATE DATABASE mydb` in the **mysql** client to create it.
+2. If the database does not already exist, issue `CREATE DATABASE mydb` in the `mysql` client to create it.
 3. Stop the MySQL service.
 4. Using Windows Explorer or the command line, move the directory `mydb` from the data directory to `D:\data`, replacing the directory of the same name.
 5. If you are not already using the command prompt, open it, and change location to the data directory, like this:
@@ -36,7 +36,7 @@ After this, all tables created in the database `mydb` are created in `D:\data\my
 
 Alternatively, on any version of Windows supported by MySQL, you can create a symbolic link to a MySQL database by creating a `.sym` file in the data directory that contains the path to the destination directory. The file should be named `db_name.sym`, where *`db_name`* is the database name.
 
-Support for database symbolic links on Windows using `.sym` files is enabled by default. If you do not need `.sym` file symbolic links, you can disable support for them by starting **mysqld** with the `--skip-symbolic-links` option. To determine whether your system supports `.sym` file symbolic links, check the value of the  `have_symlink` system variable using this statement:
+Support for database symbolic links on Windows using `.sym` files is enabled by default. If you do not need `.sym` file symbolic links, you can disable support for them by starting `mysqld` with the `--skip-symbolic-links` option. To determine whether your system supports `.sym` file symbolic links, check the value of the  `have_symlink` system variable using this statement:
 
 ```
 SHOW VARIABLES LIKE 'have_symlink';

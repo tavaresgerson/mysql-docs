@@ -1,6 +1,6 @@
 #### 6.6.4.6 myisamchk Memory Usage
 
-Memory allocation is important when you run **myisamchk**.  **myisamchk** uses no more memory than its memory-related variables are set to. If you are going to use  **myisamchk** on very large tables, you should first decide how much memory you want it to use. The default is to use only about 3MB to perform repairs. By using larger values, you can get  **myisamchk** to operate faster. For example, if you have more than 512MB RAM available, you could use options such as these (in addition to any other options you might specify):
+Memory allocation is important when you run `myisamchk`.  `myisamchk` uses no more memory than its memory-related variables are set to. If you are going to use  `myisamchk` on very large tables, you should first decide how much memory you want it to use. The default is to use only about 3MB to perform repairs. By using larger values, you can get  `myisamchk` to operate faster. For example, if you have more than 512MB RAM available, you could use options such as these (in addition to any other options you might specify):
 
 ```
 myisamchk --myisam_sort_buffer_size=256M \
@@ -11,9 +11,9 @@ myisamchk --myisam_sort_buffer_size=256M \
 
 Using `--myisam_sort_buffer_size=16M` is probably enough for most cases.
 
-Be aware that  **myisamchk** uses temporary files in `TMPDIR`. If `TMPDIR` points to a memory file system, out of memory errors can easily occur. If this happens, run  **myisamchk** with the `--tmpdir=dir_name` option to specify a directory located on a file system that has more space.
+Be aware that  `myisamchk` uses temporary files in `TMPDIR`. If `TMPDIR` points to a memory file system, out of memory errors can easily occur. If this happens, run  `myisamchk` with the `--tmpdir=dir_name` option to specify a directory located on a file system that has more space.
 
-When performing repair operations,  **myisamchk** also needs a lot of disk space:
+When performing repair operations,  `myisamchk` also needs a lot of disk space:
 
 * Twice the size of the data file (the original file and a copy). This space is not needed if you do a repair with `--quick`; in this case, only the index file is re-created. *This space must be available on the same file system as the original data file*, as the copy is created in the same directory as the original.
 * Space for the new index file that replaces the old one. The old index file is truncated at the start of the repair operation, so you usually ignore this space. This space must be available on the same file system as the original data file.

@@ -15,13 +15,13 @@ After choosing which MySQL version to install, decide which distribution format 
 Under some circumstances, it may be preferable to install MySQL from a source distribution:
 
 * You want to install MySQL at some explicit location. The standard binary distributions are ready to run at any installation location, but you might require even more flexibility to place MySQL components where you want.
-* You want to configure  **mysqld** with features that might not be included in the standard binary distributions. Here is a list of the most common extra options used to ensure feature availability:
+* You want to configure  `mysqld` with features that might not be included in the standard binary distributions. Here is a list of the most common extra options used to ensure feature availability:
 
   +  `-DWITH_LIBWRAP=1` for TCP wrappers support.
   +  `-DWITH_ZLIB={system|bundled}` for features that depend on compression
   +  `-DWITH_DEBUG=1` for debugging support
 
   For additional information, see Section 2.8.7, “MySQL Source-Configuration Options”.
-* You want to configure  **mysqld** without some features that are included in the standard binary distributions.
+* You want to configure  `mysqld` without some features that are included in the standard binary distributions.
 * You want to read or modify the C and C++ code that makes up MySQL. For this purpose, obtain a source distribution.
 * Source distributions contain more tests and examples than binary distributions.

@@ -15,13 +15,13 @@ Depois de escolher qual versão do MySQL instalar, decida qual formato de distri
 Em algumas circunstâncias, pode ser preferível instalar o MySQL a partir de uma distribuição de origem:
 
 - As distribuições binárias padrão estão prontas para serem executadas em qualquer local de instalação, mas você pode precisar de ainda mais flexibilidade para colocar componentes MySQL onde quiser.
-- Você deseja configurar **mysqld** com recursos que podem não ser incluídos nas distribuições binárias padrão. Aqui está uma lista das opções extras mais comuns usadas para garantir a disponibilidade de recursos:
+- Você deseja configurar `mysqld` com recursos que podem não ser incluídos nas distribuições binárias padrão. Aqui está uma lista das opções extras mais comuns usadas para garantir a disponibilidade de recursos:
 
   - `-DWITH_LIBWRAP=1` para suporte de wrappers TCP.
   - `-DWITH_ZLIB={system|bundled}` para características que dependem da compressão
   - `-DWITH_DEBUG=1` para suporte de depuração
 
   Para informações adicionais, ver Secção 2.8.7, "Opções de configuração de origem do MySQL".
-- Você quer configurar **mysqld** sem alguns recursos que estão incluídos nas distribuições binárias padrão.
+- Você quer configurar `mysqld` sem alguns recursos que estão incluídos nas distribuições binárias padrão.
 - Você deseja ler ou modificar o código C e C++ que compõe o MySQL. Para este propósito, obtenha uma distribuição de origem.
 - As distribuições de origem contêm mais testes e exemplos do que as distribuições binárias.

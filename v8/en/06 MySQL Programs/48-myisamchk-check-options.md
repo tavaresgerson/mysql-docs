@@ -1,6 +1,6 @@
 #### 6.6.4.2 myisamchk Check Options
 
- **myisamchk** supports the following options for table checking operations:
+ `myisamchk` supports the following options for table checking operations:
 
 *  `--check`, `-c`
 
@@ -16,7 +16,7 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--extend-check</code></td> </tr></tbody></table>
 
-  Check the table very thoroughly. This is quite slow if the table has many indexes. This option should only be used in extreme cases. Normally,  **myisamchk** or **myisamchk --medium-check** should be able to determine whether there are any errors in the table.
+  Check the table very thoroughly. This is quite slow if the table has many indexes. This option should only be used in extreme cases. Normally,  `myisamchk` or **myisamchk --medium-check** should be able to determine whether there are any errors in the table.
 
   If you are using `--extend-check` and have plenty of memory, setting the `key_buffer_size` variable to a large value helps the repair operation run faster.
 
@@ -32,7 +32,7 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
 
-  Do a repair operation automatically if **myisamchk** finds any errors in the table. The repair type is the same as that specified with the `--recover` or `-r` option.
+  Do a repair operation automatically if `myisamchk` finds any errors in the table. The repair type is the same as that specified with the `--recover` or `-r` option.
 *  `--information`, `-i`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--information</code></td> </tr></tbody></table>
@@ -47,9 +47,9 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--read-only</code></td> </tr></tbody></table>
 
-  Do not mark the table as checked. This is useful if you use **myisamchk** to check a table that is in use by some other application that does not use locking, such as **mysqld** when run with external locking disabled.
+  Do not mark the table as checked. This is useful if you use `myisamchk` to check a table that is in use by some other application that does not use locking, such as `mysqld` when run with external locking disabled.
 *  `--update-state`, `-U`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--update-state</code></td> </tr></tbody></table>
 
-  Store information in the `.MYI` file to indicate when the table was checked and whether the table crashed. This should be used to get full benefit of the `--check-only-changed` option, but you shouldn't use this option if the **mysqld** server is using the table and you are running it with external locking disabled.
+  Store information in the `.MYI` file to indicate when the table was checked and whether the table crashed. This should be used to get full benefit of the `--check-only-changed` option, but you shouldn't use this option if the `mysqld` server is using the table and you are running it with external locking disabled.

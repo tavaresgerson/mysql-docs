@@ -8,7 +8,7 @@ MySQL uses `mmap()` when possible to perform memory mapping on compressed tables
 
 Please note the following:
 
-* If the  **mysqld** server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process. It is safest to compress tables with the server stopped.
+* If the  `mysqld` server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process. It is safest to compress tables with the server stopped.
 * After packing a table, it becomes read only. This is generally intended (such as when accessing packed tables on a CD).
 *  **myisampack** does not support partitioned tables.
 
@@ -87,7 +87,7 @@ After you compress a table with  **myisampack**, use  **myisamchk -rq** to rebui
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--wait</code></td> </tr></tbody></table>
 
-  Wait and retry if the table is in use. If the **mysqld** server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process.
+  Wait and retry if the table is in use. If the `mysqld` server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process.
 
 The following sequence of commands illustrates a typical table compression session:
 
@@ -345,12 +345,12 @@ After a table has been compressed, the `Field` lines displayed by  **myisamchk -
 
   The number of bits used in the Huffman tree.
 
-After you run  **myisampack**, use **myisamchk** to re-create any indexes. At this time, you can also sort the index blocks and create statistics needed for the MySQL optimizer to work more efficiently:
+After you run  **myisampack**, use `myisamchk` to re-create any indexes. At this time, you can also sort the index blocks and create statistics needed for the MySQL optimizer to work more efficiently:
 
 ```
 myisamchk -rq --sort-index --analyze tbl_name.MYI
 ```
 
-After you have installed the packed table into the MySQL database directory, you should execute **mysqladmin flush-tables** to force  **mysqld** to start using the new table.
+After you have installed the packed table into the MySQL database directory, you should execute **mysqladmin flush-tables** to force  `mysqld` to start using the new table.
 
-To unpack a packed table, use the `--unpack` option to **myisamchk**.
+To unpack a packed table, use the `--unpack` option to `myisamchk`.

@@ -22,5 +22,5 @@ For small tables, a table scan often is appropriate and the performance impact i
   ```
 
   See  Section 10.9.4, “Index Hints”.
-* Start  **mysqld** with the `--max-seeks-for-key=1000` option or use `SET max_seeks_for_key=1000` to tell the optimizer to assume that no key scan causes more than 1,000 key seeks. See  Section 7.1.8, “Server System Variables”.
+* Start  `mysqld` with the `--max-seeks-for-key=1000` option or use `SET max_seeks_for_key=1000` to tell the optimizer to assume that no key scan causes more than 1,000 key seeks. See  Section 7.1.8, “Server System Variables”.
 

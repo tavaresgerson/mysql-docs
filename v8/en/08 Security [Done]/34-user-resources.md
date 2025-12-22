@@ -59,7 +59,7 @@ Resource counting occurs per account, not per client. For example, if your accou
 
 The current per-hour resource-use counts can be reset globally for all accounts, or individually for a given account:
 
-* To reset the current counts to zero for all accounts, issue a `FLUSH USER_RESOURCES` statement. The counts also can be reset by reloading the grant tables (for example, with a `FLUSH PRIVILEGES` statement or a **mysqladmin reload** command).
+* To reset the current counts to zero for all accounts, issue a `FLUSH USER_RESOURCES` statement. The counts also can be reset by reloading the grant tables (for example, with a `FLUSH PRIVILEGES` statement or a `mysqladmin reload` command).
 * The counts for an individual account can be reset to zero by setting any of its limits again. Specify a limit value equal to the value currently assigned to the account.
 
 Per-hour counter resets do not affect the `MAX_USER_CONNECTIONS` limit.

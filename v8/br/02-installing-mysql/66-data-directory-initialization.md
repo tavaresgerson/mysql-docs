@@ -64,7 +64,7 @@ Altere o local para o diretório de nível superior da sua instalação do MySQL
 cd /usr/local/mysql
 ```
 
-Para inicializar o diretório de dados, invoque **mysqld** com a opção `--initialize` ou `--initialize-insecure`, dependendo se você quer que o servidor gere uma senha inicial aleatória para a conta `'root'@'localhost'`, ou para criar essa conta sem senha:
+Para inicializar o diretório de dados, invoque `mysqld` com a opção `--initialize` ou `--initialize-insecure`, dependendo se você quer que o servidor gere uma senha inicial aleatória para a conta `'root'@'localhost'`, ou para criar essa conta sem senha:
 
 - Use `--initialize` para a instalação segura por padrão (isto é, incluindo a geração de uma senha inicial aleatória `root`). Neste caso, a senha é marcada como expirada e você deve escolher uma nova.
 - Com `--initialize-insecure`, nenhuma `root` senha é gerada. Isto é inseguro; supõe-se que você pretende atribuir uma senha à conta em tempo hábil antes de colocar o servidor em uso de produção.
@@ -79,14 +79,14 @@ No Windows, use a opção `--console` para direcionar mensagens para o console.
 
 :::
 
-Em sistemas Unix e Unix-like, é importante que os diretórios e arquivos do banco de dados sejam de propriedade da conta de login `mysql` para que o servidor tenha acesso de leitura e gravação quando você o executar mais tarde. Para garantir isso, inicie **mysqld** a partir da conta do sistema `root` e inclua a opção `--user` como mostrado aqui:
+Em sistemas Unix e Unix-like, é importante que os diretórios e arquivos do banco de dados sejam de propriedade da conta de login `mysql` para que o servidor tenha acesso de leitura e gravação quando você o executar mais tarde. Para garantir isso, inicie `mysqld` a partir da conta do sistema `root` e inclua a opção `--user` como mostrado aqui:
 
 ```
 bin/mysqld --initialize --user=mysql
 bin/mysqld --initialize-insecure --user=mysql
 ```
 
-Alternativamente, execute **mysqld** enquanto estiver logado como `mysql`, caso em que você pode omitir a opção `--user` do comando.
+Alternativamente, execute `mysqld` enquanto estiver logado como `mysql`, caso em que você pode omitir a opção `--user` do comando.
 
 No Windows, use um destes comandos:
 
@@ -109,7 +109,7 @@ Se isso acontecer, você deve instalar as bibliotecas faltantes manualmente ou c
 
 :::
 
-Pode ser necessário especificar outras opções como `--basedir` ou `--datadir` se **mysqld** não puder identificar os locais corretos para o diretório de instalação ou diretório de dados. Por exemplo (inserir o comando em uma única linha):
+Pode ser necessário especificar outras opções como `--basedir` ou `--datadir` se `mysqld` não puder identificar os locais corretos para o diretório de instalação ou diretório de dados. Por exemplo (inserir o comando em uma única linha):
 
 ```
 bin/mysqld --initialize --user=mysql
@@ -117,7 +117,7 @@ bin/mysqld --initialize --user=mysql
   --datadir=/opt/mysql/mysql/data
 ```
 
-Alternativamente, coloque as configurações de opções relevantes em um arquivo de opções e passe o nome desse arquivo para **mysqld**. Para sistemas Unix e Unix-like, suponha que o nome do arquivo de opções seja `/opt/mysql/mysql/etc/my.cnf`. Coloque estas linhas no arquivo:
+Alternativamente, coloque as configurações de opções relevantes em um arquivo de opções e passe o nome desse arquivo para `mysqld`. Para sistemas Unix e Unix-like, suponha que o nome do arquivo de opções seja `/opt/mysql/mysql/etc/my.cnf`. Coloque estas linhas no arquivo:
 
 ```
 [mysqld]
@@ -125,7 +125,7 @@ basedir=/opt/mysql/mysql
 datadir=/opt/mysql/mysql/data
 ```
 
-Em seguida, invoque **mysqld** da seguinte forma (inserir o comando em uma única linha, com a opção `--defaults-file` primeiro):
+Em seguida, invoque `mysqld` da seguinte forma (inserir o comando em uma única linha, com a opção `--defaults-file` primeiro):
 
 ```
 bin/mysqld --defaults-file=/opt/mysql/mysql/etc/my.cnf
@@ -140,7 +140,7 @@ basedir=C:Program FilesMySQLMySQL Server 8.4
 datadir=D:MySQLdata
 ```
 
-Em seguida, invoque **mysqld** da seguinte forma (novamente, você deve inserir o comando em uma única linha, com a opção `--defaults-file` primeiro):
+Em seguida, invoque `mysqld` da seguinte forma (novamente, você deve inserir o comando em uma única linha, com a opção `--defaults-file` primeiro):
 
 ```
 binmysqld --defaults-file=C:my.ini
@@ -159,7 +159,7 @@ A sequência de inicialização do diretório de dados executada pelo servidor n
 
 :::
 
-Quando invocado com a opção `--initialize` ou `--initialize-insecure`, **mysqld** executa as seguintes ações durante a sequência de inicialização do diretório de dados:
+Quando invocado com a opção `--initialize` ou `--initialize-insecure`, `mysqld` executa as seguintes ações durante a sequência de inicialização do diretório de dados:
 
 1. O servidor verifica a existência do diretório de dados da seguinte forma:
 
@@ -180,9 +180,9 @@ Quando invocado com a opção `--initialize` ou `--initialize-insecure`, **mysql
 
    ::: info Note
 
-   Depois de **mysqld** configurar o `InnoDB` sistema de tabelas, certas mudanças nas características de tabelas exigem a criação de uma nova instância. As mudanças qualificadas incluem o nome do arquivo do primeiro arquivo no sistema de tabelas e o número de registros de anulação. Se você não quiser usar os valores padrão, certifique-se de que as configurações para os parâmetros de configuração `innodb_data_file_path` e `innodb_log_file_size` estão no arquivo de configuração do MySQL \* antes de executar **mysqld**. Também certifique-se de especificar, conforme necessário, outros parâmetros que afetam a criação e localização de arquivos `InnoDB` , como `innodb_data_home_dir` e `innodb_log_group_home_dir`.
+   Depois de `mysqld` configurar o `InnoDB` sistema de tabelas, certas mudanças nas características de tabelas exigem a criação de uma nova instância. As mudanças qualificadas incluem o nome do arquivo do primeiro arquivo no sistema de tabelas e o número de registros de anulação. Se você não quiser usar os valores padrão, certifique-se de que as configurações para os parâmetros de configuração `innodb_data_file_path` e `innodb_log_file_size` estão no arquivo de configuração do MySQL \* antes de executar `mysqld`. Também certifique-se de especificar, conforme necessário, outros parâmetros que afetam a criação e localização de arquivos `InnoDB` , como `innodb_data_home_dir` e `innodb_log_group_home_dir`.
 
-   Se essas opções estiverem no seu arquivo de configuração, mas esse arquivo não estiver em um local que o MySQL leia por padrão, especifique o local do arquivo usando a opção `--defaults-extra-file` quando você executar **mysqld**.
+   Se essas opções estiverem no seu arquivo de configuração, mas esse arquivo não estiver em um local que o MySQL leia por padrão, especifique o local do arquivo usando a opção `--defaults-extra-file` quando você executar `mysqld`.
 
    :::
 

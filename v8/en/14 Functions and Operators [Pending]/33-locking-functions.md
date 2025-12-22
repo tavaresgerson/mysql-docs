@@ -43,7 +43,7 @@ This section describes functions used to manipulate user-level locks.
 
    `GET_LOCK()` is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.
 
-  Since `GET_LOCK()` establishes a lock only on a single  **mysqld**, it is not suitable for use with NDB Cluster, which has no way of enforcing an SQL lock across multiple MySQL servers. See Section 25.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”, for more information.
+  Since `GET_LOCK()` establishes a lock only on a single  `mysqld`, it is not suitable for use with NDB Cluster, which has no way of enforcing an SQL lock across multiple MySQL servers. See Section 25.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”, for more information.
 
   Caution
 

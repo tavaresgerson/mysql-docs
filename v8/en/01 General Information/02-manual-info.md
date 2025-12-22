@@ -18,11 +18,11 @@ This manual uses certain typographical conventions:
 
 * `Text in this style` is used for SQL statements; database, table, and column names; program listings and source code; and environment variables. Example: “To reload the grant tables, use the `FLUSH PRIVILEGES` statement.”
 * **`Text in this style`** indicates input that you type in examples.
-* **Text in this style** indicates the names of executable programs and scripts, examples being **mysql** (the MySQL command-line client program) and  **mysqld** (the MySQL server executable).
+* **Text in this style** indicates the names of executable programs and scripts, examples being `mysql` (the MySQL command-line client program) and  `mysqld` (the MySQL server executable).
 * *`Text in this style`* is used for variable input for which you should substitute a value of your own choosing.
 * *Text in this style* is used for emphasis.
 * **Text in this style** is used in table headings and to convey especially strong emphasis.
-* `Text in this style` is used to indicate a program option that affects how the program is executed, or that supplies information that is needed for the program to function in a certain way. *Example*: “The `--host` option (short form `-h`) tells the  **mysql** client program the hostname or IP address of the MySQL server that it should connect to”.
+* `Text in this style` is used to indicate a program option that affects how the program is executed, or that supplies information that is needed for the program to function in a certain way. *Example*: “The `--host` option (short form `-h`) tells the  `mysql` client program the hostname or IP address of the MySQL server that it should connect to”.
 * File names and directory names are written like this: “The global `my.cnf` file is located in the `/etc` directory.”
 * Character sequences are written like this: “To specify a wildcard, use the ‘`%`’ character.”
 
@@ -35,7 +35,7 @@ C:\> type a command here (Windows only)
 mysql> type a mysql statement here
 ```
 
-Commands are issued in your command interpreter. On Unix, this is typically a program such as **sh**, **csh**, or **bash**. On Windows, the equivalent program is **command.com** or **cmd.exe**, typically run in a console window. Statements prefixed by `mysql` are issued in the **mysql** command-line client.
+Commands are issued in your command interpreter. On Unix, this is typically a program such as **sh**, **csh**, or **bash**. On Windows, the equivalent program is **command.com** or **cmd.exe**, typically run in a console window. Statements prefixed by `mysql` are issued in the `mysql` command-line client.
 
 ::: info Note
 
@@ -90,7 +90,7 @@ An ellipsis can also indicate that the preceding syntax element of a statement m
 RESET reset_option [,reset_option] ...
 ```
 
-Commands for setting shell variables are shown using Bourne shell syntax. For example, the sequence to set the `CC` environment variable and run the **configure** command looks like this in Bourne shell syntax:
+Commands for setting shell variables are shown using Bourne shell syntax. For example, the sequence to set the `CC` environment variable and run the `configure` command looks like this in Bourne shell syntax:
 
 ```
 $> CC=gcc ./configure

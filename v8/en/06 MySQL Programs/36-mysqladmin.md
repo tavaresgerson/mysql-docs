@@ -1,14 +1,14 @@
 ### 6.5.2 mysqladmin — A MySQL Server Administration Program
 
- **mysqladmin** is a client for performing administrative operations. You can use it to check the server's configuration and current status, to create and drop databases, and more.
+ `mysqladmin` is a client for performing administrative operations. You can use it to check the server's configuration and current status, to create and drop databases, and more.
 
-Invoke  **mysqladmin** like this:
+Invoke  `mysqladmin` like this:
 
 ```
 mysqladmin [options] command [command-arg] [command [command-arg]] ...
 ```
 
- **mysqladmin** supports the following commands. Some of the commands take an argument following the command name.
+ `mysqladmin` supports the following commands. Some of the commands take an argument following the command name.
 
 * `create db_name`
 
@@ -48,11 +48,11 @@ mysqladmin [options] command [command-arg] [command [command-arg]] ...
   To kill threads belonging to other users, the connected user must have the `CONNECTION_ADMIN` privilege (or the deprecated  `SUPER` privilege).
 * `password new_password`
 
-  Set a new password. This changes the password to *`new_password`* for the account that you use with  **mysqladmin** for connecting to the server. Thus, the next time you invoke **mysqladmin** (or any other client program) using the same account, you must specify the new password.
+  Set a new password. This changes the password to *`new_password`* for the account that you use with  `mysqladmin` for connecting to the server. Thus, the next time you invoke `mysqladmin` (or any other client program) using the same account, you must specify the new password.
 
   Warning
 
-  Setting a password using  **mysqladmin** should be considered *insecure*. On some systems, your password becomes visible to system status programs such as **ps** that may be invoked by other users to display command lines. MySQL clients typically overwrite the command-line password argument with zeros during their initialization sequence. However, there is still a brief interval during which the value is visible. Also, on some systems this overwriting strategy is ineffective and the password remains visible to **ps**. (SystemV Unix systems and perhaps others are subject to this problem.)
+  Setting a password using  `mysqladmin` should be considered *insecure*. On some systems, your password becomes visible to system status programs such as **ps** that may be invoked by other users to display command lines. MySQL clients typically overwrite the command-line password argument with zeros during their initialization sequence. However, there is still a brief interval during which the value is visible. Also, on some systems this overwriting strategy is ineffective and the password remains visible to **ps**. (SystemV Unix systems and perhaps others are subject to this problem.)
 
   If the *`new_password`* value contains spaces or other characters that are special to your command interpreter, you need to enclose it within quotation marks. On Windows, be sure to use double quotation marks rather than single quotation marks; single quotation marks are not stripped from the password, but rather are interpreted as part of the password. For example:
 
@@ -60,14 +60,14 @@ mysqladmin [options] command [command-arg] [command [command-arg]] ...
   mysqladmin password "my new password"
   ```
 
-  The new password can be omitted following the `password` command. In this case, **mysqladmin** prompts for the password value, which enables you to avoid specifying the password on the command line. Omitting the password value should be done only if `password` is the final command on the  **mysqladmin** command line. Otherwise, the next argument is taken as the password.
+  The new password can be omitted following the `password` command. In this case, `mysqladmin` prompts for the password value, which enables you to avoid specifying the password on the command line. Omitting the password value should be done only if `password` is the final command on the  `mysqladmin` command line. Otherwise, the next argument is taken as the password.
 
   Caution
 
   Do not use this command used if the server was started with the `--skip-grant-tables` option. No password change is applied. This is true even if you precede the `password` command with `flush-privileges` on the same command line to re-enable the grant tables because the flush operation occurs after you connect. However, you can use **mysqladmin flush-privileges** to re-enable the grant tables and then use a separate **mysqladmin password** command to change the password.
 * `ping`
 
-  Check whether the server is available. The return status from  **mysqladmin** is 0 if the server is running, 1 if it is not. This is 0 even in case of an error such as `Access denied`, because this means that the server is running but refused the connection, which is different from the server not running.
+  Check whether the server is available. The return status from  `mysqladmin` is 0 if the server is running, 1 if it is not. This is 0 even in case of an error such as `Access denied`, because this means that the server is running but refused the connection, which is different from the server not running.
 * `processlist`
 
   Show a list of active server threads. This is like the output of the [`SHOW PROCESSLIST`](show-processlist.html "15.7.7.31 SHOW PROCESSLIST Statement") statement. If the `--verbose` option is given, the output is like that of [`SHOW FULL PROCESSLIST`](show-processlist.html "15.7.7.31 SHOW PROCESSLIST Statement"). (See Section 15.7.7.31, “SHOW PROCESSLIST Statement”.)
@@ -140,9 +140,9 @@ The  **mysqladmin status** command result displays the following values:
 
   The number of tables that currently are open.
 
-If you execute  **mysqladmin shutdown** when connecting to a local server using a Unix socket file, **mysqladmin** waits until the server's process ID file has been removed, to ensure that the server has stopped properly.
+If you execute  **mysqladmin shutdown** when connecting to a local server using a Unix socket file, `mysqladmin` waits until the server's process ID file has been removed, to ensure that the server has stopped properly.
 
- **mysqladmin** supports the following options, which can be specified on the command line or in the `[mysqladmin]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
+ `mysqladmin` supports the following options, which can be specified on the command line or in the `[mysqladmin]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
 
 **Table 6.11 mysqladmin Options**
 
@@ -238,7 +238,7 @@ If you execute  **mysqladmin shutdown** when connecting to a local server using 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqladmin** normally reads the `[client]` and `[mysqladmin]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqladmin** also reads the `[client_other]` and `[mysqladmin_other]` groups.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, `mysqladmin` normally reads the `[client]` and `[mysqladmin]` groups. If this option is given as `--defaults-group-suffix=_other`, `mysqladmin` also reads the `[client_other]` and `[mysqladmin_other]` groups.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--enable-cleartext-plugin`
@@ -299,18 +299,18 @@ If you execute  **mysqladmin shutdown** when connecting to a local server using 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqladmin** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
+  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, `mysqladmin` prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysqladmin** should not prompt for one, use the `--skip-password` option.
+  To explicitly specify that there is no password and that `mysqladmin` should not prompt for one, use the `--skip-password` option.
 *  `--password1[=pass_val]`
 
-  The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysql** prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
+  The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, `mysql` prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysqladmin** should not prompt for one, use the `--skip-password1` option.
+  To explicitly specify that there is no password and that `mysqladmin` should not prompt for one, use the `--skip-password1` option.
 
    `--password1` and `--password` are synonymous, as are `--skip-password1` and `--skip-password`.
 *  `--password2[=pass_val]`
@@ -328,7 +328,7 @@ If you execute  **mysqladmin shutdown** when connecting to a local server using 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqladmin** does not find it. See Section 8.2.17, “Pluggable Authentication”.
+  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but `mysqladmin` does not find it. See Section 8.2.17, “Pluggable Authentication”.
 *  `--port=port_num`, `-P port_num`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
@@ -388,7 +388,7 @@ If you execute  **mysqladmin shutdown** when connecting to a local server using 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--sleep=delay</code></td> </tr></tbody></table>
 
-  Execute commands repeatedly, sleeping for *`delay`* seconds in between. The `--count` option determines the number of iterations. If `--count` is not given, **mysqladmin** executes commands indefinitely until interrupted.
+  Execute commands repeatedly, sleeping for *`delay`* seconds in between. The `--count` option determines the number of iterations. If `--count` is not given, `mysqladmin` executes commands indefinitely until interrupted.
 *  `--socket=path`, `-S path`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--socket={file_name|pipe_name}</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>

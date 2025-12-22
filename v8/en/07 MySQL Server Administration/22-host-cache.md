@@ -101,7 +101,7 @@ To flush the host cache, use any of these methods:
 
 ##### Dealing with Blocked Hosts
 
-The server uses the host cache to track errors that occur during the client connection process. If the following error occurs, it means that  **mysqld** has received many connection requests from the given host that were interrupted in the middle:
+The server uses the host cache to track errors that occur during the client connection process. If the following error occurs, it means that  `mysqld` has received many connection requests from the given host that were interrupted in the middle:
 
 ```
 Host 'host_name' is blocked because of many connection errors.

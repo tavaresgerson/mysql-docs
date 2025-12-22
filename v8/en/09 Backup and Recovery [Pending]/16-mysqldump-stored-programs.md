@@ -4,7 +4,7 @@
 
 #### 9.4.5.3 Dumping Stored Programs
 
-Several options control how  **mysqldump** handles stored programs (stored procedures and functions, triggers, and events):
+Several options control how  `mysqldump` handles stored programs (stored procedures and functions, triggers, and events):
 
 *  `--events`: Dump Event Scheduler events
 *  `--routines`: Dump stored procedures and functions

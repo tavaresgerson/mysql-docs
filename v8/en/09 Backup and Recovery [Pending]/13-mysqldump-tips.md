@@ -14,7 +14,7 @@
 
  9.4.5.5 Using mysqldump to Test for Upgrade Incompatibilities
 
-This section surveys techniques that enable you to use **mysqldump** to solve specific problems:
+This section surveys techniques that enable you to use `mysqldump` to solve specific problems:
 
 * How to make a copy a database
 * How to copy a database from one server to another

@@ -1,8 +1,8 @@
 ### 6.5.1 mysql — The MySQL Command-Line Client
 
-**mysql** is a simple SQL shell with input line editing capabilities. It supports interactive and noninteractive use. When used interactively, query results are presented in an ASCII-table format. When used noninteractively (for example, as a filter), the result is presented in tab-separated format. The output format can be changed using command options.
+`mysql` is a simple SQL shell with input line editing capabilities. It supports interactive and noninteractive use. When used interactively, query results are presented in an ASCII-table format. When used noninteractively (for example, as a filter), the result is presented in tab-separated format. The output format can be changed using command options.
 
-If you have problems due to insufficient memory for large result sets, use the  `--quick` option. This forces  **mysql** to retrieve results from the server a row at a time rather than retrieving the entire result set and buffering it in memory before displaying it. This is done by returning the result set using the `mysql_use_result()` C API function in the client/server library rather than `mysql_store_result()`.
+If you have problems due to insufficient memory for large result sets, use the  `--quick` option. This forces  `mysql` to retrieve results from the server a row at a time rather than retrieving the entire result set and buffering it in memory before displaying it. This is done by returning the result set using the `mysql_use_result()` C API function in the client/server library rather than `mysql_store_result()`.
 
 ::: info Note
 
@@ -10,7 +10,7 @@ Alternatively, MySQL Shell offers access to the X DevAPI. For details, see  MySQ
 
 :::
 
-Using  **mysql** is very easy. Invoke it from the prompt of your command interpreter as follows:
+Using  `mysql` is very easy. Invoke it from the prompt of your command interpreter as follows:
 
 ```
 mysql db_name
@@ -22,7 +22,7 @@ Or:
 mysql --user=user_name --password db_name
 ```
 
-In this case, you'll need to enter your password in response to the prompt that  **mysql** displays:
+In this case, you'll need to enter your password in response to the prompt that  `mysql` displays:
 
 ```
 Enter password: your_password
@@ -38,4 +38,4 @@ You can execute SQL statements in a script file (batch file) like this:
 mysql db_name < script.sql > output.tab
 ```
 
-On Unix, the  **mysql** client logs statements executed interactively to a history file. See Section 6.5.1.3, “mysql Client Logging”.
+On Unix, the  `mysql` client logs statements executed interactively to a history file. See Section 6.5.1.3, “mysql Client Logging”.

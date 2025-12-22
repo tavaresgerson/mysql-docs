@@ -11,7 +11,7 @@ This section describes some of the important characteristics of the MySQL Databa
 * Written in C and C++.
 * Tested with a broad range of different compilers.
 * Works on many different platforms. See <https://www.mysql.com/support/supportedplatforms/database.html>.
-* For portability, configured using **CMake**.
+* For portability, configured using `CMake`.
 * Tested with Purify (a commercial memory leakage detector) as well as with Valgrind, a GPL tool (<https://valgrind.org/>).
 * Uses multi-layered server design with independent modules.
 * Designed to be fully multithreaded using kernel threads, to easily use multiple CPUs if they are available.
@@ -26,7 +26,7 @@ This section describes some of the important characteristics of the MySQL Databa
 
 #### Data Types
 
-* Many data types: signed/unsigned integers 1, 2, 3, 4, and 8 bytes long,  `FLOAT` - FLOAT, DOUBLE"), `DOUBLE` - FLOAT, DOUBLE"), `CHAR`, `VARCHAR`, `BINARY`, `VARBINARY`, `TEXT`, `BLOB`, `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`, `YEAR`, `SET`, `ENUM`, and OpenGIS spatial types. See  Chapter 13, *Data Types*.
+* Many data types: signed/unsigned integers 1, 2, 3, 4, and 8 bytes long,  `FLOAT` - (`FLOAT`, `DOUBLE`), `DOUBLE` - (`FLOAT`, `DOUBLE`), `CHAR`, `VARCHAR`, `BINARY`, `VARBINARY`, `TEXT`, `BLOB`, `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`, `YEAR`, `SET`, `ENUM`, and OpenGIS spatial types. See  Chapter 13, *Data Types*.
 * Fixed-length and variable-length string types.
 
 #### Statements and Functions
@@ -80,6 +80,6 @@ This section describes some of the important characteristics of the MySQL Databa
 
 #### Clients and Tools
 
-* MySQL includes several client and utility programs. These include both command-line programs such as **mysqldump** and **mysqladmin**, and graphical programs such as MySQL Workbench.
-* MySQL Server has built-in support for SQL statements to check, optimize, and repair tables. These statements are available from the command line through the **mysqlcheck** client. MySQL also includes **myisamchk**, a very fast command-line utility for performing these operations on `MyISAM` tables. See  Chapter 6, *MySQL Programs*.
+* MySQL includes several client and utility programs. These include both command-line programs such as `mysqldump` and `mysqladmin`, and graphical programs such as MySQL Workbench.
+* MySQL Server has built-in support for SQL statements to check, optimize, and repair tables. These statements are available from the command line through the `mysqlcheck` client. MySQL also includes `myisamchk`, a very fast command-line utility for performing these operations on `MyISAM` tables. See  Chapter 6, *MySQL Programs*.
 * MySQL programs can be invoked with the `--help` or `-?` option to obtain online assistance.

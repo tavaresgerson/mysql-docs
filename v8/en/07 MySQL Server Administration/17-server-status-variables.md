@@ -143,7 +143,7 @@ The status variables have the following meanings.
   See also  Section 10.4.4, “Internal Temporary Table Use in MySQL”.
 *  `Created_tmp_files`
 
-  How many temporary files  **mysqld** has created.
+  How many temporary files  `mysqld` has created.
 *  `Created_tmp_tables`
 
   The number of internal temporary tables created by the server while executing statements.
@@ -929,7 +929,7 @@ The status variables have the following meanings.
   The number of overflows for the open tables cache. This is the number of times, after a table is opened or closed, a cache instance has an unused entry and the size of the instance is larger than  `table_open_cache` /  `table_open_cache_instances`.
 *  `Tc_log_max_pages_used`
 
-  For the memory-mapped implementation of the log that is used by  **mysqld** when it acts as the transaction coordinator for recovery of internal XA transactions, this variable indicates the largest number of pages used for the log since the server started. If the product of `Tc_log_max_pages_used` and `Tc_log_page_size` is always significantly less than the log size, the size is larger than necessary and can be reduced. (The size is set by the `--log-tc-size` option. This variable is unused: It is unneeded for binary log-based recovery, and the memory-mapped recovery log method is not used unless the number of storage engines that are capable of two-phase commit and that support XA transactions is greater than one. (`InnoDB` is the only applicable engine.)
+  For the memory-mapped implementation of the log that is used by  `mysqld` when it acts as the transaction coordinator for recovery of internal XA transactions, this variable indicates the largest number of pages used for the log since the server started. If the product of `Tc_log_max_pages_used` and `Tc_log_page_size` is always significantly less than the log size, the size is larger than necessary and can be reduced. (The size is set by the `--log-tc-size` option. This variable is unused: It is unneeded for binary log-based recovery, and the memory-mapped recovery log method is not used unless the number of storage engines that are capable of two-phase commit and that support XA transactions is greater than one. (`InnoDB` is the only applicable engine.)
 *  `Tc_log_page_size`
 
   The page size used for the memory-mapped implementation of the XA recovery log. The default value is determined using `getpagesize()`. This variable is unused for the same reasons as described for `Tc_log_max_pages_used`.

@@ -31,14 +31,14 @@ Example server-side error messages written to the error log:
   [evtuser@localhost][myschema.e_daily] Unknown database 'mydb'
   ```
 
-Example server-side error message sent to client programs, as displayed by the  **mysql** client:
+Example server-side error message sent to client programs, as displayed by the  `mysql` client:
 
 ```
 mysql> SELECT * FROM no_such_table;
 ERROR 1146 (42S02): Table 'test.no_such_table' doesn't exist
 ```
 
-Example client-side error message originating from within the client library, as displayed by the  **mysql** client:
+Example client-side error message originating from within the client library, as displayed by the  `mysql` client:
 
 ```
 $> mysql -h no-such-host

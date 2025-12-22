@@ -22,7 +22,7 @@ Here are some example debug control strings as they might be specified on a shel
 --debug=d:t:i:O,\\mysqld.trace
 ```
 
-For  **mysqld**, it is also possible to change DBUG settings at runtime by setting the `debug` system variable. This variable has global and session values:
+For  `mysqld`, it is also possible to change DBUG settings at runtime by setting the `debug` system variable. This variable has global and session values:
 
 ```
 mysql> SET GLOBAL debug = 'debug_options';

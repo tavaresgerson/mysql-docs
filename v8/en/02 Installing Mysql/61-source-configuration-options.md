@@ -12,7 +12,7 @@ You can also affect **CMake** using certain environment variables. See Section 
 
 For boolean options, the value may be specified as `1` or `ON` to enable the option, or as `0` or `OFF` to disable the option.
 
-Many options configure compile-time defaults that can be overridden at server startup. For example, the `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, and `MYSQL_UNIX_ADDR` options that configure the default installation base directory location, TCP/IP port number, and Unix socket file can be changed at server startup with the  `--basedir`, `--port`, and `--socket` options for **mysqld**. Where applicable, configuration option descriptions indicate the corresponding  **mysqld** startup option.
+Many options configure compile-time defaults that can be overridden at server startup. For example, the `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, and `MYSQL_UNIX_ADDR` options that configure the default installation base directory location, TCP/IP port number, and Unix socket file can be changed at server startup with the  `--basedir`, `--port`, and `--socket` options for `mysqld`. Where applicable, configuration option descriptions indicate the corresponding  `mysqld` startup option.
 
 The following sections provide more information about **CMake** options.
 
@@ -130,10 +130,10 @@ The  `CMAKE_INSTALL_PREFIX` option indicates the base installation directory. Ot
 
   **Default location.** For RPM builds, this is `/usr/lib64/mysql/private/`, for DEB it is `/usr/lib/mysql/private/`, and for TAR it is `lib/private/`.
 
-  **Protobuf.** Because this is a private location, the loader (such as `ld-linux.so` on Linux) may not find the `libprotobuf.so` files without help. To guide the loader, `RPATH=$ORIGIN/../$INSTALL_PRIV_LIBDIR` is added to  **mysqld** and **mysqlxtest**. This works for most cases but when using the Resource Group feature,  **mysqld** is `setsuid`, and the loader ignores any `RPATH` which contains `$ORIGIN`. To overcome this, an explicit full path to the directory is set in the DEB and RPM versions of  **mysqld**, since the target destination is known. For tarball installs, patching of **mysqld** with a tool like **patchelf** is required.
+  **Protobuf.** Because this is a private location, the loader (such as `ld-linux.so` on Linux) may not find the `libprotobuf.so` files without help. To guide the loader, `RPATH=$ORIGIN/../$INSTALL_PRIV_LIBDIR` is added to  `mysqld` and **mysqlxtest**. This works for most cases but when using the Resource Group feature,  `mysqld` is `setsuid`, and the loader ignores any `RPATH` which contains `$ORIGIN`. To overcome this, an explicit full path to the directory is set in the DEB and RPM versions of  `mysqld`, since the target destination is known. For tarball installs, patching of `mysqld` with a tool like **patchelf** is required.
 *  `-DINSTALL_SBINDIR=dir_name`
 
-  Where to install the  **mysqld** server.
+  Where to install the  `mysqld` server.
 *  `-DINSTALL_SECURE_FILE_PRIVDIR=dir_name`
 
   The default value for the `secure_file_priv` system variable. The default value is platform specific and depends on the value of the `INSTALL_LAYOUT` **CMake** option; see the description of the `secure_file_priv` system variable in  Section 7.1.8, “Server System Variables”.
@@ -148,7 +148,7 @@ The  `CMAKE_INSTALL_PREFIX` option indicates the base installation directory. Ot
   Where to install extra support files.
 *  `-DLINK_RANDOMIZE=bool`
 
-  Whether to randomize the order of symbols in the **mysqld** binary. The default is `OFF`. This option should be enabled only for debugging purposes.
+  Whether to randomize the order of symbols in the `mysqld` binary. The default is `OFF`. This option should be enabled only for debugging purposes.
 *  `-DLINK_RANDOMIZE_SEED=val`
 
   Seed value for the `LINK_RANDOMIZE` option. The value is a string. The default is `mysql`, an arbitrary choice.
@@ -251,7 +251,7 @@ If neither `-DWITH_engine_STORAGE_ENGINE` nor `-DWITHOUT_engine_STORAGE_ENGINE` 
   This option determines whether to enable generation of a `.gdb_index` section in binaries, which makes loading them in a debugger faster. The option is disabled by default. **lld** linker is used, and is disabled by It has no effect if a linker other than **lld** or GNU **gold** is used.
 *  `-DCOMPILATION_COMMENT=string`
 
-  A descriptive comment about the compilation environment. While  **mysqld** uses `COMPILATION_COMMENT_SERVER`, other programs use `COMPILATION_COMMENT`.
+  A descriptive comment about the compilation environment. While  `mysqld` uses `COMPILATION_COMMENT_SERVER`, other programs use `COMPILATION_COMMENT`.
 *  `-DCOMPRESS_DEBUG_SECTIONS=bool`
 
   Whether to compress the debug sections of binary executables (Linux only). Compressing executable debug sections saves space at the cost of extra CPU time during the build process.
@@ -259,7 +259,7 @@ If neither `-DWITH_engine_STORAGE_ENGINE` nor `-DWITHOUT_engine_STORAGE_ENGINE` 
   The default is `OFF`. If this option is not set explicitly but the `COMPRESS_DEBUG_SECTIONS` environment variable is set, the option takes its value from that variable.
 *  `-DCOMPILATION_COMMENT_SERVER=string`
 
-  A descriptive comment about the compilation environment for use by  **mysqld** (for example, to set the `version_comment` system variable). Programs other than the server use `COMPILATION_COMMENT`.
+  A descriptive comment about the compilation environment for use by  `mysqld` (for example, to set the `version_comment` system variable). Programs other than the server use `COMPILATION_COMMENT`.
 *  `-DDEFAULT_CHARSET=charset_name`
 
   The server character set. By default, MySQL uses the `utf8mb4` character set.
@@ -343,7 +343,7 @@ If neither `-DWITH_engine_STORAGE_ENGINE` nor `-DWITHOUT_engine_STORAGE_ENGINE` 
 
   By default, the client library in MySQL binary distributions is compiled with `ENABLED_LOCAL_INFILE` disabled. If you compile MySQL from source, configure it with `ENABLED_LOCAL_INFILE` disabled or enabled based on whether clients that make no explicit arrangements should have `LOCAL` capability disabled or enabled, respectively.
 
-   `ENABLED_LOCAL_INFILE` controls the default for client-side `LOCAL` capability. For the server, the `local_infile` system variable controls server-side `LOCAL` capability. To explicitly cause the server to refuse or permit `LOAD DATA LOCAL` statements (regardless of how client programs and libraries are configured at build time or runtime), start  **mysqld** with `--local-infile` disabled or enabled, respectively. `local_infile` can also be set at runtime. See Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”.
+   `ENABLED_LOCAL_INFILE` controls the default for client-side `LOCAL` capability. For the server, the `local_infile` system variable controls server-side `LOCAL` capability. To explicitly cause the server to refuse or permit `LOAD DATA LOCAL` statements (regardless of how client programs and libraries are configured at build time or runtime), start  `mysqld` with `--local-infile` disabled or enabled, respectively. `local_infile` can also be set at runtime. See Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”.
 *  `-DENABLED_PROFILING=bool`
 
   Whether to enable query profiling code (for the `SHOW PROFILE` and `SHOW PROFILES` statements).
@@ -473,7 +473,7 @@ If neither `-DWITH_engine_STORAGE_ENGINE` nor `-DWITHOUT_engine_STORAGE_ENGINE` 
 
   Sync debug checking for the `InnoDB` storage engine is defined under `UNIV_DEBUG` and is available when debugging support is compiled in using the `WITH_DEBUG` option. When debugging support is compiled in, the `innodb_sync_debug` configuration option can be used to enable or disable `InnoDB` sync debug checking.
 
-  Enabling  `WITH_DEBUG` also enables Debug Sync. This facility is used for testing and debugging. When compiled in, Debug Sync is disabled by default at runtime. To enable it, start **mysqld** with the `--debug-sync-timeout=N` option, where *`N`* is a timeout value greater than 0. (The default value is 0, which disables Debug Sync.) *`N`* becomes the default timeout for individual synchronization points.
+  Enabling  `WITH_DEBUG` also enables Debug Sync. This facility is used for testing and debugging. When compiled in, Debug Sync is disabled by default at runtime. To enable it, start `mysqld` with the `--debug-sync-timeout=N` option, where *`N`* is a timeout value greater than 0. (The default value is 0, which disables Debug Sync.) *`N`* becomes the default timeout for individual synchronization points.
 
   Sync debug checking for the `InnoDB` storage engine is available when debugging support is compiled in using the `WITH_DEBUG` option.
 
@@ -744,7 +744,7 @@ The following options apply when building the MySQL sources with NDB Cluster sup
   Controls (only) whether the `NDBCLUSTER` storage engine is included in the build; `WITH_NDB` enables this option automatically, so it is recommended that you use `WITH_NDB` instead.
 *  `-DWITH_NDBCLUSTER={ON|OFF}` (DEPRECATED)
 
-  Build and link in support for the `NDB` storage engine in **mysqld**.
+  Build and link in support for the `NDB` storage engine in `mysqld`.
 
   This option is deprecated and subject to eventual removal; use  `WITH_NDB` instead.
 *  `-DWITH_NDBMTD={ON|OFF}`

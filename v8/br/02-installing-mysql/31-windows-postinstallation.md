@@ -45,7 +45,7 @@ C:\> bin\mysqlshow
 
 A lista de bancos de dados instalados pode variar, mas sempre inclui pelo menos `mysql` e `information_schema`.
 
-O comando anterior (e comandos para outros programas MySQL, como **mysql**) pode não funcionar se a conta correta do MySQL não existir. Por exemplo, o programa pode falhar com um erro, ou você pode não ser capaz de ver todos os bancos de dados. Se você configurou o MySQL usando o MySQL Configurator, o usuário `root` é criado automaticamente com a senha fornecida. Neste caso, você deve usar as opções `-u root` e `-p`.
+O comando anterior (e comandos para outros programas MySQL, como `mysql`) pode não funcionar se a conta correta do MySQL não existir. Por exemplo, o programa pode falhar com um erro, ou você pode não ser capaz de ver todos os bancos de dados. Se você configurou o MySQL usando o MySQL Configurator, o usuário `root` é criado automaticamente com a senha fornecida. Neste caso, você deve usar as opções `-u root` e `-p`.
 
 ```
 C:\> bin\mysqlshow -u root -p
@@ -105,7 +105,7 @@ Database: mysql
 +---------------------------+
 ```
 
-Use o programa **mysql** para selecionar informações de uma tabela no banco de dados `mysql`:
+Use o programa `mysql` para selecionar informações de uma tabela no banco de dados `mysql`:
 
 ```
 C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
@@ -116,4 +116,4 @@ C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 +------+-----------+-----------------------+
 ```
 
-Para mais informações sobre **mysql** e **mysqlshow**, veja Seção 6.5.1, mysql  O Cliente de Linha de Comando MySQL, e Seção 6.5.6, mysqlshow  Exibir Informações de Base de Dados, Tabela e Coluna.
+Para mais informações sobre `mysql` e **mysqlshow**, veja Seção 6.5.1, mysql  O Cliente de Linha de Comando MySQL, e Seção 6.5.6, mysqlshow  Exibir Informações de Base de Dados, Tabela e Coluna.

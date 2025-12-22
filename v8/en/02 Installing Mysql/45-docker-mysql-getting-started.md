@@ -131,13 +131,13 @@ GENERATED ROOT PASSWORD: Axegh3kAJyDLaRuBemecis&EShOs
 
 ##### Connecting to MySQL Server from within the Container
 
-Once the server is ready, you can run the **mysql** client within the MySQL Server container you just started, and connect it to the MySQL Server. Use the **docker exec -it** command to start a **mysql** client inside the Docker container you have started, like the following:
+Once the server is ready, you can run the `mysql` client within the MySQL Server container you just started, and connect it to the MySQL Server. Use the **docker exec -it** command to start a `mysql` client inside the Docker container you have started, like the following:
 
 ```
 docker exec -it mysql1 mysql -uroot -p
 ```
 
-When asked, enter the generated root password (see the last step in  Starting a MySQL Server Instance above on how to find the password). Because the `MYSQL_ONETIME_PASSWORD` option is true by default, after you have connected a **mysql** client to the server, you must reset the server root password by issuing this statement:
+When asked, enter the generated root password (see the last step in  Starting a MySQL Server Instance above on how to find the password). Because the `MYSQL_ONETIME_PASSWORD` option is true by default, after you have connected a `mysql` client to the server, you must reset the server root password by issuing this statement:
 
 ```
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
@@ -170,9 +170,9 @@ To stop the MySQL Server container we have created, use this command:
 docker stop mysql1
 ```
 
-**docker stop** sends a SIGTERM signal to the **mysqld** process, so that the server is shut down gracefully.
+**docker stop** sends a SIGTERM signal to the `mysqld` process, so that the server is shut down gracefully.
 
-Also notice that when the main process of a container ( **mysqld** in the case of a MySQL Server container) is stopped, the Docker container stops automatically.
+Also notice that when the main process of a container ( `mysqld` in the case of a MySQL Server container) is stopped, the Docker container stops automatically.
 
 To start the MySQL Server container again:
 

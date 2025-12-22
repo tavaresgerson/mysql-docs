@@ -10,7 +10,7 @@ On other systems, you must install a short script yourself that you start from *
 
 Binary log files are automatically removed after the server's binary log expiration period. Removal of the files can take place at startup and when the binary log is flushed. The default binary log expiration period is 30 days. To specify an alternative expiration period, use the `binlog_expire_logs_seconds` system variable. If you are using replication, you should specify an expiration period that is no lower than the maximum amount of time your replicas might lag behind the source. To remove binary logs on demand, use the `PURGE BINARY LOGS` statement (see Section 15.4.1.1, “PURGE BINARY LOGS Statement”).
 
-To force MySQL to start using new log files, flush the logs. Log flushing occurs when you execute a `FLUSH LOGS` statement or a **mysqladmin flush-logs**,  **mysqladmin refresh**, **mysqldump** `--flush-logs`, or **mysqldump** `--source-data` command. See Section 15.7.8.3, “FLUSH Statement”,  Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 6.5.4, “mysqldump — A Database Backup Program”. In addition, the server flushes the binary log automatically when current binary log file size reaches the value of the  `max_binlog_size` system variable.
+To force MySQL to start using new log files, flush the logs. Log flushing occurs when you execute a `FLUSH LOGS` statement or a **mysqladmin flush-logs**,  **mysqladmin refresh**, `mysqldump` `--flush-logs`, or `mysqldump` `--source-data` command. See Section 15.7.8.3, “FLUSH Statement”,  Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 6.5.4, “mysqldump — A Database Backup Program”. In addition, the server flushes the binary log automatically when current binary log file size reaches the value of the  `max_binlog_size` system variable.
 
  `FLUSH LOGS` supports optional modifiers to enable selective flushing of individual logs (for example,  `FLUSH BINARY LOGS`). See Section 15.7.8.3, “FLUSH Statement”.
 
@@ -57,7 +57,7 @@ This method works on any platform and does not require a server restart.
 
 ::: info Note
 
-For the server to recreate a given log file after you have renamed the file externally, the file location must be writable by the server. This may not always be the case. For example, on Linux, the server might write the error log as `/var/log/mysqld.log`, where `/var/log` is owned by `root` and not writable by **mysqld**. In this case, log-flushing operations fail to create a new log file.
+For the server to recreate a given log file after you have renamed the file externally, the file location must be writable by the server. This may not always be the case. For example, on Linux, the server might write the error log as `/var/log/mysqld.log`, where `/var/log` is owned by `root` and not writable by `mysqld`. In this case, log-flushing operations fail to create a new log file.
 
 To handle this situation, you must manually create the new log file with the proper ownership after renaming the original log file. For example, execute these commands as `root`:
 

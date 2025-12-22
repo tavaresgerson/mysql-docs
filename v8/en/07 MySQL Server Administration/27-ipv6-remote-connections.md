@@ -29,7 +29,7 @@ These addresses are chosen from the nonroutable address range recommended by IAN
    ```
    mysql> CREATE USER 'remoteipv6user'@'2001:db8:0:f101::2' IDENTIFIED BY 'remoteipv6pass';
    ```
-3. On the client host (`2001:db8:0:f101::2`), invoke the  **mysql** client to connect to the server using the new account:
+3. On the client host (`2001:db8:0:f101::2`), invoke the  `mysql` client to connect to the server using the new account:
 
    ```
    $> mysql -h 2001:db8:0:f101::1 -u remoteipv6user -premoteipv6pass

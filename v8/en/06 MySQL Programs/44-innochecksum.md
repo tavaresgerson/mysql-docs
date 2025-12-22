@@ -4,7 +4,7 @@
 
 **innochecksum** cannot be used on tablespace files that the server already has open. For such files, you should use  `CHECK TABLE` to check tables within the tablespace. Attempting to run **innochecksum** on a tablespace that the server already has open results in an Unable to lock file error.
 
-If checksum mismatches are found, restore the tablespace from backup or start the server and attempt to use **mysqldump** to make a backup of the tables within the tablespace.
+If checksum mismatches are found, restore the tablespace from backup or start the server and attempt to use `mysqldump` to make a backup of the tables within the tablespace.
 
 Invoke  **innochecksum** like this:
 

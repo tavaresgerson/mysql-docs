@@ -1,6 +1,6 @@
 ### 6.3.2 mysqld_safe — MySQL Server Startup Script
 
- **mysqld_safe** is the recommended way to start a **mysqld** server on Unix. **mysqld_safe** adds some safety features such as restarting the server when an error occurs and logging runtime information to an error log. A description of error logging is given later in this section.
+ **mysqld_safe** is the recommended way to start a `mysqld` server on Unix. **mysqld_safe** adds some safety features such as restarting the server when an error occurs and logging runtime information to an error log. A description of error logging is given later in this section.
 
 ::: info Note
 
@@ -10,11 +10,11 @@ One implication of the non-use of **mysqld_safe** on platforms that use systemd 
 
 :::
 
- **mysqld_safe** tries to start an executable named  **mysqld**. To override the default behavior and specify explicitly the name of the server you want to run, specify a  `--mysqld` or  `--mysqld-version` option to  **mysqld_safe**. You can also use `--ledir` to indicate the directory where  **mysqld_safe** should look for the server.
+ **mysqld_safe** tries to start an executable named  `mysqld`. To override the default behavior and specify explicitly the name of the server you want to run, specify a  `--mysqld` or  `--mysqld-version` option to  **mysqld_safe**. You can also use `--ledir` to indicate the directory where  **mysqld_safe** should look for the server.
 
-Many of the options to  **mysqld_safe** are the same as the options to  **mysqld**. See Section 7.1.7, “Server Command Options”.
+Many of the options to  **mysqld_safe** are the same as the options to  `mysqld`. See Section 7.1.7, “Server Command Options”.
 
-Options unknown to  **mysqld_safe** are passed to **mysqld** if they are specified on the command line, but ignored if they are specified in the `[mysqld_safe]` group of an option file. See Section 6.2.2.2, “Using Option Files”.
+Options unknown to  **mysqld_safe** are passed to `mysqld` if they are specified on the command line, but ignored if they are specified in the `[mysqld_safe]` group of an option file. See Section 6.2.2.2, “Using Option Files”.
 
  **mysqld_safe** reads all options from the `[mysqld]`, `[server]`, and `[mysqld_safe]` sections in option files. For example, if you specify a `[mysqld]` section like this,  **mysqld_safe** finds and uses the `--log-error` option:
 
@@ -45,7 +45,7 @@ For backward compatibility,  **mysqld_safe** also reads `[safe_mysqld]` sections
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--core-file-size=size</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The size of the core file that  **mysqld** should be able to create. The option value is passed to **ulimit -c**.
+  The size of the core file that  `mysqld` should be able to create. The option value is passed to **ulimit -c**.
 
   ::: info Note
 
@@ -108,10 +108,10 @@ For backward compatibility,  **mysqld_safe** also reads `[safe_mysqld]` sections
 
   The name of the library to use for memory allocation instead of the system `malloc()` library. The option value must be one of the directories `/usr/lib`, `/usr/lib64`, `/usr/lib/i386-linux-gnu`, or `/usr/lib/x86_64-linux-gnu`.
 
-  The  `--malloc-lib` option works by modifying the `LD_PRELOAD` environment value to affect dynamic linking to enable the loader to find the memory-allocation library when **mysqld** runs:
+  The  `--malloc-lib` option works by modifying the `LD_PRELOAD` environment value to affect dynamic linking to enable the loader to find the memory-allocation library when `mysqld` runs:
 
   + If the option is not given, or is given without a value ( `--malloc-lib=`), `LD_PRELOAD` is not modified and no attempt is made to use `tcmalloc`.
-  + Prior to MySQL 8.0.21, if the option is given as `--malloc-lib=tcmalloc`, **mysqld_safe** looks for a `tcmalloc` library in `/usr/lib`. If `tmalloc` is found, its path name is added to the beginning of the `LD_PRELOAD` value for **mysqld**. If `tcmalloc` is not found, **mysqld_safe** aborts with an error.
+  + Prior to MySQL 8.0.21, if the option is given as `--malloc-lib=tcmalloc`, **mysqld_safe** looks for a `tcmalloc` library in `/usr/lib`. If `tmalloc` is found, its path name is added to the beginning of the `LD_PRELOAD` value for `mysqld`. If `tcmalloc` is not found, **mysqld_safe** aborts with an error.
 
     As of MySQL 8.0.21, `tcmalloc` is not a permitted value for the `--malloc-lib` option.
   + If the option is given as `--malloc-lib=/path/to/some/library`, that full path is added to the beginning of the `LD_PRELOAD` value. If the full path points to a nonexistent or unreadable file, **mysqld_safe** aborts with an error.
@@ -147,7 +147,7 @@ For backward compatibility,  **mysqld_safe** also reads `[safe_mysqld]` sections
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysqld-version=suffix</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  This option is similar to the `--mysqld` option, but you specify only the suffix for the server program name. The base name is assumed to be  **mysqld**. For example, if you use `--mysqld-version=debug`, **mysqld_safe** starts the **mysqld-debug** program in the `ledir` directory. If the argument to `--mysqld-version` is empty,  **mysqld_safe** uses **mysqld** in the `ledir` directory.
+  This option is similar to the `--mysqld` option, but you specify only the suffix for the server program name. The base name is assumed to be  `mysqld`. For example, if you use `--mysqld-version=debug`, **mysqld_safe** starts the **mysqld-debug** program in the `ledir` directory. If the argument to `--mysqld-version` is empty,  **mysqld_safe** uses `mysqld` in the `ledir` directory.
 
   This option is accepted only on the command line, not in option files. On platforms that use systemd, the value can be specified in the value of `MYSQLD_OPTS`. See  Section 2.5.9, “Managing MySQL Server with systemd”.
 *  `--nice=priority`
@@ -166,7 +166,7 @@ For backward compatibility,  **mysqld_safe** also reads `[safe_mysqld]` sections
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--open-files-limit=count</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The number of files that  **mysqld** should be able to open. The option value is passed to **ulimit -n**.
+  The number of files that  `mysqld` should be able to open. The option value is passed to **ulimit -n**.
 
   ::: info Note
 
@@ -178,7 +178,7 @@ For backward compatibility,  **mysqld_safe** also reads `[safe_mysqld]` sections
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--pid-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
-  The path name that  **mysqld** should use for its process ID file.
+  The path name that  `mysqld` should use for its process ID file.
 *  `--plugin-dir=dir_name`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
@@ -193,7 +193,7 @@ For backward compatibility,  **mysqld_safe** also reads `[safe_mysqld]` sections
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-kill-mysqld</code></td> </tr></tbody></table>
 
-  Do not try to kill stray  **mysqld** processes at startup. This option works only on Linux.
+  Do not try to kill stray  `mysqld` processes at startup. This option works only on Linux.
 *  `--socket=path`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--socket=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
@@ -207,14 +207,14 @@ For backward compatibility,  **mysqld_safe** also reads `[safe_mysqld]` sections
 
   When `syslog` is used for error logging, the `daemon.err` facility/severity is used for all log messages.
 
-  Using these options to control  **mysqld** logging is deprecated. To write error log output to the system log, use the instructions at Section 7.4.2.8, “Error Logging to the System Log”. To control the facility, use the server `log_syslog_facility` system variable.
+  Using these options to control  `mysqld` logging is deprecated. To write error log output to the system log, use the instructions at Section 7.4.2.8, “Error Logging to the System Log”. To control the facility, use the server `log_syslog_facility` system variable.
 *  `--syslog-tag=tag`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--syslog-tag=tag</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
 
-  For logging to `syslog`, messages from **mysqld_safe** and  **mysqld** are written with identifiers of `mysqld_safe` and `mysqld`, respectively. To specify a suffix for the identifiers, use `--syslog-tag=tag`, which modifies the identifiers to be `mysqld_safe-tag` and `mysqld-tag`.
+  For logging to `syslog`, messages from **mysqld_safe** and  `mysqld` are written with identifiers of `mysqld_safe` and `mysqld`, respectively. To specify a suffix for the identifiers, use `--syslog-tag=tag`, which modifies the identifiers to be `mysqld_safe-tag` and `mysqld-tag`.
 
-  Using this option to control  **mysqld** logging is deprecated. Use the server `log_syslog_tag` system variable instead. See  Section 7.4.2.8, “Error Logging to the System Log”.
+  Using this option to control  `mysqld` logging is deprecated. Use the server `log_syslog_tag` system variable instead. See  Section 7.4.2.8, “Error Logging to the System Log”.
 *  `--timezone=timezone`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--timezone=timezone</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
@@ -224,7 +224,7 @@ For backward compatibility,  **mysqld_safe** also reads `[safe_mysqld]` sections
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--user={user_name|user_id}</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
-  Run the  **mysqld** server as the user having the name *`user_name`* or the numeric user ID *`user_id`*. (“User” in this context refers to a system login account, not a MySQL user listed in the grant tables.)
+  Run the  `mysqld` server as the user having the name *`user_name`* or the numeric user ID *`user_id`*. (“User” in this context refers to a system login account, not a MySQL user listed in the grant tables.)
 
 If you execute  **mysqld_safe** with the `--defaults-file` or `--defaults-extra-file` option to name an option file, the option must be the first one given on the command line or the option file is not used. For example, this command does not use the named option file:
 
@@ -254,7 +254,7 @@ If  **mysqld_safe** fails, even when invoked from the MySQL installation directo
 
  **mysqld_safe** tries to use the **sleep** and **date** system utilities to determine how many times per second it has attempted to start. If these utilities are present and the attempted starts per second is greater than 5, **mysqld_safe** waits 1 full second before starting again. This is intended to prevent excessive CPU usage in the event of repeated failures. (Bug #11761530, Bug #54035)
 
-When you use  **mysqld_safe** to start **mysqld**,  **mysqld_safe** arranges for error (and notice) messages from itself and from **mysqld** to go to the same destination.
+When you use  **mysqld_safe** to start `mysqld`,  **mysqld_safe** arranges for error (and notice) messages from itself and from `mysqld` to go to the same destination.
 
 There are several  **mysqld_safe** options for controlling the destination of these messages:
 
@@ -268,6 +268,6 @@ When  **mysqld_safe** writes a message, notices go to the logging destination (`
 
 ::: info Note
 
-Controlling  **mysqld** logging from **mysqld_safe** is deprecated. Use the server's native `syslog` support instead. For more information, see  Section 7.4.2.8, “Error Logging to the System Log”.
+Controlling  `mysqld` logging from **mysqld_safe** is deprecated. Use the server's native `syslog` support instead. For more information, see  Section 7.4.2.8, “Error Logging to the System Log”.
 
 :::

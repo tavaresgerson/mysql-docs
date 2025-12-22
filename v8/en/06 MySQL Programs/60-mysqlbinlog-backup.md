@@ -1,6 +1,6 @@
 #### 6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files
 
-By default,  **mysqlbinlog** reads binary log files and displays their contents in text format. This enables you to examine events within the files more easily and to re-execute them (for example, by using the output as input to **mysql**).  **mysqlbinlog** can read log files directly from the local file system, or, with the `--read-from-remote-server` option, it can connect to a server and request binary log contents from that server.  **mysqlbinlog** writes text output to its standard output, or to the file named as the value of the `--result-file=file_name` option if that option is given.
+By default,  **mysqlbinlog** reads binary log files and displays their contents in text format. This enables you to examine events within the files more easily and to re-execute them (for example, by using the output as input to `mysql`).  **mysqlbinlog** can read log files directly from the local file system, or, with the `--read-from-remote-server` option, it can connect to a server and request binary log contents from that server.  **mysqlbinlog** writes text output to its standard output, or to the file named as the value of the `--result-file=file_name` option if that option is given.
 
 *  mysqlbinlog Backup Capabilities
 *  mysqlbinlog Backup Options
@@ -79,7 +79,7 @@ Suppose that a server currently has binary log files named `binlog.000999` and u
 
 ##### Example: mysqldump + mysqlbinlog for Backup and Restore
 
-The following example describes a simple scenario that shows how to use  **mysqldump** and **mysqlbinlog** together to back up a server's data and binary log, and how to use the backup to restore the server if data loss occurs. The example assumes that the server is running on host *`host_name`* and its first binary log file is named `binlog.000999`. Enter each command on a single line.
+The following example describes a simple scenario that shows how to use  `mysqldump` and **mysqlbinlog** together to back up a server's data and binary log, and how to use the backup to restore the server if data loss occurs. The example assumes that the server is running on host *`host_name`* and its first binary log file is named `binlog.000999`. Enter each command on a single line.
 
 Use  **mysqlbinlog** to make a continuous backup of the binary log:
 
@@ -88,13 +88,13 @@ mysqlbinlog --read-from-remote-server --host=host_name --raw
   --stop-never binlog.000999
 ```
 
-Use  **mysqldump** to create a dump file as a snapshot of the server's data. Use `--all-databases`, `--events`, and `--routines` to back up all data, and  `--source-data=2` to include the current binary log coordinates in the dump file.
+Use  `mysqldump` to create a dump file as a snapshot of the server's data. Use `--all-databases`, `--events`, and `--routines` to back up all data, and  `--source-data=2` to include the current binary log coordinates in the dump file.
 
 ```
 mysqldump --host=host_name --all-databases --events --routines --source-data=2> dump_file
 ```
 
-Execute the  **mysqldump** command periodically to create newer snapshots as desired.
+Execute the  `mysqldump` command periodically to create newer snapshots as desired.
 
 If data loss occurs (for example, if the server unexpectedly exits), use the most recent dump file to restore the data:
 

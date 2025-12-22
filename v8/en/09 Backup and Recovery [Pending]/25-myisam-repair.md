@@ -4,7 +4,7 @@
 
 ### 9.6.3 How to Repair MyISAM Tables
 
-The discussion in this section describes how to use **myisamchk** on `MyISAM` tables (extensions `.MYI` and `.MYD`).
+The discussion in this section describes how to use `myisamchk` on `MyISAM` tables (extensions `.MYI` and `.MYD`).
 
 You can also use the  `CHECK TABLE` and  `REPAIR TABLE` statements to check and repair `MyISAM` tables. See Section 15.7.3.2, “CHECK TABLE Statement”, and Section 15.7.3.5, “REPAIR TABLE Statement”.
 
@@ -38,25 +38,25 @@ ALTER TABLE tbl_name MAX_ROWS=xxx AVG_ROW_LENGTH=yyy;
 
 If you do not know the current table option values, use `SHOW CREATE TABLE`.
 
-For the other errors, you must repair your tables. **myisamchk** can usually detect and fix most problems that occur.
+For the other errors, you must repair your tables. `myisamchk` can usually detect and fix most problems that occur.
 
-The repair process involves up to three stages, described here. Before you begin, you should change location to the database directory and check the permissions of the table files. On Unix, make sure that they are readable by the user that **mysqld** runs as (and to you, because you need to access the files you are checking). If it turns out you need to modify files, they must also be writable by you.
+The repair process involves up to three stages, described here. Before you begin, you should change location to the database directory and check the permissions of the table files. On Unix, make sure that they are readable by the user that `mysqld` runs as (and to you, because you need to access the files you are checking). If it turns out you need to modify files, they must also be writable by you.
 
-This section is for the cases where a table check fails (such as those described in  Section 9.6.2, “How to Check MyISAM Tables for Errors”), or you want to use the extended features that  **myisamchk** provides.
+This section is for the cases where a table check fails (such as those described in  Section 9.6.2, “How to Check MyISAM Tables for Errors”), or you want to use the extended features that  `myisamchk` provides.
 
-The  **myisamchk** options used for table maintenance with are described in  Section 6.6.4, “myisamchk — MyISAM Table-Maintenance Utility”. **myisamchk** also has variables that you can set to control memory allocation that may improve performance. See Section 6.6.4.6, “myisamchk Memory Usage”.
+The  `myisamchk` options used for table maintenance with are described in  Section 6.6.4, “myisamchk — MyISAM Table-Maintenance Utility”. `myisamchk` also has variables that you can set to control memory allocation that may improve performance. See Section 6.6.4.6, “myisamchk Memory Usage”.
 
-If you are going to repair a table from the command line, you must first stop the  **mysqld** server. Note that when you do  **mysqladmin shutdown** on a remote server, the  **mysqld** server is still available for a while after  **mysqladmin** returns, until all statement-processing has stopped and all index changes have been flushed to disk.
+If you are going to repair a table from the command line, you must first stop the  `mysqld` server. Note that when you do  **mysqladmin shutdown** on a remote server, the  `mysqld` server is still available for a while after  `mysqladmin` returns, until all statement-processing has stopped and all index changes have been flushed to disk.
 
 **Stage 1: Checking your tables**
 
 Run  **myisamchk \*.MYI** or [**myisamchk -e \*.MYI**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") if you have more time. Use the `-s` (silent) option to suppress unnecessary information.
 
-If the  **mysqld** server is stopped, you should use the  `--update-state` option to tell  **myisamchk** to mark the table as “checked.”
+If the  `mysqld` server is stopped, you should use the  `--update-state` option to tell  `myisamchk` to mark the table as “checked.”
 
-You have to repair only those tables for which **myisamchk** announces an error. For such tables, proceed to Stage 2.
+You have to repair only those tables for which `myisamchk` announces an error. For such tables, proceed to Stage 2.
 
-If you get unexpected errors when checking (such as `out of memory` errors), or if  **myisamchk** crashes, go to Stage 3.
+If you get unexpected errors when checking (such as `out of memory` errors), or if  `myisamchk` crashes, go to Stage 3.
 
 **Stage 2: Easy safe repair**
 
@@ -66,12 +66,12 @@ First, try [**myisamchk -r -q *`tbl_name`***](myisamchk.html "6.6.4 myisamchk �
 2. Use [**myisamchk -r *`tbl_name`***](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") (`-r` means “recovery mode”). This removes incorrect rows and deleted rows from the data file and reconstructs the index file.
 3. If the preceding step fails, use [**myisamchk --safe-recover *`tbl_name`***](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility"). Safe recovery mode uses an old recovery method that handles a few cases that regular recovery mode does not (but is slower). ::: info Note
 
-If you want a repair operation to go much faster, you should set the values of the `sort_buffer_size` and `key_buffer_size` variables each to about 25% of your available memory when running **myisamchk**.
+If you want a repair operation to go much faster, you should set the values of the `sort_buffer_size` and `key_buffer_size` variables each to about 25% of your available memory when running `myisamchk`.
 
 
 :::
 
-If you get unexpected errors when repairing (such as `out of memory` errors), or if **myisamchk** crashes, go to Stage 3.
+If you get unexpected errors when repairing (such as `out of memory` errors), or if `myisamchk` crashes, go to Stage 3.
 
 **Stage 3: Difficult repair**
 

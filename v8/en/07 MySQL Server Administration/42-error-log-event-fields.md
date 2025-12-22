@@ -83,7 +83,7 @@ Optional error event fields fall into the following categories:
     The client host.
   + `thread`
 
-    The ID of the thread within  **mysqld** responsible for producing the error event. This ID indicates which part of the server produced the event, and is consistent with general query log and slow query log messages, which include the connection thread ID.
+    The ID of the thread within  `mysqld` responsible for producing the error event. This ID indicates which part of the server produced the event, and is consistent with general query log and slow query log messages, which include the connection thread ID.
   + `query_id`
 
     The query ID.

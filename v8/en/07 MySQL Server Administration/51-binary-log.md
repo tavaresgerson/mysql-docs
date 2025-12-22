@@ -17,7 +17,7 @@ MySQL binary log files and relay log files can be encrypted, helping to protect 
 
 The following discussion describes some of the server options and variables that affect the operation of binary logging. For a complete list, see Section 19.1.6.4, “Binary Logging Options and Variables”.
 
-Binary logging is enabled by default (the `log_bin` system variable is set to ON). The exception is if you use  **mysqld** to initialize the data directory manually by invoking it with the `--initialize` or `--initialize-insecure` option, when binary logging is disabled by default, but can be enabled by specifying the  `--log-bin` option.
+Binary logging is enabled by default (the `log_bin` system variable is set to ON). The exception is if you use  `mysqld` to initialize the data directory manually by invoking it with the `--initialize` or `--initialize-insecure` option, when binary logging is disabled by default, but can be enabled by specifying the  `--log-bin` option.
 
 To disable binary logging, you can specify the `--skip-log-bin` or `--disable-log-bin` option at startup. If either of these options is specified and `--log-bin` is also specified, the option specified later takes precedence.
 
@@ -25,7 +25,7 @@ The  `--log-replica-updates` and `--replica-preserve-commit-order` options requi
 
 The `--log-bin[=base_name]` option is used to specify the base name for binary log files. If you do not supply the `--log-bin` option, MySQL uses `binlog` as the default base name for the binary log files. For compatibility with earlier releases, if you supply the `--log-bin` option with no string or with an empty string, the base name defaults to `host_name-bin`, using the name of the host machine. It is recommended that you specify a base name, so that if the host name changes, you can easily continue to use the same binary log file names (see Section B.3.7, “Known Issues in MySQL”). If you supply an extension in the log name (for example, `--log-bin=base_name.extension`), the extension is silently removed and ignored.
 
-**mysqld** appends a numeric extension to the binary log base name to generate binary log file names. The number increases each time the server creates a new log file, thus creating an ordered series of files. The server creates a new file in the series each time any of the following events occurs:
+`mysqld` appends a numeric extension to the binary log base name to generate binary log file names. The number increases each time the server creates a new log file, thus creating an ordered series of files. The server creates a new file in the series each time any of the following events occurs:
 
 * The server is started or restarted
 * The server flushes the logs.
@@ -33,7 +33,7 @@ The `--log-bin[=base_name]` option is used to specify the base name for binary l
 
 A binary log file may become larger than `max_binlog_size` if you are using large transactions because a transaction is written to the file in one piece, never split between files.
 
-To keep track of which binary log files have been used, **mysqld** also creates a binary log index file that contains the names of the binary log files. By default, this has the same base name as the binary log file, with the extension `'.index'`. You can change the name of the binary log index file with the `--log-bin-index[=file_name]` option. You should not manually edit this file while **mysqld** is running; doing so would confuse **mysqld**.
+To keep track of which binary log files have been used, `mysqld` also creates a binary log index file that contains the names of the binary log files. By default, this has the same base name as the binary log file, with the extension `'.index'`. You can change the name of the binary log index file with the `--log-bin-index[=file_name]` option. You should not manually edit this file while `mysqld` is running; doing so would confuse `mysqld`.
 
 The term “binary log file” generally denotes an individual numbered file containing database events. The term “binary log” collectively denotes the set of numbered binary log files plus the index file.
 
@@ -67,7 +67,7 @@ Binary logging is done immediately after a statement or transaction completes bu
 
 Updates to nontransactional tables are stored in the binary log immediately after execution.
 
-Within an uncommitted transaction, all updates ( `UPDATE`, `DELETE`, or `INSERT`) that change transactional tables such as `InnoDB` tables are cached until a `COMMIT` statement is received by the server. At that point,  **mysqld** writes the entire transaction to the binary log before the `COMMIT` is executed.
+Within an uncommitted transaction, all updates ( `UPDATE`, `DELETE`, or `INSERT`) that change transactional tables such as `InnoDB` tables are cached until a `COMMIT` statement is received by the server. At that point,  `mysqld` writes the entire transaction to the binary log before the `COMMIT` is executed.
 
 Modifications to nontransactional tables cannot be rolled back. If a transaction that is rolled back includes modifications to nontransactional tables, the entire transaction is logged with a `ROLLBACK` statement at the end to ensure that the modifications to those tables are replicated.
 

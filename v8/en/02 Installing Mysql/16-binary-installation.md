@@ -39,7 +39,7 @@ To install a compressed **tar** file binary distribution, unpack it at the insta
 
 <table><col style="width: 45%"/><col style="width: 55%"/><thead><tr> <th>Directory</th> <th>Contents of Directory</th> </tr></thead><tbody><tr> <td><code>bin</code></td> <td><span><strong>mysqld</strong></span> server, client and utility programs</td> </tr><tr> <td><code>docs</code></td> <td>MySQL manual in Info format</td> </tr><tr> <td><code>man</code></td> <td>Unix manual pages</td> </tr><tr> <td><code>include</code></td> <td>Include (header) files</td> </tr><tr> <td><code>lib</code></td> <td>Libraries</td> </tr><tr> <td><code>share</code></td> <td>Error messages, dictionary, and SQL for database installation</td> </tr><tr> <td><code>support-files</code></td> <td>Miscellaneous support files</td> </tr></tbody></table>
 
-Debug versions of the  **mysqld** binary are available as  **mysqld-debug**. To compile your own debug version of MySQL from a source distribution, use the appropriate configuration options to enable debugging support. See Section 2.8, “Installing MySQL from Source”.
+Debug versions of the  `mysqld` binary are available as  **mysqld-debug**. To compile your own debug version of MySQL from a source distribution, use the appropriate configuration options to enable debugging support. See Section 2.8, “Installing MySQL from Source”.
 
 To install and use a MySQL binary distribution, the command sequence looks like this:
 
@@ -72,7 +72,7 @@ A more detailed version of the preceding description for installing a binary dis
 
 ### Create a mysql User and Group
 
-If your system does not already have a user and group to use for running  **mysqld**, you may need to create them. The following commands add the `mysql` group and the `mysql` user. You might want to call the user and group something else instead of `mysql`. If so, substitute the appropriate name in the following instructions. The syntax for **useradd** and **groupadd** may differ slightly on different versions of Unix/Linux, or they may have different names such as **adduser** and **addgroup**.
+If your system does not already have a user and group to use for running  `mysqld`, you may need to create them. The following commands add the `mysql` group and the `mysql` user. You might want to call the user and group something else instead of `mysql`. If so, substitute the appropriate name in the following instructions. The syntax for **useradd** and **groupadd** may differ slightly on different versions of Unix/Linux, or they may have different names such as **adduser** and **addgroup**.
 
 ```
 $> groupadd mysql

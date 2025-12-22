@@ -312,7 +312,7 @@ Use an administrative MySQL account to perform the steps in this procedure, exce
 
    ::: info Note
 
-   The `@@version_comment` rule comes from a statement sent automatically by the **mysql** client when you connect to the server.
+   The `@@version_comment` rule comes from a statement sent automatically by the `mysql` client when you connect to the server.
 
    :::
    
@@ -553,7 +553,7 @@ Use an administrative MySQL account to perform the steps in this procedure, exce
 
    ::: info Note
 
-   The `@@version_comment` rule comes from a statement sent automatically by the **mysql** client when you connect to the server.
+   The `@@version_comment` rule comes from a statement sent automatically by the `mysql` client when you connect to the server.
 
    :::
 
@@ -659,7 +659,7 @@ mysql> SHOW GLOBAL STATUS LIKE 'Firewall%';
 +----------------------------+-------+
 ```
 
-The variables indicate the number of statements rejected, accepted, logged as suspicious, and added to the cache, respectively. The `Firewall_access_granted` count is 4 because of the `@@version_comment` statement sent by the  **mysql** client each of the three times you connected using the registered account, plus the  `SHOW TABLES` statement that was not blocked in `DETECTING` mode.
+The variables indicate the number of statements rejected, accepted, logged as suspicious, and added to the cache, respectively. The `Firewall_access_granted` count is 4 because of the `@@version_comment` statement sent by the  `mysql` client each of the three times you connected using the registered account, plus the  `SHOW TABLES` statement that was not blocked in `DETECTING` mode.
 
 ##### Migrating Account Profiles to Group Profiles
 

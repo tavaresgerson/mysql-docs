@@ -47,6 +47,6 @@ When you run a client program to connect to the MySQL server, it is inadvisable 
 
    Section 6.2.2.2, “Using Option Files”, discusses option files in more detail.
 
-On Unix, the  **mysql** client writes a record of executed statements to a history file (see Section 6.5.1.3, “mysql Client Logging”). By default, this file is named `.mysql_history` and is created in your home directory. Passwords can be written as plain text in SQL statements such as  `CREATE USER` and  `ALTER USER`, so if you use these statements, they are logged in the history file. To keep this file safe, use a restrictive access mode, the same way as described earlier for the `.my.cnf` file.
+On Unix, the  `mysql` client writes a record of executed statements to a history file (see Section 6.5.1.3, “mysql Client Logging”). By default, this file is named `.mysql_history` and is created in your home directory. Passwords can be written as plain text in SQL statements such as  `CREATE USER` and  `ALTER USER`, so if you use these statements, they are logged in the history file. To keep this file safe, use a restrictive access mode, the same way as described earlier for the `.my.cnf` file.
 
 If your command interpreter maintains a history, any file in which the commands are saved contains MySQL passwords entered on the command line. For example, **bash** uses `~/.bash_history`. Any such file should have a restrictive access mode.

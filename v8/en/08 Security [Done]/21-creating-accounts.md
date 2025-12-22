@@ -29,7 +29,7 @@ For additional information about the statements discussed here, see  Section 15
 
 #### Creating Accounts and Granting Privileges
 
-The following examples show how to use the **mysql** client program to set up new accounts. These examples assume that the MySQL `root` account has the  `CREATE USER` privilege and all privileges that it grants to other accounts.
+The following examples show how to use the `mysql` client program to set up new accounts. These examples assume that the MySQL `root` account has the  `CREATE USER` privilege and all privileges that it grants to other accounts.
 
 At the command line, connect to the server as the MySQL `root` user, supplying the appropriate password at the password prompt:
 
@@ -69,7 +69,7 @@ The accounts created by those statements have the following properties:
 * Two accounts have a user name of `finley`. Both are superuser accounts with full global privileges to do anything. The `'finley'@'localhost'` account can be used only when connecting from the local host. The `'finley'@'%.example.com'` account uses the `'%'` wildcard in the host part, so it can be used to connect from any host in the `example.com` domain.
 
   The `'finley'@'localhost'` account is necessary if there is an anonymous-user account for `localhost`. Without the `'finley'@'localhost'` account, that anonymous-user account takes precedence when `finley` connects from the local host and `finley` is treated as an anonymous user. The reason for this is that the anonymous-user account has a more specific `Host` column value than the `'finley'@'%'` account and thus comes earlier in the `user` table sort order. (For information about `user` table sorting, see  Section 8.2.6, “Access Control, Stage 1: Connection Verification”.)
-* The `'admin'@'localhost'` account can be used only by `admin` to connect from the local host. It is granted the global `RELOAD` and `PROCESS` administrative privileges. These privileges enable the `admin` user to execute the **mysqladmin reload**, **mysqladmin refresh**, and **mysqladmin flush-*`xxx`*** commands, as well as  **mysqladmin processlist** . No privileges are granted for accessing any databases. You could add such privileges using `GRANT` statements.
+* The `'admin'@'localhost'` account can be used only by `admin` to connect from the local host. It is granted the global `RELOAD` and `PROCESS` administrative privileges. These privileges enable the `admin` user to execute the `mysqladmin reload`, **mysqladmin refresh**, and **mysqladmin flush-*`xxx`*** commands, as well as  **mysqladmin processlist** . No privileges are granted for accessing any databases. You could add such privileges using `GRANT` statements.
 * The `'dummy'@'localhost'` account has no password (which is insecure and not recommended). This account can be used only to connect from the local host. No privileges are granted. It is assumed that you grant specific privileges to the account using `GRANT` statements.
 
 The previous example grants privileges at the global level. The next example creates three accounts and grants them access at lower levels; that is, to specific databases or objects within databases. Each account has a user name of `custom`, but the host name parts differ:

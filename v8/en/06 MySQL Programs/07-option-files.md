@@ -2,7 +2,7 @@
 
 Most MySQL programs can read startup options from option files (sometimes called configuration files). Option files provide a convenient way to specify commonly used options so that they need not be entered on the command line each time you run a program.
 
-To determine whether a program reads option files, invoke it with the `--help` option. (For **mysqld**, use `--verbose` and `--help`.) If the program reads option files, the help message indicates which files it looks for and which option groups it recognizes.
+To determine whether a program reads option files, invoke it with the `--help` option. (For `mysqld`, use `--verbose` and `--help`.) If the program reads option files, the help message indicates which files it looks for and which option groups it recognizes.
 
 ::: info Note
 
@@ -16,7 +16,7 @@ Many option files are plain text files, created using any text editor. The excep
 
 * The `.mylogin.cnf` file that contains login path options. This is an encrypted file created by the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”. A “login path” is an option group that permits only certain options: `host`, `user`, `password`, `port` and `socket`. Client programs specify which login path to read from `.mylogin.cnf` using the  `--login-path` option.
 
-  To specify an alternative login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is used by the **mysql-test-run.pl** testing utility, but also is recognized by  **mysql\_config\_editor** and by MySQL clients such as  **mysql**, **mysqladmin**, and so forth.
+  To specify an alternative login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is used by the **mysql-test-run.pl** testing utility, but also is recognized by  **mysql\_config\_editor** and by MySQL clients such as  `mysql`, `mysqladmin`, and so forth.
 * The `mysqld-auto.cnf` file in the data directory. This JSON-format file contains persisted system variable settings. It is created by the server upon execution of [`SET PERSIST`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") or [`SET PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") statements. See Section 7.1.9.3, “Persisted System Variables”. Management of `mysqld-auto.cnf` should be left to the server and not performed manually.
 
 *  Option File Processing Order
@@ -79,13 +79,13 @@ In the preceding table, `~` represents the current user's home directory (the va
 
 *`DATADIR`* represents the MySQL data directory. As used to find `mysqld-auto.cnf`, its default value is the data directory location built in when MySQL was compiled, but can be changed by  `--datadir` specified as an option-file or command-line option processed before `mysqld-auto.cnf` is processed.
 
-If multiple instances of a given option are found, the last instance takes precedence, with one exception: For **mysqld**, the *first* instance of the  `--user` option is used as a security precaution, to prevent a user specified in an option file from being overridden on the command line.
+If multiple instances of a given option are found, the last instance takes precedence, with one exception: For `mysqld`, the *first* instance of the  `--user` option is used as a security precaution, to prevent a user specified in an option file from being overridden on the command line.
 
 ##### Option File Syntax
 
 The following description of option file syntax applies to files that you edit manually. This excludes `.mylogin.cnf`, which is created using **mysql_config_editor** and is encrypted, and `mysqld-auto.cnf`, which the server creates in JSON format.
 
-Any long option that may be given on the command line when running a MySQL program can be given in an option file as well. To get the list of available options for a program, run it with the `--help` option. (For **mysqld**, use `--verbose` and `--help`.)
+Any long option that may be given on the command line when running a MySQL program can be given in an option file as well. To get the list of available options for a program, run it with the `--help` option. (For `mysqld`, use `--verbose` and `--help`.)
 
 The syntax for specifying options in an option file is similar to command-line syntax (see Section 6.2.2.1, “Using Options on the Command Line”). However, in an option file, you omit the leading two dashes from the option name and you specify only one option per line. For example, `--quick` and `--host=localhost` on the command line should be specified as `quick` and `host=localhost` on separate lines in an option file. To specify an option of the form `--loose-opt_name` in an option file, write it as `loose-opt_name`.
 
@@ -124,13 +124,13 @@ basedir="C:/Program Files/MySQL/MySQL Server 8.4"
 basedir=C:\\Program\sFiles\\MySQL\\MySQL\sServer\s8.4
 ```
 
-If an option group name is the same as a program name, options in the group apply specifically to that program. For example, the `[mysqld]` and `[mysql]` groups apply to the  **mysqld** server and the **mysql** client program, respectively.
+If an option group name is the same as a program name, options in the group apply specifically to that program. For example, the `[mysqld]` and `[mysql]` groups apply to the  `mysqld` server and the `mysql` client program, respectively.
 
-The `[client]` option group is read by all client programs provided in MySQL distributions (but *not* by  **mysqld**). To understand how third-party client programs that use the C API can use option files, see the C API documentation at mysql\_options().
+The `[client]` option group is read by all client programs provided in MySQL distributions (but *not* by  `mysqld`). To understand how third-party client programs that use the C API can use option files, see the C API documentation at mysql\_options().
 
 The `[client]` group enables you to specify options that apply to all clients. For example, `[client]` is the appropriate group to use to specify the password for connecting to the server. (But make sure that the option file is accessible only by yourself, so that other people cannot discover your password.) Be sure not to put an option in the `[client]` group unless it is recognized by *all* client programs that you use. Programs that do not understand the option quit after displaying an error message if you try to run them.
 
-List more general option groups first and more specific groups later. For example, a `[client]` group is more general because it is read by all client programs, whereas a `[mysqldump]` group is read only by **mysqldump**. Options specified later override options specified earlier, so putting the option groups in the order `[client]`, `[mysqldump]` enables **mysqldump**-specific options to override `[client]` options.
+List more general option groups first and more specific groups later. For example, a `[client]` group is more general because it is read by all client programs, whereas a `[mysqldump]` group is read only by `mysqldump`. Options specified later override options specified earlier, so putting the option groups in the order `[client]`, `[mysqldump]` enables `mysqldump`-specific options to override `[client]` options.
 
 Here is a typical global option file:
 
@@ -161,7 +161,7 @@ no-auto-rehash
 connect_timeout=2
 ```
 
-To create option groups to be read only by **mysqld** servers from specific MySQL release series, use groups with names of `[mysqld-8.3]`, `[mysqld-8.4]`, and so forth. The following group indicates that the `sql_mode` setting should be used only by MySQL servers with 8.4.x version numbers:
+To create option groups to be read only by `mysqld` servers from specific MySQL release series, use groups with names of `[mysqld-8.3]`, `[mysqld-8.4]`, and so forth. The following group indicates that the `sql_mode` setting should be used only by MySQL servers with 8.4.x version numbers:
 
 ```
 [mysqld-8.4]
@@ -208,7 +208,7 @@ force
 key_buffer_size=16M
 ```
 
-If `my.cnf` is processed by **mysqld**, only the `[mysqld]` group in `/home/mydir/myopt.cnf` is used. If the file is processed by  **mysqladmin**, only the `[mysqladmin]` group is used. If the file is processed by any other program, no options in `/home/mydir/myopt.cnf` are used.
+If `my.cnf` is processed by `mysqld`, only the `[mysqld]` group in `/home/mydir/myopt.cnf` is used. If the file is processed by  `mysqladmin`, only the `[mysqladmin]` group is used. If the file is processed by any other program, no options in `/home/mydir/myopt.cnf` are used.
 
 The `!includedir` directive is processed similarly except that all option files in the named directory are read.
 

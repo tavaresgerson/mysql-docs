@@ -159,10 +159,10 @@ Os seguintes recursos foram adicionados ao MySQL 8.4:
   As funções embutidas `GTID_SUBSET()`, `GTID_SUBTRACT()`, e `WAIT_FOR_EXECUTED_GTID_SET()` são compatíveis com GTIDs marcados.
 
   Para obter mais informações, consulte as descrições da variável de sistema `gtid_next` e do privilégio `TRANSACTION_GTID_TAG`, bem como a Seção 19.1.4, "Changing GTID Mode on Online Servers".
-- ** Replicação: SQL\_AFTER\_GTIDS e MTA. ** Uma opção de instrução `START REPLICA` `SQL_AFTER_GTIDS` agora é compatível com o aplicador multi-threaded. (Anteriormente, quando o MTA estava habilitado e o usuário tentou usar essa opção, uma instrução levantou o aviso `ER_MTA_FEATURE_IS_NOT_SUPPORTED`, e uma réplica foi mudada para o modo single-threaded.) Isso significa que uma réplica que precisa recuperar transações perdidas agora pode fazê-lo sem perder uma vantagem de desempenho do multithreading.
+- **Replicação: `SQL_AFTER_GTIDS` e `MTA`.** Uma opção de instrução `START REPLICA` `SQL_AFTER_GTIDS` agora é compatível com o aplicador multi-threaded. (Anteriormente, quando o `MTA` estava habilitado e o usuário tentou usar essa opção, uma instrução levantou o aviso `ER_MTA_FEATURE_IS_NOT_SUPPORTED`, e uma réplica foi mudada para o modo single-threaded. Isso significa que uma réplica que precisa recuperar transações perdidas agora pode fazê-lo sem perder uma vantagem de desempenho do multithreading.
 
   Para obter mais informações, consulte a Seção 15.4.2.4, "START REPLICA Statement", bem como uma documentação para uma variável do sistema `replica_parallel_workers`.
-- Esta versão adiciona uma opção `--output-as-version` para **mysqldump**. Esta opção permite criar um dump a partir de um servidor MySQL 8.2 ou mais novo que seja compatível com versões mais antigas do MySQL; seu valor, um dos listados aqui, determina a compatibilidade da terminologia de replicação usada no dump:
+- Esta versão adiciona uma opção `--output-as-version` para `mysqldump`. Esta opção permite criar um dump a partir de um servidor MySQL 8.2 ou mais novo que seja compatível com versões mais antigas do MySQL; seu valor, um dos listados aqui, determina a compatibilidade da terminologia de replicação usada no dump:
 
   - `SERVER`: Obtém uma versão do servidor e usa como versões mais recentes de instruções de replicação e nomes de variáveis compatíveis com essa versão do MySQL.
   - `BEFORE_8_2_0`: A saída é compatível com servidores MySQL executando versões 8.0.23 a 8.1.0, inclusive.
@@ -170,12 +170,10 @@ Os seguintes recursos foram adicionados ao MySQL 8.4:
 
   Ver uma descrição desta opção para mais informações.
 
-  Além disso, um novo valor é adicionado àqueles já permitidos para uma variável do sistema `terminology_use_previous`. `BEFORE_8_2_0` faz com que o servidor imprima `DISABLE ON SLAVE` (agora desatualizado) em vez de `DISABLE ON REPLICA` na saída de `SHOW CREATE EVENT`]{show-create-event.html}. O valor existente `BEFORE_8_0_26` agora também tem esse efeito, além dos que já tinha anteriormente.
+  Além disso, um novo valor é adicionado àqueles já permitidos para uma variável do sistema `terminology_use_previous`. `BEFORE_8_2_0` faz com que o servidor imprima `DISABLE ON SLAVE` (agora desatualizado) em vez de `DISABLE ON REPLICA` na saída de `SHOW CREATE EVENT`. O valor existente `BEFORE_8_0_26` agora também tem esse efeito, além dos que já tinha anteriormente.
 - O número de versão do MySQL usado em comentários específicos de versão suporta uma versão principal consistindo de um ou dois dígitos; isso significa que uma versão inteira pode ter cinco ou seis dígitos de comprimento.
-- ** group\_replication\_set\_as\_primary) e instruções DDL. ** A função `group_replication_set_as_primary()` aguarda instruções DDL em andamento, como `ALTER TABLE` quando aguarda que todas as transações sejam concluídas, antes de escolher uma nova primária.
-
-  Para mais informações, ver a descrição desta função.
-- ** O rastreamento de instruções DDL e DCL para `group_replication_set_as_primary()`. ** `group_replication_set_as_primary()` agora aguarda que as seguintes instruções sejam concluídas antes de uma nova primária ser eleita:
+- **`group_replication_set_as_primary()` e instruções DDL.** A função `group_replication_set_as_primary()` aguarda instruções DDL em andamento, como `ALTER TABLE` quando aguarda que todas as transações sejam concluídas, antes de escolher uma nova primária.
+- **O rastreamento de instruções DDL e DCL para `group_replication_set_as_primary()`.** `group_replication_set_as_primary()` agora aguarda que as seguintes instruções sejam concluídas antes de uma nova primária ser eleita:
 
   - `ALTER DATABASE`
   - `ALTER FUNCTION`
@@ -210,24 +208,21 @@ Os seguintes recursos foram adicionados ao MySQL 8.4:
   - `REVOKE`
 
   Estas são adicionais às instruções adicionadas no MySQL 8.1 ou de outra forma já suportadas a este respeito. Para mais informações, incluindo uma lista de todas essas instruções suportadas no MySQL 8.3, consulte a descrição da função `group_replication_set_as_primary()`.
-- ** A compatibilidade de versão para servidores dentro de grupos foi estendida da seguinte forma:
+- A compatibilidade de versão para servidores dentro de grupos foi estendida da seguinte forma:
 
   Os downgrades em local de servidores dentro de grupos são suportados dentro da série MySQL 8.4 LTS. Por exemplo, um membro de um grupo executando MySQL 8.4.2 pode ser downgraded para MySQL 8.4.0.
 
   Da mesma forma, uma associação de grupos de versões cruzadas também é suportada dentro da série de versões 8.4. Por exemplo, um servidor executando o MySQL 8.4.0 pode se juntar a um grupo cujos membros atualmente executam o MySQL 8.4.2, assim como um servidor executando o MySQL 8.4.3.
-- ** Valores padrão das variáveis de replicação de grupo. ** Os valores padrão das duas variáveis do sistema do servidor relacionadas à replicação de grupo foram alterados no MySQL 8.4:
+- **Valores padrão das variáveis de replicação de grupo.** Os valores padrão das duas variáveis do sistema do servidor relacionadas à replicação de grupo foram alterados no MySQL 8.4:
 
   - O valor padrão da variável do sistema `group_replication_consistency` foi alterado para `BEFORE_ON_PRIMARY_FAILOVER` no MySQL 8.4.0. (Anteriormente, era `EVENTUAL`.)
   - O valor padrão da variável do sistema `group_replication_exit_state_action` foi alterado para `OFFLINE_MODE` no MySQL 8.4.0. (Anteriormente, era `READ_ONLY`.)
 
-  Para obter mais informações, consulte a Seção 20.5.3.2, "Configurando garantias de consistência de transação" e a Seção 20.7.7, "Respostas à detecção de falhas e particionamento de rede", bem como as descrições das variáveis listadas.
 - Várias variáveis de status específicas foram adicionadas ao plug-in de replicação de grupo que melhoram o diagnóstico e a resolução de problemas de instabilidade de rede, fornecendo estatísticas sobre o uso da rede, mensagens de controle e mensagens de dados para cada membro do grupo.
-
-Consulte a Secção 20.9.2, Variáveis de status de replicação de grupo para obter mais informações.
 
 Como parte deste trabalho, uma nova coluna `MEMBER_FAILURE_SUSPICIONS_COUNT` foi adicionada à tabela `replication_group_communication_information` do Esquema de Desempenho. O conteúdo desta coluna é formatado como uma matriz JSON cujas chaves são os IDs dos membros do grupo e cujos valores são o número de vezes que um membro do grupo foi considerado suspeito. Consulte a descrição desta tabela para obter mais informações.
 
-- ** Um novo privilégio é adicionado no MySQL 8.4.0 especificamente para permitir o uso de instruções `FLUSH PRIVILEGES`. Ao contrário do privilégio `RELOAD`, o privilégio `FLUSH_PRIVILEGES` aplica-se apenas a instruções `FLUSH PRIVILEGES`.
+- **Um novo privilégio é adicionado no MySQL 8.4.0 especificamente para permitir o uso de instruções `FLUSH PRIVILEGES`.** Ao contrário do privilégio `RELOAD`, o privilégio `FLUSH_PRIVILEGES` aplica-se apenas a instruções `FLUSH PRIVILEGES`.
 
   No MySQL 8.4, o privilégio `RELOAD` continua a ser suportado nesta capacidade para fornecer compatibilidade com versões anteriores.
 
@@ -235,11 +230,11 @@ Como parte deste trabalho, uma nova coluna `MEMBER_FAILURE_SUSPICIONS_COUNT` foi
 
   Se você fizer downgrade do MySQL 8.4 (ou posterior) para uma versão do MySQL que não suporta o privilégio `FLUSH_PRIVILEGES`, um usuário que recebeu anteriormente este privilégio não poderá executar instruções `FLUSH PRIVILEGES` a menos que o usuário tenha o privilégio `RELOAD`.
 
-- ** Privilégio OPTIMIZE\_LOCAL\_TABLE. ** MySQL 8.4.0 adiciona um novo privilégio `OPTIMIZE_LOCAL_TABLE`. Os usuários devem ter este privilégio para executar as instruções `OPTIMIZE LOCAL TABLE` e `OPTIMIZE NO_WRITE_TO_BINLOG TABLE`.
+- **Privilégio `OPTIMIZE_LOCAL_TABLE`.** MySQL 8.4.0 adiciona um novo privilégio `OPTIMIZE_LOCAL_TABLE`. Os usuários devem ter este privilégio para executar as instruções `OPTIMIZE LOCAL TABLE` e `OPTIMIZE NO_WRITE_TO_BINLOG TABLE`.
 
   Ao atualizar uma série de versões anteriores, os usuários com o privilégio `SYSTEM_USER` recebem automaticamente o privilégio `OPTIMIZE_LOCAL_TABLE`.
 
-- ** Mascaramento e desidentificação de dados corporativos do MySQL. ** Os componentes de mascaramento de dados adicionaram suporte para especificar um esquema dedicado para armazenar uma tabela interna relacionada e funções de mascaramento. Anteriormente, o esquema do sistema `mysql` fornecia uma única opção de armazenamento. A nova variável somente leitura `component_masking.masking_database` permite definir e persistir um nome de esquema alternativo na inicialização do servidor.
+- **Mascaramento e desidentificação de dados corporativos do MySQL.** Os componentes de mascaramento de dados adicionaram suporte para especificar um esquema dedicado para armazenar uma tabela interna relacionada e funções de mascaramento. Anteriormente, o esquema do sistema `mysql` fornecia uma única opção de armazenamento. A nova variável somente leitura `component_masking.masking_database` permite definir e persistir um nome de esquema alternativo na inicialização do servidor.
 
 - O componente MySQL Enterprise Data Masking and De-Identification agora inclui a capacidade de liberar os dados não secundários ou uma réplica para uma memória. Isto pode ser feito por qualquer uma das maneiras descritas aqui:
 
@@ -249,11 +244,9 @@ Como parte deste trabalho, uma nova coluna `MEMBER_FAILURE_SUSPICIONS_COUNT` foi
 
   Para obter mais informações, consulte a Seção 8.5, "Mascaramento e desidentificação de dados corporativos do MySQL" e as descrições desses itens.
 
-- **Actualizações automáticas de histograma. ** MySQL 8.4.0 adiciona suporte para atualizações automáticas de histogramas. Quando este recurso está habilitado para um determinado histograma, ele é atualizado sempre que `ANALYZE TABLE` é executado na tabela à qual pertence. Além disso, o recálculo automático de estatísticas persistentes pelo `InnoDB` (consulte a Seção 17.8.10.1, Configurando parâmetros estatísticos do Persistent Optimizer) também atualiza o histograma. As atualizações do histograma continuam a usar o mesmo número de buckets com os quais foram originalmente especificados, se houver.
+- **Atualizações automáticas de histograma.** MySQL 8.4.0 adiciona suporte para atualizações automáticas de histogramas. Quando este recurso está habilitado para um determinado histograma, ele é atualizado sempre que `ANALYZE TABLE` é executado na tabela à qual pertence. Além disso, o recálculo automático de estatísticas persistentes pelo `InnoDB` (consulte a Seção 17.8.10.1, Configurando parâmetros estatísticos do `Persistent Optimizer`) também atualiza o histograma. As atualizações do histograma continuam a usar o mesmo número de buckets com os quais foram originalmente especificados, se houver.
 
   Você pode ativar esse recurso ao especificar o histograma incluindo uma opção `AUTO UPDATE` para uma instrução `ANALYZE TABLE`. Para desativá-lo, inclua `MANUAL UPDATE`. `MANUAL UPDATE` (sem atualizações automáticas) é o padrão se nenhuma opção for especificada.
-
-  Para obter mais informações, consulte Análise estatística do histograma.
 
 - Adicionada uma variável de sistema `tls-certificates-enforced-validation`, que permite que um DBA imponha uma validação de certificado na inicialização do servidor ou ao usar uma instrução `ALTER INSTANCE RELOAD TLS` para recarregar certificados em tempo de execução. Com uma imposição habilitada, uma descoberta de um certificado inválido interrompe uma invocação do servidor na inicialização, evita o carregamento de certificados inválidos em tempo de execução e emite avisos. Para obter mais informações, consulte Configurando uma aplicação de validação de certificado.
 
@@ -270,7 +263,7 @@ Como parte deste trabalho, uma nova coluna `MEMBER_FAILURE_SUSPICIONS_COUNT` foi
 
 Para obter mais informações, consulte a Seção 7.4.2, "O log de erros".
 
-- ** Adições às mensagens de inicialização e encerramento do servidor. ** Adicionamos os seguintes tipos de mensagens aos processos de inicialização e encerramento do servidor, conforme indicado nesta lista:
+- **Adições às mensagens de inicialização e encerramento do servidor.** Adicionamos os seguintes tipos de mensagens aos processos de inicialização e encerramento do servidor, conforme indicado nesta lista:
 
 - Mensagens de início e término para inicialização do servidor quando o servidor é iniciado com `--initialize` ou `--initialize-insecure`; eles são adicionais e diferentes daqueles mostrados durante uma inicialização e desligamento normais do servidor.
 
@@ -288,7 +281,7 @@ Para obter mais informações, consulte a Seção 7.4.2, "O log de erros".
 
 - Adicionada uma instrução `SHOW PARSE_TREE`, que mostra uma árvore de análise formatada em JSON para uma instrução `SELECT`. Esta declaração se destina apenas para uso em testes e desenvolvimento, e não em produção. Ele está disponível apenas em compilações de depuração ou se o MySQL foi compilado a partir do código-fonte usando uma opção CMake `-DWITH_SHOW_PARSE_TREE` e não está incluído ou suportado em compilações de lançamento.
 
-- ** Informações de conexão do plug-in do pool de threads. ** Adicionadas informações de conexão do pool de threads ao MySQL Performance Schema, como segue:
+- **Informações de conexão do plug-in do pool de threads.** Adicionadas informações de conexão do pool de threads ao MySQL Performance Schema, como segue:
 
 - Adicionada uma tabela `tp_connections`, com informações sobre cada conexão do pool de threads.
 
@@ -298,20 +291,20 @@ Para obter mais informações, consulte a Seção 7.4.2, "O log de erros".
 
 Para obter mais informações, consulte a Seção 7.6.3, "Pool de threads corporativos do MySQL" e a Seção 29.12.16, "Tabelas de pool de threads do esquema de desempenho".
 
-- **Uso da tabela PROCESSLIST do esquema de informações. ** Embora uma tabela `INFORMATION_SCHEMA.PROCESSLIST` tenha sido descontinuada no MySQL 8.0.35 e 8.2.0, o interesse permanece em rastrear seu uso. Esta versão adiciona duas variáveis de status do sistema que fornecem informações sobre acessos à tabela `PROCESSLIST`, listadas aqui:
+- **Uso da tabela PROCESSLIST do esquema de informações.** Embora uma tabela `INFORMATION_SCHEMA.PROCESSLIST` tenha sido descontinuada no MySQL 8.0.35 e 8.2.0, o interesse permanece em rastrear seu uso. Esta versão adiciona duas variáveis de status do sistema que fornecem informações sobre acessos à tabela `PROCESSLIST`, listadas aqui:
 
 - `Deprecated_use_i_s_processlist_count` fornece uma contagem do número de referências à tabela `PROCESSLIST` em consultas desde uma última inicialização do servidor.
 
-- Este é um valor de carimbo de dados/hora (número de microssegundos desde uma época Unix).
+- Este é um valor de carimbo de dados/hora (número de microssegundos Unix).
 
-- **Otimização de tabela de hash para operações de conjunto. ** O MySQL 8.2 melhora o desempenho de instruções usando como operações de conjunto `EXCEPT` e `INTERSECT` por meio de uma nova otimização de tabela de hash que é habilitada automaticamente para tais instruções e controlada pela configuração da chave otimizadora `hash_set_operations`; para desativar esta otimização e fazer com que o otimizador use uma antiga otimização de tabela temporária de versões anteriores do MySQL, define este sinalizador como `off`.
+- **Otimização de tabela de hash para operações de conjunto.** O MySQL 8.2 melhora o desempenho de instruções usando como operações de conjunto `EXCEPT` e `INTERSECT` por meio de uma nova otimização de tabela de hash que é habilitada automaticamente para tais instruções e controlada pela configuração da chave otimizadora `hash_set_operations`; para desativar esta otimização e fazer com que o otimizador use uma antiga otimização de tabela temporária de versões anteriores do MySQL, define este sinalizador como `off`.
 
 A quantidade de memória alocada para esta otimização pode ser controlada definindo o valor da variável de sistema do servidor `set_operations_buffer_size`; aumentar o tamanho do buffer pode melhorar ainda mais o tempo de execução de algumas instruções usando essas operações.
 
 Para obter mais informações, consulte a Secção 10.9.2, "Otimizações comutáveis".
 
-- ** WITH\_LD CMake opção. ** `WITH_LD`: Defina se deve usar o llvm lld ou mold linker, caso contrário, use o linker padrão. `WITH_LD` também substitui a `USE_LD_LLD` CMake opção que foi removida no MySQL 8.3.0.
-- ** Melhorias no MySQL Enterprise Firewall. ** Uma série de melhorias foram feitas desde o MySQL 8.0 para o MySQL Enterprise Firewall.
+- **WITH_LD CMake opção.** `WITH_LD`: Defina se deve usar o llvm lld ou mold linker, caso contrário, use o linker padrão. `WITH_LD` também substitui a `USE_LD_LLD` CMake opção que foi removida no MySQL 8.3.0.
+- **Melhorias no MySQL Enterprise Firewall.** Uma série de melhorias foram feitas desde o MySQL 8.0 para o MySQL Enterprise Firewall.
 
   - Os procedimentos armazenados fornecidos pelo MySQL Enterprise Firewall agora se comportam de maneira transacional. Quando ocorre um erro durante a execução de um procedimento armazenado de firewall, um erro é relatado e todas as alterações feitas pelo procedimento armazenado até esse momento são revertidas.
   - Os procedimentos armazenados no firewall agora evitam executar combinações desnecessárias de instruções `DELETE` mais `INSERT`, bem como as de operações `INSERT IGNORE` mais `UPDATE`, consumindo menos tempo e menos recursos, tornando-as mais rápidas e eficientes.
@@ -321,33 +314,33 @@ Para obter mais informações, consulte a Secção 10.9.2, "Otimizações comut�
   - Adicionado o script `uninstall_firewall.sql` para simplificar a remoção de um firewall instalado.
 
   Para mais informações sobre procedimentos armazenados no firewall, consulte Procedimentos armazenados no MySQL Enterprise Firewall.
-- ** Autenticação Pluggable. ** Suporte adicionado para autenticação no MySQL Server usando dispositivos como cartões inteligentes, chaves de segurança e leitores biométricos em um contexto WebAuthn. O novo método de autenticação WebAuthn é baseado nos padrões FIDO e FIDO2. Ele usa um par de plugins, `authentication_webauthn` no lado do servidor e `authentication_webauthn_client` no lado do cliente. O plugin de autenticação WebAuthn do lado do servidor é incluído apenas nas distribuições MySQL Enterprise Edition.
-- ** Migração de keyring. ** Migração de um componente de keyring para um plugin de keyring é suportada. Para executar tal migração, use a opção de servidor `--keyring-migration-from-component` introduzida no MySQL 8.4.0, definindo `--keyring-migration-source` como o nome do componente de origem e `--keyring-migration-destination` como o nome do plugin de destino.
+- **Autenticação Pluggable.** Suporte adicionado para autenticação no MySQL Server usando dispositivos como cartões inteligentes, chaves de segurança e leitores biométricos em um contexto WebAuthn. O novo método de autenticação WebAuthn é baseado nos padrões FIDO e FIDO2. Ele usa um par de plugins, `authentication_webauthn` no lado do servidor e `authentication_webauthn_client` no lado do cliente. O plugin de autenticação WebAuthn do lado do servidor é incluído apenas nas distribuições MySQL Enterprise Edition.
+- **Migração de keyring.** Migração de um componente de keyring para um plugin de keyring é suportada. Para executar tal migração, use a opção de servidor `--keyring-migration-from-component` introduzida no MySQL 8.4.0, definindo `--keyring-migration-source` como o nome do componente de origem e `--keyring-migration-destination` como o nome do plugin de destino.
 
   Ver Migração de chaves usando um servidor de migração, para mais informações.
-- ** MySQL Enterprise Audit. ** Adicionado o script `audit_log_filter_uninstall.sql` para simplificar a remoção do MySQL Enterprise Audit.
-- ** Novas palavras-chave. ** Palavras-chave adicionadas no MySQL 8.4 desde o MySQL 8.0. Palavras-chave reservadas são marcadas com (R).
+- **MySQL Enterprise Audit.** Adicionado o script `audit_log_filter_uninstall.sql` para simplificar a remoção do MySQL Enterprise Audit.
+- **Novas palavras-chave.** Palavras-chave adicionadas no MySQL 8.4 desde o MySQL 8.0. Palavras-chave reservadas são marcadas com (R).
 
   `AUTO`, `BERNOULLI`, `GTIDS`, `LOG`, `MANUAL` (R), `PARALLEL` (R), `PARSE_TREE`, `QUALIFY` (R), `S3`, e `TABLESAMPLE` (R).
-- ** Coleta de lixo de certificação de replicação de grupo preventiva. ** Uma variável de sistema adicionada no MySQL 8.4.0 `group_replication_preemptive_garbage_collection` permite a coleta de lixo preventiva para a replicação de grupo em execução no modo single-primary, mantendo apenas os conjuntos de gravação para as transações que ainda não foram comprometidas. Isso pode economizar tempo e consumo de memória. Uma variável de sistema adicional `group_replication_preemptive_garbage_collection_rows_threshold` (também introduzida no MySQL 8.4.0) define um limite inferior no número de linhas de certificação necessárias para desencadear a coleta de lixo preventiva, se estiver ativada; o padrão é 100000.
+- **Coleta de lixo de certificação de replicação de grupo preventiva.** Uma variável de sistema adicionada no MySQL 8.4.0 `group_replication_preemptive_garbage_collection` permite a coleta de lixo preventiva para a replicação de grupo em execução no modo single-primary, mantendo apenas os conjuntos de gravação para as transações que ainda não foram comprometidas. Isso pode economizar tempo e consumo de memória. Uma variável de sistema adicional `group_replication_preemptive_garbage_collection_rows_threshold` (também introduzida no MySQL 8.4.0) define um limite inferior no número de linhas de certificação necessárias para desencadear a coleta de lixo preventiva, se estiver ativada; o padrão é 100000.
 
   No modo multi-primário, cada conjunto de gravação nas informações de certificação é necessário desde o momento em que uma transação é certificada até que seja comprometida em todos os membros, o que torna necessário detectar conflitos entre transações.
 
   Não é possível alterar o modo de replicação de grupo entre mono-primário e multi-primário quando `group_replication_preemptive_garbage_collection` está habilitado.
 
   Ver a secção 20.7.9, "Monitoramento do uso da memória de replicação em grupo com instrumentação de memória de esquema de desempenho", para obter ajuda na obtenção de informações sobre a memória consumida por este processo.
-- ** Recuperação de registro de relé desinfetado. ** No MySQL 8.4.0 e posterior, é possível recuperar o registro de relé com quaisquer transações incompletas removidas. O registro de relé agora é desinfetado quando o servidor é iniciado com `--relay-log-recovery=OFF` (o padrão), o que significa que todos os itens a seguir são removidos:
+- **Recuperação de registro de relay.** No MySQL 8.4.0 e posterior, é possível recuperar o registro de *relay* com quaisquer transações incompletas removidas. O registro de relay agora é quando o servidor é iniciado com `--relay-log-recovery=OFF` (o padrão), o que significa que todos os itens a seguir são removidos:
 
   - Transacções que permanecem incompletas no final do registo de retransmissão
-  - Ficheiros de registo de retransmissão que contenham apenas transacções incompletas ou partes delas
+  - Ficheiros de registo de retransmissão que contenham apenas transações incompletas ou partes delas
   - Referências no ficheiro de índice de registo de retransmissão a ficheiros de registo de retransmissão que foram assim eliminados
 
   Para mais informações, consulte a descrição da variável do sistema do servidor `relay_log_recovery`.
-- ** Arquivo de histórico de atualização do MySQL. ** Como parte do processo de instalação no MySQL 8.4.0 e posterior, um arquivo em formato JSON chamado `mysql_upgrade_history` é criado no diretório de dados do servidor, ou atualizado se já existir. Este arquivo inclui informações sobre a versão do servidor MySQL instalada, quando foi instalada e se o lançamento fazia parte de uma série LTS ou de uma série Innovation.
+- **Arquivo de histórico de atualização do MySQL.** Como parte do processo de instalação no MySQL 8.4.0 e posterior, um arquivo em formato JSON chamado `mysql_upgrade_history` é criado no diretório de dados do servidor, ou atualizado se já existir. Este arquivo inclui informações sobre a versão do servidor MySQL instalada, quando foi instalada e se o lançamento fazia parte de uma série LTS ou de uma série Innovation.
 
   Um arquivo típico de `mysql_upgrade_history` pode ter uma aparência parecida com esta (formatação ajustada para leitura):
 
-  ```
+  ```json
   {
     "file_format":"1",
 
@@ -367,22 +360,19 @@ Para obter mais informações, consulte a Secção 10.9.2, "Otimizações comut�
         "initialize":false
       }
     ]
-
   }
   ```
 
   Além disso, o processo de instalação agora verifica a presença de um arquivo `mysql_upgrade_info` (deprecado no MySQL 8.0, e não é mais usado). Se encontrado, o arquivo é removido.
-- ** cliente mysql --opção de comando do sistema. ** A opção `--system-command` para o cliente **mysql**, disponível no MySQL 8.4.3 e posterior, ativa ou desativa o comando `system`.
+- **Opção `--system-command`** A opção `--system-command` para o cliente `mysql`, disponível no MySQL 8.4.3 e posterior, ativa ou desativa o comando `system`.
 
   Esta opção está habilitada por padrão. Para desativá-la, use `--system-command=OFF` ou `--skip-system-command`, o que faz com que o comando `system` seja rejeitado com um erro.
-- ** Cliente mysql --commands opção. ** O ** cliente mysql ** `--commands` opção, introduzida no MySQL 8.4.6, permite ou desativa a maioria dos comandos do cliente ** mysql **.
+- **Cliente mysql --commands opção.** O **cliente mysql** `--commands` opção, introduzida no MySQL 8.4.6, permite ou desativa a maioria dos comandos do cliente `mysql`.
 
-  Esta opção está habilitada por padrão. Para desativá-la, inicie o cliente **mysql** com `--commands=OFF` ou `--skip-commands`.
+  Esta opção está habilitada por padrão. Para desativá-la, inicie o cliente `mysql` com `--commands=OFF` ou `--skip-commands`.
+**Subconsultas escalares correlacionadas para tabelas derivadas.** O MySQL 8.4.0 remove uma restrição anterior à transformação de uma subconsulta escalar correlacionada em uma tabela derivada, permitindo que um operando da expressão de igualdade que não continha uma referência externa seja apenas uma simples referência de coluna.
 
-  Para obter mais informações, consulte a secção 6.5.1.1, "Opções do cliente mysql".
-- ** Subconselhos escalares correlacionados a tabelas derivadas. ** O MySQL 8.4.0 remove uma restrição anterior à transformação de uma subconselha escalar correlacionada em uma tabela derivada, de modo que um operando da expressão de igualdade que não continha uma referência externa poderia ser apenas uma simples referência de coluna.
-
-  Isso significa que as colunas internas podem ser contidas em expressões determinísticas, como mostrado aqui:
+  Isso significa que colunas internas podem ser incluídas em expressões determinísticas, como mostrado aqui:
 
   ```
   func1(.., funcN(.., inner-column-a, ..), inner-column-b) = outside-expression
@@ -392,7 +382,7 @@ Para obter mais informações, consulte a Secção 10.9.2, "Otimizações comut�
 
   Por exemplo, a seguinte consulta agora é suportada para otimização:
 
-  ```
+  ```sql
   SELECT * FROM t1
     WHERE ( SELECT func(t2.a) FROM t2
               WHERE func(t2.a) = t1.a ) > 0;
@@ -400,9 +390,7 @@ Para obter mais informações, consulte a Secção 10.9.2, "Otimizações comut�
 
   O operando interno não pode conter referências de coluna externa; do mesmo modo, o operando externo não pode conter referências de coluna interna.
 
-  Se a subconsulta transformada tiver agrupamento explícito, a análise de dependência funcional pode ser excessivamente pessimista, resultando em um erro como ERRO 1055 (42000): A expressão #2 da lista SELECT não está na cláusula GROUP BY e contém uma coluna não agregada .... Para o mecanismo de armazenamento `InnoDB` , a transformação está desativada por padrão (ou seja, a bandeira `subquery_to_derived` da variável `optimizer_switch` não está habilitada); neste caso, essas consultas passam sem levantar nenhum erro, mas também não são transformadas.
-
-  Para mais informações, ver secção 15.2.15.7, "Subconselhos correlacionados".
+  Se a subconsulta transformada tiver agrupamento explícito, a análise de dependência funcional pode ser excessivamente pessimista, resultando em um erro como ERRO 1055 (42000): A expressão #2 da lista `SELECT` não está na cláusula `GROUP BY` e contém uma coluna não agregada .... Para o mecanismo de armazenamento `InnoDB` , a transformação está desativada por padrão (ou seja, a bandeira `subquery_to_derived` da variável `optimizer_switch` não está habilitada); neste caso, essas consultas passam sem levantar nenhum erro, mas também não são transformadas.
 
 ### Características depreciadas no MySQL 8.4
 
@@ -410,18 +398,18 @@ Os seguintes recursos estão desatualizados no MySQL 8.4 e podem ser removidos e
 
 Para aplicativos que usam recursos desatualizados no MySQL 8.4 que foram removidos em uma versão posterior do MySQL, instruções podem falhar quando replicadas de uma fonte do MySQL 8.4 para uma réplica executando uma versão posterior, ou podem ter efeitos diferentes na fonte e na réplica.
 
-- **group\_replication\_allow\_local\_lower\_version\_join sistema variável. ** A `group_replication_allow_local_lower_version_join` sistema variável está desatualizado, e configurá-lo faz com que um aviso (`ER_WARN_DEPRECATED_SYNTAX_NO_REPLACEMENT`) a ser registrado.
+- **`group_replication_allow_local_lower_version_join()` sistema variável.** A `group_replication_allow_local_lower_version_join` sistema variável está desatualizado, e configurá-lo faz com que um aviso (`ER_WARN_DEPRECATED_SYNTAX_NO_REPLACEMENT`) a ser registrado.
 
   Você deve esperar que essa variável seja removida em uma versão futura do MySQL. Uma vez que a funcionalidade ativada pela configuração `group_replication_allow_local_lower_version_join` não é mais útil, nenhuma substituição para ela é planejada.
-- ** Metadados de recuperação de replicação de grupo. ** A recuperação de replicação de grupo não depende mais da gravação de eventos de mudança de visão no log binário para marcar mudanças na associação ao grupo; em vez disso, quando todos os membros de um grupo são a versão MySQL 8.3.0 ou posterior, os membros compartilham metadados de recuperação compactados e nenhum evento é registrado (ou atribuído a um GTID) quando um novo membro se junta ao grupo.
+- **Metadados de recuperação de replicação de grupo.** A recuperação de replicação de grupo não depende mais da gravação de eventos de mudança de visão no log binário para marcar mudanças na associação ao grupo; em vez disso, quando todos os membros de um grupo são a versão MySQL 8.3.0 ou posterior, os membros compartilham metadados de recuperação compactados e nenhum evento é registrado (ou atribuído a um GTID) quando um novo membro se junta ao grupo.
 
   Os metadados de recuperação incluem o ID de visualização GCS, `GTID_SET` de transações certificadas e informações de certificação, bem como uma lista de membros on-line.
 
   Uma vez que a `View_change_log_event` não desempenha mais um papel na recuperação, a variável do sistema `group_replication_view_change_uuid` não é mais necessária e, portanto, agora está desatualizada; espere sua remoção em uma versão futura do MySQL. Você deve estar ciente de que nenhuma substituição ou alternativa para esta variável ou sua funcionalidade está planejada, e desenvolva seus aplicativos de acordo.
-- ** A função `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` SQL foi depreciada no MySQL 8.0, e não é mais suportada a partir do MySQL 8.2. Tentando invocar esta função agora causa um erro de sintaxe.
+- **A função `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` SQL foi depreciada no MySQL 8.0, e não é mais suportada a partir do MySQL 8.2. Tentando invocar esta função agora causa um erro de sintaxe.
 
   Em vez de `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()`, é recomendado que você use `WAIT_FOR_EXECUTED_GTID_SET()`, o que permite que você espere por GTIDS específicos. Isso funciona independentemente do canal de replicação ou do cliente de usuário através do qual as transações especificadas chegam ao servidor.
-- ** Replicação baseada em GTID e IGNORE\_SERVER\_IDS. ** Quando os identificadores globais de transação (GTIDs) são usados para replicação, as transações que já foram aplicadas são automaticamente ignoradas. Isso significa que o `IGNORE_SERVER_IDS` não é compatível com o modo GTID. Se o `gtid_mode` é o `ON`, o `CHANGE REPLICATION SOURCE TO` com uma lista de `IGNORE_SERVER_IDS` não vazia é rejeitado com um erro. Da mesma forma, se qualquer canal de replicação existente foi criado com uma lista de IDs de servidor a serem ignorados, o `SET gtid_mode=ON` também é rejeitado. Antes de iniciar a replicação baseada em GTID, verifique e limpe quaisquer listas de IDs de servidor ignorados nos servidores envolvidos; você pode fazer isso verificando a saída do \[\[CO`SHOW REPLICA STATUS`.
+- **Replicação baseada em GTID e `IGNORE_SERVER_IDS`.** Quando os identificadores globais de transação (GTIDs) são usados para replicação, as transações que já foram aplicadas são automaticamente ignoradas. Isso significa que o `IGNORE_SERVER_IDS` não é compatível com o modo GTID. Se o `gtid_mode` é o `ON`, o `CHANGE REPLICATION SOURCE TO` com uma lista de `IGNORE_SERVER_IDS` não vazia é rejeitado com um erro. Da mesma forma, se qualquer canal de replicação existente foi criado com uma lista de IDs de servidor a serem ignorados, o `SET gtid_mode=ON` também é rejeitado. Antes de iniciar a replicação baseada em GTID, verifique e limpe quaisquer listas de IDs de servidor ignorados nos servidores envolvidos; você pode fazer isso verificando a saída do `SHOW REPLICA STATUS`.
 
   ```
   CHANGE REPLICATION SOURCE TO IGNORE_SERVER_IDS = ();
@@ -431,7 +419,7 @@ Para aplicativos que usam recursos desatualizados no MySQL 8.4 que foram removid
 - ** O uso de informações de conjuntos de gravação para detecção de conflitos causou problemas com o rastreamento de dependências; por esta razão, agora limitamos o uso de conjuntos de gravação para verificações de conflitos quando o registro baseado em linhas está em vigor.
 
   Isso significa que, nesses casos, `binlog_format` deve ser `ROW`, e `MIXED` não é mais suportado.
-- A variável do sistema do servidor `expire_logs_days`, depreciada no MySQL 8.0, foi removida. Tentando obter ou definir esta variável no tempo de execução, ou para iniciar **mysqld** com a opção equivalente (`--expire-logs-days`), agora resulta em um erro.
+- A variável do sistema do servidor `expire_logs_days`, depreciada no MySQL 8.0, foi removida. Tentando obter ou definir esta variável no tempo de execução, ou para iniciar `mysqld` com a opção equivalente (`--expire-logs-days`), agora resulta em um erro.
 
   Em vez de `expire_logs_days`, use `binlog_expire_logs_seconds`, que permite especificar períodos de validade diferentes de (apenas) em um número integral de dias.
 - ** Caracteres wildcard em concessões de banco de dados. ** O uso dos caracteres `%` e `_` como wildcards em concessões de banco de dados foi descartado no MySQL 8.2.0. Você deve esperar que a funcionalidade wildcard seja removida em uma versão futura do MySQL e que esses caracteres sempre sejam tratados como literais, como já são sempre que o valor da variável do sistema do servidor `partial_revokes` é `ON`.
@@ -452,7 +440,7 @@ Para aplicativos MySQL 8.3 que usam recursos removidos no MySQL 8.4, instruçõe
 
 - ** Opções e variáveis do servidor removidas. ** Várias opções e variáveis do servidor suportadas em versões anteriores do MySQL foram removidas no MySQL 8.4.
 
-  - No MySQL 8.4 (e posterior), quando réplicas multithreaded estão em uso, a fonte **mysqld** sempre usa conjuntos de gravação para gerar informações de dependência para o log binário; isso tem o mesmo efeito que definir `binlog_transaction_dependency_tracking` para `WRITESET` em versões anteriores do MySQL.
+  - No MySQL 8.4 (e posterior), quando réplicas multithreaded estão em uso, a fonte `mysqld` sempre usa conjuntos de gravação para gerar informações de dependência para o log binário; isso tem o mesmo efeito que definir `binlog_transaction_dependency_tracking` para `WRITESET` em versões anteriores do MySQL.
   - No MySQL 8.4 e posterior, a política aplicada durante o processo de recuperação distribuída é sempre marcar um novo membro on-line somente depois de ter recebido, certificado e aplicado todas as transações que ocorreram antes de ele se juntar ao grupo; isso é equivalente a definir o `group_replication_recovery_complete_at` para o `TRANSACTIONS_APPLIED` em versões anteriores do MySQL.
   - `avoid_temporal_upgrade` e `show_old_temporals`: Ambas as variáveis foram depreciadas no MySQL 5.6; nenhuma delas teve qualquer efeito nas versões recentes do MySQL. Ambas as variáveis foram removidas; não há planos para substituir qualquer uma delas.
   - `--no-dd-upgrade`: Desaproveitado no MySQL 8.0.16, agora removido. Use `--upgrade=NONE` em vez disso.
@@ -530,7 +518,7 @@ Para aplicativos MySQL 8.3 que usam recursos removidos no MySQL 8.4, instruçõe
 
     - `MASTER_LOG_FILE`: Use `SOURCE_LOG_FILE`.
     - `MASTER_LOG_POS`: Use `SOURCE_LOG_POS`.
-  - ** Variaveis de sistema e NULL. ** Não é pretendido ou suportado para uma opção de inicialização do servidor MySQL ser definida como NULL (`--my-option=NULL`) e ser interpretada pelo servidor como SQL `NULL`, e não deve ser possível. O MySQL 8.1 (e posterior) especificamente não permite a definição de opções de inicialização para `NULL` desta forma, e rejeita uma tentativa de fazer com um erro. As tentativas de definir as variáveis do sistema do servidor correspondentes para `NULL` usando `SET` ou similares no cliente **mysql** também são rejeitadas.
+  - ** Variaveis de sistema e NULL. ** Não é pretendido ou suportado para uma opção de inicialização do servidor MySQL ser definida como NULL (`--my-option=NULL`) e ser interpretada pelo servidor como SQL `NULL`, e não deve ser possível. O MySQL 8.1 (e posterior) especificamente não permite a definição de opções de inicialização para `NULL` desta forma, e rejeita uma tentativa de fazer com um erro. As tentativas de definir as variáveis do sistema do servidor correspondentes para `NULL` usando `SET` ou similares no cliente `mysql` também são rejeitadas.
 
     As variáveis do sistema de servidores da lista a seguir estão excluídas da restrição descrita:
 
@@ -584,7 +572,7 @@ Para aplicativos MySQL 8.3 que usam recursos removidos no MySQL 8.4, instruçõe
 
   - Plugins `authentication_fido` e `authentication_fido_client`: Use o plug-in `authentication_webauthn` em vez disso. Veja Seção 8.4.1.11, WebAuthn Pluggable Authentication.
 
-    A variável do sistema de servidor `authentication_fido_rp_id`, a opção do cliente **mysql** `--fido-register-factor` e a opção `-DWITH_FIDO` CMake também foram removidas.
+    A variável do sistema de servidor `authentication_fido_rp_id`, a opção do cliente `mysql` `--fido-register-factor` e a opção `-DWITH_FIDO` CMake também foram removidas.
   - Plugin `keyring_file`: Use o componente `component_keyring_file` em vez disso. Veja Seção 8.4.4.4, Utilizando o componente\_keyring\_file Componente de Keyring Baseado em Arquivo.
 
     A variável do sistema `keyring_file_data` também foi removida. Além disso, as opções de CMake `-DINSTALL_MYSQLKEYRINGDIR` e `-DWITH_KEYRING_TEST` foram removidas.
@@ -668,9 +656,9 @@ Para aplicativos MySQL 8.3 que usam recursos removidos no MySQL 8.4, instruçõe
   Esta opção não é compatível com `FOR CONNECTION`.
 
   Para mais informações, consulte Obter informações sobre o plano de execução.
-- ** Comentários do cliente preservados. ** No MySQL 8.0, a remoção de comentários do cliente **mysql** era o comportamento padrão; o padrão foi alterado para preservar esses comentários.
+- ** Comentários do cliente preservados. ** No MySQL 8.0, a remoção de comentários do cliente `mysql` era o comportamento padrão; o padrão foi alterado para preservar esses comentários.
 
-  Para habilitar a remoção de comentários como foi realizado no MySQL 8.0 e anteriores, inicie o cliente **mysql** com `--skip-comments`.
+  Para habilitar a remoção de comentários como foi realizado no MySQL 8.0 e anteriores, inicie o cliente `mysql` com `--skip-comments`.
 - ** O uso do modificador `AUTO_INCREMENT` com as colunas `FLOAT` - FLOAT, DOUBLE") e `DOUBLE` - FLOAT, DOUBLE") nas instruções `CREATE TABLE` e `ALTER TABLE` foi descartado no MySQL 8.0; o suporte para ele foi removido completamente no MySQL 8.4, onde ele levanta `ER_WRONG_FIELD_SPEC` (especificador de coluna incorreto para coluna).
 
   Antes de atualizar para o MySQL 8.4 a partir de uma série anterior, você \* deve \* corrigir qualquer tabela que contenha uma coluna `FLOAT` ou `DOUBLE` com `AUTO_INCREMENT` para que a tabela não use mais nenhuma delas. Caso contrário, a atualização falha.
@@ -681,7 +669,7 @@ Para aplicativos MySQL 8.3 que usam recursos removidos no MySQL 8.4, instruçõe
   Em vez de `SET_USER_ID`, você pode usar o privilégio `SET_ANY_DEFINER` para criação de objetos definidores, e os privilégios `ALLOW_NONEXISTENT_DEFINER` para proteção de objetos órfãos.
 
   Ambos os privilégios são necessários para produzir objetos SQL órfãos usando `CREATE PROCEDURE`, `CREATE FUNCTION`, `CREATE TRIGGER`, `CREATE EVENT`, ou `CREATE VIEW`.
-- As opções de inicialização do servidor MySQL `--abort-slave-event-count` e `--disconnect-slave-event-count`, anteriormente usadas em testes, foram depreciadas no MySQL 8.0, e foram removidas nesta versão. Tentando iniciar **mysqld** com qualquer uma dessas opções agora resulta em um erro.
+- As opções de inicialização do servidor MySQL `--abort-slave-event-count` e `--disconnect-slave-event-count`, anteriormente usadas em testes, foram depreciadas no MySQL 8.0, e foram removidas nesta versão. Tentando iniciar `mysqld` com qualquer uma dessas opções agora resulta em um erro.
 - O utilitário **mysql\_upgrade**, desatualizado no MySQL 8.0.16, foi removido.
 - ** utilidade mysqlpump. ** A utilidade ** mysqlpump ** juntamente com suas utilidades auxiliares ** lz4\_decompress ** e ** zlib\_decompress **, depreciadas no MySQL 8.0.34, foram removidas. Em vez disso, use ** mysqldump ** ou \[utilidades de despejo do MySQL Shell] ((/doc/mysql-shell/8.4/en/mysql-shell-utilities-dump-instance-schema.html).
 - ** Opções obsoletas do CMake. ** As seguintes opções para compilar o servidor com o CMake foram obsoletas e foram removidas:

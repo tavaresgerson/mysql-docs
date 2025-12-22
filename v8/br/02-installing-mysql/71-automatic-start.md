@@ -6,7 +6,7 @@ Geralmente, você inicia o servidor mysqld de uma dessas maneiras:
 
 - Isso funciona em qualquer plataforma.
 - No Windows, você pode configurar um serviço MySQL que é executado automaticamente quando o Windows é iniciado.
-- Em Unix e sistemas semelhantes a Unix, você pode invocar **mysqld\_safe**, que tenta determinar as opções apropriadas para **mysqld** e, em seguida, executa-lo com essas opções.
+- Em Unix e sistemas semelhantes a Unix, você pode invocar **mysqld\_safe**, que tenta determinar as opções apropriadas para `mysqld` e, em seguida, executa-lo com essas opções.
 - Em sistemas Linux que suportam systemd, você pode usá-lo para controlar o servidor.
 - Em sistemas que usam diretórios de execução do estilo System V (ou seja, `/etc/init.d` e diretórios específicos de nível de execução), invoque **mysql.server**. Este script é usado principalmente na inicialização e desligamento do sistema. Ele geralmente é instalado sob o nome `mysql`. O script **mysql.server** inicia o servidor invocando **mysqld\_safe**. Veja Seção 6.3.3, mysql.server  MySQL Server Startup Script.
 - No macOS, instale um demônio de lançamento para habilitar a inicialização automática do MySQL na inicialização do sistema. O demônio inicia o servidor invocando **mysqld\_safe**. Para detalhes, consulte a Seção 2.4.3, Instalar e usar o Daemon de Lançamento do MySQL. Um Painel de Preferências do MySQL também fornece controle para iniciar e parar o MySQL através das Preferências do Sistema. Consulte a Seção 2.4.4, Instalar e usar o Painel de Preferências do MySQL.

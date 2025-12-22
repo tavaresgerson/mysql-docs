@@ -20,7 +20,7 @@ Preliminary checks:
    mysqlcheck -u root -p --all-databases --check-upgrade
    ```
 
-   If  **mysqlcheck** reports any errors, correct the issues.
+   If  `mysqlcheck` reports any errors, correct the issues.
 2. There must be no partitioned tables that use a storage engine that does not have native partitioning support. To identify such tables, execute this query:
 
    ```

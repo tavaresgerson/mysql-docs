@@ -16,9 +16,9 @@ These performance tips supplement the general guidelines for fast inserts in  Se
   5. Re-create the indexes with [**myisamchk -rq *`/path/to/db/tbl_name`***](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility"). This creates the index tree in memory before writing it to disk, which is much faster than updating the index during  `LOAD DATA` because it avoids lots of disk seeks. The resulting index tree is also perfectly balanced.
   6. Execute a  `FLUSH TABLES` statement or a [**mysqladmin flush-tables**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") command.
 
-   `LOAD DATA` performs the preceding optimization automatically if the `MyISAM` table into which you insert data is empty. The main difference between automatic optimization and using the procedure explicitly is that you can let **myisamchk** allocate much more temporary memory for the index creation than you might want the server to allocate for index re-creation when it executes the `LOAD DATA` statement.
+   `LOAD DATA` performs the preceding optimization automatically if the `MyISAM` table into which you insert data is empty. The main difference between automatic optimization and using the procedure explicitly is that you can let `myisamchk` allocate much more temporary memory for the index creation than you might want the server to allocate for index re-creation when it executes the `LOAD DATA` statement.
 
-  You can also disable or enable the nonunique indexes for a `MyISAM` table by using the following statements rather than  **myisamchk**. If you use these statements, you can skip the `FLUSH TABLES` operations:
+  You can also disable or enable the nonunique indexes for a `MyISAM` table by using the following statements rather than  `myisamchk`. If you use these statements, you can skip the `FLUSH TABLES` operations:
 
   ```
   ALTER TABLE tbl_name DISABLE KEYS;

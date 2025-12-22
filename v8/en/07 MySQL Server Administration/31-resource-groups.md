@@ -180,7 +180,7 @@ On some platforms or MySQL server configurations, resource groups are unavailabl
   ```
 * On Linux, resource groups thread priorities are ignored unless the `CAP_SYS_NICE` capability is set. Granting `CAP_SYS_NICE` capability to a process enables a range of privileges; consult <http://man7.org/linux/man-pages/man7/capabilities.7.html> for the full list. Please be careful when enabling this capability.
 
-  On Linux platforms using systemd and kernel support for Ambient Capabilities (Linux 4.3 or newer), the recommended way to enable `CAP_SYS_NICE` capability is to modify the MySQL service file and leave the **mysqld** binary unmodified. To adjust the service file for MySQL, use this procedure:
+  On Linux platforms using systemd and kernel support for Ambient Capabilities (Linux 4.3 or newer), the recommended way to enable `CAP_SYS_NICE` capability is to modify the MySQL service file and leave the `mysqld` binary unmodified. To adjust the service file for MySQL, use this procedure:
 
   1. Run the appropriate command for your platform:
 
@@ -202,7 +202,7 @@ On some platforms or MySQL server configurations, resource groups are unavailabl
      ```
   3. Restart the MySQL service.
 
-  If you cannot enable the `CAP_SYS_NICE` capability as just described, it can be set manually using the **setcap** command, specifying the path name to the  **mysqld** executable (this requires **sudo** access). You can check the capabilities using **getcap**. For example:
+  If you cannot enable the `CAP_SYS_NICE` capability as just described, it can be set manually using the **setcap** command, specifying the path name to the  `mysqld` executable (this requires **sudo** access). You can check the capabilities using **getcap**. For example:
 
   ```
   $> sudo setcap cap_sys_nice+ep /path/to/mysqld
@@ -210,7 +210,7 @@ On some platforms or MySQL server configurations, resource groups are unavailabl
   /path/to/mysqld = cap_sys_nice+ep
   ```
 
-  As a safety measure, restrict execution of the **mysqld** binary to the `root` user and users with `mysql` group membership:
+  As a safety measure, restrict execution of the `mysqld` binary to the `root` user and users with `mysql` group membership:
 
   ```
   $> sudo chown root:mysql /path/to/mysqld

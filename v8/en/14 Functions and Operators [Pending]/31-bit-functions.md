@@ -28,7 +28,7 @@ The following list describes available bit functions and operators:
           -> 'ABCD'
   ```
 
-  If bitwise OR is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If bitwise OR is invoked from within the `mysql` client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `&`
 
   Bitwise AND.
@@ -47,7 +47,7 @@ The following list describes available bit functions and operators:
           -> 'F0'
   ```
 
-  If bitwise AND is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If bitwise AND is invoked from within the `mysql` client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `^`
 
   Bitwise XOR.
@@ -70,7 +70,7 @@ The following list describes available bit functions and operators:
           -> 'EFCD'
   ```
 
-  If bitwise XOR is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If bitwise XOR is invoked from within the `mysql` client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `<<`
 
   Shifts a longlong ( `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number or binary string to the left.
@@ -91,7 +91,7 @@ The following list describes available bit functions and operators:
           -> 'FF00FF00FF00'
   ```
 
-  If a bit shift is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If a bit shift is invoked from within the `mysql` client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `>>`
 
   Shifts a longlong ( `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number or binary string to the right.
@@ -112,7 +112,7 @@ The following list describes available bit functions and operators:
           -> '0000FF00FF00'
   ```
 
-  If a bit shift is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If a bit shift is invoked from within the `mysql` client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `~`
 
   Invert all bits.
@@ -131,7 +131,7 @@ The following list describes available bit functions and operators:
           -> 'FFFF0000EEEE1111'
   ```
 
-  If bitwise inversion is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If bitwise inversion is invoked from within the `mysql` client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `BIT_COUNT(N)`
 
   Returns the number of bits that are set in the argument *`N`* as an unsigned 64-bit integer, or `NULL` if the argument is `NULL`.

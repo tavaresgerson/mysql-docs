@@ -12,9 +12,9 @@ Customers of MySQL Enterprise Edition can use the MySQL Enterprise Backup produc
 
 ### Making Backups with mysqldump
 
-The  **mysqldump** program can make backups. It can back up all kinds of tables. (See Section 9.4, “Using mysqldump for Backups”.)
+The  `mysqldump` program can make backups. It can back up all kinds of tables. (See Section 9.4, “Using mysqldump for Backups”.)
 
-For `InnoDB` tables, it is possible to perform an online backup that takes no locks on tables using the `--single-transaction` option to **mysqldump**. See  Section 9.3.1, “Establishing a Backup Policy”.
+For `InnoDB` tables, it is possible to perform an online backup that takes no locks on tables using the `--single-transaction` option to `mysqldump`. See  Section 9.3.1, “Establishing a Backup Policy”.
 
 ### Making Backups by Copying Table Files
 
@@ -34,7 +34,7 @@ For an example of this backup method, refer to the export and import example in 
 
 To create a text file containing a table's data, you can use [`SELECT * INTO OUTFILE 'file_name' FROM tbl_name`](select-into.html "15.2.13.1 SELECT ... INTO Statement"). The file is created on the MySQL server host, not the client host. For this statement, the output file cannot already exist because permitting files to be overwritten constitutes a security risk. See Section 15.2.13, “SELECT Statement”. This method works for any kind of data file, but saves only table data, not the table structure.
 
-Another way to create text data files (along with files containing `CREATE TABLE` statements for the backed up tables) is to use  **mysqldump** with the `--tab` option. See Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”.
+Another way to create text data files (along with files containing `CREATE TABLE` statements for the backed up tables) is to use  `mysqldump` with the `--tab` option. See Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”.
 
 To reload a delimited-text data file, use `LOAD DATA` or **mysqlimport**.
 
@@ -52,7 +52,7 @@ If you are backing up a replica, you should back up its connection metadata repo
 
 ### Recovering Corrupt Tables
 
-If you have to restore `MyISAM` tables that have become corrupt, try to recover them using `REPAIR TABLE` or [**myisamchk -r**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") first. That should work in 99.9% of all cases. If **myisamchk** fails, see Section 9.6, “MyISAM Table Maintenance and Crash Recovery”.
+If you have to restore `MyISAM` tables that have become corrupt, try to recover them using `REPAIR TABLE` or [**myisamchk -r**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") first. That should work in 99.9% of all cases. If `myisamchk` fails, see Section 9.6, “MyISAM Table Maintenance and Crash Recovery”.
 
 ### Making Backups Using a File System Snapshot
 

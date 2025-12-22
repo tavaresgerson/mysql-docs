@@ -39,8 +39,8 @@ Logical backup methods have these characteristics:
 * The backup does not include log or configuration files, or other database-related files that are not part of databases.
 * Backups stored in logical format are machine independent and highly portable.
 * Logical backups are performed with the MySQL server running. The server is not taken offline.
-* Logical backup tools include the  **mysqldump** program and the [`SELECT ... INTO OUTFILE`](select.html "15.2.13 SELECT Statement") statement. These work for any storage engine, even `MEMORY`.
-* To restore logical backups, SQL-format dump files can be processed using the  **mysql** client. To load delimited-text files, use the [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statement or the  **mysqlimport** client.
+* Logical backup tools include the  `mysqldump` program and the [`SELECT ... INTO OUTFILE`](select.html "15.2.13 SELECT Statement") statement. These work for any storage engine, even `MEMORY`.
+* To restore logical backups, SQL-format dump files can be processed using the  `mysql` client. To load delimited-text files, use the [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statement or the  **mysqlimport** client.
 
 ### Online Versus Offline Backups
 
@@ -62,7 +62,7 @@ A similar distinction between online and offline applies for recovery operations
 
 A local backup is performed on the same host where the MySQL server runs, whereas a remote backup is done from a different host. For some types of backups, the backup can be initiated from a remote host even if the output is written locally on the server. host.
 
-*  **mysqldump** can connect to local or remote servers. For SQL output (`CREATE` and `INSERT` statements), local or remote dumps can be done and generate output on the client. For delimited-text output (with the `--tab` option), data files are created on the server host.
+*  `mysqldump` can connect to local or remote servers. For SQL output (`CREATE` and `INSERT` statements), local or remote dumps can be done and generate output on the client. For delimited-text output (with the `--tab` option), data files are created on the server host.
 * [`SELECT ... INTO OUTFILE`](select-into.html "15.2.13.1 SELECT ... INTO Statement") can be initiated from a local or remote client host, but the output file is created on the server host.
 * Physical backup methods typically are initiated locally on the MySQL server host so that the server can be taken offline, although the destination for copied files might be remote.
 

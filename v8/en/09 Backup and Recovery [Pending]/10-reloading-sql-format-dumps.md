@@ -4,13 +4,13 @@
 
 ### 9.4.2 Reloading SQL-Format Backups
 
-To reload a dump file written by  **mysqldump** that consists of SQL statements, use it as input to the **mysql** client. If the dump file was created by **mysqldump** with the `--all-databases` or `--databases` option, it contains  `CREATE DATABASE` and `USE` statements and it is not necessary to specify a default database into which to load the data:
+To reload a dump file written by  `mysqldump` that consists of SQL statements, use it as input to the `mysql` client. If the dump file was created by `mysqldump` with the `--all-databases` or `--databases` option, it contains  `CREATE DATABASE` and `USE` statements and it is not necessary to specify a default database into which to load the data:
 
 ```
 $> mysql < dump.sql
 ```
 
-Alternatively, from within  **mysql**, use a `source` command:
+Alternatively, from within  `mysql`, use a `source` command:
 
 ```
 mysql> source dump.sql
@@ -28,7 +28,7 @@ Then specify the database name when you load the dump file:
 $> mysql db1 < dump.sql
 ```
 
-Alternatively, from within  **mysql**, create the database, select it as the default database, and load the dump file:
+Alternatively, from within  `mysql`, create the database, select it as the default database, and load the dump file:
 
 ```
 mysql> CREATE DATABASE IF NOT EXISTS db1;

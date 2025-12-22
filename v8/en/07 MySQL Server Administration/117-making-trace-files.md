@@ -1,22 +1,22 @@
 #### 7.9.1.2 Creating Trace Files
 
-If the  **mysqld** server does not start or it crashes easily, you can try to create a trace file to find the problem.
+If the  `mysqld` server does not start or it crashes easily, you can try to create a trace file to find the problem.
 
-To do this, you must have a  **mysqld** that has been compiled with debugging support. You can check this by executing `mysqld -V`. If the version number ends with `-debug`, it is compiled with support for trace files. (On Windows, the debugging server is named **mysqld-debug** rather than **mysqld**.)
+To do this, you must have a  `mysqld` that has been compiled with debugging support. You can check this by executing `mysqld -V`. If the version number ends with `-debug`, it is compiled with support for trace files. (On Windows, the debugging server is named **mysqld-debug** rather than `mysqld`.)
 
-Start the  **mysqld** server with a trace log in `/tmp/mysqld.trace` on Unix or `\mysqld.trace` on Windows:
+Start the  `mysqld` server with a trace log in `/tmp/mysqld.trace` on Unix or `\mysqld.trace` on Windows:
 
 ```
 $> mysqld --debug
 ```
 
-On Windows, you should also use the `--standalone` flag to not start **mysqld** as a service. In a console window, use this command:
+On Windows, you should also use the `--standalone` flag to not start `mysqld` as a service. In a console window, use this command:
 
 ```
 C:\> mysqld-debug --debug --standalone
 ```
 
-After this, you can use the `mysql.exe` command-line tool in a second console window to reproduce the problem. You can stop the  **mysqld** server with **mysqladmin shutdown**.
+After this, you can use the `mysql.exe` command-line tool in a second console window to reproduce the problem. You can stop the  `mysqld` server with **mysqladmin shutdown**.
 
 The trace file can become **very large**! To generate a smaller trace file, you can use debugging options something like this:
 

@@ -2,7 +2,7 @@
 
 Many MySQL programs have internal variables that can be set at runtime using the `SET` statement. See  Section 15.7.6.1, “SET Syntax for Variable Assignment”, and Section 7.1.9, “Using System Variables”.
 
-Most of these program variables also can be set at server startup by using the same syntax that applies to specifying program options. For example,  **mysql** has a `max_allowed_packet` variable that controls the maximum size of its communication buffer. To set the `max_allowed_packet` variable for **mysql** to a value of 16MB, use either of the following commands:
+Most of these program variables also can be set at server startup by using the same syntax that applies to specifying program options. For example,  `mysql` has a `max_allowed_packet` variable that controls the maximum size of its communication buffer. To set the `max_allowed_packet` variable for `mysql` to a value of 16MB, use either of the following commands:
 
 ```
 mysql --max_allowed_packet=16777216

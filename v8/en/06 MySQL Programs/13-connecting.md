@@ -1,12 +1,12 @@
 ### 6.2.4 Connecting to the MySQL Server Using Command Options
 
-This section describes use of command-line options to specify how to establish connections to the MySQL server, for clients such as **mysql** or  **mysqldump**. For information on establishing connections using URI-like connection strings or key-value pairs, for clients such as MySQL Shell, see Section 6.2.5, “Connecting to the Server Using URI-Like Strings or Key-Value Pairs”. For additional information if you are unable to connect, see Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”.
+This section describes use of command-line options to specify how to establish connections to the MySQL server, for clients such as `mysql` or  `mysqldump`. For information on establishing connections using URI-like connection strings or key-value pairs, for clients such as MySQL Shell, see Section 6.2.5, “Connecting to the Server Using URI-Like Strings or Key-Value Pairs”. For additional information if you are unable to connect, see Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”.
 
 For a client program to connect to the MySQL server, it must use the proper connection parameters, such as the name of the host where the server is running and the user name and password of your MySQL account. Each connection parameter has a default value, but you can override default values as necessary using program options specified either on the command line or in an option file.
 
-The examples here use the  **mysql** client program, but the principles apply to other clients such as **mysqldump**,  **mysqladmin**, or **mysqlshow**.
+The examples here use the  `mysql` client program, but the principles apply to other clients such as `mysqldump`,  `mysqladmin`, or **mysqlshow**.
 
-This command invokes  **mysql** without specifying any explicit connection parameters:
+This command invokes  `mysql` without specifying any explicit connection parameters:
 
 ```
 mysql
@@ -17,7 +17,7 @@ Because there are no parameter options, the default values apply:
 * The default host name is `localhost`. On Unix, this has a special meaning, as described later.
 * The default user name is `ODBC` on Windows or your Unix login name on Unix.
 * No password is sent because neither `--password` nor `-p` is given.
-* For  **mysql**, the first nonoption argument is taken as the name of the default database. Because there is no such argument,  **mysql** selects no default database.
+* For  `mysql`, the first nonoption argument is taken as the name of the default database. Because there is no such argument,  `mysql` selects no default database.
 
 To specify the host name and user name explicitly, as well as a password, supply appropriate options on the command line. To select a default database, add a database-name argument. Examples:
 
@@ -110,7 +110,7 @@ It is possible to specify connection parameters without entering them on the com
   For more information, see  Section 6.2.2.2, “Using Option Files”.
 * Some connection parameters can be specified using environment variables. Examples:
 
-  + To specify the host for  **mysql**, use `MYSQL_HOST`.
+  + To specify the host for  `mysql`, use `MYSQL_HOST`.
   + On Windows, to specify the MySQL user name, use `USER`.
 
   For a list of supported environment variables, see Section 6.9, “Environment Variables”.

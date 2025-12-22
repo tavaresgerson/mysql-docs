@@ -2,7 +2,7 @@
 
 The  **mysqlshow** client can be used to quickly see which databases exist, their tables, or a table's columns or indexes.
 
- **mysqlshow** provides a command-line interface to several SQL  `SHOW` statements. See  Section 15.7.7, “SHOW Statements”. The same information can be obtained by using those statements directly. For example, you can issue them from the  **mysql** client program.
+ **mysqlshow** provides a command-line interface to several SQL  `SHOW` statements. See  Section 15.7.7, “SHOW Statements”. The same information can be obtained by using those statements directly. For example, you can issue them from the  `mysql` client program.
 
 Invoke  **mysqlshow** like this:
 

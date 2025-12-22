@@ -30,7 +30,7 @@ For more information on setting the SQL mode, see Section 7.1.11, “Server SQL
 
 ### Running MySQL in ANSI Mode
 
-To run MySQL Server in ANSI mode, start  **mysqld** with the  `--ansi` option. Running the server in ANSI mode is the same as starting it with the following options:
+To run MySQL Server in ANSI mode, start  `mysqld` with the  `--ansi` option. Running the server in ANSI mode is the same as starting it with the following options:
 
 ```
 --transaction-isolation=SERIALIZABLE --sql-mode=ANSI

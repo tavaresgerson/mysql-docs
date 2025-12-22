@@ -1,13 +1,13 @@
 #### 7.9.1.4 Debugging mysqld under gdb
 
-On most systems you can also start  **mysqld** from **gdb** to get more information if **mysqld** crashes.
+On most systems you can also start  `mysqld` from **gdb** to get more information if `mysqld` crashes.
 
-With some older **gdb** versions on Linux you must use `run --one-thread` if you want to be able to debug  **mysqld** threads. In this case, you can only have one thread active at a time.
+With some older **gdb** versions on Linux you must use `run --one-thread` if you want to be able to debug  `mysqld` threads. In this case, you can only have one thread active at a time.
 
-NPTL threads (the new thread library on Linux) may cause problems while running  **mysqld** under **gdb**. Some symptoms are:
+NPTL threads (the new thread library on Linux) may cause problems while running  `mysqld` under **gdb**. Some symptoms are:
 
-*  **mysqld** hangs during startup (before it writes `ready for connections`).
-*  **mysqld** crashes during a `pthread_mutex_lock()` or `pthread_mutex_unlock()` call.
+*  `mysqld` hangs during startup (before it writes `ready for connections`).
+*  `mysqld` crashes during a `pthread_mutex_lock()` or `pthread_mutex_unlock()` call.
 
 In this case, you should set the following environment variable in the shell before starting **gdb**:
 
@@ -16,14 +16,14 @@ LD_ASSUME_KERNEL=2.4.1
 export LD_ASSUME_KERNEL
 ```
 
-When running  **mysqld** under **gdb**, you should disable the stack trace with `--skip-stack-trace` to be able to catch segfaults within **gdb**.
+When running  `mysqld` under **gdb**, you should disable the stack trace with `--skip-stack-trace` to be able to catch segfaults within **gdb**.
 
-Use the  `--gdb` option to **mysqld** to install an interrupt handler for `SIGINT` (needed to stop **mysqld** with `^C` to set breakpoints) and disable stack tracing and core file handling.
+Use the  `--gdb` option to `mysqld` to install an interrupt handler for `SIGINT` (needed to stop `mysqld` with `^C` to set breakpoints) and disable stack tracing and core file handling.
 
-It is very hard to debug MySQL under **gdb** if you do a lot of new connections the whole time as **gdb** does not free the memory for old threads. You can avoid this problem by starting  **mysqld** with  `thread_cache_size` set to a value equal to  `max_connections`
+It is very hard to debug MySQL under **gdb** if you do a lot of new connections the whole time as **gdb** does not free the memory for old threads. You can avoid this problem by starting  `mysqld` with  `thread_cache_size` set to a value equal to  `max_connections`
 + 1. In most cases just using `--thread_cache_size=5'` helps a lot!
 
-If you want to get a core dump on Linux if **mysqld** dies with a SIGSEGV signal, you can start  **mysqld** with the `--core-file` option. This core file can be used to make a backtrace that may help you find out why  **mysqld** died:
+If you want to get a core dump on Linux if `mysqld` dies with a SIGSEGV signal, you can start  `mysqld` with the `--core-file` option. This core file can be used to make a backtrace that may help you find out why  `mysqld` died:
 
 ```
 $> gdb mysqld core
@@ -47,7 +47,7 @@ handle SIGHUP nostop
 handle SIGTERM nostop noprint
 ```
 
-Here is an example how to debug  **mysqld**:
+Here is an example how to debug  `mysqld`:
 
 ```
 $> gdb /usr/local/libexec/mysqld
@@ -58,7 +58,7 @@ backtrace full # Do this when mysqld crashes
 
 Include the preceding output in a bug report, which you can file using the instructions in  Section 1.6, “How to Report Bugs or Problems”.
 
-If  **mysqld** hangs, you can try to use some system tools like `strace` or `/usr/proc/bin/pstack` to examine where **mysqld** has hung.
+If  `mysqld` hangs, you can try to use some system tools like `strace` or `/usr/proc/bin/pstack` to examine where `mysqld` has hung.
 
 ```
 strace /tmp/log libexec/mysqld

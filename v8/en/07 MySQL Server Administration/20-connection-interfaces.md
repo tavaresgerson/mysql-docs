@@ -39,7 +39,7 @@ To control and monitor how the server manages threads that handle client connect
 
 To control the maximum number of clients the server permits to connect simultaneously, set the `max_connections` system variable at server startup or at runtime. It may be necessary to increase  `max_connections` if more clients attempt to connect simultaneously then the server is configured to handle (see Section B.3.2.5, “Too many connections”). If the server refuses a connection because the `max_connections` limit is reached, it increments the `Connection_errors_max_connections` status variable.
 
- **mysqld** actually permits `max_connections`
+ `mysqld` actually permits `max_connections`
 + 1 client connections. The extra connection is reserved for use by accounts that have the `CONNECTION_ADMIN` privilege (or the deprecated  `SUPER` privilege). By granting the privilege to administrators and not to normal users (who should not need it), an administrator can connect to the server and use `SHOW PROCESSLIST` to diagnose problems even if the maximum number of unprivileged clients are connected. See Section 15.7.7.31, “SHOW PROCESSLIST Statement”.
 
 The server also permits administrative connections on an administrative network interface, which you can set up using a dedicated IP address and port. See Section 7.1.12.2, “Administrative Connection Management”.
@@ -57,6 +57,6 @@ The maximum number of client connections MySQL supports (that is, the maximum va
 
 Linux or Solaris should be able to support at least 500 to 1000 simultaneous connections routinely and as many as 10,000 connections if you have many gigabytes of RAM available and the workload from each is low or the response time target undemanding.
 
-Increasing the `max_connections` value increases the number of file descriptors that **mysqld** requires. If the required number of descriptors are not available, the server reduces the value of `max_connections`. For comments on file descriptor limits, see  Section 10.4.3.1, “How MySQL Opens and Closes Tables”.
+Increasing the `max_connections` value increases the number of file descriptors that `mysqld` requires. If the required number of descriptors are not available, the server reduces the value of `max_connections`. For comments on file descriptor limits, see  Section 10.4.3.1, “How MySQL Opens and Closes Tables”.
 
 Increasing the `open_files_limit` system variable may be necessary, which may also require raising the operating system limit on how many file descriptors can be used by MySQL. Consult your operating system documentation to determine whether it is possible to increase the limit and how to do so. See also  Section B.3.2.16, “File Not Found and Similar Errors”.

@@ -28,7 +28,7 @@ Additional notes to be aware of when installing and using MySQL on Solaris:
   ```
 * You should mount any file systems on which you intend to store `InnoDB` files with the `forcedirectio` option. (By default mounting is done without this option.) Failing to do so causes a significant drop in performance when using the `InnoDB` storage engine on this platform.
 * If you would like MySQL to start automatically, you can copy `support-files/mysql.server` to `/etc/init.d` and create a symbolic link to it named `/etc/rc3.d/S99mysql.server`.
-* If too many processes try to connect very rapidly to **mysqld**, you should see this error in the MySQL log:
+* If too many processes try to connect very rapidly to `mysqld`, you should see this error in the MySQL log:
 
   ```
   Error in accept: Protocol error

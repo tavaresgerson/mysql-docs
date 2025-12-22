@@ -50,6 +50,4 @@ Innovation release downgrades require a logical dump and load.
 
 **Additional Information and Examples**
 
-For additional information and specific example supported scenarios, see  Section 3.2, “Upgrade Paths” or Chapter 4, *Downgrading MySQL*. They describe available options to perform in-place updates (that replace binaries with the latest packages), a logical dump and load (such as using **mysqldump** or MySQL Shell's dump utilities), cloning data with the clone plugin, and asynchronous replication for servers in a replication topology.
-
-
+For additional information and specific example supported scenarios, see  Section 3.2, “Upgrade Paths” or Chapter 4, *Downgrading MySQL*. They describe available options to perform in-place updates (that replace binaries with the latest packages), a logical dump and load (such as using `mysqldump` or MySQL Shell's dump utilities), cloning data with the clone plugin, and asynchronous replication for servers in a replication topology.

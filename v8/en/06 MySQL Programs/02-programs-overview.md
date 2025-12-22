@@ -8,14 +8,14 @@ Each MySQL program takes many different options. Most programs provide a `--help
 
 You can override default option values for MySQL programs by specifying options on the command line or in an option file. See Section 6.2, “Using MySQL Programs”, for general information on invoking programs and specifying program options.
 
-The MySQL server,  **mysqld**, is the main program that does most of the work in a MySQL installation. The server is accompanied by several related scripts that assist you in starting and stopping the server:
+The MySQL server,  `mysqld`, is the main program that does most of the work in a MySQL installation. The server is accompanied by several related scripts that assist you in starting and stopping the server:
 
-*  **mysqld**
+*  `mysqld`
 
-  The SQL daemon (that is, the MySQL server). To use client programs,  **mysqld** must be running, because clients gain access to databases by connecting to the server. See  Section 6.3.1, “mysqld — The MySQL Server”.
+  The SQL daemon (that is, the MySQL server). To use client programs,  `mysqld` must be running, because clients gain access to databases by connecting to the server. See  Section 6.3.1, “mysqld — The MySQL Server”.
 *  **mysqld_safe**
 
-  A server startup script.  **mysqld_safe** attempts to start  **mysqld**. See Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”.
+  A server startup script.  **mysqld_safe** attempts to start  `mysqld`. See Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”.
 *  **mysql.server**
 
   A server startup script. This script is used on systems that use System V-style run directories containing scripts that start system services for particular run levels. It invokes **mysqld_safe** to start the MySQL server. See Section 6.3.3, “mysql.server — MySQL Server Startup Script”.
@@ -37,16 +37,16 @@ Several programs perform setup operations during MySQL installation or upgrading
 
 MySQL client programs that connect to the MySQL server:
 
-*  **mysql**
+*  `mysql`
 
   The command-line tool for interactively entering SQL statements or executing them from a file in batch mode. See Section 6.5.1, “mysql — The MySQL Command-Line Client”.
-*  **mysqladmin**
+*  `mysqladmin`
 
-  A client that performs administrative operations, such as creating or dropping databases, reloading the grant tables, flushing tables to disk, and reopening log files. **mysqladmin** can also be used to retrieve version, process, and status information from the server. See Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”.
-*  **mysqlcheck**
+  A client that performs administrative operations, such as creating or dropping databases, reloading the grant tables, flushing tables to disk, and reopening log files. `mysqladmin` can also be used to retrieve version, process, and status information from the server. See Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”.
+*  `mysqlcheck`
 
   A table-maintenance client that checks, repairs, analyzes, and optimizes tables. See  Section 6.5.3, “mysqlcheck — A Table Maintenance Program”.
-*  **mysqldump**
+*  `mysqldump`
 
   A client that dumps a MySQL database into a file as SQL, text, or XML. See  Section 6.5.4, “mysqldump — A Database Backup Program”.
 *  **mysqlimport**
@@ -54,7 +54,7 @@ MySQL client programs that connect to the MySQL server:
   A client that imports text files into their respective tables using  `LOAD DATA`. See Section 6.5.5, “mysqlimport — A Data Import Program”.
 * **mysqlsh**
 
-  MySQL Shell is an advanced client and code editor for MySQL Server. See  MySQL Shell 8.4. In addition to the provided SQL functionality, similar to **mysql**, MySQL Shell provides scripting capabilities for JavaScript and Python and includes APIs for working with MySQL. X DevAPI enables you to work with both relational and document data, see Chapter 22, *Using MySQL as a Document Store*. AdminAPI enables you to work with InnoDB Cluster, see MySQL AdminAPI.
+  MySQL Shell is an advanced client and code editor for MySQL Server. See  MySQL Shell 8.4. In addition to the provided SQL functionality, similar to `mysql`, MySQL Shell provides scripting capabilities for JavaScript and Python and includes APIs for working with MySQL. X DevAPI enables you to work with both relational and document data, see Chapter 22, *Using MySQL as a Document Store*. AdminAPI enables you to work with InnoDB Cluster, see MySQL AdminAPI.
 *  **mysqlshow**
 
   A client that displays information about databases, tables, columns, and indexes. See  Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.
@@ -70,7 +70,7 @@ MySQL administrative and utility programs:
 *  **myisam_ftdump**
 
   A utility that displays information about full-text indexes in `MyISAM` tables. See Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”.
-*  **myisamchk**
+*  `myisamchk`
 
   A utility to describe, check, optimize, and repair `MyISAM` tables. See Section 6.6.4, “myisamchk — MyISAM Table-Maintenance Utility”.
 *  **myisamlog**

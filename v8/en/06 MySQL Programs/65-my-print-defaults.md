@@ -1,6 +1,6 @@
 ### 6.7.2 `my_print_defaults` — Display Options from Option Files
 
-**`my_print_defaults`** displays the options that are present in option groups of option files. The output indicates what options are used by programs that read the specified option groups. For example, the **mysqlcheck** program reads the `[mysqlcheck]` and `[client]` option groups. To see what options are present in those groups in the standard option files, invoke **my\_print\_defaults** like this:
+**`my_print_defaults`** displays the options that are present in option groups of option files. The output indicates what options are used by programs that read the specified option groups. For example, the `mysqlcheck` program reads the `[mysqlcheck]` and `[client]` option groups. To see what options are present in those groups in the standard option files, invoke **my\_print\_defaults** like this:
 
 ```
 $> my_print_defaults mysqlcheck client

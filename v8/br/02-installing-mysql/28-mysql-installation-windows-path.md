@@ -17,6 +17,6 @@ Para facilitar a invocação de programas MySQL, você pode adicionar o nome do 
 
   :::
 
-  Descarte este diálogo, e cada diálogo por sua vez, clicando em OK até que todos os diálogos que foram abertos tenham sido descartados. O novo valor `PATH` deve agora estar disponível para qualquer novo shell de comando que você abrir, permitindo que você invoque qualquer programa executável do MySQL digitando seu nome no prompt do DOS de qualquer diretório no sistema, sem ter que fornecer o caminho. Isso inclui os servidores, o cliente **mysql** e todos os utilitários de linha de comando do MySQL, como **mysqladmin** e **mysqldump**.
+  Descarte este diálogo, e cada diálogo por sua vez, clicando em OK até que todos os diálogos que foram abertos tenham sido descartados. O novo valor `PATH` deve agora estar disponível para qualquer novo shell de comando que você abrir, permitindo que você invoque qualquer programa executável do MySQL digitando seu nome no prompt do DOS de qualquer diretório no sistema, sem ter que fornecer o caminho. Isso inclui os servidores, o cliente `mysql` e todos os utilitários de linha de comando do MySQL, como `mysqladmin` e `mysqldump`.
 
 Você não deve adicionar o diretório MySQL `bin` ao seu Windows `PATH` se estiver executando vários servidores MySQL na mesma máquina.

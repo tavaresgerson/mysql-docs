@@ -4,9 +4,9 @@ Security-Enhanced Linux (SELinux) is a mandatory access control (MAC) system tha
 
 An SELinux context (the label applied to a system object) has the following fields: `user`, `role`, `type`, and `security level`. Type information rather than the entire SELinux context is used most commonly to define rules for how processes interact with other system objects. MySQL SELinux policy modules, for example, define policy rules using `type` information.
 
-You can view SELinux contexts using operating system commands such as **ls** and **ps** with the `-Z` option. Assuming that SELinux is enabled and a MySQL Server is running, the following commands show the SELinux context for the  **mysqld** process and MySQL data directory:
+You can view SELinux contexts using operating system commands such as **ls** and **ps** with the `-Z` option. Assuming that SELinux is enabled and a MySQL Server is running, the following commands show the SELinux context for the  `mysqld` process and MySQL data directory:
 
- **mysqld** process:
+ `mysqld` process:
 
 ```
 $> ps -eZ | grep mysqld

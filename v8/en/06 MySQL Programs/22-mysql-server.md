@@ -2,7 +2,7 @@
 
 MySQL distributions on Unix and Unix-like system include a script named  **mysql.server**, which starts the MySQL server using  **mysqld_safe**. It can be used on systems such as Linux and Solaris that use System V-style run directories to start and stop system services. It is also used by the macOS Startup Item for MySQL.
 
- **mysql.server** is the script name as used within the MySQL source tree. The installed name might be different (for example,  **mysqld** or **mysql**). In the following discussion, adjust the name  **mysql.server** as appropriate for your system.
+ **mysql.server** is the script name as used within the MySQL source tree. The installed name might be different (for example,  `mysqld` or `mysql`). In the following discussion, adjust the name  **mysql.server** as appropriate for your system.
 
 ::: info Note
 
@@ -24,7 +24,7 @@ mysql.server stop
 To start and stop MySQL automatically on your server, you must add start and stop commands to the appropriate places in your `/etc/rc*` files:
 
 * If you use the Linux server RPM package (`MySQL-server-VERSION.rpm`), or a native Linux package installation, the **mysql.server** script may be installed in the `/etc/init.d` directory with the name `mysqld` or `mysql`. See  Section 2.5.4, “Installing MySQL on Linux Using RPM Packages from Oracle”, for more information on the Linux RPM packages.
-* If you install MySQL from a source distribution or using a binary distribution format that does not install **mysql.server** automatically, you can install the script manually. It can be found in the `support-files` directory under the MySQL installation directory or in a MySQL source tree. Copy the script to the `/etc/init.d` directory with the name  **mysql** and make it executable:
+* If you install MySQL from a source distribution or using a binary distribution format that does not install **mysql.server** automatically, you can install the script manually. It can be found in the `support-files` directory under the MySQL installation directory or in a MySQL source tree. Copy the script to the `/etc/init.d` directory with the name  `mysql` and make it executable:
 
   ```
   cp mysql.server /etc/init.d/mysql
@@ -37,7 +37,7 @@ To start and stop MySQL automatically on your server, you must add start and sto
   chkconfig --add mysql
   ```
 
-  On some Linux systems, the following command also seems to be necessary to fully enable the  **mysql** script:
+  On some Linux systems, the following command also seems to be necessary to fully enable the  `mysql` script:
 
   ```
   chkconfig --level 345 mysql on

@@ -72,6 +72,6 @@ SELECT * FROM t1;
 
 On some platforms, the `SELECT` statement returns `inf` and `-inf`. On others, it returns `0` and `-0`.
 
-An implication of the preceding issues is that if you attempt to create a replica by dumping table contents with  **mysqldump** on the source and reloading the dump file into the replica, tables containing floating-point columns might differ between the two hosts.
+An implication of the preceding issues is that if you attempt to create a replica by dumping table contents with  `mysqldump` on the source and reloading the dump file into the replica, tables containing floating-point columns might differ between the two hosts.
 
 

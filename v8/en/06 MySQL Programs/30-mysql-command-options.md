@@ -1,6 +1,6 @@
 #### 6.5.1.1 mysql Client Options
 
-**mysql** supports the following options, which can be specified on the command line or in the `[mysql]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
+`mysql` supports the following options, which can be specified on the command line or in the `[mysql]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
 
 **Table 6.10 mysql Client Options**
 
@@ -20,9 +20,9 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
-  Enable automatic rehashing. This option is on by default, which enables database, table, and column name completion. Use `--disable-auto-rehash` to disable rehashing. That causes  **mysql** to start faster, but you must issue the `rehash` command or its `\#` shortcut if you want to use name completion.
+  Enable automatic rehashing. This option is on by default, which enables database, table, and column name completion. Use `--disable-auto-rehash` to disable rehashing. That causes  `mysql` to start faster, but you must issue the `rehash` command or its `\#` shortcut if you want to use name completion.
 
-  To complete a name, enter the first part and press Tab. If the name is unambiguous,  **mysql** completes it. Otherwise, you can press Tab again to see the possible names that begin with what you have typed so far. Completion does not occur if there is no default database.
+  To complete a name, enter the first part and press Tab. If the name is unambiguous,  `mysql` completes it. Otherwise, you can press Tab again to see the possible names that begin with what you have typed so far. Completion does not occur if there is no default database.
 
   ::: info Note
 
@@ -39,14 +39,14 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
 
-  Print results using tab as the column separator, with each row on a new line. With this option, **mysql** does not use the history file.
+  Print results using tab as the column separator, with each row on a new line. With this option, `mysql` does not use the history file.
 
   Batch mode results in nontabular output format and escaping of special characters. Escaping may be disabled by using raw mode; see the description for the `--raw` option.
 *  `--binary-as-hex`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>
 
-  When this option is given,  **mysql** displays binary data using hexadecimal notation (`0xvalue`). This occurs whether the overall output display format is tabular, vertical, HTML, or XML.
+  When this option is given,  `mysql` displays binary data using hexadecimal notation (`0xvalue`). This occurs whether the overall output display format is tabular, vertical, HTML, or XML.
 
    `--binary-as-hex` when enabled affects display of all binary strings, including those returned by functions such as `CHAR()` and `UNHEX()`. The following example demonstrates this using the ASCII code for `A` (65 decimal, 41 hexadecimal):
 
@@ -94,7 +94,7 @@
     +------------------------------------+
     ```
 
-  When  **mysql** operates in interactive mode, this option is enabled by default. In addition, output from the `status` (or `\s`) command includes this line when the option is enabled implicitly or explicitly:
+  When  `mysql` operates in interactive mode, this option is enabled by default. In addition, output from the `status` (or `\s`) command includes this line when the option is enabled implicitly or explicitly:
 
   ```
   Binary data as: Hexadecimal
@@ -105,7 +105,7 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
-  This option helps when processing **mysqlbinlog** output that may contain `BLOB` values. By default, **mysql** translates `\r\n` in statement strings to `\n` and interprets `\0` as the statement terminator. `--binary-mode` disables both features. It also disables all  **mysql** commands except `charset` and `delimiter` in noninteractive mode (for input piped to  **mysql** or loaded using the `source` command).
+  This option helps when processing **mysqlbinlog** output that may contain `BLOB` values. By default, `mysql` translates `\r\n` in statement strings to `\n` and interprets `\0` as the statement terminator. `--binary-mode` disables both features. It also disables all  `mysql` commands except `charset` and `delimiter` in noninteractive mode (for input piped to  `mysql` or loaded using the `source` command).
 
   (*MySQL 8.4.6 and later:*) `--binary-mode`, when enabled, causes the server to disregard any setting for `--commands` .
 *  `--bind-address=ip_address`
@@ -132,9 +132,9 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--commands</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-  Whether to enable or disable processing of local **mysql** client commands. Setting this option to `FALSE` disables such processing, and has the effects listed here:
+  Whether to enable or disable processing of local `mysql` client commands. Setting this option to `FALSE` disables such processing, and has the effects listed here:
 
-  + The following  **mysql** client commands are disabled:
+  + The following  `mysql` client commands are disabled:
 
     - `charset` (`/C` remains enabled)
     - `clear`
@@ -173,11 +173,11 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--comments</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-  Whether to preserve or strip comments in statements sent to the server. The default is to preserve them; to strip them, start  **mysql** with `--skip-comments`.
+  Whether to preserve or strip comments in statements sent to the server. The default is to preserve them; to strip them, start  `mysql` with `--skip-comments`.
 
   ::: info Note
 
-  The  **mysql** client always passes optimizer hints to the server, regardless of whether this option is given.
+  The  `mysql` client always passes optimizer hints to the server, regardless of whether this option is given.
 
   Comment stripping is deprecated. Expect this feature and the options to control it to be removed in a future MySQL release.
 
@@ -201,7 +201,7 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-expired-password</code></td> </tr></tbody></table>
 
-  Indicate to the server that the client can handle sandbox mode if the account used to connect has an expired password. This can be useful for noninteractive invocations of **mysql** because normally the server disconnects noninteractive clients that attempt to connect using an account with an expired password. (See Section 8.2.16, “Server Handling of Expired Passwords”.)
+  Indicate to the server that the client can handle sandbox mode if the account used to connect has an expired password. This can be useful for noninteractive invocations of `mysql` because normally the server disconnects noninteractive clients that attempt to connect using an account with an expired password. (See Section 8.2.16, “Server Handling of Expired Passwords”.)
 *  `--connect-timeout=value`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-timeout=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
@@ -244,7 +244,7 @@
 
   Use *`charset_name`* as the default character set for the client and connection.
 
-  This option can be useful if the operating system uses one character set and the  **mysql** client by default uses another. In this case, output may be formatted incorrectly. You can usually fix such issues by using this option to force the client to use the system character set instead.
+  This option can be useful if the operating system uses one character set and the  `mysql` client by default uses another. In this case, output may be formatted incorrectly. You can usually fix such issues by using this option to force the client to use the system character set instead.
 
   For more information, see Section 12.4, “Connection Character Sets and Collations”, and Section 12.15, “Character Set Configuration”.
 *  `--defaults-extra-file=file_name`
@@ -267,7 +267,7 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql** normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql** also reads the `[client_other]` and `[mysql_other]` groups.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, `mysql` normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, `mysql` also reads the `[client_other]` and `[mysql_other]` groups.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--delimiter=str`
@@ -277,7 +277,7 @@
   Set the statement delimiter. The default is the semicolon character (`;`).
 *  `--disable-named-commands`
 
-  Disable named commands. Use the `\*` form only, or use named commands only at the beginning of a line ending with a semicolon (`;`). **mysql** starts with this option *enabled* by default. However, even with this option, long-format commands still work from the first line. See  Section 6.5.1.2, “mysql Client Commands”.
+  Disable named commands. Use the `\*` form only, or use named commands only at the beginning of a line ending with a semicolon (`;`). `mysql` starts with this option *enabled* by default. However, even with this option, long-format commands still work from the first line. See  Section 6.5.1.2, “mysql Client Commands”.
 *  `--dns-srv-name=name`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--dns-srv-name=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
@@ -294,17 +294,17 @@
   _mysql._tcp.example.com. 86400 IN SRV  20       5      3306 host4.example.com
   ```
 
-  To use that DNS SRV record, invoke  **mysql** like this:
+  To use that DNS SRV record, invoke  `mysql` like this:
 
   ```
   mysql --dns-srv-name=_mysql._tcp.example.com
   ```
 
-   **mysql** then attempts a connection to each server in the group until a successful connection is established. A failure to connect occurs only if a connection cannot be established to any of the servers. The priority and weight values in the DNS SRV record determine the order in which servers should be tried.
+   `mysql` then attempts a connection to each server in the group until a successful connection is established. A failure to connect occurs only if a connection cannot be established to any of the servers. The priority and weight values in the DNS SRV record determine the order in which servers should be tried.
 
-  When invoked with `--dns-srv-name`, **mysql** attempts to establish TCP connections only.
+  When invoked with `--dns-srv-name`, `mysql` attempts to establish TCP connections only.
 
-  The  `--dns-srv-name` option takes precedence over the `--host` option if both are given.  `--dns-srv-name` causes connection establishment to use the `mysql_real_connect_dns_srv()` C API function rather than `mysql_real_connect()`. However, if the `connect` command is subsequently used at runtime and specifies a host name argument, that host name takes precedence over any `--dns-srv-name` option given at **mysql** startup to specify a DNS SRV record.
+  The  `--dns-srv-name` option takes precedence over the `--host` option if both are given.  `--dns-srv-name` causes connection establishment to use the `mysql_real_connect_dns_srv()` C API function rather than `mysql_real_connect()`. However, if the `connect` command is subsequently used at runtime and specifies a host name argument, that host name takes precedence over any `--dns-srv-name` option given at `mysql` startup to specify a DNS SRV record.
 *  `--enable-cleartext-plugin`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
@@ -314,7 +314,7 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--execute=statement</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Execute the statement and quit. The default output format is like that produced with `--batch`. See Section 6.2.2.1, “Using Options on the Command Line”, for some examples. With this option,  **mysql** does not use the history file.
+  Execute the statement and quit. The default output format is like that produced with `--batch`. See Section 6.2.2.1, “Using Options on the Command Line”, for some examples. With this option,  `mysql` does not use the history file.
 *  `--force`, `-f`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
@@ -340,7 +340,7 @@
 
   Connect to the MySQL server on the given host.
 
-  The  `--dns-srv-name` option takes precedence over the `--host` option if both are given.  `--dns-srv-name` causes connection establishment to use the `mysql_real_connect_dns_srv()` C API function rather than `mysql_real_connect()`. However, if the `connect` command is subsequently used at runtime and specifies a host name argument, that host name takes precedence over any `--dns-srv-name` option given at **mysql** startup to specify a DNS SRV record.
+  The  `--dns-srv-name` option takes precedence over the `--host` option if both are given.  `--dns-srv-name` causes connection establishment to use the `mysql_real_connect_dns_srv()` C API function rather than `mysql_real_connect()`. However, if the `connect` command is subsequently used at runtime and specifies a host name argument, that host name takes precedence over any `--dns-srv-name` option given at `mysql` startup to specify a DNS SRV record.
 *  `--html`, `-H`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--html</code></td> </tr></tbody></table>
@@ -377,7 +377,7 @@
 
   When  `--load-data-local-dir` applies, the option value designates the directory in which local data files must be located. Comparison of the directory path name and the path name of files to be loaded is case-sensitive regardless of the case sensitivity of the underlying file system. If the option value is the empty string, it names no directory, with the result that no files are permitted for local data loading.
 
-  For example, to explicitly disable local data loading except for files located in the `/my/local/data` directory, invoke  **mysql** like this:
+  For example, to explicitly disable local data loading except for files located in the `/my/local/data` directory, invoke  `mysql` like this:
 
   ```
   mysql --local-infile=0 --load-data-local-dir=/my/local/data
@@ -385,7 +385,7 @@
 
   When both  `--local-infile` and `--load-data-local-dir` are given, the order in which they are given does not matter.
 
-  Successful use of `LOCAL` load operations within  **mysql** also requires that the server permits local loading; see Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”
+  Successful use of `LOCAL` load operations within  `mysql` also requires that the server permits local loading; see Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”
 *  `--local-infile[={0|1}]`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--local-infile[={0|1}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
@@ -394,7 +394,7 @@
 
   If `LOCAL` capability is disabled, the `--load-data-local-dir` option can be used to permit restricted local loading of files located in a designated directory.
 
-  Successful use of `LOCAL` load operations within  **mysql** also requires that the server permits local loading; see Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”
+  Successful use of `LOCAL` load operations within  `mysql` also requires that the server permits local loading; see Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”
 *  `--login-path=name`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
@@ -425,7 +425,7 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--named-commands</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-named-commands</code></td> </tr></tbody></table>
 
-  Enable named  **mysql** commands. Long-format commands are permitted, not just short-format commands. For example, `quit` and `\q` both are recognized. Use `--skip-named-commands` to disable named commands. See Section 6.5.1.2, “mysql Client Commands”.
+  Enable named  `mysql` commands. Long-format commands are permitted, not just short-format commands. For example, `quit` and `\q` both are recognized. Use `--skip-named-commands` to disable named commands. See Section 6.5.1.2, “mysql Client Commands”.
 *  `--net-buffer-length=value`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--net-buffer-length=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>16384</code></td> </tr></tbody></table>
@@ -468,9 +468,9 @@
 
   Ignore statements except those that occur while the default database is the one named on the command line. This option is rudimentary and should be used with care. Statement filtering is based only on `USE` statements.
 
-  Initially,  **mysql** executes statements in the input because specifying a database *`db_name`* on the command line is equivalent to inserting `USE db_name` at the beginning of the input. Then, for each `USE` statement encountered, **mysql** accepts or rejects following statements depending on whether the database named is the one on the command line. The content of the statements is immaterial.
+  Initially,  `mysql` executes statements in the input because specifying a database *`db_name`* on the command line is equivalent to inserting `USE db_name` at the beginning of the input. Then, for each `USE` statement encountered, `mysql` accepts or rejects following statements depending on whether the database named is the one on the command line. The content of the statements is immaterial.
 
-  Suppose that  **mysql** is invoked to process this set of statements:
+  Suppose that  `mysql` is invoked to process this set of statements:
 
   ```
   DELETE FROM db2.t2;
@@ -482,7 +482,7 @@
   CREATE TABLE db2.t1 (j INT);
   ```
 
-  If the command line is **mysql --force --one-database db1**,  **mysql** handles the input as follows:
+  If the command line is **mysql --force --one-database db1**,  `mysql` handles the input as follows:
 
   + The  `DELETE` statement is executed because the default database is `db1`, even though the statement names a table in a different database.
   + The  `DROP TABLE` and `CREATE TABLE` statements are not executed because the default database is not `db1`, even though the statements name a table in `db1`.
@@ -496,18 +496,18 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysql** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
+  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, `mysql` prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysql** should not prompt for one, use the `--skip-password` option.
+  To explicitly specify that there is no password and that `mysql` should not prompt for one, use the `--skip-password` option.
 *  `--password1[=pass_val]`
 
-  The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysql** prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
+  The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, `mysql` prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysql** should not prompt for one, use the `--skip-password1` option.
+  To explicitly specify that there is no password and that `mysql` should not prompt for one, use the `--skip-password1` option.
 
    `--password1` and `--password` are synonymous, as are `--skip-password1` and `--skip-password`.
 *  `--password2[=pass_val]`
@@ -547,7 +547,7 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The directory in which to look for plugins. Specify this option if the  `--default-auth` option is used to specify an authentication plugin but **mysql** does not find it. See Section 8.2.17, “Pluggable Authentication”.
+  The directory in which to look for plugins. Specify this option if the  `--default-auth` option is used to specify an authentication plugin but `mysql` does not find it. See Section 8.2.17, “Pluggable Authentication”.
 *  `--port=port_num`, `-P port_num`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
@@ -574,9 +574,9 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--quick</code></td> </tr></tbody></table>
 
-  Do not cache each query result, print each row as it is received. This may slow down the server if the output is suspended. With this option,  **mysql** does not use the history file.
+  Do not cache each query result, print each row as it is received. This may slow down the server if the output is suspended. With this option,  `mysql` does not use the history file.
 
-  By default,  **mysql** fetches all result rows before producing any output; while storing these, it calculates a running maximum column length from the actual value of each column in succession. When printing the output, it uses this maximum to format it. When `--quick` is specified, **mysql** does not have the rows for which to calculate the length before starting, and so uses the maximum length. In the following example, table `t1` has a single column of type `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and containing 4 rows. The default output is 9 characters wide; this width is equal the maximum number of characters in any of the column values in the rows returned (5), plus 2 characters each for the spaces used as padding and the `|` characters used as column delimiters). The output when using the `--quick` option is 25 characters wide; this is equal to the number of characters needed to represent `-9223372036854775808`, which is the longest possible value that can be stored in a (signed) `BIGINT` column, or 19 characters, plus the 4 characters used for padding and column delimiters. The difference can be seen here:
+  By default,  `mysql` fetches all result rows before producing any output; while storing these, it calculates a running maximum column length from the actual value of each column in succession. When printing the output, it uses this maximum to format it. When `--quick` is specified, `mysql` does not have the rows for which to calculate the length before starting, and so uses the maximum length. In the following example, table `t1` has a single column of type `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and containing 4 rows. The default output is 9 characters wide; this width is equal the maximum number of characters in any of the column values in the rows returned (5), plus 2 characters each for the spaces used as padding and the `|` characters used as column delimiters). The output when using the `--quick` option is 25 characters wide; this is equal to the number of characters needed to represent `-9223372036854775808`, which is the longest possible value that can be stored in a (signed) `BIGINT` column, or 19 characters, plus the 4 characters used for padding and column delimiters. The difference can be seen here:
 
   ```
   $> mysql -t test -e "SELECT * FROM t1"
@@ -637,13 +637,13 @@
 
   The factor or factors for which FIDO/FIDO2 device registration must be performed before WebAuthn device-based authentication can be used. This option value must be a single value, or two values separated by commas. Each value must be 2 or 3, so the permitted option values are `'2'`, `'3'`, `'2,3'` and `'3,2'`.
 
-  For example, an account that requires registration for a third authentication factor invokes the **mysql** client as follows:
+  For example, an account that requires registration for a third authentication factor invokes the `mysql` client as follows:
 
   ```
   mysql --user=user_name --register-factor=3
   ```
 
-  An account that requires registration for second and third authentication factors invokes the  **mysql** client as follows:
+  An account that requires registration for second and third authentication factors invokes the  `mysql` client as follows:
 
   ```
   mysql --user=user_name --register-factor=2,3
@@ -669,7 +669,7 @@
 
   The initiate and registration steps must be performed in a single connection, as the challenge received by the client during the initiate step is saved to the client connection handler. Registration would fail if the registration step was performed by a different connection. The `--register-factor` option executes both the initiate and registration steps, which avoids the failure scenario described above and prevents having to execute the `ALTER USER` initiate and registration statements manually.
 
-  The  `--register-factor` option is only available for the  **mysql** and MySQL Shell clients. Other MySQL client programs do not support it.
+  The  `--register-factor` option is only available for the  `mysql` and MySQL Shell clients. Other MySQL client programs do not support it.
 
   For related information, see Using WebAuthn Authentication.
 *  `--safe-updates`, `--i-am-a-dummy`, `-U`
@@ -782,7 +782,7 @@
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--syslog</code></td> </tr></tbody></table>
 
-  This option causes  **mysql** to send interactive statements to the system logging facility. On Unix, this is `syslog`; on Windows, it is the Windows Event Log. The destination where logged messages appear is system dependent. On Linux, the destination is often the `/var/log/messages` file.
+  This option causes  `mysql` to send interactive statements to the system logging facility. On Unix, this is `syslog`; on Windows, it is the Windows Event Log. The destination where logged messages appear is system dependent. On Linux, the destination is often the `/var/log/messages` file.
 
   Here is a sample of output generated on Linux by using `--syslog`. This output is formatted for readability; each logged message actually takes a single line.
 
@@ -870,7 +870,7 @@
   <field name="column_name">NULL</field>
   ```
 
-  The output when  `--xml` is used with  **mysql** matches that of **mysqldump** `--xml`. See Section 6.5.4, “mysqldump — A Database Backup Program”, for details.
+  The output when  `--xml` is used with  `mysql` matches that of `mysqldump` `--xml`. See Section 6.5.4, “mysqldump — A Database Backup Program”, for details.
 
   The XML output also uses an XML namespace, as shown here:
 

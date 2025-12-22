@@ -8,7 +8,7 @@ MySQL Enterprise Data Masking and De-Identification database table and component
 
   Purpose: A table that provides persistent storage for masking dictionaries and terms. While the `mysql` system schema is the traditional storage option, creating a dedicated schema for this purpose is also permitted. A dedicated schema might be preferable for these reasons:
 
-  + The `mysql` system schema is not backed up by a logical backup, such as **mysqldump** or load operations.
+  + The `mysql` system schema is not backed up by a logical backup, such as `mysqldump` or load operations.
   + A dedicated schema makes outbound replication easier.
   + A user or role requires no `mysql` schema privileges when preforming related data-masking tasks in the dedicated schema.
 * `component_masking` component

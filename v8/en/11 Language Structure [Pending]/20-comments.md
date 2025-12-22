@@ -50,7 +50,7 @@ In MySQL 8.4, the version number can also optionally be comprised of six digits 
 
 The version number should be followed by at least one whitespace character (or the end of the comment). If the comment begins with six digits followed by whitespace, this is interpreted as a six-digit version number. Otherwise, if it begins with at least five digits, these are interpreted as a five-digit version number (and any remaining characters ignored for this purpose); if it begins with fewer than five digits, the comment is handled as a normal MySQL comment.
 
-The comment syntax just described applies to how the **mysqld** server parses SQL statements. The **mysql** client program also performs some parsing of statements before sending them to the server. (It does this to determine statement boundaries within a multiple-statement input line.) For information about differences between the server and **mysql** client parsers, see Section 6.5.1.6, “mysql Client Tips”.
+The comment syntax just described applies to how the `mysqld` server parses SQL statements. The `mysql` client program also performs some parsing of statements before sending them to the server. (It does this to determine statement boundaries within a multiple-statement input line.) For information about differences between the server and `mysql` client parsers, see Section 6.5.1.6, “mysql Client Tips”.
 
 Comments in `/*!12345 ... */` format are not stored on the server. If this format is used to comment stored programs, the comments are not retained in the program body.
 
@@ -62,6 +62,6 @@ SELECT /*+ BKA(t1) */ FROM ... ;
 
 For more information, see  Section 10.9.3, “Optimizer Hints”.
 
-The use of short-form  **mysql** commands such as `\C` within multiple-line `/* ... */` comments is not supported. Short-form commands do work within single-line `/*! ... */` version comments, as do `/*+ ... */` optimizer-hint comments, which are stored in object definitions. If there is a concern that optimizer-hint comments may be stored in object definitions so that dump files when reloaded with `mysql` would result in execution of such commands, either invoke  **mysql** with the `--binary-mode` option or use a reload client other than  **mysql**.
+The use of short-form  `mysql` commands such as `\C` within multiple-line `/* ... */` comments is not supported. Short-form commands do work within single-line `/*! ... */` version comments, as do `/*+ ... */` optimizer-hint comments, which are stored in object definitions. If there is a concern that optimizer-hint comments may be stored in object definitions so that dump files when reloaded with `mysql` would result in execution of such commands, either invoke  `mysql` with the `--binary-mode` option or use a reload client other than  `mysql`.
 
 

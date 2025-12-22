@@ -39,7 +39,7 @@ Para instalar uma distribuição binária de arquivos **tar** compactados, desem
 
 <table><col style="width: 45%"/><col style="width: 55%"/><thead><tr> <th>Repertório</th> <th>Conteúdo do diretório</th> </tr></thead><tbody><tr> <td>[[<code>bin</code>]]</td> <td><span><strong>- Não ,</strong></span>Programas de servidor, de cliente e de utilidade</td> </tr><tr> <td>[[<code>docs</code>]]</td> <td>Manual MySQL em formato Info</td> </tr><tr> <td>[[<code>man</code>]]</td> <td>Páginas do manual do Unix</td> </tr><tr> <td>[[<code>include</code>]]</td> <td>Incluir arquivos de cabeçalho</td> </tr><tr> <td>[[<code>lib</code>]]</td> <td>Bibliotecas</td> </tr><tr> <td>[[<code>share</code>]]</td> <td>Mensagens de erro, dicionário e SQL para instalação de banco de dados</td> </tr><tr> <td>[[<code>support-files</code>]]</td> <td>Arquivos de apoio diversos</td> </tr></tbody></table>
 
-As versões de depuração do **mysqld** binário estão disponíveis como **mysqld-debug**. Para compilar sua própria versão de depuração do MySQL a partir de uma distribuição de origem, use as opções de configuração apropriadas para habilitar o suporte de depuração. Veja Seção 2.8, "Instalar o MySQL a partir da fonte".
+As versões de depuração do `mysqld` binário estão disponíveis como **mysqld-debug**. Para compilar sua própria versão de depuração do MySQL a partir de uma distribuição de origem, use as opções de configuração apropriadas para habilitar o suporte de depuração. Veja Seção 2.8, "Instalar o MySQL a partir da fonte".
 
 Para instalar e usar uma distribuição binária do MySQL, a sequência de comandos é a seguinte:
 
@@ -71,7 +71,7 @@ Segue-se uma versão mais detalhada da descrição anterior para a instalação 
 
 ### Criar um usuário e um grupo mysql
 
-Se o seu sistema ainda não tiver um usuário e um grupo para usar para executar **mysqld**, você pode precisar criá-los. Os seguintes comandos adicionam o grupo `mysql` e o usuário `mysql`. Você pode querer chamar o usuário e o grupo de outra coisa em vez de `mysql`. Se assim for, substitua o nome apropriado nas instruções a seguir. A sintaxe para **useradd** e **graddoup** pode diferir ligeiramente em diferentes versões do Unix/Linux, ou eles podem ter nomes diferentes, como **adduser** e **addgroup**.
+Se o seu sistema ainda não tiver um usuário e um grupo para usar para executar `mysqld`, você pode precisar criá-los. Os seguintes comandos adicionam o grupo `mysql` e o usuário `mysql`. Você pode querer chamar o usuário e o grupo de outra coisa em vez de `mysql`. Se assim for, substitua o nome apropriado nas instruções a seguir. A sintaxe para **useradd** e **graddoup** pode diferir ligeiramente em diferentes versões do Unix/Linux, ou eles podem ter nomes diferentes, como **adduser** e **addgroup**.
 
 ```
 $> groupadd mysql

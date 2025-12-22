@@ -4,7 +4,7 @@ The server shutdown process takes place as follows:
 
 1. The shutdown process is initiated.
 
-   This can occur initiated several ways. For example, a user with the  `SHUTDOWN` privilege can execute a  **mysqladmin shutdown** command. **mysqladmin** can be used on any platform supported by MySQL. Other operating system-specific shutdown initiation methods are possible as well: The server shuts down on Unix when it receives a `SIGTERM` signal. A server running as a service on Windows shuts down when the services manager tells it to.
+   This can occur initiated several ways. For example, a user with the  `SHUTDOWN` privilege can execute a  **mysqladmin shutdown** command. `mysqladmin` can be used on any platform supported by MySQL. Other operating system-specific shutdown initiation methods are possible as well: The server shuts down on Unix when it receives a `SIGTERM` signal. A server running as a service on Windows shuts down when the services manager tells it to.
 2. The server creates a shutdown thread if necessary.
 
    Depending on how shutdown was initiated, the server might create a thread to handle the shutdown process. If shutdown was requested by a client, a shutdown thread is created. If shutdown is the result of receiving a `SIGTERM` signal, the signal thread might handle shutdown itself, or it might create a separate thread to do so. If the server tries to create a shutdown thread and cannot (for example, if memory is exhausted), it issues a diagnostic message that appears in the error log:

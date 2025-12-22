@@ -8,7 +8,7 @@ This section explains the general idea of using the binary log to perform a poin
 
 ::: info Note
 
-Many of the examples in this and the next section use the **mysql** client to process binary log output produced by  **mysqlbinlog**. If your binary log contains `\0` (null) characters, that output cannot be parsed by  **mysql** unless you invoke it with the  `--binary-mode` option.
+Many of the examples in this and the next section use the `mysql` client to process binary log output produced by  **mysqlbinlog**. If your binary log contains `\0` (null) characters, that output cannot be parsed by  `mysql` unless you invoke it with the  `--binary-mode` option.
 
 
 :::
@@ -29,7 +29,7 @@ mysql> SHOW BINARY LOG STATUS;
 
 The  **mysqlbinlog** utility converts the events in the binary log files from binary format to text so that they can be viewed or applied.  **mysqlbinlog** has options for selecting sections of the binary log based on event times or position of events within the log. See Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”.
 
-Applying events from the binary log causes the data modifications they represent to be reexecuted. This enables recovery of data changes for a given span of time. To apply events from the binary log, process **mysqlbinlog** output using the **mysql** client:
+Applying events from the binary log causes the data modifications they represent to be reexecuted. This enables recovery of data changes for a given span of time. To apply events from the binary log, process **mysqlbinlog** output using the `mysql` client:
 
 ```
 $> mysqlbinlog binlog_files | mysql -u root -p

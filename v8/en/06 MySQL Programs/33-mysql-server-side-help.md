@@ -4,7 +4,7 @@
 mysql> help search_string
 ```
 
-If you provide an argument to the `help` command,  **mysql** uses it as a search string to access server-side help from the contents of the MySQL Reference Manual. The proper operation of this command requires that the help tables in the `mysql` database be initialized with help topic information (see Section 7.1.17, “Server-Side Help Support”).
+If you provide an argument to the `help` command,  `mysql` uses it as a search string to access server-side help from the contents of the MySQL Reference Manual. The proper operation of this command requires that the help tables in the `mysql` database be initialized with help topic information (see Section 7.1.17, “Server-Side Help Support”).
 
 If there is no match for the search string, the search fails:
 
@@ -39,7 +39,7 @@ following categories:
    Triggers
 ```
 
-If the search string matches multiple items, **mysql** shows a list of matching topics:
+If the search string matches multiple items, `mysql` shows a list of matching topics:
 
 ```
 mysql> help logs

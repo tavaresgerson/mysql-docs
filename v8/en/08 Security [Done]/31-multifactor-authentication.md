@@ -85,7 +85,7 @@ CREATE USER 'alice'@'localhost'
     AS 'uid=u1_ldap,ou=People,dc=example,dc=com';
 ```
 
-To connect, the user must supply two passwords. To enable authentication to the MySQL server using accounts that require multiple passwords, client programs have `--password1`, `--password2`, and `--password3` options that permit up to three passwords to be specified. These options are similar to the  `--password` option in that they can take a password value following the option on the command line (which is insecure) or if given without a password value cause the user to be prompted for one. For the account just created, factors 1 and 2 take passwords, so invoke the **mysql** client with the `--password1` and `--password2` options. **mysql** prompts for each password in turn:
+To connect, the user must supply two passwords. To enable authentication to the MySQL server using accounts that require multiple passwords, client programs have `--password1`, `--password2`, and `--password3` options that permit up to three passwords to be specified. These options are similar to the  `--password` option in that they can take a password value following the option on the command line (which is insecure) or if given without a password value cause the user to be prompted for one. For the account just created, factors 1 and 2 take passwords, so invoke the `mysql` client with the `--password1` and `--password2` options. `mysql` prompts for each password in turn:
 
 ```
 $> mysql --user=alice --password1 --password2

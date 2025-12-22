@@ -2,7 +2,7 @@
 
 The procedure for starting a single MySQL server manually from the command line is described in Section 2.3.3.6, “Starting MySQL from the Windows Command Line”. To start multiple servers this way, you can specify the appropriate options on the command line or in an option file. It is more convenient to place the options in an option file, but it is necessary to make sure that each server gets its own set of options. To do this, create an option file for each server and tell the server the file name with a  `--defaults-file` option when you run it.
 
-Suppose that you want to run one instance of **mysqld** on port 3307 with a data directory of `C:\mydata1`, and another instance on port 3308 with a data directory of `C:\mydata2`. Use this procedure:
+Suppose that you want to run one instance of `mysqld` on port 3307 with a data directory of `C:\mydata1`, and another instance on port 3308 with a data directory of `C:\mydata2`. Use this procedure:
 
 1. Make sure that each data directory exists, including its own copy of the `mysql` database that contains the grant tables.
 2. Create two option files. For example, create one file named `C:\my-opts1.cnf` that looks like this:

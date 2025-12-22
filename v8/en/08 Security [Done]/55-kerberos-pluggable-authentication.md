@@ -440,7 +440,7 @@ It is possible to specify `GSSAPI` mode:
   [mysql]
   plugin-authentication-kerberos-client-mode=GSSAPI
   ```
-* At runtime from the command line using the **mysql** or  **mysqldump** client programs. For example, the following commands (with underscores or dashes) causes  **mysql** to connect to the server through the MIT Kerberos library on Windows.
+* At runtime from the command line using the `mysql` or  `mysqldump` client programs. For example, the following commands (with underscores or dashes) causes  `mysql` to connect to the server through the MIT Kerberos library on Windows.
 
   ```
   mysql [connection-options] --plugin_authentication_kerberos_client_mode=GSSAPI

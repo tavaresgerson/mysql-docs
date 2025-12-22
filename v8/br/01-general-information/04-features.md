@@ -75,6 +75,6 @@ Esta seção descreve algumas das características importantes do MySQL Database
 
 #### Clientes e Ferramentas
 
-- O MySQL inclui vários programas de cliente e utilitários, incluindo programas de linha de comando como **mysqldump** e **mysqladmin**, e programas gráficos como o MySQL Workbench.
-- O MySQL Server tem suporte embutido para instruções SQL para verificar, otimizar e reparar tabelas. Estas instruções estão disponíveis a partir da linha de comando através do cliente **mysqlcheck**. O MySQL também inclui **myisamchk**, um utilitário de linha de comando muito rápido para executar essas operações em tabelas `MyISAM`.
+- O MySQL inclui vários programas de cliente e utilitários, incluindo programas de linha de comando como `mysqldump` e `mysqladmin`, e programas gráficos como o MySQL Workbench.
+- O MySQL Server tem suporte embutido para instruções SQL para verificar, otimizar e reparar tabelas. Estas instruções estão disponíveis a partir da linha de comando através do cliente `mysqlcheck`. O MySQL também inclui `myisamchk`, um utilitário de linha de comando muito rápido para executar essas operações em tabelas `MyISAM`.
 - Os programas MySQL podem ser invocados com a opção `--help` ou `-?` para obter assistência on-line.

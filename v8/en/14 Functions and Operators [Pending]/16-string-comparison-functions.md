@@ -12,7 +12,7 @@ If a string function is given a binary string as an argument, the resulting stri
 
 Normally, if any expression in a string comparison is case-sensitive, the comparison is performed in case-sensitive fashion.
 
-If a string function is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+If a string function is invoked from within the `mysql` client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
 * [`expr LIKE pat [ESCAPE 'escape_char']`](string-comparison-functions.html#operator_like)
 

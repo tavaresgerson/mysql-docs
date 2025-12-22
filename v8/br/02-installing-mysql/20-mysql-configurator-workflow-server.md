@@ -51,7 +51,7 @@ Este diálogo solicita o protocolo (padrão: TCP/IP), a porta (padrão: 3306) e 
 
 Esta atualização pode substituir os caminhos de arquivo. Por exemplo, "MySQL Server 8.2\Data" muda para "MySQL Server 8.3\Data" ao atualizar 8.2 para 8.3.
 
-Esta funcionalidade de atualização também fornece essas opções adicionais: "Backup Data" permite executar **mysqldump** antes de executar a atualização e "Permissões de arquivo do servidor" para personalizar opcionalmente as permissões de arquivo.
+Esta funcionalidade de atualização também fornece essas opções adicionais: "Backup Data" permite executar `mysqldump` antes de executar a atualização e "Permissões de arquivo do servidor" para personalizar opcionalmente as permissões de arquivo.
 
 ###### Adicionar uma instalação separada do servidor MySQL
 

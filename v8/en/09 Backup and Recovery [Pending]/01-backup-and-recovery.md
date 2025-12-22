@@ -56,7 +56,7 @@ Resources related to backup or to maintaining data availability include the foll
 
 * Customers of MySQL Enterprise Edition can use the MySQL Enterprise Backup product for backups. For an overview of the MySQL Enterprise Backup product, see Section 32.1, “MySQL Enterprise Backup Overview”.
 * A forum dedicated to backup issues is available at <https://forums.mysql.com/list.php?28>.
-* Details for  **mysqldump** can be found in Chapter 6, *MySQL Programs*.
+* Details for  `mysqldump` can be found in Chapter 6, *MySQL Programs*.
 * The syntax of the SQL statements described here is given in Chapter 15, *SQL Statements*.
 * For additional information about `InnoDB` backup procedures, see  Section 17.18.1, “InnoDB Backup”.
 * Replication enables you to maintain identical data on multiple servers. This has several benefits, such as enabling client query load to be distributed over servers, availability of data even if a given server is taken offline or fails, and the ability to make backups with no impact on the source by using a replica. See  Chapter 19, *Replication*.

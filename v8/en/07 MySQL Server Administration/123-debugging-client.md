@@ -11,7 +11,7 @@ $> export MYSQL_DEBUG
 
 This causes clients to generate a trace file in `/tmp/client.trace`.
 
-If you have problems with your own client code, you should attempt to connect to the server and run your query using a client that is known to work. Do this by running  **mysql** in debugging mode (assuming that you have compiled MySQL with debugging on):
+If you have problems with your own client code, you should attempt to connect to the server and run your query using a client that is known to work. Do this by running  `mysql` in debugging mode (assuming that you have compiled MySQL with debugging on):
 
 ```
 $> mysql --debug=d:t:O,/tmp/client.trace

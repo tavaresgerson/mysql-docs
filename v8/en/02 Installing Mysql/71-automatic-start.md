@@ -2,11 +2,11 @@
 
 This section discusses methods for starting and stopping the MySQL server.
 
-Generally, you start the  **mysqld** server in one of these ways:
+Generally, you start the  `mysqld` server in one of these ways:
 
-* Invoke  **mysqld** directly. This works on any platform.
+* Invoke  `mysqld` directly. This works on any platform.
 * On Windows, you can set up a MySQL service that runs automatically when Windows starts. See Section 2.3.3.8, “Starting MySQL as a Windows Service”.
-* On Unix and Unix-like systems, you can invoke **mysqld_safe**, which tries to determine the proper options for  **mysqld** and then runs it with those options. See  Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”.
+* On Unix and Unix-like systems, you can invoke **mysqld_safe**, which tries to determine the proper options for  `mysqld` and then runs it with those options. See  Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”.
 * On Linux systems that support systemd, you can use it to control the server. See  Section 2.5.9, “Managing MySQL Server with systemd”.
 * On systems that use System V-style run directories (that is, `/etc/init.d` and run-level specific directories), invoke  **mysql.server**. This script is used primarily at system startup and shutdown. It usually is installed under the name `mysql`. The  **mysql.server** script starts the server by invoking  **mysqld_safe**. See Section 6.3.3, “mysql.server — MySQL Server Startup Script”.
 * On macOS, install a launchd daemon to enable automatic MySQL startup at system startup. The daemon starts the server by invoking  **mysqld_safe**. For details, see Section 2.4.3, “Installing and Using the MySQL Launch Daemon”. A MySQL Preference Pane also provides control for starting and stopping MySQL through the System Preferences. See Section 2.4.4, “Installing and Using the MySQL Preference Pane”.

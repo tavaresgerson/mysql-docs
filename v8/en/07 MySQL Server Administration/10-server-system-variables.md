@@ -270,7 +270,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   The creator of a routine is the account used to execute the `CREATE` statement for it. This might not be the same as the account named as the `DEFINER` in the routine definition.
 
-  If you start  **mysqld** with `--skip-new`, `automatic_sp_privileges` is set to `OFF`.
+  If you start  `mysqld` with `--skip-new`, `automatic_sp_privileges` is set to `OFF`.
 
   See also  Section 27.2.2, “Stored Routines and MySQL Privileges”.
 *  `auto_generate_certs`
@@ -545,14 +545,14 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>NEVER</code> (or 0)</td> <td>Disables concurrent inserts</td> </tr><tr> <td><code>AUTO</code> (or 1)</td> <td>(Default) Enables concurrent insert for <code>MyISAM</code> tables that do not have holes</td> </tr><tr> <td><code>ALWAYS</code> (or 2)</td> <td>Enables concurrent inserts for all <code>MyISAM</code> tables, even those that have holes. For a table with a hole, new rows are inserted at the end of the table if it is in use by another thread. Otherwise, MySQL acquires a normal write lock and inserts the row into the hole.</td> </tr></tbody></table>
 
-  If you start  **mysqld** with `--skip-new`, `concurrent_insert` is set to `NEVER`.
+  If you start  `mysqld` with `--skip-new`, `concurrent_insert` is set to `NEVER`.
 
   See also  Section 10.11.3, “Concurrent Inserts”.
 *  `connect_timeout`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-timeout=#</code></td> </tr><tr><th>System Variable</th> <td><code>connect_timeout</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr><tr><th>Minimum Value</th> <td><code>2</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
 
-  The number of seconds that the  **mysqld** server waits for a connect packet before responding with `Bad handshake`. The default value is 10 seconds.
+  The number of seconds that the  `mysqld` server waits for a connect packet before responding with `Bad handshake`. The default value is 10 seconds.
 
   Increasing the `connect_timeout` value might help if clients frequently encounter errors of the form `Lost connection to MySQL server at 'XXX', system error: errno`.
 *  `connection_memory_chunk_size`
@@ -718,13 +718,13 @@ Some system variables take file name values. Unless otherwise specified, the def
   
   ::: info Note
 
-  If you set this variable to `ALL`, you should not use `MyISAM` tables from within another program (such as another MySQL server or **myisamchk**) when the tables are in use. Doing so leads to index corruption.
+  If you set this variable to `ALL`, you should not use `MyISAM` tables from within another program (such as another MySQL server or `myisamchk`) when the tables are in use. Doing so leads to index corruption.
 
   :::
 
   If `DELAY_KEY_WRITE` is enabled for a table, the key buffer is not flushed for the table on every index update, but only when the table is closed. This speeds up writes on keys a lot, but if you use this feature, you should add automatic checking of all `MyISAM` tables by starting the server with the `myisam_recover_options` system variable set (for example, `myisam_recover_options='BACKUP,FORCE'`). See  Section 7.1.8, “Server System Variables”, and Section 18.2.1, “MyISAM Startup Options”.
 
-  If you start  **mysqld** with `--skip-new`, `delay_key_write` is set to `OFF`.
+  If you start  `mysqld` with `--skip-new`, `delay_key_write` is set to `OFF`.
 
   Warning
 
@@ -934,7 +934,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   Applies to MyISAM, only.
 
-  If `ON`, the server flushes (synchronizes) all changes to disk after each SQL statement. Normally, MySQL does a write of all changes to disk only after each SQL statement and lets the operating system handle the synchronizing to disk. See  Section B.3.3.3, “What to Do If MySQL Keeps Crashing”. This variable is set to `ON` if you start **mysqld** with the `--flush` option.
+  If `ON`, the server flushes (synchronizes) all changes to disk after each SQL statement. Normally, MySQL does a write of all changes to disk only after each SQL statement and lets the operating system handle the synchronizing to disk. See  Section B.3.3.3, “What to Do If MySQL Keeps Crashing”. This variable is set to `ON` if you start `mysqld` with the `--flush` option.
 
   ::: info Note
 
@@ -1070,7 +1070,7 @@ Some system variables take file name values. Unless otherwise specified, the def
   `YES` if the `zlib` compression library is available to the server, `NO` if not. If not, the `COMPRESS()` and `UNCOMPRESS()` functions cannot be used.
 *  `have_dynamic_loading`
 
-  `YES` if  **mysqld** supports dynamic loading of plugins, `NO` if not. If the value is `NO`, you cannot use options such as  `--plugin-load` to load plugins at server startup, or the `INSTALL PLUGIN` statement to load plugins at runtime.
+  `YES` if  `mysqld` supports dynamic loading of plugins, `NO` if not. If the value is `NO`, you cannot use options such as  `--plugin-load` to load plugins at server startup, or the `INSTALL PLUGIN` statement to load plugins at runtime.
 *  `have_geometry`
 
   `YES` if the server supports spatial data types, `NO` if not.
@@ -1291,7 +1291,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>System Variable</th> <td><code>large_files_support</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
 
-  Whether  **mysqld** was compiled with options for large file support.
+  Whether  `mysqld` was compiled with options for large file support.
 *  `large_pages`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--large-pages[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>large_pages</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Platform Specific</th> <td>Linux</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
@@ -1331,7 +1331,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   This variable controls server-side `LOCAL` capability for  `LOAD DATA` statements. Depending on the `local_infile` setting, the server refuses or permits local data loading by clients that have `LOCAL` enabled on the client side.
 
-  To explicitly cause the server to refuse or permit `LOAD DATA LOCAL` statements (regardless of how client programs and libraries are configured at build time or runtime), start **mysqld** with `local_infile` disabled or enabled, respectively. `local_infile` can also be set at runtime. For more information, see Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”.
+  To explicitly cause the server to refuse or permit `LOAD DATA LOCAL` statements (regardless of how client programs and libraries are configured at build time or runtime), start `mysqld` with `local_infile` disabled or enabled, respectively. `local_infile` can also be set at runtime. For more information, see Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”.
 *  `lock_wait_timeout`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--lock-wait-timeout=#</code></td> </tr><tr><th>System Variable</th> <td><code>lock_wait_timeout</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>31536000</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
@@ -1349,7 +1349,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>System Variable</th> <td><code>locked_in_memory</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Whether  **mysqld** was locked in memory with `--memlock`.
+  Whether  `mysqld` was locked in memory with `--memlock`.
 *  `log_error`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-error[=file_name]</code></td> </tr><tr><th>System Variable</th> <td><code>log_error</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
@@ -1443,7 +1443,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   Smaller values of this variable result in more statements being considered long-running, with the result that more space is required for the slow query log. For very small values (less than one second), the log may grow quite large in a small time. Increasing the number of statements considered long-running may also result in false positives for the “excessive Number of Long Running Processes” alert in MySQL Enterprise Monitor, especially if Group Replication is enabled. For these reasons, very small values should be used in test environments only, or, in production environments, only for a short period.
 
-   **mysqldump** performs a full table scan, which means its queries can often exceed a `long_query_time` setting that is useful for regular queries. If you want to exclude most or all of the queries generated by  **mysqldump** from the slow query log, you can use `--mysqld-long-query-time` to change the session value of the system variable to a higher value.
+   `mysqldump` performs a full table scan, which means its queries can often exceed a `long_query_time` setting that is useful for regular queries. If you want to exclude most or all of the queries generated by  `mysqldump` from the slow query log, you can use `--mysqld-long-query-time` to change the session value of the system variable to a higher value.
 *  `low_priority_updates`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--low-priority-updates[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>low_priority_updates</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
@@ -1517,7 +1517,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   You must increase this value if you are using large `BLOB` columns or long strings. It should be as big as the largest `BLOB` you want to use. The protocol limit for `max_allowed_packet` is 1GB. The value should be a multiple of 1024; nonmultiples are rounded down to the nearest multiple.
 
-  When you change the message buffer size by changing the value of the  `max_allowed_packet` variable, you should also change the buffer size on the client side if your client program permits it. The default `max_allowed_packet` value built in to the client library is 1GB, but individual client programs might override this. For example, **mysql** and  **mysqldump** have defaults of 16MB and 24MB, respectively. They also enable you to change the client-side value by setting `max_allowed_packet` on the command line or in an option file.
+  When you change the message buffer size by changing the value of the  `max_allowed_packet` variable, you should also change the buffer size on the client side if your client program permits it. The default `max_allowed_packet` value built in to the client library is 1GB, but individual client programs might override this. For example, `mysql` and  `mysqldump` have defaults of 16MB and 24MB, respectively. They also enable you to change the client-side value by setting `max_allowed_packet` on the command line or in an option file.
 
   The session value of this variable is read only. The client can receive up to as many bytes as the session value. However, the server does not send to the client more bytes than the current global `max_allowed_packet` value. (The global value could be less than the session value if the global value is changed after the client connects.)
 *  `max_connect_errors`
@@ -1690,7 +1690,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--myisam-recover-options[=list]</code></td> </tr><tr><th>System Variable</th> <td><code>myisam_recover_options</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>DEFAULT</code></p><p class="valid-value"><code>BACKUP</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>QUICK</code></p></td> </tr></tbody></table>
 
-  Set the `MyISAM` storage engine recovery mode. The variable value is any combination of the values of `OFF`, `DEFAULT`, `BACKUP`, `FORCE`, or `QUICK`. If you specify multiple values, separate them by commas. Specifying the variable with no value at server startup is the same as specifying `DEFAULT`, and specifying with an explicit value of `""` disables recovery (same as a value of `OFF`). If recovery is enabled, each time  **mysqld** opens a `MyISAM` table, it checks whether the table is marked as crashed or was not closed properly. (The last option works only if you are running with external locking disabled.) If this is the case,  **mysqld** runs a check on the table. If the table was corrupted, **mysqld** attempts to repair it.
+  Set the `MyISAM` storage engine recovery mode. The variable value is any combination of the values of `OFF`, `DEFAULT`, `BACKUP`, `FORCE`, or `QUICK`. If you specify multiple values, separate them by commas. Specifying the variable with no value at server startup is the same as specifying `DEFAULT`, and specifying with an explicit value of `""` disables recovery (same as a value of `OFF`). If recovery is enabled, each time  `mysqld` opens a `MyISAM` table, it checks whether the table is marked as crashed or was not closed properly. (The last option works only if you are running with external locking disabled.) If this is the case,  `mysqld` runs a check on the table. If the table was corrupted, `mysqld` attempts to repair it.
 
   The following options affect how the repair works.
 
@@ -1794,10 +1794,10 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--open-files-limit=#</code></td> </tr><tr><th>System Variable</th> <td><code>open_files_limit</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5000, with possible adjustment</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>platform dependent</code></td> </tr></tbody></table>
 
-  The number of file descriptors available to **mysqld** from the operating system:
+  The number of file descriptors available to `mysqld` from the operating system:
 
-  + At startup,  **mysqld** reserves descriptors with `setrlimit()`, using the value requested at by setting this variable directly or by using the  `--open-files-limit` option to  **mysqld\_safe**. If **mysqld** produces the error `Too many open files`, try increasing the `open_files_limit` value. Internally, the maximum value for this variable is the maximum unsigned integer value, but the actual maximum is platform dependent.
-  + At runtime, the value of `open_files_limit` indicates the number of file descriptors actually permitted to  **mysqld** by the operating system, which might differ from the value requested at startup. If the number of file descriptors requested during startup cannot be allocated, **mysqld** writes a warning to the error log.
+  + At startup,  `mysqld` reserves descriptors with `setrlimit()`, using the value requested at by setting this variable directly or by using the  `--open-files-limit` option to  **mysqld\_safe**. If `mysqld` produces the error `Too many open files`, try increasing the `open_files_limit` value. Internally, the maximum value for this variable is the maximum unsigned integer value, but the actual maximum is platform dependent.
+  + At runtime, the value of `open_files_limit` indicates the number of file descriptors actually permitted to  `mysqld` by the operating system, which might differ from the value requested at startup. If the number of file descriptors requested during startup cannot be allocated, `mysqld` writes a warning to the error log.
 
   The effective `open_files_limit` value is based on the value specified at system startup (if any) and the values of  `max_connections` and  `table_open_cache`, using these formulas:
 
@@ -2140,7 +2140,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   + Updates performed by replication threads, if the server is a replica. In replication setups, it can be useful to enable  `read_only` on replica servers to ensure that replicas accept updates only from the source server and not from clients.
   + Writes to the system table `mysql.gtid_executed`, which stores GTIDs for executed transactions that are not present in the current binary log file.
-  + Use of  `ANALYZE TABLE` or `OPTIMIZE TABLE` statements. The purpose of read-only mode is to prevent changes to table structure or contents. Analysis and optimization do not qualify as such changes. This means, for example, that consistency checks on read-only replicas can be performed with  **mysqlcheck** `--all-databases` `--analyze`.
+  + Use of  `ANALYZE TABLE` or `OPTIMIZE TABLE` statements. The purpose of read-only mode is to prevent changes to table structure or contents. Analysis and optimization do not qualify as such changes. This means, for example, that consistency checks on read-only replicas can be performed with  `mysqlcheck` `--all-databases` `--analyze`.
   + Use of  `FLUSH STATUS` statements, which are always written to the binary log.
   + Operations on `TEMPORARY` tables.
   + Inserts into the log tables (`mysql.general_log` and `mysql.slow_log`); see Section 7.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”.
@@ -2429,7 +2429,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-external-locking[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>skip_external_locking</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  This is `OFF` if  **mysqld** uses external locking (system locking), `ON` if external locking is disabled. This affects only `MyISAM` table access.
+  This is `OFF` if  `mysqld` uses external locking (system locking), `ON` if external locking is disabled. This affects only `MyISAM` table access.
 
   This variable is set by the `--external-locking` or `--skip-external-locking` option. External locking is disabled by default.
 
@@ -2438,7 +2438,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-name-resolve[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>skip_name_resolve</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Whether to resolve host names when checking client connections. If this variable is `OFF`, **mysqld** resolves host names when checking client connections. If it is `ON`, **mysqld** uses only IP numbers; in this case, all `Host` column values in the grant tables must be IP addresses. See  Section 7.1.12.3, “DNS Lookups and the Host Cache”.
+  Whether to resolve host names when checking client connections. If this variable is `OFF`, `mysqld` resolves host names when checking client connections. If it is `ON`, `mysqld` uses only IP numbers; in this case, all `Host` column values in the grant tables must be IP addresses. See  Section 7.1.12.3, “DNS Lookups and the Host Cache”.
 
   Depending on the network configuration of your system and the `Host` values for your accounts, clients may need to connect using an explicit `--host` option, such as `--host=127.0.0.1` or `--host=::1`.
 
@@ -2452,7 +2452,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-networking[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>skip_networking</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  This variable controls whether the server permits TCP/IP connections. By default, it is disabled (permit TCP connections). If enabled, the server permits only local (non-TCP/IP) connections and all interaction with **mysqld** must be made using named pipes or shared memory (on Windows) or Unix socket files (on Unix). This option is highly recommended for systems where only local clients are permitted. See  Section 7.1.12.3, “DNS Lookups and the Host Cache”.
+  This variable controls whether the server permits TCP/IP connections. By default, it is disabled (permit TCP connections). If enabled, the server permits only local (non-TCP/IP) connections and all interaction with `mysqld` must be made using named pipes or shared memory (on Windows) or Unix socket files (on Unix). This option is highly recommended for systems where only local clients are permitted. See  Section 7.1.12.3, “DNS Lookups and the Host Cache”.
 
   Because starting the server with `--skip-grant-tables` disables authentication checks, the server also disables remote connections in that case by enabling `skip_networking`.
 *  `skip_show_database`
@@ -2560,7 +2560,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>System Variable</th> <td><code>sql_notes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  If enabled (the default), diagnostics of `Note` level increment `warning_count` and the server records them. If disabled, `Note` diagnostics do not increment  `warning_count` and the server does not record them.  **mysqldump** includes output to disable this variable so that reloading the dump file does not produce warnings for events that do not affect the integrity of the reload operation.
+  If enabled (the default), diagnostics of `Note` level increment `warning_count` and the server records them. If disabled, `Note` diagnostics do not increment  `warning_count` and the server does not record them.  `mysqldump` includes output to disable this variable so that reloading the dump file does not produce warnings for events that do not affect the integrity of the reload operation.
 *  `sql_quote_show_create`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>System Variable</th> <td><code>sql_quote_show_create</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
@@ -2593,7 +2593,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   If this variable is enabled, `UPDATE` and `DELETE` statements that do not use a key in the `WHERE` clause or a `LIMIT` clause produce an error. This makes it possible to catch  `UPDATE` and `DELETE` statements where keys are not used properly and that would probably change or delete a large number of rows. The default value is `OFF`.
 
-  For the  **mysql** client, `sql_safe_updates` can be enabled by using the `--safe-updates` option. For more information, see  Using Safe-Updates Mode (--safe-updates)").
+  For the  `mysql` client, `sql_safe_updates` can be enabled by using the `--safe-updates` option. For more information, see  Using Safe-Updates Mode (--safe-updates)").
 *  `sql_select_limit`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>System Variable</th> <td><code>sql_select_limit</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709551615</code></td> </tr></tbody></table>
@@ -2851,7 +2851,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--table-open-cache=#</code></td> </tr><tr><th>System Variable</th> <td><code>table_open_cache</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>4000</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>524288</code></td> </tr></tbody></table>
 
-  The number of open tables for all threads. Increasing this value increases the number of file descriptors that **mysqld** requires. The effective value of this variable is the greater of the effective value of `open_files_limit` `- 10 -` the effective value of `max_connections` `/ 2`, and 400; that is
+  The number of open tables for all threads. Increasing this value increases the number of file descriptors that `mysqld` requires. The effective value of this variable is the greater of the effective value of `open_files_limit` `- 10 -` the effective value of `max_connections` `/ 2`, and 400; that is
 
   ```
   MAX(

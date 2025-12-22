@@ -131,13 +131,13 @@ GENERATED ROOT PASSWORD: Axegh3kAJyDLaRuBemecis&EShOs
 
 ##### Conexão ao servidor MySQL a partir do contêiner
 
-Uma vez que o servidor esteja pronto, você pode executar o cliente **mysql** dentro do contêiner do MySQL Server que você acabou de iniciar e conectá-lo ao MySQL Server. Use o comando **docker exec -it** para iniciar um cliente **mysql** dentro do contêiner do Docker que você iniciou, como o seguinte:
+Uma vez que o servidor esteja pronto, você pode executar o cliente `mysql` dentro do contêiner do MySQL Server que você acabou de iniciar e conectá-lo ao MySQL Server. Use o comando **docker exec -it** para iniciar um cliente `mysql` dentro do contêiner do Docker que você iniciou, como o seguinte:
 
 ```
 docker exec -it mysql1 mysql -uroot -p
 ```
 
-Quando solicitado, insira a senha raiz gerada (veja a última etapa em Iniciar uma Instância do Servidor MySQL acima sobre como encontrar a senha). Como a opção `MYSQL_ONETIME_PASSWORD` é verdadeira por padrão, depois de conectar um cliente **mysql** ao servidor, você deve redefinir a senha raiz do servidor emitindo esta instrução:
+Quando solicitado, insira a senha raiz gerada (veja a última etapa em Iniciar uma Instância do Servidor MySQL acima sobre como encontrar a senha). Como a opção `MYSQL_ONETIME_PASSWORD` é verdadeira por padrão, depois de conectar um cliente `mysql` ao servidor, você deve redefinir a senha raiz do servidor emitindo esta instrução:
 
 ```
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
@@ -170,7 +170,7 @@ Para parar o contêiner MySQL Server que criamos, use este comando:
 docker stop mysql1
 ```
 
-**docker stop** envia um sinal SIGTERM para o processo **mysqld**, para que o servidor seja desligado graciosamente.
+**docker stop** envia um sinal SIGTERM para o processo `mysqld`, para que o servidor seja desligado graciosamente.
 
 Observe também que quando o processo principal de um contêiner ( \*\* mysqld \*\* no caso de um contêiner do MySQL Server) é interrompido, o contêiner do Docker é interrompido automaticamente.
 
