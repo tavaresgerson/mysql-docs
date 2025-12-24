@@ -18,7 +18,7 @@ Instruções específicas de distribuição são mostradas abaixo:
 
   Para Red Hat e distribuições semelhantes, a distribuição MySQL é dividida em vários pacotes separados, `mysql` para as ferramentas do cliente, `mysql-server` para o servidor e ferramentas associadas, e `mysql-libs` para as bibliotecas. As bibliotecas são necessárias se você quiser fornecer conectividade de diferentes linguagens e ambientes, como Perl, Python e outros.
 
-  Para instalar, use o comando **yum** para especificar os pacotes que você deseja instalar. Por exemplo:
+  Para instalar, use o comando `yum` para especificar os pacotes que você deseja instalar. Por exemplo:
 
   ```
   #> yum install mysql mysql-server mysql-libs mysql-server
@@ -83,13 +83,13 @@ Instruções específicas de distribuição são mostradas abaixo:
   Complete!
   ```
 
-  O MySQL e o servidor MySQL devem agora ser instalados. Um arquivo de configuração de exemplo está instalado em `/etc/my.cnf`. Para iniciar o servidor MySQL use **systemctl**:
+  O MySQL e o servidor MySQL devem agora ser instalados. Um arquivo de configuração de exemplo está instalado em `/etc/my.cnf`. Para iniciar o servidor MySQL use `systemctl`:
 
   ```
   $> systemctl start mysqld
   ```
 
-  As tabelas de banco de dados são criadas automaticamente para você, se elas ainda não existem. No entanto, você deve executar **mysql\_secure\_installation** para definir as senhas raiz em seu servidor.
+  As tabelas de banco de dados são criadas automaticamente para você, se elas ainda não existem. No entanto, você deve executar `mysql_secure_installation` para definir as senhas raiz em seu servidor.
 - **Debian, Ubuntu, Kubuntu**
 
   ::: info Note
@@ -100,7 +100,7 @@ Instruções específicas de distribuição são mostradas abaixo:
 
   No Debian e distribuições relacionadas, existem dois pacotes para o MySQL em seus repositórios de software, `mysql-client` e `mysql-server`, para os componentes do cliente e do servidor, respectivamente. Você deve especificar uma versão explícita, por exemplo `mysql-client-5.1`, para garantir que você instale a versão do MySQL que deseja.
 
-  Para baixar e instalar, incluindo quaisquer dependências, use o comando **apt-get**, especificando os pacotes que você deseja instalar.
+  Para baixar e instalar, incluindo quaisquer dependências, use o comando `apt-get`, especificando os pacotes que você deseja instalar.
 
   ::: info Note
 
@@ -110,7 +110,7 @@ Instruções específicas de distribuição são mostradas abaixo:
 
   ::: info Note
 
-  O comando **apt-get** instala uma série de pacotes, incluindo o servidor MySQL, a fim de fornecer as ferramentas típicas e ambiente de aplicação. Isso pode significar que você instalar um grande número de pacotes, além do pacote principal MySQL.
+  O comando `apt-get` instala uma série de pacotes, incluindo o servidor MySQL, a fim de fornecer as ferramentas típicas e ambiente de aplicação. Isso pode significar que você instalar um grande número de pacotes, além do pacote principal MySQL.
 
   :::
 

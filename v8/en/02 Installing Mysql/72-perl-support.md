@@ -4,7 +4,7 @@ The Perl `DBI` module provides a generic interface for database access. You can 
 
 ::: info Note
 
-Perl support is not included with MySQL distributions. You can obtain the necessary modules from <http://search.cpan.org> for Unix, or by using the ActiveState **ppm** program on Windows. The following sections describe how to do this.
+Perl support is not included with MySQL distributions. You can obtain the necessary modules from <http://search.cpan.org> for Unix, or by using the ActiveState `ppm` program on Windows. The following sections describe how to do this.
 
 :::
 

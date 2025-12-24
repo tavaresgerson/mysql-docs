@@ -16,7 +16,7 @@ The `DBD::mysql` installation runs a number of tests. These tests attempt to con
 
 `DBI` requires the `Data::Dumper` module. It may be installed; if not, you should install it before installing `DBI`.
 
-It is also possible to download the module distributions in the form of compressed **tar** archives and build the modules manually. For example, to unpack and build a DBI distribution, use a procedure such as this:
+It is also possible to download the module distributions in the form of compressed `tar` archives and build the modules manually. For example, to unpack and build a DBI distribution, use a procedure such as this:
 
 1. Unpack the distribution into the current directory:
 
@@ -39,7 +39,7 @@ It is also possible to download the module distributions in the form of compress
    $> make install
    ```
 
-The **make test** command is important because it verifies that the module is working. Note that when you run that command during the `DBD::mysql` installation to exercise the interface code, the MySQL server must be running or the test fails.
+The `make test` command is important because it verifies that the module is working. Note that when you run that command during the `DBD::mysql` installation to exercise the interface code, the MySQL server must be running or the test fails.
 
 It is a good idea to rebuild and reinstall the `DBD::mysql` distribution whenever you install a new release of MySQL. This ensures that the latest versions of the MySQL client libraries are installed correctly.
 

@@ -10,6 +10,6 @@ Como alternativa, você pode usar o gerenciador de pacotes em seu sistema para b
 
 ::: info Note
 
-Para muitas instalações do Linux, você deseja configurar o MySQL para ser iniciado automaticamente quando sua máquina é iniciada. Muitas das instalações de pacotes nativos executam essa operação para você, mas para soluções de código-fonte, binário e RPM você pode precisar configurar isso separadamente. O script necessário, **mysql.server**, pode ser encontrado no diretório `support-files` sob o diretório de instalação do MySQL ou em uma árvore de origem do MySQL. Você pode instalá-lo como `/etc/init.d/mysql` para inicialização e desligamento automáticos do MySQL. Veja Seção 6.3.3, mysql.server  MySQL Server Startup Script.
+Para muitas instalações do Linux, você deseja configurar o MySQL para ser iniciado automaticamente quando sua máquina é iniciada. Muitas das instalações de pacotes nativos executam essa operação para você, mas para soluções de código-fonte, binário e RPM você pode precisar configurar isso separadamente. O script necessário, `mysql.server`, pode ser encontrado no diretório `support-files` sob o diretório de instalação do MySQL ou em uma árvore de origem do MySQL. Você pode instalá-lo como `/etc/init.d/mysql` para inicialização e desligamento automáticos do MySQL. Veja Seção 6.3.3, mysql.server  MySQL Server Startup Script.
 
 :::

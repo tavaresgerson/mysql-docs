@@ -7,9 +7,9 @@ Para instalar o MySQL a partir de uma distribuição de origem padrão:
 3. Configure, construa e instale a distribuição usando as instruções nesta seção.
 4. Executar os procedimentos pós-instalação seguindo as instruções da secção 2.9, "Configuração e ensaio pós-instalação".
 
-O MySQL usa o **CMake** como estrutura de construção em todas as plataformas. As instruções dadas aqui devem permitir que você produza uma instalação funcional. Para informações adicionais sobre o uso do **CMake** para construir o MySQL, consulte \[How to Build MySQL Server with CMake] ((/doc/internals/en/cmake.html).
+O MySQL usa o `CMake` como estrutura de construção em todas as plataformas. As instruções dadas aqui devem permitir que você produza uma instalação funcional. Para informações adicionais sobre o uso do `CMake` para construir o MySQL, consulte \[How to Build MySQL Server with CMake] ((/doc/internals/en/cmake.html).
 
-Se você começar a partir de um RPM de origem, use o seguinte comando para criar um RPM binário que você pode instalar. Se você não tiver **rpmbuild**, use **rpm** em vez disso.
+Se você começar a partir de um RPM de origem, use o seguinte comando para criar um RPM binário que você pode instalar. Se você não tiver `rpmbuild`, use `rpm` em vez disso.
 
 ```
 $> rpmbuild --rebuild --clean MySQL-VERSION.src.rpm
@@ -17,7 +17,7 @@ $> rpmbuild --rebuild --clean MySQL-VERSION.src.rpm
 
 O resultado é um ou mais pacotes RPM binários que você instala conforme indicado na Seção 2.5.4, Instalar MySQL no Linux Usando Pacotes RPM do Oracle.
 
-A sequência de instalação a partir de um arquivo **tar** comprimido ou distribuição de arquivo Zip é semelhante ao processo de instalação a partir de uma distribuição binária genérica (ver Seção 2.2, Instalar MySQL em Unix/Linux Usando Binários Genéricos), exceto que é usado em todas as plataformas e inclui etapas para configurar e compilar a distribuição.
+A sequência de instalação a partir de um arquivo `tar` comprimido ou distribuição de arquivo Zip é semelhante ao processo de instalação a partir de uma distribuição binária genérica (ver Seção 2.2, Instalar MySQL em Unix/Linux Usando Binários Genéricos), exceto que é usado em todas as plataformas e inclui etapas para configurar e compilar a distribuição.
 
 ```
 # Preconfiguration setup
@@ -70,19 +70,19 @@ Obter um ficheiro de distribuição utilizando as instruções da Secção 2.1.3
 
 Desembalar a distribuição para o diretório atual:
 
-- Para descompactar um arquivo **tar** compactado, **tar** pode descompactar e descompactar a distribuição se tiver suporte à opção `z`:
+- Para descompactar um arquivo `tar` compactado, `tar` pode descompactar e descompactar a distribuição se tiver suporte à opção `z`:
 
   ```
   $> tar zxvf mysql-VERSION.tar.gz
   ```
 
-  Se o seu **tar** não tiver suporte à opção `z`, use **gunzip** para descompactar a distribuição e **tar** para descompactá-la:
+  Se o seu `tar` não tiver suporte à opção `z`, use `gunzip` para descompactar a distribuição e `tar` para descompactá-la:
 
   ```
   $> gunzip < mysql-VERSION.tar.gz | tar xvf -
   ```
 
-  Alternativamente, **CMake** pode descompactar e desembalar a distribuição:
+  Alternativamente, `CMake` pode descompactar e desembalar a distribuição:
 
   ```
   $> cmake -E tar zxvf mysql-VERSION.tar.gz
@@ -141,7 +141,7 @@ No macOS, para usar o IDE Xcode:
 $> cmake .. -G Xcode
 ```
 
-Quando você executa **Cmake**, você pode querer adicionar opções à linha de comando.
+Quando você executa `Cmake`, você pode querer adicionar opções à linha de comando.
 
 - `-DBUILD_CONFIG=mysql_release`: Configure o código-fonte com as mesmas opções de compilação usadas pela Oracle para produzir distribuições binárias para lançamentos oficiais do MySQL.
 - `-DCMAKE_INSTALL_PREFIX=dir_name`: Configurar a distribuição para instalação em um local específico.
@@ -162,12 +162,12 @@ $> cmake .. -LAH # all params with help text
 $> ccmake ..     # interactive display
 ```
 
-Se **CMake** falhar, talvez seja necessário reconfigurar executando-o novamente com opções diferentes. Se você reconfigurar, tome nota do seguinte:
+Se `CMake` falhar, talvez seja necessário reconfigurar executando-o novamente com opções diferentes. Se você reconfigurar, tome nota do seguinte:
 
-- Se **CMake** é executado depois de ter sido executado anteriormente, ele pode usar informações que foram coletadas durante sua invocação anterior. Estas informações são armazenadas em `CMakeCache.txt`. Quando **CMake** é iniciado, ele procura por esse arquivo e lê seu conteúdo, se ele existe, supondo que as informações ainda estão corretas. Essa suposição é inválida quando você reconfigura.
-- Cada vez que você executar **CMake**, você deve executar **make** novamente para recompilar. No entanto, você pode querer remover arquivos de objetos antigos de compilações anteriores primeiro porque eles foram compilados usando opções de configuração diferentes.
+- Se `CMake` é executado depois de ter sido executado anteriormente, ele pode usar informações que foram coletadas durante sua invocação anterior. Estas informações são armazenadas em `CMakeCache.txt`. Quando `CMake` é iniciado, ele procura por esse arquivo e lê seu conteúdo, se ele existe, supondo que as informações ainda estão corretas. Essa suposição é inválida quando você reconfigura.
+- Cada vez que você executar `CMake`, você deve executar `make` novamente para recompilar. No entanto, você pode querer remover arquivos de objetos antigos de compilações anteriores primeiro porque eles foram compilados usando opções de configuração diferentes.
 
-Para evitar que arquivos de objetos antigos ou informações de configuração sejam usados, execute estes comandos no diretório de compilação no Unix antes de reexercitar **CMake**:
+Para evitar que arquivos de objetos antigos ou informações de configuração sejam usados, execute estes comandos no diretório de compilação no Unix antes de reexercitar `CMake`:
 
 ```
 $> make clean
@@ -194,7 +194,7 @@ $> make VERBOSE=1
 
 O segundo comando define `VERBOSE` para mostrar os comandos para cada fonte compilada.
 
-Use **gmake** em vez disso em sistemas onde você está usando o GNU **make** e ele foi instalado como **gmake**.
+Use `gmake` em vez disso em sistemas onde você está usando o GNU `make` e ele foi instalado como `gmake`.
 
 Em Windows:
 
@@ -226,7 +226,7 @@ Alternativamente, gerar arquivos de pacote de instalação que você pode instal
 $> make package
 ```
 
-Esta operação produz um ou mais arquivos `.tar.gz` que podem ser instalados como pacotes de distribuição binários genéricos. Veja Seção 2.2, Instalar MySQL no Unix/Linux Usando Binários Genéricos. Se você executar **CMake** com `-DCPACK_MONOLITHIC_INSTALL=1`, a operação produz um único arquivo. Caso contrário, produz vários arquivos.
+Esta operação produz um ou mais arquivos `.tar.gz` que podem ser instalados como pacotes de distribuição binários genéricos. Veja Seção 2.2, Instalar MySQL no Unix/Linux Usando Binários Genéricos. Se você executar `CMake` com `-DCPACK_MONOLITHIC_INSTALL=1`, a operação produz um único arquivo. Caso contrário, produz vários arquivos.
 
 No Windows, gerar o diretório de dados, em seguida, criar um pacote de instalação de arquivo `.zip`:
 

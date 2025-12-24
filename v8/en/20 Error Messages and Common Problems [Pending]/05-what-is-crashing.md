@@ -15,7 +15,7 @@ When you run into a problem, the first thing you should do is to find out which 
   It is always good to use a machine with ECC memory to discover memory problems early.
 * If your keyboard is locked up, you may be able to recover by logging in to your machine from another machine and executing `kbd_mode -a`.
 * Please examine your system log file (`/var/log/messages` or similar) for reasons for your problem. If you think the problem is in MySQL, you should also examine MySQL's log files. See  Section 7.4, “MySQL Server Logs”.
-* If you do not think you have hardware problems, you should try to find out which program is causing problems. Try using **top**, **ps**, Task Manager, or some similar program, to check which program is taking all CPU or is locking the machine.
+* If you do not think you have hardware problems, you should try to find out which program is causing problems. Try using **top**, `ps`, Task Manager, or some similar program, to check which program is taking all CPU or is locking the machine.
 * Use **top**, **df**, or a similar program to check whether you are out of memory, disk space, file descriptors, or some other critical resource.
 * If the problem is some runaway process, you can always try to kill it. If it does not want to die, there is probably a bug in the operating system.
 

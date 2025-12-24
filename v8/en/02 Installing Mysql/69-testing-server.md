@@ -44,17 +44,17 @@ Verify that you can shut down the server (include a `-p` option if the `root` ac
 $> bin/mysqladmin -u root shutdown
 ```
 
-Verify that you can start the server again. Do this by using **mysqld_safe** or by invoking `mysqld` directly. For example:
+Verify that you can start the server again. Do this by using `mysqld_safe` or by invoking `mysqld` directly. For example:
 
 ```
 $> bin/mysqld_safe --user=mysql &
 ```
 
-If  **mysqld_safe** fails, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”.
+If `mysqld_safe` fails, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”.
 
 Run some simple tests to verify that you can retrieve information from the server. The output should be similar to that shown here.
 
-Use  **mysqlshow** to see what databases exist:
+Use  `mysqlshow` to see what databases exist:
 
 ```
 $> bin/mysqlshow
@@ -70,7 +70,7 @@ $> bin/mysqlshow
 
 The list of installed databases may vary, but always includes at least `mysql` and `information_schema`.
 
-If you specify a database name,  **mysqlshow** displays a list of the tables within the database:
+If you specify a database name,  `mysqlshow` displays a list of the tables within the database:
 
 ```
 $> bin/mysqlshow mysql
@@ -115,7 +115,7 @@ Database: mysql
 +---------------------------+
 ```
 
-Use the  `mysql` program to select information from a table in the `mysql` schema:
+Use the `mysql` program to select information from a table in the `mysql` schema:
 
 ```
 $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
@@ -128,4 +128,4 @@ $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 
 At this point, your server is running and you can access it. To tighten security if you have not yet assigned a password to the initial account, follow the instructions in Section 2.9.4, “Securing the Initial MySQL Account”.
 
-For more information about  `mysql`, `mysqladmin`, and  **mysqlshow**, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”,  Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.
+For more information about  `mysql`, `mysqladmin`, and  `mysqlshow`, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”,  Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.

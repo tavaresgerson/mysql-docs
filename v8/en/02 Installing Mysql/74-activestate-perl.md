@@ -25,7 +25,7 @@ On Windows, you should do the following to install the MySQL `DBD` module with A
    ppm> install DBD-mysql
    ```
 
-This procedure should work with ActiveState Perl 5.6 or higher.
+This procedure should work with `ActiveState Perl 5.6` or higher.
 
 If you cannot get the procedure to work, you should install the ODBC driver instead and connect to the MySQL server through ODBC:
 

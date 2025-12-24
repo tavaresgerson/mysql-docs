@@ -10,11 +10,11 @@ A ferramenta `LOCK_ORDER` destina-se à depuração do servidor, não para uso d
 
 Para usar a ferramenta `LOCK_ORDER`, siga este procedimento:
 
-1. Construa o MySQL a partir do código-fonte, configurando-o com a opção `-DWITH_LOCK_ORDER=ON` **CMake** para que a compilação inclua ferramentas `LOCK_ORDER`.
+1. Construa o MySQL a partir do código-fonte, configurando-o com a opção `-DWITH_LOCK_ORDER=ON` `CMake` para que a compilação inclua ferramentas `LOCK_ORDER`.
 
    ::: info Note
 
-   Com a opção `WITH_LOCK_ORDER` ativada, as compilações do MySQL requerem o programa **flex**.
+   Com a opção `WITH_LOCK_ORDER` ativada, as compilações do MySQL requerem o programa `flex`.
 
    :::
 

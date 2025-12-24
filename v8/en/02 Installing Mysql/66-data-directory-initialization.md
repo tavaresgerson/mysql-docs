@@ -11,7 +11,7 @@ This section describes how to initialize the data directory manually for MySQL i
 
 The default authentication plugin is `caching_sha2_password`, and the `'root'@'localhost'` administrative account uses `caching_sha2_password` by default.
 
- `mysql_native_password` (the default authentication plugin prior to MySQL 8.0) is still supported but disabled by default as of MySQL 8.4.0 and removed as of MySQL 9.0.0.
+`mysql_native_password` (the default authentication plugin prior to MySQL 8.0) is still supported but disabled by default as of MySQL 8.4.0 and removed as of MySQL 9.0.0.
 
 :::
 
@@ -31,7 +31,7 @@ In the examples shown here, the server is intended to run under the user ID of t
    ```
 
    Within this directory you can find several files and subdirectories, including the `bin` subdirectory that contains the server, as well as client and utility programs.
-2. The  `secure_file_priv` system variable limits import and export operations to a specific directory. Create a directory whose location can be specified as the value of that variable:
+2. The `secure_file_priv` system variable limits import and export operations to a specific directory. Create a directory whose location can be specified as the value of that variable:
 
    ```
    mkdir mysql-files
@@ -52,9 +52,9 @@ In the examples shown here, the server is intended to run under the user ID of t
    For important information about the command, especially regarding command options you might use, see Data Directory Initialization Procedure. For details about how the server performs initialization, see Server Actions During Data Directory Initialization.
 
    Typically, data directory initialization need be done only after you first install MySQL. (For upgrades to an existing installation, perform the upgrade procedure instead; see Chapter 3, *Upgrading MySQL*.) However, the command that initializes the data directory does not overwrite any existing `mysql` schema tables, so it is safe to run in any circumstances.
-4. In the absence of any option files, the server starts with its default settings. (See Section 7.1.2, “Server Configuration Defaults”.) To explicitly specify options that the MySQL server should use at startup, put them in an option file such as `/etc/my.cnf` or `/etc/mysql/my.cnf`. (See Section 6.2.2.2, “Using Option Files”.) For example, you can use an option file to set the `secure_file_priv` system variable.
+4. In the absence of any option files, the server starts with its default settings. To explicitly specify options that the MySQL server should use at startup, put them in an option file such as `/etc/my.cnf` or `/etc/mysql/my.cnf`. (See Section 6.2.2.2, “Using Option Files”.) For example, you can use an option file to set the `secure_file_priv` system variable.
 5. To arrange for MySQL to start without manual intervention at system boot time, see  Section 2.9.5, “Starting and Stopping MySQL Automatically”.
-6. Data directory initialization creates time zone tables in the `mysql` schema but does not populate them. To do so, use the instructions in Section 7.1.15, “MySQL Server Time Zone Support”.
+6. Data directory initialization creates time zone tables in the `mysql` schema but does not populate them.
 
 #### Data Directory Initialization Procedure
 
@@ -155,7 +155,7 @@ When initializing the data directory, you should not specify any options other t
 
 ::: info Note
 
-The data directory initialization sequence performed by the server does not substitute for the actions performed by **mysql_secure_installation**.
+The data directory initialization sequence performed by the server does not substitute for the actions performed by `mysql_secure_installation`.
 
 :::
 
@@ -173,18 +173,18 @@ When invoked with the `--initialize` or `--initialize-insecure` option, `mysqld`
      In this case, remove or rename the data directory and try again.
 
      An existing data directory is permitted to be nonempty if every entry has a name that begins with a period (`.`).
-2. Within the data directory, the server creates the `mysql` system schema and its tables, including the data dictionary tables, grant tables, time zone tables, and server-side help tables. See Section 7.3, “The mysql System Schema”.
+2. Within the data directory, the server creates the `mysql` system schema and its tables, including the data dictionary tables, grant tables, time zone tables, and server-side help tables.
 3. The server initializes the system tablespace and related data structures needed to manage  `InnoDB` tables.
 
    ::: info Note
 
    After  `mysqld` sets up the `InnoDB` system tablespace, certain changes to tablespace characteristics require setting up a whole new instance. Qualifying changes include the file name of the first file in the system tablespace and the number of undo logs. If you do not want to use the default values, make sure that the settings for the `innodb_data_file_path` and `innodb_log_file_size` configuration parameters are in place in the MySQL configuration file *before* running `mysqld`. Also make sure to specify as necessary other parameters that affect the creation and location of `InnoDB` files, such as `innodb_data_home_dir` and `innodb_log_group_home_dir`.
 
-   If those options are in your configuration file but that file is not in a location that MySQL reads by default, specify the file location using the `--defaults-extra-file` option when you run  `mysqld`.
+   If those options are in your configuration file but that file is not in a location that MySQL reads by default, specify the file location using the `--defaults-extra-file` option when you run `mysqld`.
 
    :::
 
-4. The server creates a `'root'@'localhost'` superuser account and other reserved accounts (see Section 8.2.9, “Reserved Accounts”). Some reserved accounts are locked and cannot be used by clients, but `'root'@'localhost'` is intended for administrative use and you should assign it a password.
+4. The server creates a `'root'@'localhost'` superuser account and other reserved accounts. Some reserved accounts are locked and cannot be used by clients, but `'root'@'localhost'` is intended for administrative use and you should assign it a password.
 
    Server actions with respect to a password for the `'root'@'localhost'` account depend on how you invoke it:
 
@@ -202,7 +202,7 @@ When invoked with the `--initialize` or `--initialize-insecure` option, `mysqld`
      ```
 
    For instructions on assigning a new `'root'@'localhost'` password, see Post-Initialization root Password Assignment.
-5. The server populates the server-side help tables used for the  `HELP` statement (see Section 15.8.3, “HELP Statement”). The server does not populate the time zone tables. To do so manually, see Section 7.1.15, “MySQL Server Time Zone Support”.
+5. The server populates the server-side help tables used for the  `HELP` statement. The server does not populate the time zone tables. To do so manually, see Section 7.1.15, “MySQL Server Time Zone Support”.
 6. If the  `init_file` system variable was given to name a file of SQL statements, the server executes the statements in the file. This option enables you to perform custom bootstrapping sequences.
 
    When the server operates in bootstrap mode, some functionality is unavailable that limits the statements permitted in the file. These include statements that relate to account management (such as `CREATE USER` or  `GRANT`), replication, and global transaction identifiers.

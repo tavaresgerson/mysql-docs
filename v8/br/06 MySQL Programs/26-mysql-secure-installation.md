@@ -7,17 +7,17 @@ Este programa permite-lhe melhorar a segurança da sua instalação MySQL das se
 - Você pode remover contas de usuários anônimos.
 - Você pode remover o banco de dados `test` (que por padrão pode ser acessado por todos os usuários, mesmo usuários anônimos), e privilégios que permitem que qualquer pessoa acesse bancos de dados com nomes que começam com `test_`.
 
-**mysql\_secure\_installation** ajuda você a implementar recomendações de segurança semelhantes às descritas na Seção 2.9.4, Securing the Initial MySQL Account.
+`mysql_secure_installation` ajuda você a implementar recomendações de segurança semelhantes às descritas na Seção 2.9.4, Securing the Initial MySQL Account.
 
-O uso normal é conectar-se ao servidor MySQL local; invocar **mysql\_secure\_installation** sem argumentos:
+O uso normal é conectar-se ao servidor MySQL local; invocar `mysql_secure_installation` sem argumentos:
 
 ```
 mysql_secure_installation
 ```
 
-Quando executado, **mysql\_secure\_installation** solicita que você determine quais ações executar.
+Quando executado, `mysql_secure_installation` solicita que você determine quais ações executar.
 
-O componente `validate_password` pode ser usado para verificar a força da senha. Se o plugin não estiver instalado, **mysql\_secure\_installation** irá pedir ao usuário se deve instalá-lo. Qualquer senha inserida posteriormente será verificada usando o plugin se estiver ativado.
+O componente `validate_password` pode ser usado para verificar a força da senha. Se o plugin não estiver instalado, `mysql_secure_installation` irá pedir ao usuário se deve instalá-lo. Qualquer senha inserida posteriormente será verificada usando o plugin se estiver ativado.
 
 A maioria das opções habituais do cliente MySQL, como `--host` e `--port` podem ser usadas na linha de comando e em arquivos de opções. Por exemplo, para se conectar ao servidor local através do IPv6 usando a porta 3307, use este comando:
 
@@ -25,7 +25,7 @@ A maioria das opções habituais do cliente MySQL, como `--host` e `--port` pode
 mysql_secure_installation --host=::1 --port=3307
 ```
 
-**mysql\_secure\_installation** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysql_secure_installation]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 6.2.2.2, Using Option Files.
+`mysql_secure_installation` suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysql_secure_installation]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 6.2.2.2, Using Option Files.
 
 **Tabela 6.9 opções de instalação mysql\_secure**
 
@@ -57,7 +57,7 @@ Para obter informações adicionais sobre esta e outras opções de ficheiro de 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--defaults-group-suffix=str</code>]]</td> </tr><tr><th>Tipo do produto</th> <td>Corda</td> </tr></tbody></table>
 
-Leia não apenas os grupos de opções usuais, mas também os grupos com os nomes usuais e um sufixo de `str`. Por exemplo, **mysql\_secure\_installation** normalmente lê os grupos `[client]` e `[mysql_secure_installation]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysql\_secure\_installation** também lê os grupos `[client_other]` e `[mysql_secure_installation_other]`.
+Leia não apenas os grupos de opções usuais, mas também os grupos com os nomes usuais e um sufixo de `str`. Por exemplo, `mysql_secure_installation` normalmente lê os grupos `[client]` e `[mysql_secure_installation]`. Se esta opção for dada como `--defaults-group-suffix=_other`, `mysql_secure_installation` também lê os grupos `[client_other]` e `[mysql_secure_installation_other]`.
 
 Para obter informações adicionais sobre esta e outras opções de ficheiro de opções, consulte a secção 6.2.2.3, "Opções de linha de comando que afectam a manipulação de ficheiro de opções".
 
@@ -81,7 +81,7 @@ Para obter informações adicionais sobre esta e outras opções de ficheiro de 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--password=password</code>]]</td> </tr><tr><th>Tipo do produto</th> <td>Corda</td> </tr><tr><th>Valor por defeito</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
 
-Esta opção é aceita, mas ignorada. Se esta opção é usada ou não, **mysql\_secure\_installation** sempre solicita ao usuário uma senha.
+Esta opção é aceita, mas ignorada. Se esta opção é usada ou não, `mysql_secure_installation` sempre solicita ao usuário uma senha.
 
 - `--port=port_num`, `-P port_num`
 

@@ -54,7 +54,7 @@ Se **mysqld\_safe** falhar, consulte a Seção 2.9.2.1, "Solução de Problemas 
 
 Execute alguns testes simples para verificar se você pode recuperar informações do servidor. A saída deve ser semelhante à mostrada aqui.
 
-Use **mysqlshow** para ver quais bancos de dados existem:
+Use `mysqlshow` para ver quais bancos de dados existem:
 
 ```
 $> bin/mysqlshow
@@ -70,7 +70,7 @@ $> bin/mysqlshow
 
 A lista de bancos de dados instalados pode variar, mas sempre inclui pelo menos `mysql` e `information_schema`.
 
-Se você especificar um nome de banco de dados, **mysqlshow** exibirá uma lista das tabelas dentro do banco de dados:
+Se você especificar um nome de banco de dados, `mysqlshow` exibirá uma lista das tabelas dentro do banco de dados:
 
 ```
 $> bin/mysqlshow mysql
@@ -128,4 +128,4 @@ $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 
 Neste ponto, o seu servidor está em execução e você pode acessá-lo. Para reforçar a segurança, se você ainda não atribuiu uma senha para a conta inicial, siga as instruções na Seção 2.9.4, "Securing the Initial MySQL Account".
 
-Para mais informações sobre `mysql`, `mysqladmin` e **mysqlshow**, veja Seção 6.5.1, mysql  O Cliente de Linha de Comando MySQL, Seção 6.5.2, mysqladmin  Um Programa de Administração do Servidor MySQL e Seção 6.5.6, mysqlshow  Exibir Informações de Base de Dados, Tabela e Coluna.
+Para mais informações sobre `mysql`, `mysqladmin` e `mysqlshow`, veja Seção 6.5.1, mysql  O Cliente de Linha de Comando MySQL, Seção 6.5.2, mysqladmin  Um Programa de Administração do Servidor MySQL e Seção 6.5.6, mysqlshow  Exibir Informações de Base de Dados, Tabela e Coluna.

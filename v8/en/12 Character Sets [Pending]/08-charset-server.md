@@ -15,7 +15,7 @@ mysqld --character-set-server=utf8mb4 \
   --collation-server=utf8mb4_0900_ai_ci
 ```
 
-One way to change the settings is by recompiling. To change the default server character set and collation when building from sources, use the  `DEFAULT_CHARSET` and  `DEFAULT_COLLATION` options for **CMake**. For example:
+One way to change the settings is by recompiling. To change the default server character set and collation when building from sources, use the  `DEFAULT_CHARSET` and  `DEFAULT_COLLATION` options for `CMake`. For example:
 
 ```
 cmake . -DDEFAULT_CHARSET=latin1
@@ -28,7 +28,7 @@ cmake . -DDEFAULT_CHARSET=latin1 \
   -DDEFAULT_COLLATION=latin1_german1_ci
 ```
 
-Both  `mysqld` and **CMake** verify that the character set/collation combination is valid. If not, each program displays an error message and terminates.
+Both  `mysqld` and `CMake` verify that the character set/collation combination is valid. If not, each program displays an error message and terminates.
 
 The server character set and collation are used as default values if the database character set and collation are not specified in  `CREATE DATABASE` statements. They have no other purpose.
 

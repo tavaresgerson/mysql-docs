@@ -29,7 +29,7 @@ Follow these steps to choose and install the latest MySQL products:
       ```
 
       * *`mysql84`*: Indicates the MySQL version that is enabled by default. In this case, MySQL 8.4 is enabled by default, and both MySQL 8.0 and the MySQL Innovation series are available but disabled by default.
-      * *`{platform}`*: The platform code, such as el7, el8, el9, fc41, or fc42. The 'el' represents Enterprise Linux, 'fc' for Fedora, and it ends with the platform's base version number.
+      * *`{platform}`*: The platform code, such as `el7`, `el8`, `el9`, `fc41`, or `fc42`. The '`el`' represents Enterprise Linux, '`fc`' for Fedora, and it ends with the platform's base version number.
       * *`{version-number}`*: Version of the MySQL repository configuration RPM as they do receive occasional updates.
 
       Install the RPM you downloaded for your system, for example:
@@ -40,7 +40,7 @@ Follow these steps to choose and install the latest MySQL products:
 
       The installation command adds the MySQL Yum repository to your system's repository list and downloads the GnuPG key to check the integrity of the software packages. See Section 2.1.4.2, “Signature Checking Using GnuPG” for details on GnuPG key checking.
 
-      You can check that the MySQL Yum repository has been successfully added and enabled by the following command (for dnf-enabled systems, replace **yum** in the command with **dnf**):
+      You can check that the MySQL Yum repository has been successfully added and enabled by the following command (for `dnf`-enabled systems, replace `yum` in the command with `dnf`):
 
       ```
       $> yum repolist enabled | grep mysql.*-community
@@ -57,7 +57,7 @@ Follow these steps to choose and install the latest MySQL products:
       
   ::: info Note
 
-  Once the MySQL Yum repository is enabled on your system, any system-wide update by the **yum update** command (or **dnf upgrade** for dnf-enabled systems) upgrades MySQL packages on your system and replaces any native third-party packages, if Yum finds replacements for them in the MySQL Yum repository; see Section 3.8, “Upgrading MySQL with the MySQL Yum Repository”, for a discussion on some possible effects of that on your system, see Upgrading the Shared Client Libraries.
+  Once the MySQL Yum repository is enabled on your system, any system-wide update by the **yum update** command (or **dnf upgrade** for `dnf`-enabled systems) upgrades MySQL packages on your system and replaces any native third-party packages, if Yum finds replacements for them in the MySQL Yum repository; see Section 3.8, “Upgrading MySQL with the MySQL Yum Repository”, for a discussion on some possible effects of that on your system, see Upgrading the Shared Client Libraries.
 
   :::
 
@@ -65,7 +65,7 @@ Follow these steps to choose and install the latest MySQL products:
 
    When using the MySQL Yum repository, the latest bugfix series (currently MySQL 8.4) is selected for installation by default. If this is what you want, you can skip to the next step, Installing MySQL.
 
-   Within the MySQL Yum repository, each MySQL Community Server release series is hosted in a different subrepository. The subrepository for the latest LTS series (currently MySQL 8.4) is enabled by default, and the subrepositories for all other series' (for example, MySQL 8.0 and the MySQL Innovation series) are disabled by default. Use this command to see all available MySQL-related subrepositories (for dnf-enabled systems, replace **yum** in the command with **dnf**):
+   Within the MySQL Yum repository, each MySQL Community Server release series is hosted in a different subrepository. The subrepository for the latest LTS series (currently MySQL 8.4) is enabled by default, and the subrepositories for all other series' (for example, MySQL 8.0 and the MySQL Innovation series) are disabled by default. Use this command to see all available MySQL-related subrepositories (for `dnf`-enabled systems, replace `yum` in the command with `dnf`):
 
    ```
    $> yum repolist all | grep mysql
@@ -94,7 +94,7 @@ Follow these steps to choose and install the latest MySQL products:
    $> sudo yum-config-manager --enable  mysql80-community
    ```
 
-   For dnf-enabled platforms:
+   For `dnf`-enabled platforms:
 
    ```
    $> sudo dnf config-manager --disable mysql-8.4-lts-community
@@ -125,21 +125,21 @@ Follow these steps to choose and install the latest MySQL products:
 
    You should only enable subrepository for one release series at any time.
 
-   Verify that the correct subrepositories have been enabled and disabled by running the following command and checking its output (for dnf-enabled systems, replace **yum** in the command with **dnf**):
+   Verify that the correct subrepositories have been enabled and disabled by running the following command and checking its output (for `dnf`-enabled systems, replace `yum` in the command with `dnf`):
 
    ```
    $> yum repolist enabled | grep mysql
    ```
 3. #### Disabling the Default MySQL Module
 
-   (EL8 systems only) EL8-based systems such as RHEL8 and Oracle Linux 8 include a MySQL module that is enabled by default. Unless this module is disabled, it masks packages provided by MySQL repositories. To disable the included module and make the MySQL repository packages visible, use the following command (for dnf-enabled systems, replace **yum** in the command with **dnf**):
+   (`EL8` systems only) EL8-based systems such as RHEL8 and Oracle Linux 8 include a MySQL module that is enabled by default. Unless this module is disabled, it masks packages provided by MySQL repositories. To disable the included module and make the MySQL repository packages visible, use the following command (for `dnf`-enabled systems, replace `yum` in the command with `dnf`):
 
    ```
    $> sudo yum module disable mysql
    ```
 4. #### Installing MySQL
 
-   Install MySQL by the following command (for dnf-enabled systems, replace **yum** in the command with **dnf**):
+   Install MySQL by the following command (for `dnf`-enabled systems, replace `yum` in the command with `dnf`):
 
    ```
    $> sudo yum install mysql-community-server
@@ -160,7 +160,7 @@ Follow these steps to choose and install the latest MySQL products:
    $> systemctl status mysqld
    ```
 
-If the operating system is systemd enabled, standard **systemctl** (or alternatively, **service** with the arguments reversed) commands such as **stop**, **start**, **status**, and  **restart** should be used to manage the MySQL server service. The `mysqld` service is enabled by default, and it starts at system reboot. See  Section 2.5.9, “Managing MySQL Server with systemd” for additional information.
+If the operating system is systemd enabled, standard `systemctl` (or alternatively, `service` with the arguments reversed) commands such as `stop`, `start`, `status`, and  `restart` should be used to manage the MySQL server service. The `mysqld` service is enabled by default, and it starts at system reboot.
 
 At the initial start up of the server, the following happens, given that the data directory of the server is empty:
 
@@ -195,19 +195,19 @@ For more information on the postinstallation procedures, see Section 2.9, “Po
 
 *Compatibility Information for EL7-based platforms:* The following RPM packages from the native software repositories of the platforms are incompatible with the package from the MySQL Yum repository that installs the MySQL server. Once you have installed MySQL using the MySQL Yum repository, you cannot install these packages (and vice versa).
 
-* akonadi-mysql
+* `akonadi-mysql`
 
 :::
 
 #### Installing Additional MySQL Products and Components with Yum
 
-You can use Yum to install and manage individual components of MySQL. Some of these components are hosted in sub-repositories of the MySQL Yum repository: for example, the MySQL Connectors are to be found in the MySQL Connectors Community sub-repository, and the MySQL Workbench in MySQL Tools Community. You can use the following command to list the packages for all the MySQL components available for your platform from the MySQL Yum repository (for dnf-enabled systems, replace **yum** in the command with **dnf**):
+You can use Yum to install and manage individual components of MySQL. Some of these components are hosted in sub-repositories of the MySQL Yum repository: for example, the MySQL Connectors are to be found in the MySQL Connectors Community sub-repository, and the MySQL Workbench in MySQL Tools Community. You can use the following command to list the packages for all the MySQL components available for your platform from the MySQL Yum repository (for `dnf`-enabled systems, replace `yum` in the command with `dnf`):
 
 ```
 $> sudo yum --disablerepo=* --enablerepo='mysql*-community*' list available
 ```
 
-Install any packages of your choice with the following command, replacing *`package-name`* with name of the package (for dnf-enabled systems, replace **yum** in the command with **dnf**):
+Install any packages of your choice with the following command, replacing `package-name` with name of the package (for `dnf`-enabled systems, replace `yum` in the command with `dnf`):
 
 ```
 $> sudo yum install package-name
@@ -219,7 +219,7 @@ For example, to install MySQL Workbench on Fedora:
 $> sudo dnf install mysql-workbench-community
 ```
 
-To install the shared client libraries (for dnf-enabled systems, replace **yum** in the command with **dnf**):
+To install the shared client libraries (for `dnf`-enabled systems, replace `yum` in the command with `dnf`):
 
 ```
 $> sudo yum install mysql-community-libs
@@ -229,7 +229,7 @@ $> sudo yum install mysql-community-libs
 
 ARM Support
 
-ARM 64-bit (aarch64) is supported on Oracle Linux 7 and requires the Oracle Linux 7 Software Collections Repository (ol7_software_collections). For example, to install the server:
+ARM 64-bit (`aarch64`) is supported on Oracle Linux 7 and requires the Oracle Linux 7 Software Collections Repository (`ol7_software_collections`). For example, to install the server:
 
 ```
 $> yum-config-manager --enable ol7_software_collections
@@ -252,7 +252,7 @@ If you have installed a third-party distribution of MySQL from a native software
    Add the MySQL Yum repository to your system's repository list by following the instructions given in Adding the MySQL Yum Repository.
 3. #### Replacing the Native Third-Party Distribution by a Yum Update or a DNF Upgrade
 
-   By design, the MySQL Yum repository replaces your native, third-party MySQL with the latest bugfix release from the MySQL Yum repository when you perform a **yum update** command (or **dnf upgrade** for dnf-enabled systems) on the system, or a **yum update mysql-server** (or **dnf upgrade mysql-server** for dnf-enabled systems).
+   By design, the MySQL Yum repository replaces your native, third-party MySQL with the latest bugfix release from the MySQL Yum repository when you perform a `yum update` command (or `dnf upgrade` for `dnf`-enabled systems) on the system, or a `yum update mysql-server` (or `dnf upgrade mysql-server` for `dnf`-enabled systems).
 
 After updating MySQL using the Yum repository, applications compiled with older versions of the shared client libraries should continue to work. However, *if you want to recompile applications and dynamically link them with the updated libraries*, see Upgrading the Shared Client Libraries, for some special considerations.
 

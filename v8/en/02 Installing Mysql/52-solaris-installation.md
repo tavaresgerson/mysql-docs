@@ -8,7 +8,7 @@ MySQL 8.4 supports Solaris 11.4 and higher
 
 MySQL on Solaris is available in a number of different formats.
 
-* For information on installing using the native Solaris PKG format, see  Section 2.7.1, “Installing MySQL on Solaris Using a Solaris PKG”.
+* For information on installing using the native Solaris PKG format.
 * To use a standard `tar` binary installation, use the notes provided in  Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”. Check the notes and hints at the end of this section for Solaris specific notes that you may need before or after installation.
 
 To obtain a binary MySQL distribution for Solaris in tarball or PKG format, <https://dev.mysql.com/downloads/mysql/8.4.html>.
@@ -21,7 +21,7 @@ Additional notes to be aware of when installing and using MySQL on Solaris:
   groupadd mysql
   useradd -g mysql -s /bin/false mysql
   ```
-* If you install MySQL using a binary tarball distribution on Solaris, because the Solaris **tar** cannot handle long file names, use GNU **tar** (**gtar**) to unpack the distribution. If you do not have GNU **tar** on your system, install it with the following command:
+* If you install MySQL using a binary tarball distribution on Solaris, because the Solaris `tar` cannot handle long file names, use GNU `tar` (`gtar`) to unpack the distribution. If you do not have GNU `tar` on your system, install it with the following command:
 
   ```
   pkg install archiver/gnu-tar
@@ -35,4 +35,4 @@ Additional notes to be aware of when installing and using MySQL on Solaris:
   ```
 
   You might try starting the server with the `--back_log=50` option as a workaround for this.
-* To configure the generation of core files on Solaris you should use the **coreadm** command. Because of the security implications of generating a core on a `setuid()` application, by default, Solaris does not support core files on `setuid()` programs. However, you can modify this behavior using **coreadm**. If you enable `setuid()` core files for the current user, they are generated using mode 600 and are owned by the superuser.
+* To configure the generation of core files on Solaris you should use the `coreadm` command. Because of the security implications of generating a core on a `setuid()` application, by default, Solaris does not support core files on `setuid()` programs. However, you can modify this behavior using `coreadm`. If you enable `setuid()` core files for the current user, they are generated using mode 600 and are owned by the superuser.

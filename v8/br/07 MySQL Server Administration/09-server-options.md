@@ -2,7 +2,7 @@
 
 Quando você inicia o servidor `mysqld`, você pode especificar opções de programa usando qualquer um dos métodos descritos na Seção 6.2.2, Especificar Opções de Programa. Os métodos mais comuns são fornecer opções em um arquivo de opções ou na linha de comando. No entanto, na maioria dos casos, é desejável garantir que o servidor use as mesmas opções a cada vez que ele é executado. A melhor maneira de garantir isso é listá-las em um arquivo de opções. Veja Seção 6.2.2.2, Usar Arquivos de Opção. Essa seção também descreve o formato e a sintaxe do arquivo de opções.
 
-`mysqld` lê opções dos grupos `[mysqld]` e `[server]`. **mysqld\_safe** lê opções dos grupos `[mysqld]`, `[server]`, `[mysqld_safe]`, e `[safe_mysqld]`. **mysql.server** lê opções dos grupos `[mysqld]` e `[mysql.server]`.
+`mysqld` lê opções dos grupos `[mysqld]` e `[server]`. **mysqld\_safe** lê opções dos grupos `[mysqld]`, `[server]`, `[mysqld_safe]`, e `[safe_mysqld]`. `mysql.server` lê opções dos grupos `[mysqld]` e `[mysql.server]`.
 
 `mysqld` aceita muitas opções de comando. Para um breve resumo, execute este comando:
 
@@ -128,7 +128,7 @@ O caminho para o diretório de dados do servidor MySQL. Esta opção define a va
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--debug[=debug_option<code>debug</code></code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>debug</code>]]</td> </tr><tr><th>Área de aplicação</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim , sim .</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica</th> <td>Não .</td> </tr><tr><th>Tipo do produto</th> <td>Corda</td> </tr><tr><th>Valor padrão (Unix)</th> <td>[[<code>d:t:i:o,/tmp/mysqld.trace</code>]]</td> </tr><tr><th>Valor padrão (Windows)</th> <td>[[<code>d:t:i:O,\mysqld.trace</code>]]</td> </tr></tbody></table>
 
-Se o MySQL está configurado com a opção `-DWITH_DEBUG=1` **CMake**, você pode usar essa opção para obter um arquivo de rastreamento do que `mysqld` está fazendo. Uma string `debug_options` típica é `d:t:o,file_name`. O padrão é `d:t:i:o,/tmp/mysqld.trace` no Unix e `d:t:i:O,\mysqld.trace` no Windows.
+Se o MySQL está configurado com a opção `-DWITH_DEBUG=1` `CMake`, você pode usar essa opção para obter um arquivo de rastreamento do que `mysqld` está fazendo. Uma string `debug_options` típica é `d:t:o,file_name`. O padrão é `d:t:i:o,/tmp/mysqld.trace` no Unix e `d:t:i:O,\mysqld.trace` no Windows.
 
 O uso de `-DWITH_DEBUG=1` para configurar o MySQL com suporte de depuração permite que você use a opção `--debug="d,parser_debug"` quando você inicia o servidor. Isso faz com que o analisador Bison que é usado para processar instruções SQL para despejar um rastreamento do analisador para a saída de erro padrão do servidor. Normalmente, esta saída é escrita para o log de erro.
 
@@ -140,7 +140,7 @@ Para mais informações, ver secção 7.9.4, "O pacote DBUG".
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--debug-sync-timeout[=#]</code>]]</td> </tr><tr><th>Tipo do produto</th> <td>Número inteiro</td> </tr></tbody></table>
 
-Controla se a facilidade Debug Sync para testes e depuração está ativada. O uso de Debug Sync requer que o MySQL seja configurado com a opção `-DWITH_DEBUG=ON` **CMake** (veja Seção 2.8.7, Opções de Configuração de Fonte do MySQL); caso contrário, esta opção não está disponível. O valor da opção é um tempo limite em segundos. O valor padrão é 0, o que desativa o Debug Sync. Para ativá-lo, especifique um valor maior que 0; este valor também se torna o tempo limite padrão para pontos de sincronização individuais. Se a opção for dada sem um valor, o tempo limite é definido em 300 segundos.
+Controla se a facilidade Debug Sync para testes e depuração está ativada. O uso de Debug Sync requer que o MySQL seja configurado com a opção `-DWITH_DEBUG=ON` `CMake` (veja Seção 2.8.7, Opções de Configuração de Fonte do MySQL); caso contrário, esta opção não está disponível. O valor da opção é um tempo limite em segundos. O valor padrão é 0, o que desativa o Debug Sync. Para ativá-lo, especifique um valor maior que 0; este valor também se torna o tempo limite padrão para pontos de sincronização individuais. Se a opção for dada sem um valor, o tempo limite é definido em 300 segundos.
 
 Para uma descrição da facilidade de Debug Sync e como usar pontos de sincronização, consulte MySQL Internals: Test Synchronization.
 

@@ -24,7 +24,7 @@ $> gpg --export -a a8d3785c > a8d3785c.asc
 $> rpm --import a8d3785c.asc
 ```
 
-Alternativamente, **rpm** também suporta o carregamento da chave diretamente de um URL:
+Alternativamente, `rpm` também suporta o carregamento da chave diretamente de um URL:
 
 ```
 $> rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023

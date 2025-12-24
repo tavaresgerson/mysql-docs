@@ -2,9 +2,9 @@
 
 The MySQL source code contains internal documentation written using Doxygen. The generated Doxygen content is available at https://dev.mysql.com/doc/index-other.html. It is also possible to generate this content locally from a MySQL source distribution using the following procedure:
 
-1. Install **doxygen** 1.9.2 or later. Distributions are available here at <http://www.doxygen.nl/>.
+1. Install `doxygen` 1.9.2 or later. Distributions are available here at <http://www.doxygen.nl/>.
 
-   After installing **doxygen**, verify the version number:
+   After installing `doxygen`, verify the version number:
 
    ```
    $> doxygen --version
@@ -24,9 +24,9 @@ The MySQL source code contains internal documentation written using Doxygen. The
    ```
    $> export PLANTUML_JAR_PATH=path-to-plantuml.jar
    ```
-4. Install the Graphviz **dot** command.
+4. Install the Graphviz `dot` command.
 
-   After installing Graphviz, verify **dot** availability. For example:
+   After installing Graphviz, verify `dot` availability. For example:
 
    ```
    $> which dot
@@ -37,7 +37,7 @@ The MySQL source code contains internal documentation written using Doxygen. The
    ```
 5. Change location to the top-level directory of your MySQL source distribution and do the following:
 
-   First, execute **cmake**:
+   First, execute `cmake`:
 
    ```
    $> cd mysql-source-directory
@@ -46,7 +46,7 @@ The MySQL source code contains internal documentation written using Doxygen. The
    $> cmake ..
    ```
 
-   Next, generate the **doxygen** documentation:
+   Next, generate the `doxygen` documentation:
 
    ```
    $> make doxygen

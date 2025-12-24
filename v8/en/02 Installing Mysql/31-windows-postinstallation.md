@@ -25,11 +25,11 @@ A common installation location for installation from a ZIP archive is `C:\mysql`
 C:\> cd C:\mysql
 ```
 
-Alternatively, add the `bin` directory to your `PATH` environment variable setting. That enables your command interpreter to find MySQL programs properly, so that you can run a program by typing only its name, not its path name. See  Section 2.3.3.7, “Customizing the PATH for MySQL Tools”.
+Alternatively, add the `bin` directory to your `PATH` environment variable setting. That enables your command interpreter to find MySQL programs properly, so that you can run a program by typing only its name, not its path name.
 
 With the server running, issue the following commands to verify that you can retrieve information from the server. The output should be similar to that shown here.
 
-Use  **mysqlshow** to see what databases exist:
+Use `mysqlshow` to see what databases exist:
 
 ```
 C:\> bin\mysqlshow
@@ -45,7 +45,7 @@ C:\> bin\mysqlshow
 
 The list of installed databases may vary, but always includes at least `mysql` and `information_schema`.
 
-The preceding command (and commands for other MySQL programs such as  `mysql`) may not work if the correct MySQL account does not exist. For example, the program may fail with an error, or you may not be able to view all databases. If you configured MySQL using MySQL Configurator, the `root` user is created automatically with the password you supplied. In this case, you should use the `-u root` and `-p` options. (You must use those options if you have already secured the initial MySQL accounts.) With `-p`, the client program prompts for the `root` password. For example:
+The preceding command (and commands for other MySQL programs such as `mysql`) may not work if the correct MySQL account does not exist. For example, the program may fail with an error, or you may not be able to view all databases. If you configured MySQL using MySQL Configurator, the `root` user is created automatically with the password you supplied. In this case, you should use the `-u root` and `-p` options. (You must use those options if you have already secured the initial MySQL accounts.) With `-p`, the client program prompts for the `root` password. For example:
 
 ```
 C:\> bin\mysqlshow -u root -p
@@ -60,7 +60,7 @@ Enter password: (enter root password here)
 +--------------------+
 ```
 
-If you specify a database name,  **mysqlshow** displays a list of the tables within the database:
+If you specify a database name, `mysqlshow` displays a list of the tables within the database:
 
 ```
 C:\> bin\mysqlshow mysql
@@ -105,7 +105,7 @@ Database: mysql
 +---------------------------+
 ```
 
-Use the  `mysql` program to select information from a table in the `mysql` database:
+Use the `mysql` program to select information from a table in the `mysql` database:
 
 ```
 C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
@@ -116,4 +116,4 @@ C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 +------+-----------+-----------------------+
 ```
 
-For more information about  `mysql` and **mysqlshow**, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.
+For more information about  `mysql` and `mysqlshow`, see Section 6.5.1, “mysql — The MySQL Command-Line Client”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.

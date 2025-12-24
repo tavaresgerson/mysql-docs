@@ -1,4 +1,4 @@
-#### 1.7.2.3 FOREIGN KEY Constraint Differences
+#### 1.7.2.3 `FOREIGN KEY` Constraint Differences
 
 The MySQL implementation of foreign key constraints differs from the SQL standard in the following key respects:
 
@@ -41,10 +41,10 @@ The MySQL implementation of foreign key constraints differs from the SQL standar
 * No storage engine, including `InnoDB`, recognizes or enforces the `MATCH` clause used in referential-integrity constraint definitions. Use of an explicit `MATCH` clause does not have the specified effect, and it causes `ON DELETE` and `ON UPDATE` clauses to be ignored. Specifying the `MATCH` should be avoided.
 
   The `MATCH` clause in the SQL standard controls how `NULL` values in a composite (multiple-column) foreign key are handled when comparing to a primary key in the referenced table. MySQL essentially implements the semantics defined by `MATCH SIMPLE`, which permits a foreign key to be all or partially `NULL`. In that case, a (child table) row containing such a foreign key can be inserted even though it does not match any row in the referenced (parent) table. (It is possible to implement other semantics using triggers.)
-* A `FOREIGN KEY` constraint that references a non-`UNIQUE` key is not standard SQL but rather an `InnoDB` extension that is now deprecated, and must be enabled by setting `restrict_fk_on_non_standard_key`. You should expect support for use of nonstandard keys to be removed in a future version of MySQL, and migrate away from them now.
+* A `FOREIGN KEY` constraint that references a non-unique key is not standard SQL but rather an `InnoDB` extension that is now deprecated, and must be enabled by setting `restrict_fk_on_non_standard_key`. You should expect support for use of nonstandard keys to be removed in a future version of MySQL, and migrate away from them now.
 
   The  `NDB` storage engine requires an explicit unique key (or primary key) on any column referenced as a foreign key, as per the SQL standard.
-* For storage engines that do not support foreign keys (such as  `MyISAM`), MySQL Server parses and ignores foreign key specifications.
+* For storage engines that do not support foreign keys (such as `MyISAM`), MySQL Server parses and ignores foreign key specifications.
 * MySQL parses but ignores “inline `REFERENCES` specifications” (as defined in the SQL standard) where the references are defined as part of the column specification. MySQL accepts `REFERENCES` clauses only when specified as part of a separate `FOREIGN KEY` specification.
 
   Defining a column to use a `REFERENCES tbl_name(col_name)` clause has no actual effect and *serves only as a memo or comment to you that the column which you are currently defining is intended to refer to a column in another table*. It is important to realize when using this syntax that:
@@ -55,7 +55,7 @@ The MySQL implementation of foreign key constraints differs from the SQL standar
 
   You can use a column so created as a join column, as shown here:
 
-  ```
+  ```sql
   CREATE TABLE person (
       id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
       name CHAR(60) NOT NULL,
@@ -126,7 +126,7 @@ The MySQL implementation of foreign key constraints differs from the SQL standar
 
   When used in this fashion, the `REFERENCES` clause is not displayed in the output of `SHOW CREATE TABLE` or `DESCRIBE`:
 
-  ```
+  ```sql
   mysql> SHOW CREATE TABLE shirt\G
   *************************** 1. row ***************************
   Table: shirt
@@ -138,5 +138,3 @@ The MySQL implementation of foreign key constraints differs from the SQL standar
   PRIMARY KEY  (`id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
   ```
-
-For information about foreign key constraints, see Section 15.1.20.5, “FOREIGN KEY Constraints”.

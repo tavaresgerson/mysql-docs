@@ -90,7 +90,7 @@ Durante a instalação, você é solicitado a fornecer uma senha para o usuário
 
 Importância
 
-Certifique-se de lembrar a senha raiz que você definiu. Os usuários que desejam definir uma senha mais tarde podem deixar o campo de senha em branco na caixa de diálogo e apenas pressionar Ok; nesse caso, o acesso raiz ao servidor será autenticado pela Seção 8.4.1.10, Socket Peer-Credential Pluggable Authentication para conexões usando um arquivo de soquete Unix. Você pode definir a senha raiz mais tarde usando o programa **mysql\_secure\_installation**.
+Certifique-se de lembrar a senha raiz que você definiu. Os usuários que desejam definir uma senha mais tarde podem deixar o campo de senha em branco na caixa de diálogo e apenas pressionar Ok; nesse caso, o acesso raiz ao servidor será autenticado pela Seção 8.4.1.10, Socket Peer-Credential Pluggable Authentication para conexões usando um arquivo de soquete Unix. Você pode definir a senha raiz mais tarde usando o programa `mysql_secure_installation`.
 
 #### Iniciar e parar o servidor MySQL
 

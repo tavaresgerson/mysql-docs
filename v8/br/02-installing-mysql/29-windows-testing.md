@@ -15,4 +15,4 @@ Você pode forçar um cliente MySQL a usar uma conexão de tubo nomeado em vez d
 
 Se você definiu uma senha para a conta `root`, apagou a conta anônima ou criou uma nova conta de usuário, então para se conectar ao servidor MySQL você deve usar as opções apropriadas `-u` e `-p` com os comandos mostrados anteriormente. Veja Seção 6.2.4, Conectando ao Servidor MySQL Usando Opções de Comando.
 
-Para mais informações sobre **mysqlshow**, consulte a Seção 6.5.6, mysqlshow  Display Database, Table, and Column Information.
+Para mais informações sobre `mysqlshow`, consulte a Seção 6.5.6, mysqlshow  Display Database, Table, and Column Information.

@@ -1,12 +1,12 @@
 ## 2.2 Instalar o MySQL em Unix/Linux usando binários genéricos
 
-O Oracle fornece um conjunto de distribuições binárias do MySQL. Estas incluem distribuições binárias genéricas na forma de arquivos **tar** compactados (arquivos com uma extensão `.tar.xz`) para várias plataformas, e binários em formatos de pacote específicos para plataformas selecionadas.
+O Oracle fornece um conjunto de distribuições binárias do MySQL. Estas incluem distribuições binárias genéricas na forma de arquivos `tar` compactados (arquivos com uma extensão `.tar.xz`) para várias plataformas, e binários em formatos de pacote específicos para plataformas selecionadas.
 
-Esta seção abrange a instalação do MySQL a partir de uma distribuição binária de arquivos **tar** comprimidos em plataformas Unix/Linux. Para instruções de instalação de distribuição binária genéricas do Linux com foco em recursos de segurança do MySQL, consulte o Guia de implantação segura. Para outros formatos de pacotes binários específicos da plataforma, consulte as outras seções específicas da plataforma neste manual. Por exemplo, para distribuições do Windows, consulte a Seção 2.3, Installing MySQL on Microsoft Windows. Veja a Seção 2.1.3, How to Get MySQL sobre como obter o MySQL em diferentes formatos de distribuição.
+Esta seção abrange a instalação do MySQL a partir de uma distribuição binária de arquivos `tar` comprimidos em plataformas Unix/Linux. Para instruções de instalação de distribuição binária genéricas do Linux com foco em recursos de segurança do MySQL, consulte o Guia de implantação segura. Para outros formatos de pacotes binários específicos da plataforma, consulte as outras seções específicas da plataforma neste manual. Por exemplo, para distribuições do Windows, consulte a Seção 2.3, Installing MySQL on Microsoft Windows. Veja a Seção 2.1.3, How to Get MySQL sobre como obter o MySQL em diferentes formatos de distribuição.
 
-As distribuições binárias de arquivos **tar** compactados do MySQL têm nomes da forma `mysql-VERSION-OS.tar.xz`, onde `VERSION` é um número (por exemplo, `8.4.6`), e `OS` indica o tipo de sistema operacional para o qual a distribuição é destinada (por exemplo, `pc-linux-i686` ou `winx64`).
+As distribuições binárias de arquivos `tar` compactados do MySQL têm nomes da forma `mysql-VERSION-OS.tar.xz`, onde `VERSION` é um número (por exemplo, `8.4.6`), e `OS` indica o tipo de sistema operacional para o qual a distribuição é destinada (por exemplo, `pc-linux-i686` ou `winx64`).
 
-Há também uma versão de instalação mínima do arquivo **tar** comprimido do MySQL para a distribuição binária genérica do Linux, que tem um nome da forma `mysql-VERSION-OS-GLIBCVER-ARCH-minimal.tar.xz`.
+Há também uma versão de instalação mínima do arquivo `tar` comprimido do MySQL para a distribuição binária genérica do Linux, que tem um nome da forma `mysql-VERSION-OS-GLIBCVER-ARCH-minimal.tar.xz`.
 
 Advertências
 
@@ -33,7 +33,7 @@ Advertências
   ```
 - Se nenhum arquivo RPM ou `.deb` específico para sua distribuição for fornecido pela Oracle (ou pelo seu fornecedor Linux), você pode tentar os binários genéricos. Em alguns casos, devido a incompatibilidades de biblioteca ou outros problemas, eles podem não funcionar com sua instalação Linux. Nesses casos, você pode tentar compilar e instalar o MySQL a partir do código-fonte. Veja a Seção 2.8, "Instalar o MySQL a partir do código-fonte", para mais informações e instruções.
 
-Para instalar uma distribuição binária de arquivos **tar** compactados, desempaquete-o no local de instalação escolhido (normalmente `/usr/local/mysql`). Isso cria os diretórios mostrados na tabela a seguir.
+Para instalar uma distribuição binária de arquivos `tar` compactados, desempaquete-o no local de instalação escolhido (normalmente `/usr/local/mysql`). Isso cria os diretórios mostrados na tabela a seguir.
 
 **Tabela 2.3 Layout de instalação do MySQL para pacote binário genérico Unix/Linux**
 
@@ -94,25 +94,25 @@ $> cd /usr/local
 
 Obter um arquivo de distribuição usando as instruções na Seção 2.1.3, "Como Obter o MySQL". Para uma determinada versão, distribuições binárias para todas as plataformas são construídas a partir da mesma distribuição de origem do MySQL.
 
-Desembalar a distribuição, que cria o diretório de instalação. **tar** pode descompactar e desembalar a distribuição se tiver suporte à opção `z`:
+Desembalar a distribuição, que cria o diretório de instalação. `tar` pode descompactar e desembalar a distribuição se tiver suporte à opção `z`:
 
 ```
 $> tar xvf /path/to/mysql-VERSION-OS.tar.xz
 ```
 
-O comando **tar** cria um diretório chamado `mysql-VERSION-OS`.
+O comando `tar` cria um diretório chamado `mysql-VERSION-OS`.
 
-Para instalar o MySQL a partir de uma distribuição binária de arquivos **tar** compactados, seu sistema deve ter GNU `XZ Utils` para descompactar a distribuição e um **tar** razoável para descompactá-la.
+Para instalar o MySQL a partir de uma distribuição binária de arquivos `tar` compactados, seu sistema deve ter GNU `XZ Utils` para descompactar a distribuição e um `tar` razoável para descompactá-la.
 
-O GNU **tar** é conhecido por funcionar. O **tar** padrão fornecido com alguns sistemas operacionais não é capaz de descompactar os nomes de arquivos longos na distribuição MySQL. Você deve baixar e instalar o GNU **tar**, ou se disponível, usar uma versão pré-instalada do GNU tar. Normalmente, isso está disponível como **gnutar**, **gtar**, ou como **tar** dentro de um diretório GNU ou Software Livre, como `/usr/sfw/bin` ou `/usr/local/bin`.
+O GNU `tar` é conhecido por funcionar. O `tar` padrão fornecido com alguns sistemas operacionais não é capaz de descompactar os nomes de arquivos longos na distribuição MySQL. Você deve baixar e instalar o GNU `tar`, ou se disponível, usar uma versão pré-instalada do GNU tar. Normalmente, isso está disponível como `gnutar`, `gtar`, ou como `tar` dentro de um diretório GNU ou Software Livre, como `/usr/sfw/bin` ou `/usr/local/bin`.
 
-Se o seu **tar** não suporta o formato `xz` então use o comando **xz** para descompactar a distribuição e **tar** para descompactá-la. Substitua o comando **tar** anterior pelo seguinte comando alternativo para descompactar e extrair a distribuição:
+Se o seu `tar` não suporta o formato `xz` então use o comando `xz` para descompactar a distribuição e `tar` para descompactá-la. Substitua o comando `tar` anterior pelo seguinte comando alternativo para descompactar e extrair a distribuição:
 
 ```
 $> xz -dc /path/to/mysql-VERSION-OS.tar.xz | tar x
 ```
 
-Em seguida, crie um link simbólico para o diretório de instalação criado por **tar**:
+Em seguida, crie um link simbólico para o diretório de instalação criado por `tar`:
 
 ```
 $> ln -s full-path-to-mysql-VERSION-OS mysql

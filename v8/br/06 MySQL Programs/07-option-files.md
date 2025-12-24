@@ -76,7 +76,7 @@ Em plataformas Unix, o MySQL ignora arquivos de configuração que são escreví
 
 Na tabela anterior, `~` representa o diretório inicial do usuário atual (o valor de `$HOME`).
 
-`SYSCONFDIR` representa o diretório especificado com a `SYSCONFDIR` opção para **CMake** quando o MySQL foi construído. Por padrão, este é o diretório `etc` localizado sob o diretório de instalação compilado.
+`SYSCONFDIR` representa o diretório especificado com a `SYSCONFDIR` opção para `CMake` quando o MySQL foi construído. Por padrão, este é o diretório `etc` localizado sob o diretório de instalação compilado.
 
 `MYSQL_HOME` é uma variável de ambiente que contém o caminho para o diretório no qual o arquivo `my.cnf` específico do servidor reside. Se `MYSQL_HOME` não estiver definido e você iniciar o servidor usando o programa **mysqld\_safe**, **mysqld\_safe** o define como `BASEDIR`, o diretório de instalação base do MySQL.
 

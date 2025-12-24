@@ -12,7 +12,7 @@ MySQL requires that foreign key columns be indexed; if you create a table with a
 
 You can obtain information about foreign keys from the Information Schema `KEY_COLUMN_USAGE` table. An example of a query against this table is shown here:
 
-```
+```sql
 mysql> SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME
      > FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
      > WHERE REFERENCED_TABLE_SCHEMA IS NOT NULL;

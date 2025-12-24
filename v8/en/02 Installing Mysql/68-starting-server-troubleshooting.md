@@ -4,7 +4,7 @@ This section provides troubleshooting suggestions for problems starting the serv
 
 If you have problems starting the server, here are some things to try:
 
-* Check the  error log to see why the server does not start. Log files are located in the data directory (typically `C:\Program Files\MySQL\MySQL Server 8.4\data` on Windows, `/usr/local/mysql/data` for a Unix/Linux binary distribution, and `/usr/local/var` for a Unix/Linux source distribution). Look in the data directory for files with names of the form `host_name.err` and `host_name.log`, where *`host_name`* is the name of your server host. Then examine the last few lines of these files. Use `tail` to display them:
+* Check the  error log to see why the server does not start. Log files are located in the data directory (typically `C:\Program Files\MySQL\MySQL Server 8.4\data` on Windows, `/usr/local/mysql/data` for a Unix/Linux binary distribution, and `/usr/local/var` for a Unix/Linux source distribution). Look in the data directory for files with names of the form `host_name.err` and `host_name.log`, where `host_name` is the name of your server host. Then examine the last few lines of these files. Use `tail` to display them:
 
   ```
   $> tail host_name.err
@@ -15,7 +15,7 @@ If you have problems starting the server, here are some things to try:
   Although storage engines use default values for options that you omit, Oracle recommends that you review the available options and specify explicit values for any options whose defaults are not appropriate for your installation.
 * Make sure that the server knows where to find the data directory. The  `mysqld` server uses this directory as its current directory. This is where it expects to find databases and where it expects to write log files. The server also writes the pid (process ID) file in the data directory.
 
-  The default data directory location is hardcoded when the server is compiled. To determine what the default path settings are, invoke  `mysqld` with the `--verbose` and `--help` options. If the data directory is located somewhere else on your system, specify that location with the `--datadir` option to `mysqld` or  **mysqld_safe**, on the command line or in an option file. Otherwise, the server does not work properly. As an alternative to the `--datadir` option, you can specify  `mysqld` the location of the base directory under which MySQL is installed with the `--basedir`, and `mysqld` looks for the `data` directory there.
+  The default data directory location is hardcoded when the server is compiled. To determine what the default path settings are, invoke  `mysqld` with the `--verbose` and `--help` options. If the data directory is located somewhere else on your system, specify that location with the `--datadir` option to `mysqld` or  `mysqld_safe`, on the command line or in an option file. Otherwise, the server does not work properly. As an alternative to the `--datadir` option, you can specify  `mysqld` the location of the base directory under which MySQL is installed with the `--basedir`, and `mysqld` looks for the `data` directory there.
 
   To check the effect of specifying path options, invoke `mysqld` with those options followed by the `--verbose` and `--help` options. For example, if you change location to the directory where `mysqld` is installed and then run the following command, it shows the effect of starting the server with a base directory of `/usr/local`:
 
@@ -39,7 +39,7 @@ If you have problems starting the server, here are some things to try:
   $> mysqladmin -h host_name variables
   ```
 
-  *`host_name`* is the name of the MySQL server host.
+  `host_name` is the name of the MySQL server host.
 * Make sure that the server can access the data directory. The ownership and permissions of the data directory and its contents must allow the server to read and modify them.
 
   If you get `Errcode 13` (which means `Permission denied`) when starting `mysqld`, this means that the privileges of the data directory or its contents do not permit server access. In this case, you change the permissions for the involved files and directories so that the server has the right to use them. You can also start the server as `root`, but this raises security issues and should be avoided.
@@ -67,9 +67,9 @@ If you have problems starting the server, here are some things to try:
   Can't start server: Bind on unix socket...
   ```
 
-  Use **ps** to determine whether you have another  `mysqld` server running. If so, shut down the server before starting `mysqld` again. (If another server is running, and you really want to run multiple servers, you can find information about how to do so in Section 7.8, “Running Multiple MySQL Instances on One Machine”.)
+  Use `ps` to determine whether you have another `mysqld` server running. If so, shut down the server before starting `mysqld` again. (If another server is running, and you really want to run multiple servers, you can find information about how to do so in Section 7.8, “Running Multiple MySQL Instances on One Machine”.)
 
-  If no other server is running, execute the command `telnet your_host_name tcp_ip_port_number`. (The default MySQL port number is 3306.) Then press Enter a couple of times. If you do not get an error message like `telnet: Unable to connect to remote host: Connection refused`, some other program is using the TCP/IP port that  `mysqld` is trying to use. Track down what program this is and disable it, or tell `mysqld` to listen to a different port with the  `--port` option. In this case, specify the same non-default port number for client programs when connecting to the server using TCP/IP.
+  If no other server is running, execute the command `telnet your_host_name tcp_ip_port_number`. (The default MySQL port number is 3306.) Then press Enter a couple of times. If you do not get an error message like `telnet: Unable to connect to remote host: Connection refused`, some other program is using the TCP/IP port that  `mysqld` is trying to use. Track down what program this is and disable it, or tell `mysqld` to listen to a different port with the `--port` option. In this case, specify the same non-default port number for client programs when connecting to the server using TCP/IP.
 
   Another reason the port might be inaccessible is that you have a firewall running that blocks connections to it. If so, modify the firewall settings to permit access to the port.
 
@@ -78,4 +78,4 @@ If you have problems starting the server, here are some things to try:
   ```
   127.0.0.1       localhost
   ```
-* If you cannot get  `mysqld` to start, try to make a trace file to find the problem by using the `--debug` option. See Section 7.9.4, “The DBUG Package”.
+* If you cannot get `mysqld` to start, try to make a trace file to find the problem by using the `--debug` option. See Section 7.9.4, “The DBUG Package”.

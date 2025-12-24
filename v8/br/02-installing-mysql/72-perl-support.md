@@ -4,7 +4,7 @@ O módulo `DBI` do Perl fornece uma interface genérica para o acesso ao banco d
 
 ::: info Note
 
-O suporte ao Perl não está incluído nas distribuições MySQL. Você pode obter os módulos necessários em \[<http://search.cpan.org>] para Unix, ou usando o programa ActiveState **ppm** no Windows. As seções a seguir descrevem como fazer isso.
+O suporte ao Perl não está incluído nas distribuições MySQL. Você pode obter os módulos necessários em \[<http://search.cpan.org>] para Unix, ou usando o programa ActiveState `ppm` no Windows. As seções a seguir descrevem como fazer isso.
 
 :::
 

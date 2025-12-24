@@ -61,7 +61,7 @@ Esta opção está disponível apenas se o MySQL foi construído usando `WITH_DE
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Tipo do produto</th> <td>Corda</td> </tr></tbody></table>
 
-  Nome da instância do servidor (se usar o script de inicialização **mysql.server**).
+  Nome da instância do servidor (se usar o script de inicialização `mysql.server`).
 - `-l`
 
   Não subtraia o tempo de bloqueio do tempo total.

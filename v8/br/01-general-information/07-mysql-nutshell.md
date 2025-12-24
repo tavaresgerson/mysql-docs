@@ -277,7 +277,7 @@ Para obter mais informações, consulte a Seção 7.4.2, "O log de erros".
   - Mensagens de início e término para desligamento de plugins e componentes durante desligamento do servidor.
   - Informações do código de saída (valor de retorno) com mensagens de desligamento durante uma inicialização ou desligamento e encerramento do servidor)
 
-  Além disso, se o servidor foi construído usando `WITH_SYSTEMD`, o servidor agora inclui todas as mensagens do **systemd** no log de erros.
+  Além disso, se o servidor foi construído usando `WITH_SYSTEMD`, o servidor agora inclui todas as mensagens do `systemd` no log de erros.
 
 - Adicionada uma instrução `SHOW PARSE_TREE`, que mostra uma árvore de análise formatada em JSON para uma instrução `SELECT`. Esta declaração se destina apenas para uso em testes e desenvolvimento, e não em produção. Ele está disponível apenas em compilações de depuração ou se o MySQL foi compilado a partir do código-fonte usando uma opção CMake `-DWITH_SHOW_PARSE_TREE` e não está incluído ou suportado em compilações de lançamento.
 

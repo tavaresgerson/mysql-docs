@@ -45,11 +45,11 @@ While MySQL Configurator may attempt (and succeed) to perform an in-place upgrad
 
 **Table 2.5 Supported Upgrade Paths**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th scope="col">A supported upgrade scenario</th> <th scope="col">Description</th> </tr></thead><tbody><tr> <td>8.0.35+ to 8.1</td> <td>From 8.0.35 or higher to the first MySQL 8 Innovation release.</td> </tr><tr> <td>8.0.35+ to 8.4</td> <td>From 8.0.35 or higher to the MySQL next LTS release.</td> </tr><tr> <td>8.X to 8.Y where Y = X + 1</td> <td>From an Innovation release to the next consecutive Innovation release.</td> </tr><tr> <td>8.3 to 8.4</td> <td>From the last MySQL 8 Innovation release to the next MySQL 8 LTS release.</td> </tr><tr> <td>8.4.X to 8.4.Y where Y &gt; X</td> <td>From within the same LTS release.</td> </tr><tr> <td>8.4.X to 9.0.0</td> <td>From an LTS release to the first consecutive Innovation release.</td> </tr><tr> <td>8.4 to 9.7</td> <td>From an LTS release to the next consecutive LTS release.</td> </tr></tbody></table>
+<table><thead><tr> <th scope="col">A supported upgrade scenario</th> <th scope="col">Description</th> </tr></thead><tbody><tr> <td>8.0.35+ to 8.1</td> <td>From 8.0.35 or higher to the first MySQL 8 Innovation release.</td> </tr><tr> <td>8.0.35+ to 8.4</td> <td>From 8.0.35 or higher to the MySQL next LTS release.</td> </tr><tr> <td>8.X to 8.Y where Y = X + 1</td> <td>From an Innovation release to the next consecutive Innovation release.</td> </tr><tr> <td>8.3 to 8.4</td> <td>From the last MySQL 8 Innovation release to the next MySQL 8 LTS release.</td> </tr><tr> <td>8.4.X to 8.4.Y where Y &gt; X</td> <td>From within the same LTS release.</td> </tr><tr> <td>8.4.X to 9.0.0</td> <td>From an LTS release to the first consecutive Innovation release.</td> </tr><tr> <td>8.4 to 9.7</td> <td>From an LTS release to the next consecutive LTS release.</td> </tr></tbody></table>
 
-This dialogue prompts for the protocol (default: TCP/IP), port (default: 3306), and root password for the existing installation. Execute connect and then review and confirm the MySQL instance's information (such as version, paths, and configuration file) before proceeding with the upgrade.
+This dialogue prompts for the protocol (default: `TCP/IP`), port (default: `3306`), and root password for the existing installation. Execute connect and then review and confirm the MySQL instance's information (such as version, paths, and configuration file) before proceeding with the upgrade.
 
-This upgrade may replace the file paths. For example, "MySQL Server 8.2\Data\" changes to "MySQL Server 8.3\Data\" when upgrading 8.2 to 8.3.
+This upgrade may replace the file paths. For example, "MySQL Server 8.2 Data" changes to "MySQL Server 8.3 Data" when upgrading 8.2 to 8.3.
 
 This upgrade functionality also provides these additional options: "Backup Data" allows running `mysqldump` before performing the upgrade, and "Server File Permissions" to optionally customize file permissions.
 
@@ -71,11 +71,11 @@ Configure a standard side-by-side installation with the new MySQL server install
 
   Connectivity options control how the connection to MySQL is made. Options include:
 
-  + TCP/IP: This option is selected by default. You may disable TCP/IP Networking to permit local host connections only. With the TCP/IP connection option selected, you can modify the following items:
+  + `TCP/IP`: This option is selected by default. You may disable `TCP/IP` Networking to permit local host connections only. With the `TCP/IP` connection option selected, you can modify the following items:
 
     - Port for classic MySQL protocol connections. The default value is `3306`.
     - X Protocol Port defaults to `33060`
-    - Open Windows Firewall port for network access, which is selected by default for TCP/IP connections.
+    - Open Windows Firewall port for network access, which is selected by default for `TCP/IP` connections.
 
     If a port number is in use already, you will see the error icon (![](images/mi-info-symbol.png)) next to the default value and Next is disabled until you provide a new port number.
   + Named Pipe: Enable and define the pipe name, similar to setting the `named_pipe` system variable. The default name is `MySQL`.
@@ -115,7 +115,7 @@ Configure a standard side-by-side installation with the new MySQL server install
 
   + Local account
 
-    Enter the simple Windows user name as the security token for each local user or group; for example, **`finley;jeffrey;admin`**.
+    Enter the simple Windows user name as the security token for each local user or group; for example, `finley;jeffrey;admin`.
   + Domain account
 
     Use standard Windows syntax (*`domain`*`\`*`domainuser`*) or MySQL syntax (*`domain`*`\\`*`domainuser`*) to enter Windows domain users and groups.

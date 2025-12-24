@@ -88,6 +88,6 @@ To use the following instructions, you must have a MySQL source distribution. In
    3. Edit `cmake/character_sets.cmake`:
 
       1. Add *`MYSET`* to the value of with `CHARSETS_AVAILABLE` in alphabetic order.
-      2. Add *`MYSET`* to the value of `CHARSETS_COMPLEX` in alphabetic order. This is needed even for simple character sets, so that **CMake** can recognize `-DDEFAULT_CHARSET=MYSET`.
+      2. Add *`MYSET`* to the value of `CHARSETS_COMPLEX` in alphabetic order. This is needed even for simple character sets, so that `CMake` can recognize `-DDEFAULT_CHARSET=MYSET`.
 4. Reconfigure, recompile, and test.
 

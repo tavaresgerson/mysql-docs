@@ -4,7 +4,7 @@ When installing and running MySQL for the first time, you may encounter certain 
 
 Your first resource when troubleshooting server issues is the error log. The MySQL server uses the error log to record information relevant to the error that prevents the server from starting. The error log is located in the  data directory specified in your `my.ini` file. The default data directory location is `C:\Program Files\MySQL\MySQL Server 8.4\data`, or `C:\ProgramData\Mysql` on Windows 7 and Windows Server 2008. The `C:\ProgramData` directory is hidden by default. You need to change your folder options to see the directory and contents. For more information on the error log and understanding the content, see  Section 7.4.2, “The Error Log”.
 
-For information regarding possible errors, also consult the console messages displayed when the MySQL service is starting. Use the **SC START *`mysqld_service_name`*** or **NET START *`mysqld_service_name`*** command from the command line after installing  `mysqld` as a service to see any error messages regarding the starting of the MySQL server as a service. See Section 2.3.3.8, “Starting MySQL as a Windows Service”.
+For information regarding possible errors, also consult the console messages displayed when the MySQL service is starting. Use the `SC START` `mysqld_service_name` or `NET START` `mysqld_service_name` command from the command line after installing  `mysqld` as a service to see any error messages regarding the starting of the MySQL server as a service.
 
 The following examples show other common error messages you might encounter when installing MySQL and starting the server for the first time:
 
@@ -49,8 +49,7 @@ The following examples show other common error messages you might encounter when
   The rules for use of backslash in option file values are given in  Section 6.2.2.2, “Using Option Files”.
 
   If you change the `datadir` value in your MySQL configuration file, you must move the contents of the existing MySQL data directory before restarting the MySQL server.
-
-  See  Section 2.3.3.2, “Creating an Option File”.
+  
 * If you reinstall or upgrade MySQL without first stopping and removing the existing MySQL service, and then configure MySQL using MySQL Configurator, you might see this error:
 
   ```

@@ -43,7 +43,7 @@ Para configurar um repositório MySQL Git na sua máquina:
    Doxyfile.in        man                  sql                win
    doxygen_resources  mysql-test           sql-common
    ```
-3. Use o comando **git branch -r** para ver os ramos de rastreamento remoto para o repositório MySQL.
+3. Use o comando `git branch -r` para ver os ramos de rastreamento remoto para o repositório MySQL.
 
    ```
    ~/mysql-server> git branch -r
@@ -55,13 +55,13 @@ Para configurar um repositório MySQL Git na sua máquina:
      origin/cluster-7.6
      origin/trunk
    ```
-4. Para visualizar o ramo que está desativado em seu repositório local, emita o comando **git branch**. Quando você clona o repositório Git do MySQL, o ramo mais recente do MySQL é desativado automaticamente. O asterisco identifica o ramo ativo.
+4. Para visualizar o ramo que está desativado em seu repositório local, emita o comando `git branch`. Quando você clona o repositório Git do MySQL, o ramo mais recente do MySQL é desativado automaticamente. O asterisco identifica o ramo ativo.
 
    ```
    ~/mysql-server$ git branch
    * trunk
    ```
-5. Para verificar um ramo anterior do MySQL, execute o comando **git checkout**, especificando o nome do ramo. Por exemplo, para verificar o ramo do MySQL 8.0:
+5. Para verificar um ramo anterior do MySQL, execute o comando `git checkout`, especificando o nome do ramo. Por exemplo, para verificar o ramo do MySQL 8.0:
 
    ```
    ~/mysql-server$ git checkout 8.0
@@ -69,14 +69,14 @@ Para configurar um repositório MySQL Git na sua máquina:
    Branch 8.0 set up to track remote branch 8.0 from origin.
    Switched to a new branch '8.0'
    ```
-6. Para obter alterações feitas após a configuração inicial do repositório Git do MySQL, mude para o ramo que você deseja atualizar e emita o comando **git pull**:
+6. Para obter alterações feitas após a configuração inicial do repositório Git do MySQL, mude para o ramo que você deseja atualizar e emita o comando `git pull`:
 
    ```
    ~/mysql-server$ git checkout trunk
    ~/mysql-server$ git pull
    ```
 
-   Para examinar o histórico de commit, use o comando **git log**:
+   Para examinar o histórico de commit, use o comando `git log`:
 
    ```
    ~/mysql-server$ git log
@@ -87,6 +87,6 @@ Para configurar um repositório MySQL Git na sua máquina:
    Se você ver alterações ou código que você tem uma pergunta sobre, pergunte em \[MySQL Community Slack] (<https://mysqlcommunity.slack.com/>).
 7. Depois de ter clonado o repositório Git do MySQL e ter verificado o ramo que você deseja construir, você pode construir o MySQL Server a partir do código-fonte. As instruções são fornecidas na Seção 2.8.4, Instalar o MySQL Usando uma Distribuição de Fonte Padrão, exceto que você salta a parte sobre a obtenção e descompactação da distribuição.
 
-   Tenha cuidado ao instalar uma compilação de uma árvore de origem de distribuição em uma máquina de produção. O comando de instalação pode substituir sua instalação de versão ao vivo. Se você já tiver o MySQL instalado e não quiser substituí-lo, execute **CMake** com valores para as opções `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, e `MYSQL_UNIX_ADDR` diferentes das usadas pelo seu servidor de produção. Para informações adicionais sobre como evitar que vários servidores interfiram entre si, consulte a Seção 7.8, Running Multiple MySQL Instances on One Machine.
+   Tenha cuidado ao instalar uma compilação de uma árvore de origem de distribuição em uma máquina de produção. O comando de instalação pode substituir sua instalação de versão ao vivo. Se você já tiver o MySQL instalado e não quiser substituí-lo, execute `CMake` com valores para as opções `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, e `MYSQL_UNIX_ADDR` diferentes das usadas pelo seu servidor de produção. Para informações adicionais sobre como evitar que vários servidores interfiram entre si, consulte a Seção 7.8, Running Multiple MySQL Instances on One Machine.
 
-   Jogue duro com sua nova instalação. Por exemplo, tente fazer novas funcionalidades falharem. Comece executando o **make test**. Veja The MySQL Test Suite.
+   Jogue duro com sua nova instalação. Por exemplo, tente fazer novas funcionalidades falharem. Comece executando o `make test`. Veja The MySQL Test Suite.

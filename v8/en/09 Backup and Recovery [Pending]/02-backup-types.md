@@ -23,7 +23,7 @@ Physical backup methods have these characteristics:
 * Data from `MEMORY` tables is tricky to back up this way because their contents are not stored on disk. (The MySQL Enterprise Backup product has a feature where you can retrieve data from `MEMORY` tables during a backup.)
 * Backups are portable only to other machines that have identical or similar hardware characteristics.
 * Backups can be performed while the MySQL server is not running. If the server is running, it is necessary to perform appropriate locking so that the server does not change database contents during the backup. MySQL Enterprise Backup does this locking automatically for tables that require it.
-* Physical backup tools include the **mysqlbackup** of MySQL Enterprise Backup for `InnoDB` or any other tables, or file system-level commands (such as **cp**, **scp**, **tar**, **rsync**) for `MyISAM` tables.
+* Physical backup tools include the **mysqlbackup** of MySQL Enterprise Backup for `InnoDB` or any other tables, or file system-level commands (such as **cp**, **scp**, `tar`, **rsync**) for `MyISAM` tables.
 * For restore:
 
   + MySQL Enterprise Backup restores `InnoDB` and other tables that it backed up.

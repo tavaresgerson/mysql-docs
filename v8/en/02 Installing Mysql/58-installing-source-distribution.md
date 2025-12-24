@@ -7,9 +7,9 @@ To install MySQL from a standard source distribution:
 3. Configure, build, and install the distribution using the instructions in this section.
 4. Perform postinstallation procedures using the instructions in Section 2.9, “Postinstallation Setup and Testing”.
 
-MySQL uses **CMake** as the build framework on all platforms. The instructions given here should enable you to produce a working installation. For additional information on using **CMake** to build MySQL, see [How to Build MySQL Server with CMake](/doc/internals/en/cmake.html).
+MySQL uses `CMake` as the build framework on all platforms. The instructions given here should enable you to produce a working installation. For additional information on using `CMake` to build MySQL, see [How to Build MySQL Server with CMake](/doc/internals/en/cmake.html).
 
-If you start from a source RPM, use the following command to make a binary RPM that you can install. If you do not have **rpmbuild**, use **rpm** instead.
+If you start from a source RPM, use the following command to make a binary RPM that you can install. If you do not have `rpmbuild`, use `rpm` instead.
 
 ```
 $> rpmbuild --rebuild --clean MySQL-VERSION.src.rpm
@@ -17,7 +17,7 @@ $> rpmbuild --rebuild --clean MySQL-VERSION.src.rpm
 
 The result is one or more binary RPM packages that you install as indicated in  Section 2.5.4, “Installing MySQL on Linux Using RPM Packages from Oracle”.
 
-The sequence for installation from a compressed **tar** file or Zip archive source distribution is similar to the process for installing from a generic binary distribution (see  Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”), except that it is used on all platforms and includes steps to configure and compile the distribution. For example, with a compressed **tar** file source distribution on Unix, the basic installation command sequence looks like this:
+The sequence for installation from a compressed `tar` file or Zip archive source distribution is similar to the process for installing from a generic binary distribution (see  Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”), except that it is used on all platforms and includes steps to configure and compile the distribution. For example, with a compressed `tar` file source distribution on Unix, the basic installation command sequence looks like this:
 
 ```
 # Preconfiguration setup
@@ -70,19 +70,19 @@ Obtain a distribution file using the instructions in Section 2.1.3, “How to G
 
 Unpack the distribution into the current directory:
 
-* To unpack a compressed **tar** file, **tar** can decompress and unpack the distribution if it has `z` option support:
+* To unpack a compressed `tar` file, `tar` can decompress and unpack the distribution if it has `z` option support:
 
   ```
   $> tar zxvf mysql-VERSION.tar.gz
   ```
 
-  If your **tar** does not have `z` option support, use **gunzip** to decompress the distribution and **tar** to unpack it:
+  If your `tar` does not have `z` option support, use `gunzip` to decompress the distribution and `tar` to unpack it:
 
   ```
   $> gunzip < mysql-VERSION.tar.gz | tar xvf -
   ```
 
-  Alternatively, **CMake** can decompress and unpack the distribution:
+  Alternatively, `CMake` can decompress and unpack the distribution:
 
   ```
   $> cmake -E tar zxvf mysql-VERSION.tar.gz
@@ -141,11 +141,11 @@ On macOS, to use the Xcode IDE:
 $> cmake .. -G Xcode
 ```
 
-When you run **Cmake**, you might want to add options to the command line. Here are some examples:
+When you run `Cmake`, you might want to add options to the command line. Here are some examples:
 
 *  `-DBUILD_CONFIG=mysql_release`: Configure the source with the same build options used by Oracle to produce binary distributions for official MySQL releases.
 *  `-DCMAKE_INSTALL_PREFIX=dir_name`: Configure the distribution for installation under a particular location.
-*  `-DCPACK_MONOLITHIC_INSTALL=1`: Cause **make package** to generate a single installation file rather than multiple files.
+*  `-DCPACK_MONOLITHIC_INSTALL=1`: Cause `make package` to generate a single installation file rather than multiple files.
 *  `-DWITH_DEBUG=1`: Build the distribution with debugging support.
 
 For a more extensive list of options, see Section 2.8.7, “MySQL Source-Configuration Options”.
@@ -162,12 +162,12 @@ $> cmake .. -LAH # all params with help text
 $> ccmake ..     # interactive display
 ```
 
-If **CMake** fails, you might need to reconfigure by running it again with different options. If you do reconfigure, take note of the following:
+If `CMake` fails, you might need to reconfigure by running it again with different options. If you do reconfigure, take note of the following:
 
-* If **CMake** is run after it has previously been run, it may use information that was gathered during its previous invocation. This information is stored in `CMakeCache.txt`. When **CMake** starts, it looks for that file and reads its contents if it exists, on the assumption that the information is still correct. That assumption is invalid when you reconfigure.
-* Each time you run **CMake**, you must run **make** again to recompile. However, you may want to remove old object files from previous builds first because they were compiled using different configuration options.
+* If `CMake` is run after it has previously been run, it may use information that was gathered during its previous invocation. This information is stored in `CMakeCache.txt`. When `CMake` starts, it looks for that file and reads its contents if it exists, on the assumption that the information is still correct. That assumption is invalid when you reconfigure.
+* Each time you run `CMake`, you must run `make` again to recompile. However, you may want to remove old object files from previous builds first because they were compiled using different configuration options.
 
-To prevent old object files or configuration information from being used, run these commands in the build directory on Unix before re-running **CMake**:
+To prevent old object files or configuration information from being used, run these commands in the build directory on Unix before re-running `CMake`:
 
 ```
 $> make clean
@@ -194,7 +194,7 @@ $> make VERBOSE=1
 
 The second command sets `VERBOSE` to show the commands for each compiled source.
 
-Use **gmake** instead on systems where you are using GNU **make** and it has been installed as **gmake**.
+Use `gmake` instead on systems where you are using GNU `make` and it has been installed as `gmake`.
 
 On Windows:
 
@@ -226,7 +226,7 @@ Alternatively, generate installation package files that you can install where yo
 $> make package
 ```
 
-This operation produces one or more `.tar.gz` files that can be installed like generic binary distribution packages. See  Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”. If you run **CMake** with `-DCPACK_MONOLITHIC_INSTALL=1`, the operation produces a single file. Otherwise, it produces multiple files.
+This operation produces one or more `.tar.gz` files that can be installed like generic binary distribution packages. See  Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”. If you run `CMake` with `-DCPACK_MONOLITHIC_INSTALL=1`, the operation produces a single file. Otherwise, it produces multiple files.
 
 On Windows, generate the data directory, then create a `.zip` archive installation package:
 

@@ -27,7 +27,7 @@ Another approach is to change the place where the server creates the Unix socket
   See  Section 6.2.2.2, “Using Option Files”.
 * Specify a  `--socket` option on the command line to  **mysqld\_safe** and when you run client programs.
 * Set the `MYSQL_UNIX_PORT` environment variable to the path of the Unix socket file.
-* Recompile MySQL from source to use a different default Unix socket file location. Define the path to the file with the  `MYSQL_UNIX_ADDR` option when you run **CMake**. See  Section 2.8.7, “MySQL Source-Configuration Options”.
+* Recompile MySQL from source to use a different default Unix socket file location. Define the path to the file with the  `MYSQL_UNIX_ADDR` option when you run `CMake`. See  Section 2.8.7, “MySQL Source-Configuration Options”.
 
 You can test whether the new socket location works by attempting to connect to the server with this command:
 

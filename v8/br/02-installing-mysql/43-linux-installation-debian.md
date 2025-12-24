@@ -30,7 +30,7 @@ A Oracle fornece pacotes Debian para a instalação do MySQL em sistemas Debian 
 
     Importância
 
-    Certifique-se de que você se lembra da senha raiz que você definiu. Os usuários que desejam definir uma senha mais tarde podem deixar o campo de senha em branco na caixa de diálogo e apenas pressionar OK; nesse caso, o acesso raiz ao servidor é autenticado usando o Plugin de Autenticação Peer-Credential do Socket MySQL para conexões usando um arquivo de socket do Unix. Você pode definir a senha raiz mais tarde usando **mysql\_secure\_installation**.
+    Certifique-se de que você se lembra da senha raiz que você definiu. Os usuários que desejam definir uma senha mais tarde podem deixar o campo de senha em branco na caixa de diálogo e apenas pressionar OK; nesse caso, o acesso raiz ao servidor é autenticado usando o Plugin de Autenticação Peer-Credential do Socket MySQL para conexões usando um arquivo de socket do Unix. Você pode definir a senha raiz mais tarde usando `mysql_secure_installation`.
   - Para uma instalação básica do servidor MySQL, instale o pacote de arquivos comuns do banco de dados, o pacote do cliente, o metapackage do cliente, o pacote do servidor e o metapackage do servidor (nessa ordem); você pode fazer isso com um único comando:
 
     ```

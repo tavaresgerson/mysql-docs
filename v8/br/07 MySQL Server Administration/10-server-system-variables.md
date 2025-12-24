@@ -686,7 +686,7 @@ Para mais informações, ver secção 7.9.4, "O pacote DBUG".
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do sistema</th> <td>[[<code>debug_sync</code>]]</td> </tr><tr><th>Área de aplicação</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim , sim .</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica</th> <td>Não .</td> </tr><tr><th>Tipo do produto</th> <td>Corda</td> </tr></tbody></table>
 
-Esta variável é a interface do usuário para a facilidade de Debug Sync. O uso de Debug Sync requer que o MySQL seja configurado com a opção `-DWITH_DEBUG=ON` **CMake** (ver Seção 2.8.7, Opções de Configuração de Fonte do MySQL); caso contrário, esta variável do sistema não está disponível.
+Esta variável é a interface do usuário para a facilidade de Debug Sync. O uso de Debug Sync requer que o MySQL seja configurado com a opção `-DWITH_DEBUG=ON` `CMake` (ver Seção 2.8.7, Opções de Configuração de Fonte do MySQL); caso contrário, esta variável do sistema não está disponível.
 
 O valor da variável global é somente de leitura e indica se a facilidade está habilitada. Por padrão, a Sincronização de Debug é desativada e o valor de `debug_sync` é `OFF`. Se o servidor for iniciado com `--debug-sync-timeout=N`, onde \* `N` \* é um valor de tempo de espera maior que 0, a Sincronização de Debug é habilitada e o valor de `debug_sync` é `ON - current signal` seguido do nome do sinal. Além disso, \* `N` \* torna-se o tempo de espera padrão para pontos de sincronização individuais.
 
@@ -2457,7 +2457,7 @@ Esta variável é usada para limitar o efeito das operações de importação e 
 - Se definido para o nome de um diretório, o servidor limita as operações de importação e exportação para trabalhar apenas com arquivos nesse diretório. O diretório deve existir; o servidor não o cria.
 - Se definido como `NULL`, o servidor desativa as operações de importação e exportação.
 
-O valor padrão é específico da plataforma e depende do valor da opção `INSTALL_LAYOUT` **CMake**, conforme mostrado na tabela a seguir. Para especificar o valor padrão `secure_file_priv` explicitamente se você estiver construindo a partir do código-fonte, use a opção `INSTALL_SECURE_FILE_PRIVDIR` **CMake**.
+O valor padrão é específico da plataforma e depende do valor da opção `INSTALL_LAYOUT` `CMake`, conforme mostrado na tabela a seguir. Para especificar o valor padrão `secure_file_priv` explicitamente se você estiver construindo a partir do código-fonte, use a opção `INSTALL_SECURE_FILE_PRIVDIR` `CMake`.
 
   <table><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>[<code>INSTALL_LAYOUT</code>] Valor</th> <th>Valor padrão [[<code>secure_file_priv</code>]]</th> </tr></thead><tbody><tr> <td>[[<code>STANDALONE</code>]]</td> <td>vazio</td> </tr><tr> <td>[[<code>DEB</code>]], [[<code>RPM</code>]], [[<code>SVR4</code>]]</td> <td>[[<code>/var/lib/mysql-files</code>]]</td> </tr><tr> <td>Caso contrário</td> <td>[[<code>mysql-files</code>]] sob o valor [[<code class="option">CMAKE_INSTALL_PREFIX</code>]]</td> </tr></tbody></table>
 
@@ -3587,7 +3587,7 @@ O número de versão para o servidor. O valor também pode incluir um sufixo ind
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do sistema</th> <td>[[<code>version_comment</code>]]</td> </tr><tr><th>Área de aplicação</th> <td>Globalmente</td> </tr><tr><th>Dinâmico</th> <td>Não .</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica</th> <td>Não .</td> </tr><tr><th>Tipo do produto</th> <td>Corda</td> </tr></tbody></table>
 
-O programa de configuração **CMake** tem uma opção `COMPILATION_COMMENT_SERVER` que permite que um comentário seja especificado ao construir o MySQL. Esta variável contém o valor desse comentário.
+O programa de configuração `CMake` tem uma opção `COMPILATION_COMMENT_SERVER` que permite que um comentário seja especificado ao construir o MySQL. Esta variável contém o valor desse comentário.
 
 - `version_compile_machine`
 

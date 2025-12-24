@@ -155,7 +155,7 @@ Ao inicializar o diretório de dados, você não deve especificar nenhuma outra 
 
 ::: info Note
 
-A sequência de inicialização do diretório de dados executada pelo servidor não substitui as ações executadas pelo **mysql\_secure\_installation**.
+A sequência de inicialização do diretório de dados executada pelo servidor não substitui as ações executadas pelo `mysql_secure_installation`.
 
 :::
 

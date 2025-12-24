@@ -7,7 +7,7 @@ Esta seção descreve algumas das características importantes do MySQL Database
 - Escrito em C e C++.
 - Testado com uma ampla gama de diferentes compiladores.
 - Funciona em muitas plataformas diferentes. Veja <https://www.mysql.com/support/supportedplatforms/database.html>.
-- Para portabilidade, configurado usando **CMake**.
+- Para portabilidade, configurado usando `CMake`.
 - Testado com Purify (um detector de vazamento de memória comercial), bem como com Valgrind, uma ferramenta GPL (<https://valgrind.org/>).
 - Utiliza um design de servidor em várias camadas com módulos independentes.
 - Projetado para ser totalmente multithreaded usando threads do kernel, para usar facilmente várias CPUs se estiverem disponíveis.

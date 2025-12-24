@@ -106,7 +106,7 @@ Para iniciar um novo contêiner do Docker para o MySQL Enterprise Server com uma
 docker run --name=mysql1 --restart on-failure -d mysql/enterprise-server:latest
 ```
 
-Se a imagem do Docker do nome e da tag especificados não tiver sido baixada por um comando anterior do **docker pull** ou do **docker run**, a imagem será agora baixada. Inicialização para o contêiner começa, e o contêiner aparece na lista de contêineres em execução quando você executa o comando do **docker ps**. Por exemplo:
+Se a imagem do Docker do nome e da tag especificados não tiver sido baixada por um comando anterior do `docker pull` ou do `docker run`, a imagem será agora baixada. Inicialização para o contêiner começa, e o contêiner aparece na lista de contêineres em execução quando você executa o comando do **docker ps**. Por exemplo:
 
 ```
 $> docker ps
@@ -116,7 +116,7 @@ CONTAINER ID   IMAGE                                                         COM
 
 A inicialização do contêiner pode levar algum tempo. Quando o servidor está pronto para uso, o `STATUS` do contêiner na saída do comando **docker ps** muda de `(health: starting)` para `(healthy)`.
 
-A opção `-d` usada no comando **docker run** acima faz com que o contêiner seja executado em segundo plano. Use este comando para monitorar a saída do contêiner:
+A opção `-d` usada no comando `docker run` acima faz com que o contêiner seja executado em segundo plano. Use este comando para monitorar a saída do contêiner:
 
 ```
 docker logs mysql1

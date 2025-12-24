@@ -29,7 +29,7 @@ Alternativamente, adicione o diretório `bin` à sua configuração de variável
 
 Com o servidor em execução, emita os seguintes comandos para verificar se você pode recuperar informações do servidor. A saída deve ser semelhante à mostrada aqui.
 
-Use **mysqlshow** para ver quais bancos de dados existem:
+Use `mysqlshow` para ver quais bancos de dados existem:
 
 ```
 C:\> bin\mysqlshow
@@ -60,7 +60,7 @@ Enter password: (enter root password here)
 +--------------------+
 ```
 
-Se você especificar um nome de banco de dados, **mysqlshow** exibirá uma lista das tabelas dentro do banco de dados:
+Se você especificar um nome de banco de dados, `mysqlshow` exibirá uma lista das tabelas dentro do banco de dados:
 
 ```
 C:\> bin\mysqlshow mysql
@@ -116,4 +116,4 @@ C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 +------+-----------+-----------------------+
 ```
 
-Para mais informações sobre `mysql` e **mysqlshow**, veja Seção 6.5.1, mysql  O Cliente de Linha de Comando MySQL, e Seção 6.5.6, mysqlshow  Exibir Informações de Base de Dados, Tabela e Coluna.
+Para mais informações sobre `mysql` e `mysqlshow`, veja Seção 6.5.1, mysql  O Cliente de Linha de Comando MySQL, e Seção 6.5.6, mysqlshow  Exibir Informações de Base de Dados, Tabela e Coluna.

@@ -44,7 +44,7 @@ $> rpm -qpl mysql-community-server-version-distribution-arch.rpm
 
 - A discussão no resto desta seção aplica-se apenas a um processo de instalação usando os pacotes RPM baixados diretamente do Oracle, em vez de através de um repositório MySQL. \*
 
-Existem relações de dependência entre alguns dos pacotes. Se você planeja instalar muitos dos pacotes, você pode baixar o arquivo **tar** do pacote RPM, que contém todos os pacotes RPM listados acima, para que você não precise baixá-los separadamente.
+Existem relações de dependência entre alguns dos pacotes. Se você planeja instalar muitos dos pacotes, você pode baixar o arquivo `tar` do pacote RPM, que contém todos os pacotes RPM listados acima, para que você não precise baixá-los separadamente.
 
 Na maioria dos casos, você precisa instalar os pacotes `mysql-community-server`, `mysql-community-client`, `mysql-community-client-plugins`, `mysql-community-libs`, `mysql-community-icu-data-files`, `mysql-community-common`, e `mysql-community-libs-compat` para obter uma instalação padrão e funcional do MySQL. Para executar essa instalação padrão e básica, acesse a pasta que contém todos esses pacotes (e, de preferência, nenhum outro pacote RPM com nomes semelhantes) e emita o seguinte comando:
 
@@ -52,9 +52,9 @@ Na maioria dos casos, você precisa instalar os pacotes `mysql-community-server`
 $> sudo yum install mysql-community-{server,client,client-plugins,icu-data-files,common,libs}-*
 ```
 
-Substitua **yum** por **zypper** para SLES, e por **dnf** para Fedora.
+Substitua `yum` por **zypper** para SLES, e por `dnf` para Fedora.
 
-Embora seja muito preferível usar uma ferramenta de gerenciamento de pacotes de alto nível como **yum** para instalar os pacotes, os usuários que preferem comandos diretos **rpm** podem substituir o comando **yum install** pelo comando **rpm -Uvh**; no entanto, usar **rpm -Uvh** em vez disso torna o processo de instalação mais propenso a falhas, devido a possíveis problemas de dependência que o processo de instalação pode encontrar.
+Embora seja muito preferível usar uma ferramenta de gerenciamento de pacotes de alto nível como `yum` para instalar os pacotes, os usuários que preferem comandos diretos `rpm` podem substituir o comando **yum install** pelo comando **rpm -Uvh**; no entanto, usar **rpm -Uvh** em vez disso torna o processo de instalação mais propenso a falhas, devido a possíveis problemas de dependência que o processo de instalação pode encontrar.
 
 Para instalar apenas os programas cliente, você pode pular `mysql-community-server` na sua lista de pacotes para instalar; emitir o seguinte comando:
 
@@ -62,7 +62,7 @@ Para instalar apenas os programas cliente, você pode pular `mysql-community-ser
 $> sudo yum install mysql-community-{client,client-plugins,common,libs}-*
 ```
 
-Substitua **yum** por **zypper** para SLES, e por **dnf** para Fedora.
+Substitua `yum` por **zypper** para SLES, e por `dnf` para Fedora.
 
 Uma instalação padrão do MySQL usando os pacotes RPM resulta em arquivos e recursos criados sob os diretórios do sistema, mostrados na tabela a seguir.
 
@@ -136,7 +136,7 @@ Se algo der errado durante a instalação, você pode encontrar informações de
 
 Para algumas distribuições Linux, pode ser necessário aumentar o limite de número de descritores de arquivos disponíveis para `mysqld`. Ver Seção B.3.2.16, "File Not Found and Similar Errors"
 
-É possível instalar várias versões de bibliotecas de clientes, como no caso de você querer manter a compatibilidade com aplicativos mais antigos vinculados a bibliotecas anteriores. Para instalar uma biblioteca de clientes mais antiga, use a opção `--oldpackage` com **rpm**. Por exemplo, para instalar `mysql-community-libs-5.5` em um sistema EL6 que tem `libmysqlclient.21` do MySQL 8.0, use um comando como este:
+É possível instalar várias versões de bibliotecas de clientes, como no caso de você querer manter a compatibilidade com aplicativos mais antigos vinculados a bibliotecas anteriores. Para instalar uma biblioteca de clientes mais antiga, use a opção `--oldpackage` com `rpm`. Por exemplo, para instalar `mysql-community-libs-5.5` em um sistema EL6 que tem `libmysqlclient.21` do MySQL 8.0, use um comando como este:
 
 ```
 $> rpm --oldpackage -ivh mysql-community-libs-5.5.50-2.el6.x86_64.rpm

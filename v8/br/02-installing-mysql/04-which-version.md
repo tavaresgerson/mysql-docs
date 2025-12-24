@@ -10,7 +10,7 @@ O esquema de nomeação no MySQL 8.4 usa nomes de versão que consistem em três
 - O segundo número (**4**) é o número da versão menor. O número da versão menor não muda para uma série LTS, mas muda para uma série Innovation.
 - O terceiro número (**0**) é o número de versão dentro de uma série LTS. Este é incrementado para cada nova versão LTS, mas provavelmente é sempre 0 para versões de inovação.
 
-Depois de escolher qual versão do MySQL instalar, decida qual formato de distribuição instalar para o seu sistema operacional. Para a maioria dos casos de uso, uma distribuição binária é a escolha certa. Distribuições binárias estão disponíveis em formato nativo para muitas plataformas, como pacotes RPM para Linux ou pacotes DMG para macOS. Distribuições também estão disponíveis em formatos mais genéricos, como arquivos Zip ou arquivos **tar** compactados. No Windows, você pode usar um MSI para instalar uma distribuição binária.
+Depois de escolher qual versão do MySQL instalar, decida qual formato de distribuição instalar para o seu sistema operacional. Para a maioria dos casos de uso, uma distribuição binária é a escolha certa. Distribuições binárias estão disponíveis em formato nativo para muitas plataformas, como pacotes RPM para Linux ou pacotes DMG para macOS. Distribuições também estão disponíveis em formatos mais genéricos, como arquivos Zip ou arquivos `tar` compactados. No Windows, você pode usar um MSI para instalar uma distribuição binária.
 
 Em algumas circunstâncias, pode ser preferível instalar o MySQL a partir de uma distribuição de origem:
 

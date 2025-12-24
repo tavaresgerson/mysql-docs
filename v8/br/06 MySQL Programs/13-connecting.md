@@ -4,7 +4,7 @@ Esta seção descreve o uso de opções de linha de comando para especificar com
 
 Para que um programa cliente se conecte ao servidor MySQL, ele deve usar os parâmetros de conexão apropriados, como o nome do host onde o servidor está sendo executado e o nome de usuário e senha da sua conta MySQL. Cada parâmetro de conexão tem um valor padrão, mas você pode substituir valores padrão conforme necessário usando as opções de programa especificadas na linha de comando ou em um arquivo de opções.
 
-Os exemplos aqui usam o programa cliente `mysql`, mas os princípios se aplicam a outros clientes, como `mysqldump`, `mysqladmin` ou **mysqlshow**.
+Os exemplos aqui usam o programa cliente `mysql`, mas os princípios se aplicam a outros clientes, como `mysqldump`, `mysqladmin` ou `mysqlshow`.
 
 Este comando invoca `mysql` sem especificar quaisquer parâmetros de conexão explícitos:
 
@@ -29,7 +29,7 @@ mysql -h localhost -u myname -ppassword mydb
 Para as opções de senha, o valor da senha é opcional:
 
 - Se você usar uma opção `--password` ou `-p` e especificar um valor de senha, não deve haver \* nenhum espaço \* entre `--password=` ou `-p` e a senha que a segue.
-- Se você usar `--password` ou `-p` mas não especificar um valor de senha, o programa cliente solicita que você insira a senha. A senha não é exibida quando você a insere. Isso é mais seguro do que dar a senha na linha de comando, o que pode permitir que outros usuários em seu sistema vejam a linha de senha executando um comando como **ps**.
+- Se você usar `--password` ou `-p` mas não especificar um valor de senha, o programa cliente solicita que você insira a senha. A senha não é exibida quando você a insere. Isso é mais seguro do que dar a senha na linha de comando, o que pode permitir que outros usuários em seu sistema vejam a linha de senha executando um comando como `ps`.
 - Para especificar explicitamente que não há senha e que o programa cliente não deve solicitar uma, use a opção `--skip-password`.
 
 Como acabamos de mencionar, incluir o valor da senha na linha de comando é um risco de segurança. Para evitar esse risco, especifique a opção `--password` ou `-p` sem qualquer dos seguintes valores de senha:

@@ -10,7 +10,7 @@ Suponha que você tenha vários animais de estimação em sua casa (sua menageri
 - Recuperar dados da tabela de várias maneiras
 - Usar várias tabelas
 
-O banco de dados de menagerie é simples (deliberadamente), mas não é difícil pensar em situações do mundo real em que um tipo semelhante de banco de dados pode ser usado. Por exemplo, um banco de dados como este poderia ser usado por um fazendeiro para manter o controle do gado, ou por um veterinário para manter o controle de registros de pacientes. Uma distribuição de menagerie contendo algumas das consultas e dados de amostra usados nas seções seguintes pode ser obtida a partir do site MySQL. Ele está disponível em arquivo comprimido **tar** e formatos Zip em \[<https://dev.mysql.com/doc/>] (<https://dev.mysql.com/doc/>).
+O banco de dados de menagerie é simples (deliberadamente), mas não é difícil pensar em situações do mundo real em que um tipo semelhante de banco de dados pode ser usado. Por exemplo, um banco de dados como este poderia ser usado por um fazendeiro para manter o controle do gado, ou por um veterinário para manter o controle de registros de pacientes. Uma distribuição de menagerie contendo algumas das consultas e dados de amostra usados nas seções seguintes pode ser obtida a partir do site MySQL. Ele está disponível em arquivo comprimido `tar` e formatos Zip em \[<https://dev.mysql.com/doc/>] (<https://dev.mysql.com/doc/>).
 
 Use a instrução `SHOW` para descobrir quais bancos de dados existem atualmente no servidor:
 

@@ -8,7 +8,7 @@ A discussão aqui usa **mysqld\_safe** para iniciar várias instâncias do MySQL
 
 Uma maneira de executar várias instâncias do MySQL no Unix é compilar diferentes servidores com diferentes portas TCP / IP padrão e arquivos de soquete Unix para que cada um escute em diferentes interfaces de rede.
 
-Suponha que um servidor 8.3 existente esteja configurado para o número de porta TCP/IP padrão (3306) e o arquivo de soquete do Unix (`/tmp/mysql.sock`). Para configurar um novo servidor 8.4.6 para ter diferentes parâmetros operacionais, use um comando **CMake** algo como este:
+Suponha que um servidor 8.3 existente esteja configurado para o número de porta TCP/IP padrão (3306) e o arquivo de soquete do Unix (`/tmp/mysql.sock`). Para configurar um novo servidor 8.4.6 para ter diferentes parâmetros operacionais, use um comando `CMake` algo como este:
 
 ```
 $> cmake . -DMYSQL_TCP_PORT=port_number \

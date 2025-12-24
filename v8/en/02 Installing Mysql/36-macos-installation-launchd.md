@@ -80,7 +80,7 @@ Additional launchd related information:
 * The default plist definition is written with less sophisticated use cases in mind. For more complicated setups, you may want to remove some of the arguments and instead rely on a MySQL configuration file, such as `my.cnf`.
 * If you edit the plist file, then uncheck the installer option when reinstalling or upgrading MySQL. Otherwise, your edited plist file is overwritten, and all edits are lost.
 
-Because the default plist definition defines several **ProgramArguments**, you might remove most of these arguments and instead rely upon your `my.cnf` MySQL configuration file to define them. For example:
+Because the default plist definition defines several **`ProgramArguments`**, you might remove most of these arguments and instead rely upon your `my.cnf` MySQL configuration file to define them. For example:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -115,4 +115,4 @@ Because the default plist definition defines several **ProgramArguments**, you m
 </plist>
 ```
 
-In this case, the  `basedir`, `datadir`, `plugin_dir`, `log_error`, `pid_file`, and ﻿ `--early-plugin-load` options were removed from the default plist *ProgramArguments* definition, which you might have defined in `my.cnf` instead.
+In this case, the  `basedir`, `datadir`, `plugin_dir`, `log_error`, `pid_file`, and ﻿ `--early-plugin-load` options were removed from the default plist *`ProgramArguments`* definition, which you might have defined in `my.cnf` instead.

@@ -12,13 +12,13 @@ Distribution specific instructions are shown below:
 
   ::: info Note
 
-  For a number of Linux distributions, you can install MySQL using the MySQL Yum repository instead of the platform's native software repository. See Section 2.5.1, “Installing MySQL on Linux Using the MySQL Yum Repository” for details.
+  For a number of Linux distributions, you can install MySQL using the MySQL Yum repository instead of the platform's native software repository.
 
   :::
 
   For Red Hat and similar distributions, the MySQL distribution is divided into a number of separate packages, `mysql` for the client tools, `mysql-server` for the server and associated tools, and `mysql-libs` for the libraries. The libraries are required if you want to provide connectivity from different languages and environments such as Perl, Python and others.
 
-  To install, use the **yum** command to specify the packages that you want to install. For example:
+  To install, use the `yum` command to specify the packages that you want to install. For example:
 
   ```
   #> yum install mysql mysql-server mysql-libs mysql-server
@@ -83,25 +83,24 @@ Distribution specific instructions are shown below:
   Complete!
   ```
 
-  MySQL and the MySQL server should now be installed. A sample configuration file is installed into `/etc/my.cnf`. To start the MySQL server use **systemctl**:
+  MySQL and the MySQL server should now be installed. A sample configuration file is installed into `/etc/my.cnf`. To start the MySQL server use `systemctl`:
 
   ```
   $> systemctl start mysqld
   ```
 
-  The database tables are automatically created for you, if they do not already exist. You should, however, run **mysql_secure_installation** to set the root passwords on your server.
+  The database tables are automatically created for you, if they do not already exist. You should, however, run `mysql_secure_installation` to set the root passwords on your server.
 * **Debian, Ubuntu, Kubuntu**
 
   ::: info Note
 
   For supported Debian and Ubuntu versions, MySQL can be installed using the [MySQL APT Repository](https://dev.mysql.com/downloads/repo/apt/) instead of the platform's native software repository. See Section 2.5.2, “Installing MySQL on Linux Using the MySQL APT Repository” for details.
 
-
   :::
 
   On Debian and related distributions, there are two packages for MySQL in their software repositories, `mysql-client` and `mysql-server`, for the client and server components respectively. You should specify an explicit version, for example `mysql-client-5.1`, to ensure that you install the version of MySQL that you want.
 
-  To download and install, including any dependencies, use the **apt-get** command, specifying the packages that you want to install.
+  To download and install, including any dependencies, use the `apt-get` command, specifying the packages that you want to install.
 
   ::: info Note
 
@@ -111,7 +110,7 @@ Distribution specific instructions are shown below:
   
   ::: info Note
 
-  The **apt-get** command installs a number of packages, including the MySQL server, in order to provide the typical tools and application environment. This can mean that you install a large number of packages in addition to the main MySQL package.
+  The `apt-get` command installs a number of packages, including the MySQL server, in order to provide the typical tools and application environment. This can mean that you install a large number of packages in addition to the main MySQL package.
 
   :::
 

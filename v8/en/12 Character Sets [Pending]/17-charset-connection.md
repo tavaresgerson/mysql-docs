@@ -102,7 +102,7 @@ When a client connects to the server, it indicates which character set it wants 
 
 If the server does not support the requested character set or collation, it falls back to using the server character set and collation to configure the connection. For additional detail about this fallback behavior, see Connection Character Set Error Handling.
 
-The  `mysql`,  `mysqladmin`, `mysqlcheck`,  **mysqlimport**, and  **mysqlshow** client programs determine the default character set to use as follows:
+The  `mysql`,  `mysqladmin`, `mysqlcheck`,  **mysqlimport**, and  `mysqlshow` client programs determine the default character set to use as follows:
 
 * In the absence of other information, each client uses the compiled-in default character set, usually `utf8mb4`.
 * Each client can autodetect which character set to use based on the operating system setting, such as the value of the `LANG` or `LC_ALL` locale environment variable on Unix systems or the code page setting on Windows systems. For systems on which the locale is available from the OS, the client uses it to set the default character set rather than using the compiled-in default. For example, setting `LANG` to `ru_RU.KOI8-R` causes the `koi8r` character set to be used. Thus, users can configure the locale in their environment for use by MySQL clients.

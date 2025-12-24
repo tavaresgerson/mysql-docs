@@ -33,7 +33,7 @@ All of the files are located within this parent directory using the structure sh
 
 **Table 2.4 Default MySQL Installation Layout for Microsoft Windows**
 
-<table><col style="width: 30%"/><col style="width: 40%"/><col style="width: 30%"/><thead><tr> <th scope="col">Directory</th> <th scope="col">Contents of Directory</th> <th scope="col">Notes</th> </tr></thead><tbody><tr> <th><code>bin</code></th> <td><span><strong>mysqld</strong></span> server, client, and utility programs</td> <td></td> </tr><tr> <th><code>%PROGRAMDATA%\MySQL\MySQL Server 8.4\</code></th> <td>Log files, databases</td> <td>The Windows system variable <code>%PROGRAMDATA%</code> defaults to <code>C:\ProgramData</code>.</td> </tr><tr> <th><code>docs</code></th> <td>Release documentation</td> <td>With the MSI, use the <code>Custom</code> type to include this optional component.</td> </tr><tr> <th><code>include</code></th> <td>Include (header) files</td> <td></td> </tr><tr> <th><code>lib</code></th> <td>Libraries</td> <td></td> </tr><tr> <th><code>share</code></th> <td>Miscellaneous support files, including error messages, character set files, sample configuration files, SQL for database installation</td> <td></td> </tr></tbody></table>
+<table><thead><tr> <th scope="col">Directory</th> <th scope="col">Contents of Directory</th> <th scope="col">Notes</th> </tr></thead><tbody><tr> <th><code>bin</code></th> <td><span><strong>mysqld</strong></span> server, client, and utility programs</td> <td></td> </tr><tr> <th><code>%PROGRAMDATA%\MySQL\MySQL Server 8.4\</code></th> <td>Log files, databases</td> <td>The Windows system variable <code>%PROGRAMDATA%</code> defaults to <code>C:\ProgramData</code>.</td> </tr><tr> <th><code>docs</code></th> <td>Release documentation</td> <td>With the MSI, use the <code>Custom</code> type to include this optional component.</td> </tr><tr> <th><code>include</code></th> <td>Include (header) files</td> <td></td> </tr><tr> <th><code>lib</code></th> <td>Libraries</td> <td></td> </tr><tr> <th><code>share</code></th> <td>Miscellaneous support files, including error messages, character set files, sample configuration files, SQL for database installation</td> <td></td> </tr></tbody></table>
 
 ### Silent Installation Methods
 
@@ -72,7 +72,7 @@ MySQL for Windows is available in several distribution formats, detailed here. G
 
 * **Large Table Support**
 
-  If you need tables with a size larger than 4GB, install MySQL on an NTFS or newer file system. Do not forget to use `MAX_ROWS` and `AVG_ROW_LENGTH` when you create tables. See Section 15.1.20, “CREATE TABLE Statement”.
+  If you need tables with a size larger than 4GB, install MySQL on an NTFS or newer file system. Do not forget to use `MAX_ROWS` and `AVG_ROW_LENGTH` when you create tables.
 * **MySQL and Virus Checking Software**
 
   Virus-scanning software such as Norton/Symantec Anti-Virus on directories containing MySQL data and temporary tables can cause issues, both in terms of the performance of MySQL and the virus-scanning software misidentifying the contents of the files as containing spam. This is due to the fingerprinting mechanism used by the virus-scanning software, and the way in which MySQL rapidly updates different files, which may be identified as a potential security risk.
@@ -80,4 +80,3 @@ MySQL for Windows is available in several distribution formats, detailed here. G
   After installing MySQL Server, it is recommended that you disable virus scanning on the main directory ( `datadir`) used to store your MySQL table data. There is usually a system built into the virus-scanning software to enable specific directories to be ignored.
 
   In addition, by default, MySQL creates temporary files in the standard Windows temporary directory. To prevent the temporary files also being scanned, configure a separate temporary directory for MySQL temporary files and add this directory to the virus scanning exclusion list. To do this, add a configuration option for the `tmpdir` parameter to your `my.ini` configuration file. For more information, see  Section 2.3.3.2, “Creating an Option File”.
-

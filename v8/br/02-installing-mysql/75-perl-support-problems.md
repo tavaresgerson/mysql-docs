@@ -9,13 +9,13 @@ Se o Perl relata que não consegue encontrar o módulo `../mysql/mysql.so`, o pr
 
 Observe que você também pode precisar modificar as opções `-L` se houver outras bibliotecas que o linker não consegue encontrar. Por exemplo, se o linker não consegue encontrar `libc` porque está em `/lib` e o comando de link especifica `-L/usr/lib`, altere a opção `-L` para `-L/lib` ou adicione `-L/lib` ao comando de link existente.
 
-Se você receber os seguintes erros de `DBD::mysql`, você provavelmente está usando **gcc** (ou usando um antigo binário compilado com **gcc**):
+Se você receber os seguintes erros de `DBD::mysql`, você provavelmente está usando `gcc` (ou usando um antigo binário compilado com `gcc`):
 
 ```
 /usr/bin/perl: can't resolve symbol '__moddi3'
 /usr/bin/perl: can't resolve symbol '__divdi3'
 ```
 
-Adicione `-L/usr/lib/gcc-lib/... -lgcc` ao comando de link quando a `mysql.so` biblioteca for construída (verifique a saída de **make** para `mysql.so` quando você compilar o cliente Perl). A `-L` opção deve especificar o nome do caminho do diretório onde `libgcc.a` está localizado em seu sistema.
+Adicione `-L/usr/lib/gcc-lib/... -lgcc` ao comando de link quando a `mysql.so` biblioteca for construída (verifique a saída de `make` para `mysql.so` quando você compilar o cliente Perl). A `-L` opção deve especificar o nome do caminho do diretório onde `libgcc.a` está localizado em seu sistema.
 
-Outra causa deste problema pode ser que o Perl e o MySQL não são ambos compilados com **gcc**. Neste caso, você pode resolver a incompatibilidade compilando ambos com **gcc**.
+Outra causa deste problema pode ser que o Perl e o MySQL não são ambos compilados com `gcc`. Neste caso, você pode resolver a incompatibilidade compilando ambos com `gcc`.

@@ -51,7 +51,7 @@ Para plataformas baseadas em Yum suportadas (veja a Seção 2.5.1, Instalar MySQ
 
    :::
 
-Você também pode atualizar apenas um componente específico. Use o seguinte comando para listar todos os pacotes instalados para os componentes do MySQL (para sistemas habilitados para dnf, substitua **yum** no comando por **dnf**):
+Você também pode atualizar apenas um componente específico. Use o seguinte comando para listar todos os pacotes instalados para os componentes do MySQL (para sistemas habilitados para dnf, substitua `yum` no comando por `dnf`):
 
 ```
 sudo yum list installed | grep "^mysql"

@@ -32,6 +32,6 @@ Users in the MySQL grant system are wholly independent from any operating system
 
 If  `mysqld` doesn't start, check the error log to see whether the server wrote any messages there to indicate the cause of the problem. By default, the error log is located in the `C:\Program Files\MySQL\MySQL Server 8.4\data` directory. It is the file with a suffix of `.err`, or may be specified by passing in the  `--log-error` option. Alternatively, you can try to start the server with the `--console` option; in this case, the server may display some useful information on the screen to help solve the problem.
 
-The last option is to start  `mysqld` with the `--standalone` and `--debug` options. In this case, `mysqld` writes a log file `C:\mysqld.trace` that should contain the reason why  `mysqld` doesn't start. See Section 7.9.4, “The DBUG Package”.
+The last option is to start  `mysqld` with the `--standalone` and `--debug` options. In this case, `mysqld` writes a log file `C:\mysqld.trace` that should contain the reason why  `mysqld` doesn't start.
 
-Use  **mysqld --verbose --help** to display all the options that  `mysqld` supports.
+Use `mysqld --verbose --help` to display all the options that  `mysqld` supports.

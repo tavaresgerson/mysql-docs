@@ -2,7 +2,7 @@
 
 You can test whether the MySQL server is working by executing any of the following commands:
 
-```
+```bash
 C:\> "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysqlshow"
 C:\> "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysqlshow" -u root mysql
 C:\> "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysqladmin" version status proc
@@ -15,4 +15,4 @@ You can force a MySQL client to use a named-pipe connection rather than TCP/IP b
 
 If you have set a password for the `root` account, deleted the anonymous account, or created a new user account, then to connect to the MySQL server you must use the appropriate `-u` and `-p` options with the commands shown previously. See Section 6.2.4, “Connecting to the MySQL Server Using Command Options”.
 
-For more information about  **mysqlshow**, see Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.
+For more information about  `mysqlshow`, see Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.

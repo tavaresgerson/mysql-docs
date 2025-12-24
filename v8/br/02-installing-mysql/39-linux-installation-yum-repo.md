@@ -125,21 +125,21 @@ Uma vez que o repositório MySQL Yum está habilitado em seu sistema, qualquer a
 
    Você só deve habilitar o subrepositório para uma série de lançamento a qualquer momento.
 
-   Verifique se os subrepositórios corretos foram habilitados e desativados executando o seguinte comando e verificando sua saída (para sistemas habilitados para dnf, substitua **yum** no comando por **dnf**):
+   Verifique se os subrepositórios corretos foram habilitados e desativados executando o seguinte comando e verificando sua saída (para sistemas habilitados para dnf, substitua `yum` no comando por `dnf`):
 
    ```
    $> yum repolist enabled | grep mysql
    ```
 3. #### Desativar o módulo padrão do MySQL
 
-   (somente sistemas EL8) Sistemas baseados em EL8 como RHEL8 e Oracle Linux 8 incluem um módulo MySQL que é ativado por padrão. A menos que este módulo seja desativado, ele mascara pacotes fornecidos por repositórios MySQL. Para desativar o módulo incluído e tornar os pacotes do repositório MySQL visíveis, use o seguinte comando (para sistemas habilitados para dnf, substitua **yum** no comando por **dnf**):
+   (somente sistemas EL8) Sistemas baseados em EL8 como RHEL8 e Oracle Linux 8 incluem um módulo MySQL que é ativado por padrão. A menos que este módulo seja desativado, ele mascara pacotes fornecidos por repositórios MySQL. Para desativar o módulo incluído e tornar os pacotes do repositório MySQL visíveis, use o seguinte comando (para sistemas habilitados para dnf, substitua `yum` no comando por `dnf`):
 
    ```
    $> sudo yum module disable mysql
    ```
 4. #### Instalação do MySQL
 
-   Instale o MySQL pelo seguinte comando (para sistemas habilitados para dnf, substitua **yum** no comando por **dnf**):
+   Instale o MySQL pelo seguinte comando (para sistemas habilitados para dnf, substitua `yum` no comando por `dnf`):
 
    ```
    $> sudo yum install mysql-community-server
@@ -207,7 +207,7 @@ Você pode usar o Yum para instalar e gerenciar componentes individuais do MySQL
 $> sudo yum --disablerepo=* --enablerepo='mysql*-community*' list available
 ```
 
-Instale qualquer pacote de sua escolha com o seguinte comando, substituindo `package-name` pelo nome do pacote (para sistemas habilitados para dnf, substitua **yum** no comando por **dnf**):
+Instale qualquer pacote de sua escolha com o seguinte comando, substituindo `package-name` pelo nome do pacote (para sistemas habilitados para dnf, substitua `yum` no comando por `dnf`):
 
 ```
 $> sudo yum install package-name
@@ -219,7 +219,7 @@ Por exemplo, para instalar o MySQL Workbench no Fedora:
 $> sudo dnf install mysql-workbench-community
 ```
 
-Para instalar as bibliotecas de cliente compartilhadas (para sistemas habilitados para dnf, substitua **yum** no comando por **dnf**):
+Para instalar as bibliotecas de cliente compartilhadas (para sistemas habilitados para dnf, substitua `yum` no comando por `dnf`):
 
 ```
 $> sudo yum install mysql-community-libs

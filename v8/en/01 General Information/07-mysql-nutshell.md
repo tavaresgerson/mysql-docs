@@ -181,7 +181,7 @@ Connection and response timeouts are configurable through the system variables o
 * Start and end messages for shutdown of plugins and components during server shutdown.
 * Exit code (return value) information with shutdown messages during initialization or server shutdown and end
 
-In addition, if the server was built using `WITH_SYSTEMD`, the server now includes every **systemd** message in the error log.
+In addition, if the server was built using `WITH_SYSTEMD`, the server now includes every `systemd` message in the error log.
 
 * Added the  `SHOW PARSE_TREE` statement, which shows the JSON-formatted parse tree for a `SELECT` statement. This statement is intended for testing and development use only, and not in production. It is available only in debug builds, or if MySQL was built from source using the CMake `-DWITH_SHOW_PARSE_TREE` option, and is not included or supported in release builds.
 

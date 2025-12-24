@@ -49,7 +49,7 @@ The examples shown here assume use of the `latin1` character set and `latin1_swe
   These settings apply server-wide and apply as the defaults for databases created by any application, and for tables created in those databases.
 
   It is still necessary for applications to configure their connection using  `SET NAMES` or equivalent after they connect, as described previously. You might be tempted to start the server with the [`--init_connect="SET NAMES 'latin1'"`](server-system-variables.html#sysvar_init_connect) option to cause [`SET NAMES`](set-names.html "15.7.6.3 SET NAMES Statement") to be executed automatically for each client that connects. However, this may yield inconsistent results because the  `init_connect` value is not executed for users who have the `CONNECTION_ADMIN` privilege (or the deprecated  `SUPER` privilege).
-* **Specify character settings at MySQL configuration time.** To select a character set and collation if you configure and build MySQL from source, use the `DEFAULT_CHARSET` and `DEFAULT_COLLATION` **CMake** options:
+* **Specify character settings at MySQL configuration time.** To select a character set and collation if you configure and build MySQL from source, use the `DEFAULT_CHARSET` and `DEFAULT_COLLATION` `CMake` options:
 
   ```
   cmake . -DDEFAULT_CHARSET=latin1 \

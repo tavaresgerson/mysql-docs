@@ -1,6 +1,6 @@
 ### 2.8.7 Opções de configuração de fonte do MySQL
 
-O programa **CMake** fornece uma grande quantidade de controle sobre como você configura uma distribuição de fonte MySQL. Normalmente, você faz isso usando opções na linha de comando **CMake**. Para informações sobre opções suportadas pelo **CMake**, execute qualquer um desses comandos no diretório de origem de nível superior:
+O programa `CMake` fornece uma grande quantidade de controle sobre como você configura uma distribuição de fonte MySQL. Normalmente, você faz isso usando opções na linha de comando `CMake`. Para informações sobre opções suportadas pelo `CMake`, execute qualquer um desses comandos no diretório de origem de nível superior:
 
 ```
 $> cmake . -LH
@@ -8,13 +8,13 @@ $> cmake . -LH
 $> ccmake .
 ```
 
-Pode também influenciar a **CMake** utilizando determinadas variáveis ambientais.
+Pode também influenciar a `CMake` utilizando determinadas variáveis ambientais.
 
 Para opções booleanas, o valor pode ser especificado como `1` ou `ON` para ativar a opção, ou como `0` ou `OFF` para desativar a opção.
 
 Muitas opções configuram padrões de tempo de compilação que podem ser substituídos na inicialização do servidor. Por exemplo, as opções `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, e `MYSQL_UNIX_ADDR` que configuram a localização padrão do diretório de base de instalação, o número da porta TCP/IP e o arquivo de soquete do Unix podem ser alterados na inicialização do servidor com as opções `--basedir`, `--port`, e `--socket` para `mysqld`. Quando aplicável, as descrições de opções de configuração indicam a opção de inicialização `mysqld` correspondente.
 
-As secções seguintes fornecem mais informações sobre as opções **CMake**.
+As secções seguintes fornecem mais informações sobre as opções `CMake`.
 
 - Referência à opção CMake
 - Opções gerais
@@ -26,7 +26,7 @@ As secções seguintes fornecem mais informações sobre as opções **CMake**.
 
 #### Referência à opção CMake
 
-A tabela a seguir mostra as opções de **CMake** disponíveis. Na coluna `Default`, `PREFIX` representa o valor da opção `CMAKE_INSTALL_PREFIX`, que especifica o diretório base de instalação. Este valor é usado como o local pai para vários dos subdiretórios de instalação.
+A tabela a seguir mostra as opções de `CMake` disponíveis. Na coluna `Default`, `PREFIX` representa o valor da opção `CMAKE_INSTALL_PREFIX`, que especifica o diretório base de instalação. Este valor é usado como o local pai para vários dos subdiretórios de instalação.
 
 \*\*Tabela 2.15 Referência de opção de configuração de origem do MySQL (CMake) \*\*
 
@@ -60,15 +60,15 @@ Os valores de opção `None` e `MinSizeRel` não são suportados.
 
 - `-DCPACK_MONOLITHIC_INSTALL=bool`
 
-Esta opção afeta se a operação **make package** produz múltiplos arquivos de pacote de instalação ou um único arquivo. Se desativada, a operação produz múltiplos arquivos de pacote de instalação, o que pode ser útil se você quiser instalar apenas um subconjunto de uma instalação completa do MySQL. Se ativada, produz um único arquivo para instalar tudo.
+Esta opção afeta se a operação `make package` produz múltiplos arquivos de pacote de instalação ou um único arquivo. Se desativada, a operação produz múltiplos arquivos de pacote de instalação, o que pode ser útil se você quiser instalar apenas um subconjunto de uma instalação completa do MySQL. Se ativada, produz um único arquivo para instalar tudo.
 
 - `-DFORCE_INSOURCE_BUILD=bool`
 
-Define se forçar uma compilação no código-fonte. Recomenda-se compilações fora do código-fonte, pois permitem várias compilações da mesma fonte, e a limpeza pode ser realizada rapidamente removendo o diretório de compilação. Para forçar uma compilação no código-fonte, invoque **CMake** com `-DFORCE_INSOURCE_BUILD=ON`.
+Define se forçar uma compilação no código-fonte. Recomenda-se compilações fora do código-fonte, pois permitem várias compilações da mesma fonte, e a limpeza pode ser realizada rapidamente removendo o diretório de compilação. Para forçar uma compilação no código-fonte, invoque `CMake` com `-DFORCE_INSOURCE_BUILD=ON`.
 
 - `-DFORCE_COLORED_OUTPUT=bool`
 
-Define se deve habilitar a saída colorida do compilador para **gcc** e **clang** ao compilar na linha de comando. Por padrão é `OFF`.
+Define se deve habilitar a saída colorida do compilador para `gcc` e `clang` ao compilar na linha de comando. Por padrão é `OFF`.
 
 #### Opções de layout da instalação
 
@@ -135,7 +135,7 @@ Onde instalar o diretório `mysql-test` Para suprimir a instalação deste diret
 
 - `-DINSTALL_PKGCONFIGDIR=dir_name`
 
-O diretório no qual instalar o arquivo `mysqlclient.pc` para uso pelo **pkg-config**. O valor padrão é `INSTALL_LIBDIR/pkgconfig`, a menos que `INSTALL_LIBDIR` termine com `/mysql`, caso em que é removido primeiro.
+O diretório no qual instalar o arquivo `mysqlclient.pc` para uso pelo `pkg-config`. O valor padrão é `INSTALL_LIBDIR/pkgconfig`, a menos que `INSTALL_LIBDIR` termine com `/mysql`, caso em que é removido primeiro.
 
 - `-DINSTALL_PLUGINDIR=dir_name`
 
@@ -149,7 +149,7 @@ A localização do diretório dinâmico da biblioteca.
 
 \*\* Localização padrão. \*\* Para builds RPM, este é `/usr/lib64/mysql/private/`, para DEB é `/usr/lib/mysql/private/`, e para TAR é `lib/private/`.
 
-\*\* Protobuf. \*\* Como este é um local privado, o carregador (como `ld-linux.so` no Linux) pode não encontrar os arquivos `libprotobuf.so` sem ajuda. Para orientar o carregador, `RPATH=$ORIGIN/../$INSTALL_PRIV_LIBDIR` é adicionado ao `mysqld` e **mysqlxtest**. Isso funciona para a maioria dos casos, mas ao usar o recurso de Grupo de Recursos, `mysqld` é `setsuid`, e o carregador ignora qualquer `RPATH` que contenha `$ORIGIN`. Para superar isso, um caminho completo explícito para o diretório é definido nas versões DEB e RPM do `mysqld`, uma vez que o destino é conhecido. Para instalar tarballs, é necessário corrigir o `mysqld` com uma ferramenta como o **patchelf**.
+\*\* Protobuf. \*\* Como este é um local privado, o carregador (como `ld-linux.so` no Linux) pode não encontrar os arquivos `libprotobuf.so` sem ajuda. Para orientar o carregador, `RPATH=$ORIGIN/../$INSTALL_PRIV_LIBDIR` é adicionado ao `mysqld` e `mysqlxtest`. Isso funciona para a maioria dos casos, mas ao usar o recurso de Grupo de Recursos, `mysqld` é `setsuid`, e o carregador ignora qualquer `RPATH` que contenha `$ORIGIN`. Para superar isso, um caminho completo explícito para o diretório é definido nas versões DEB e RPM do `mysqld`, uma vez que o destino é conhecido. Para instalar tarballs, é necessário corrigir o `mysqld` com uma ferramenta como o `patchelf`.
 
 - `-DINSTALL_SBINDIR=dir_name`
 
@@ -157,7 +157,7 @@ Onde instalar o servidor mysqld.
 
 - `-DINSTALL_SECURE_FILE_PRIVDIR=dir_name`
 
-O valor padrão para a variável do sistema `secure_file_priv`. O valor padrão é específico da plataforma e depende do valor da opção `INSTALL_LAYOUT` **CMake**; veja a descrição da variável do sistema `secure_file_priv` na Seção 7.1.8, "Variáveis do Sistema do Servidor".
+O valor padrão para a variável do sistema `secure_file_priv`. O valor padrão é específico da plataforma e depende do valor da opção `INSTALL_LAYOUT` `CMake`; veja a descrição da variável do sistema `secure_file_priv` na Seção 7.1.8, "Variáveis do Sistema do Servidor".
 
 - `-DINSTALL_SHAREDIR=dir_name`
 
@@ -207,7 +207,7 @@ Esta opção é ignorada a menos que o `WITH_SYSTEMD` esteja habilitado.
 
 - `-DSYSTEMD_SERVICE_NAME=name`
 
-O nome do serviço MySQL a ser usado quando o MySQL é gerenciado pelo **systemd**. O padrão é `mysqld`; isso pode ser alterado implicitamente de acordo com o valor `INSTALL_LAYOUT`.
+O nome do serviço MySQL a ser usado quando o MySQL é gerenciado pelo `systemd`. O padrão é `mysqld`; isso pode ser alterado implicitamente de acordo com o valor `INSTALL_LAYOUT`.
 
 Esta opção é ignorada a menos que o `WITH_SYSTEMD` esteja habilitado.
 
@@ -232,7 +232,7 @@ Para construir o MySQL com suporte para o NDB Cluster, use a opção `WITH_NDB`.
 
 ::: info Note
 
-Não é possível compilar sem o suporte do Performance Schema. Se for desejado compilar sem tipos específicos de instrumentação, isso pode ser feito com as seguintes opções **CMake**:
+Não é possível compilar sem o suporte do Performance Schema. Se for desejado compilar sem tipos específicos de instrumentação, isso pode ser feito com as seguintes opções `CMake`:
 
 ```
 DISABLE_PSI_COND
@@ -281,7 +281,7 @@ Se nem `-DWITH_engine_STORAGE_ENGINE` nem `-DWITHOUT_engine_STORAGE_ENGINE` são
 
 - `-DADD_GDB_INDEX=bool`
 
-Esta opção determina se deve habilitar a geração de uma seção `.gdb_index` em binários, o que torna o carregamento deles em um depurador mais rápido. A opção é desativada por padrão. **lld** linker é usado, e é desativado por Não tem efeito se um linker diferente de **lld** ou GNU **gold** é usado.
+Esta opção determina se deve habilitar a geração de uma seção `.gdb_index` em binários, o que torna o carregamento deles em um depurador mais rápido. A opção é desativada por padrão. `lld` linker é usado, e é desativado por Não tem efeito se um linker diferente de `lld` ou GNU `gold` é usado.
 
 - `-DCOMPILATION_COMMENT=string`
 
@@ -411,7 +411,7 @@ Se o código de perfis de consulta deve ser habilitado (para as instruções `SH
 
 - `-DFORCE_UNSUPPORTED_COMPILER=bool`
 
-Por padrão, **CMake** verifica as versões mínimas dos compiladores suportados; para desativar esta verificação, use `-DFORCE_UNSUPPORTED_COMPILER=ON`.
+Por padrão, `CMake` verifica as versões mínimas dos compiladores suportados; para desativar esta verificação, use `-DFORCE_UNSUPPORTED_COMPILER=ON`.
 
 - `-DFPROFILE_GENERATE=bool`
 
@@ -501,13 +501,13 @@ Se desativar a função de inlining no Windows. O padrão é `OFF` (inlining hab
 
 - `-DWITH_LD=string`
 
-**CMake** usa o linker padrão por padrão. Opcionalmente, passe em `lld` ou `mold` para especificar um linker alternativo. **mold** deve ser a versão 2 ou mais recente.
+`CMake` usa o linker padrão por padrão. Opcionalmente, passe em `lld` ou `mold` para especificar um linker alternativo. `mold` deve ser a versão 2 ou mais recente.
 
-Esta opção pode ser usada em sistemas baseados em Linux que não o Enterprise Linux, que sempre usa o **ld** linker.
+Esta opção pode ser usada em sistemas baseados em Linux que não o Enterprise Linux, que sempre usa o `ld` linker.
 
 ::: info Note
 
-Anteriormente, a opção `USE_LD_LLD` poderia ser usada para habilitar (o padrão) ou desativar explicitamente o linker LLVM **lld** para Clang. No MySQL 8.3, `USE_LD_LLD` foi removido.
+Anteriormente, a opção `USE_LD_LLD` poderia ser usada para habilitar (o padrão) ou desativar explicitamente o linker LLVM `lld` para Clang. No MySQL 8.3, `USE_LD_LLD` foi removido.
 
 :::
 
@@ -525,13 +525,13 @@ Se deve habilitar o AddressSanitizer `-fsanitize-address-use-after-scope` Clang 
 
 - `-DWITH_AUTHENTICATION_CLIENT_PLUGINS=bool`
 
-Esta opção é ativada automaticamente se qualquer plug-in de autenticação de servidor correspondente for construído. Seu valor, portanto, depende de outras opções **CMake** e não deve ser definido explicitamente.
+Esta opção é ativada automaticamente se qualquer plug-in de autenticação de servidor correspondente for construído. Seu valor, portanto, depende de outras opções `CMake` e não deve ser definido explicitamente.
 
 - `-DWITH_AUTHENTICATION_LDAP=bool`
 
 Se deve ser comunicado um erro se os complementos de autenticação LDAP não puderem ser construídos:
 
-- Se esta opção for desativada (o padrão), os plugins LDAP serão construídos se os arquivos de cabeçalho e bibliotecas necessários forem encontrados. Se não forem, **CMake** exibirá uma nota sobre isso.
+- Se esta opção for desativada (o padrão), os plugins LDAP serão construídos se os arquivos de cabeçalho e bibliotecas necessários forem encontrados. Se não forem, `CMake` exibirá uma nota sobre isso.
 - Se esta opção estiver habilitada, uma falha em encontrar o arquivo de cabeçalho e as bibliotecas necessárias faz com que o CMake produza um erro, impedindo a construção do servidor.
 
 * `-DWITH_AUTHENTICATION_PAM=bool`
@@ -610,7 +610,7 @@ Se a ferramenta LOCK\_ORDER deve ser habilitada. Por padrão, esta opção está
 
 ::: info Note
 
-Com a opção `WITH_LOCK_ORDER` ativada, as compilações do MySQL requerem o programa **flex**.
+Com a opção `WITH_LOCK_ORDER` ativada, as compilações do MySQL requerem o programa `flex`.
 
 :::
 
@@ -655,10 +655,10 @@ Se deve construir com suporte para o X Plugin. O padrão é `ON`. Veja Capítulo
 
 - `-DWITH_NUMA=bool`
 
-Definir explicitamente a política de alocação de memória NUMA. **CMake** define o valor padrão `WITH_NUMA` com base no suporte da plataforma atual `NUMA`.
+Definir explicitamente a política de alocação de memória NUMA. `CMake` define o valor padrão `WITH_NUMA` com base no suporte da plataforma atual `NUMA`.
 
-- Sem opção NUMA (o caso normal), **CMake** continua normalmente, produzindo apenas este aviso: biblioteca NUMA ausente ou versão requerida não disponível.
-- Com `-DWITH_NUMA=ON`, **CMake** aborda com este erro: biblioteca NUMA ausente ou versão requerida não disponível.
+- Sem opção NUMA (o caso normal), `CMake` continua normalmente, produzindo apenas este aviso: biblioteca NUMA ausente ou versão requerida não disponível.
+- Com `-DWITH_NUMA=ON`, `CMake` aborda com este erro: biblioteca NUMA ausente ou versão requerida não disponível.
 
 * `-DWITH_PACKAGE_FLAGS=bool`
 
@@ -719,15 +719,15 @@ Se deve permitir a instalação de arquivos de suporte \*\* systemd \*\*. Por pa
 
 Quando o servidor foi construído usando essa opção, o MySQL inclui todas as mensagens \*\* systemd \*\* no registro de erros do servidor (ver Seção 7.4.2,  The Error Log ).
 
-Para obter mais informações sobre o uso do **systemd**, consulte a Seção 2.5.9, "Gerenciando o MySQL Server com o systemd". Essa seção também inclui informações sobre a especificação de opções especificadas de outra forma nos grupos de opções `[mysqld_safe]`.
+Para obter mais informações sobre o uso do `systemd`, consulte a Seção 2.5.9, "Gerenciando o MySQL Server com o systemd". Essa seção também inclui informações sobre a especificação de opções especificadas de outra forma nos grupos de opções `[mysqld_safe]`.
 
 - `-DWITH_SYSTEM_LIBS=bool`
 
-Esta opção serve como uma opção umbrella para definir o valor `system` de qualquer uma das seguintes opções **CMake** que não são definidas explicitamente: `WITH_CURL`, `WITH_EDITLINE`, `WITH_ICU`, `WITH_LIBEVENT`, `WITH_LZ4`, `WITH_LZMA`, `WITH_PROTOBUF`, `WITH_RE2`, `WITH_SSL`, `WITH_ZLIB`, `WITH_ZSTD`.
+Esta opção serve como uma opção umbrella para definir o valor `system` de qualquer uma das seguintes opções `CMake` que não são definidas explicitamente: `WITH_CURL`, `WITH_EDITLINE`, `WITH_ICU`, `WITH_LIBEVENT`, `WITH_LZ4`, `WITH_LZMA`, `WITH_PROTOBUF`, `WITH_RE2`, `WITH_SSL`, `WITH_ZLIB`, `WITH_ZSTD`.
 
 - `-DWITH_SYSTEMD_DEBUG=bool`
 
-Se deve produzir informações adicionais de depuração do **systemd**, para plataformas nas quais **systemd** é usado para executar o MySQL. O padrão é `OFF`.
+Se deve produzir informações adicionais de depuração do `systemd`, para plataformas nas quais `systemd` é usado para executar o MySQL. O padrão é `OFF`.
 
 - `-DWITH_TCMALLOC=bool`
 
@@ -884,7 +884,7 @@ Esta opção está desatualizada e sujeita a eventual remoção; use `WITH_NDB` 
 
 - `-DWITH_NDBMTD={ON|OFF}`
 
-Crie o nó de dados multithread executável **ndbmtd**"). O padrão é `ON`.
+Crie o nó de dados multithread executável `ndbmtd`"). O padrão é `ON`.
 
 - `-DWITH_NDB_DEBUG={ON|OFF}`
 
@@ -894,7 +894,7 @@ Ativar a construção das versões de depuração dos binários do cluster NDB. 
 
 Permitir a construção de Cluster NDB com suporte Java, incluindo suporte para ClusterJ (ver MySQL NDB Cluster Connector para Java).
 
-Esta opção é `ON` por padrão. Se você não deseja compilar o NDB Cluster com suporte Java, você deve desativá-lo explicitamente especificando `-DWITH_NDB_JAVA=OFF` ao executar **CMake**. Caso contrário, se o Java não puder ser encontrado, a configuração da compilação falha.
+Esta opção é `ON` por padrão. Se você não deseja compilar o NDB Cluster com suporte Java, você deve desativá-lo explicitamente especificando `-DWITH_NDB_JAVA=OFF` ao executar `CMake`. Caso contrário, se o Java não puder ser encontrado, a configuração da compilação falha.
 
 - `-DWITH_NDB_PORT=port`
 

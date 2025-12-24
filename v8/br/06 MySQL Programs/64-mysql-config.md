@@ -4,11 +4,11 @@
 
 ::: info Note
 
-**pkg-config** pode ser usado como uma alternativa ao **mysql\_config** para obter informações como bandeiras de compilador ou bibliotecas de links necessárias para compilar aplicativos MySQL. Para mais informações, consulte Building C API Client Programs Using pkg-config.
+`pkg-config` pode ser usado como uma alternativa ao `mysql_config` para obter informações como bandeiras de compilador ou bibliotecas de links necessárias para compilar aplicativos MySQL. Para mais informações, consulte Building C API Client Programs Using pkg-config.
 
 :::
 
-**mysql\_config** suporta as seguintes opções.
+`mysql_config` suporta as seguintes opções.
 
 - `--cflags`
 
@@ -50,7 +50,7 @@ Exibe o valor da variável de configuração nomeada. \* `var_name`\* valores pe
 
 Número de versão para a distribuição MySQL.
 
-Se você invocar **mysql\_config** sem opções, ele exibe uma lista de todas as opções que ele suporta, e seus valores:
+Se você invocar `mysql_config` sem opções, ele exibe uma lista de todas as opções que ele suporta, e seus valores:
 
 ```
 $> mysql_config
@@ -75,7 +75,7 @@ Options:
           plugindir     [/usr/local/mysql/lib/plugin]
 ```
 
-Você pode usar **mysql\_config** dentro de uma linha de comando usando backticks para incluir a saída que ele produz para opções específicas. Por exemplo, para compilar e vincular um programa cliente MySQL, use **mysql\_config** da seguinte forma:
+Você pode usar `mysql_config` dentro de uma linha de comando usando backticks para incluir a saída que ele produz para opções específicas. Por exemplo, para compilar e vincular um programa cliente MySQL, use `mysql_config` da seguinte forma:
 
 ```
 gcc -c `mysql_config --cflags` progname.c

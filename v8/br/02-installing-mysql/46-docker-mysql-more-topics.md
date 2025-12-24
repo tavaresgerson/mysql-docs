@@ -2,7 +2,7 @@
 
 ::: info Note
 
-A maioria dos seguintes comandos de exemplo tem `container-registry.oracle.com/mysql/community-server` como a imagem do Docker sendo usada (como com os comandos **docker pull** e **docker run**); mude isso se sua imagem for de outro repositóriopor exemplo, substitua-a por `container-registry.oracle.com/mysql/enterprise-server` para imagens da MySQL Enterprise Edition baixadas do Oracle Container Registry (OCR), ou `mysql/enterprise-server` para imagens da MySQL Enterprise Edition baixadas do \[My Oracle Support] (<https://support.oracle.com/>).
+A maioria dos seguintes comandos de exemplo tem `container-registry.oracle.com/mysql/community-server` como a imagem do Docker sendo usada (como com os comandos `docker pull` e `docker run`); mude isso se sua imagem for de outro repositóriopor exemplo, substitua-a por `container-registry.oracle.com/mysql/enterprise-server` para imagens da MySQL Enterprise Edition baixadas do Oracle Container Registry (OCR), ou `mysql/enterprise-server` para imagens da MySQL Enterprise Edition baixadas do \[My Oracle Support] (<https://support.oracle.com/>).
 
 :::
 
@@ -28,7 +28,7 @@ Quaisquer atualizações de software ou instalações que os usuários realizem 
 
 ##### Configurar o servidor MySQL
 
-Quando você inicia o contêiner do MySQL Docker, você pode passar as opções de configuração para o servidor através do comando **docker run**. Por exemplo:
+Quando você inicia o contêiner do MySQL Docker, você pode passar as opções de configuração para o servidor através do comando `docker run`. Por exemplo:
 
 ```
 docker run --name mysql1 -d container-registry.oracle.com/mysql/community-server:tag --character-set-server=utf8mb4 --collation-server=utf8mb4_col

@@ -6,7 +6,7 @@ The following restrictions apply to use of MySQL on the Windows platform:
 
   On Windows 32-bit platforms, it is not possible by default to use more than 2GB of RAM within a single process, including MySQL. This is because the physical address limit on Windows 32-bit is 4GB and the default setting within Windows is to split the virtual address space between kernel (2GB) and user/applications (2GB).
 
-  Some versions of Windows have a boot time setting to enable larger applications by reducing the kernel application. Alternatively, to use more than 2GB, use a 64-bit version of Windows.
+  Some versions of Windows have a boot time setting to enable larger applications by reducing the kernel application. Alternatively, to use more than 2GB, use a `64-bit` version of Windows.
 * **File system aliases**
 
   When using `MyISAM` tables, you cannot use aliases within Windows link to the data files on another volume and then link back to the main MySQL `datadir` location.
@@ -23,7 +23,7 @@ The following restrictions apply to use of MySQL on the Windows platform:
 * **`DROP DATABASE`**
 
   You cannot drop a database that is in use by another session.
-* **Case-insensitive names**
+* **`Case-insensitive` names**
 
   File names are not case-sensitive on Windows, so MySQL database and table names are also not case-sensitive on Windows. The only restriction is that database and table names must be specified using the same case throughout a given statement. See  Section 11.2.3, “Identifier Case Sensitivity”.
 * **Directory and file names**

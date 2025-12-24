@@ -93,7 +93,7 @@ gpg:         new signatures: 53
 
 If you want to import the key into your RPM configuration to validate RPM install packages, you should be able to import the key directly:
 
-```
+```bash
 $> rpm --import mysql_pubkey.asc
 ```
 
@@ -107,13 +107,13 @@ After you have downloaded and imported the public build key, download your desir
 
 Make sure that both files are stored in the same directory and then run the following command to verify the signature for the distribution file:
 
-```
+```bash
 $> gpg --verify package_name.asc
 ```
 
 If the downloaded package is valid, you should see a `Good signature` message similar to this:
 
-```
+```bash
 $> gpg --verify mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz.asc
 gpg: Signature made Fri 15 Dec 2023 06:55:13 AM EST
 gpg:                using RSA key BCA43417C3B485DD128EC6D4B7B3B788A8D3785C
@@ -122,7 +122,7 @@ gpg: Good signature from "MySQL Release Engineering <mysql-build@oss.oracle.com>
 
 The `Good signature` message indicates that the file signature is valid, when compared to the signature listed on our site. But you might also see warnings, like so:
 
-```
+```bash
 $> gpg --verify mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz.asc
 gpg: Signature made Fri 15 Dec 2023 06:55:13 AM EST
 gpg:                using RSA key BCA43417C3B485DD128EC6D4B7B3B788A8D3785C
@@ -138,5 +138,3 @@ That is normal, as they depend on your setup and configuration. Here are explana
 * *WARNING: This key is not certified with a trusted signature! There is no indication that the signature belongs to the owner.*: This refers to your level of trust in your belief that you possess our real public key. This is a personal decision. Ideally, a MySQL developer would hand you the key in person, but more commonly, you downloaded it. Was the download tampered with? Probably not, but this decision is up to you. Setting up a web of trust is one method for trusting them.
 
 See the GPG documentation for more information on how to work with public keys.
-
-

@@ -1,6 +1,6 @@
 #### 2.1.4.3 Signature Checking Using Gpg4win for Windows
 
-The  Section 2.1.4.2, “Signature Checking Using GnuPG” section describes how to verify MySQL downloads using GPG. That guide also applies to Microsoft Windows, but another option is to use a GUI tool like  Gpg4win. You may use a different tool but our examples are based on Gpg4win, and utilize its bundled `Kleopatra` GUI.
+The Section 2.1.4.2, “Signature Checking Using GnuPG” section describes how to verify MySQL downloads using GPG. That guide also applies to Microsoft Windows, but another option is to use a GUI tool like  Gpg4win. You may use a different tool but our examples are based on Gpg4win, and utilize its bundled `Kleopatra` GUI.
 
 Download and install Gpg4win, load Kleopatra, and add the MySQL Release Engineering certificate. Do this by clicking File, Lookup on Server. Type "Mysql Release Engineering" into the search box and press Search.
 
@@ -8,7 +8,7 @@ Download and install Gpg4win, load Kleopatra, and add the MySQL Release Engineer
 
 ![Shows a search input field titled "Find" with "MySQL Release Engineering" entered. The one result contains the following values: Name=MySQL Release Engineering, E-Mail=mysql-build@oss.oracle.com, Valid From=2021-12-14, Valid Until="Unknown", and Key-ID=467B 942D 3A79 BD29. Available action buttons are: Search, Select All, Deselect All, Details, Import, and Close.](images/gnupg-kleopatra-find-certificate.png)
 
-Select the "MySQL Release Engineering" certificate. The Key-ID must reference "3A79 BD29", or choose Details... to confirm the certificate is valid. Now, import it by clicking Import. When the import dialog is displayed, choose Okay, and this certificate should now be listed under the Imported Certificates tab.
+Select the "MySQL Release Engineering" certificate. The Key-ID must reference "`3A79 BD29`", or choose Details... to confirm the certificate is valid. Now, import it by clicking Import. When the import dialog is displayed, choose Okay, and this certificate should now be listed under the Imported Certificates tab.
 
 Next, grant trust to the certificate. Select our certificate, then from the main menu select Certificates, Change Certification Power, and click Grant Power.
 
@@ -35,4 +35,3 @@ Seeing an error such as Verification failed: No Data. means the file is invalid.
 **Figure 2.4 Kleopatra: the Decrypt and Verify Results Dialog: Bad**
 
 ![It shows "Verification failed: No data." and also displays the name of the ASC file.](images/gnupg-kleopatra-decrypt-invalid-sig.png)
-

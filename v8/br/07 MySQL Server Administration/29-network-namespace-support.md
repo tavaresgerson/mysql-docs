@@ -23,7 +23,7 @@ O MySQL suporta espaços de nomes de rede em plataformas que os implementam.
 
 - O servidor MySQL.
 - X Plugin.
-- O cliente `mysql` e o cliente **mysqlxtest** do conjunto de testes. (Outros clientes não são suportados. Eles devem ser invocados a partir do espaço de nomes de rede do servidor ao qual eles se conectam.)
+- O cliente `mysql` e o cliente `mysqlxtest` do conjunto de testes. (Outros clientes não são suportados. Eles devem ser invocados a partir do espaço de nomes de rede do servidor ao qual eles se conectam.)
 - Replicação regular.
 - Replicação em grupo, apenas quando se utiliza a pilha de comunicação MySQL para estabelecer conexões de comunicação em grupo.
 
@@ -49,7 +49,7 @@ Antes de usar o suporte de namespace de rede no MySQL, esses pré-requisitos do 
 
   :::
 
-- O administrador do sistema deve habilitar o privilégio do sistema operacional `CAP_SYS_ADMIN` para os binários MySQL que suportam espaços de nomes de rede (`mysqld`, `mysql`, **mysqlxtest**).
+- O administrador do sistema deve habilitar o privilégio do sistema operacional `CAP_SYS_ADMIN` para os binários MySQL que suportam espaços de nomes de rede (`mysqld`, `mysql`, `mysqlxtest`).
 
   Importância
 
@@ -211,7 +211,7 @@ Se ocorrer um erro durante a inicialização do servidor para tentativas de usar
 
 Do lado do cliente, um espaço de nomes de rede pode ser especificado nestes contextos:
 
-- Para o cliente `mysql` e para o cliente **mysqlxtest**, use a opção `--network-namespace`.
+- Para o cliente `mysql` e para o cliente `mysqlxtest`, use a opção `--network-namespace`.
 
   ```
   mysql --host=192.0.2.2 --network-namespace=red

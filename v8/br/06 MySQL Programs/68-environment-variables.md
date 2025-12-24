@@ -8,7 +8,7 @@ As opções na linha de comando têm precedência sobre os valores especificados
 
 Para obter informações sobre o arquivo de histórico do `mysql`, consulte a Seção 6.5.1.3, MySQL Client Logging.
 
-O uso de `MYSQL_PWD` para especificar uma senha MySQL deve ser considerado *extremamente inseguro* e não deve ser usado. Algumas versões de **ps** incluem uma opção para exibir o ambiente de processos em execução. Em alguns sistemas, se você definir `MYSQL_PWD`, sua senha é exposta a qualquer outro usuário que execute **ps**. Mesmo em sistemas sem essa versão de **ps**, não é sábio supor que não existem outros métodos pelos quais os usuários possam examinar os ambientes de processo.
+O uso de `MYSQL_PWD` para especificar uma senha MySQL deve ser considerado *extremamente inseguro* e não deve ser usado. Algumas versões de `ps` incluem uma opção para exibir o ambiente de processos em execução. Em alguns sistemas, se você definir `MYSQL_PWD`, sua senha é exposta a qualquer outro usuário que execute `ps`. Mesmo em sistemas sem essa versão de `ps`, não é sábio supor que não existem outros métodos pelos quais os usuários possam examinar os ambientes de processo.
 
 O `MYSQL_PWD` está desatualizado a partir do MySQL 8.4; espere que seja removido em uma versão futura do MySQL.
 
@@ -25,4 +25,4 @@ As variáveis `UMASK` e `UMASK_DIR`, apesar de seus nomes, são usadas como modo
 
 Ver também a secção B.3.3.1, "Problemas com permissões de ficheiro".
 
-Pode ser necessário definir `PKG_CONFIG_PATH` se você usar **pkg-config** para criar programas MySQL. Veja Building C API Client Programs Using pkg-config.
+Pode ser necessário definir `PKG_CONFIG_PATH` se você usar `pkg-config` para criar programas MySQL. Veja Building C API Client Programs Using pkg-config.

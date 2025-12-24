@@ -2,7 +2,7 @@
 
 O código-fonte do MySQL contém documentação interna escrita usando o Doxygen. O conteúdo do Doxygen gerado está disponível em \[<https://dev.mysql.com/doc/index-other.html>]<https://dev.mysql.com/doc/index-other.html>] Também é possível gerar esse conteúdo localmente a partir de uma distribuição de fonte do MySQL usando o seguinte procedimento:
 
-1. Instale o **doxygen** 1.9.2 ou posterior. As distribuições estão disponíveis aqui em \[<http://www.doxygen.nl/>]
+1. Instale o `doxygen` 1.9.2 ou posterior. As distribuições estão disponíveis aqui em \[<http://www.doxygen.nl/>]
 
    Após a instalação do oxigénio, verifique o número da versão:
 

@@ -14,7 +14,7 @@ Se você instalar o MySQL usando um pacote RPM ou Debian nas seguintes plataform
 
 Se você instalar o MySQL a partir de uma distribuição binária genérica em uma plataforma que usa o systemd, você pode configurar manualmente o suporte do systemd para o MySQL seguindo as instruções fornecidas na seção de configuração pós-instalação do Guia de implantação segura do MySQL 8.4.
 
-Se você instalar o MySQL a partir de uma distribuição de origem em uma plataforma que usa o systemd, obtenha o suporte do systemd para o MySQL configurando a distribuição usando a opção `-DWITH_SYSTEMD=1` **CMake**. Veja Seção 2.8.7, Opções de Configuração de Fonte do MySQL.
+Se você instalar o MySQL a partir de uma distribuição de origem em uma plataforma que usa o systemd, obtenha o suporte do systemd para o MySQL configurando a distribuição usando a opção `-DWITH_SYSTEMD=1` `CMake`. Veja Seção 2.8.7, Opções de Configuração de Fonte do MySQL.
 
 A discussão a seguir abrange estes temas:
 
@@ -41,7 +41,7 @@ systemd fornece inicialização e desligamento automático do servidor MySQL. El
 $> systemctl {start|stop|restart|status} mysqld
 ```
 
-Alternativamente, use o comando **service** (com os argumentos invertidos), que é compatível com os sistemas do Sistema V:
+Alternativamente, use o comando `service` (com os argumentos invertidos), que é compatível com os sistemas do Sistema V:
 
 ```
 $> service mysqld {start|stop|restart|status}
@@ -49,7 +49,7 @@ $> service mysqld {start|stop|restart|status}
 
 ::: info Note
 
-Para o comando **systemctl** (e o comando **service** alternativo), se o nome do serviço MySQL não for `mysqld` então use o nome apropriado. Por exemplo, use `mysql` em vez de `mysqld` em sistemas baseados no Debian e SLES.
+Para o comando `systemctl` (e o comando `service` alternativo), se o nome do serviço MySQL não for `mysqld` então use o nome apropriado. Por exemplo, use `mysql` em vez de `mysqld` em sistemas baseados no Debian e SLES.
 
 :::
 

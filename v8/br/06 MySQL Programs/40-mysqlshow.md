@@ -1,10 +1,10 @@
 ### 6.5.6 mysqlshow  Mostrar informações de banco de dados, tabela e coluna
 
-O cliente **mysqlshow** pode ser usado para ver rapidamente quais bancos de dados existem, suas tabelas ou colunas ou índices de uma tabela.
+O cliente `mysqlshow` pode ser usado para ver rapidamente quais bancos de dados existem, suas tabelas ou colunas ou índices de uma tabela.
 
-**mysqlshow** fornece uma interface de linha de comando para várias instruções SQL `SHOW`. Veja Seção 15.7.7, SHOW Statements. A mesma informação pode ser obtida usando essas instruções diretamente. Por exemplo, você pode emiti-las do programa cliente `mysql`.
+`mysqlshow` fornece uma interface de linha de comando para várias instruções SQL `SHOW`. Veja Seção 15.7.7, SHOW Statements. A mesma informação pode ser obtida usando essas instruções diretamente. Por exemplo, você pode emiti-las do programa cliente `mysql`.
 
-Invocar **mysqlshow** assim:
+Invocar `mysqlshow` assim:
 
 ```
 mysqlshow [options] [db_name [tbl_name [col_name]]]
@@ -18,7 +18,7 @@ A saída exibe apenas os nomes das bases de dados, tabelas ou colunas para as qu
 
 Se o último argumento contém caracteres de código-fonte de shell ou SQL (`*`, `?`, `%`, ou `_`), apenas os nomes que correspondem ao código-fonte são mostrados. Se um nome de banco de dados contém qualquer sublinhado, eles devem ser escapados com uma barra invertida (alguns shells Unix exigem dois) para obter uma lista das tabelas ou colunas apropriadas. Os caracteres `*` e `?` são convertidos em caracteres de código-fonte de SQL `%` e `_` . Isso pode causar alguma confusão quando você tenta exibir as colunas de uma tabela com um `_` no nome, porque neste caso, `mysql` mostra apenas os nomes da tabela que correspondem. Este padrão é facilmente corrigido adicionando um padrão separado de \[\[CO`%`]] na última linha como um argumento extra
 
-**mysqlshow** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlshow]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 6.2.2.2, Using Option Files.
+`mysqlshow` suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlshow]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 6.2.2.2, Using Option Files.
 
 **Tabela 6.15 mysqlshow Opções**
 
@@ -186,19 +186,19 @@ Para obter informações adicionais sobre esta e outras opções de ficheiro de 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo do produto</th> <td>Corda</td> </tr></tbody></table>
 
-A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, **mysqlshow** solicita um. Se for fornecido, deve haver \* nenhum espaço \* entre `--password=` ou `-p` e a senha que o segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
+A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, `mysqlshow` solicita um. Se for fornecido, deve haver \* nenhum espaço \* entre `--password=` ou `-p` e a senha que o segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
 
 A especificação de uma senha na linha de comando deve ser considerada insegura. Para evitar a indicação da senha na linha de comando, use um arquivo de opções. Veja a Seção 8.1.2.1, "Diretrizes do Usuário Final para a Segurança de Senhas".
 
-Para especificar explicitamente que não há senha e que **mysqlshow** não deve solicitar uma, use a opção `--skip-password`.
+Para especificar explicitamente que não há senha e que `mysqlshow` não deve solicitar uma, use a opção `--skip-password`.
 
 - `--password1[=pass_val]`
 
-A senha para o fator de autenticação multifator 1 da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, **mysqlshow** solicita um. Se for fornecido, deve haver \* nenhum espaço \* entre `--password1=` e a senha que o segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
+A senha para o fator de autenticação multifator 1 da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, `mysqlshow` solicita um. Se for fornecido, deve haver \* nenhum espaço \* entre `--password1=` e a senha que o segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
 
 A especificação de uma senha na linha de comando deve ser considerada insegura. Para evitar a indicação da senha na linha de comando, use um arquivo de opções. Veja a Seção 8.1.2.1, "Diretrizes do Usuário Final para a Segurança de Senhas".
 
-Para especificar explicitamente que não há senha e que **mysqlshow** não deve solicitar uma, use a opção `--skip-password1`.
+Para especificar explicitamente que não há senha e que `mysqlshow` não deve solicitar uma, use a opção `--skip-password1`.
 
 `--password1` e `--password` são sinônimos, assim como `--skip-password1` e `--skip-password`.
 
@@ -220,7 +220,7 @@ No Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção se aplic
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--plugin-dir=dir_name</code>]]</td> </tr><tr><th>Tipo do produto</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-O diretório no qual procurar plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas **mysqlshow** não o encontrar. Veja Seção 8.2.17, Autenticação Pluggable.
+O diretório no qual procurar plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas `mysqlshow` não o encontrar. Veja Seção 8.2.17, Autenticação Pluggable.
 
 - `--port=port_num`, `-P port_num`
 

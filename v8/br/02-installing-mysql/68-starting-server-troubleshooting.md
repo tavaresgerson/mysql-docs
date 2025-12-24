@@ -67,7 +67,7 @@ Se você tiver problemas para iniciar o servidor, aqui estão algumas coisas par
   Can't start server: Bind on unix socket...
   ```
 
-  Use **ps** para determinar se você tem outro servidor `mysqld` em execução. Se assim for, feche o servidor antes de iniciar `mysqld` novamente. (Se outro servidor está em execução, e você realmente quer executar vários servidores, você pode encontrar informações sobre como fazê-lo na Seção 7.8, "Executar múltiplas instâncias do MySQL em uma máquina")
+  Use `ps` para determinar se você tem outro servidor `mysqld` em execução. Se assim for, feche o servidor antes de iniciar `mysqld` novamente. (Se outro servidor está em execução, e você realmente quer executar vários servidores, você pode encontrar informações sobre como fazê-lo na Seção 7.8, "Executar múltiplas instâncias do MySQL em uma máquina")
 
   Se nenhum outro servidor estiver em execução, execute o comando `telnet your_host_name tcp_ip_port_number`. (O número de porta padrão do MySQL é 3306.) Em seguida, pressione Enter algumas vezes. Se você não receber uma mensagem de erro como `telnet: Unable to connect to remote host: Connection refused`, algum outro programa está usando a porta TCP/IP que `mysqld` está tentando usar. Descubra qual programa é esse e desative-o, ou diga `mysqld` para ouvir uma porta diferente com a opção `--port`. Neste caso, especifique o mesmo número de porta não padrão para programas cliente ao se conectar ao servidor usando TCP/IP.
 

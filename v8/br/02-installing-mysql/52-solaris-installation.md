@@ -21,7 +21,7 @@ Notas adicionais a serem conhecidas ao instalar e usar o MySQL no Solaris:
   groupadd mysql
   useradd -g mysql -s /bin/false mysql
   ```
-- Se você instalar o MySQL usando uma distribuição binária de tarball no Solaris, porque o Solaris **tar** não pode lidar com nomes de arquivo longos, use o GNU **tar** (**gtar**) para descompactar a distribuição. Se você não tiver o GNU **tar** em seu sistema, instale-o com o seguinte comando:
+- Se você instalar o MySQL usando uma distribuição binária de tarball no Solaris, porque o Solaris `tar` não pode lidar com nomes de arquivo longos, use o GNU `tar` (`gtar`) para descompactar a distribuição. Se você não tiver o GNU `tar` em seu sistema, instale-o com o seguinte comando:
 
   ```
   pkg install archiver/gnu-tar

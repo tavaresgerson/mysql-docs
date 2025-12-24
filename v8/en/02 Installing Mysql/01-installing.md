@@ -2,7 +2,7 @@
 
 This chapter describes how to obtain and install MySQL. A summary of the procedure follows and later sections provide the details. If you plan to upgrade an existing version of MySQL to a newer version rather than install MySQL for the first time, see Chapter 3, *Upgrading MySQL*, for information about upgrade procedures and about issues that you should consider before upgrading.
 
-If you are interested in migrating to MySQL from another database system, see  Section A.8, “MySQL 8.4 FAQ: Migration”, which contains answers to some common questions concerning migration issues.
+If you are interested in migrating to MySQL from another database system, which contains answers to some common questions concerning migration issues.
 
 Installation of MySQL generally follows the steps outlined here:
 
@@ -26,15 +26,15 @@ Installation of MySQL generally follows the steps outlined here:
 6. **Perform any necessary postinstallation setup.**
 
    After installing MySQL, see  Section 2.9, “Postinstallation Setup and Testing”, for information about making sure the MySQL server is working properly. Also refer to the information provided in Section 2.9.4, “Securing the Initial MySQL Account”. This section describes how to secure the initial MySQL `root` user account, *which has no password until you assign one*. The section applies whether you install MySQL using a binary or source distribution.
-7. If you want to run the MySQL benchmark scripts, Perl support for MySQL must be available. See  Section 2.10, “Perl Installation Notes”.
+7. If you want to run the MySQL benchmark scripts, Perl support for MySQL must be available.
 
 Instructions for installing MySQL on different platforms and environments is available on a platform by platform basis:
 
 * **Unix, Linux**
 
-  For instructions on installing MySQL on most Linux and Unix platforms using a generic binary (for example, a `.tar.gz` package), see Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”.
+  For instructions on installing MySQL on most Linux and Unix platforms using a generic binary (for example, a `.tar.gz` package).
 
-  For information on building MySQL entirely from the source code distributions or the source code repositories, see Section 2.8, “Installing MySQL from Source”
+  For information on building MySQL entirely from the source code distributions or the source code repositories.
 
   For specific platform help on installation, configuration, and building from source see the corresponding platform section:
 

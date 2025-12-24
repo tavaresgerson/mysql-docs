@@ -44,7 +44,7 @@ To download the MySQL Enterprise Edition image from the OCR, you need to first a
 Download the Docker image for MySQL Enterprise Edition from the OCR with this command:
 
 ```
-docker pull  container-registry.oracle.com/mysql/enterprise-server:tag
+docker pull container-registry.oracle.com/mysql/enterprise-server:tag
 ```
 
 To download the MySQL Enterprise Edition image from [My Oracle Support](https://support.oracle.com/) website, go onto the website, sign in to your Oracle account, and perform these steps once you are on the landing page:
@@ -106,17 +106,17 @@ To start a new Docker container for the MySQL Enterprise Server with a Docker im
 docker run --name=mysql1 --restart on-failure -d mysql/enterprise-server:latest
 ```
 
-If the Docker image of the specified name and tag has not been downloaded by an earlier **docker pull** or **docker run** command, the image is now downloaded. Initialization for the container begins, and the container appears in the list of running containers when you run the **docker ps** command. For example:
+If the Docker image of the specified name and tag has not been downloaded by an earlier `docker pull` or `docker run` command, the image is now downloaded. Initialization for the container begins, and the container appears in the list of running containers when you run the `docker ps` command. For example:
 
-```
+```bash
 $> docker ps
 CONTAINER ID   IMAGE                                                         COMMAND                  CREATED          STATUS                    PORTS                       NAMES
 4cd4129b3211   container-registry.oracle.com/mysql/community-server:latest   "/entrypoint.sh mysq…"   8 seconds ago    Up 7 seconds (health: starting)   3306/tcp, 33060-33061/tcp   mysql1
 ```
 
-The container initialization might take some time. When the server is ready for use, the `STATUS` of the container in the output of the **docker ps** command changes from `(health: starting)` to `(healthy)`.
+The container initialization might take some time. When the server is ready for use, the `STATUS` of the container in the output of the `docker ps` command changes from `(health: starting)` to `(healthy)`.
 
-The `-d` option used in the **docker run** command above makes the container run in the background. Use this command to monitor the output from the container:
+The `-d` option used in the `docker run` command above makes the container run in the background. Use this command to monitor the output from the container:
 
 ```
 docker logs mysql1
@@ -131,7 +131,7 @@ GENERATED ROOT PASSWORD: Axegh3kAJyDLaRuBemecis&EShOs
 
 ##### Connecting to MySQL Server from within the Container
 
-Once the server is ready, you can run the `mysql` client within the MySQL Server container you just started, and connect it to the MySQL Server. Use the **docker exec -it** command to start a `mysql` client inside the Docker container you have started, like the following:
+Once the server is ready, you can run the `mysql` client within the MySQL Server container you just started, and connect it to the MySQL Server. Use the `docker exec -it` command to start a `mysql` client inside the Docker container you have started, like the following:
 
 ```
 docker exec -it mysql1 mysql -uroot -p
@@ -143,11 +143,11 @@ When asked, enter the generated root password (see the last step in  Starting a 
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 ```
 
-Substitute *`password`* with the password of your choice. Once the password is reset, the server is ready for use.
+Substitute `password` with the password of your choice. Once the password is reset, the server is ready for use.
 
 ##### Container Shell Access
 
-To have shell access to your MySQL Server container, use the **docker exec -it** command to start a bash shell inside the container:
+To have shell access to your MySQL Server container, use the `docker exec -it` command to start a bash shell inside the container:
 
 ```
 $> docker exec -it mysql1 bash
@@ -170,9 +170,9 @@ To stop the MySQL Server container we have created, use this command:
 docker stop mysql1
 ```
 
-**docker stop** sends a SIGTERM signal to the `mysqld` process, so that the server is shut down gracefully.
+`docker stop` sends a SIGTERM signal to the `mysqld` process, so that the server is shut down gracefully.
 
-Also notice that when the main process of a container ( `mysqld` in the case of a MySQL Server container) is stopped, the Docker container stops automatically.
+Also notice that when the main process of a container (`mysqld` in the case of a MySQL Server container) is stopped, the Docker container stops automatically.
 
 To start the MySQL Server container again:
 
@@ -186,7 +186,7 @@ To stop and start again the MySQL Server container with a single command:
 docker restart mysql1
 ```
 
-To delete the MySQL container, stop it first, and then use the **docker rm** command:
+To delete the MySQL container, stop it first, and then use the `docker rm` command:
 
 ```
 docker stop mysql1
@@ -196,7 +196,7 @@ docker stop mysql1
 docker rm mysql1
 ```
 
-If you want the Docker volume for the server's data directory to be deleted at the same time, add the `-v` option to the **docker rm** command.
+If you want the Docker volume for the server's data directory to be deleted at the same time, add the `-v` option to the `docker rm` command.
 
 ##### Upgrading a MySQL Server Container
 
@@ -222,8 +222,8 @@ Follow these steps to upgrade a Docker installation of MySQL 8.4 to 9.5:
      -d container-registry.oracle.com/mysql/community-server:9.5
   ```
 
-  If needed, adjust `container-registry.oracle.com/mysql/community-server` to the correct image name—for example, replace it with `container-registry.oracle.com/mysql/enterprise-server` for MySQL Enterprise Edition images downloaded from the OCR, or `mysql/enterprise-server` for MySQL Enterprise Edition images downloaded from My Oracle Support.
-* Wait for the server to finish startup. You can check the status of the server using the **docker ps** command (see Starting a MySQL Server Instance for how to do that).
+If needed, adjust `container-registry.oracle.com/mysql/community-server` to the correct image name—for example, replace it with `container-registry.oracle.com/mysql/enterprise-server` for MySQL Enterprise Edition images downloaded from the OCR, or `mysql/enterprise-server` for MySQL Enterprise Edition images downloaded from My Oracle Support.
+* Wait for the server to finish startup. You can check the status of the server using the `docker ps` command (see Starting a MySQL Server Instance for how to do that).
 
 Follow the same steps for upgrading within the 9.5 series (that is, from release 9.5.*`x`* to 9.5.*`y`*): stop the original container, and start a new one with a newer image on the old server data and configuration. If you used the 9.5 or the `latest` tag when starting your original container and there is now a new MySQL 9.5 release you want to upgrade to it, you must first pull the image for the new release with the command:
 
@@ -242,4 +242,4 @@ docker run --name=mysql84new \
 
 ##### More Topics on Deploying MySQL Server with Docker
 
-For more topics on deploying MySQL Server with Docker like server configuration, persisting data and configuration, server error log, and container environment variables, see Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”.
+For more topics on deploying MySQL Server with Docker like server configuration, persisting data and configuration, server error log, and container environment variables.

@@ -52,7 +52,7 @@ mysqladmin [options] command [command-arg] [command [command-arg]] ...
 
   Advertência
 
-  A definição de uma senha usando `mysqladmin` deve ser considerada *insegura*. Em alguns sistemas, sua senha torna-se visível para programas de status do sistema, como **ps**, que podem ser invocados por outros usuários para exibir linhas de comando. Os clientes MySQL normalmente sobrescrevem o argumento de senha da linha de comando com zeros durante sua sequência de inicialização. No entanto, ainda há um breve intervalo durante o qual o valor é visível. Além disso, em alguns sistemas, essa estratégia de sobrescrição é ineficaz e a senha permanece visível para **ps**. (SystemV sistemas Unix e talvez outros estão sujeitos a esse problema.)
+  A definição de uma senha usando `mysqladmin` deve ser considerada *insegura*. Em alguns sistemas, sua senha torna-se visível para programas de status do sistema, como `ps`, que podem ser invocados por outros usuários para exibir linhas de comando. Os clientes MySQL normalmente sobrescrevem o argumento de senha da linha de comando com zeros durante sua sequência de inicialização. No entanto, ainda há um breve intervalo durante o qual o valor é visível. Além disso, em alguns sistemas, essa estratégia de sobrescrição é ineficaz e a senha permanece visível para `ps`. (SystemV sistemas Unix e talvez outros estão sujeitos a esse problema.)
 
   Se o valor `new_password` contém espaços ou outros caracteres que são especiais para o seu interpretador de comandos, você precisa incluí-lo entre aspas. No Windows, certifique-se de usar aspas duplas em vez de aspas simples; aspas simples não são removidas da senha, mas são interpretadas como parte da senha. Por exemplo:
 

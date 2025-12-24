@@ -9,7 +9,7 @@ Esta seção descreve como atribuir uma senha à conta inicial `root` criada dur
 Meios alternativos para realizar o processo descrito nesta secção:
 
 - No Windows, você pode executar o processo durante a instalação com o MySQL Configurator (ver Seção 2.3.2,  Configuração: Usando o MySQL Configurator).
-- Em todas as plataformas, a distribuição MySQL inclui **mysql\_secure\_installation**, um utilitário de linha de comando que automatiza grande parte do processo de segurança de uma instalação MySQL.
+- Em todas as plataformas, a distribuição MySQL inclui `mysql_secure_installation`, um utilitário de linha de comando que automatiza grande parte do processo de segurança de uma instalação MySQL.
 - Em todas as plataformas, o MySQL Workbench está disponível e oferece a capacidade de gerenciar contas de usuário (ver Capítulo 33, *MySQL Workbench*).
 
 :::
@@ -20,7 +20,7 @@ Uma senha já pode ser atribuída à conta inicial nas seguintes circunstâncias
 - A instalação usando o instalador do macOS gera uma senha inicial aleatória, que o instalador exibe ao usuário em uma caixa de diálogo.
 - A instalação usando pacotes RPM gera uma senha inicial aleatória, que é escrita no registro de erros do servidor.
 - As instalações que usam pacotes Debian dão-lhe a opção de atribuir uma senha.
-- Para a inicialização do diretório de dados realizada manualmente usando **mysqld --initialize**, `mysqld` gera uma senha aleatória inicial, marca sua expiração e a escreve no registro de erros do servidor.
+- Para a inicialização do diretório de dados realizada manualmente usando `mysqld --initialize`, `mysqld` gera uma senha aleatória inicial, marca sua expiração e a escreve no registro de erros do servidor.
 
 A `mysql.user` tabela de concessão define a conta de usuário inicial do MySQL e seus privilégios de acesso. A instalação do MySQL cria apenas uma conta de superusuário `'root'@'localhost'` que tem todos os privilégios e pode fazer qualquer coisa. Se a conta `root` tem uma senha vazia, sua instalação do MySQL não está protegida: Qualquer pessoa pode se conectar ao servidor MySQL como `root` \* sem uma senha \* e receber todos os privilégios.
 
@@ -32,7 +32,7 @@ Iniciar o servidor se ele não estiver em execução.
 
 A conta inicial pode ou não ter uma senha. Escolha qual dos seguintes procedimentos se aplica:
 
-- Se a conta \[`root`] existe com uma senha aleatória inicial que tenha expirado, conecte-se ao servidor como \[`root`] usando essa senha e, em seguida, escolha uma nova senha. Este é o caso se o diretório de dados foi inicializado usando **mysqld --initialize**, manualmente ou usando um instalador que não lhe dá a opção de especificar uma senha durante a operação de instalação. Como a senha existe, você deve usá-la para se conectar ao servidor. Mas como a senha está expirada, você não pode usar a conta para qualquer outro propósito além de escolher uma nova senha, até escolher uma.
+- Se a conta \[`root`] existe com uma senha aleatória inicial que tenha expirado, conecte-se ao servidor como \[`root`] usando essa senha e, em seguida, escolha uma nova senha. Este é o caso se o diretório de dados foi inicializado usando `mysqld --initialize`, manualmente ou usando um instalador que não lhe dá a opção de especificar uma senha durante a operação de instalação. Como a senha existe, você deve usá-la para se conectar ao servidor. Mas como a senha está expirada, você não pode usar a conta para qualquer outro propósito além de escolher uma nova senha, até escolher uma.
 
   1. Se você não souber a senha aleatória inicial, procure no registro de erros do servidor.
   2. Conecte-se ao servidor como `root` usando a senha:
