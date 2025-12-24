@@ -16,11 +16,11 @@ O demônio SQL (ou seja, o servidor MySQL). Para usar programas cliente, `mysqld
 
 - - Não,
 
-Um script de inicialização do servidor. **mysqld\_safe** tenta iniciar `mysqld`. Ver Seção 6.3.2, mysqld\_safe  MySQL Server Startup Script.
+Um script de inicialização do servidor. `mysqld_safe` tenta iniciar `mysqld`. Ver Seção 6.3.2, mysqld\_safe  MySQL Server Startup Script.
 
 - - mysql.server \*
 
-Um script de inicialização de servidor. Este script é usado em sistemas que usam diretórios de execução de estilo System V contendo scripts que iniciam serviços de sistema para níveis de execução específicos. Ele invoca **mysqld\_safe** para iniciar o servidor MySQL. Veja Seção 6.3.3, mysql.server  MySQL Server Startup Script.
+Um script de inicialização de servidor. Este script é usado em sistemas que usam diretórios de execução de estilo System V contendo scripts que iniciam serviços de sistema para níveis de execução específicos. Ele invoca `mysqld_safe` para iniciar o servidor MySQL. Veja Seção 6.3.3, mysql.server  MySQL Server Startup Script.
 
 - - Não,
 

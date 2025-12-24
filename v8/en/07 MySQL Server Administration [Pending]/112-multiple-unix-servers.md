@@ -2,7 +2,7 @@
 
 ::: info Note
 
-The discussion here uses  **mysqld\_safe** to launch multiple instances of MySQL. For MySQL installation using an RPM distribution, server startup and shutdown is managed by systemd on several Linux platforms. On these platforms, **mysqld\_safe** is not installed because it is unnecessary. For information about using systemd to handle multiple MySQL instances, see  Section 2.5.9, “Managing MySQL Server with systemd”.
+The discussion here uses  `mysqld_safe` to launch multiple instances of MySQL. For MySQL installation using an RPM distribution, server startup and shutdown is managed by systemd on several Linux platforms. On these platforms, `mysqld_safe` is not installed because it is unnecessary. For information about using systemd to handle multiple MySQL instances, see  Section 2.5.9, “Managing MySQL Server with systemd”.
 
 :::
 
@@ -34,7 +34,7 @@ You need not compile a new MySQL server just to start with a different Unix sock
 $> mysqld_safe --socket=file_name --port=port_number
 ```
 
-To start a second server, provide different `--socket` and `--port` option values, and pass a `--datadir=dir_name` option to  **mysqld\_safe** so that the server uses a different data directory.
+To start a second server, provide different `--socket` and `--port` option values, and pass a `--datadir=dir_name` option to  `mysqld_safe` so that the server uses a different data directory.
 
 Alternatively, put the options for each server in a different option file, then start each server using a `--defaults-file` option that specifies the path to the appropriate option file. For example, if the option files for two server instances are named `/usr/local/mysql/my.cnf` and `/usr/local/mysql/my.cnf2`, start the servers like this: command:
 

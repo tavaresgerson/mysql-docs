@@ -2,7 +2,7 @@
 
 Se você estiver usando alguma funcionalidade que é muito nova no MySQL, você pode tentar executar `mysqld` com a opção `--skip-new` (que desativa todas as funcionalidades novas, potencialmente inseguras). Veja Seção B.3.3.3, "O que fazer se o MySQL continuar a falhar".
 
-Se `mysqld` não quiser iniciar, verifique se você não tem arquivos `my.cnf` que interfiram com sua configuração! Você pode verificar seus argumentos `my.cnf` com **mysqld --print-defaults** e evitar usá-los começando com **mysqld --no-defaults ...**.
+Se `mysqld` não quiser iniciar, verifique se você não tem arquivos `my.cnf` que interfiram com sua configuração! Você pode verificar seus argumentos `my.cnf` com `mysqld --print-defaults` e evitar usá-los começando com **mysqld --no-defaults ...**.
 
 Se `mysqld` começa a consumir CPU ou memória ou se hangs, você pode usar **mysqladmin processlist status** para descobrir se alguém está executando uma consulta que leva muito tempo. Pode ser uma boa ideia executar **mysqladmin -i10 processlist status** em alguma janela se você estiver enfrentando problemas de desempenho ou problemas quando novos clientes não podem se conectar.
 

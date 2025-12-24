@@ -21,7 +21,7 @@ For supported Yum-based platforms (see Section 2.5.1, “Installing MySQL on Li
    * In-place downgrading of MySQL is not supported by the MySQL Yum repository. Follow the instructions in Chapter 4, *Downgrading MySQL*.
 2. ### Upgrading MySQL
 
-   Upgrade MySQL components using standard yum (or dnf) commands, such as MySQL Server:
+   Upgrade MySQL components using standard `yum` (or `dnf`) commands, such as MySQL Server:
 
    ```
    sudo yum update mysql-server
@@ -57,7 +57,7 @@ You can also update only a specific component. Use the following command to list
 sudo yum list installed | grep "^mysql"
 ```
 
-After identifying the package name of the component of your choice, update the package with the following command, replacing *`package-name`* with the name of the package. For platforms that are not dnf-enabled:
+After identifying the package name of the component of your choice, update the package with the following command, replacing `package-name` with the name of the package. For platforms that are not dnf-enabled:
 
 ```
 sudo yum update package-name

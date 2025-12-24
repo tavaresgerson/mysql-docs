@@ -2,7 +2,7 @@
 
 Quando você inicia o servidor `mysqld`, você pode especificar opções de programa usando qualquer um dos métodos descritos na Seção 6.2.2, Especificar Opções de Programa. Os métodos mais comuns são fornecer opções em um arquivo de opções ou na linha de comando. No entanto, na maioria dos casos, é desejável garantir que o servidor use as mesmas opções a cada vez que ele é executado. A melhor maneira de garantir isso é listá-las em um arquivo de opções. Veja Seção 6.2.2.2, Usar Arquivos de Opção. Essa seção também descreve o formato e a sintaxe do arquivo de opções.
 
-`mysqld` lê opções dos grupos `[mysqld]` e `[server]`. **mysqld\_safe** lê opções dos grupos `[mysqld]`, `[server]`, `[mysqld_safe]`, e `[safe_mysqld]`. `mysql.server` lê opções dos grupos `[mysqld]` e `[mysql.server]`.
+`mysqld` lê opções dos grupos `[mysqld]` e `[server]`. `mysqld_safe` lê opções dos grupos `[mysqld]`, `[server]`, `[mysqld_safe]`, e `[safe_mysqld]`. `mysql.server` lê opções dos grupos `[mysqld]` e `[mysql.server]`.
 
 `mysqld` aceita muitas opções de comando. Para um breve resumo, execute este comando:
 
@@ -102,7 +102,7 @@ Coloque o servidor `mysqld` em um ambiente fechado durante a inicialização usa
 
 Quando esta opção é usada, escrever um arquivo de núcleo se `mysqld` morre; nenhum argumento é necessário (ou aceito). O nome e a localização do arquivo de núcleo é dependente do sistema. No Linux, um arquivo de núcleo chamado `core.pid` é escrito no diretório de trabalho atual do processo, que para `mysqld` é o diretório de dados. `pid` representa o ID do processo do processo do servidor. No macOS, um arquivo de núcleo chamado `core.pid` é escrito no diretório `/cores`. No Solaris, use o comando **coreadm** para especificar onde escrever o arquivo de núcleo e como nomeá-lo.
 
-Para alguns sistemas, para obter um arquivo de núcleo, você também deve especificar a opção `--core-file-size` para **mysqld\_safe**. Veja Seção 6.3.2, mysqld\_safe  MySQL Server Startup Script. Em alguns sistemas, como o Solaris, você não obtém um arquivo de núcleo se estiver usando também a opção `--user`. Pode haver restrições ou limitações adicionais. Por exemplo, pode ser necessário executar **ulimit -c unlimited** antes de iniciar o servidor. Consulte a documentação do sistema.
+Para alguns sistemas, para obter um arquivo de núcleo, você também deve especificar a opção `--core-file-size` para `mysqld_safe`. Veja Seção 6.3.2, mysqld\_safe  MySQL Server Startup Script. Em alguns sistemas, como o Solaris, você não obtém um arquivo de núcleo se estiver usando também a opção `--user`. Pode haver restrições ou limitações adicionais. Por exemplo, pode ser necessário executar **ulimit -c unlimited** antes de iniciar o servidor. Consulte a documentação do sistema.
 
 A variável `innodb_buffer_pool_in_core_file` pode ser usada para reduzir o tamanho dos arquivos do núcleo em sistemas operacionais que o suportam.
 
@@ -552,7 +552,7 @@ Because starting the server with `--skip-grant-tables` disables authentication c
 To cause a server started with `--skip-grant-tables` to load the grant tables at runtime, perform a privilege-flushing operation, which can be done in these ways:
 
 - Issue a MySQL `FLUSH PRIVILEGES` statement after connecting to the server.
-- Execute a **mysqladmin flush-privileges** or `mysqladmin reload` command from the command line.
+- Execute a `mysqladmin flush-privileges` or `mysqladmin reload` command from the command line.
 
 Privilege flushing might also occur implicitly as a result of other actions performed after startup, thus causing the server to start using the grant tables. For example, the server flushes the privileges if it performs an upgrade during the startup sequence.
 ```

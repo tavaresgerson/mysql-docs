@@ -11,14 +11,14 @@ $> mysql db1 < t1.sql
 $> mysqlimport db1 t1.txt
 ```
 
-An alternative to using  **mysqlimport** to load the data file is to use the [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statement from within the `mysql` client:
+An alternative to using  `mysqlimport` to load the data file is to use the [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statement from within the `mysql` client:
 
 ```
 mysql> USE db1;
 mysql> LOAD DATA INFILE 't1.txt' INTO TABLE t1;
 ```
 
-If you used any data-formatting options with `mysqldump` when you initially dumped the table, you must use the same options with **mysqlimport** or [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") to ensure proper interpretation of the data file contents:
+If you used any data-formatting options with `mysqldump` when you initially dumped the table, you must use the same options with `mysqlimport` or [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") to ensure proper interpretation of the data file contents:
 
 ```
 $> mysqlimport --fields-terminated-by=,

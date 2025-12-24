@@ -8,6 +8,6 @@ Depending on error log configuration, error messages may also populate the Perfo
 
 On some operating systems, the error log contains a stack trace if `mysqld` exits abnormally. The trace can be used to determine where  `mysqld` exited. See Section 7.9, “Debugging MySQL”.
 
-If used to start  `mysqld`, **mysqld\_safe** may write messages to the error log. For example, when  **mysqld\_safe** notices abnormal  `mysqld` exits, it restarts `mysqld` and writes a `mysqld restarted` message to the error log.
+If used to start  `mysqld`, `mysqld_safe` may write messages to the error log. For example, when  `mysqld_safe` notices abnormal  `mysqld` exits, it restarts `mysqld` and writes a `mysqld restarted` message to the error log.
 
 The following sections discuss aspects of configuring error logging.

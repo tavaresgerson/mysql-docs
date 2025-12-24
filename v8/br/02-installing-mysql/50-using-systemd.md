@@ -25,9 +25,9 @@ A discussão a seguir abrange estes temas:
 
 ::: info Note
 
-Em plataformas para as quais o suporte do systemd para o MySQL está instalado, scripts como **mysqld\_safe** e o script de inicialização do System V são desnecessários e não são instalados. Por exemplo, **mysqld\_safe** pode lidar com reinicializações de servidor, mas o systemd fornece a mesma capacidade e o faz de maneira consistente com o gerenciamento de outros serviços, em vez de usar um programa específico de aplicativo.
+Em plataformas para as quais o suporte do systemd para o MySQL está instalado, scripts como `mysqld_safe` e o script de inicialização do System V são desnecessários e não são instalados. Por exemplo, `mysqld_safe` pode lidar com reinicializações de servidor, mas o systemd fornece a mesma capacidade e o faz de maneira consistente com o gerenciamento de outros serviços, em vez de usar um programa específico de aplicativo.
 
-Uma implicação do não uso de **mysqld\_safe** em plataformas que usam systemd para gerenciamento de servidor é que o uso de seções `[mysqld_safe]` ou `[safe_mysqld]` em arquivos de opções não é suportado e pode levar a um comportamento inesperado.
+Uma implicação do não uso de `mysqld_safe` em plataformas que usam systemd para gerenciamento de servidor é que o uso de seções `[mysqld_safe]` ou `[safe_mysqld]` em arquivos de opções não é suportado e pode levar a um comportamento inesperado.
 
 Como o systemd tem a capacidade de gerenciar várias instâncias do MySQL em plataformas para as quais o suporte do systemd para o MySQL está instalado, **mysqld\_multi** e **mysqld\_multi.server** são desnecessários e não são instalados.
 
@@ -97,15 +97,15 @@ systemctl restart mysql   # Debian platforms
 Com o systemd, o método de configuração `override.conf` deve ser usado para certos parâmetros, em vez de configurações em um grupo `[mysqld]`, `[mysqld_safe]`, ou `[safe_mysqld]` em um arquivo de opções do MySQL:
 
 - Para alguns parâmetros, `override.conf` deve ser usado porque o próprio systemd deve saber seus valores e não pode ler os arquivos de opção do MySQL para obtê-los.
-- Parâmetros que especificam valores que de outra forma só poderiam ser definidos usando opções conhecidas por **mysqld\_safe** devem ser especificados usando systemd porque não há um parâmetro `mysqld` correspondente.
+- Parâmetros que especificam valores que de outra forma só poderiam ser definidos usando opções conhecidas por `mysqld_safe` devem ser especificados usando systemd porque não há um parâmetro `mysqld` correspondente.
 
-Para informações adicionais sobre o uso do systemd em vez do **mysqld\_safe**, consulte Migrar do mysqld\_safe para o systemd.
+Para informações adicionais sobre o uso do systemd em vez do `mysqld_safe`, consulte Migrar do mysqld\_safe para o systemd.
 
 Você pode definir os seguintes parâmetros em `override.conf`:
 
-- Para definir o número de descritores de arquivos disponíveis para o servidor MySQL, use `LimitNOFILE` em `override.conf` em vez da variável de sistema `open_files_limit` para `mysqld` ou `--open-files-limit` opção para **mysqld\_safe**.
-- Para definir o tamanho máximo do arquivo do núcleo, use `LimitCore` em `override.conf` em vez da opção `--core-file-size` para **mysqld\_safe**.
-- Para definir a prioridade de agendamento para o servidor MySQL, use `Nice` em `override.conf` em vez da opção `--nice` para **mysqld\_safe**.
+- Para definir o número de descritores de arquivos disponíveis para o servidor MySQL, use `LimitNOFILE` em `override.conf` em vez da variável de sistema `open_files_limit` para `mysqld` ou `--open-files-limit` opção para `mysqld_safe`.
+- Para definir o tamanho máximo do arquivo do núcleo, use `LimitCore` em `override.conf` em vez da opção `--core-file-size` para `mysqld_safe`.
+- Para definir a prioridade de agendamento para o servidor MySQL, use `Nice` em `override.conf` em vez da opção `--nice` para `mysqld_safe`.
 
 Alguns parâmetros do MySQL são configurados usando variáveis de ambiente:
 
@@ -258,9 +258,9 @@ Nas plataformas Debian, os scripts de empacotamento para desinstalação do MySQ
 
 #### Migração de mysqld\_safe para systemd
 
-Como **mysqld\_safe** não é instalado em plataformas que usam systemd para gerenciar o MySQL, as opções especificadas anteriormente para esse programa (por exemplo, em um grupo de opções `[mysqld_safe]` ou `[safe_mysqld]`) devem ser especificadas de outra maneira:
+Como `mysqld_safe` não é instalado em plataformas que usam systemd para gerenciar o MySQL, as opções especificadas anteriormente para esse programa (por exemplo, em um grupo de opções `[mysqld_safe]` ou `[safe_mysqld]`) devem ser especificadas de outra maneira:
 
-- Algumas opções **mysqld\_safe** também são compreendidas por `mysqld` e podem ser movidas do grupo de opções `[mysqld_safe]` ou `[safe_mysqld]` para o grupo de opções `[mysqld]`.
+- Algumas opções `mysqld_safe` também são compreendidas por `mysqld` e podem ser movidas do grupo de opções `[mysqld_safe]` ou `[safe_mysqld]` para o grupo de opções `[mysqld]`.
 
   ::: info Note
 
@@ -268,6 +268,6 @@ Como **mysqld\_safe** não é instalado em plataformas que usam systemd para ger
 
   :::
 
-- Para algumas opções de **mysqld\_safe**, existem procedimentos alternativos de `mysqld`. Por exemplo, a opção de **mysqld\_safe** para habilitar o registro de `syslog` é `--syslog`, que está desatualizado. Para escrever a saída do log de erro no log do sistema, use as instruções na Seção 7.4.2.8, Error Logging to the System Log.
+- Para algumas opções de `mysqld_safe`, existem procedimentos alternativos de `mysqld`. Por exemplo, a opção de `mysqld_safe` para habilitar o registro de `syslog` é `--syslog`, que está desatualizado. Para escrever a saída do log de erro no log do sistema, use as instruções na Seção 7.4.2.8, Error Logging to the System Log.
 
-- **mysqld\_safe** opções não compreendidas por `mysqld` podem ser especificadas em `override.conf` ou variáveis de ambiente. Por exemplo, com **mysqld\_safe**, se o servidor deve usar uma biblioteca de alocação de memória específica, isso é especificado usando a `--malloc-lib` opção. Para instalações que gerenciam o servidor com systemd, providencie para definir a variável de ambiente `LD_PRELOAD` em vez disso, como descrito anteriormente.
+- `mysqld_safe` opções não compreendidas por `mysqld` podem ser especificadas em `override.conf` ou variáveis de ambiente. Por exemplo, com `mysqld_safe`, se o servidor deve usar uma biblioteca de alocação de memória específica, isso é especificado usando a `--malloc-lib` opção. Para instalações que gerenciam o servidor com systemd, providencie para definir a variável de ambiente `LD_PRELOAD` em vez disso, como descrito anteriormente.

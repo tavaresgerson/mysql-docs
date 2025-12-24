@@ -75,7 +75,7 @@ In the preceding table, `~` represents the current user's home directory (the va
 
 *`SYSCONFDIR`* represents the directory specified with the  `SYSCONFDIR` option to `CMake` when MySQL was built. By default, this is the `etc` directory located under the compiled-in installation directory.
 
-`MYSQL_HOME` is an environment variable containing the path to the directory in which the server-specific `my.cnf` file resides. If `MYSQL_HOME` is not set and you start the server using the  **mysqld\_safe** program, **mysqld\_safe** sets it to *`BASEDIR`*, the MySQL base installation directory.
+`MYSQL_HOME` is an environment variable containing the path to the directory in which the server-specific `my.cnf` file resides. If `MYSQL_HOME` is not set and you start the server using the  `mysqld_safe` program, `mysqld_safe` sets it to *`BASEDIR`*, the MySQL base installation directory.
 
 *`DATADIR`* represents the MySQL data directory. As used to find `mysqld-auto.cnf`, its default value is the data directory location built in when MySQL was compiled, but can be changed by  `--datadir` specified as an option-file or command-line option processed before `mysqld-auto.cnf` is processed.
 

@@ -64,7 +64,7 @@ mysqladmin [options] command [command-arg] [command [command-arg]] ...
 
   Precaução
 
-  Não use este comando usado se o servidor foi iniciado com a opção `--skip-grant-tables` . Nenhuma alteração de senha é aplicada. Isto é verdade mesmo se você preceder o comando `password` com `flush-privileges` na mesma linha de comando para reativar as tabelas de concessão porque a operação de flush ocorre após você se conectar. No entanto, você pode usar **mysqladmin flush-privileges** para reativar as tabelas de concessão e, em seguida, usar um comando **mysqladmin password** separado para alterar a senha.
+  Não use este comando usado se o servidor foi iniciado com a opção `--skip-grant-tables` . Nenhuma alteração de senha é aplicada. Isto é verdade mesmo se você preceder o comando `password` com `flush-privileges` na mesma linha de comando para reativar as tabelas de concessão porque a operação de flush ocorre após você se conectar. No entanto, você pode usar `mysqladmin flush-privileges` para reativar as tabelas de concessão e, em seguida, usar um comando **mysqladmin password** separado para alterar a senha.
 - `ping`
 
   Verifique se o servidor está disponível. O status de retorno do `mysqladmin` é 0 se o servidor estiver em execução, 1 se não estiver. Isso é 0 mesmo no caso de um erro como `Access denied`, porque isso significa que o servidor está em execução, mas recusou a conexão, o que é diferente do servidor não em execução.

@@ -6,7 +6,7 @@ If you modify the grant tables indirectly using an account-management statement,
 
 If you modify the grant tables directly using statements such as `INSERT`, `UPDATE`, or `DELETE` (which is not recommended), the changes have no effect on privilege checking until you either tell the server to reload the tables or restart it. Thus, if you change the grant tables directly but forget to reload them, the changes have *no effect* until you restart the server. This may leave you wondering why your changes seem to make no difference!
 
-To tell the server to reload the grant tables, perform a flush-privileges operation. This can be done by issuing a `FLUSH PRIVILEGES` statement or by executing a  **mysqladmin flush-privileges** or `mysqladmin reload` command.
+To tell the server to reload the grant tables, perform a flush-privileges operation. This can be done by issuing a `FLUSH PRIVILEGES` statement or by executing a  `mysqladmin flush-privileges` or `mysqladmin reload` command.
 
 A grant table reload affects privileges for each existing client session as follows:
 

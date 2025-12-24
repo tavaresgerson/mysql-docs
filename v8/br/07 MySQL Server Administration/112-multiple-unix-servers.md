@@ -2,7 +2,7 @@
 
 ::: info Note
 
-A discussão aqui usa **mysqld\_safe** para iniciar várias instâncias do MySQL. Para a instalação do MySQL usando uma distribuição RPM, a inicialização e o desligamento do servidor são gerenciados pelo systemd em várias plataformas Linux. Nessas plataformas, **mysqld\_safe** não é instalado porque é desnecessário. Para informações sobre o uso do systemd para lidar com várias instâncias do MySQL, consulte a Seção 2.5.9, Gerenciando o MySQL Server com o systemd.
+A discussão aqui usa `mysqld_safe` para iniciar várias instâncias do MySQL. Para a instalação do MySQL usando uma distribuição RPM, a inicialização e o desligamento do servidor são gerenciados pelo systemd em várias plataformas Linux. Nessas plataformas, `mysqld_safe` não é instalado porque é desnecessário. Para informações sobre o uso do systemd para lidar com várias instâncias do MySQL, consulte a Seção 2.5.9, Gerenciando o MySQL Server com o systemd.
 
 :::
 
@@ -34,7 +34,7 @@ Você não precisa compilar um novo servidor MySQL apenas para começar com um a
 $> mysqld_safe --socket=file_name --port=port_number
 ```
 
-Para iniciar um segundo servidor, forneça diferentes valores de opção `--socket` e `--port`, e passe uma opção `--datadir=dir_name` para **mysqld\_safe** para que o servidor use um diretório de dados diferente.
+Para iniciar um segundo servidor, forneça diferentes valores de opção `--socket` e `--port`, e passe uma opção `--datadir=dir_name` para `mysqld_safe` para que o servidor use um diretório de dados diferente.
 
 Alternativamente, coloque as opções para cada servidor em um arquivo de opções diferente, e então inicie cada servidor usando uma opção `--defaults-file` que especifique o caminho para o arquivo de opções apropriado. Por exemplo, se os arquivos de opções para duas instâncias de servidor são nomeados `/usr/local/mysql/my.cnf` e `/usr/local/mysql/my.cnf2`, inicie os servidores assim: comando:
 

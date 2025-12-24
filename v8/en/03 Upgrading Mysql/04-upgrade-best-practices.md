@@ -45,7 +45,7 @@ See:  Section 3.5, “Changes in MySQL 8.4”.
 
 ### Run Upgrade Checker and Fix Incompatibilities
 
-MySQL Shell's  Upgrade Checker Utility detects incompatibilities between database versions that must be addressed before performing the upgrade. The **util.checkForServerUpgrade()** function verifies that MySQL server instances are ready to upgrade. Connect to the existing MySQL server and select the MySQL Server version you plan to upgrade to for the utility to report issues to address prior to an upgrade. These include incompatibilities in data types, storage engines, and so on.
+MySQL Shell's  Upgrade Checker Utility detects incompatibilities between database versions that must be addressed before performing the upgrade. The `util.checkForServerUpgrade()` function verifies that MySQL server instances are ready to upgrade. Connect to the existing MySQL server and select the MySQL Server version you plan to upgrade to for the utility to report issues to address prior to an upgrade. These include incompatibilities in data types, storage engines, and so on.
 
 You are ready to upgrade when the upgrade checking utility no longer reports any issues.
 

@@ -66,7 +66,7 @@ RSA support has these characteristics:
 * Clients that are in possession of the RSA public key can perform RSA key pair-based password exchange with the server during the connection process, as described later.
 * For connections by accounts that authenticate with `sha256_password` and RSA public key pair-based password exchange, the server sends the RSA public key to the client as needed. However, if a copy of the public key is available on the client host, the client can use it to save a round trip in the client/server protocol:
 
-  + For these command-line clients, use the `--server-public-key-path` option to specify the RSA public key file: `mysql`, `mysqladmin`, **mysqlbinlog**, `mysqlcheck`, `mysqldump`, **mysqlimport**, `mysqlshow`, **mysqlslap**, **mysqltest**.
+  + For these command-line clients, use the `--server-public-key-path` option to specify the RSA public key file: `mysql`, `mysqladmin`, **mysqlbinlog**, `mysqlcheck`, `mysqldump`, `mysqlimport`, `mysqlshow`, **mysqlslap**, **mysqltest**.
   + For programs that use the C API, call `mysql_options()` to specify the RSA public key file by passing the `MYSQL_SERVER_PUBLIC_KEY` option and the name of the file.
   + For replicas, use the `CHANGE REPLICATION SOURCE TO` statement with the `SOURCE_PUBLIC_KEY_PATH` option to specify the RSA public key file. For Group Replication, the `group_replication_recovery_get_public_key` system variable serves the same purpose.
 

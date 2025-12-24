@@ -1,16 +1,16 @@
 ### 6.5.5 mysqlimport  Um programa de importação de dados
 
-O cliente **mysqlimport** fornece uma interface de linha de comando para a instrução `LOAD DATA` do SQL. A maioria das opções para **mysqlimport** correspondem diretamente às cláusulas da sintaxe `LOAD DATA`.
+O cliente `mysqlimport` fornece uma interface de linha de comando para a instrução `LOAD DATA` do SQL. A maioria das opções para `mysqlimport` correspondem diretamente às cláusulas da sintaxe `LOAD DATA`.
 
-Invocar **mysqlimport** assim:
+Invocar `mysqlimport` assim:
 
 ```
 mysqlimport [options] db_name textfile1 [textfile2 ...]
 ```
 
-Para cada arquivo de texto nomeado na linha de comando, **mysqlimport** retira qualquer extensão do nome do arquivo e usa o resultado para determinar o nome da tabela para importar o conteúdo do arquivo. Por exemplo, arquivos nomeados `patient.txt`, `patient.text`, e `patient` seriam importados para uma tabela chamada `patient`.
+Para cada arquivo de texto nomeado na linha de comando, `mysqlimport` retira qualquer extensão do nome do arquivo e usa o resultado para determinar o nome da tabela para importar o conteúdo do arquivo. Por exemplo, arquivos nomeados `patient.txt`, `patient.text`, e `patient` seriam importados para uma tabela chamada `patient`.
 
-**mysqlimport** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlimport]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 6.2.2.2, Using Option Files.
+`mysqlimport` suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlimport]` e `[client]` de um arquivo de opções. Para informações sobre arquivos de opções usados por programas MySQL, consulte a Seção 6.2.2.2, Using Option Files.
 
 **Tabela 6.14 Opções de importação**
 
@@ -140,7 +140,7 @@ Estas opções têm o mesmo significado que as cláusulas correspondentes para `
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--force</code>]]</td> </tr></tbody></table>
 
-Ignore erros. Por exemplo, se uma tabela para um arquivo de texto não existe, continue a processar os arquivos restantes. Sem `--force`, **mysqlimport** sai se uma tabela não existe.
+Ignore erros. Por exemplo, se uma tabela para um arquivo de texto não existe, continue a processar os arquivos restantes. Sem `--force`, `mysqlimport` sai se uma tabela não existe.
 
 - `--get-server-public-key`
 
@@ -180,9 +180,9 @@ Esta opção tem o mesmo significado que a cláusula correspondente para `LOAD D
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--local</code>]]</td> </tr><tr><th>Tipo do produto</th> <td>Número booleano</td> </tr><tr><th>Valor por defeito</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
-Por padrão, os arquivos são lidos pelo servidor no host do servidor. Com essa opção, **mysqlimport** lê os arquivos de entrada localmente no host do cliente.
+Por padrão, os arquivos são lidos pelo servidor no host do servidor. Com essa opção, `mysqlimport` lê os arquivos de entrada localmente no host do cliente.
 
-O uso bem-sucedido de operações de carga de `LOCAL` dentro de **mysqlimport** também requer que o servidor permita o carregamento local; ver Seção 8.1.6, "Considerações de segurança para LOAD DATA LOCAL"
+O uso bem-sucedido de operações de carga de `LOCAL` dentro de `mysqlimport` também requer que o servidor permita o carregamento local; ver Seção 8.1.6, "Considerações de segurança para LOAD DATA LOCAL"
 
 - `--lock-tables`, `-l`
 
@@ -228,19 +228,19 @@ Para obter informações adicionais sobre esta e outras opções de ficheiro de 
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo do produto</th> <td>Corda</td> </tr></tbody></table>
 
-A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, **mysqlimport** solicita um. Se for fornecido, deve haver \* nenhum espaço \* entre `--password=` ou `-p` e a senha que o segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
+A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, `mysqlimport` solicita um. Se for fornecido, deve haver \* nenhum espaço \* entre `--password=` ou `-p` e a senha que o segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
 
 A especificação de uma senha na linha de comando deve ser considerada insegura. Para evitar a indicação da senha na linha de comando, use um arquivo de opções. Veja a Seção 8.1.2.1, "Diretrizes do Usuário Final para a Segurança de Senhas".
 
-Para especificar explicitamente que não há senha e que **mysqlimport** não deve solicitar uma, use a opção `--skip-password`.
+Para especificar explicitamente que não há senha e que `mysqlimport` não deve solicitar uma, use a opção `--skip-password`.
 
 - `--password1[=pass_val]`
 
-A senha para o fator de autenticação multifator 1 da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, **mysqlimport** solicita um. Se for fornecido, deve haver \* nenhum espaço \* entre `--password1=` e a senha que o segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
+A senha para o fator de autenticação multifator 1 da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, `mysqlimport` solicita um. Se for fornecido, deve haver \* nenhum espaço \* entre `--password1=` e a senha que o segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
 
 A especificação de uma senha na linha de comando deve ser considerada insegura. Para evitar a indicação da senha na linha de comando, use um arquivo de opções. Veja a Seção 8.1.2.1, "Diretrizes do Usuário Final para a Segurança de Senhas".
 
-Para especificar explicitamente que não há senha e que **mysqlimport** não deve solicitar uma, use a opção `--skip-password1`.
+Para especificar explicitamente que não há senha e que `mysqlimport` não deve solicitar uma, use a opção `--skip-password1`.
 
 `--password1` e `--password` são sinônimos, assim como `--skip-password1` e `--skip-password`.
 
@@ -262,7 +262,7 @@ No Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção se aplic
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--plugin-dir=dir_name</code>]]</td> </tr><tr><th>Tipo do produto</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-O diretório no qual procurar plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas **mysqlimport** não o encontrar. Veja Seção 8.2.17, Autenticação Pluggable.
+O diretório no qual procurar plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas `mysqlimport` não o encontrar. Veja Seção 8.2.17, Autenticação Pluggable.
 
 - `--port=port_num`, `-P port_num`
 
@@ -399,7 +399,7 @@ O nível de compressão a usar para conexões com o servidor que usam o algoritm
 
 Para mais informações, ver ponto 6.2.8, "Controlo da compressão da ligação".
 
-Aqui está uma sessão de amostra que demonstra o uso de **mysqlimport**:
+Aqui está uma sessão de amostra que demonstra o uso de `mysqlimport`:
 
 ```
 $> mysql -e 'CREATE TABLE imptest(id INT, n VARCHAR(30))' test

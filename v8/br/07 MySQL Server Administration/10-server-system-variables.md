@@ -1966,7 +1966,7 @@ Quando esta variável está habilitada, o servidor não usa o método otimizado 
 
 O número de descritores de ficheiros disponíveis para `mysqld` a partir do sistema operativo:
 
-- Na inicialização, `mysqld` reserva os descritores com `setrlimit()`, usando o valor solicitado ao definir esta variável diretamente ou usando a opção `--open-files-limit` para **mysqld\_safe**. Se `mysqld` produzir o erro `Too many open files`, tente aumentar o valor `open_files_limit`. Internamente, o valor máximo para esta variável é o valor inteiro máximo não assinado, mas o valor máximo real é dependente da plataforma.
+- Na inicialização, `mysqld` reserva os descritores com `setrlimit()`, usando o valor solicitado ao definir esta variável diretamente ou usando a opção `--open-files-limit` para `mysqld_safe`. Se `mysqld` produzir o erro `Too many open files`, tente aumentar o valor `open_files_limit`. Internamente, o valor máximo para esta variável é o valor inteiro máximo não assinado, mas o valor máximo real é dependente da plataforma.
 - No tempo de execução, o valor de `open_files_limit` indica o número de descritores de arquivo realmente permitidos para `mysqld` pelo sistema operacional, que pode diferir do valor solicitado no início. Se o número de descritores de arquivo solicitados durante o início não puder ser alocado, `mysqld` escreve um aviso para o log de erros.
 
 O valor efetivo `open_files_limit` é baseado no valor especificado na inicialização do sistema (se houver) e nos valores de `max_connections` e `table_open_cache`, usando estas fórmulas:
@@ -2151,7 +2151,7 @@ Para mais informações, consulte Persisting Sensitive System Variables.
 
 O nome de caminho do arquivo no qual o servidor escreve o ID do processo. O servidor cria o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja dado para especificar um diretório diferente. Se você especificar essa variável, você deve especificar um valor. Se você não especificar essa variável, o MySQL usa um valor padrão de `host_name.pid`, onde `host_name` é o nome da máquina host.
 
-O arquivo de ID de processo é usado por outros programas, como **mysqld\_safe** para determinar o ID de processo do servidor. No Windows, essa variável também afeta o nome do arquivo de registro de erro padrão.
+O arquivo de ID de processo é usado por outros programas, como `mysqld_safe` para determinar o ID de processo do servidor. No Windows, essa variável também afeta o nome do arquivo de registro de erro padrão.
 
 - `plugin_dir`
 
@@ -3085,7 +3085,7 @@ No Windows, para usar uma tag que ainda não existe, o servidor deve ser executa
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do sistema</th> <td>[[<code>system_time_zone</code>]]</td> </tr><tr><th>Área de aplicação</th> <td>Globalmente</td> </tr><tr><th>Dinâmico</th> <td>Não .</td> </tr><tr><th>[[<code>SET_VAR</code>]] Sugestão Aplica</th> <td>Não .</td> </tr><tr><th>Tipo do produto</th> <td>Corda</td> </tr></tbody></table>
 
-O fuso horário do sistema do servidor. Quando o servidor começa a executar, ele herda uma configuração de fuso horário dos padrões da máquina, possivelmente modificada pelo ambiente da conta usada para executar o servidor ou o script de inicialização. O valor é usado para definir `system_time_zone`. Para especificar explicitamente o fuso horário do sistema, defina a variável de ambiente `TZ` ou use a opção `--timezone` do script **mysqld\_safe**.
+O fuso horário do sistema do servidor. Quando o servidor começa a executar, ele herda uma configuração de fuso horário dos padrões da máquina, possivelmente modificada pelo ambiente da conta usada para executar o servidor ou o script de inicialização. O valor é usado para definir `system_time_zone`. Para especificar explicitamente o fuso horário do sistema, defina a variável de ambiente `TZ` ou use a opção `--timezone` do script `mysqld_safe`.
 
 Além da inicialização do tempo de inicialização, se o servidor host mudar o fuso horário (por exemplo, devido ao horário de verão), o `system_time_zone` reflete essa mudança, o que tem estas implicações para as aplicações:
 

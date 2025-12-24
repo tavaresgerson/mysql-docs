@@ -36,7 +36,7 @@ To create a text file containing a table's data, you can use [`SELECT * INTO OUT
 
 Another way to create text data files (along with files containing `CREATE TABLE` statements for the backed up tables) is to use  `mysqldump` with the `--tab` option. See Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”.
 
-To reload a delimited-text data file, use `LOAD DATA` or **mysqlimport**.
+To reload a delimited-text data file, use `LOAD DATA` or `mysqlimport`.
 
 ### Making Incremental Backups by Enabling the Binary Log
 

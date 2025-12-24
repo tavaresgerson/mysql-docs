@@ -2,7 +2,7 @@
 
 When you start the  `mysqld` server, you can specify program options using any of the methods described in Section 6.2.2, “Specifying Program Options”. The most common methods are to provide options in an option file or on the command line. However, in most cases it is desirable to make sure that the server uses the same options each time it runs. The best way to ensure this is to list them in an option file. See Section 6.2.2.2, “Using Option Files”. That section also describes option file format and syntax.
 
- `mysqld` reads options from the `[mysqld]` and `[server]` groups.  **mysqld\_safe** reads options from the `[mysqld]`, `[server]`, `[mysqld_safe]`, and `[safe_mysqld]` groups. `mysql.server` reads options from the `[mysqld]` and `[mysql.server]` groups.
+ `mysqld` reads options from the `[mysqld]` and `[server]` groups.  `mysqld_safe` reads options from the `[mysqld]`, `[server]`, `[mysqld_safe]`, and `[safe_mysqld]` groups. `mysql.server` reads options from the `[mysqld]` and `[mysql.server]` groups.
 
  `mysqld` accepts many command options. For a brief summary, execute this command:
 
@@ -95,7 +95,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   When this option is used, write a core file if `mysqld` dies; no arguments are needed (or accepted). The name and location of the core file is system dependent. On Linux, a core file named `core.pid` is written to the current working directory of the process, which for  `mysqld` is the data directory. *`pid`* represents the process ID of the server process. On macOS, a core file named `core.pid` is written to the `/cores` directory. On Solaris, use the **coreadm** command to specify where to write the core file and how to name it.
 
-  For some systems, to get a core file you must also specify the `--core-file-size` option to **mysqld\_safe**. See Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”. On some systems, such as Solaris, you do not get a core file if you are also using the `--user` option. There might be additional restrictions or limitations. For example, it might be necessary to execute **ulimit -c unlimited** before starting the server. Consult your system documentation.
+  For some systems, to get a core file you must also specify the `--core-file-size` option to `mysqld_safe`. See Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”. On some systems, such as Solaris, you do not get a core file if you are also using the `--user` option. There might be additional restrictions or limitations. For example, it might be necessary to execute **ulimit -c unlimited** before starting the server. Consult your system documentation.
 
   The `innodb_buffer_pool_in_core_file` variable can be used to reduce the size of core files on operating systems that support it. For more information, see Section 17.8.3.7, “Excluding or Including Buffer Pool Pages from Core Files”.
 *  `--daemonize`, `-D`
@@ -505,7 +505,7 @@ You can change the values of most system variables at runtime with the  `SET` st
     To cause a server started with `--skip-grant-tables` to load the grant tables at runtime, perform a privilege-flushing operation, which can be done in these ways:
 
     - Issue a MySQL `FLUSH PRIVILEGES` statement after connecting to the server.
-    - Execute a **mysqladmin flush-privileges** or `mysqladmin reload` command from the command line.
+    - Execute a `mysqladmin flush-privileges` or `mysqladmin reload` command from the command line.
 
     Privilege flushing might also occur implicitly as a result of other actions performed after startup, thus causing the server to start using the grant tables. For example, the server flushes the privileges if it performs an upgrade during the startup sequence.
   +  `--skip-grant-tables` disables failed-login tracking and temporary account locking because those capabilities depend on the grant tables. See  Section 8.2.15, “Password Management”.

@@ -37,7 +37,7 @@ mysqladmin create db_name
 gunzip < db_name.gz | mysql db_name
 ```
 
-Você também pode usar `mysqldump` e **mysqlimport** para transferir o banco de dados. Para tabelas grandes, isso é muito mais rápido do que simplesmente usar `mysqldump`. Nos comandos seguintes, `DUMPDIR` representa o nome completo do caminho do diretório que você usa para armazenar a saída do `mysqldump`.
+Você também pode usar `mysqldump` e `mysqlimport` para transferir o banco de dados. Para tabelas grandes, isso é muito mais rápido do que simplesmente usar `mysqldump`. Nos comandos seguintes, `DUMPDIR` representa o nome completo do caminho do diretório que você usa para armazenar a saída do `mysqldump`.
 
 Primeiro, crie o diretório para os arquivos de saída e descarregue o banco de dados:
 
@@ -58,4 +58,4 @@ mysqlimport db_name
 
 Não se esqueça de copiar o banco de dados `mysql` porque é onde as tabelas de concessão são armazenadas. Você pode ter que executar comandos como o usuário `root` do MySQL na nova máquina até ter o banco de dados `mysql` no lugar.
 
-Depois de importar o banco de dados `mysql` na nova máquina, execute **mysqladmin flush-privileges** para que o servidor recarregue as informações da tabela de concessão.
+Depois de importar o banco de dados `mysql` na nova máquina, execute `mysqladmin flush-privileges` para que o servidor recarregue as informações da tabela de concessão.

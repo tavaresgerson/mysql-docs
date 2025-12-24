@@ -14,7 +14,7 @@ Uma atualização no local envolve o fechamento do antigo servidor MySQL, a subs
 
 Se você está atualizando uma instalação originalmente produzida pela instalação de vários pacotes RPM, atualize todos os pacotes, não apenas alguns. Por exemplo, se você instalou anteriormente os RPMs do servidor e do cliente, não atualize apenas o RPM do servidor.
 
-Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui o suporte do systemd para gerenciar a inicialização e o desligamento do servidor MySQL. Nestas plataformas, **mysqld\_safe** não é instalado. Nesses casos, use o systemd para inicialização e desligamento do servidor em vez dos métodos usados nas seguintes instruções.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui o suporte do systemd para gerenciar a inicialização e o desligamento do servidor MySQL. Nestas plataformas, `mysqld_safe` não é instalado. Nesses casos, use o systemd para inicialização e desligamento do servidor em vez dos métodos usados nas seguintes instruções.
 
 Para atualizações de instalações de cluster do MySQL, consulte também Upgrade do Cluster do MySQL.
 
@@ -64,7 +64,7 @@ Uma atualização lógica envolve a exportação do SQL da antiga instância do 
 
 ::: info Note
 
-Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui o suporte do systemd para gerenciar a inicialização e o desligamento do servidor MySQL. Nestas plataformas, **mysqld\_safe** não é instalado. Nesses casos, use o systemd para inicialização e desligamento do servidor em vez dos métodos usados nas seguintes instruções.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui o suporte do systemd para gerenciar a inicialização e o desligamento do servidor MySQL. Nestas plataformas, `mysqld_safe` não é instalado. Nesses casos, use o systemd para inicialização e desligamento do servidor em vez dos métodos usados nas seguintes instruções.
 
 :::
 

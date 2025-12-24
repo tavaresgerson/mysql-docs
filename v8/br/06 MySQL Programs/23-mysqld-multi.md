@@ -54,7 +54,7 @@ Para obter informações adicionais sobre estas e outras opções de ficheiro de
 
 Os arquivos de opções lidos são pesquisados para os grupos de opções `[mysqld_multi]` e `[mysqldN]`. O grupo `[mysqld_multi]` pode ser usado para opções para o próprio **mysqld\_multi**. Grupos `[mysqldN]` podem ser usados para opções passadas para instâncias `mysqld` específicas.
 
-Os grupos `[mysqld]` ou `[mysqld_safe]` podem ser usados para opções comuns lidas por todas as instâncias de `mysqld` ou **mysqld\_safe**. Você pode especificar uma opção `--defaults-file=file_name` para usar um arquivo de configuração diferente para essa instância, caso em que os grupos `[mysqld]` ou `[mysqld_safe]` desse arquivo são usados para essa instância.
+Os grupos `[mysqld]` ou `[mysqld_safe]` podem ser usados para opções comuns lidas por todas as instâncias de `mysqld` ou `mysqld_safe`. Você pode especificar uma opção `--defaults-file=file_name` para usar um arquivo de configuração diferente para essa instância, caso em que os grupos `[mysqld]` ou `[mysqld_safe]` desse arquivo são usados para essa instância.
 
 **mysqld\_multi** suporta as seguintes opções.
 
@@ -86,7 +86,7 @@ O `mysqladmin` binário para ser usado para parar servidores.
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td>[[<code>--mysqld=file</code>]]</td> </tr><tr><th>Tipo do produto</th> <td>Nome do ficheiro</td> </tr><tr><th>Valor por defeito</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
 
-O `mysqld` binário a ser usado. Note que você pode especificar **mysqld\_safe** como o valor para esta opção também. Se você usar **mysqld\_safe** para iniciar o servidor, você pode incluir as opções `mysqld` ou `ledir` no grupo de opções `[mysqldN]` correspondente. Essas opções indicam o nome do servidor que **mysqld\_safe** deve iniciar e o nome do caminho do diretório onde o servidor está localizado. (Veja as descrições para essas opções na Seção 6.3.2, mysqld\_safe  MySQL Server Startup Script Exemplo.):
+O `mysqld` binário a ser usado. Note que você pode especificar `mysqld_safe` como o valor para esta opção também. Se você usar `mysqld_safe` para iniciar o servidor, você pode incluir as opções `mysqld` ou `ledir` no grupo de opções `[mysqldN]` correspondente. Essas opções indicam o nome do servidor que `mysqld_safe` deve iniciar e o nome do caminho do diretório onde o servidor está localizado. (Veja as descrições para essas opções na Seção 6.3.2, mysqld\_safe  MySQL Server Startup Script Exemplo.):
 
 ```
 [mysqld38]
@@ -154,7 +154,7 @@ Algumas notas sobre **mysqld\_multi**:
 
   Veja a Seção 8.2, Controlo de Acesso e Gerenciamento de Conta. Você deve fazer isso para cada servidor `mysqld`. Altere os parâmetros de conexão apropriadamente ao se conectar a cada um. Observe que a parte do nome do host do nome da conta deve permitir que você se conecte como `multi_admin` a partir do host onde você deseja executar **mysqld\_multi**.
 - O arquivo de soquete Unix e o número de porta TCP/IP devem ser diferentes para cada `mysqld`. (Alternativamente, se o host tiver vários endereços de rede, você pode definir a variável de sistema `bind_address` para fazer com que diferentes servidores ouçam diferentes interfaces.)
-- A opção `--pid-file` é muito importante se você estiver usando **mysqld\_safe** para iniciar `mysqld` (por exemplo, `--mysqld=mysqld_safe`) Cada `mysqld` deve ter seu próprio arquivo de ID de processo. A vantagem de usar **mysqld\_safe** em vez de `mysqld` é que **mysqld\_safe** monitora seu processo `mysqld` e o reinicia se o processo terminar devido a um sinal enviado usando `kill -9` ou por outras razões, como uma falha de segmentação.
+- A opção `--pid-file` é muito importante se você estiver usando `mysqld_safe` para iniciar `mysqld` (por exemplo, `--mysqld=mysqld_safe`) Cada `mysqld` deve ter seu próprio arquivo de ID de processo. A vantagem de usar `mysqld_safe` em vez de `mysqld` é que `mysqld_safe` monitora seu processo `mysqld` e o reinicia se o processo terminar devido a um sinal enviado usando `kill -9` ou por outras razões, como uma falha de segmentação.
 - Você pode querer usar a opção `--user` para `mysqld`, mas para fazer isso você precisa executar o script **mysqld\_multi** como o superusuário do Unix (`root`). Ter a opção no arquivo de opções não importa; você só recebe um aviso se você não é o superusuário e os processos `mysqld` são iniciados sob sua própria conta do Unix.
 
 O exemplo a seguir mostra como você pode configurar um arquivo de opções para uso com **mysqld\_multi**. A ordem em que os programas `mysqld` são iniciados ou interrompidos depende da ordem em que eles aparecem no arquivo de opções. Os números de grupo não precisam formar uma seqüência ininterrupta. O primeiro e o quinto grupos foram intencionalmente omitidos do exemplo para ilustrar que você pode ter gaps no arquivo de opções. Isso lhe dá mais flexibilidade.

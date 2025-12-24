@@ -127,7 +127,7 @@ To store and reuse SSL session data, use this procedure:
 
    To confirm whether  `mysql` reused a session, see the output from the `status` command. If the currently active  `mysql` connection did resume the session, the status information includes `SSL session reused: true`.
 
-In addition to  `mysql` and `mysqlshow`, SSL session reuse applies to `mysqladmin`,  **mysqlbinlog**, `mysqlcheck`,  `mysqldump`, **mysqlimport**,  **mysqlslap**, **mysqltest**, **mysql\_migrate\_keyring**, and `mysql_secure_installation`.
+In addition to  `mysql` and `mysqlshow`, SSL session reuse applies to `mysqladmin`,  **mysqlbinlog**, `mysqlcheck`,  `mysqldump`, `mysqlimport`,  **mysqlslap**, **mysqltest**, **mysql\_migrate\_keyring**, and `mysql_secure_installation`.
 
 Several conditions may prevent the successful retrieval of session data. For instance, if the session is not fully connected, it is not an SSL session, the server has not yet sent the session data, or the SSL session is simply not reusable. Even with properly stored session data, the server's session cache can time out. Regardless of the cause, an error is returned by default if you specify `--ssl-session-data` but the session cannot be reused. For example:
 

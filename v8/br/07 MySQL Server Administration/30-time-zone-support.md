@@ -17,7 +17,7 @@ O MySQL Server mantém várias configurações de fuso horário:
 
 - O fuso horário do sistema do servidor. Quando o servidor é iniciado, ele tenta determinar o fuso horário da máquina hospedeira e o usa para definir a variável do sistema `system_time_zone`.
 
-  Para especificar explicitamente o fuso horário do sistema para o MySQL Server na inicialização, defina a variável de ambiente `TZ` antes de iniciar `mysqld`. Se você iniciar o servidor usando **mysqld\_safe**, sua opção `--timezone` fornece outra maneira de definir o fuso horário do sistema. Os valores permitidos para `TZ` e `--timezone` são dependentes do sistema. Consulte a documentação do sistema operacional para ver quais valores são aceitáveis.
+  Para especificar explicitamente o fuso horário do sistema para o MySQL Server na inicialização, defina a variável de ambiente `TZ` antes de iniciar `mysqld`. Se você iniciar o servidor usando `mysqld_safe`, sua opção `--timezone` fornece outra maneira de definir o fuso horário do sistema. Os valores permitidos para `TZ` e `--timezone` são dependentes do sistema. Consulte a documentação do sistema operacional para ver quais valores são aceitáveis.
 - O fuso horário atual do servidor. A variável global do sistema `time_zone` indica o fuso horário em que o servidor está atualmente operando. O valor inicial `time_zone` é `'SYSTEM'`, o que indica que o fuso horário do servidor é o mesmo que o fuso horário do sistema.
 
   ::: info Note

@@ -1796,7 +1796,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   The number of file descriptors available to `mysqld` from the operating system:
 
-  + At startup,  `mysqld` reserves descriptors with `setrlimit()`, using the value requested at by setting this variable directly or by using the  `--open-files-limit` option to  **mysqld\_safe**. If `mysqld` produces the error `Too many open files`, try increasing the `open_files_limit` value. Internally, the maximum value for this variable is the maximum unsigned integer value, but the actual maximum is platform dependent.
+  + At startup,  `mysqld` reserves descriptors with `setrlimit()`, using the value requested at by setting this variable directly or by using the  `--open-files-limit` option to  `mysqld_safe`. If `mysqld` produces the error `Too many open files`, try increasing the `open_files_limit` value. Internally, the maximum value for this variable is the maximum unsigned integer value, but the actual maximum is platform dependent.
   + At runtime, the value of `open_files_limit` indicates the number of file descriptors actually permitted to  `mysqld` by the operating system, which might differ from the value requested at startup. If the number of file descriptors requested during startup cannot be allocated, `mysqld` writes a warning to the error log.
 
   The effective `open_files_limit` value is based on the value specified at system startup (if any) and the values of  `max_connections` and  `table_open_cache`, using these formulas:
@@ -1964,7 +1964,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   The path name of the file in which the server writes its process ID. The server creates the file in the data directory unless an absolute path name is given to specify a different directory. If you specify this variable, you must specify a value. If you do not specify this variable, MySQL uses a default value of `host_name.pid`, where *`host_name`* is the name of the host machine.
 
-  The process ID file is used by other programs such as **mysqld\_safe** to determine the server's process ID. On Windows, this variable also affects the default error log file name. See  Section 7.4.2, “The Error Log”.
+  The process ID file is used by other programs such as `mysqld_safe` to determine the server's process ID. On Windows, this variable also affects the default error log file name. See  Section 7.4.2, “The Error Log”.
 *  `plugin_dir`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>plugin_dir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>BASEDIR/lib/plugin</code></td> </tr></tbody></table>
@@ -2811,7 +2811,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>System Variable</th> <td><code>system_time_zone</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The server system time zone. When the server begins executing, it inherits a time zone setting from the machine defaults, possibly modified by the environment of the account used for running the server or the startup script. The value is used to set  `system_time_zone`. To explicitly specify the system time zone, set the `TZ` environment variable or use the `--timezone` option of the **mysqld\_safe** script.
+  The server system time zone. When the server begins executing, it inherits a time zone setting from the machine defaults, possibly modified by the environment of the account used for running the server or the startup script. The value is used to set  `system_time_zone`. To explicitly specify the system time zone, set the `TZ` environment variable or use the `--timezone` option of the `mysqld_safe` script.
 
   In addition to startup time initialization, if the server host time zone changes (for example, due to daylight saving time), `system_time_zone` reflects that change, which has these implications for applications:
 

@@ -19,7 +19,7 @@ To make a MySQL system secure, you should strongly consider the following sugges
   user=mysql
   ```
 
-  This causes the server to start as the designated user whether you start it manually or by using **mysqld\_safe** or `mysql.server`. For more details, see Section 8.1.5, “How to Run MySQL as a Normal User”.
+  This causes the server to start as the designated user whether you start it manually or by using `mysqld_safe` or `mysql.server`. For more details, see Section 8.1.5, “How to Run MySQL as a Normal User”.
 
   Running  `mysqld` as a Unix user other than `root` does not mean that you need to change the `root` user name in the `user` table. *User names for MySQL accounts have nothing to do with user names for Unix accounts*.
 * Do not grant the  `FILE` privilege to nonadministrative users. Any user that has this privilege can write a file anywhere in the file system with the privileges of the  `mysqld` daemon. This includes the server's data directory containing the files that implement the privilege tables. To make `FILE`-privilege operations a bit safer, files generated with `SELECT ... INTO OUTFILE` do not overwrite existing files and are writable by everyone.

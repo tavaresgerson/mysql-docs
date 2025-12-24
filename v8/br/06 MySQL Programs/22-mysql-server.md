@@ -1,12 +1,12 @@
 ### 6.3.3 mysql.server  MySQL Server Startup Script
 
-As distribuições MySQL em Unix e sistemas semelhantes a Unix incluem um script chamado `mysql.server`, que inicia o servidor MySQL usando **mysqld\_safe**. Ele pode ser usado em sistemas como Linux e Solaris que usam diretórios de execução do estilo System V para iniciar e parar os serviços do sistema. Ele também é usado pelo item de inicialização do macOS para o MySQL.
+As distribuições MySQL em Unix e sistemas semelhantes a Unix incluem um script chamado `mysql.server`, que inicia o servidor MySQL usando `mysqld_safe`. Ele pode ser usado em sistemas como Linux e Solaris que usam diretórios de execução do estilo System V para iniciar e parar os serviços do sistema. Ele também é usado pelo item de inicialização do macOS para o MySQL.
 
 `mysql.server` é o nome do script usado na árvore de origem do MySQL. O nome instalado pode ser diferente (por exemplo, `mysqld` ou `mysql`). Na discussão a seguir, ajuste o nome `mysql.server` conforme apropriado para o seu sistema.
 
 ::: info Note
 
-Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui o suporte do systemd para gerenciar a inicialização e o desligamento do servidor MySQL. Nestas plataformas, `mysql.server` e **mysqld\_safe** não são instalados porque são desnecessários. Para mais informações, consulte a Seção 2.5.9, Gerenciando o MySQL Server com o systemd.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui o suporte do systemd para gerenciar a inicialização e o desligamento do servidor MySQL. Nestas plataformas, `mysql.server` e `mysqld_safe` não são instalados porque são desnecessários. Para mais informações, consulte a Seção 2.5.9, Gerenciando o MySQL Server com o systemd.
 
 :::
 
@@ -17,7 +17,7 @@ mysql.server start
 mysql.server stop
 ```
 
-`mysql.server` altera o local para o diretório de instalação do MySQL, em seguida, invoca **mysqld\_safe**. Para executar o servidor como algum usuário específico, adicione uma opção `user` apropriada ao grupo `[mysqld]` do arquivo de opções global `/etc/my.cnf`, como mostrado mais adiante nesta seção. (É possível que você deva editar `mysql.server` se você instalou uma distribuição binária do MySQL em um local não padrão. Modifique-o para mudar o local para o diretório apropriado antes de executá-lo **mysqld\_safe**. Se você fizer isso, sua versão modificada do `mysql.server` pode ser substituída se você atualizar o MySQL no futuro; faça uma cópia de sua versão editada que você pode reinstalar.)
+`mysql.server` altera o local para o diretório de instalação do MySQL, em seguida, invoca `mysqld_safe`. Para executar o servidor como algum usuário específico, adicione uma opção `user` apropriada ao grupo `[mysqld]` do arquivo de opções global `/etc/my.cnf`, como mostrado mais adiante nesta seção. (É possível que você deva editar `mysql.server` se você instalou uma distribuição binária do MySQL em um local não padrão. Modifique-o para mudar o local para o diretório apropriado antes de executá-lo `mysqld_safe`. Se você fizer isso, sua versão modificada do `mysql.server` pode ser substituída se você atualizar o MySQL no futuro; faça uma cópia de sua versão editada que você pode reinstalar.)
 
 **mysql.server stop** para o servidor enviando um sinal para ele. Você também pode parar o servidor manualmente executando **mysqladmin shutdown**.
 
@@ -83,7 +83,7 @@ O caminho para o diretório de dados MySQL.
 
 O nome de caminho do ficheiro no qual o servidor deve escrever o seu ID de processo. O servidor cria o ficheiro no diretório de dados, a menos que seja dado um nome de caminho absoluto para especificar um diretório diferente.
 
-Se essa opção não for dada, `mysql.server` usa um valor padrão de `host_name.pid`. O valor do arquivo PID passado para **mysqld\_safe** substitui qualquer valor especificado no grupo de arquivos de opções `[mysqld_safe]`. Como `mysql.server` lê o grupo de arquivos de opções `[mysqld]` mas não o grupo `[mysqld_safe]`, você pode garantir que **mysqld\_safe** receba o mesmo valor quando invocado a partir de `mysql.server` como quando invocado manualmente colocando a mesma configuração `pid-file` em ambos os grupos `[mysqld_safe]` e `[mysqld]` .
+Se essa opção não for dada, `mysql.server` usa um valor padrão de `host_name.pid`. O valor do arquivo PID passado para `mysqld_safe` substitui qualquer valor especificado no grupo de arquivos de opções `[mysqld_safe]`. Como `mysql.server` lê o grupo de arquivos de opções `[mysqld]` mas não o grupo `[mysqld_safe]`, você pode garantir que `mysqld_safe` receba o mesmo valor quando invocado a partir de `mysql.server` como quando invocado manualmente colocando a mesma configuração `pid-file` em ambos os grupos `[mysqld_safe]` e `[mysqld]` .
 
 - `service-startup-timeout=seconds`
 

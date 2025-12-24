@@ -116,7 +116,7 @@ You can use APT to install individual components of MySQL from the MySQL APT rep
 $> sudo apt-get update
 ```
 
-Install any packages of your choice with the following command, replacing *`package-name`* with name of the package to install:
+Install any packages of your choice with the following command, replacing `package-name` with name of the package to install:
 
 ```
 $> sudo apt-get install package-name

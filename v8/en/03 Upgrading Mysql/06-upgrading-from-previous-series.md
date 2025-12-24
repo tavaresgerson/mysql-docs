@@ -14,16 +14,23 @@ In addition, you can consult the resources listed here:
 
 This section contains information about incompatible changes in MySQL 8.4.
 
-* **Spatial indexes.** When upgrading to MySQL 8.4.4 or later, it is recommended that you drop any spatial indexes beforehand, then re-create them after the upgrade is complete. Alternatively, you can drop and re-create such indexes immediately following the upgrade, but before making use of any of the tables in which they occur.
+**Spatial indexes.**
+When upgrading to MySQL 8.4.4 or later, it is recommended that you drop any spatial indexes beforehand, then re-create them after the upgrade is complete. Alternatively, you can drop and re-create such indexes immediately following the upgrade, but before making use of any of the tables in which they occur.
 
-  For more information, see Section 13.4.10, “Creating Spatial Indexes”.
-* **WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS() function removed.** The `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` SQL function, deprecated in MySQL 8.0 has been removed; attempting to invoke it now causes a syntax error. Use `WAIT_FOR_EXECUTED_GTID_SET()` instead.
-* **`authentication_fido` and `authentication_fido_client` no longer available on some platforms.** Due to upgrading the libfido2 library bundled with the server to version 1.13.0, which requires OpenSSL 1.1.1 or higher, the `authentication_fido` and `authentication_fido_client` authentication plugins are no longer available on Enterprise Linux 6, Enterprise Linux 7, Solaris 11, or SUSE Enterprise Linux 12.
-* **NULL disallowed for command-line options.** Setting server variables equal to SQL `NULL` on the command line is not supported. In MySQL 8.4, setting any of these to `NULL` is specifically disallowed, and attempting to do is rejected with an error.
+For more information, see Section 13.4.10, “Creating Spatial Indexes”.
 
-  The following variables are excepted from this restriction: `admin_ssl_ca`, `admin_ssl_capath`, `admin_ssl_cert`, `admin_ssl_cipher`, `admin_tls_ciphersuites`, `admin_ssl_key`, `admin_ssl_crl`, `admin_ssl_crlpath`, `basedir`, `character_sets_dir`, `ft_stopword_file`, `group_replication_recovery_tls_ciphersuites`, `init_file`, `lc_messages_dir`, `plugin_dir`, `relay_log`, `relay_log_info_file`, `replica_load_tmpdir`, `ssl_ca`, `ssl_capath`, `ssl_cert`, `ssl_cipher`, `ssl_crl`, `ssl_crlpath`, `ssl_key`, `socket`, `tls_ciphersuites`, and `tmpdir`.
+**`WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` function removed.**
+The `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` SQL function, deprecated in MySQL 8.0 has been removed; attempting to invoke it now causes a syntax error. Use `WAIT_FOR_EXECUTED_GTID_SET()` instead.
 
-  See also  Section 7.1.8, “Server System Variables”.
+**`authentication_fido` and `authentication_fido_client` no longer available on some platforms.**
+Due to upgrading the libfido2 library bundled with the server to version 1.13.0, which requires OpenSSL 1.1.1 or higher, the `authentication_fido` and `authentication_fido_client` authentication plugins are no longer available on Enterprise Linux 6, Enterprise Linux 7, Solaris 11, or SUSE Enterprise Linux 12.
+
+**`NULL` disallowed for command-line options.**
+Setting server variables equal to SQL `NULL` on the command line is not supported. In MySQL 8.4, setting any of these to `NULL` is specifically disallowed, and attempting to do is rejected with an error.
+
+The following variables are excepted from this restriction: `admin_ssl_ca`, `admin_ssl_capath`, `admin_ssl_cert`, `admin_ssl_cipher`, `admin_tls_ciphersuites`, `admin_ssl_key`, `admin_ssl_crl`, `admin_ssl_crlpath`, `basedir`, `character_sets_dir`, `ft_stopword_file`, `group_replication_recovery_tls_ciphersuites`, `init_file`, `lc_messages_dir`, `plugin_dir`, `relay_log`, `relay_log_info_file`, `replica_load_tmpdir`, `ssl_ca`, `ssl_capath`, `ssl_cert`, `ssl_cipher`, `ssl_crl`, `ssl_crlpath`, `ssl_key`, `socket`, `tls_ciphersuites`, and `tmpdir`.
+
+See also  Section 7.1.8, “Server System Variables”.
 
 For additional information about changes in MySQL 8.4, see Section 1.4, “What Is New in MySQL 8.4 since MySQL 8.0”.
 

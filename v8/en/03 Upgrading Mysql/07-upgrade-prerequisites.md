@@ -16,11 +16,11 @@ Preliminary checks:
 
    To check for these issues, execute this command:
 
-   ```
+   ```bash
    mysqlcheck -u root -p --all-databases --check-upgrade
    ```
 
-   If  `mysqlcheck` reports any errors, correct the issues.
+   If `mysqlcheck` reports any errors, correct the issues.
 2. There must be no partitioned tables that use a storage engine that does not have native partitioning support. To identify such tables, execute this query:
 
    ```
@@ -87,7 +87,7 @@ Preliminary checks:
        );
    ```
 
-   Any tables reported by the query must be dropped or renamed (use  `RENAME TABLE`). This may also entail changes to applications that use the affected tables.
+   Any tables reported by the query must be dropped or renamed (use `RENAME TABLE`). This may also entail changes to applications that use the affected tables.
 5. There must be no tables that have foreign key constraint names longer than 64 characters. Use this query to identify tables with constraint names that are too long:
 
    ```
@@ -104,7 +104,7 @@ Preliminary checks:
 6. There must be no obsolete SQL modes defined by `sql_mode` system variable. Attempting to use an obsolete SQL mode prevents MySQL 8.4 from starting. Applications that use obsolete SQL modes should be revised to avoid them. For information about SQL modes removed in MySQL 8.4, see Server Changes.
 7. Only upgrade a MySQL server instance that was properly shut down. If the instance unexpectedly shutdown, then restart the instance and shut it down with `innodb_fast_shutdown=0` before upgrade.
 8. There must be no views with explicitly defined columns names that exceed 64 characters (views with column names up to 255 characters were permitted in MySQL 5.7). To avoid upgrade errors, such views should be altered before upgrading. Currently, the only method of identify views with column names that exceed 64 characters is to inspect the view definition using  `SHOW CREATE VIEW`. You can also inspect view definitions by querying the Information Schema  `VIEWS` table.
-9. There must be no tables or stored procedures with individual `ENUM` or `SET` column elements that exceed 255 characters or 1020 bytes in length. Prior to MySQL 8.4, the maximum combined length of `ENUM` or `SET` column elements was 64K. In MySQL 8.4, the maximum character length of an individual `ENUM` or `SET` column element is 255 characters, and the maximum byte length is 1020 bytes. (The 1020 byte limit supports multibyte character sets). Before upgrading to MySQL 8.0, modify any `ENUM` or `SET` column elements that exceed the new limits. Failing to do so causes the upgrade to fail with an error.
+9. There must be no tables or stored procedures with individual `ENUM` or `SET` column elements that exceed 255 characters or 1020 bytes in length. Prior to MySQL 8.4, the maximum combined length of `ENUM` or `SET` column elements was `64K`. In MySQL 8.4, the maximum character length of an individual `ENUM` or `SET` column element is 255 characters, and the maximum byte length is 1020 bytes. (The 1020 byte limit supports multibyte character sets). Before upgrading to MySQL 8.0, modify any `ENUM` or `SET` column elements that exceed the new limits. Failing to do so causes the upgrade to fail with an error.
 10. Your MySQL 8.3 installation must not use features that are not supported by MySQL 8.4. Any changes here are necessarily installation specific, but the following example illustrates the kind of thing to look for:
 
     Some server startup options and system variables have been removed in MySQL 8.4. See Features Removed in MySQL 8.4, and Section 1.5, “Server and Status Variables and Options Added, Deprecated, or Removed in MySQL 8.4 since 8.0”. If you use any of these, an upgrade requires configuration changes.
@@ -119,7 +119,6 @@ Preliminary checks:
     ::: info Note
 
     Changing the `lower_case_table_names` setting at upgrade time is not recommended.
-
 
     :::
 

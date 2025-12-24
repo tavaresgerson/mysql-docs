@@ -1,16 +1,16 @@
 ### 6.5.5 mysqlimport — A Data Import Program
 
-The  **mysqlimport** client provides a command-line interface to the `LOAD DATA` SQL statement. Most options to **mysqlimport** correspond directly to clauses of `LOAD DATA` syntax. See Section 15.2.9, “LOAD DATA Statement”.
+The  `mysqlimport` client provides a command-line interface to the `LOAD DATA` SQL statement. Most options to `mysqlimport` correspond directly to clauses of `LOAD DATA` syntax. See Section 15.2.9, “LOAD DATA Statement”.
 
-Invoke  **mysqlimport** like this:
+Invoke  `mysqlimport` like this:
 
 ```
 mysqlimport [options] db_name textfile1 [textfile2 ...]
 ```
 
-For each text file named on the command line, **mysqlimport** strips any extension from the file name and uses the result to determine the name of the table into which to import the file's contents. For example, files named `patient.txt`, `patient.text`, and `patient` all would be imported into a table named `patient`.
+For each text file named on the command line, `mysqlimport` strips any extension from the file name and uses the result to determine the name of the table into which to import the file's contents. For example, files named `patient.txt`, `patient.text`, and `patient` all would be imported into a table named `patient`.
 
- **mysqlimport** supports the following options, which can be specified on the command line or in the `[mysqlimport]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
+ `mysqlimport` supports the following options, which can be specified on the command line or in the `[mysqlimport]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
 
 **Table 6.14 mysqlimport Options**
 
@@ -101,7 +101,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlimport** normally reads the `[client]` and `[mysqlimport]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlimport** also reads the `[client_other]` and `[mysqlimport_other]` groups.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, `mysqlimport` normally reads the `[client]` and `[mysqlimport]` groups. If this option is given as `--defaults-group-suffix=_other`, `mysqlimport` also reads the `[client_other]` and `[mysqlimport_other]` groups.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--delete`, `-D`
@@ -123,7 +123,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
 
-  Ignore errors. For example, if a table for a text file does not exist, continue processing any remaining files. Without `--force`, **mysqlimport** exits if a table does not exist.
+  Ignore errors. For example, if a table for a text file does not exist, continue processing any remaining files. Without `--force`, `mysqlimport` exits if a table does not exist.
 *  `--get-server-public-key`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
@@ -157,9 +157,9 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--local</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  By default, files are read by the server on the server host. With this option,  **mysqlimport** reads input files locally on the client host.
+  By default, files are read by the server on the server host. With this option,  `mysqlimport` reads input files locally on the client host.
 
-  Successful use of `LOCAL` load operations within  **mysqlimport** also requires that the server permits local loading; see Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”
+  Successful use of `LOCAL` load operations within  `mysqlimport` also requires that the server permits local loading; see Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”
 *  `--lock-tables`, `-l`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--lock-tables</code></td> </tr></tbody></table>
@@ -199,18 +199,18 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlimport** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
+  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, `mysqlimport` prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysqlimport** should not prompt for one, use the `--skip-password` option.
+  To explicitly specify that there is no password and that `mysqlimport` should not prompt for one, use the `--skip-password` option.
 *  `--password1[=pass_val]`
 
-  The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlimport** prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
+  The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, `mysqlimport` prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysqlimport** should not prompt for one, use the `--skip-password1` option.
+  To explicitly specify that there is no password and that `mysqlimport` should not prompt for one, use the `--skip-password1` option.
 
    `--password1` and `--password` are synonymous, as are `--skip-password1` and `--skip-password`.
 *  `--password2[=pass_val]`
@@ -228,7 +228,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlimport** does not find it. See Section 8.2.17, “Pluggable Authentication”.
+  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but `mysqlimport` does not find it. See Section 8.2.17, “Pluggable Authentication”.
 *  `--port=port_num`, `-P port_num`
 
   <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
@@ -348,7 +348,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
   For more information, see Section 6.2.8, “Connection Compression Control”.
 
-Here is a sample session that demonstrates use of **mysqlimport**:
+Here is a sample session that demonstrates use of `mysqlimport`:
 
 ```
 $> mysql -e 'CREATE TABLE imptest(id INT, n VARCHAR(30))' test

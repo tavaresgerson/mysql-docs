@@ -8,6 +8,6 @@ Dependendo da configuração do log de erros, as mensagens de erro também podem
 
 Em alguns sistemas operacionais, o log de erro contém um rastreamento de pilha se `mysqld` sair anormalmente. O rastreamento pode ser usado para determinar onde `mysqld` saiu. Veja Seção 7.9, "Debugging MySQL".
 
-Se usado para iniciar `mysqld`, **mysqld\_safe** pode escrever mensagens para o log de erros. Por exemplo, quando **mysqld\_safe** percebe saídas anormais do `mysqld`, ele reinicia `mysqld` e escreve uma mensagem `mysqld restarted` para o log de erros.
+Se usado para iniciar `mysqld`, `mysqld_safe` pode escrever mensagens para o log de erros. Por exemplo, quando `mysqld_safe` percebe saídas anormais do `mysqld`, ele reinicia `mysqld` e escreve uma mensagem `mysqld restarted` para o log de erros.
 
 As seções a seguir discutem aspectos da configuração do registo de erros.

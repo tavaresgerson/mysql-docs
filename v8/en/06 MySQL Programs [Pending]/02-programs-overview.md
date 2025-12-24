@@ -49,7 +49,7 @@ MySQL client programs that connect to the MySQL server:
 *  `mysqldump`
 
   A client that dumps a MySQL database into a file as SQL, text, or XML. See  Section 6.5.4, “mysqldump — A Database Backup Program”.
-*  **mysqlimport**
+*  `mysqlimport`
 
   A client that imports text files into their respective tables using  `LOAD DATA`. See Section 6.5.5, “mysqlimport — A Data Import Program”.
 * **mysqlsh**

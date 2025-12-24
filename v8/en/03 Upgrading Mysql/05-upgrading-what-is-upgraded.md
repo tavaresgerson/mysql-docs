@@ -2,7 +2,7 @@
 
 Installing a new version of MySQL may require upgrading these parts of the existing installation:
 
-* The `mysql` system schema, which contains tables that store information required by the MySQL server as it runs (see  Section 7.3, “The mysql System Schema”). `mysql` schema tables fall into two broad categories:
+* The `mysql` system schema, which contains tables that store information required by the MySQL server as it runs. `mysql` schema tables fall into two broad categories:
 
   + Data dictionary tables, which store database object metadata.
   + System tables (that is, the remaining non-data dictionary tables), which are used for other operational purposes.
@@ -45,7 +45,7 @@ required, yet prohibited by the command line option '--upgrade=NONE'.
 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
 ```
 
-The  `--upgrade` server option controls whether and how the server performs an automatic upgrade at startup:
+The `--upgrade` server option controls whether and how the server performs an automatic upgrade at startup:
 
 * With no option or with `--upgrade=AUTO`, the server upgrades anything it determines to be out of date (steps 1 and 2).
 * With  `--upgrade=NONE`, the server upgrades nothing (skips steps 1 and 2), but also exits with an error if the data dictionary must be upgraded. It is not possible to run the server with an out-of-date data dictionary; the server insists on either upgrading it or exiting.
@@ -69,7 +69,7 @@ Additional notes about what occurs during upgrade step 2:
   To prevent the `sys` schema check, start the server with the `--upgrade=NONE` or `--upgrade=MINIMAL` option.
 * Step 2 upgrades the system tables to ensure that they have the current structure, and this includes the help tables but not the time zone tables. The procedure for loading time zone tables is platform dependent and requires decision making by the DBA, so it cannot be done automatically.
 * When Step 2 is upgrading the system tables in the `mysql` schema, the column order in the primary key of the `mysql.db`, `mysql.tables_priv`, `mysql.columns_priv` and `mysql.procs_priv` tables is changed to place the host name and user name columns together. Placing the host name and user name together means that index lookup can be used, which improves performance for `CREATE USER`, `DROP USER`, and `RENAME USER` statements, and for ACL checks for multiple users with multiple privileges. Dropping and re-creating the index is necessary and might take some time if the system has a large number of users and privileges.
-* Step 2 processes all tables in all user schemas as necessary. Table checking might take a long time to complete. Each table is locked and therefore unavailable to other sessions while it is being processed. Check and repair operations can be time-consuming, particularly for large tables. Table checking uses the `FOR UPGRADE` option of the `CHECK TABLE` statement. For details about what this option entails, see Section 15.7.3.2, “CHECK TABLE Statement”.
+* Step 2 processes all tables in all user schemas as necessary. Table checking might take a long time to complete. Each table is locked and therefore unavailable to other sessions while it is being processed. Check and repair operations can be time-consuming, particularly for large tables. Table checking uses the `FOR UPGRADE` option of the `CHECK TABLE` statement. For details about what this option entails.
 
   To prevent table checking, start the server with the `--upgrade=NONE` or `--upgrade=MINIMAL` option.
 

@@ -27,7 +27,7 @@ Em sistemas Unix e Unix-like, `mysqld` usa a opção `--log-error` para determin
 - Se `--log-error` não for fornecido, o destino padrão é o console.
 - Se `--log-error` é dado sem nomear um arquivo, o destino padrão é um arquivo chamado `host_name.err` no diretório de dados.
 - Se `--log-error` é dado para nomear um arquivo, o destino padrão é esse arquivo (com um sufixo `.err` adicionado se o nome não tiver sufixo).
-- Se `--log-error` é dado em um arquivo de opção em uma `[mysqld]`, `[server]`, ou `[mysqld_safe]` seção, em sistemas que usam **mysqld\_safe** para iniciar o servidor, **mysqld\_safe** encontra e usa a opção, e passa para `mysqld`.
+- Se `--log-error` é dado em um arquivo de opção em uma `[mysqld]`, `[server]`, ou `[mysqld_safe]` seção, em sistemas que usam `mysqld_safe` para iniciar o servidor, `mysqld_safe` encontra e usa a opção, e passa para `mysqld`.
 
 ::: info Note
 

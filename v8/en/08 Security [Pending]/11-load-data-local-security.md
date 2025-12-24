@@ -31,7 +31,7 @@ Administrators and applications can configure whether to permit local data loadi
   + By default, the client library in MySQL binary distributions is compiled with `ENABLED_LOCAL_INFILE` disabled. If you compile MySQL from source, configure it with  `ENABLED_LOCAL_INFILE` disabled or enabled based on whether clients that make no explicit arrangements should have `LOCAL` capability disabled or enabled.
   + For client programs that use the C API, local data loading capability is determined by the default compiled into the MySQL client library. To enable or disable it explicitly, invoke the `mysql_options()` C API function to disable or enable the `MYSQL_OPT_LOCAL_INFILE` option. See mysql\_options().
   + For the  `mysql` client, local data loading capability is determined by the default compiled into the MySQL client library. To disable or enable it explicitly, use the `--local-infile=0` or `--local-infile[=1]` option.
-  + For the  **mysqlimport** client, local data loading is not used by default. To disable or enable it explicitly, use the `--local=0` or `--local[=1]` option.
+  + For the  `mysqlimport` client, local data loading is not used by default. To disable or enable it explicitly, use the `--local=0` or `--local[=1]` option.
   + If you use `LOAD DATA LOCAL` in Perl scripts or other programs that read the `[client]` group from option files, you can add a `local-infile` option setting to that group. To prevent problems for programs that do not understand this option, specify it using the `loose-` prefix:
 
     ```
@@ -76,7 +76,7 @@ MySQL client programs use the preceding `mysql_options()` options as follows:
   + If `LOCAL` data loading is disabled, either by default in the MySQL client library or by specifying `--local-infile=0`, the `--load-data-local-dir` option applies.
 
   When  `--load-data-local-dir` applies, the option value designates the directory in which local data files must be located. Comparison of the directory path name and the path name of files to be loaded is case-sensitive regardless of the case sensitivity of the underlying file system. If the option value is the empty string, it names no directory, with the result that no files are permitted for local data loading.
-*  **mysqlimport** sets `MYSQL_OPT_LOAD_DATA_LOCAL_DIR` for each file that it processes so that the directory containing the file is the permitted local loading directory.
+*  `mysqlimport` sets `MYSQL_OPT_LOAD_DATA_LOCAL_DIR` for each file that it processes so that the directory containing the file is the permitted local loading directory.
 * For data loading operations corresponding to `LOAD DATA` statements, **mysqlbinlog** extracts the files from the binary log events, writes them as temporary files to the local file system, and writes `LOAD DATA LOCAL` statements to cause the files to be loaded. By default,  **mysqlbinlog** writes these temporary files to an operating system-specific directory. The  `--local-load` option can be used to explicitly specify the directory where **mysqlbinlog** should prepare local temporary files.
 
   Because other processes can write files to the default system-specific directory, it is advisable to specify the `--local-load` option to **mysqlbinlog** to designate a different directory for data files, and then designate that same directory by specifying the `--load-data-local-dir` option to  `mysql` when processing the output from **mysqlbinlog**.

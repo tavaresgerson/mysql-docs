@@ -66,7 +66,7 @@ The server uses the grant tables in the following manner:
 * The `default_roles` and `role_edges` tables contain information about role relationships.
 * The `password_history` table retains previously chosen passwords to enable restrictions on password reuse. See  Section 8.2.15, “Password Management”.
 
-The server reads the contents of the grant tables into memory when it starts. You can tell it to reload the tables by issuing a  `FLUSH PRIVILEGES` statement or executing a  **mysqladmin flush-privileges** or `mysqladmin reload` command. Changes to the grant tables take effect as indicated in Section 8.2.13, “When Privilege Changes Take Effect”.
+The server reads the contents of the grant tables into memory when it starts. You can tell it to reload the tables by issuing a  `FLUSH PRIVILEGES` statement or executing a  `mysqladmin flush-privileges` or `mysqladmin reload` command. Changes to the grant tables take effect as indicated in Section 8.2.13, “When Privilege Changes Take Effect”.
 
 When you modify an account, it is a good idea to verify that your changes have the intended effect. To check the privileges for a given account, use the `SHOW GRANTS` statement. For example, to determine the privileges that are granted to an account with user name and host name values of `bob` and `pc84.example.com`, use this statement:
 
