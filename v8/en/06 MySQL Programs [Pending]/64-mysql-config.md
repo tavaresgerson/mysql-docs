@@ -8,7 +8,7 @@
 
 :::
 
-**mysql_config** supports the following options.
+ `mysql_config` supports the following options.
 
 *  `--cflags`
 
@@ -41,7 +41,7 @@
 
   Version number for the MySQL distribution.
 
-If you invoke **mysql_config** with no options, it displays a list of all options that it supports, and their values:
+If you invoke  `mysql_config` with no options, it displays a list of all options that it supports, and their values:
 
 ```
 $> mysql_config
@@ -66,7 +66,7 @@ Options:
           plugindir     [/usr/local/mysql/lib/plugin]
 ```
 
-You can use **mysql_config** within a command line using backticks to include the output that it produces for particular options. For example, to compile and link a MySQL client program, use **mysql_config** as follows:
+You can use  `mysql_config` within a command line using backticks to include the output that it produces for particular options. For example, to compile and link a MySQL client program, use  `mysql_config` as follows:
 
 ```
 gcc -c `mysql_config --cflags` progname.c

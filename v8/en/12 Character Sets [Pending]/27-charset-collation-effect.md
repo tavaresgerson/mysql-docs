@@ -23,7 +23,7 @@ SELECT X FROM T ORDER BY X COLLATE collation_name;
 
 The following table shows the resulting order of the values if we use `ORDER BY` with different collations.
 
-<table><col style="width: 30%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th scope="col"><code>latin1_swedish_ci</code></th> <th scope="col"><code>latin1_german1_ci</code></th> <th scope="col"><code>latin1_german2_ci</code></th> </tr></thead><tbody><tr> <th>Muffler</th> <td>Muffler</td> <td>Müller</td> </tr><tr> <th>MX Systems</th> <td>Müller</td> <td>Muffler</td> </tr><tr> <th>Müller</th> <td>MX Systems</td> <td>MX Systems</td> </tr><tr> <th>MySQL</th> <td>MySQL</td> <td>MySQL</td> </tr></tbody></table>
+<table><col style="width: 30%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th><code>latin1_swedish_ci</code></th> <th><code>latin1_german1_ci</code></th> <th><code>latin1_german2_ci</code></th> </tr></thead><tbody><tr> <th>Muffler</th> <td>Muffler</td> <td>Müller</td> </tr><tr> <th>MX Systems</th> <td>Müller</td> <td>Muffler</td> </tr><tr> <th>Müller</th> <td>MX Systems</td> <td>MX Systems</td> </tr><tr> <th>MySQL</th> <td>MySQL</td> <td>MySQL</td> </tr></tbody></table>
 
 The character that causes the different sort orders in this example is `ü` (German “U-umlaut”).
 

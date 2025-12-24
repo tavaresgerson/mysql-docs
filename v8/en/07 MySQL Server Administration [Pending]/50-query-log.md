@@ -6,7 +6,7 @@ Each line that shows when a client connects also includes `using connection_type
 
  `mysqld` writes statements to the query log in the order that it receives them, which might differ from the order in which they are executed. This logging order is in contrast with that of the binary log, for which statements are written after they are executed but before any locks are released. In addition, the query log may contain statements that only select data while such statements are never written to the binary log.
 
-When using statement-based binary logging on a replication source server, statements received by its replicas are written to the query log of each replica. Statements are written to the query log of the source if a client reads events with the **mysqlbinlog** utility and passes them to the server.
+When using statement-based binary logging on a replication source server, statements received by its replicas are written to the query log of each replica. Statements are written to the query log of the source if a client reads events with the  `mysqlbinlog` utility and passes them to the server.
 
 However, when using row-based binary logging, updates are sent as row changes rather than SQL statements, and thus these statements are never written to the query log when `binlog_format` is `ROW`. A given update also might not be written to the query log when this variable is set to `MIXED`, depending on the statement used. See Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”, for more information.
 

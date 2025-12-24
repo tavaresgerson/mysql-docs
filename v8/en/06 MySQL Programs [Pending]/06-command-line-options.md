@@ -13,8 +13,8 @@ Program options specified on the command line follow these rules:
   mysql -p test
   ```
 
-  The first command instructs  `mysql` to use a password value of `test`, but specifies no default database. The second instructs `mysql` to prompt for the password value and to use `test` as the default database.
-* Within option names, dash (`-`) and underscore (`_`) may be used interchangeably in most cases, although the leading dashes *cannot* be given as underscores. For example,  `--skip-grant-tables` and `--skip_grant_tables` are equivalent.
+  The first command instructs `mysql` to use a password value of `test`, but specifies no default database. The second instructs `mysql` to prompt for the password value and to use `test` as the default database.
+* Within option names, dash (`-`) and underscore (`_`) may be used interchangeably in most cases, although the leading dashes *cannot* be given as underscores. For example, `--skip-grant-tables` and `--skip_grant_tables` are equivalent.
 
   In this Manual, we use dashes in option names, except where underscores are significant. This is the case with, for example,  `--log-bin` and `--log_bin`, which are different options. We encourage you to do so as well.
 * The MySQL server has certain command options that may be specified only at startup, and a set of system variables, some of which may be set at startup, at runtime, or both. System variable names use underscores rather than dashes, and when referenced at runtime (for example, using `SET` or  `SELECT` statements), must be written using underscores:
@@ -36,7 +36,7 @@ Program options specified on the command line follow these rules:
   ```
 * When specifying file names as option values, avoid the use of the `~` shell metacharacter. It might not be interpreted as you expect.
 
-Option values that contain spaces must be quoted when given on the command line. For example, the `--execute` (or `-e`) option can be used with  `mysql` to pass one or more semicolon-separated SQL statements to the server. When this option is used,  `mysql` executes the statements in the option value and exits. The statements must be enclosed by quotation marks. For example:
+Option values that contain spaces must be quoted when given on the command line. For example, the `--execute` (or `-e`) option can be used with `mysql` to pass one or more semicolon-separated SQL statements to the server. When this option is used, `mysql` executes the statements in the option value and exits. The statements must be enclosed by quotation marks. For example:
 
 ```
 $> mysql -u root -p -e "SELECT VERSION();SELECT NOW()"

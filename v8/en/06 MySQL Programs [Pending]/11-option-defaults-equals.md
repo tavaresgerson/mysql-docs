@@ -12,7 +12,7 @@ For options that require a value (that is, not having a default value), the equa
 mysql --host tonfisk --user jon
 ```
 
-In both cases, the  `mysql` client attempts to connect to a MySQL server running on the host named “tonfisk” using an account with the user name “jon”.
+In both cases, the `mysql` client attempts to connect to a MySQL server running on the host named “tonfisk” using an account with the user name “jon”.
 
 Due to this behavior, problems can occasionally arise when no value is provided for an option that expects one. Consider the following example, where a user connects to a MySQL server running on host `tonfisk` as user `jon`:
 
@@ -40,16 +40,16 @@ $> mysql --host 85.224.35.45 --user
 mysql: option '--user' requires an argument
 ```
 
-In this case,  `mysql` was unable to find a value following the  `--user` option because nothing came after it on the command line. However, if you omit the value for an option that is *not* the last option to be used, you obtain a different error that you may not be expecting:
+In this case, `mysql` was unable to find a value following the `--user` option because nothing came after it on the command line. However, if you omit the value for an option that is *not* the last option to be used, you obtain a different error that you may not be expecting:
 
 ```
 $> mysql --host --user jon
 ERROR 2005 (HY000): Unknown MySQL server host '--user' (1)
 ```
 
-Because  `mysql` assumes that any string following  `--host` on the command line is a host name,  `--host` `--user` is interpreted as `--host=--user`, and the client attempts to connect to a MySQL server running on a host named “--user”.
+Because `mysql` assumes that any string following `--host` on the command line is a host name,  `--host` `--user` is interpreted as `--host=--user`, and the client attempts to connect to a MySQL server running on a host named “--user”.
 
-Options having default values always require an equal sign when assigning a value; failing to do so causes an error. For example, the MySQL server `--log-error` option has the default value `host_name.err`, where *`host_name`* is the name of the host on which MySQL is running. Assume that you are running MySQL on a computer whose host name is “tonfisk”, and consider the following invocation of `mysqld_safe`:
+Options having default values always require an equal sign when assigning a value; failing to do so causes an error. For example, the MySQL server `--log-error` option has the default value `host_name.err`, where `host_name` is the name of the host on which MySQL is running. Assume that you are running MySQL on a computer whose host name is “tonfisk”, and consider the following invocation of `mysqld_safe`:
 
 ```
 $> mysqld_safe &
@@ -93,7 +93,7 @@ $> tail /usr/local/mysql/var/tonfisk.err
 2013-09-24T15:36:23.780134Z 0 [Note] mysqld: Shutdown complete
 ```
 
-Because the  `--log-error` option supplies a default value, you must use an equal sign to assign a different value to it, as shown here:
+Because the `--log-error` option supplies a default value, you must use an equal sign to assign a different value to it, as shown here:
 
 ```
 $> mysqld_safe --log-error=my-errors &
@@ -115,7 +115,7 @@ host
 user
 ```
 
-When the  `mysql` client reads this file, these entries are parsed as  `--host` `--user` or `--host=--user`, with the result shown here:
+When the `mysql` client reads this file, these entries are parsed as `--host` `--user` or `--host=--user`, with the result shown here:
 
 ```
 $> mysql
@@ -130,7 +130,7 @@ However, in option files, an equal sign is not assumed. Suppose the `my.cnf` fil
 user jon
 ```
 
-Trying to start  `mysql` in this case causes a different error:
+Trying to start `mysql` in this case causes a different error:
 
 ```
 $> mysql

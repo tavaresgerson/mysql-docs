@@ -6,7 +6,7 @@ The following table shows the plugin name.
 
 **Table 8.17 Plugin and Library Names for Cleartext Authentication**
 
-<table><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td>None, see discussion</td> </tr><tr> <td>Client-side plugin</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Library file</td> <td>None (plugin is built in)</td> </tr></tbody></table>
+<table><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td>None, see discussion</td> </tr><tr> <td>Client-side plugin</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Library file</td> <td>None (plugin is built in)</td> </tr></tbody></table>
 
 Many client-side authentication plugins perform hashing or encryption of a password before the client sends it to the server. This enables clients to avoid sending passwords as cleartext.
 
@@ -23,5 +23,5 @@ Sending passwords as cleartext may be a security problem in some configurations.
 To make inadvertent use of the `mysql_clear_password` plugin less likely, MySQL clients must explicitly enable it. This can be done in several ways:
 
 * Set the `LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN` environment variable to a value that begins with `1`, `Y`, or `y`. This enables the plugin for all client connections.
-* The  `mysql`,  `mysqladmin`, `mysqlcheck`,  `mysqldump`, `mysqlshow`, and **mysqlslap** client programs support an `--enable-cleartext-plugin` option that enables the plugin on a per-invocation basis.
+* The `mysql`,  `mysqladmin`, `mysqlcheck`,  `mysqldump`, `mysqlshow`, and  `mysqlslap` client programs support an `--enable-cleartext-plugin` option that enables the plugin on a per-invocation basis.
 * The  `mysql_options()` C API function supports a `MYSQL_ENABLE_CLEARTEXT_PLUGIN` option that enables the plugin on a per-connection basis. Also, any program that uses `libmysqlclient` and reads option files can enable the plugin by including an `enable-cleartext-plugin` option in an option group read by the client library.

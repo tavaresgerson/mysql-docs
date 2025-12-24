@@ -1,6 +1,6 @@
 ## 6.10 Unix Signal Handling in MySQL
 
-On Unix and Unix-like systems, a process can be the recipient of signals sent to it by the `root` system account or the system account that owns the process. Signals can be sent using the  **kill** command. Some command interpreters associate certain key sequences with signals, such as **Control+C** to send a `SIGINT` signal. This section describes how the MySQL server and client programs respond to signals.
+On Unix and Unix-like systems, a process can be the recipient of signals sent to it by the `root` system account or the system account that owns the process. Signals can be sent using the  **kill** command. Some command interpreters associate certain key sequences with signals, such as `Control+C` to send a `SIGINT` signal. This section describes how the MySQL server and client programs respond to signals.
 
 *  Server Response to Signals
 *  Client Response to Signals
@@ -20,7 +20,7 @@ On Unix and Unix-like systems, a process can be the recipient of signals sent to
 
 MySQL client programs respond to signals as follows:
 
-* The  `mysql` client interprets `SIGINT` (typically the result of typing **Control+C**) as instruction to interrupt the current statement if there is one, or to cancel any partial input line otherwise. This behavior can be disabled using the  `--sigint-ignore` option to ignore `SIGINT` signals.
+* The `mysql` client interprets `SIGINT` (typically the result of typing `Control+C`) as instruction to interrupt the current statement if there is one, or to cancel any partial input line otherwise. This behavior can be disabled using the  `--sigint-ignore` option to ignore `SIGINT` signals.
 * Client programs that use the MySQL client library block `SIGPIPE` signals by default. These variations are possible:
 
   + Client can install their own `SIGPIPE` handler to override the default behavior. See Writing C API Threaded Client Programs.

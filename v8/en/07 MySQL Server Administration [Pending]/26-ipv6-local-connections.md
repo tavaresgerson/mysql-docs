@@ -24,7 +24,7 @@ The following procedure shows how to configure MySQL to permit IPv6 connections 
    ```
 
    For the permitted syntax of IPv6 addresses in account names, see  Section 8.2.4, “Specifying Account Names”. In addition to the `CREATE USER` statement, you can issue  `GRANT` statements that give specific privileges to the account, although that is not necessary for the remaining steps in this procedure.
-3. Invoke the  `mysql` client to connect to the server using the new account:
+3. Invoke the `mysql` client to connect to the server using the new account:
 
    ```
    $> mysql -h ::1 -u ipv6user -pipv6pass

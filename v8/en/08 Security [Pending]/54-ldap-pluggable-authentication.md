@@ -20,11 +20,11 @@ The following tables show the plugin and library file names for simple and SASL-
 
 **Table 8.20 Plugin and Library Names for Simple LDAP Authentication**
 
-<table><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code>authentication_ldap_simple</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Library file name</td> <td><code>authentication_ldap_simple.so</code></td> </tr></tbody></table>
+<table><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code>authentication_ldap_simple</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Library file name</td> <td><code>authentication_ldap_simple.so</code></td> </tr></tbody></table>
 
 **Table 8.21 Plugin and Library Names for SASL-Based LDAP Authentication**
 
-<table><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code>authentication_ldap_sasl</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code>authentication_ldap_sasl_client</code></td> </tr><tr> <td>Library file names</td> <td><code>authentication_ldap_sasl.so</code>, <code>authentication_ldap_sasl_client.so</code></td> </tr></tbody></table>
+<table><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code>authentication_ldap_sasl</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code>authentication_ldap_sasl_client</code></td> </tr><tr> <td>Library file names</td> <td><code>authentication_ldap_sasl.so</code>, <code>authentication_ldap_sasl_client.so</code></td> </tr></tbody></table>
 
 The library files include only the `authentication_ldap_XXX` authentication plugins. The client-side `mysql_clear_password` plugin is built into the `libmysqlclient` client library.
 
@@ -495,7 +495,7 @@ GRANT PROXY
   TO ''@'%';
 ```
 
-Use the  `mysql` command-line client to connect to the MySQL server as `basha`.
+Use the `mysql` command-line client to connect to the MySQL server as `basha`.
 
 ```
 $> mysql --user=basha --password
@@ -704,7 +704,7 @@ With those assumptions satisfied, follow this procedure:
    ```
 3. Check whether Kerberos authentication works correctly:
 
-   1. Use **kinit** to authenticate to Kerberos:
+   1. Use `kinit` to authenticate to Kerberos:
 
       ```
       $> kinit bredon@MYSQL.LOCAL
@@ -826,7 +826,7 @@ The proxied account uses the `mysql_no_login` authentication plugin to prevent c
 
 After a MySQL account that authenticates using GSSAPI/Kerberos has been set up, clients can use it to connect to the MySQL server. Kerberos authentication can take place either prior to or at the time of MySQL client program invocation:
 
-* Prior to invoking the MySQL client program, the client user can obtain a TGT from the KDC independently of MySQL. For example, the client user can use **kinit** to authenticate to Kerberos by providing a Kerberos principal name and the principal password:
+* Prior to invoking the MySQL client program, the client user can obtain a TGT from the KDC independently of MySQL. For example, the client user can use `kinit` to authenticate to Kerberos by providing a Kerberos principal name and the principal password:
 
   ```
   $> kinit bredon@MYSQL.LOCAL

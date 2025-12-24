@@ -1,9 +1,9 @@
-#### 6.5.1.3 mysql Client Logging
+#### 6.5.1.3 `mysql` Client Logging
 
-The  `mysql` client can do these types of logging for statements executed interactively:
+The `mysql` client can do these types of logging for statements executed interactively:
 
-* On Unix,  `mysql` writes the statements to a history file. By default, this file is named `.mysql_history` in your home directory. To specify a different file, set the value of the `MYSQL_HISTFILE` environment variable.
-* On all platforms, if the `--syslog` option is given,  `mysql` writes the statements to the system logging facility. On Unix, this is `syslog`; on Windows, it is the Windows Event Log. The destination where logged messages appear is system dependent. On Linux, the destination is often the `/var/log/messages` file.
+* On Unix, `mysql` writes the statements to a history file. By default, this file is named `.mysql_history` in your home directory. To specify a different file, set the value of the `MYSQL_HISTFILE` environment variable.
+* On all platforms, if the `--syslog` option is given, `mysql` writes the statements to the system logging facility. On Unix, this is `syslog`; on Windows, it is the Windows Event Log. The destination where logged messages appear is system dependent. On Linux, the destination is often the `/var/log/messages` file.
 
 The following discussion describes characteristics that apply to all logging types and provides information specific to each logging type.
 
@@ -17,7 +17,7 @@ For each enabled logging destination, statement logging occurs as follows:
 
 * Statements are logged only when executed interactively. Statements are noninteractive, for example, when read from a file or a pipe. It is also possible to suppress statement logging by using the  `--batch` or  `--execute` option.
 * Statements are ignored and not logged if they match any pattern in the “ignore” list. This list is described later.
-*  `mysql` logs each nonignored, nonempty statement line individually.
+* `mysql` logs each nonignored, nonempty statement line individually.
 * If a nonignored statement spans multiple lines (not including the terminating delimiter), `mysql` concatenates the lines to form the complete statement, maps newlines to spaces, and logs the result, plus a delimiter.
 
 Consequently, an input statement that spans multiple lines can be logged twice. Consider this input:
@@ -30,7 +30,7 @@ mysql> SELECT
     -> ;
 ```
 
-In this case,  `mysql` logs the “SELECT”, “'Today is'”, “,”, “CURDATE()”, and “;” lines as it reads them. It also logs the complete statement, after mapping `SELECT\n'Today is'\n,\nCURDATE()` to `SELECT 'Today is' , CURDATE()`, plus a delimiter. Thus, these lines appear in logged output:
+In this case, `mysql` logs the “`SELECT`”, “`Today is`”, “`,`”, “`CURDATE()`”, and “`;`” lines as it reads them. It also logs the complete statement, after mapping `SELECT\n'Today is'\n,\nCURDATE()` to `SELECT 'Today is' , CURDATE()`, plus a delimiter. Thus, these lines appear in logged output:
 
 ```
 SELECT
@@ -48,7 +48,7 @@ SELECT 'Today is' , CURDATE();
 
 To specify additional patterns, use the `--histignore` option or set the `MYSQL_HISTIGNORE` environment variable. (If both are specified, the option value takes precedence.) The value should be a list of one or more colon-separated patterns, which are appended to the default pattern list.
 
-Patterns specified on the command line might need to be quoted or escaped to prevent your command interpreter from treating them specially. For example, to suppress logging for `UPDATE` and `DELETE` statements in addition to statements that refer to passwords, invoke  `mysql` like this:
+Patterns specified on the command line might need to be quoted or escaped to prevent your command interpreter from treating them specially. For example, to suppress logging for `UPDATE` and `DELETE` statements in addition to statements that refer to passwords, invoke `mysql` like this:
 
 ```
 mysql --histignore="*UPDATE*:*DELETE*"

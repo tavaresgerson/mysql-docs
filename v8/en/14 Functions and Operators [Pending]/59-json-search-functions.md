@@ -266,7 +266,7 @@ The functions in this section perform search or comparison operations on JSON va
 
   The `->>` operator can be used wherever `JSON_UNQUOTE(JSON_EXTRACT())` would be allowed. This includes (but is not limited to) `SELECT` lists, `WHERE` and `HAVING` clauses, and `ORDER BY` and `GROUP BY` clauses.
 
-  The next few statements demonstrate some `->>` operator equivalences with other expressions in the  `mysql` client:
+  The next few statements demonstrate some `->>` operator equivalences with other expressions in the `mysql` client:
 
   ```
   mysql> SELECT * FROM jemp WHERE g > 2;

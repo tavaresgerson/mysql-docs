@@ -31,7 +31,7 @@ The following table shows the plugin names on the server and client sides.
 
 **Table 8.15 Plugin and Library Names for SHA-2 Authentication**
 
-<table><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Library file</td> <td>None (plugins are built in)</td> </tr></tbody></table>
+<table><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Library file</td> <td>None (plugins are built in)</td> </tr></tbody></table>
 
 The following sections provide installation and usage information specific to caching SHA-2 pluggable authentication:
 
@@ -86,7 +86,7 @@ IDENTIFIED WITH mysql_native_password BY 'password';
 
   Use of a trusted local copy of the public key enables the client to avoid a round trip in the client/server protocol, and is more secure than requesting the public key from the server. On the other hand, requesting the public key from the server is more convenient (it requires no management of a client-side file) and may be acceptable in secure network environments.
 
-  + For command-line clients, use the `--server-public-key-path` option to specify the RSA public key file. Use the `--get-server-public-key` option to request the public key from the server. The following programs support the two options: `mysql`, **mysqlsh**, `mysqladmin`, **mysqlbinlog**, `mysqlcheck`, `mysqldump`, `mysqlimport`, `mysqlshow`, **mysqlslap**, **mysqltest**.
+  + For command-line clients, use the `--server-public-key-path` option to specify the RSA public key file. Use the `--get-server-public-key` option to request the public key from the server. The following programs support the two options: `mysql`,  `mysqlsh`, `mysqladmin`,  `mysqlbinlog`, `mysqlcheck`, `mysqldump`, `mysqlimport`, `mysqlshow`,  `mysqlslap`, `mysqltest`.
   + For programs that use the C API, call `mysql_options()` to specify the RSA public key file by passing the `MYSQL_SERVER_PUBLIC_KEY` option and the name of the file, or request the public key from the server by passing the `MYSQL_OPT_GET_SERVER_PUBLIC_KEY` option.
   + For replicas, use the `CHANGE REPLICATION SOURCE TO` statement with the `SOURCE_PUBLIC_KEY_PATH` option to specify the RSA public key file, or the `GET_SOURCE_PUBLIC_KEY` option to request the public key from the source. For Group Replication, the `group_replication_recovery_public_key_path` and `group_replication_recovery_get_public_key` system variables serve the same purpose.
 

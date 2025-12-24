@@ -1,6 +1,6 @@
 #### 6.6.9.2 mysqlbinlog Row Event Display
 
-The following examples illustrate how **mysqlbinlog** displays row events that specify data modifications. These correspond to events with the `WRITE_ROWS_EVENT`, `UPDATE_ROWS_EVENT`, and `DELETE_ROWS_EVENT` type codes. The `--base64-output=DECODE-ROWS` and  `--verbose` options may be used to affect row event output.
+The following examples illustrate how  `mysqlbinlog` displays row events that specify data modifications. These correspond to events with the `WRITE_ROWS_EVENT`, `UPDATE_ROWS_EVENT`, and `DELETE_ROWS_EVENT` type codes. The `--base64-output=DECODE-ROWS` and  `--verbose` options may be used to affect row event output.
 
 Suppose that the server is using row-based binary logging and that you execute the following sequence of statements:
 
@@ -19,7 +19,7 @@ DELETE FROM t WHERE id = 1;
 COMMIT;
 ```
 
-By default,  **mysqlbinlog** displays row events encoded as base-64 strings using `BINLOG` statements. Omitting extraneous lines, the output for the row events produced by the preceding statement sequence looks like this:
+By default,   `mysqlbinlog` displays row events encoded as base-64 strings using `BINLOG` statements. Omitting extraneous lines, the output for the row events produced by the preceding statement sequence looks like this:
 
 ```
 $> mysqlbinlog log_file
@@ -49,7 +49,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 '/*!*/;
 ```
 
-To see the row events as comments in the form of “pseudo-SQL” statements, run **mysqlbinlog** with the `--verbose` or `-v` option. This output level also shows table partition information where applicable. The output contains lines beginning with `###`:
+To see the row events as comments in the form of “pseudo-SQL” statements, run  `mysqlbinlog` with the `--verbose` or `-v` option. This output level also shows table partition information where applicable. The output contains lines beginning with `###`:
 
 ```
 $> mysqlbinlog -v log_file
@@ -147,7 +147,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 ###   @3='2009:01:01' /* DATE meta=0 nullable=1 is_null=0 */
 ```
 
-You can tell  **mysqlbinlog** to suppress the `BINLOG` statements for row events by using the `--base64-output=DECODE-ROWS` option. This is similar to `--base64-output=NEVER` but does not exit with an error if a row event is found. The combination of `--base64-output=DECODE-ROWS` and  `--verbose` provides a convenient way to see row events only as SQL statements:
+You can tell   `mysqlbinlog` to suppress the `BINLOG` statements for row events by using the `--base64-output=DECODE-ROWS` option. This is similar to `--base64-output=NEVER` but does not exit with an error if a row event is found. The combination of `--base64-output=DECODE-ROWS` and  `--verbose` provides a convenient way to see row events only as SQL statements:
 
 ```
 $> mysqlbinlog -v --base64-output=DECODE-ROWS log_file
@@ -183,7 +183,7 @@ $> mysqlbinlog -v --base64-output=DECODE-ROWS log_file
 
 ::: info Note
 
-You should not suppress  `BINLOG` statements if you intend to re-execute **mysqlbinlog** output.
+You should not suppress  `BINLOG` statements if you intend to re-execute  `mysqlbinlog` output.
 
 :::
 
@@ -201,6 +201,6 @@ The SQL statements produced by `--verbose` for row events are much more readable
     ```
   + Due to the storage format for events of type `UPDATE_ROWS_EVENT`, `UPDATE` statements are displayed with the `WHERE` clause preceding the `SET` clause.
 
-Proper interpretation of row events requires the information from the format description event at the beginning of the binary log. Because  **mysqlbinlog** does not know in advance whether the rest of the log contains row events, by default it displays the format description event using a `BINLOG` statement in the initial part of the output.
+Proper interpretation of row events requires the information from the format description event at the beginning of the binary log. Because   `mysqlbinlog` does not know in advance whether the rest of the log contains row events, by default it displays the format description event using a `BINLOG` statement in the initial part of the output.
 
 If the binary log is known not to contain any events requiring a `BINLOG` statement (that is, no row events), the `--base64-output=NEVER` option can be used to prevent this header from being written.

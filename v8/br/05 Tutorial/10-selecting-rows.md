@@ -15,7 +15,7 @@ mysql> SELECT * FROM pet WHERE name = 'Bowser';
 
 A produção confirma que o ano é corretamente registrado como 1989, e não 1979.
 
-As comparações de strings normalmente são case-insensíveis, então você pode especificar o nome como `'bowser'`, `'BOWSER'`, e assim por diante. O resultado da consulta é o mesmo.
+As comparações de strings normalmente não são sensíveis a maiúsculas e minúsculas, então você pode especificar o nome como `'bowser'`, `'BOWSER'`, e assim por diante. O resultado da consulta é o mesmo.
 
 Você pode especificar condições em qualquer coluna, não apenas em `name`. Por exemplo, se você quiser saber quais animais nasceram durante ou depois de 1998, teste a coluna `birth`:
 
@@ -31,7 +31,7 @@ mysql> SELECT * FROM pet WHERE birth >= '1998-1-1';
 
 Você pode combinar condições, por exemplo, para localizar cães fêmeas:
 
-```
+```sql
 mysql> SELECT * FROM pet WHERE species = 'dog' AND sex = 'f';
 +-------+--------+---------+------+------------+-------+
 | name  | owner  | species | sex  | birth      | death |
@@ -42,7 +42,7 @@ mysql> SELECT * FROM pet WHERE species = 'dog' AND sex = 'f';
 
 A consulta anterior usa o `AND` operador lógico. Há também um `OR` operador:
 
-```
+```sql
 mysql> SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
 +----------+-------+---------+------+------------+-------+
 | name     | owner | species | sex  | birth      | death |
@@ -53,9 +53,9 @@ mysql> SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
 +----------+-------+---------+------+------------+-------+
 ```
 
-Se você usar ambos os operadores, é uma boa ideia usar parênteses para indicar explicitamente como as condições devem ser agrupadas:
+`AND` e `OR` podem ser misturados, embora `AND` tenha maior precedência do que `OR`. Se você usar ambos os operadores, é uma boa ideia usar parênteses para indicar explicitamente como as condições devem ser agrupadas:
 
-```
+```sql
 mysql> SELECT * FROM pet WHERE (species = 'cat' AND sex = 'm')
        OR (species = 'dog' AND sex = 'f');
 +-------+--------+---------+------+------------+-------+

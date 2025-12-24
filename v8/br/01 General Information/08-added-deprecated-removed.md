@@ -1,0 +1,186 @@
+## 1.5 Servidor e variáveis de status e opções adicionadas, depreciadas ou removidas no MySQL 8.4 desde 8.0
+
+- Opções e variáveis introduzidas no MySQL 8.4
+- Opções e variáveis depreciadas no MySQL 8.4
+- Opções e variáveis removidas no MySQL 8.4
+
+Esta seção lista variáveis de servidor, variáveis de status e opções que foram adicionadas pela primeira vez, foram depreciadas ou foram removidas no MySQL 8.4 desde 8.0.
+
+### Opções e variáveis introduzidas no MySQL 8.4
+
+As seguintes variáveis de sistema, variáveis de status e opções de servidor foram adicionadas no MySQL 8.4.
+
+- `Audit_log_direct_writes`: Número de gravações diretas no arquivo de registro de auditoria. Adicionado no MySQL 8.1.0.
+- `Com_show_binary_log_status`: Contagem de instruções `SHOW BINARY LOG STATUS`; use em vez de `Com_show_master_status`. Adicionado no MySQL 8.2.0.
+- `Deprecated_use_i_s_processlist_count`: Número de vezes que a tabela de lista de processos do esquema de informação foi acessada. Adicionado no MySQL 8.3.0.
+- `Deprecated_use_i_s_processlist_last_timestamp`: Hora do acesso mais recente à tabela de lista de processos do esquema de informação (timestamp). Adicionado no MySQL 8.3.0.
+- `Gr_all_consensus_proposals_count`: soma de todas as propostas que foram iniciadas e terminadas neste nó. Adicionado no MySQL 8.1.0.
+- `Gr_all_consensus_time_sum`: A soma do tempo decorrido de todas as rodadas de consenso iniciadas e terminadas neste nó. Juntamente com count\_all\_consensus\_proposals, podemos identificar se o tempo de consenso individual tem uma tendência de subir, sinalizando assim um possível problema. Adicionado no MySQL 8.1.0.
+- `Gr_certification_garbage_collector_count`: Número de vezes que a coleta de lixo de certificação foi executada. Adicionado no MySQL 8.1.0.
+- `Gr_certification_garbage_collector_time_sum`: A soma do tempo em microssegundos que a coleta de lixo de certificação levou. Adicionado no MySQL 8.1.0.
+- `Gr_consensus_bytes_received_sum`: A soma de todos os bytes de nível de soquete que foram recebidos de nós de grupo que têm como destino este nó. Adicionado no MySQL 8.1.0.
+- `Gr_consensus_bytes_sent_sum`: soma de todos os bytes de nível de soquete que foram enviados para todos os nós do grupo originários deste nó. Os bytes de nível de soquete significam que iremos relatar mais dados aqui do que nas mensagens enviadas, porque elas são multiplexadas e enviadas para cada membro. Como exemplo, se tivermos um grupo com 3 membros e enviarmos uma mensagem de 100 bytes, este valor representará 300 bytes, uma vez que enviamos 100 bytes para cada nó. Adicionado no MySQL 8.1.0.
+- `Gr_control_messages_sent_bytes_sum`: soma de bytes de mensagens de controle enviadas por este membro. O tamanho é o tamanho on-the-wire. Adicionado no MySQL 8.1.0.
+- `Gr_control_messages_sent_count`: Número de mensagens de controle enviadas por este membro. Adicionado no MySQL 8.1.0.
+- `Gr_control_messages_sent_roundtrip_time_sum`: soma do tempo de ida e volta em microssegundos das mensagens de controle enviadas por este membro. O tempo é medido entre o envio e a entrega da mensagem no membro do remetente. Este tempo irá medir o tempo entre o envio e a entrega da mensagem na maioria dos membros do grupo (que inclui o remetente). Adicionado no MySQL 8.1.0.
+- `Gr_data_messages_sent_bytes_sum`: soma de bytes de mensagens de dados enviadas por este membro. O tamanho é o tamanho on-the-wire. Adicionado no MySQL 8.1.0.
+- `Gr_data_messages_sent_count`: Número de mensagens de dados enviadas por este membro. Conta o número de mensagens de dados de transação enviadas. Adicionado no MySQL 8.1.0.
+- `Gr_data_messages_sent_roundtrip_time_sum`: soma do tempo de ida e volta em microssegundos de mensagens de dados enviadas por este membro. O tempo é medido entre o envio e a entrega da mensagem no membro do remetente. Este tempo vai medir o tempo entre o envio e a entrega da mensagem na maioria dos membros do grupo (que inclui o remetente). Adicionado no MySQL 8.1.0.
+- `Gr_empty_consensus_proposals_count`: soma de todas as rodadas de proposta vazias que foram iniciadas e terminadas neste nó. Adicionado no MySQL 8.1.0.
+- `Gr_extended_consensus_count`: O número de PAXOS completos de 3 fases que este nó iniciou. Se este número crescer, significa que pelo menos um nó está tendo problemas para responder às Propostas, seja por lentidão ou problemas de rede. Use junto com count\_member\_failure\_suspicions para tentar fazer algum diagnóstico. Adicionado no MySQL 8.1.0.
+- `Gr_last_consensus_end_timestamp`: A hora em que nossa última proposta de consenso foi aprovada. Relatado em formato de marca de tempo. Este é um indicador se o grupo está parado ou fazendo um progresso lento. Adicionado no MySQL 8.1.0.
+- `Gr_total_messages_sent_count`: O número de mensagens de alto nível que este nó enviou para o grupo. Estas mensagens são as que recebemos através da API para serem propostas ao grupo. XCom tem um mecanismo de batching, que irá reunir essas mensagens e propô-las todas juntas. Isso irá acontar o número de mensagens antes de serem batchadas. Adicionado no MySQL 8.1.0.
+- `Gr_transactions_consistency_after_sync_count`: Número de transações em secundários que esperaram para começar, enquanto esperavam por transações do primário com `group_replication_consistency= AFTER` e `BEFORE_AND_AFTER` para serem comprometidas. Adicionado no MySQL 8.1.0.
+- `Gr_transactions_consistency_after_sync_time_sum`: A soma do tempo em microssegundos que as transações em secundários esperaram para começar, enquanto esperavam que as transações da primária com `group_replication_consistency= AFTER` e `BEFORE_AND_AFTER` fossem comprometidas. Adicionado no MySQL 8.1.0.
+- `Gr_transactions_consistency_after_termination_count`: Número de transações executadas com `group_replication_consistency= AFTER` e `BEFORE_AND_AFTER`. Adicionado no MySQL 8.1.0.
+- `Gr_transactions_consistency_after_termination_time_sum`: soma do tempo em microssegundos gasto entre a entrega da transação executada com `group_replication_consistency=AFTER` e `BEFORE_AND_AFTER`, e o reconhecimento dos outros membros do grupo de que a transação está preparada. Não inclui o tempo de ida e volta da transação. Adicionado no MySQL 8.1.0.
+- `Gr_transactions_consistency_before_begin_count`: Número de transações executadas com `group_replication_consistency= BEFORE` e `BEFORE_AND_AFTER`. Adicionado no MySQL 8.1.0.
+- `Gr_transactions_consistency_before_begin_time_sum`: soma do tempo em microssegundos que o membro esperou até que seu canal `group_replication_applier` fosse consumido antes de executar a transação com `group_replication_consistency= BEFORE` e `BEFORE_AND_AFTER`. Adicionado no MySQL 8.1.0.
+- `Performance_schema_meter_lost`: Número de instrumentos medidores que não foram criados. Adicionado no MySQL 8.2.0.
+- `Performance_schema_metric_lost`: Número de instrumentos métricos que não foram criados. Adicionado no MySQL 8.2.0.
+- `Telemetry_metrics_supported`: Se as métricas de telemetria do servidor são suportadas. Adicionado no MySQL 8.2.0.
+- `Tls_sni_server_name`: Nome do servidor fornecido pelo cliente. Adicionado no MySQL 8.1.0.
+- `authentication_ldap_sasl_connect_timeout`: SASL-Based LDAP server connection timeout. Adicionado no MySQL 8.1.0.
+- `authentication_ldap_sasl_response_timeout`: Tempo de resposta do servidor LDAP simples. Adicionado no MySQL 8.1.0.
+- `authentication_ldap_simple_connect_timeout`: Simple LDAP server connection timeout. Adicionado no MySQL 8.1.0.
+- `authentication_ldap_simple_response_timeout`: Tempo de resposta do servidor LDAP simples. Adicionado no MySQL 8.1.0.
+- `authentication_webauthn_rp_id`: ID da parte dependente para autenticação multifator. Adicionado no MySQL 8.2.0.
+- `check-table-functions`: Como proceder ao escanear o dicionário de dados para funções usadas em restrições de tabela e outras expressões, e tal função causa um erro. Use WARN para registrar avisos; `ABORT` (padrão) também registra avisos e interrompe qualquer atualização em andamento. Adicionado no MySQL 8.4.5.
+- `component_masking.dictionaries_flush_interval_seconds`: Quanto tempo o agendador deve esperar até tentar agendar a próxima execução, em segundos. Adicionado no MySQL 8.3.0.
+- `component_masking.masking_database`: Base de dados para usar para mascarar dicionários. Adicionado no MySQL 8.3.0.
+- `group_replication_preemptive_garbage_collection`: Ativar a coleta preventiva de lixo no modo primário único; sem efeito no modo multi-primário. Adicionado no MySQL 8.4.0.
+- `group_replication_preemptive_garbage_collection_rows_threshold`: Número de linhas de informações de certificação necessárias para desencadear a coleta preventiva de lixo no modo único primário quando ativado por `group_replication_preemptive_garbage_collection`. Adicionado no MySQL 8.4.0.
+- `keyring-migration-from-component`: A migração de Keyring é de componente para plugin. Adicionado no MySQL 8.4.0.
+- `mysql-native-password`: Ativar o plugin de autenticação `mysql_native_password`. Adicionado no MySQL 8.4.0.
+- `mysql_firewall_database`: Base de dados a partir da qual o plugin MySQL Enterprise Firewall fornece suas tabelas e procedimentos armazenados. Adicionado no MySQL 8.2.0.
+- `mysql_firewall_reload_interval_seconds`: Reload MySQL Enterprise Firewall plugin dados em intervalos especificados. Adicionado em MySQL 8.2.0.
+- `performance_schema_max_meter_classes`: Número máximo de instrumentos medidores que podem ser criados. Adicionado no MySQL 8.2.0.
+- `performance_schema_max_metric_classes`: Número máximo de instrumentos métricos que podem ser criados. Adicionado no MySQL 8.2.0.
+- `restrict_fk_on_non_standard_key`: Não permitir a criação de chaves estrangeiras em chaves não únicas ou parciais. Adicionado no MySQL 8.4.0.
+- `set_operations_buffer_size`: Quantidade de memória disponível para hash de operações de conjunto. Adicionado no MySQL 8.2.0.
+- `telemetry.live_sessions`: Mostra o número atual de sessões instrumentalizadas com telemetria. Adicionado no MySQL 8.1.0.
+- `telemetry.metrics_enabled`: Controla se as métricas de telemetria são coletadas ou não. Adicionado no MySQL 8.3.0.
+- `telemetry.metrics_reader_frequency_1`: . Adicionado no MySQL 8.3.0.
+- `telemetry.metrics_reader_frequency_2`: . Adicionado no MySQL 8.3.0.
+- `telemetry.metrics_reader_frequency_3`: . Adicionado no MySQL 8.3.0.
+- `telemetry.otel_bsp_max_export_batch_size`: tamanho máximo do lote. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_bsp_max_queue_size`: Tamanho máximo da fila. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_bsp_schedule_delay`: Intervalo de atraso entre duas exportações consecutivas em milissegundos. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_exporter_otlp_metrics_certificates`: O certificado confiável para usar ao verificar as credenciais TLS de um servidor. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_cipher`: criptografia TLS para usar para métricas (TLS 1.2). Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_cipher_suite`: criptografia TLS para uso em métricas (TLS 1.3). Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_client_certificates`: Certificado do cliente/Cadeia de confiança para a chave privada do cliente no formato PEM. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_client_key`: chave privada do cliente no formato PEM. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_compression`: Compressão usada pelo exportador. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_endpoint`: URL de ponto final de métricas. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_headers`: pares de chave-valor para serem usados como cabeçalhos associados a solicitações HTTP. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_max_tls`: versão TLS máxima para usar para métricas. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_min_tls`: versão mínima do TLS a ser usada para métricas. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_protocol`: Especifica o protocolo de transporte OTLP. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_metrics_timeout`: Tempo que o exportador OLTP espera para cada exportação em lote. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_traces_certificates`: O certificado confiável para usar ao verificar as credenciais TLS de um servidor.. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_exporter_otlp_traces_cipher`: criptografia TLS para uso de traços (TLS 1.2). Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_traces_cipher_suite`: criptografia TLS para usar para traços (TLS 1.3). Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_traces_client_certificates`: Certificado de cliente / cadeia de confiança para clientes chave privada em formato PEM. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_exporter_otlp_traces_client_key`: chave privada do cliente em formato PEM.. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_exporter_otlp_traces_compression`: Compressão usada pelo exportador. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_exporter_otlp_traces_endpoint`: URL de destino para o qual o exportador envia traços. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_exporter_otlp_traces_headers`: Pares chave-valor para serem usados como cabeçalhos associados a solicitações HTTP. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_exporter_otlp_traces_max_tls`: versão TLS máxima para uso de traços. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_traces_min_tls`: versão mínima do TLS a ser usada para traços. Adicionado no MySQL 8.3.0.
+- `telemetry.otel_exporter_otlp_traces_protocol`: protocolo de transporte OTLP. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_exporter_otlp_traces_timeout`: Tempo que o exportador OLTP espera para cada exportação em lote. Adicionado no MySQL 8.1.0.
+- `telemetry.otel_log_level`: Controles que registros de opentelemetry são impressos nos registros do servidor (somente Linux). Adicionado no MySQL 8.1.0.
+- `telemetry.otel_resource_attributes`: Veja a variável correspondente do OpenTelemetry `OTEL_RESOURCE_ATTRIBUTES`. Adicionado no MySQL 8.1.0.
+- `telemetry.query_text_enabled`: Controla se o texto da consulta SQL está incluído no traço (somente Linux). Adicionado no MySQL 8.1.0.
+- `telemetry.trace_enabled`: Controla se os traços de telemetria são coletados ou não (apenas Linux). Adicionado no MySQL 8.1.0.
+- `thread_pool_longrun_trx_limit`: Quando todos os threads usando `thread_pool_max_transactions_limit` estiverem sendo executados por mais tempo do que este número de milissegundos, o limite para o grupo é suspenso. Adicionado no MySQL 8.4.0.
+- `tls_certificates_enforced_validation`: Validação de certificados de servidor e CA. Adicionado no MySQL 8.1.0.
+
+### Opções e variáveis depreciadas no MySQL 8.4
+
+As seguintes variáveis de sistema, variáveis de status e opções foram depreciadas no MySQL 8.4.
+
+- `Com_show_master_status`: Contagem de instruções de `SHOW MASTER STATUS` Desaproveitado no MySQL 8.2.0.
+- `authentication_fido_rp_id`: ID da parte dependente para a autenticação multifator `FIDO`. Desaproveitado no MySQL 8.2.0.
+- `binlog_transaction_dependency_tracking`: Fonte de informações de dependência (commit timestamps ou transaction write sets) a partir da qual avaliar quais transações podem ser executadas em paralelo pelo aplicador multithreaded da réplica. Desaproveitado no MySQL 8.2.0.
+- `character-set-client-handshake`: Não ignore o valor do conjunto de caracteres do lado do cliente enviado durante o aperto de mão. Depreciado no MySQL 8.2.0.
+- `group_replication_allow_local_lower_version_join`: Permitir que o servidor atual se junte ao grupo, mesmo que tenha uma versão de plugin mais baixa do que o grupo.
+- `group_replication_view_change_uuid`: UUID para GTIDs de eventos de mudança de visualização. Depreciado no MySQL 8.3.0.
+- `mysql-native-password`: Ativar o plugin de autenticação de senha mysql\_native. Desaproveitado no MySQL 8.4.0.
+- `new`: Use funções muito novas, possivelmente 'inseguras'. Depreciado no MySQL 8.2.0.
+- `old`: Fazer com que o servidor volte a certos comportamentos presentes em versões mais antigas. Depreciado no MySQL 8.2.0.
+- `performance_schema_show_processlist`: Selecione `SHOW PROCESSLIST` implementação. Depreciado no MySQL 8.2.0.
+- `restrict_fk_on_non_standard_key`: Não permitir a criação de chaves estrangeiras em chaves não únicas ou parciais. Desaproveitado no MySQL 8.4.0.
+- `skip-character-set-client-handshake`: Ignorar o valor do conjunto de caracteres do lado do cliente enviado durante o aperto de mão. Depreciado no MySQL 8.2.0.
+- `skip-new`: Não use rotinas novas, possivelmente erradas. Depreciado no MySQL 8.2.0.
+
+### Opções e variáveis removidas no MySQL 8.4
+
+As seguintes variáveis de sistema, variáveis de status e opções foram removidas no MySQL 8.4.
+
+- `Com_change_master`: Contagem de `CHANGE REPLICATION SOURCE TO` e `CHANGE MASTER TO` instruções. Removido no MySQL 8.4.0.
+- `Com_show_master_status`: Contagem de instruções `SHOW MASTER STATUS` Removido no MySQL 8.4.0.
+- `Com_show_slave_hosts`: Contagem de `SHOW REPLICAS` e `SHOW SLAVE HOSTS` instruções. Removido no MySQL 8.4.0.
+- `Com_show_slave_status`: Contagem de `SHOW REPLICA STATUS` e `SHOW SLAVE STATUS` instruções. Removido no MySQL 8.4.0.
+- `Com_slave_start`: Contagem de `START REPLICA` e `START SLAVE` instruções. Removido no MySQL 8.4.0.
+- `Com_slave_stop`: Contagem de `STOP REPLICA` e `STOP SLAVE` instruções. Removido no MySQL 8.4.0.
+- `Replica_rows_last_search_algorithm_used`: Algoritmo de pesquisa mais recentemente usado por esta réplica para localizar linhas para replicação baseada em linhas (índice, tabela ou varredura de hash). Removido no MySQL 8.3.0.
+- `abort-slave-event-count`: Opção usada pelo mysql-test para depuração e teste de replicação. Removido no MySQL 8.2.0.
+- `admin-ssl`: Ativar criptografia de conexão. Removido no MySQL 8.4.0.
+- `authentication_fido_rp_id`: ID da parte dependente para a autenticação multifator `FIDO` . Removido no MySQL 8.4.0.
+- `avoid_temporal_upgrade`: Se `ALTER TABLE` deve atualizar colunas temporais pré-5.6.4. Removido no MySQL 8.4.0.
+- `binlog_transaction_dependency_tracking`: Fonte de informações de dependência (commit timestamps ou transaction write sets) a partir das quais avaliar quais transações podem ser executadas em paralelo pelo aplicador multithreaded da réplica. Removido no MySQL 8.4.0.
+- `character-set-client-handshake`: Não ignore o valor do conjunto de caracteres do lado do cliente enviado durante o aperto de mão. Removido no MySQL 8.3.0.
+- `daemon_memcached_enable_binlog`: . Removido no MySQL 8.3.0.
+- `daemon_memcached_engine_lib_name`: Biblioteca compartilhada que implementa o plugin InnoDB memcached. Removido no MySQL 8.3.0.
+- `daemon_memcached_engine_lib_path`: Diretório que contém biblioteca compartilhada implementando o plugin InnoDB memcached. Removido no MySQL 8.3.0.
+- `daemon_memcached_option`: Opções separadas por espaço que são passadas para o daemon memcached subjacente na inicialização. Removido no MySQL 8.3.0.
+- `daemon_memcached_r_batch_size`: Especifica quantas operações de leitura do memcache devem ser executadas antes de fazer `COMMIT` para iniciar uma nova transação. Removido no MySQL 8.3.0.
+- `daemon_memcached_w_batch_size`: Especifica quantas operações de memcache de escrita devem ser executadas antes de fazer `COMMIT` para iniciar uma nova transação. Removido no MySQL 8.3.0.
+- `default_authentication_plugin`: Plugin de autenticação padrão. Removido no MySQL 8.4.0.
+- `disconnect-slave-event-count`: Opção usada pelo mysql-test para depuração e teste de replicação. Removido no MySQL 8.2.0.
+- `expire_logs_days`: Purgar logs binários depois de muitos dias. Removido no MySQL 8.2.0.
+- `group_replication_ip_whitelist`: Lista de hosts permitidos para se conectar ao grupo. Removido no MySQL 8.3.0.
+- `group_replication_primary_member`: Membro primário `UUID` quando o grupo opera em modo único. String vazio se o grupo estiver operando em modo multi-primário. Removido no MySQL 8.3.0.
+- `group_replication_recovery_complete_at`: Políticas de recuperação ao lidar com transações em cache após transferência de estado. Removido no MySQL 8.4.0.
+- `have_openssl`: Se mysqld suporta conexões SSL. Removido no MySQL 8.4.0.
+- `have_ssl`: Se mysqld suporta conexões SSL. Removido no MySQL 8.4.0.
+- `innodb`: Ativar InnoDB (se esta versão do MySQL o suporta). Removido no MySQL 8.3.0.
+- `innodb_api_bk_commit_interval`: Com que frequência deve-se auto-cometer conexões ociosas que usam a interface InnoDB memcached, em segundos. Removido no MySQL 8.3.0.
+- `innodb_api_disable_rowlock`: . Removido no MySQL 8.3.0.
+- `innodb_api_enable_binlog`: Permite o uso do plugin InnoDB memcached com log binário do MySQL. Removido no MySQL 8.3.0.
+- `innodb_api_enable_mdl`: Bloqueia a tabela usada pelo plugin memcached do InnoDB, para que não possa ser descartada ou alterada pelo `DDL` através da interface SQL. Removido no MySQL 8.3.0.
+- `innodb_api_trx_level`: Permite o controle do nível de isolamento de transações em consultas processadas pela interface memcached. Removido no MySQL 8.3.0.
+- `keyring_encrypted_file_data`: `keyring_encrypted_file` arquivo de dados do plugin. Removido no MySQL 8.4.0.
+- `keyring_encrypted_file_password`: `keyring_encrypted_file` senha do plugin. Removido no MySQL 8.4.0.
+- `keyring_file_data`: `keyring_file` arquivo de dados do plugin. Removido no MySQL 8.4.0.
+- `keyring_oci_ca_certificate`: arquivo de certificado de CA para autenticação por pares. Removido no MySQL 8.4.0.
+- `keyring_oci_compartment`: compartimento OCI OCID. Removido no MySQL 8.4.0.
+- `keyring_oci_encryption_endpoint`: ponto final do servidor de criptografia OCI. Removido no MySQL 8.4.0.
+- `keyring_oci_key_file`: arquivo de chave privada OCI RSA. Removido no MySQL 8.4.0.
+- `keyring_oci_key_fingerprint`: impressão digital do arquivo de chave privada OCI RSA. Removido no MySQL 8.4.0.
+- `keyring_oci_management_endpoint`: ponto final do servidor de gerenciamento OCI. Removido no MySQL 8.4.0.
+- `keyring_oci_master_key`: OCI master key OCID. Removido no MySQL 8.4.0.
+- `keyring_oci_secrets_endpoint`: ponto final do servidor de segredos OCI. Removido no MySQL 8.4.0.
+- `keyring_oci_tenancy`: OCI tenance OCID. Removido no MySQL 8.4.0.
+- `keyring_oci_user`: OCID do usuário OCI. Removido no MySQL 8.4.0.
+- `keyring_oci_vaults_endpoint`: ponto final do servidor de cofres OCI. Removido no MySQL 8.4.0.
+- `keyring_oci_virtual_vault`: OCI vault OCID. Removido no MySQL 8.4.0.
+- `language`: mensagens de erro do cliente em determinado idioma. Pode ser dado como caminho completo. Removido no MySQL 8.4.0.
+- `log_bin_use_v1_row_events`: Se o servidor está usando a versão 1 de eventos de linha de registro binário. Removido no MySQL 8.3.0.
+- `master-info-file`: Localização e nome do arquivo que lembra a fonte e onde o thread de replicação de E/S está no log binário da fonte. Removido no MySQL 8.3.0.
+- `master_info_repository`: Se escrever repositório de metadados de conexão, contendo informações de origem e localização de thread de E/S de replicação no log binário da fonte, em arquivo ou tabela. Removido no MySQL 8.3.0.
+- `new`: Use funções muito novas, possivelmente 'inseguras'. Removido no MySQL 8.4.0.
+- `no-dd-upgrade`: Impede a atualização automática das tabelas do dicionário de dados na inicialização. Removido no MySQL 8.4.0.
+- `old`: Fazer com que o servidor volte a certos comportamentos presentes em versões mais antigas. Removido no MySQL 8.4.0.
+- `old-style-user-limits`: Ativar limites de usuário de estilo antigo (antes da 5.0.3, os recursos do usuário eram contados por cada usuário + host versus por conta). Removido no MySQL 8.3.0.
+- `relay_log_info_file`: Nome do arquivo para o repositório de metadados do aplicador no qual a réplica registra informações sobre logs de retransmissão. Removido no MySQL 8.3.0.
+- `relay_log_info_repository`: Se escrever a localização do thread SQL de replicação em logs de relay para arquivo ou tabela. Removido no MySQL 8.3.0.
+- `show_old_temporals`: Se `SHOW CREATE TABLE` deve indicar colunas temporais pré-5.6.4. Removido no MySQL 8.4.0.
+- `skip-character-set-client-handshake`: Ignorar o valor do conjunto de caracteres do lado do cliente enviado durante o aperto de mão. Removido no MySQL 8.3.0.
+- `skip-host-cache`: Não cache nomes de host. Removido no MySQL 8.3.0.
+- `skip-ssl`: Desativar criptografia de conexão. Removido no MySQL 8.4.0.
+- `slave_rows_search_algorithms`: Determina algoritmos de pesquisa usados para batching de atualização de réplica. Qualquer 2 ou 3 desta lista: `INDEX_SEARCH`, `TABLE_SCAN`, `HASH_SCAN`. Removido no MySQL 8.3.0.
+- `ssl`: Ativar criptografia de conexão. Removido no MySQL 8.4.0.
+- `transaction_write_set_extraction`: Define algoritmo usado para escrever hash extraído durante a transação. Removido no MySQL 8.3.0.

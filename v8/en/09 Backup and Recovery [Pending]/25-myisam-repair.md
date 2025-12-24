@@ -15,7 +15,7 @@ Symptoms of corrupted tables include queries that abort unexpectedly and observa
 * Record file is crashed
 * Got error *`nnn`* from table handler
 
-To get more information about the error, run **perror** *`nnn`*, where *`nnn`* is the error number. The following example shows how to use  **perror** to find the meanings for the most common error numbers that indicate a problem with a table:
+To get more information about the error, run  `perror` *`nnn`*, where *`nnn`* is the error number. The following example shows how to use   `perror` to find the meanings for the most common error numbers that indicate a problem with a table:
 
 ```
 $> perror 126 127 132 134 135 136 141 144 145

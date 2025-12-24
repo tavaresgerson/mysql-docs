@@ -2,7 +2,7 @@
 
 If the  `mysqld` server does not start or it crashes easily, you can try to create a trace file to find the problem.
 
-To do this, you must have a  `mysqld` that has been compiled with debugging support. You can check this by executing `mysqld -V`. If the version number ends with `-debug`, it is compiled with support for trace files. (On Windows, the debugging server is named **mysqld-debug** rather than `mysqld`.)
+To do this, you must have a  `mysqld` that has been compiled with debugging support. You can check this by executing `mysqld -V`. If the version number ends with `-debug`, it is compiled with support for trace files. (On Windows, the debugging server is named `mysqld-debug` rather than `mysqld`.)
 
 Start the  `mysqld` server with a trace log in `/tmp/mysqld.trace` on Unix or `\mysqld.trace` on Windows:
 

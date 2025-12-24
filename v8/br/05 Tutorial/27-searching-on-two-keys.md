@@ -1,10 +1,10 @@
-### 5.6.7 Pesquisar em duas chaves
+### 5.6.7 Pesquisar em Duas Chaves
 
 Um `OR` usando uma única chave é bem otimizado, assim como o manuseio de `AND`.
 
 O único caso complicado é o de pesquisar em duas chaves diferentes combinadas com `OR`:
 
-```
+```sql
 SELECT field1_index, field2_index FROM test_table
 WHERE field1_index = '1' OR  field2_index = '1'
 ```
@@ -15,7 +15,7 @@ Você também pode resolver o problema de forma eficiente usando um `UNION` que 
 
 Cada `SELECT` procura apenas uma chave e pode ser otimizado:
 
-```
+```sql
 SELECT field1_index, field2_index
     FROM test_table WHERE field1_index = '1'
 UNION

@@ -102,7 +102,7 @@ For functions that take length arguments, noninteger arguments are rounded to th
 
   If `USING` is given and the result string is illegal for the given character set, a warning is issued. Also, if strict SQL mode is enabled, the result from `CHAR()` becomes `NULL`.
 
-  If  `CHAR()` is invoked from within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `CHAR()` is invoked from within the `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
    `CHAR()` arguments larger than 255 are converted into multiple result bytes. For example, `CHAR(256)` is equivalent to `CHAR(1,0)`, and `CHAR(256*256)` is equivalent to `CHAR(1,0,0)`:
 
@@ -166,7 +166,7 @@ For functions that take length arguments, noninteger arguments are rounded to th
           -> 'MySQL'
   ```
 
-  If  `CONCAT()` is invoked from within the  `mysql` client, binary string results display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `CONCAT()` is invoked from within the `mysql` client, binary string results display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `CONCAT_WS(separator,str1,str2,...)`
 
    `CONCAT_WS()` stands for Concatenate With Separator and is a special form of `CONCAT()`. The first argument is the separator for the rest of the arguments. The separator is added between the strings to be concatenated. The separator can be a string, as can the rest of the arguments. If the separator is `NULL`, the result is `NULL`.
@@ -246,7 +246,7 @@ For functions that take length arguments, noninteger arguments are rounded to th
           -> 'JWJj', 'abc'
   ```
 
-  If  `FROM_BASE64()` is invoked from within the  `mysql` client, binary strings display using hexadecimal notation. You can disable this behavior by setting the value of the `--binary-as-hex` to `0` when starting the `mysql` client. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `FROM_BASE64()` is invoked from within the `mysql` client, binary strings display using hexadecimal notation. You can disable this behavior by setting the value of the `--binary-as-hex` to `0` when starting the `mysql` client. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `HEX(str)`, `HEX(N)`
 
   For a string argument *`str`*, `HEX()` returns a hexadecimal string representation of *`str`* where each byte of each character in *`str`* is converted to two hexadecimal digits. (Multibyte characters therefore become more than two digits.) The inverse of this operation is performed by the `UNHEX()` function.
@@ -661,7 +661,7 @@ For functions that take length arguments, noninteger arguments are rounded to th
 
   For a numeric argument *`N`*, the inverse of `HEX(N)` is not performed by  `UNHEX()`. Use `CONV(HEX(N),16,10)` instead. See the description of `HEX()`.
 
-  If  `UNHEX()` is invoked from within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `UNHEX()` is invoked from within the `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `UPPER(str)`
 
   Returns the string *`str`* with all characters changed to uppercase according to the current character set mapping, or `NULL` if *`str`* is `NULL`. The default character set is `utf8mb4`.
@@ -782,5 +782,5 @@ For functions that take length arguments, noninteger arguments are rounded to th
 
   The *`flags`* clause currently is unused.
 
-  If  `WEIGHT_STRING()` is invoked from within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `WEIGHT_STRING()` is invoked from within the `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 

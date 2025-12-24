@@ -10,7 +10,7 @@ No Unix, os nomes de banco de dados são sensíveis a maiúsculas e minúsculas 
 
 ::: info Note
 
-Se você receber um erro como ERROR 1044 (42000): acesso negado para o usuário 'micah'@'localhost' ao banco de dados 'menagerie' ao tentar criar um banco de dados, isso significa que sua conta de usuário não tem os privilégios necessários para fazê-lo. Discuta isso com o administrador ou consulte a Seção 8.2, Controlo de acesso e gerenciamento de conta.
+Se você receber um erro como ERROR 1044 (42000): acesso negado para o usuário 'micah'@'localhost' ao banco de dados 'menagerie' ao tentar criar um banco de dados, isso significa que sua conta de usuário não tem os privilégios necessários para fazê-lo.
 
 :::
 
@@ -21,7 +21,7 @@ mysql> USE menagerie
 Database changed
 ```
 
-Seu banco de dados precisa ser criado apenas uma vez, mas você deve selecioná-lo para uso cada vez que você iniciar uma sessão `mysql`. Você pode fazer isso emitindo uma instrução `USE` como mostrado no exemplo. Alternativamente, você pode selecionar o banco de dados na linha de comando quando você invocar `mysql`. Basta especificar seu nome após quaisquer parâmetros de conexão que você possa precisar fornecer. Por exemplo:
+Seu banco de dados precisa ser criado apenas uma vez, mas você deve selecioná-lo para uso a cada vez que você iniciar uma sessão `mysql`. Você pode fazer isso emitindo uma instrução `USE` como mostrado no exemplo. Alternativamente, você pode selecionar o banco de dados na linha de comando quando você invoca `mysql`. Basta especificar seu nome após quaisquer parâmetros de conexão que você possa precisar fornecer. Por exemplo:
 
 ```
 $> mysql -h host -u user -p menagerie
@@ -30,7 +30,7 @@ Enter password: ********
 
 Importância
 
-Se você quiser fornecer sua senha na linha de comando após a opção \[`-p`], você deve fazê-lo sem espaço intermediário (por exemplo, como \[`-ppassword`], não como \[`-p password`]]). No entanto, colocar sua senha na linha de comando não é recomendado, porque isso a expõe a espionagem por outros usuários conectados em sua máquina.
+Se você quiser fornecer sua senha na linha de comando após a opção `-p`, você deve fazê-lo sem espaço intermediário (por exemplo, como `-ppassword`, não como `-p password`).
 
 ::: info Note
 

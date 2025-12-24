@@ -78,7 +78,7 @@ Cast functions and operators enable conversion of values from one data type to a
   BLOB
   ```
 
-  If  `BINARY` is invoked from within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `BINARY` is invoked from within the `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 * [`CAST(expr AS type [ARRAY])`](cast-functions.html#function_cast)
 
   [`CAST(timestamp_value AT TIME ZONE timezone_specifier AS DATETIME[(precision)])`](cast-functions.html#function_cast)

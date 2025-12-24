@@ -23,9 +23,9 @@ X Protocol connections to a MySQL Server instance support compression, but compr
 These configuration parameters are available for controlling connection compression:
 
 * The `protocol_compression_algorithms` system variable configures which compression algorithms the server permits for incoming connections.
-* The  `--compression-algorithms` and  `--zstd-compression-level` command-line options configure permitted compression algorithms and `zstd` compression level for these client programs:  `mysql`, `mysqladmin`, **mysqlbinlog**, `mysqlcheck`,  `mysqldump`, `mysqlimport`, `mysqlshow`,  **mysqlslap**, and **mysqltest**. MySQL Shell also offers these command-line options.
+* The  `--compression-algorithms` and  `--zstd-compression-level` command-line options configure permitted compression algorithms and `zstd` compression level for these client programs: `mysql`, `mysqladmin`,  `mysqlbinlog`, `mysqlcheck`,  `mysqldump`, `mysqlimport`, `mysqlshow`,   `mysqlslap`, and `mysqltest`. MySQL Shell also offers these command-line options.
 * The `MYSQL_OPT_COMPRESSION_ALGORITHMS` and `MYSQL_OPT_ZSTD_COMPRESSION_LEVEL` options for the  `mysql_options()` function configure permitted compression algorithms and `zstd` compression level for client programs that use the MySQL C API.
-* The `SOURCE_COMPRESSION_ALGORITHMS` and `SOURCE_ZSTD_COMPRESSION_LEVEL` options for the [`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement") statement configure permitted compression algorithms and `zstd` compression level for replica servers participating in source/replica replication.
+* The `SOURCE_COMPRESSION_ALGORITHMS` and `SOURCE_ZSTD_COMPRESSION_LEVEL` options for the `CHANGE REPLICATION SOURCE TO` statement configure permitted compression algorithms and `zstd` compression level for replica servers participating in source/replica replication.
 * The `group_replication_recovery_compression_algorithms` and `group_replication_recovery_zstd_compression_level` system variables configure permitted compression algorithms and `zstd` compression level for Group Replication recovery connections when a new member joins a group and connects to a donor.
 
 Configuration parameters that enable specifying compression algorithms are string-valued and take a list of one or more comma-separated compression algorithm names, in any order, chosen from the following items (not case-sensitive):
@@ -55,7 +55,7 @@ Examples:
   SET PERSIST protocol_compression_algorithms='zlib,zstd,uncompressed';
   ```
 
-  [`SET PERSIST`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") sets a value for the running MySQL instance. It also saves the value, causing it to carry over to subsequent server restarts. To change the value for the running MySQL instance without having it carry over to subsequent restarts, use the `GLOBAL` keyword rather than `PERSIST`. See Section 15.7.6.1, “SET Syntax for Variable Assignment”.
+  `SET PERSIST` sets a value for the running MySQL instance. It also saves the value, causing it to carry over to subsequent server restarts. To change the value for the running MySQL instance without having it carry over to subsequent restarts, use the `GLOBAL` keyword rather than `PERSIST`. See Section 15.7.6.1, “SET Syntax for Variable Assignment”.
 * To permit only incoming connections that use `zstd` compression, configure the server at startup like this:
 
   ```
@@ -68,7 +68,7 @@ Examples:
   ```
   SET PERSIST protocol_compression_algorithms='zstd';
   ```
-* To permit the  `mysql` client to initiate `zlib` or `uncompressed` connections, invoke it like this:
+* To permit the `mysql` client to initiate `zlib` or `uncompressed` connections, invoke it like this:
 
   ```
   mysql --compression-algorithms=zlib,uncompressed
@@ -116,7 +116,7 @@ The legacy compression parameters interact with the newer parameters and their s
 
 The  `Compression` status variable is `ON` or `OFF` to indicate whether the current connection uses compression.
 
-The  `mysql` client `\status` command displays a line that says `Protocol: Compressed` if compression is enabled for the current connection. If that line is not present, the connection is uncompressed.
+The `mysql` client `\status` command displays a line that says `Protocol: Compressed` if compression is enabled for the current connection. If that line is not present, the connection is uncompressed.
 
 The MySQL Shell `\status` command displays a `Compression:` line that says `Disabled` or `Enabled` to indicate whether the connection is compressed.
 

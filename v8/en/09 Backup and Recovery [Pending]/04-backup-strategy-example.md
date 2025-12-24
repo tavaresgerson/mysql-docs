@@ -17,7 +17,7 @@ This section discusses a procedure for performing backups that enables you to re
 * File system crash
 * Hardware problem (hard drive, motherboard, and so forth)
 
-The example commands do not include options such as `--user` and `--password` for the `mysqldump` and  `mysql` client programs. You should include such options as necessary to enable client programs to connect to the MySQL server.
+The example commands do not include options such as `--user` and `--password` for the `mysqldump` and `mysql` client programs. You should include such options as necessary to enable client programs to connect to the MySQL server.
 
 Assume that data is stored in the `InnoDB` storage engine, which has support for transactions and automatic crash recovery. Assume also that the MySQL server is under load at the time of the crash. If it were not, no recovery would ever be needed.
 

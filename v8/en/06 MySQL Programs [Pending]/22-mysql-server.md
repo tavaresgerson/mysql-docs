@@ -1,8 +1,8 @@
-### 6.3.3 mysql.server — MySQL Server Startup Script
+### 6.3.3 `mysql.server` — MySQL Server Startup Script
 
-MySQL distributions on Unix and Unix-like system include a script named  `mysql.server`, which starts the MySQL server using  `mysqld_safe`. It can be used on systems such as Linux and Solaris that use System V-style run directories to start and stop system services. It is also used by the macOS Startup Item for MySQL.
+MySQL distributions on Unix and Unix-like system include a script named `mysql.server`, which starts the MySQL server using `mysqld_safe`. It can be used on systems such as Linux and Solaris that use System V-style run directories to start and stop system services. It is also used by the macOS Startup Item for MySQL.
 
- `mysql.server` is the script name as used within the MySQL source tree. The installed name might be different (for example,  `mysqld` or `mysql`). In the following discussion, adjust the name  `mysql.server` as appropriate for your system.
+`mysql.server` is the script name as used within the MySQL source tree. The installed name might be different (for example, `mysqld` or `mysql`). In the following discussion, adjust the name `mysql.server` as appropriate for your system.
 
 ::: info Note
 
@@ -17,27 +17,27 @@ mysql.server start
 mysql.server stop
 ```
 
- `mysql.server` changes location to the MySQL installation directory, then invokes `mysqld_safe`. To run the server as some specific user, add an appropriate `user` option to the `[mysqld]` group of the global `/etc/my.cnf` option file, as shown later in this section. (It is possible that you must edit `mysql.server` if you've installed a binary distribution of MySQL in a nonstandard location. Modify it to change location into the proper directory before it runs `mysqld_safe`. If you do this, your modified version of  `mysql.server` may be overwritten if you upgrade MySQL in the future; make a copy of your edited version that you can reinstall.)
+`mysql.server` changes location to the MySQL installation directory, then invokes `mysqld_safe`. To run the server as some specific user, add an appropriate `user` option to the `[mysqld]` group of the global `/etc/my.cnf` option file, as shown later in this section. (It is possible that you must edit `mysql.server` if you've installed a binary distribution of MySQL in a nonstandard location. Modify it to change location into the proper directory before it runs `mysqld_safe`. If you do this, your modified version of  `mysql.server` may be overwritten if you upgrade MySQL in the future; make a copy of your edited version that you can reinstall.)
 
- **mysql.server stop** stops the server by sending a signal to it. You can also stop the server manually by executing  **mysqladmin shutdown**.
+`mysql.server stop` stops the server by sending a signal to it. You can also stop the server manually by executing  `mysqladmin shutdown`.
 
 To start and stop MySQL automatically on your server, you must add start and stop commands to the appropriate places in your `/etc/rc*` files:
 
 * If you use the Linux server RPM package (`MySQL-server-VERSION.rpm`), or a native Linux package installation, the `mysql.server` script may be installed in the `/etc/init.d` directory with the name `mysqld` or `mysql`. See  Section 2.5.4, “Installing MySQL on Linux Using RPM Packages from Oracle”, for more information on the Linux RPM packages.
-* If you install MySQL from a source distribution or using a binary distribution format that does not install `mysql.server` automatically, you can install the script manually. It can be found in the `support-files` directory under the MySQL installation directory or in a MySQL source tree. Copy the script to the `/etc/init.d` directory with the name  `mysql` and make it executable:
+* If you install MySQL from a source distribution or using a binary distribution format that does not install `mysql.server` automatically, you can install the script manually. It can be found in the `support-files` directory under the MySQL installation directory or in a MySQL source tree. Copy the script to the `/etc/init.d` directory with the name `mysql` and make it executable:
 
   ```
   cp mysql.server /etc/init.d/mysql
   chmod +x /etc/init.d/mysql
   ```
 
-  After installing the script, the commands needed to activate it to run at system startup depend on your operating system. On Linux, you can use **chkconfig**:
+  After installing the script, the commands needed to activate it to run at system startup depend on your operating system. On Linux, you can use `chkconfig`:
 
   ```
   chkconfig --add mysql
   ```
 
-  On some Linux systems, the following command also seems to be necessary to fully enable the  `mysql` script:
+  On some Linux systems, the following command also seems to be necessary to fully enable the `mysql` script:
 
   ```
   chkconfig --level 345 mysql on
@@ -65,11 +65,11 @@ user=mysql
 basedir=/usr/local/mysql
 ```
 
-The  `mysql.server` script supports the options shown in the following table. If specified, they *must* be placed in an option file, not on the command line.  `mysql.server` supports only `start` and `stop` as command-line arguments.
+The `mysql.server` script supports the options shown in the following table. If specified, they *must* be placed in an option file, not on the command line. `mysql.server` supports only `start` and `stop` as command-line arguments.
 
 **Table 6.8 mysql.server Option-File Options**
 
-<table><col align="left" style="width: 20%"/><col align="left" style="width: 70%"/><col align="left" style="width: 10%"/><thead><tr><th scope="col">Option Name</th> <th scope="col">Description</th> <th scope="col">Type</th> </tr></thead><tbody><tr><th><code>basedir</code></th> <td>Path to MySQL installation directory</td> <td>Directory name</td> </tr><tr><th><code>datadir</code></th> <td>Path to MySQL data directory</td> <td>Directory name</td> </tr><tr><th><code>pid-file</code></th> <td>File in which server should write its process ID</td> <td>File name</td> </tr><tr><th><code>service-startup-timeout</code></th> <td>How long to wait for server startup</td> <td>Integer</td> </tr></tbody></table>
+<table><thead><tr><th>Option Name</th> <th>Description</th> <th>Type</th> </tr></thead><tbody><tr><th><code>basedir</code></th> <td>Path to MySQL installation directory</td> <td>Directory name</td> </tr><tr><th><code>datadir</code></th> <td>Path to MySQL data directory</td> <td>Directory name</td> </tr><tr><th><code>pid-file</code></th> <td>File in which server should write its process ID</td> <td>File name</td> </tr><tr><th><code>service-startup-timeout</code></th> <td>How long to wait for server startup</td> <td>Integer</td> </tr></tbody></table>
 
 *  `basedir=dir_name`
 

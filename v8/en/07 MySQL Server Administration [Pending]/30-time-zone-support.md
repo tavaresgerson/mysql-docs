@@ -84,13 +84,13 @@ Loading the time zone information is not necessarily a one-time operation becaus
 
 If your system has its own zoneinfo database (the set of files describing time zones), use the **mysql\_tzinfo\_to\_sql** program to load the time zone tables. Examples of such systems are Linux, macOS, FreeBSD, and Solaris. One likely location for these files is the `/usr/share/zoneinfo` directory. If your system has no zoneinfo database, you can use a downloadable package, as described later in this section.
 
-To load the time zone tables from the command line, pass the zoneinfo directory path name to **mysql\_tzinfo\_to\_sql** and send the output into the  `mysql` program. For example:
+To load the time zone tables from the command line, pass the zoneinfo directory path name to **mysql\_tzinfo\_to\_sql** and send the output into the `mysql` program. For example:
 
 ```
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
 ```
 
-The  `mysql` command shown here assumes that you connect to the server using an account such as `root` that has privileges for modifying tables in the `mysql` system schema. Adjust the connection parameters as required.
+The `mysql` command shown here assumes that you connect to the server using an account such as `root` that has privileges for modifying tables in the `mysql` system schema. Adjust the connection parameters as required.
 
  **mysql\_tzinfo\_to\_sql** reads your system's time zone files and generates SQL statements from them. `mysql` processes those statements to load the time zone tables.
 

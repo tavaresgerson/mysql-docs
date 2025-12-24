@@ -102,7 +102,7 @@ When a client connects to the server, it indicates which character set it wants 
 
 If the server does not support the requested character set or collation, it falls back to using the server character set and collation to configure the connection. For additional detail about this fallback behavior, see Connection Character Set Error Handling.
 
-The  `mysql`,  `mysqladmin`, `mysqlcheck`,  `mysqlimport`, and  `mysqlshow` client programs determine the default character set to use as follows:
+The `mysql`,  `mysqladmin`, `mysqlcheck`,  `mysqlimport`, and  `mysqlshow` client programs determine the default character set to use as follows:
 
 * In the absence of other information, each client uses the compiled-in default character set, usually `utf8mb4`.
 * Each client can autodetect which character set to use based on the operating system setting, such as the value of the `LANG` or `LC_ALL` locale environment variable on Unix systems or the code page setting on Windows systems. For systems on which the locale is available from the OS, the client uses it to set the default character set rather than using the compiled-in default. For example, setting `LANG` to `ru_RU.KOI8-R` causes the `koi8r` character set to be used. Thus, users can configure the locale in their environment for use by MySQL clients.
@@ -125,21 +125,21 @@ The  `mysql`,  `mysqladmin`, `mysqlcheck`,  `mysqlimport`, and  `mysqlshow` clie
 
   :::
 
-With the  `mysql` client, to use a character set different from the default, you could explicitly execute a `SET NAMES` statement every time you connect to the server (see Client Program Connection Character Set Configuration). To accomplish the same result more easily, specify the character set in your option file. For example, the following option file setting changes the three connection-related character set system variables set to `koi8r` each time you invoke  `mysql`:
+With the `mysql` client, to use a character set different from the default, you could explicitly execute a `SET NAMES` statement every time you connect to the server (see Client Program Connection Character Set Configuration). To accomplish the same result more easily, specify the character set in your option file. For example, the following option file setting changes the three connection-related character set system variables set to `koi8r` each time you invoke `mysql`:
 
 ```
 [mysql]
 default-character-set=koi8r
 ```
 
-If you are using the  `mysql` client with auto-reconnect enabled (which is not recommended), it is preferable to use the `charset` command rather than  `SET NAMES`. For example:
+If you are using the `mysql` client with auto-reconnect enabled (which is not recommended), it is preferable to use the `charset` command rather than  `SET NAMES`. For example:
 
 ```
 mysql> charset koi8r
 Charset changed
 ```
 
-The `charset` command issues a `SET NAMES` statement, and also changes the default character set that  `mysql` uses when it reconnects after the connection has dropped.
+The `charset` command issues a `SET NAMES` statement, and also changes the default character set that `mysql` uses when it reconnects after the connection has dropped.
 
 When configuration client programs, you must also consider the environment within which they execute. See Section 12.5, “Configuring Application Character Set and Collation”.
 

@@ -1,4 +1,4 @@
-### 6.3.4 mysqld_multi — Manage Multiple MySQL Servers
+### 6.3.4 `mysqld_multi` — Manage Multiple MySQL Servers
 
 `mysqld_multi` is designed to manage several `mysqld` processes that listen for connections on different Unix socket files and TCP/IP ports. It can start or stop servers, or report their current status.
 
@@ -18,7 +18,7 @@ mysqld_multi [options] {start|stop|reload|report} [GNR[,GNR] ...]
 
 `start`, `stop`, `reload` (stop and restart), and `report` indicate which operation to perform. You can perform the designated operation for a single server or multiple servers, depending on the *`GNR`* list that follows the option name. If there is no list,  `mysqld_multi` performs the operation for all servers in the option file.
 
-Each *`GNR`* value represents an option group number or range of group numbers. The value should be the number at the end of the group name in the option file. For example, the *`GNR`* for a group named `[mysqld17]` is `17`. To specify a range of numbers, separate the first and last numbers by a dash. The *`GNR`* value `10-13` represents groups `[mysqld10]` through `[mysqld13]`. Multiple groups or group ranges can be specified on the command line, separated by commas. There must be no whitespace characters (spaces or tabs) in the *`GNR`* list; anything after a whitespace character is ignored.
+Each `GNR` value represents an option group number or range of group numbers. The value should be the number at the end of the group name in the option file. For example, the `GNR` for a group named `[mysqld17]` is `17`. To specify a range of numbers, separate the first and last numbers by a dash. The `GNR` value `10-13` represents groups `[mysqld10]` through `[mysqld13]`. Multiple groups or group ranges can be specified on the command line, separated by commas. There must be no whitespace characters (spaces or tabs) in the `GNR` list; anything after a whitespace character is ignored.
 
 This command starts a single server using option group `[mysqld17]`:
 
@@ -42,13 +42,13 @@ mysqld_multi --example
 
 * With  `--no-defaults`, no option files are read.
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-defaults</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-defaults</code></td> </tr><tr><th>Type</th> <td><code>Boolean</code></td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 * With `--defaults-file=file_name`, only the named file is read.
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 * Otherwise, option files in the standard list of locations are read, including any file named by the `--defaults-extra-file=file_name` option, if one is given. (If the option is given multiple times, the last value is used.)
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
 For additional information about these and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
@@ -60,29 +60,29 @@ The `[mysqld]` or `[mysqld_safe]` groups can be used for common options read by 
 
 *  `--help`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Type</th> <td><code>Boolean</code></td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 *  `--example`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--example</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--example</code></td> </tr><tr><th>Type</th> <td><code>Boolean</code></td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Display a sample option file.
 *  `--log=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log=path</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>/var/log/mysqld_multi.log</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--log=path</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>/var/log/mysqld_multi.log</code></td> </tr></tbody></table>
 
   Specify the name of the log file. If the file exists, log output is appended to it.
 *  `--mysqladmin=prog_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysqladmin=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysqladmin=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   The  `mysqladmin` binary to be used to stop servers.
 *  `--mysqld=prog_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysqld=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysqld=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  The  `mysqld` binary to be used. Note that you can specify  `mysqld_safe` as the value for this option also. If you use `mysqld_safe` to start the server, you can include the `mysqld` or `ledir` options in the corresponding `[mysqldN]` option group. These options indicate the name of the server that  `mysqld_safe` should start and the path name of the directory where the server is located. (See the descriptions for these options in Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”.) Example:
+  The `mysqld` binary to be used. Note that you can specify `mysqld_safe` as the value for this option also. If you use `mysqld_safe` to start the server, you can include the `mysqld` or `ledir` options in the corresponding `[mysqldN]` option group. These options indicate the name of the server that  `mysqld_safe` should start and the path name of the directory where the server is located. Example:
 
   ```
   [mysqld38]
@@ -91,37 +91,37 @@ The `[mysqld]` or `[mysqld_safe]` groups can be used for common options read by 
   ```
 *  `--no-log`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-log</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-log</code></td> </tr><tr><th>Type</th> <td><code>Boolean</code></td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Print log information to `stdout` rather than to the log file. By default, output goes to the log file.
 *  `--password=password`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--password=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   The password of the MySQL account to use when invoking `mysqladmin`. Note that the password value is not optional for this option, unlike for other MySQL programs.
 *  `--silent`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--silent</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--silent</code></td> </tr><tr><th>Type</th> <td><code>Boolean</code></td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Silent mode; disable warnings.
 *  `--tcp-ip`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tcp-ip</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tcp-ip</code></td> </tr><tr><th>Type</th> <td><code>Boolean</code></td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Connect to each MySQL server through the TCP/IP port instead of the Unix socket file. (If a socket file is missing, the server might still be running, but accessible only through the TCP/IP port.) By default, connections are made using the Unix socket file. This option affects `stop` and `report` operations.
 *  `--user=user_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--user=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>root</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--user=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>root</code></td> </tr></tbody></table>
 
   The user name of the MySQL account to use when invoking `mysqladmin`.
 *  `--verbose`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr><tr><th>Type</th> <td><code>Boolean</code></td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Be more verbose.
 *  `--version`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr><tr><th>Type</th> <td><code>Boolean</code></td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Display version information and exit.
 
@@ -146,7 +146,7 @@ Some notes about  `mysqld_multi`:
 * The  `--pid-file` option is very important if you are using `mysqld_safe` to start `mysqld` (for example, `--mysqld=mysqld_safe`) Every  `mysqld` should have its own process ID file. The advantage of using `mysqld_safe` instead of `mysqld` is that `mysqld_safe` monitors its `mysqld` process and restarts it if the process terminates due to a signal sent using `kill -9` or for other reasons, such as a segmentation fault.
 * You might want to use the `--user` option for `mysqld`, but to do this you need to run the  `mysqld_multi` script as the Unix superuser (`root`). Having the option in the option file doesn't matter; you just get a warning if you are not the superuser and the  `mysqld` processes are started under your own Unix account.
 
-The following example shows how you might set up an option file for use with  `mysqld_multi`. The order in which the  `mysqld` programs are started or stopped depends on the order in which they appear in the option file. Group numbers need not form an unbroken sequence. The first and fifth `[mysqldN]` groups were intentionally omitted from the example to illustrate that you can have “gaps” in the option file. This gives you more flexibility.
+The following example shows how you might set up an option file for use with `mysqld_multi`. The order in which the `mysqld` programs are started or stopped depends on the order in which they appear in the option file. Group numbers need not form an unbroken sequence. The first and fifth `[mysqldN]` groups were intentionally omitted from the example to illustrate that you can have “gaps” in the option file. This gives you more flexibility.
 
 ```
 # This is an example of a my.cnf file for mysqld_multi.

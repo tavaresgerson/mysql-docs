@@ -4,7 +4,7 @@ O MySQL fornece várias funções que você pode usar para realizar cálculos em
 
 Para determinar a idade de cada um dos seus animais de estimação, use a função `TIMESTAMPDIFF()` . Seus argumentos são a unidade em que você deseja que o resultado seja expresso e as duas datas para as quais a diferença seja tomada. A seguinte consulta mostra, para cada animal de estimação, a data de nascimento, a data atual e a idade em anos. Um \* alias \* (`age`) é usado para tornar o rótulo da coluna de saída final mais significativo.
 
-```
+```sql
 mysql> SELECT name, birth, CURDATE(),
        TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age
        FROM pet;
@@ -23,7 +23,7 @@ mysql> SELECT name, birth, CURDATE(),
 +----------+------------+------------+------+
 ```
 
-A consulta funciona, mas o resultado poderia ser escaneado mais facilmente se as linhas fossem apresentadas em alguma ordem. Isso pode ser feito adicionando uma cláusula `ORDER BY name` para classificar a saída por nome:
+A consulta funciona, mas o resultado pode ser escaneado mais facilmente se as linhas forem apresentadas em alguma ordem. Isso pode ser feito adicionando uma cláusula `ORDER BY name` para classificar a saída por nome:
 
 ```
 mysql> SELECT name, birth, CURDATE(),
@@ -80,7 +80,7 @@ mysql> SELECT name, birth, death,
 
 A consulta usa `death IS NOT NULL` em vez de `death <> NULL` porque `NULL` é um valor especial que não pode ser comparado usando os operadores de comparação usuais.
 
-E se você quiser saber quais animais têm aniversários no próximo mês? Para este tipo de cálculo, ano e dia são irrelevantes; você simplesmente quer extrair a parte do mês da coluna `birth`. O MySQL fornece várias funções para extrair partes de datas, como `YEAR()`, `MONTH()`, e `DAYOFMONTH()`. `MONTH()` é a função apropriada aqui. Para ver como funciona, execute uma consulta simples que exibe o valor de ambos `birth` e `MONTH(birth)`:
+E se você quiser saber quais animais têm aniversários no próximo mês? Para este tipo de cálculo, o ano e o dia são irrelevantes; você simplesmente quer extrair a parte do mês da coluna `birth`. O MySQL fornece várias funções para extrair partes de datas, como `YEAR()`, `MONTH()`, e `DAYOFMONTH()`. `MONTH()` é a função apropriada aqui. Para ver como funciona, execute uma consulta simples que exibe o valor de ambos `birth` e `MONTH(birth)`:
 
 ```
 mysql> SELECT name, birth, MONTH(birth) FROM pet;
@@ -112,21 +112,21 @@ mysql> SELECT name, birth FROM pet WHERE MONTH(birth) = 5;
 
 Há uma pequena complicação se o mês atual for dezembro. Você não pode simplesmente adicionar um ao número do mês (\[`12`]]) e procurar animais nascidos no mês \[`13`]], porque não há tal mês. Em vez disso, você procura animais nascidos em janeiro (mês \[`1`]]).
 
-Você pode escrever a consulta para que ela funcione independentemente do mês atual, de modo que você não tenha que usar o número para um mês específico. \[`DATE_ADD()`] permite adicionar um intervalo de tempo a uma data determinada. Se você adicionar um mês ao valor de \[`CURDATE()`], então extrair a parte do mês com \[`MONTH()`], o resultado produz o mês em que procurar aniversários:
+Você pode escrever a consulta para que ela funcione independentemente do mês atual, para que você não precise usar o número para um mês específico. \[`DATE_ADD()`] permite adicionar um intervalo de tempo a uma data dada. Se você adicionar um mês ao valor de \[`CURDATE()`], então extrair a parte do mês com \[`MONTH()`], o resultado produz o mês em que procurar aniversários:
 
 ```
 mysql> SELECT name, birth FROM pet
        WHERE MONTH(birth) = MONTH(DATE_ADD(CURDATE(),INTERVAL 1 MONTH));
 ```
 
-Uma maneira diferente de realizar a mesma tarefa é adicionar `1` para obter o próximo mês após o atual, depois de usar a função modulo (`MOD`) para envolver o valor do mês em `0` se for atualmente `12`:
+Uma maneira diferente de realizar a mesma tarefa é adicionar `1` para obter o próximo mês após o atual após usar a função modulo (`MOD`) para envolver o valor do mês em `0` se for atualmente `12`:
 
 ```
 mysql> SELECT name, birth FROM pet
        WHERE MONTH(birth) = MOD(MONTH(CURDATE()), 12) + 1;
 ```
 
-\[`MONTH()`] retorna um número entre \[`1`] e \[`12`]. e \[`MOD(something,12)`] retorna um número entre \[`0`] e \[`11`]. então a adição tem que ser depois do \[`MOD()`], caso contrário iríamos de novembro (`11`) para janeiro (`1`).
+\[`MONTH()`] retorna um número entre \[`1`] e \[`12`]. E \[`MOD(something,12)`] retorna um número entre \[`0`] e \[`11`]. Então a adição tem que ser depois do \[`MOD()`], caso contrário, iríamos de novembro (`11`) para janeiro (`1`).
 
 Se um cálculo utilizar datas inválidas, o cálculo falhará e produzirá avisos:
 

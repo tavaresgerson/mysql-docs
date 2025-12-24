@@ -12,21 +12,22 @@ This section describes options that control how client programs establish connec
 
 **Table 6.4 Connection-Establishment Option Summary**
 
-<table><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--default-auth</td> <td>Authentication plugin to use</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--plugin-dir</td> <td>Directory where plugins are installed</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr></tbody></table>
+<table><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>--default-auth</code></td> <td>Authentication plugin to use</td> </tr><tr><td><code>--host</code></td> <td>Host on which MySQL server is located</td> </tr><tr><td><code>--password</code></td> <td>Password to use when connecting to server</td> </tr><tr><td><code>--password1</code></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><code>--password2</code></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><code>--password3</code></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><code>--pipe</code></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><code>--plugin-dir</code></td> <td>Directory where plugins are installed</td> </tr><tr><td><code>--port</code></td> <td>TCP/IP port number for connection</td> </tr><tr><td><code>--protocol</code></td> <td>Transport protocol to use</td> </tr><tr><td><code>--shared-memory-base-name</code></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><code>--socket</code></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><code>--user</code></td> <td>MySQL user name to use when connecting to server</td> </tr></tbody></table>
 
 *  `--default-auth=plugin`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   A hint about which client-side authentication plugin to use. See  Section 8.2.17, “Pluggable Authentication”.
+
 *  `--host=host_name`, `-h host_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   The host on which the MySQL server is running. The value can be a host name, IPv4 address, or IPv6 address. The default value is `localhost`.
 *  `--password[=pass_val]`, `-p[pass_val]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, the client program prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -35,7 +36,7 @@ This section describes options that control how client programs establish connec
   To explicitly specify that there is no password and that the client program should not prompt for one, use the `--skip-password` option.
 *  `--password1[=pass_val]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password1[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--password1[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, the client program prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -46,32 +47,32 @@ This section describes options that control how client programs establish connec
    `--password1` and `--password` are synonymous, as are `--skip-password1` and `--skip-password`.
 *  `--password2[=pass_val]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password2[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--password2[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The password for multifactor authentication factor 2 of the MySQL account used for connecting to the server. The semantics of this option are similar to the semantics for `--password1`; see the description of that option for details.
 *  `--password3[=pass_val]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password3[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--password3[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The password for multifactor authentication factor 3 of the MySQL account used for connecting to the server. The semantics of this option are similar to the semantics for `--password1`; see the description of that option for details.
 *  `--pipe`, `-W`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--pipe</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--pipe</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 *  `--plugin-dir=dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The directory in which to look for plugins. Specify this option if the  `--default-auth` option is used to specify an authentication plugin but the client program does not find it. See Section 8.2.17, “Pluggable Authentication”.
+  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but the client program does not find it. See Section 8.2.17, “Pluggable Authentication”.
 *  `--port=port_num`, `-P port_num`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
 
   For TCP/IP connections, the port number to use. The default port number is 3306.
 *  `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--protocol=type</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[see text]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>TCP</code></p><p class="valid-value"><code>SOCKET</code></p><p class="valid-value"><code>PIPE</code></p><p class="valid-value"><code>MEMORY</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--protocol=type</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[see text]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>TCP</code></p><p><code>SOCKET</code></p><p><code>PIPE</code></p><p><code>MEMORY</code></p></td> </tr></tbody></table>
 
   This option explicitly specifies which transport protocol to use for connecting to the server. It is useful when other connection parameters normally result in use of a protocol other than the one you want. For example, connections on Unix to `localhost` are made using a Unix socket file by default:
 
@@ -87,19 +88,19 @@ This section describes options that control how client programs establish connec
 
   The following table shows the permissible `--protocol` option values and indicates the applicable platforms for each value. The values are not case-sensitive.
 
-  <table><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th scope="col"><code class="option">--protocol</code> Value</th> <th scope="col">Transport Protocol Used</th> <th scope="col">Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP transport to local or remote server</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket-file transport to local server</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named-pipe transport to local server</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared-memory transport to local server</td> <td>Windows</td> </tr></tbody></table>
+  <table><thead><tr> <th><code>--protocol</code> Value</th> <th>Transport Protocol Used</th> <th>Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP transport to local or remote server</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket-file transport to local server</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named-pipe transport to local server</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared-memory transport to local server</td> <td>Windows</td> </tr></tbody></table>
 
   See also  Section 6.2.7, “Connection Transport Protocols”
 *  `--shared-memory-base-name=name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--shared-memory-base-name=name</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--shared-memory-base-name=name</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
   This option applies only if the server was started with the `shared_memory` system variable enabled to support shared-memory connections.
 *  `--socket=path`, `-S path`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--socket={file_name|pipe_name}</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--socket={file_name|pipe_name}</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   On Unix, the name of the Unix socket file to use for connections made using a named pipe to a local server. The default Unix socket file name is `/tmp/mysql.sock`.
 
@@ -108,7 +109,7 @@ This section describes options that control how client programs establish connec
   On Windows, this option applies only if the server was started with the  `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 *  `--user=user_name`, `-u user_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--user=user_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--user=user_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The user name of the MySQL account to use for connecting to the server. The default user name is `ODBC` on Windows or your Unix login name on Unix.
 
@@ -126,11 +127,11 @@ For information about using encrypted connections from the MySQL C API, see  Sup
 
 **Table 6.5 Connection-Encryption Option Summary**
 
-<table><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-crl</td> <td>File that contains certificate revocation lists</td> </tr><tr><td>--ssl-crlpath</td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr></tbody></table>
+<table><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>--get-server-public-key</code></td> <td>Request RSA public key from server</td> </tr><tr><td><code>--server-public-key-path</code></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><code>--ssl-ca</code></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><code>--ssl-capath</code></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><code>--ssl-cert</code></td> <td>File that contains X.509 certificate</td> </tr><tr><td><code>--ssl-cipher</code></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><code>--ssl-crl</code></td> <td>File that contains certificate revocation lists</td> </tr><tr><td><code>--ssl-crlpath</code></td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td><code>--ssl-fips-mode</code></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><code>--ssl-key</code></td> <td>File that contains X.509 key</td> </tr><tr><td><code>--ssl-mode</code></td> <td>Desired security state of connection to server</td> </tr><tr><td><code>--ssl-session-data</code></td> <td>File that contains SSL session data</td> </tr><tr><td><code>--ssl-session-data-continue-on-failed-reuse</code></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><code>--tls-ciphersuites</code></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><code>--tls-version</code></td> <td>Permissible TLS protocols for encrypted connections</td> </tr></tbody></table>
 
 *  `--get-server-public-key`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td><code>Boolean</code></td> </tr></tbody></table>
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -139,7 +140,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   For information about the `caching_sha2_password` plugin, see Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”.
 *  `--server-public-key-path=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--server-public-key-path=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--server-public-key-path=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` (deprecated) or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -150,7 +151,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   For information about the `sha256_password` (deprecated) and `caching_sha2_password` plugins, see Section 8.4.1.3, “SHA-256 Pluggable Authentication”, and Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”.
 *  `--ssl-ca=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-ca=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-ca=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   The path name of the Certificate Authority (CA) certificate file in PEM format. The file contains a list of trusted SSL Certificate Authorities.
 
@@ -159,7 +160,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   To specify the CA file for the server, set the `ssl_ca` system variable.
 *  `--ssl-capath=dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-capath=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-capath=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The path name of the directory that contains trusted SSL certificate authority (CA) certificate files in PEM format.
 
@@ -168,14 +169,14 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   To specify the CA directory for the server, set the `ssl_capath` system variable.
 *  `--ssl-cert=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-cert=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-cert=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   The path name of the client SSL public key certificate file in PEM format. Chained SSL certificates are supported.
 
   To specify the server SSL public key certificate file, set the  `ssl_cert` system variable.
 *  `--ssl-cipher=cipher_list`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-cipher=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-cipher=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The list of permissible encryption ciphers for connections that use TLSv1.2. If no cipher in the list is supported, encrypted connections that use these TLS protocols do not work.
 
@@ -193,7 +194,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   To specify the encryption ciphers for the server, set the `ssl_cipher` system variable.
 *  `--ssl-crl=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-crl=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-crl=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   The path name of the file containing certificate revocation lists in PEM format.
 
@@ -202,7 +203,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   To specify the revocation-list file for the server, set the `ssl_crl` system variable.
 *  `--ssl-crlpath=dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-crlpath=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-crlpath=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The path name of the directory that contains certificate revocation-list files in PEM format.
 
@@ -211,7 +212,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   To specify the revocation-list directory for the server, set the  `ssl_crlpath` system variable.
 *  `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-fips-mode={OFF|ON|STRICT}</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>STRICT</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-fips-mode={OFF|ON|STRICT}</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>STRICT</code></p></td> </tr></tbody></table>
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See  Section 8.8, “FIPS Support”.
 
@@ -230,7 +231,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   To specify the FIPS mode for the server, set the `ssl_fips_mode` system variable.
 *  `--ssl-key=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-key=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-key=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   The path name of the client SSL private key file in PEM format. For better security, use a certificate with an RSA key size of at least 2048 bits.
 
@@ -239,7 +240,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   To specify the server SSL private key file, set the `ssl_key` system variable.
 *  `--ssl-mode=mode`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-mode=mode</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>PREFERRED</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>DISABLED</code></p><p class="valid-value"><code>PREFERRED</code></p><p class="valid-value"><code>REQUIRED</code></p><p class="valid-value"><code>VERIFY_CA</code></p><p class="valid-value"><code>VERIFY_IDENTITY</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-mode=mode</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>PREFERRED</code></td> </tr><tr><th>Valid Values</th> <td><p><code>DISABLED</code></p><p><code>PREFERRED</code></p><p><code>REQUIRED</code></p><p><code>VERIFY_CA</code></p><p><code>VERIFY_IDENTITY</code></p></td> </tr></tbody></table>
 
   This option specifies the desired security state of the connection to the server. These mode values are permissible, in order of increasing strictness:
 
@@ -266,34 +267,34 @@ For information about using encrypted connections from the MySQL C API, see  Sup
 
   The default setting, `--ssl-mode=PREFERRED`, produces an encrypted connection if the other default settings are unchanged. However, to help prevent sophisticated man-in-the-middle attacks, it is important for the client to verify the server’s identity. The settings `--ssl-mode=VERIFY_CA` and `--ssl-mode=VERIFY_IDENTITY` are a better choice than the default setting to help prevent this type of attack. To implement one of these settings, you must first ensure that the CA certificate for the server is reliably available to all the clients that use it in your environment, otherwise availability issues will result. For this reason, they are not the default setting.
 
-  The  `--ssl-mode` option interacts with CA certificate options as follows:
+  The `--ssl-mode` option interacts with CA certificate options as follows:
 
-  + If  `--ssl-mode` is not explicitly set otherwise, use of `--ssl-ca` or `--ssl-capath` implies `--ssl-mode=VERIFY_CA`.
-  + For  `--ssl-mode` values of `VERIFY_CA` or `VERIFY_IDENTITY`, `--ssl-ca` or `--ssl-capath` is also required, to supply a CA certificate that matches the one used by the server.
+  + If `--ssl-mode` is not explicitly set otherwise, use of `--ssl-ca` or `--ssl-capath` implies `--ssl-mode=VERIFY_CA`.
+  + For `--ssl-mode` values of `VERIFY_CA` or `VERIFY_IDENTITY`, `--ssl-ca` or `--ssl-capath` is also required, to supply a CA certificate that matches the one used by the server.
   + An explicit  `--ssl-mode` option with a value other than `VERIFY_CA` or `VERIFY_IDENTITY`, together with an explicit  `--ssl-ca` or `--ssl-capath` option, produces a warning that no verification of the server certificate is performed, despite a CA certificate option being specified.
 
-  To require use of encrypted connections by a MySQL account, use  `CREATE USER` to create the account with a `REQUIRE SSL` clause, or use `ALTER USER` for an existing account to add a `REQUIRE SSL` clause. This causes connection attempts by clients that use the account to be rejected unless MySQL supports encrypted connections and an encrypted connection can be established.
+  To require use of encrypted connections by a MySQL account, use `CREATE USER` to create the account with a `REQUIRE SSL` clause, or use `ALTER USER` for an existing account to add a `REQUIRE SSL` clause. This causes connection attempts by clients that use the account to be rejected unless MySQL supports encrypted connections and an encrypted connection can be established.
 
-  The `REQUIRE` clause permits other encryption-related options, which can be used to enforce security requirements stricter than `REQUIRE SSL`. For additional details about which command options may or must be specified by clients that connect using accounts configured using the various `REQUIRE` options, see CREATE USER SSL/TLS Options.
+  The `REQUIRE` clause permits other encryption-related options, which can be used to enforce security requirements stricter than `REQUIRE SSL`. For additional details about which command options may or must be specified by clients that connect using accounts configured using the various `REQUIRE` options.
 *  `--ssl-session-data=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-session-data=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-session-data=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   The path name of the client SSL session data file in PEM format for session reuse.
 
   When you invoke a MySQL client program with the `--ssl-session-data` option, the client attempts to deserialize session data from the file, if provided, and then use it to establish a new connection. If you supply a file, but the session is not reused, then the connection fails unless you also specified the `--ssl-session-data-continue-on-failed-reuse` option on the command line when you invoked the client program.
 
-  The  `mysql` command, `ssl_session_data_print`, generates the session data file (see  Section 6.5.1.2, “mysql Client Commands”).
+  The `mysql` command, `ssl_session_data_print`, generates the session data file (see  Section 6.5.1.2, “mysql Client Commands”).
 *  `ssl-session-data-continue-on-failed-reuse`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-session-data-continue-on-failed-reuse</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-session-data-continue-on-failed-reuse</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Controls whether a new connection is started to replace an attempted connection that tried but failed to reuse session data specified with the `--ssl-session-data` command-line option. By default, the `--ssl-session-data-continue-on-failed-reuse` command-line option is off, which causes a client program to return a connect failure when session data are supplied and not reused.
 
   To ensure that a new, unrelated connection opens after session reuse fails silently, invoke MySQL client programs with both the `--ssl-session-data` and `--ssl-session-data-continue-on-failed-reuse` command-line options.
 *  `--tls-ciphersuites=ciphersuite_list`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tls-ciphersuites=ciphersuite_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>empty string</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tls-ciphersuites=ciphersuite_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>empty string</code></td> </tr></tbody></table>
 
   This option specifies which ciphersuites the client permits for encrypted connections that use TLSv1.3. The value is a list of zero or more colon-separated ciphersuite names. For example:
 
@@ -306,7 +307,7 @@ For information about using encrypted connections from the MySQL C API, see  Sup
   To specify which ciphersuites the server permits, set the `tls_ciphersuites` system variable.
 *  `--tls-version=protocol_list`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tls-version=protocol_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><p class="valid-value"><code>TLSv1,TLSv1.1,TLSv1.2,TLSv1.3</code> (OpenSSL 1.1.1 or higher)</p><p class="valid-value"><code>TLSv1,TLSv1.1,TLSv1.2</code> (otherwise)</p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tls-version=protocol_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><p><code>TLSv1,TLSv1.1,TLSv1.2,TLSv1.3</code> (OpenSSL 1.1.1 or higher)</p><p><code>TLSv1,TLSv1.1,TLSv1.2</code> (otherwise)</p></td> </tr></tbody></table>
 
   This option specifies the TLS protocols the client permits for encrypted connections. The value is a list of one or more comma-separated protocol versions. For example:
 
@@ -338,22 +339,22 @@ This section describes options that enable client programs to control use of com
 
 **Table 6.6 Connection-Compression Option Summary**
 
-<table><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>--compress</code></td> <td>Compress all information sent between client and server</td> </tr><tr><td><code>--compression-algorithms</code></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><code>--zstd-compression-level</code></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 *  `--compress`, `-C`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible.
 
   This option is deprecated. Expect it to be removed in a future version of MySQL. See Configuring Legacy Connection Compression.
 *  `--compression-algorithms=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>uncompressed</code></p></td> </tr></tbody></table>
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 *  `--zstd-compression-level=level`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--zstd-compression-level=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--zstd-compression-level=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.

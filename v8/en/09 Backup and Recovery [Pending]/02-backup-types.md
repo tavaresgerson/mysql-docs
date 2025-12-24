@@ -23,7 +23,7 @@ Physical backup methods have these characteristics:
 * Data from `MEMORY` tables is tricky to back up this way because their contents are not stored on disk. (The MySQL Enterprise Backup product has a feature where you can retrieve data from `MEMORY` tables during a backup.)
 * Backups are portable only to other machines that have identical or similar hardware characteristics.
 * Backups can be performed while the MySQL server is not running. If the server is running, it is necessary to perform appropriate locking so that the server does not change database contents during the backup. MySQL Enterprise Backup does this locking automatically for tables that require it.
-* Physical backup tools include the **mysqlbackup** of MySQL Enterprise Backup for `InnoDB` or any other tables, or file system-level commands (such as **cp**, **scp**, `tar`, **rsync**) for `MyISAM` tables.
+* Physical backup tools include the `mysqlbackup` of MySQL Enterprise Backup for `InnoDB` or any other tables, or file system-level commands (such as **cp**, **scp**, `tar`, **rsync**) for `MyISAM` tables.
 * For restore:
 
   + MySQL Enterprise Backup restores `InnoDB` and other tables that it backed up.
@@ -40,7 +40,7 @@ Logical backup methods have these characteristics:
 * Backups stored in logical format are machine independent and highly portable.
 * Logical backups are performed with the MySQL server running. The server is not taken offline.
 * Logical backup tools include the  `mysqldump` program and the [`SELECT ... INTO OUTFILE`](select.html "15.2.13 SELECT Statement") statement. These work for any storage engine, even `MEMORY`.
-* To restore logical backups, SQL-format dump files can be processed using the  `mysql` client. To load delimited-text files, use the [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statement or the  `mysqlimport` client.
+* To restore logical backups, SQL-format dump files can be processed using the `mysql` client. To load delimited-text files, use the [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statement or the  `mysqlimport` client.
 
 ### Online Versus Offline Backups
 

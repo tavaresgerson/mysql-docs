@@ -1,3 +1,0 @@
-### 7.8.2 Executar várias instâncias do MySQL no Windows
-
-Você pode executar vários servidores no Windows iniciando-os manualmente a partir da linha de comando, cada um com parâmetros operacionais apropriados, ou instalando vários servidores como serviços do Windows e executando-os dessa maneira. Instruções gerais para executar o MySQL a partir da linha de comando ou como um serviço são dadas na Seção 2.3, "Instalar o MySQL no Microsoft Windows". As seções seguintes descrevem como iniciar cada servidor com valores diferentes para as opções que devem ser únicas por servidor, como o diretório de dados.

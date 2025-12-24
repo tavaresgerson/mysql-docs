@@ -12,7 +12,7 @@ These performance tips supplement the general guidelines for fast inserts in  Se
   1. Execute a  `FLUSH TABLES` statement or a [**mysqladmin flush-tables**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") command.
   2. Use [**myisamchk --keys-used=0 -rq *`/path/to/db/tbl_name`***](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") to remove all use of indexes for the table.
   3. Insert data into the table with `LOAD DATA`. This does not update any indexes and therefore is very fast.
-  4. If you intend only to read from the table in the future, use  **myisampack** to compress it. See Section 18.2.3.3, “Compressed Table Characteristics”.
+  4. If you intend only to read from the table in the future, use   `myisampack` to compress it. See Section 18.2.3.3, “Compressed Table Characteristics”.
   5. Re-create the indexes with [**myisamchk -rq *`/path/to/db/tbl_name`***](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility"). This creates the index tree in memory before writing it to disk, which is much faster than updating the index during  `LOAD DATA` because it avoids lots of disk seeks. The resulting index tree is also perfectly balanced.
   6. Execute a  `FLUSH TABLES` statement or a [**mysqladmin flush-tables**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") command.
 

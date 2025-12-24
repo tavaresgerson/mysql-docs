@@ -1,10 +1,10 @@
 #### 5.3.4.4 Linhas de classificação
 
-Você pode ter notado nos exemplos anteriores que as linhas de resultados não são exibidas em nenhuma ordem particular. É muitas vezes mais fácil examinar a saída da consulta quando as linhas são ordenadas de alguma forma significativa.
+Você pode ter notado nos exemplos anteriores que as linhas de resultados não são exibidas em nenhuma ordem particular. É muitas vezes mais fácil examinar a saída da consulta quando as linhas são classificadas de alguma forma significativa. Para classificar um resultado, use uma cláusula `ORDER BY`.
 
 Aqui estão os aniversários dos animais, ordenados por data:
 
-```
+```sql
 mysql> SELECT name, birth FROM pet ORDER BY birth;
 +----------+------------+
 | name     | birth      |
@@ -21,11 +21,11 @@ mysql> SELECT name, birth FROM pet ORDER BY birth;
 +----------+------------+
 ```
 
-Em colunas de tipo de caracteres, a classificação  como todas as outras operações de comparação  é normalmente executada de uma maneira insensível a maiúsculas e minúsculas. Isso significa que a ordem é indefinida para colunas que são idênticas, exceto por suas maiúsculas e minúsculas. Você pode forçar uma classificação sensível a maiúsculas e minúsculas para uma coluna usando `BINARY` assim: `ORDER BY BINARY col_name`.
+Em colunas de tipo de caracteres, a classificação  como todas as outras operações de comparação  é normalmente executada de forma insensible a maiúsculas e minúsculas. Isso significa que a ordem não é definida para colunas que são idênticas, exceto por suas maiúsculas e minúsculas. Você pode forçar uma classificação sensível a maiúsculas e minúsculas para uma coluna usando `BINARY` assim: `ORDER BY BINARY col_name`.
 
 A ordem de classificação padrão é ascendente, com os valores mais pequenos primeiro. Para classificar em ordem inversa (descendente), adicione a palavra-chave `DESC` ao nome da coluna que você está classificando por:
 
-```
+```sql
 mysql> SELECT name, birth FROM pet ORDER BY birth DESC;
 +----------+------------+
 | name     | birth      |

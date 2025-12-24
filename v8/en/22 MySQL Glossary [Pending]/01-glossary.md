@@ -154,7 +154,7 @@ beta :   An early stage in the life of a software product, when it is available 
 
 binary log :   A file containing a record of all statements or row changes that attempt to change table data. The contents of the binary log can be replayed to bring replicas up to date in a **replication** scenario, or to bring a database up to date after restoring table data from a backup. The binary logging feature can be turned on and off, although Oracle recommends always enabling it if you use replication or perform backups.
 
-    You can examine the contents of the binary log, or replay it during replication or recovery, by using the  **mysqlbinlog** command. For full information about the binary log, see  Section 7.4.4, “The Binary Log”. For MySQL configuration options related to the binary log, see  Section 19.1.6.4, “Binary Logging Options and Variables”.
+    You can examine the contents of the binary log, or replay it during replication or recovery, by using the   `mysqlbinlog` command. For full information about the binary log, see  Section 7.4.4, “The Binary Log”. For MySQL configuration options related to the binary log, see  Section 19.1.6.4, “Binary Logging Options and Variables”.
 
     For the **MySQL Enterprise Backup** product, the file name of the binary log and the current position within the file are important details. To record this information for the source when taking a backup in a replication context, you can specify the `--slave-info` option.
 
@@ -268,7 +268,7 @@ checkpoint :   As changes are made to data pages that are cached in the **buffer
 
 checksum :   In `InnoDB`, a validation mechanism to detect corruption when a **page** in a **tablespace** is read from disk into the `InnoDB` **buffer pool**. This feature is controlled by the `innodb_checksums` configuration option in MySQL 5.5. `innodb_checksums` is deprecated in MySQL 5.6.3, replaced by  `innodb_checksum_algorithm`.
 
-    The  **innochecksum** command helps diagnose corruption problems by testing the checksum values for a specified **tablespace** file while the MySQL server is shut down.
+    The   `innochecksum` command helps diagnose corruption problems by testing the checksum values for a specified **tablespace** file while the MySQL server is shut down.
 
     MySQL also uses checksums for replication purposes. For details, see the configuration options  `binlog_checksum`,  `source_verify_checksum` or  `master_verify_checksum`, and  `replica_sql_verify_checksum` or  `slave_sql_verify_checksum`.
 
@@ -286,7 +286,7 @@ clean shutdown :   A **shutdown** that completes without errors and applies all 
 
     See Also  crash,  fast shutdown,  shutdown,  slow shutdown.
 
-client :   A program that runs outside the database server, communicating with the database by sending requests through a **Connector**, or an **API** made available through **client libraries**. It can run on the same physical machine as the database server, or on a remote machine connected over a network. It can be a special-purpose database application, or a general-purpose program like the  `mysql` command-line processor.
+client :   A program that runs outside the database server, communicating with the database by sending requests through a **Connector**, or an **API** made available through **client libraries**. It can run on the same physical machine as the database server, or on a remote machine connected over a network. It can be a special-purpose database application, or a general-purpose program like the `mysql` command-line processor.
 
     See Also  API,  client libraries,  connector,  mysql,  server.
 
@@ -1214,7 +1214,7 @@ LSN :   Acronym for “log sequence number”. This arbitrary, ever-increasing v
 
     Prior to MySQL 5.6.3, the LSN was a 4-byte unsigned integer. The LSN became an 8-byte unsigned integer in MySQL 5.6.3 when the redo log file size limit increased from 4GB to 512GB, as additional bytes were required to store extra size information. Applications built on MySQL 5.6.3 or later that use LSN values should use 64-bit rather than 32-bit variables to store and compare LSN values.
 
-    In the **MySQL Enterprise Backup** product, you can specify an LSN to represent the point in time from which to take an **incremental backup**. The relevant LSN is displayed by the output of the **mysqlbackup** command. Once you have the LSN corresponding to the time of a full backup, you can specify that value to take a subsequent incremental backup, whose output contains another LSN for the next incremental backup.
+    In the **MySQL Enterprise Backup** product, you can specify an LSN to represent the point in time from which to take an **incremental backup**. The relevant LSN is displayed by the output of the `mysqlbackup` command. Once you have the LSN corresponding to the time of a full backup, you can specify that value to take a subsequent incremental backup, whose output contains another LSN for the next incremental backup.
 
     See Also  buffer pool,  crash recovery,  incremental backup,  MySQL Enterprise Backup,  redo log,  transaction.
 
@@ -1226,7 +1226,7 @@ LTS Series :   LTS releases with the same major version number form an LTS serie
 
 ### M
 
-.MRG file :   A file containing references to other tables, used by the `MERGE` storage engine. Files with this extension are always included in backups produced by the **mysqlbackup** command of the **MySQL Enterprise Backup** product.
+.MRG file :   A file containing references to other tables, used by the `MERGE` storage engine. Files with this extension are always included in backups produced by the `mysqlbackup` command of the **MySQL Enterprise Backup** product.
 
     See Also  MySQL Enterprise Backup,  mysqlbackup command.
 
@@ -1322,7 +1322,7 @@ MyODBC drivers :   Obsolete name for **Connector/ODBC**.
 
     See Also  Connector/ODBC.
 
-mysql :   The  `mysql` program is the command-line interpreter for the MySQL database. It processes **SQL** statements, and also MySQL-specific commands such as  `SHOW TABLES`, by passing requests to the  `mysqld` daemon.
+mysql :   The `mysql` program is the command-line interpreter for the MySQL database. It processes **SQL** statements, and also MySQL-specific commands such as  `SHOW TABLES`, by passing requests to the  `mysqld` daemon.
 
     See Also  mysqld,  SQL.
 
@@ -1421,7 +1421,7 @@ NULL :   A special value in **SQL**, indicating the absence of data. Any arithme
 
 ### O
 
-.OPT file :   A file containing database configuration information. Files with this extension are included in backups produced by the **mysqlbackup** command of the **MySQL Enterprise Backup** product.
+.OPT file :   A file containing database configuration information. Files with this extension are included in backups produced by the `mysqlbackup` command of the **MySQL Enterprise Backup** product.
 
     See Also  MySQL Enterprise Backup,  mysqlbackup command.
 
@@ -1841,7 +1841,7 @@ rw-lock :   The low-level object that `InnoDB` uses to represent and enforce sha
 
     The following matrix summarizes rw-lock type compatibility.
 
-    <table><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col"></th> <th scope="col"><em><code>S</code></em></th> <th scope="col"><em><code>SX</code></em></th> <th scope="col"><em><code>X</code></em></th> </tr></thead><tbody><tr> <th><em><code>S</code></em></th> <td>Compatible</td> <td>Compatible</td> <td>Conflict</td> </tr><tr> <th><em><code>SX</code></em></th> <td>Compatible</td> <td>Conflict</td> <td>Conflict</td> </tr><tr> <th><em><code>X</code></em></th> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> </tr></tbody></table>
+    <table><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th></th> <th><em><code>S</code></em></th> <th><em><code>SX</code></em></th> <th><em><code>X</code></em></th> </tr></thead><tbody><tr> <th><em><code>S</code></em></th> <td>Compatible</td> <td>Compatible</td> <td>Conflict</td> </tr><tr> <th><em><code>SX</code></em></th> <td>Compatible</td> <td>Conflict</td> <td>Conflict</td> </tr><tr> <th><em><code>X</code></em></th> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> </tr></tbody></table>
 
     See Also  latch,  lock,  mutex,  Performance Schema.
 
@@ -1911,7 +1911,7 @@ SERIALIZABLE :   The **isolation level** that uses the most conservative locking
 
 serialized dictionary information (SDI) :   Dictionary object metadata in serialized form. SDI is stored in `JSON` format.
 
-    As of MySQL 8.0.3, SDI is present in all `InnoDB` tablespace files except for temporary tablespace and undo tablespace files. The presence of SDI in tablespace files provides metadata redundancy. For example, dictionary object metadata can be extracted from tablespace files using the  **ibd2sdi** utility if the data dictionary becomes unavailable.
+    As of MySQL 8.0.3, SDI is present in all `InnoDB` tablespace files except for temporary tablespace and undo tablespace files. The presence of SDI in tablespace files provides metadata redundancy. For example, dictionary object metadata can be extracted from tablespace files using the  `ibd2sdi` utility if the data dictionary becomes unavailable.
 
     For a `MyISAM` table, SDI is stored in a `.sdi` metadata file in the schema directory. An SDI metadata file is required to perform an  `IMPORT TABLE` operation.
 

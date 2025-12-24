@@ -84,10 +84,10 @@ You should now be able to connect to the MySQL server as `root` using the new pa
 
 ##### B.3.3.2.3 Resetting the Root Password: Generic Instructions
 
-The preceding sections provide password-resetting instructions specifically for Windows and Unix and Unix-like systems. Alternatively, on any platform, you can reset the password using the  `mysql` client (but this approach is less secure):
+The preceding sections provide password-resetting instructions specifically for Windows and Unix and Unix-like systems. Alternatively, on any platform, you can reset the password using the `mysql` client (but this approach is less secure):
 
 1. Stop the MySQL server if necessary, then restart it with the  `--skip-grant-tables` option. This enables anyone to connect without a password and with all privileges, and disables account-management statements such as  `ALTER USER` and  `SET PASSWORD`. Because this is insecure, if the server is started with the  `--skip-grant-tables` option, it also disables remote connections by enabling  `skip_networking`. On Windows platforms, this means you must also enable  `shared_memory` or  `named_pipe`; otherwise the server cannot start.
-2. Connect to the MySQL server using the  `mysql` client; no password is necessary because the server was started with  `--skip-grant-tables`:
+2. Connect to the MySQL server using the `mysql` client; no password is necessary because the server was started with  `--skip-grant-tables`:
 
    ```
    $> mysql

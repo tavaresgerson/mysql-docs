@@ -2,9 +2,9 @@
 
 \*Tarefa: Para cada artigo, encontrar o revendedor ou revendedores com o preço mais caro. \*
 
-Este problema pode ser resolvido com uma subconsulta como esta:
+Este problema pode ser resolvido com uma subquery como esta:
 
-```
+```sql
 SELECT article, dealer, price
 FROM   shop s1
 WHERE  price=(SELECT MAX(s2.price)
@@ -22,11 +22,11 @@ ORDER BY article;
 +---------+--------+-------+
 ```
 
-O exemplo anterior usa uma subquery correlacionada, que pode ser ineficiente (ver Seção 15.2.15.7,  Subqueries Correlacionadas). Outras possibilidades para resolver o problema são usar uma subquery não correlacionada na cláusula `FROM`, um `LEFT JOIN`, ou uma expressão de tabela comum com uma função de janela.
+O exemplo anterior usa uma subquery correlacionada, que pode ser ineficiente. Outras possibilidades para resolver o problema são usar uma subquery não correlacionada na cláusula `FROM`, um `LEFT JOIN`, ou uma expressão de tabela comum com uma função de janela.
 
 Subconsulta não correlacionada:
 
-```
+```sql
 SELECT s1.article, dealer, s1.price
 FROM shop s1
 JOIN (
@@ -39,7 +39,7 @@ ORDER BY article;
 
 `LEFT JOIN`:
 
-```
+```sql
 SELECT s1.article, s1.dealer, s1.price
 FROM shop s1
 LEFT JOIN shop s2 ON s1.article = s2.article AND s1.price < s2.price
@@ -47,11 +47,11 @@ WHERE s2.article IS NULL
 ORDER BY s1.article;
 ```
 
-O `LEFT JOIN` funciona na base de que quando o `s1.price` está no seu valor máximo, não há um `s2.price` com um valor maior e, portanto, o valor correspondente do `s2.article` é o `NULL`.
+O `LEFT JOIN` funciona com base no fato de que quando o `s1.price` está em seu valor máximo, não há um `s2.price` com um valor maior e, portanto, o valor correspondente do `s2.article` é o `NULL`.
 
 Expressão comum de tabela com função de janela:
 
-```
+```sql
 WITH s1 AS (
    SELECT article, dealer, price,
           RANK() OVER (PARTITION BY article

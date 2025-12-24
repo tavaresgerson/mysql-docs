@@ -1,8 +1,8 @@
 #### 5.3.4.8 Linhas de contagem
 
-As bases de dados são frequentemente utilizadas para responder à pergunta: "Com que frequência um determinado tipo de dados ocorre numa tabela?" Por exemplo, pode querer saber quantos animais de estimação tem ou quantos animais de estimação tem cada proprietário, ou pode querer realizar vários tipos de operações de censo nos seus animais.
+As bases de dados são frequentemente utilizadas para responder à pergunta:  Com que frequência um determinado tipo de dados ocorre numa tabela? Por exemplo, talvez queira saber quantos animais de estimação tem ou quantos animais de estimação tem cada proprietário, ou talvez queira realizar vários tipos de operações de censo nos seus animais.
 
-Contar o número total de animais que você tem é a mesma pergunta que Quantas linhas há na tabela `pet`? porque há um registro por animal de estimação. `COUNT(*)` conta o número de linhas, então a consulta para contar seus animais é assim:
+Contar o número total de animais que você tem é a mesma pergunta que "Quantas linhas há na tabela `pet`?" porque há um registro por animal de estimação. `COUNT(*)` conta o número de linhas, então a consulta para contar seus animais é assim:
 
 ```
 mysql> SELECT COUNT(*) FROM pet;
@@ -125,7 +125,7 @@ Se você nomear colunas para selecionar além do valor `COUNT()`, uma cláusula 
   #1 of SELECT list contains nonaggregated column 'menagerie.pet.owner';
   this is incompatible with sql_mode=only_full_group_by
   ```
-- Se `ONLY_FULL_GROUP_BY` não estiver habilitado, a consulta é processada tratando todas as linhas como um único grupo, mas o valor selecionado para cada coluna nomeada é não determinístico. O servidor é livre para selecionar o valor de qualquer linha:
+- Se `ONLY_FULL_GROUP_BY` não estiver habilitado, a consulta é processada tratando todas as linhas como um único grupo, mas o valor selecionado para cada coluna nomeada é não-determinista. O servidor é livre para selecionar o valor de qualquer linha:
 
   ```
   mysql> SET sql_mode = '';
@@ -139,5 +139,3 @@ Se você nomear colunas para selecionar além do valor `COUNT()`, uma cláusula 
   +--------+----------+
   1 row in set (0.00 sec)
   ```
-
-Veja também a Seção 14.19.3, MySQL Handling of GROUP BY. Veja a Seção 14.19.1, Aggregate Function Descriptions para informações sobre o comportamento do `COUNT(expr)` e otimizações relacionadas.

@@ -8,7 +8,7 @@ This section explains the general idea of using the binary log to perform a poin
 
 ::: info Note
 
-Many of the examples in this and the next section use the `mysql` client to process binary log output produced by  **mysqlbinlog**. If your binary log contains `\0` (null) characters, that output cannot be parsed by  `mysql` unless you invoke it with the  `--binary-mode` option.
+Many of the examples in this and the next section use the `mysql` client to process binary log output produced by   `mysqlbinlog`. If your binary log contains `\0` (null) characters, that output cannot be parsed by `mysql` unless you invoke it with the  `--binary-mode` option.
 
 
 :::
@@ -27,27 +27,27 @@ To determine the name of the current binary log file, issue the following statem
 mysql> SHOW BINARY LOG STATUS;
 ```
 
-The  **mysqlbinlog** utility converts the events in the binary log files from binary format to text so that they can be viewed or applied.  **mysqlbinlog** has options for selecting sections of the binary log based on event times or position of events within the log. See Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”.
+The   `mysqlbinlog` utility converts the events in the binary log files from binary format to text so that they can be viewed or applied.   `mysqlbinlog` has options for selecting sections of the binary log based on event times or position of events within the log. See Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”.
 
-Applying events from the binary log causes the data modifications they represent to be reexecuted. This enables recovery of data changes for a given span of time. To apply events from the binary log, process **mysqlbinlog** output using the `mysql` client:
+Applying events from the binary log causes the data modifications they represent to be reexecuted. This enables recovery of data changes for a given span of time. To apply events from the binary log, process  `mysqlbinlog` output using the `mysql` client:
 
 ```
 $> mysqlbinlog binlog_files | mysql -u root -p
 ```
 
-If binary log files have been encrypted, **mysqlbinlog** cannot read them directly as in the previous example, but can read them from the server using the `--read-from-remote-server` (`-R`) option. For example:
+If binary log files have been encrypted,  `mysqlbinlog` cannot read them directly as in the previous example, but can read them from the server using the `--read-from-remote-server` (`-R`) option. For example:
 
 ```
 $> mysqlbinlog --read-from-remote-server --host=host_name --port=3306  --user=root --password --ssl-mode=required  binlog_files | mysql -u root -p
 ```
 
-Here, the option `--ssl-mode=required` has been used to ensure that the data from the binary log files is protected in transit, because it is sent to **mysqlbinlog** in an unencrypted format.
+Here, the option `--ssl-mode=required` has been used to ensure that the data from the binary log files is protected in transit, because it is sent to  `mysqlbinlog` in an unencrypted format.
 
 Important
 
 `VERIFY_CA` and `VERIFY_IDENTITY` are better choices than `REQUIRED` for the SSL mode, because they help prevent man-in-the-middle attacks. To implement one of these settings, you must first ensure that the CA certificate for the server is reliably available to all the clients that use it in your environment, otherwise availability issues will result. See  Command Options for Encrypted Connections.
 
-Viewing log contents can be useful when you need to determine event times or positions to select partial log contents prior to executing events. To view events from the log, send **mysqlbinlog** output into a paging program:
+Viewing log contents can be useful when you need to determine event times or positions to select partial log contents prior to executing events. To view events from the log, send  `mysqlbinlog` output into a paging program:
 
 ```
 $> mysqlbinlog binlog_files | more

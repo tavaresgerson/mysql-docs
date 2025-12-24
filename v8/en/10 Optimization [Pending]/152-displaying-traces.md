@@ -4,7 +4,7 @@
 
 ### 10.15.13 Displaying Traces in Other Applications
 
-Examining a trace in the  `mysql` command-line client can be made less difficult using the `pager less` command (or your operating platform's equivalent). An alternative can be to send the trace to a file, similarly to what is shown here:
+Examining a trace in the `mysql` command-line client can be made less difficult using the `pager less` command (or your operating platform's equivalent). An alternative can be to send the trace to a file, similarly to what is shown here:
 
 ```
 SELECT TRACE INTO DUMPFILE file

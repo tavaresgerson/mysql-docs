@@ -55,13 +55,13 @@ You can delete all binary log files with the `RESET BINARY LOGS AND GTIDS` state
 
 If you are using MySQL Replication, you should not delete old binary log files on the source until you are sure that no replica still needs to use them. For example, if your replicas never run more than three days behind, once a day you can execute **mysqladmin flush-logs binary** on the source and then remove any logs that are more than three days old. You can remove the files manually, but it is preferable to use `PURGE BINARY LOGS`, which also safely updates the binary log index file for you (and which can take a date argument). See  Section 15.4.1.1, “PURGE BINARY LOGS Statement”.
 
-You can display the contents of binary log files with the **mysqlbinlog** utility. This can be useful when you want to reprocess statements in the log for a recovery operation. For example, you can update a MySQL server from the binary log as follows:
+You can display the contents of binary log files with the  `mysqlbinlog` utility. This can be useful when you want to reprocess statements in the log for a recovery operation. For example, you can update a MySQL server from the binary log as follows:
 
 ```
 $> mysqlbinlog log_file | mysql -h server_name
 ```
 
-**mysqlbinlog** also can be used to display the contents of the relay log file on a replica, because they are written using the same format as binary log files. For more information on the  **mysqlbinlog** utility and how to use it, see  Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”. For more information about the binary log and recovery operations, see Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery").
+ `mysqlbinlog` also can be used to display the contents of the relay log file on a replica, because they are written using the same format as binary log files. For more information on the   `mysqlbinlog` utility and how to use it, see  Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”. For more information about the binary log and recovery operations, see Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery").
 
 Binary logging is done immediately after a statement or transaction completes but before any locks are released or any commit is done. This ensures that the log is logged in commit order.
 

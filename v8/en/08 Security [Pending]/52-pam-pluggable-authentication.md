@@ -19,7 +19,7 @@ The following table shows the plugin and library file names. The file name suffi
 
 **Table 8.18 Plugin and Library Names for PAM Authentication**
 
-<table><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>authentication_pam</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Library file</td> <td><code>authentication_pam.so</code></td> </tr></tbody></table>
+<table><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>authentication_pam</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Library file</td> <td><code>authentication_pam.so</code></td> </tr></tbody></table>
 
 The client-side `mysql_clear_password` cleartext plugin that communicates with the server-side PAM plugin is built into the `libmysqlclient` client library and is included in all distributions, including community distributions. Inclusion of the client-side cleartext plugin in all MySQL distributions enables clients from any distribution to connect to a server that has the server-side PAM plugin loaded.
 
@@ -220,7 +220,7 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
    ```
 
    Here, the authentication string contains only the PAM service name, `mysql-unix`, which authenticates Unix passwords.
-4. Use the  `mysql` command-line client to connect to the MySQL server as `antonio`. For example:
+4. Use the `mysql` command-line client to connect to the MySQL server as `antonio`. For example:
 
    ```
    $> mysql --user=antonio --password --enable-cleartext-plugin
@@ -369,7 +369,7 @@ Traditional Unix passwords are checked using the `/etc/shadow` file. For informa
      ON 'data_entry'@'localhost'
      TO ''@'';
    ```
-7. Use the  `mysql` command-line client to connect to the MySQL server as `antonio`.
+7. Use the `mysql` command-line client to connect to the MySQL server as `antonio`.
 
    ```
    $> mysql --user=antonio --password --enable-cleartext-plugin

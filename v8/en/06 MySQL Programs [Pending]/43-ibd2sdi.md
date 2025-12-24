@@ -1,20 +1,20 @@
-### 6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility
+### 6.6.1 `ibd2sdi` — InnoDB Tablespace SDI Extraction Utility
 
- **ibd2sdi** is a utility for extracting serialized dictionary information") (SDI) from `InnoDB` tablespace files. SDI data is present in all persistent `InnoDB` tablespace files.
+`ibd2sdi` is a utility for extracting "serialized dictionary information" (SDI) from `InnoDB` tablespace files. SDI data is present in all persistent `InnoDB` tablespace files.
 
- **ibd2sdi** can be run on file-per-table tablespace files (`*.ibd` files), general tablespace files (`*.ibd` files), system tablespace files (`ibdata*` files), and the data dictionary tablespace (`mysql.ibd`). It is not supported for use with temporary tablespaces or undo tablespaces.
+`ibd2sdi` can be run on file-per-table tablespace files (`*.ibd` files), general tablespace files (`*.ibd` files), system tablespace files (`ibdata*` files), and the data dictionary tablespace (`mysql.ibd`). It is not supported for use with temporary tablespaces or undo tablespaces.
 
- **ibd2sdi** can be used at runtime or while the server is offline. During  DDL operations, `ROLLBACK` operations, and undo log purge operations related to SDI, there may be a short interval of time when  **ibd2sdi** fails to read SDI data stored in the tablespace.
+`ibd2sdi` can be used at runtime or while the server is offline. During  DDL operations, `ROLLBACK` operations, and undo log purge operations related to SDI, there may be a short interval of time when  `ibd2sdi` fails to read SDI data stored in the tablespace.
 
- **ibd2sdi** performs an uncommitted read of SDI from the specified tablespace. Redo logs and undo logs are not accessed.
+`ibd2sdi` performs an uncommitted read of SDI from the specified tablespace. Redo logs and undo logs are not accessed.
 
-Invoke the  **ibd2sdi** utility like this:
+Invoke the  `ibd2sdi` utility like this:
 
 ```
 ibd2sdi [options] file_name1 [file_name2 file_name3 ...]
 ```
 
- **ibd2sdi** supports multi-file tablespaces like the `InnoDB` system tablespace, but it cannot be run on more than one tablespace at a time. For multi-file tablespaces, specify each file:
+`ibd2sdi` supports multi-file tablespaces like the `InnoDB` system tablespace, but it cannot be run on more than one tablespace at a time. For multi-file tablespaces, specify each file:
 
 ```
 ibd2sdi ibdata1 ibdata2
@@ -22,15 +22,15 @@ ibd2sdi ibdata1 ibdata2
 
 The files of a multi-file tablespace must be specified in order of the ascending page number. If two successive files have the same space ID, the later file must start with the last page number of the previous file + 1.
 
- **ibd2sdi** outputs SDI (containing id, type, and data fields) in  `JSON` format.
+`ibd2sdi` outputs SDI (containing id, type, and data fields) in `JSON` format.
 
 #### ibd2sdi Options
 
- **ibd2sdi** supports the following options:
+`ibd2sdi` supports the following options:
 
-*  `--help`, `-h`
+* `--help`, `-h`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Display a help message and exit. For example:
 
@@ -69,9 +69,9 @@ The files of a multi-file tablespace must be specified in order of the ascending
   no-check                          FALSE
   pretty                            TRUE
   ```
-*  `--version`, `-v`
+* `--version`, `-v`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Display version information and exit. For example:
 
@@ -80,9 +80,9 @@ The files of a multi-file tablespace must be specified in order of the ascending
   ```
 *  `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug=options</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--debug=options</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Prints a debug log. For debug options, refer to Section 7.9.4, “The DBUG Package”.
+  Prints a debug log. For debug options, refer to Section 7.9.4, “The `DBUG` Package”.
 
   ```
   ibd2sdi --debug=d:t /tmp/ibd2sdi.trace
@@ -91,7 +91,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
 *  `--dump-file=`, `-d`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--dump-file=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--dump-file=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Dumps serialized dictionary information (SDI) into the specified dump file. If a dump file is not specified, the tablespace SDI is dumped to `stdout`.
 
@@ -100,7 +100,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   ```
 *  `--skip-data`, `-s`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-data</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--skip-data</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Skips retrieval of `data` field values from the serialized dictionary information (SDI) and only retrieves the `id` and `type` field values, which are primary keys for SDI records.
 
@@ -121,7 +121,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   ```
 *  `--id=#`, `-i #`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--id=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--id=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   Retrieves serialized dictionary information (SDI) matching the specified table or tablespace object id. An object id is unique to the object type. Table and tablespace object IDs are also found in the `id` column of the `mysql.tables` and `mysql.tablespace` data dictionary tables. For information about data dictionary tables, see Section 16.1, “Data Dictionary Schema”.
 
@@ -158,7 +158,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   ```
 *  `--type=#`, `-t #`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--type=#</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--type=#</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
 
   Retrieves serialized dictionary information (SDI) matching the specified object type. SDI is provided for table (type=1) and tablespace (type=2) objects.
 
@@ -196,7 +196,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   ]
   ```
 
-  Due to the way in which  `InnoDB` handles default value metadata, a default value may be present and non-empty in  **ibd2sdi** output for a given table column even if it is not defined using `DEFAULT`. Consider the two tables created using the following statements, in the database named `i`:
+  Due to the way in which  `InnoDB` handles default value metadata, a default value may be present and non-empty in  `ibd2sdi` output for a given table column even if it is not defined using `DEFAULT`. Consider the two tables created using the following statements, in the database named `i`:
 
   ```
   CREATE TABLE t1 (c VARCHAR(16) NOT NULL);
@@ -204,7 +204,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   CREATE TABLE t2 (c VARCHAR(16) NOT NULL DEFAULT "Sakila");
   ```
 
-  Using  **ibd2sdi**, we can see that the `default_value` for column `c` is nonempty and is in fact padded to length in both tables, like this:
+  Using  `ibd2sdi`, we can see that the `default_value` for column `c` is nonempty and is in fact padded to length in both tables, like this:
 
   ```
   $> ibd2sdi ../data/i/t1.ibd  | grep -m1 '\"default_value\"' | cut -b34- | sed -e s/,//
@@ -214,7 +214,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   "BlNha2lsYQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\nAAAAAAAAAAA="
   ```
 
-  Examination of  **ibd2sdi** output may be easier using a JSON-aware utility like ** jq**, as shown here:
+  Examination of  `ibd2sdi` output may be easier using a JSON-aware utility like ** jq**, as shown here:
 
   ```
   $> ibd2sdi ../data/i/t1.ibd  | jq '.[1]["object"]["dd_object"]["columns"][0]["default_value"]'
@@ -227,7 +227,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   For more information, see the MySQL Internals documentation.
 *  `--strict-check`, `-c`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>crc32</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>crc32</code></p><p class="valid-value"><code>innodb</code></p><p class="valid-value"><code>none</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>crc32</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>crc32</code></p><p class="valid-value"><code>innodb</code></p><p class="valid-value"><code>none</code></p></td> </tr></tbody></table>
 
   Specifies a strict checksum algorithm for validating the checksum of pages that are read. Options include `innodb`, `crc32`, and `none`.
 
@@ -246,7 +246,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   If you do not specify the `--strict-check` option, validation is performed against non-strict `innodb`, `crc32` and `none` checksums.
 *  `--no-check`, `-n`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Skips checksum validation for pages that are read.
 
@@ -255,7 +255,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
   ```
 *  `--pretty`, `-p`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--pretty</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--pretty</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Outputs SDI data in JSON pretty print format. Enabled by default. If disabled, SDI is not human readable but is smaller in size. Use `--skip-pretty` to disable.
 

@@ -26,9 +26,9 @@ The examples shown here assume use of the `latin1` character set and `latin1_swe
 
   Tables created in the database use `latin1` and `latin1_swedish_ci` by default for any character columns.
 
-  Applications that use the database should also configure their connection to the server each time they connect. This can be done by executing a `SET NAMES 'latin1'` statement after connecting. The statement can be used regardless of connection method (the  `mysql` client, PHP scripts, and so forth).
+  Applications that use the database should also configure their connection to the server each time they connect. This can be done by executing a `SET NAMES 'latin1'` statement after connecting. The statement can be used regardless of connection method (the `mysql` client, PHP scripts, and so forth).
 
-  In some cases, it may be possible to configure the connection to use the desired character set some other way. For example, to connect using  `mysql`, you can specify the `--default-character-set=latin1` command-line option to achieve the same effect as `SET NAMES 'latin1'`.
+  In some cases, it may be possible to configure the connection to use the desired character set some other way. For example, to connect using `mysql`, you can specify the `--default-character-set=latin1` command-line option to achieve the same effect as `SET NAMES 'latin1'`.
 
   For more information about configuring client connections, see Section 12.4, “Connection Character Sets and Collations”.
 

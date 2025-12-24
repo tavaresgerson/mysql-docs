@@ -1,6 +1,6 @@
 #### 6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files
 
-By default,  **mysqlbinlog** reads binary log files and displays their contents in text format. This enables you to examine events within the files more easily and to re-execute them (for example, by using the output as input to `mysql`).  **mysqlbinlog** can read log files directly from the local file system, or, with the `--read-from-remote-server` option, it can connect to a server and request binary log contents from that server.  **mysqlbinlog** writes text output to its standard output, or to the file named as the value of the `--result-file=file_name` option if that option is given.
+By default,   `mysqlbinlog` reads binary log files and displays their contents in text format. This enables you to examine events within the files more easily and to re-execute them (for example, by using the output as input to `mysql`).   `mysqlbinlog` can read log files directly from the local file system, or, with the `--read-from-remote-server` option, it can connect to a server and request binary log contents from that server.   `mysqlbinlog` writes text output to its standard output, or to the file named as the value of the `--result-file=file_name` option if that option is given.
 
 *  mysqlbinlog Backup Capabilities
 *  mysqlbinlog Backup Options
@@ -11,30 +11,30 @@ By default,  **mysqlbinlog** reads binary log files and displays their contents 
 
 ##### mysqlbinlog Backup Capabilities
 
-**mysqlbinlog** can read binary log files and write new files containing the same content—that is, in binary format rather than text format. This capability enables you to easily back up a binary log in its original format. **mysqlbinlog** can make a static backup, backing up a set of log files and stopping when the end of the last file is reached. It can also make a continuous (“live”) backup, staying connected to the server when it reaches the end of the last log file and continuing to copy new events as they are generated. In continuous-backup operation, **mysqlbinlog** runs until the connection ends (for example, when the server exits) or **mysqlbinlog** is forcibly terminated. When the connection ends,  **mysqlbinlog** does not wait and retry the connection, unlike a replica server. To continue a live backup after the server has been restarted, you must also restart  **mysqlbinlog**.
+ `mysqlbinlog` can read binary log files and write new files containing the same content—that is, in binary format rather than text format. This capability enables you to easily back up a binary log in its original format.  `mysqlbinlog` can make a static backup, backing up a set of log files and stopping when the end of the last file is reached. It can also make a continuous (“live”) backup, staying connected to the server when it reaches the end of the last log file and continuing to copy new events as they are generated. In continuous-backup operation,  `mysqlbinlog` runs until the connection ends (for example, when the server exits) or  `mysqlbinlog` is forcibly terminated. When the connection ends,   `mysqlbinlog` does not wait and retry the connection, unlike a replica server. To continue a live backup after the server has been restarted, you must also restart   `mysqlbinlog`.
 
 Important
 
- **mysqlbinlog** can back up both encrypted and unencrypted binary log files . However, copies of encrypted binary log files that are generated using **mysqlbinlog** are stored in an unencrypted format.
+  `mysqlbinlog` can back up both encrypted and unencrypted binary log files . However, copies of encrypted binary log files that are generated using  `mysqlbinlog` are stored in an unencrypted format.
 
 ##### mysqlbinlog Backup Options
 
-Binary log backup requires that you invoke **mysqlbinlog** with two options at minimum:
+Binary log backup requires that you invoke  `mysqlbinlog` with two options at minimum:
 
-* The `--read-from-remote-server` (or `-R`) option tells **mysqlbinlog** to connect to a server and request its binary log. (This is similar to a replica server connecting to its replication source server.)
-* The  `--raw` option tells **mysqlbinlog** to write raw (binary) output, not text output.
+* The `--read-from-remote-server` (or `-R`) option tells  `mysqlbinlog` to connect to a server and request its binary log. (This is similar to a replica server connecting to its replication source server.)
+* The  `--raw` option tells  `mysqlbinlog` to write raw (binary) output, not text output.
 
 Along with `--read-from-remote-server`, it is common to specify other options: `--host` indicates where the server is running, and you may also need to specify connection options such as  `--user` and `--password`.
 
 Several other options are useful in conjunction with `--raw`:
 
 *  `--stop-never`: Stay connected to the server after reaching the end of the last log file and continue to read new events.
-*  `--connection-server-id=id`: The server ID that  **mysqlbinlog** reports when it connects to a server. When `--stop-never` is used, the default reported server ID is 1. If this causes a conflict with the ID of a replica server or another **mysqlbinlog** process, use `--connection-server-id` to specify an alternative server ID. See Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”.
+*  `--connection-server-id=id`: The server ID that   `mysqlbinlog` reports when it connects to a server. When `--stop-never` is used, the default reported server ID is 1. If this causes a conflict with the ID of a replica server or another  `mysqlbinlog` process, use `--connection-server-id` to specify an alternative server ID. See Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”.
 *  `--result-file`: A prefix for output file names, as described later.
 
 ##### Static and Live Backups
 
-To back up a server's binary log files with **mysqlbinlog**, you must specify file names that actually exist on the server. If you do not know the names, connect to the server and use the `SHOW BINARY LOGS` statement to see the current names. Suppose that the statement produces this output:
+To back up a server's binary log files with  `mysqlbinlog`, you must specify file names that actually exist on the server. If you do not know the names, connect to the server and use the `SHOW BINARY LOGS` statement to see the current names. Suppose that the statement produces this output:
 
 ```
 mysql> SHOW BINARY LOGS;
@@ -47,7 +47,7 @@ mysql> SHOW BINARY LOGS;
 +---------------+-----------+-----------+
 ```
 
-With that information, you can use **mysqlbinlog** to back up the binary log to the current directory as follows (enter each command on a single line):
+With that information, you can use  `mysqlbinlog` to back up the binary log to the current directory as follows (enter each command on a single line):
 
 * To make a static backup of `binlog.000130` through `binlog.000132`, use either of these commands:
 
@@ -59,8 +59,8 @@ With that information, you can use **mysqlbinlog** to back up the binary log to 
     --to-last-log binlog.000130
   ```
 
-  The first command specifies every file name explicitly. The second names only the first file and uses `--to-last-log` to read through the last. A difference between these commands is that if the server happens to open `binlog.000133` before **mysqlbinlog** reaches the end of `binlog.000132`, the first command does not read it, but the second command does.
-* To make a live backup in which **mysqlbinlog** starts with `binlog.000130` to copy existing log files, then stays connected to copy new events as the server generates them:
+  The first command specifies every file name explicitly. The second names only the first file and uses `--to-last-log` to read through the last. A difference between these commands is that if the server happens to open `binlog.000133` before  `mysqlbinlog` reaches the end of `binlog.000132`, the first command does not read it, but the second command does.
+* To make a live backup in which  `mysqlbinlog` starts with `binlog.000130` to copy existing log files, then stays connected to copy new events as the server generates them:
 
   ```
   mysqlbinlog --read-from-remote-server --host=host_name --raw
@@ -71,7 +71,7 @@ With that information, you can use **mysqlbinlog** to back up the binary log to 
 
 ##### Output File Naming
 
-Without  `--raw`, **mysqlbinlog** produces text output and the `--result-file` option, if given, specifies the name of the single file to which all output is written. With  `--raw`, **mysqlbinlog** writes one binary output file for each log file transferred from the server. By default, **mysqlbinlog** writes the files in the current directory with the same names as the original log files. To modify the output file names, use the `--result-file` option. In conjunction with  `--raw`, the `--result-file` option value is treated as a prefix that modifies the output file names.
+Without  `--raw`,  `mysqlbinlog` produces text output and the `--result-file` option, if given, specifies the name of the single file to which all output is written. With  `--raw`,  `mysqlbinlog` writes one binary output file for each log file transferred from the server. By default,  `mysqlbinlog` writes the files in the current directory with the same names as the original log files. To modify the output file names, use the `--result-file` option. In conjunction with  `--raw`, the `--result-file` option value is treated as a prefix that modifies the output file names.
 
 Suppose that a server currently has binary log files named `binlog.000999` and up. If you use **mysqlbinlog --raw** to back up the files, the `--result-file` option produces output file names as shown in the following table. You can write the files to a specific directory by beginning the `--result-file` value with the directory path. If the `--result-file` value consists only of a directory name, the value must end with the pathname separator character. Output files are overwritten if they exist.
 
@@ -79,9 +79,9 @@ Suppose that a server currently has binary log files named `binlog.000999` and u
 
 ##### Example: mysqldump + mysqlbinlog for Backup and Restore
 
-The following example describes a simple scenario that shows how to use  `mysqldump` and **mysqlbinlog** together to back up a server's data and binary log, and how to use the backup to restore the server if data loss occurs. The example assumes that the server is running on host *`host_name`* and its first binary log file is named `binlog.000999`. Enter each command on a single line.
+The following example describes a simple scenario that shows how to use  `mysqldump` and  `mysqlbinlog` together to back up a server's data and binary log, and how to use the backup to restore the server if data loss occurs. The example assumes that the server is running on host *`host_name`* and its first binary log file is named `binlog.000999`. Enter each command on a single line.
 
-Use  **mysqlbinlog** to make a continuous backup of the binary log:
+Use   `mysqlbinlog` to make a continuous backup of the binary log:
 
 ```
 mysqlbinlog --read-from-remote-server --host=host_name --raw
@@ -119,7 +119,7 @@ You might find it easier to copy the backup files (dump file and binary log file
 
 ##### mysqlbinlog Backup Restrictions
 
-Binary log backups with  **mysqlbinlog** are subject to these restrictions:
+Binary log backups with   `mysqlbinlog` are subject to these restrictions:
 
-*  **mysqlbinlog** does not automatically reconnect to the MySQL server if the connection is lost (for example, if a server restart occurs or there is a network outage).
+*   `mysqlbinlog` does not automatically reconnect to the MySQL server if the connection is lost (for example, if a server restart occurs or there is a network outage).
 * The delay for a backup is similar to the delay for a replica server.

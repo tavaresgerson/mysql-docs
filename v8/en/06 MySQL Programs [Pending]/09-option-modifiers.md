@@ -1,6 +1,6 @@
 #### 6.2.2.4 Program Option Modifiers
 
-Some options are “boolean” and control behavior that can be turned on or off. For example, the `mysql` client supports a `--column-names` option that determines whether or not to display a row of column names at the beginning of query results. By default, this option is enabled. However, you may want to disable it in some instances, such as when sending the output of  `mysql` into another program that expects to see only data and not an initial header line.
+Some options are "`boolean`" and control behavior that can be turned on or off. For example, the `mysql` client supports a `--column-names` option that determines whether or not to display a row of column names at the beginning of query results. By default, this option is enabled. However, you may want to disable it in some instances, such as when sending the output of `mysql` into another program that expects to see only data and not an initial header line.
 
 To disable column names, you can specify the option using any of these forms:
 

@@ -128,4 +128,4 @@ $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 
 At this point, your server is running and you can access it. To tighten security if you have not yet assigned a password to the initial account, follow the instructions in Section 2.9.4, “Securing the Initial MySQL Account”.
 
-For more information about  `mysql`, `mysqladmin`, and  `mysqlshow`, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”,  Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.
+For more information about `mysql`, `mysqladmin`, and  `mysqlshow`, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”,  Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.

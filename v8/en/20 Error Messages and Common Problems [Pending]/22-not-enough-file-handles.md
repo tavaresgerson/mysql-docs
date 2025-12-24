@@ -1,6 +1,6 @@
 #### B.3.2.16 File Not Found and Similar Errors
 
-If you get `ERROR 'file_name' not found (errno: 23)`, `Can't open file: file_name (errno: 24)`, or any other error with `errno 23` or `errno 24` from MySQL, it means that you have not allocated enough file descriptors for the MySQL server. You can use the  **perror** utility to get a description of what the error number means:
+If you get `ERROR 'file_name' not found (errno: 23)`, `Can't open file: file_name (errno: 24)`, or any other error with `errno 23` or `errno 24` from MySQL, it means that you have not allocated enough file descriptors for the MySQL server. You can use the   `perror` utility to get a description of what the error number means:
 
 ```
 $> perror 23
@@ -21,7 +21,7 @@ To change the number of file descriptors available to  `mysqld`, you can use the
 
 ::: info Note
 
-If you run the **tcsh** shell, **ulimit** does not work! **tcsh** also reports incorrect values when you ask for the current limits. In this case, you should start  `mysqld_safe` using **sh**.
+If you run the `tcsh` shell, **ulimit** does not work! `tcsh` also reports incorrect values when you ask for the current limits. In this case, you should start  `mysqld_safe` using  `sh`.
 
 
 :::

@@ -12,7 +12,7 @@
 
   The  `BENCHMARK()` function executes the expression *`expr`* repeatedly *`count`* times. It may be used to time how quickly MySQL processes the expression. The result value is `0`, or `NULL` for inappropriate arguments such as a `NULL` or negative repeat count.
 
-  The intended use is from within the  `mysql` client, which reports query execution times:
+  The intended use is from within the `mysql` client, which reports query execution times:
 
   ```
   mysql> SELECT BENCHMARK(1000000,AES_ENCRYPT('hello','goodbye'));
@@ -59,7 +59,7 @@
 
   The return values have the meanings shown in the following table. Lower values have higher precedence.
 
-  <table><col style="width: 15%"/><col style="width: 15%"/><col style="width: 70%"/><thead><tr> <th scope="col">Coercibility</th> <th scope="col">Meaning</th> <th scope="col">Example</th> </tr></thead><tbody><tr> <th><code>0</code></th> <td>Explicit collation</td> <td>Value with <code>COLLATE</code> clause</td> </tr><tr> <th><code>1</code></th> <td>No collation</td> <td>Concatenation of strings with different collations</td> </tr><tr> <th><code>2</code></th> <td>Implicit collation</td> <td>Column value, stored routine parameter or local variable</td> </tr><tr> <th><code>3</code></th> <td>System constant</td> <td><code>USER()</code> return value</td> </tr><tr> <th><code>4</code></th> <td>Coercible</td> <td>Literal string</td> </tr><tr> <th><code>5</code></th> <td>Numeric</td> <td>Numeric or temporal value</td> </tr><tr> <th><code>6</code></th> <td>Ignorable</td> <td><code>NULL</code> or an expression derived from <code>NULL</code></td> </tr></tbody></table>
+  <table><col style="width: 15%"/><col style="width: 15%"/><col style="width: 70%"/><thead><tr> <th>Coercibility</th> <th>Meaning</th> <th>Example</th> </tr></thead><tbody><tr> <th><code>0</code></th> <td>Explicit collation</td> <td>Value with <code>COLLATE</code> clause</td> </tr><tr> <th><code>1</code></th> <td>No collation</td> <td>Concatenation of strings with different collations</td> </tr><tr> <th><code>2</code></th> <td>Implicit collation</td> <td>Column value, stored routine parameter or local variable</td> </tr><tr> <th><code>3</code></th> <td>System constant</td> <td><code>USER()</code> return value</td> </tr><tr> <th><code>4</code></th> <td>Coercible</td> <td>Literal string</td> </tr><tr> <th><code>5</code></th> <td>Numeric</td> <td>Numeric or temporal value</td> </tr><tr> <th><code>6</code></th> <td>Ignorable</td> <td><code>NULL</code> or an expression derived from <code>NULL</code></td> </tr></tbody></table>
 
   For more information, see Section 12.8.4, “Collation Coercibility in Expressions”.
 *  `COLLATION(str)`
@@ -434,7 +434,7 @@
 
   For [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "15.2.7.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statements, the affected-rows value per row is 1 if the row is inserted as a new row, 2 if an existing row is updated, and 0 if an existing row is set to its current values. If you specify the `CLIENT_FOUND_ROWS` flag, the affected-rows value is 1 (not 0) if an existing row is set to its current values.
 
-  The  `ROW_COUNT()` value is similar to the value from the `mysql_affected_rows()` C API function and the row count that the  `mysql` client displays following statement execution.
+  The  `ROW_COUNT()` value is similar to the value from the `mysql_affected_rows()` C API function and the row count that the `mysql` client displays following statement execution.
 
   ```
   mysql> INSERT INTO t VALUES(1),(2),(3);

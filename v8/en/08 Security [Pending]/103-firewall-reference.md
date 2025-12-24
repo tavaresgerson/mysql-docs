@@ -426,24 +426,24 @@ MySQL Enterprise Firewall supports the following system variables. Use them to c
 
 *  `mysql_firewall_database`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-database[=value]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_database</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>mysql</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-database[=value]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_database</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>mysql</code></td> </tr></tbody></table>
 
   Specifies the database from which MySQL Enterprise Firewall reads data. Typically, the `MYSQL_FIREWALL` server-side plugin stores its internal data (tables, stored procedures, and functions) in the `mysql` system database, but you can create and use a custom schema instead (see Installing MySQL Enterprise Firewall). This variable permits specifying an alternative database name at startup.
 *  `mysql_firewall_mode`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_mode</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_mode</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Whether MySQL Enterprise Firewall is enabled (the default) or disabled.
 *  `mysql_firewall_reload_interval_seconds`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-reload-interval-seconds[=value]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_reload_interval_seconds</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>60 (unless 0: OFF)</code></td> </tr><tr><th>Maximum Value</th> <td><code>INT_MAX</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-reload-interval-seconds[=value]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_reload_interval_seconds</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>60 (unless 0: OFF)</code></td> </tr><tr><th>Maximum Value</th> <td><code>INT_MAX</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
 
   Specifies the interval (in seconds) that the server-side plugin uses to reload its internal cache from firewall tables. When `mysql_firewall_reload_interval_seconds` has a value of zero (the default), no periodic reloading of data from tables occurs at runtime. Values between `0` and `60` (1 to 59) are not acknowledged by the plugin. Instead, these values adjust to `60` automatically.
 
   This variable requires that the `scheduler` component be enabled (`ON`). For more information, see Scheduling Firewall Cache Reloads.
 *  `mysql_firewall_trace`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-trace[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_trace</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-trace[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_trace</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Whether the MySQL Enterprise Firewall trace is enabled or disabled (the default). When `mysql_firewall_trace` is enabled, for `PROTECTING` mode, the firewall writes rejected statements to the error log.
 

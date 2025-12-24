@@ -25,13 +25,13 @@ MySQL supports these capabilities without the use of workarounds such as special
 
 Applications that use the MySQL C API define query attributes by calling the  `mysql_bind_param()` function. See  mysql\_bind\_param(). Other MySQL connectors may also provide query-attribute support. See the documentation for individual connectors.
 
-The  `mysql` client has a `query_attributes` command that enables defining up to 32 pairs of attribute names and values. See Section 6.5.1.2, “mysql Client Commands”.
+The `mysql` client has a `query_attributes` command that enables defining up to 32 pairs of attribute names and values. See Section 6.5.1.2, “mysql Client Commands”.
 
 Query attribute names are transmitted using the character set indicated by the `character_set_client` system variable.
 
 To access query attributes within SQL statements for which attributes have been defined, install the `query_attributes` component as described in Prerequisites for Using Query Attributes. The component implements a `mysql_query_attribute_string()` loadable function that takes an attribute name argument and returns the attribute value as a string, or `NULL` if the attribute does not exist. See Query Attribute Loadable Functions.
 
-The following examples use the  `mysql` client `query_attributes` command to define attribute name/value pairs, and the `mysql_query_attribute_string()` function to access attribute values by name.
+The following examples use the `mysql` client `query_attributes` command to define attribute name/value pairs, and the `mysql_query_attribute_string()` function to access attribute values by name.
 
 This example defines two attributes named `n1` and `n2`. The first `SELECT` shows how to retrieve those attributes, and also demonstrates that retrieving a nonexistent attribute (`n3`) returns `NULL`. The second `SELECT` shows that attributes do not persist across statements.
 
@@ -143,7 +143,7 @@ Because installing and uninstalling the `query_attributes` component installs an
 
   Example:
 
-  The following example uses the  `mysql` client `query_attributes` command to define query attributes that can be retrieved by `mysql_query_attribute_string()`. The `SELECT` shows that retrieving a nonexistent attribute (`n3`) returns `NULL`.
+  The following example uses the `mysql` client `query_attributes` command to define query attributes that can be retrieved by `mysql_query_attribute_string()`. The `SELECT` shows that retrieving a nonexistent attribute (`n3`) returns `NULL`.
 
   ```
   mysql> query_attributes n1 v1 n2 v2;

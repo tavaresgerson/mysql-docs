@@ -28,7 +28,7 @@ If a program fails, it is always useful to know the following information:
 * Has the program in question made a segmentation fault (did it dump core)?
 * Is the program taking up all available CPU time? Check with **top**. Let the program run for a while, it may simply be evaluating something computationally intensive.
 * If the  `mysqld` server is causing problems, can you get any response from it with  **mysqladmin -u root ping** or  **mysqladmin -u root processlist**?
-* What does a client program say when you try to connect to the MySQL server? (Try with  `mysql`, for example.) Does the client jam? Do you get any output from the program?
+* What does a client program say when you try to connect to the MySQL server? (Try with `mysql`, for example.) Does the client jam? Do you get any output from the program?
 
 When sending a bug report, you should follow the outline described in  Section 1.6, “How to Report Bugs or Problems”.
 

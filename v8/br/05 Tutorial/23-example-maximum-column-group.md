@@ -1,8 +1,8 @@
-### 5.6.3 Máximo da coluna por grupo
+### 5.6.3 Máximo de colunas por grupo
 
 \*Tarefa: Encontre o preço mais alto por artigo. \*
 
-```
+```sql
 SELECT article, MAX(price) AS price
 FROM   shop
 GROUP BY article

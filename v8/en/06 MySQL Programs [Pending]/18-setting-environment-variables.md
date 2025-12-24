@@ -8,7 +8,7 @@ To specify a value for an environment variable, use the syntax appropriate for y
 SET USER=your_name
 ```
 
-The syntax on Unix depends on your shell. Suppose that you want to specify the TCP/IP port number using the `MYSQL_TCP_PORT` variable. Typical syntax (such as for **sh**, **ksh**, **bash**, **zsh**, and so on) is as follows:
+The syntax on Unix depends on your shell. Suppose that you want to specify the TCP/IP port number using the `MYSQL_TCP_PORT` variable. Typical syntax (such as for  `sh`,  `ksh`, `bash`, `zsh`, and so on) is as follows:
 
 ```
 MYSQL_TCP_PORT=3306
@@ -17,7 +17,7 @@ export MYSQL_TCP_PORT
 
 The first command sets the variable, and the `export` command exports the variable to the shell environment so that its value becomes accessible to MySQL and other processes.
 
-For **csh** and **tcsh**, use **setenv** to make the shell variable available to the environment:
+For `csh` and `tcsh`, use `setenv` to make the shell variable available to the environment:
 
 ```
 setenv MYSQL_TCP_PORT 3306
@@ -27,17 +27,17 @@ The commands to set environment variables can be executed at your command prompt
 
 On Windows, you can set environment variables using the System Control Panel (under Advanced).
 
-On Unix, typical shell startup files are `.bashrc` or `.bash_profile` for **bash**, or `.tcshrc` for **tcsh**.
+On Unix, typical shell startup files are `.bashrc` or `.bash_profile` for `bash`, or `.tcshrc` for `tcsh`.
 
-Suppose that your MySQL programs are installed in `/usr/local/mysql/bin` and that you want to make it easy to invoke these programs. To do this, set the value of the `PATH` environment variable to include that directory. For example, if your shell is **bash**, add the following line to your `.bashrc` file:
+Suppose that your MySQL programs are installed in `/usr/local/mysql/bin` and that you want to make it easy to invoke these programs. To do this, set the value of the `PATH` environment variable to include that directory. For example, if your shell is `bash`, add the following line to your `.bashrc` file:
 
 ```
 PATH=${PATH}:/usr/local/mysql/bin
 ```
 
-**bash** uses different startup files for login and nonlogin shells, so you might want to add the setting to `.bashrc` for login shells and to `.bash_profile` for nonlogin shells to make sure that `PATH` is set regardless.
+`bash` uses different startup files for login and nonlogin shells, so you might want to add the setting to `.bashrc` for login shells and to `.bash_profile` for nonlogin shells to make sure that `PATH` is set regardless.
 
-If your shell is **tcsh**, add the following line to your `.tcshrc` file:
+If your shell is `tcsh`, add the following line to your `.tcshrc` file:
 
 ```
 setenv PATH ${PATH}:/usr/local/mysql/bin

@@ -34,7 +34,7 @@ The following problems are known:
 
   The easiest way to avoid this problem is to add an `ORDER BY` clause to the aforementioned nondeterministic queries to ensure that the rows are always stored or modified in the same order. Using row-based or mixed logging format also avoids the problem.
 * Log file names are based on the server host name if you do not specify a file name with the startup option. To retain the same log file names if you change your host name to something else, you must explicitly use options such as  `--log-bin=old_host_name-bin`. See  Section 7.1.7, “Server Command Options”. Alternatively, rename the old files to reflect your host name change. If these are binary logs, you must edit the binary log index file and fix the binary log file names there as well. (The same is true for the relay logs on a replica.)
-*  **mysqlbinlog** does not delete temporary files left after a  `LOAD DATA` statement. See  Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”.
+*   `mysqlbinlog` does not delete temporary files left after a  `LOAD DATA` statement. See  Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”.
 * `RENAME` does not work with `TEMPORARY` tables or tables used in a `MERGE` table.
 * When using `SET CHARACTER SET`, you cannot use translated characters in database, table, and column names.
 * The server uses only the first  `max_sort_length` bytes when comparing data values. This means that values cannot reliably be used in `GROUP BY`, `ORDER BY`, or `DISTINCT` if they differ only after the first  `max_sort_length` bytes. To work around this, increase the variable value. The default value of  `max_sort_length` is 1024 and can be changed at server startup time or at runtime.

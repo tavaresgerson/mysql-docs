@@ -12,7 +12,7 @@ It is very common for a problem to occur only when the system is very heavily lo
 
 To avoid problems like this, benchmark your whole application under the worst possible load:
 
-* The  **mysqlslap** program can be helpful for simulating a high load produced by multiple clients issuing queries simultaneously. See  Section 6.5.7, “mysqlslap — A Load Emulation Client”.
+* The   `mysqlslap` program can be helpful for simulating a high load produced by multiple clients issuing queries simultaneously. See  Section 6.5.7, “mysqlslap — A Load Emulation Client”.
 * You can also try benchmarking packages such as SysBench and DBT2, available at <https://launchpad.net/sysbench>, and <http://osdldbt.sourceforge.net/#dbt2>.
 
 These programs or packages can bring a system to its knees, so be sure to use them only on your development systems.

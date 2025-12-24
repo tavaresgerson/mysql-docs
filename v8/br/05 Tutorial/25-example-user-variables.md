@@ -1,10 +1,10 @@
 ### 5.6.5 Utilização de variáveis definidas pelo utilizador
 
-Você pode empregar variáveis de usuário do MySQL para lembrar resultados sem ter que armazená-los em variáveis temporárias no cliente (Veja Seção 11.4, "Variáveis Definidas pelo Usuário").
+Você pode empregar variáveis de usuário MySQL para lembrar resultados sem ter que armazená-los em variáveis temporárias no cliente.
 
 Por exemplo, para encontrar os artigos com o preço mais alto e mais baixo, você pode fazer o seguinte:
 
-```
+```sql
 mysql> SELECT @min_price:=MIN(price),@max_price:=MAX(price) FROM shop;
 mysql> SELECT * FROM shop WHERE price=@min_price OR price=@max_price;
 +---------+--------+-------+

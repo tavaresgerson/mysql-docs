@@ -4,7 +4,7 @@ MySQL users should use the following guidelines to keep passwords secure.
 
 When you run a client program to connect to the MySQL server, it is inadvisable to specify your password in a way that exposes it to discovery by other users. The methods you can use to specify your password when you run client programs are listed here, along with an assessment of the risks of each method. In short, the safest methods are to have the client program prompt for the password or to specify the password in a properly protected option file.
 
-* Use the  **mysql\_config\_editor** utility, which enables you to store authentication credentials in an encrypted login path file named `.mylogin.cnf`. The file can be read later by MySQL client programs to obtain authentication credentials for connecting to MySQL Server. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+* Use the  `mysql_config_editor` utility, which enables you to store authentication credentials in an encrypted login path file named `.mylogin.cnf`. The file can be read later by MySQL client programs to obtain authentication credentials for connecting to MySQL Server. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 * Use a `--password=password` or `-ppassword` option on the command line. For example:
 
   ```
@@ -47,6 +47,6 @@ When you run a client program to connect to the MySQL server, it is inadvisable 
 
    Section 6.2.2.2, “Using Option Files”, discusses option files in more detail.
 
-On Unix, the  `mysql` client writes a record of executed statements to a history file (see Section 6.5.1.3, “mysql Client Logging”). By default, this file is named `.mysql_history` and is created in your home directory. Passwords can be written as plain text in SQL statements such as  `CREATE USER` and  `ALTER USER`, so if you use these statements, they are logged in the history file. To keep this file safe, use a restrictive access mode, the same way as described earlier for the `.my.cnf` file.
+On Unix, the `mysql` client writes a record of executed statements to a history file (see Section 6.5.1.3, “mysql Client Logging”). By default, this file is named `.mysql_history` and is created in your home directory. Passwords can be written as plain text in SQL statements such as  `CREATE USER` and  `ALTER USER`, so if you use these statements, they are logged in the history file. To keep this file safe, use a restrictive access mode, the same way as described earlier for the `.my.cnf` file.
 
-If your command interpreter maintains a history, any file in which the commands are saved contains MySQL passwords entered on the command line. For example, **bash** uses `~/.bash_history`. Any such file should have a restrictive access mode.
+If your command interpreter maintains a history, any file in which the commands are saved contains MySQL passwords entered on the command line. For example, `bash` uses `~/.bash_history`. Any such file should have a restrictive access mode.

@@ -23,7 +23,7 @@ MySQL supports network namespaces on platforms that implement them. Support with
 
 * The MySQL server,  `mysqld`.
 * X Plugin.
-* The  `mysql` client and the `mysqlxtest` test suite client. (Other clients are not supported. They must be invoked from within the network namespace of the server to which they are to connect.)
+* The `mysql` client and the `mysqlxtest` test suite client. (Other clients are not supported. They must be invoked from within the network namespace of the server to which they are to connect.)
 * Regular replication.
 * Group Replication, only when using the MySQL communication stack to establish group communication connections.
 
@@ -47,7 +47,7 @@ Prior to using network namespace support in MySQL, these host system prerequisit
 
   :::
 
-* The system administrator must enable the `CAP_SYS_ADMIN` operating system privilege for the MySQL binaries that support network namespaces ( `mysqld`,  `mysql`, `mysqlxtest`).
+* The system administrator must enable the `CAP_SYS_ADMIN` operating system privilege for the MySQL binaries that support network namespaces ( `mysqld`, `mysql`, `mysqlxtest`).
 
   Important
 
@@ -209,7 +209,7 @@ If an error occurs during server startup for attempts to use a namespace, the se
 
 On the client side, a network namespace can be specified in these contexts:
 
-* For the  `mysql` client and the `mysqlxtest` test suite client, use the `--network-namespace` option. For example:
+* For the `mysql` client and the `mysqlxtest` test suite client, use the `--network-namespace` option. For example:
 
   ```
   mysql --host=192.0.2.2 --network-namespace=red
@@ -279,7 +279,7 @@ The following example sets up a MySQL server that listens for connections in the
 
    :::
 
-   You might also try invoking  `mysql` without the  `--network-namespace` option to see whether the connection attempt succeeds, and, if so, how the  `USER()` value is affected.
+   You might also try invoking `mysql` without the  `--network-namespace` option to see whether the connection attempt succeeds, and, if so, how the  `USER()` value is affected.
 
 #### Network Namespace Monitoring
 

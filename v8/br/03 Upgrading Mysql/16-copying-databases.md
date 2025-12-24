@@ -2,11 +2,11 @@
 
 Nos casos em que você precisa transferir bancos de dados entre diferentes arquiteturas, você pode usar `mysqldump` para criar um arquivo contendo instruções SQL. Você pode então transferir o arquivo para a outra máquina e alimentá-lo como entrada para o cliente `mysql`.
 
-Use **mysqldump --help** para ver quais opções estão disponíveis.
+Use `mysqldump --help` para ver quais opções estão disponíveis.
 
 ::: info Note
 
-Se os GTIDs estiverem em uso no servidor onde você cria o dump (`gtid_mode=ON`), por padrão, `mysqldump` inclui o conteúdo do conjunto `gtid_executed` no dump para transferir esses para a nova máquina. Os resultados podem variar dependendo das versões do MySQL Server envolvidas. Verifique a descrição da opção `mysqldump` `--set-gtid-purged` para descobrir o que acontece com as versões que você está usando e como alterar o comportamento se o resultado do comportamento padrão não for adequado para sua situação.
+Se os GTIDs estão em uso no servidor onde você cria o dump (`gtid_mode=ON`), por padrão, `mysqldump` inclui o conteúdo do `gtid_executed` definido no dump para transferir estes para a nova máquina. Os resultados podem variar dependendo das versões do MySQL Server envolvidas. Verifique a descrição para a opção `mysqldump` `--set-gtid-purged` para descobrir o que acontece com as versões que você está usando, e como mudar o comportamento se o resultado do comportamento padrão não for adequado para sua situação.
 
 :::
 
@@ -37,7 +37,7 @@ mysqladmin create db_name
 gunzip < db_name.gz | mysql db_name
 ```
 
-Você também pode usar `mysqldump` e `mysqlimport` para transferir o banco de dados. Para tabelas grandes, isso é muito mais rápido do que simplesmente usar `mysqldump`. Nos comandos seguintes, `DUMPDIR` representa o nome completo do caminho do diretório que você usa para armazenar a saída do `mysqldump`.
+Você também pode usar `mysqldump` e `mysqlimport` para transferir o banco de dados. Para tabelas grandes, isso é muito mais rápido do que simplesmente usar `mysqldump`. Nos seguintes comandos, \* `DUMPDIR` \* representa o nome do caminho completo do diretório que você usa para armazenar a saída de `mysqldump`.
 
 Primeiro, crie o diretório para os arquivos de saída e descarregue o banco de dados:
 

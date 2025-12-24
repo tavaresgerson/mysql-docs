@@ -11,7 +11,7 @@ The keyring manages keystores using keyring components and keyring plugins. This
 
 * Migration from one keyring plugin to another: The MySQL server has an operational mode that provides this capability.
 * Migration from a keyring plugin to a keyring component: The MySQL server has an operational mode that provides this capability.
-* Migration from one keyring component to another: The **mysql_migrate_keyring** utility provides this capability.
+* Migration from one keyring component to another: The  `mysql_migrate_keyring` utility provides this capability.
 * Migration from a keyring component to a keyring plugin: The MySQL server has an operational mode that provides this capability.
 
 The following sections discuss the characteristics of offline and online migrations and describe how to perform migrations.
@@ -182,9 +182,9 @@ After a successful online key migration operation, the running server might need
 
 ##### Key Migration Using the `mysql_migrate_keyring` Utility
 
-The  **mysql_migrate_keyring** utility migrates keys from one keyring component to another. It does not support migrations involving keyring plugins. For that type of migration, use a MySQL server operating in key migration mode; see Key Migration Using a Migration Server.
+The   `mysql_migrate_keyring` utility migrates keys from one keyring component to another. It does not support migrations involving keyring plugins. For that type of migration, use a MySQL server operating in key migration mode; see Key Migration Using a Migration Server.
 
-To perform a key migration operation using **mysql_migrate_keyring**, determine the key migration options required to specify which keyring components are involved, and whether the migration is offline or online:
+To perform a key migration operation using  `mysql_migrate_keyring`, determine the key migration options required to specify which keyring components are involved, and whether the migration is offline or online:
 
 * To indicate the source and destination keyring components and their location, specify these options:
 
@@ -192,31 +192,31 @@ To perform a key migration operation using **mysql_migrate_keyring**, determine 
   +  `--destination-keyring`: The destination keyring component to which the migrated keys are to be copied.
   +  `--component-dir`: The directory containing keyring component library files. This is typically the value of the `plugin_dir` system variable for the local MySQL server.
 
-  All three options are mandatory. Each keyring component name is a component library file name specified without any platform-specific extension such as `.so` or `.dll`. For example, to use the component for which the library file is `component_keyring_file.so`, specify the option as `--source-keyring=component_keyring_file`. The source and destination must differ, and **mysql_migrate_keyring** must support them both.
+  All three options are mandatory. Each keyring component name is a component library file name specified without any platform-specific extension such as `.so` or `.dll`. For example, to use the component for which the library file is `component_keyring_file.so`, specify the option as `--source-keyring=component_keyring_file`. The source and destination must differ, and  `mysql_migrate_keyring` must support them both.
 * For an offline migration, no additional options are needed.
-* For an online migration, some running server currently is using the source or destination keystore. In this case, specify the `--online-migration` option to signify an online migration. In addition, specify connection options indicating how to connect to the running server, so that **mysql_migrate_keyring** can connect to it and tell it to pause keyring use during the migration operation.
+* For an online migration, some running server currently is using the source or destination keystore. In this case, specify the `--online-migration` option to signify an online migration. In addition, specify connection options indicating how to connect to the running server, so that  `mysql_migrate_keyring` can connect to it and tell it to pause keyring use during the migration operation.
 
   The `--online-migration` option is commonly used in conjunction with connection options such as these:
 
-  +  `--host`: The host where the running server is located. This is always the local host because **mysql_migrate_keyring** can migrate keys only between keystores managed by local components.
+  +  `--host`: The host where the running server is located. This is always the local host because  `mysql_migrate_keyring` can migrate keys only between keystores managed by local components.
   +  `--user`, `--password`: The account credentials to use to connect to the running server.
   +  `--port`: For TCP/IP connections, the port number to connect to on the running server.
   +  `--socket`: For Unix socket file or Windows named pipe connections, the socket file or named pipe to connect to on the running server.
 
 For descriptions of all available options, see Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”.
 
-Start  **mysql_migrate_keyring** with options indicating the source and destination keystores and whether the migration is offline or online, possibly with other options. Keep the following considerations in mind:
+Start   `mysql_migrate_keyring` with options indicating the source and destination keystores and whether the migration is offline or online, possibly with other options. Keep the following considerations in mind:
 
-* The user who invokes **mysql_migrate_keyring** must not be the `root` operating system user.
-* The user who invokes **mysql_migrate_keyring** must have permission to read and write any local keyring files, such as the data file for a file-based plugin.
+* The user who invokes  `mysql_migrate_keyring` must not be the `root` operating system user.
+* The user who invokes  `mysql_migrate_keyring` must have permission to read and write any local keyring files, such as the data file for a file-based plugin.
 
-  If you invoke  **mysql_migrate_keyring** from a system account different from that normally used to run MySQL, it might create keyring directories or files that are inaccessible to the server during normal operation. Suppose that  `mysqld` normally runs as the `mysql` operating system user, but you invoke **mysql_migrate_keyring** while logged in as `isabel`. Any new directories or files created by  **mysql_migrate_keyring** are owned by `isabel`. Subsequent startup fails when a server run as the `mysql` operating system user attempts to access file system objects owned by `isabel`.
+  If you invoke   `mysql_migrate_keyring` from a system account different from that normally used to run MySQL, it might create keyring directories or files that are inaccessible to the server during normal operation. Suppose that  `mysqld` normally runs as the `mysql` operating system user, but you invoke  `mysql_migrate_keyring` while logged in as `isabel`. Any new directories or files created by   `mysql_migrate_keyring` are owned by `isabel`. Subsequent startup fails when a server run as the `mysql` operating system user attempts to access file system objects owned by `isabel`.
 
-  To avoid this issue, invoke **mysql_migrate_keyring** as the `mysql` operating system user. Alternatively, after the migration, examine the keyring-related file system objects and change their ownership and permissions if necessary using **chown**, **chmod**, or similar commands, so that the objects are accessible to the running server.
+  To avoid this issue, invoke  `mysql_migrate_keyring` as the `mysql` operating system user. Alternatively, after the migration, examine the keyring-related file system objects and change their ownership and permissions if necessary using **chown**, **chmod**, or similar commands, so that the objects are accessible to the running server.
 
 Suppose that you want to migrate keys from `component_keyring_file` to `component_keyring_encrypted_file`, and that the local server stores its keyring component library files in `/usr/local/mysql/lib/plugin`.
 
-If no running server is using the keyring, an offline migration is permitted. Invoke **mysql_migrate_keyring** like this (enter the command on a single line):
+If no running server is using the keyring, an offline migration is permitted. Invoke  `mysql_migrate_keyring` like this (enter the command on a single line):
 
 ```
 mysql_migrate_keyring
@@ -237,7 +237,7 @@ mysql_migrate_keyring
   --online-migration --host=127.0.0.1 --user=admin --password
 ```
 
- **mysql_migrate_keyring** performs a migration operation as follows:
+  `mysql_migrate_keyring` performs a migration operation as follows:
 
 1. (Online migration only) Connect to the running server using the connection options.
 2. (Online migration only) Disable `keyring_operations` on the running server.
@@ -260,7 +260,7 @@ After a successful online key migration operation, the running server might need
 Online key migration provides for pausing keyring operations on a single running server. To perform a migration if multiple running servers are using the keystores involved, use this procedure:
 
 1. Connect to each running server manually and set `keyring_operations=OFF`. This ensures that no running server is using the source or destination keystore and satisfies the required condition for offline migration.
-2. Use a migration server or **mysql_migrate_keyring** to perform an offline key migration for each paused server.
+2. Use a migration server or  `mysql_migrate_keyring` to perform an offline key migration for each paused server.
 3. Connect to each running server manually and set `keyring_operations=ON`.
 
 All running servers must support the `keyring_operations` system variable. Any server that does not must be stopped before the migration and restarted after.

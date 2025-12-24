@@ -1,10 +1,10 @@
-#### 6.5.1.4 mysql Client Server-Side Help
+#### 6.5.1.4 `mysql` Client Server-Side Help
 
 ```
 mysql> help search_string
 ```
 
-If you provide an argument to the `help` command,  `mysql` uses it as a search string to access server-side help from the contents of the MySQL Reference Manual. The proper operation of this command requires that the help tables in the `mysql` database be initialized with help topic information (see Section 7.1.17, “Server-Side Help Support”).
+If you provide an argument to the `help` command, `mysql` uses it as a search string to access server-side help from the contents of the MySQL Reference Manual. The proper operation of this command requires that the help tables in the `mysql` database be initialized with help topic information (see Section 7.1.17, “Server-Side Help Support”).
 
 If there is no match for the search string, the search fails:
 
@@ -15,7 +15,7 @@ Nothing found
 Please try to run 'help contents' for a list of all accessible topics
 ```
 
-Use  **help contents** to see a list of the help categories:
+Use `help contents` to see a list of the help categories:
 
 ```
 mysql> help contents
@@ -90,5 +90,3 @@ topics:
    REPLACE
    REPLACE FUNCTION
 ```
-
-

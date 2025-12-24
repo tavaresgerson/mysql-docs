@@ -349,7 +349,7 @@
           -> '0A000509'
   ```
 
-  If  `INET6_ATON()` is invoked from within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `INET6_ATON()` is invoked from within the `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `INET6_NTOA(expr)`
 
   Given an IPv6 or IPv4 network address represented in numeric form as a binary string, returns the string representation of the address as a string in the connection character set. If the argument is not a valid address, or if it is `NULL`, `INET6_NTOA()` returns `NULL`.
@@ -382,7 +382,7 @@
           -> '10.0.5.9'
   ```
 
-  If  `INET6_NTOA()` is invoked from within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `INET6_NTOA()` is invoked from within the `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `IS_IPV4(expr)`
 
   Returns 1 if the argument is a valid IPv4 address specified as a string, 0 otherwise. Returns `NULL` if *`expr`* is `NULL`.
@@ -522,7 +522,7 @@
   +--------+
   ```
 
-  This function is for internal use only. The server uses it when writing statements from stored programs that contain references to local program variables, as described in Section 27.7, “Stored Program Binary Logging”. You might see this function in the output from  **mysqlbinlog**.
+  This function is for internal use only. The server uses it when writing statements from stored programs that contain references to local program variables, as described in Section 27.7, “Stored Program Binary Logging”. You might see this function in the output from   `mysqlbinlog`.
 
   For your applications, you can obtain exactly the same result as in the example just shown by using simple aliasing, like this:
 
@@ -728,7 +728,7 @@
   +--------------------------------------+
   ```
 
-  If  `UUID_TO_BIN()` is invoked from within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+  If  `UUID_TO_BIN()` is invoked from within the `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 *  `VALUES(col_name)`
 
   In an [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "15.2.7.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statement, you can use the `VALUES(col_name)` function in the  `UPDATE` clause to refer to column values from the `INSERT` portion of the statement. In other words, `VALUES(col_name)` in the  `UPDATE` clause refers to the value of *`col_name`* that would be inserted, had no duplicate-key conflict occurred. This function is especially useful in multiple-row inserts. The `VALUES()` function is meaningful only in the `ON DUPLICATE KEY UPDATE` clause of  `INSERT` statements and returns `NULL` otherwise. See Section 15.2.7.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”.

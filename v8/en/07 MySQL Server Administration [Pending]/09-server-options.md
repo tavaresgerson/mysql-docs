@@ -45,29 +45,29 @@ You can change the values of most system variables at runtime with the  `SET` st
 
 *  `--help`, `-?`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a short help message and exit. Use both the `--verbose` and `--help` options to see the full message.
 *  `--allow-suspicious-udfs`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   This option controls whether loadable functions that have only an `xxx` symbol for the main function can be loaded. By default, the option is off and only loadable functions that have at least one auxiliary symbol can be loaded; this prevents attempts at loading functions from shared object files other than those containing legitimate functions. See  Loadable Function Security Precautions.
 *  `--ansi`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Use standard (ANSI) SQL syntax instead of MySQL syntax. For more precise control over the server SQL mode, use the `--sql-mode` option instead. See Section 1.7, “MySQL Standards Compliance”, and Section 7.1.11, “Server SQL Modes”.
 *  `--basedir=dir_name`, `-b dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
 
   The path to the MySQL installation directory. This option sets the  `basedir` system variable.
 
   The server executable determines its own full path name at startup and uses the parent of the directory in which it is located as the default `basedir` value. This in turn enables the server to use that `basedir` when searching for server-related information such as the `share` directory containing error messages.
 *  `--check-table-functions=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr></tbody></table>
 
   When performing an upgade of the server, we scan the data dictionary for functions used in table constraints and other expressions, including `DEFAULT` expressions, partitioning expressions, and virtual columns. It is possible that a change in the behavior of the function causes it to raise an error in the new version of the server, where no such error occurred before in which case the table cannot be opened. This option provides a choice in how to handle such problems, according to which of the two values shown here is used:
 
@@ -79,19 +79,19 @@ You can change the values of most system variables at runtime with the  `SET` st
   The `--check-table-functions` option was introduced in MySQL 8.4.5.
 *  `--chroot=dir_name`, `-r dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   Put the  `mysqld` server in a closed environment during startup by using the `chroot()` system call. This is a recommended security measure. Use of this option somewhat limits `LOAD DATA` and `SELECT ... INTO OUTFILE`.
 *  `--console`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--console</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--console</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
 
   (Windows only.) Cause the default error log destination to be the console. This affects log sinks that base their own output destination on the default destination. See Section 7.4.2, “The Error Log”.  `mysqld` does not close the console window if this option is used.
 
    `--console` takes precedence over `--log-error` if both are given.
 *  `--core-file`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   When this option is used, write a core file if `mysqld` dies; no arguments are needed (or accepted). The name and location of the core file is system dependent. On Linux, a core file named `core.pid` is written to the current working directory of the process, which for  `mysqld` is the data directory. *`pid`* represents the process ID of the server process. On macOS, a core file named `core.pid` is written to the `/cores` directory. On Solaris, use the **coreadm** command to specify where to write the core file and how to name it.
 
@@ -100,7 +100,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   The `innodb_buffer_pool_in_core_file` variable can be used to reduce the size of core files on operating systems that support it. For more information, see Section 17.8.3.7, “Excluding or Including Buffer Pool Pages from Core Files”.
 *  `--daemonize`, `-D`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--daemonize[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--daemonize[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   This option causes the server to run as a traditional, forking daemon, permitting it to work with operating systems that use systemd for process control. For more information, see Section 2.5.9, “Managing MySQL Server with systemd”.
 
@@ -111,12 +111,12 @@ You can change the values of most system variables at runtime with the  `SET` st
   `-D` is a synonym for `--daemonize`.
 *  `--datadir=dir_name`, `-h dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>datadir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>datadir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The path to the MySQL server data directory. This option sets the  `datadir` system variable. See the description of that variable.
 *  `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>System Variable</th> <td><code>debug</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value (Unix)</th> <td><code>d:t:i:o,/tmp/mysqld.trace</code></td> </tr><tr><th>Default Value (Windows)</th> <td><code>d:t:i:O,\mysqld.trace</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>System Variable</th> <td><code>debug</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value (Unix)</th> <td><code>d:t:i:o,/tmp/mysqld.trace</code></td> </tr><tr><th>Default Value (Windows)</th> <td><code>d:t:i:O,\mysqld.trace</code></td> </tr></tbody></table>
 
   If MySQL is configured with the `-DWITH_DEBUG=1` `CMake` option, you can use this option to get a trace file of what  `mysqld` is doing. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:i:o,/tmp/mysqld.trace` on Unix and `d:t:i:O,\mysqld.trace` on Windows.
 
@@ -127,14 +127,14 @@ You can change the values of most system variables at runtime with the  `SET` st
   For more information, see  Section 7.9.4, “The DBUG Package”.
 *  `--debug-sync-timeout[=N]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug-sync-timeout[=#]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--debug-sync-timeout[=#]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
 
   Controls whether the Debug Sync facility for testing and debugging is enabled. Use of Debug Sync requires that MySQL be configured with the `-DWITH_DEBUG=ON` `CMake` option (see Section 2.8.7, “MySQL Source-Configuration Options”); otherwise, this option is not available. The option value is a timeout in seconds. The default value is 0, which disables Debug Sync. To enable it, specify a value greater than 0; this value also becomes the default timeout for individual synchronization points. If the option is given without a value, the timeout is set to 300 seconds.
 
   For a description of the Debug Sync facility and how to use synchronization points, see MySQL Internals: Test Synchronization.
 *  `--default-time-zone=timezone`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-time-zone=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--default-time-zone=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Set the default server time zone. This option sets the global `time_zone` system variable. If this option is not given, the default time zone is the same as the system time zone (given by the value of the `system_time_zone` system variable.
 
@@ -164,7 +164,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--early-plugin-load=plugin_list`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--early-plugin-load=plugin_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>empty string</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--early-plugin-load=plugin_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>empty string</code></td> </tr></tbody></table>
 
   This option tells the server which plugins to load before loading mandatory built-in plugins and before storage engine initialization. Early loading is supported only for plugins compiled with `PLUGIN_OPT_ALLOW_EARLY`. If multiple  `--early-plugin-load` options are given, only the last one applies.
 
@@ -196,12 +196,12 @@ You can change the values of most system variables at runtime with the  `SET` st
 
 *  `--exit-info[=flags]`, `-T [flags]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--exit-info[=flags]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--exit-info[=flags]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
 
   This is a bitmask of different flags that you can use for debugging the  `mysqld` server. Do not use this option unless you know *exactly* what it does!
 *  `--external-locking`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--external-locking[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--external-locking[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Enable external locking (system locking), which is disabled by default. If you use this option on a system on which `lockd` does not fully work (such as Linux), it is easy for  `mysqld` to deadlock.
 
@@ -210,7 +210,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   External locking affects only `MyISAM` table access. For more information, including conditions under which it can and cannot be used, see  Section 10.11.5, “External Locking”.
 *  `--flush`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--flush[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>flush</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--flush[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>flush</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Flush (synchronize) all changes to disk after each SQL statement. Normally, MySQL does a write of all changes to disk only after each SQL statement and lets the operating system handle the synchronizing to disk. See Section B.3.3.3, “What to Do If MySQL Keeps Crashing”.
 
@@ -222,7 +222,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
 *  `--gdb`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--gdb[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--gdb[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Install an interrupt handler for `SIGINT` (needed to stop  `mysqld` with `^C` to set breakpoints) and disable stack tracing and core file handling. See Section 7.9.1.4, “Debugging mysqld under gdb”.
 
@@ -231,7 +231,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   In non-debug settings, `--no-monitor` may be used to suppress forking the monitor process.
 *  `--initialize`, `-I`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--initialize[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--initialize[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   This option is used to initialize a MySQL installation by creating the data directory and populating the tables in the `mysql` system schema. For more information, see  Section 2.9.1, “Initializing the Data Directory”.
 
@@ -245,7 +245,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   The items in the preceding list also apply when initializing the server using the `--initialize-insecure` option.
 *  `--initialize-insecure`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--initialize-insecure[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--initialize-insecure[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   This option is used to initialize a MySQL installation by creating the data directory and populating the tables in the `mysql` system schema. This option implies `--initialize`, and the same restrictions and limitations apply; for more information, see the description of that option, and Section 2.9.1, “Initializing the Data Directory”.
 
@@ -257,7 +257,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   Set an option for the `InnoDB` storage engine. The `InnoDB` options are listed in Section 17.14, “InnoDB Startup Options and System Variables”.
 * `--install [service_name]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--install [service_name]</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--install [service_name]</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
 
   (Windows only) Install the server as a Windows service that starts automatically during Windows startup. The default service name is `MySQL` if no *`service_name`* value is given. For more information, see  Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 
@@ -269,7 +269,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
 * `--install-manual [service_name]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--install-manual [service_name]</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--install-manual [service_name]</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
 
   (Windows only) Install the server as a Windows service that must be started manually. It does not start automatically during Windows startup. The default service name is `MySQL` if no *`service_name`* value is given. For more information, see  Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 
@@ -281,7 +281,7 @@ You can change the values of most system variables at runtime with the  `SET` st
 
 *  `--large-pages`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--large-pages[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>large_pages</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Platform Specific</th> <td>Linux</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--large-pages[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>large_pages</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Platform Specific</th> <td>Linux</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Some hardware/operating system architectures support memory pages greater than the default (usually 4KB). The actual implementation of this support depends on the underlying hardware and operating system. Applications that perform a lot of memory accesses may obtain performance improvements by using large pages due to reduced Translation Lookaside Buffer (TLB) misses.
 
@@ -290,22 +290,22 @@ You can change the values of most system variables at runtime with the  `SET` st
    `--large-pages` is disabled by default.
 *  `--lc-messages=locale_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--lc-messages=name</code></td> </tr><tr><th>System Variable</th> <td><code>lc_messages</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>en_US</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--lc-messages=name</code></td> </tr><tr><th>System Variable</th> <td><code>lc_messages</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>en_US</code></td> </tr></tbody></table>
 
   The locale to use for error messages. The default is `en_US`. The server converts the argument to a language name and combines it with the value of `--lc-messages-dir` to produce the location for the error message file. See Section 12.12, “Setting the Error Message Language”.
 *  `--lc-messages-dir=dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--lc-messages-dir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>lc_messages_dir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--lc-messages-dir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>lc_messages_dir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory where error messages are located. The server uses the value together with the value of `--lc-messages` to produce the location for the error message file. See Section 12.12, “Setting the Error Message Language”.
 *  `--local-service`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--local-service</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--local-service</code></td> </tr></tbody></table>
 
   (Windows only) A `--local-service` option following the service name causes the server to run using the `LocalService` Windows account that has limited system privileges. If both `--defaults-file` and `--local-service` are given following the service name, they can be in any order. See Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 *  `--log-error[=file_name]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-error[=file_name]</code></td> </tr><tr><th>System Variable</th> <td><code>log_error</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--log-error[=file_name]</code></td> </tr><tr><th>System Variable</th> <td><code>log_error</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Set the default error log destination to the named file. This affects log sinks that base their own output destination on the default destination. See  Section 7.4.2, “The Error Log”.
 
@@ -318,12 +318,12 @@ You can change the values of most system variables at runtime with the  `SET` st
   On Windows,  `--console` takes precedence over  `--log-error` if both are given. In this case, the default error log destination is the console rather than a file.
 *  `--log-isam[=file_name]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-isam[=file_name]</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--log-isam[=file_name]</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Log all `MyISAM` changes to this file (used only when debugging `MyISAM`).
 *  `--log-raw`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-raw[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>log_raw</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--log-raw[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>log_raw</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Passwords in certain statements written to the general query log, slow query log, and binary log are rewritten by the server not to occur literally in plain text. Password rewriting can be suppressed for the general query log by starting the server with the `--log-raw` option. This option may be useful for diagnostic purposes, to see the exact text of statements as received by the server, but for security reasons is not recommended for production use.
 
@@ -335,22 +335,22 @@ You can change the values of most system variables at runtime with the  `SET` st
   For more information, see  Section 8.1.2.3, “Passwords and Logging”.
 *  `--log-short-format`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-short-format[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--log-short-format[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Log less information to the slow query log, if it has been activated.
 *  `--log-tc=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-tc=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>tc.log</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--log-tc=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>tc.log</code></td> </tr></tbody></table>
 
   The name of the memory-mapped transaction coordinator log file (for XA transactions that affect multiple storage engines when the binary log is disabled). The default name is `tc.log`. The file is created under the data directory if not given as a full path name. This option is unused.
 *  `--log-tc-size=size`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-tc-size=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>6 * page size</code></td> </tr><tr><th>Minimum Value</th> <td><code>6 * page size</code></td> </tr><tr><th>Maximum Value (64-bit platforms)</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Maximum Value (32-bit platforms)</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--log-tc-size=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>6 * page size</code></td> </tr><tr><th>Minimum Value</th> <td><code>6 * page size</code></td> </tr><tr><th>Maximum Value (64-bit platforms)</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Maximum Value (32-bit platforms)</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   The size in bytes of the memory-mapped transaction coordinator log. The default and minimum values are 6 times the page size, and the value must be a multiple of the page size.
 *  `--memlock`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--memlock[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--memlock[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Lock the  `mysqld` process in memory. This option might help if you have a problem where the operating system is causing  `mysqld` to swap to disk.
 
@@ -375,12 +375,12 @@ You can change the values of most system variables at runtime with the  `SET` st
   You must not use this option on a system that does not support the `mlockall()` system call; if you do so,  `mysqld` is very likely to exit as soon as you try to start it.
 *  `--myisam-block-size=N`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--myisam-block-size=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1024</code></td> </tr><tr><th>Maximum Value</th> <td><code>16384</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--myisam-block-size=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1024</code></td> </tr><tr><th>Maximum Value</th> <td><code>16384</code></td> </tr></tbody></table>
 
   The block size to be used for `MyISAM` index pages.
 *  `--mysql-native-password`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-native-password={OFF|ON}</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-native-password={OFF|ON}</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Enable the `mysql_native_password` authentication plugin, which is disabled by default in MySQL 8.4.
 
@@ -392,7 +392,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--no-monitor`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-monitor[={OFF|ON}]</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-monitor[={OFF|ON}]</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   (Windows only). This option suppresses the forking that is used to implement the  `RESTART` statement: Forking enables one process to act as a monitor to the other, which acts as the server. For a server started with this option,  `RESTART` simply exits and does not restart.
 * `--performance-schema-xxx`
@@ -400,7 +400,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   Configure a Performance Schema option. For details, see Section 29.14, “Performance Schema Command Options”.
 *  `--plugin-load=plugin_list`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-load=plugin_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-load=plugin_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   This option tells the server to load the named plugins at startup. If multiple `--plugin-load` options are given, only the last one applies. Additional plugins to load may be specified using `--plugin-load-add` options.
 
@@ -423,7 +423,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   For additional information about plugin loading, see Section 7.6.1, “Installing and Uninstalling Plugins”.
 *  `--plugin-load-add=plugin_list`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-load-add=plugin_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-load-add=plugin_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   This option complements the `--plugin-load` option. `--plugin-load-add` adds a plugin or plugins to the set of plugins to be loaded at startup. The argument format is the same as for `--plugin-load`. `--plugin-load-add` can be used to avoid specifying a large set of plugins as a single long unwieldy  `--plugin-load` argument.
 
@@ -463,12 +463,12 @@ You can change the values of most system variables at runtime with the  `SET` st
   The rationale for the `--plugin` prefix is that it enables plugin options to be specified unambiguously if there is a name conflict with a built-in server option. For example, were a plugin writer to name a plugin “sql” and implement a “mode” option, the option name might be `--sql-mode`, which would conflict with the built-in option of the same name. In such cases, references to the conflicting name are resolved in favor of the built-in option. To avoid the ambiguity, users can specify the plugin option as `--plugin-sql-mode`. Use of the `--plugin` prefix for plugin options is recommended to avoid any question of ambiguity.
 *  `--port=port_num`, `-P port_num`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>System Variable</th> <td><code>port</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>System Variable</th> <td><code>port</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   The port number to use when listening for TCP/IP connections. On Unix and Unix-like systems, the port number must be 1024 or higher unless the server is started by the `root` operating system user. Setting this option to 0 causes the default value to be used.
 *  `--port-open-timeout=num`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--port-open-timeout=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--port-open-timeout=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   On some systems, when the server is stopped, the TCP/IP port might not become available immediately. If the server is restarted quickly afterward, its attempt to reopen the port can fail. This option indicates how many seconds the server should wait for the TCP/IP port to become free if it cannot be opened. The default is not to wait.
 *  `--print-defaults`
@@ -478,12 +478,12 @@ You can change the values of most system variables at runtime with the  `SET` st
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 * `--remove [service_name]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--remove [service_name]</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--remove [service_name]</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
 
   (Windows only) Remove a MySQL Windows service. The default service name is `MySQL` if no *`service_name`* value is given. For more information, see  Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 *  `--safe-user-create`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--safe-user-create[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--safe-user-create[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   If this option is enabled, a user cannot create new MySQL users by using the  `GRANT` statement unless the user has the `INSERT` privilege for the `mysql.user` system table or any column in the table. If you want a user to have the ability to create new users that have those privileges that the user has the right to grant, you should grant the user the following privilege:
 
@@ -494,7 +494,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   This ensures that the user cannot change any privilege columns directly, but has to use the `GRANT` statement to give privileges to other users.
 *  `--skip-grant-tables`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-grant-tables[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--skip-grant-tables[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   This option affects the server startup sequence:
 
@@ -521,34 +521,34 @@ You can change the values of most system variables at runtime with the  `SET` st
   +  `--skip-grant-tables` causes the `disabled_storage_engines` system variable to have no effect.
 *  `--skip-new`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-new</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--skip-new</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
 
   This option disables (what used to be considered) new, possibly unsafe behaviors. It results in these settings: `delay_key_write=OFF`, `concurrent_insert=NEVER`, `automatic_sp_privileges=OFF`. It also causes  `OPTIMIZE TABLE` to be mapped to  `ALTER TABLE` for storage engines for which `OPTIMIZE TABLE` is not supported.
 
   This option is deprecated, and subject to removal in a future release.
 *  `--skip-show-database`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-show-database</code></td> </tr><tr><th>System Variable</th> <td><code>skip_show_database</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--skip-show-database</code></td> </tr><tr><th>System Variable</th> <td><code>skip_show_database</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   This option sets the `skip_show_database` system variable that controls who is permitted to use the `SHOW DATABASES` statement. See Section 7.1.8, “Server System Variables”.
 *  `--skip-stack-trace`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-stack-trace</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--skip-stack-trace</code></td> </tr></tbody></table>
 
   Do not write stack traces. This option is useful when you are running  `mysqld` under a debugger. On some systems, you also must use this option to get a core file. See Section 7.9, “Debugging MySQL”.
 *  `--slow-start-timeout=timeout`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--slow-start-timeout=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>15000</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--slow-start-timeout=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>15000</code></td> </tr></tbody></table>
 
   This option controls the Windows service control manager's service start timeout. The value is the maximum number of milliseconds that the service control manager waits before trying to kill the windows service during startup. The default value is 15000 (15 seconds). If the MySQL service takes too long to start, you may need to increase this value. A value of 0 means there is no timeout.
 *  `--socket=path`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--socket={file_name|pipe_name}</code></td> </tr><tr><th>System Variable</th> <td><code>socket</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value (Windows)</th> <td><code>MySQL</code></td> </tr><tr><th>Default Value (Other)</th> <td><code>/tmp/mysql.sock</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--socket={file_name|pipe_name}</code></td> </tr><tr><th>System Variable</th> <td><code>socket</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value (Windows)</th> <td><code>MySQL</code></td> </tr><tr><th>Default Value (Other)</th> <td><code>/tmp/mysql.sock</code></td> </tr></tbody></table>
 
   On Unix, this option specifies the Unix socket file to use when listening for local connections. The default value is `/tmp/mysql.sock`. If this option is given, the server creates the file in the data directory unless an absolute path name is given to specify a different directory. On Windows, the option specifies the pipe name to use when listening for local connections that use a named pipe. The default value is `MySQL` (not case-sensitive).
 * [`--sql-mode=value[,value[,value...]]`](server-options.html#option_mysqld_sql-mode)
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--sql-mode=name</code></td> </tr><tr><th>System Variable</th> <td><code>sql_mode</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>ONLY_FULL_GROUP_BY STRICT_TRANS_TABLES NO_ZERO_IN_DATE NO_ZERO_DATE ERROR_FOR_DIVISION_BY_ZERO NO_ENGINE_SUBSTITUTION</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ALLOW_INVALID_DATES</code></p><p><code>ANSI_QUOTES</code></p><p><code>ERROR_FOR_DIVISION_BY_ZERO</code></p><p><code>HIGH_NOT_PRECEDENCE</code></p><p><code>IGNORE_SPACE</code></p><p><code>NO_AUTO_VALUE_ON_ZERO</code></p><p><code>NO_BACKSLASH_ESCAPES</code></p><p><code>NO_DIR_IN_CREATE</code></p><p><code>NO_ENGINE_SUBSTITUTION</code></p><p><code>NO_UNSIGNED_SUBTRACTION</code></p><p><code>NO_ZERO_DATE</code></p><p><code>NO_ZERO_IN_DATE</code></p><p><code>ONLY_FULL_GROUP_BY</code></p><p><code>PAD_CHAR_TO_FULL_LENGTH</code></p><p><code>PIPES_AS_CONCAT</code></p><p><code>REAL_AS_FLOAT</code></p><p><code>STRICT_ALL_TABLES</code></p><p><code>STRICT_TRANS_TABLES</code></p><p><code>TIME_TRUNCATE_FRACTIONAL</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--sql-mode=name</code></td> </tr><tr><th>System Variable</th> <td><code>sql_mode</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>ONLY_FULL_GROUP_BY STRICT_TRANS_TABLES NO_ZERO_IN_DATE NO_ZERO_DATE ERROR_FOR_DIVISION_BY_ZERO NO_ENGINE_SUBSTITUTION</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ALLOW_INVALID_DATES</code></p><p><code>ANSI_QUOTES</code></p><p><code>ERROR_FOR_DIVISION_BY_ZERO</code></p><p><code>HIGH_NOT_PRECEDENCE</code></p><p><code>IGNORE_SPACE</code></p><p><code>NO_AUTO_VALUE_ON_ZERO</code></p><p><code>NO_BACKSLASH_ESCAPES</code></p><p><code>NO_DIR_IN_CREATE</code></p><p><code>NO_ENGINE_SUBSTITUTION</code></p><p><code>NO_UNSIGNED_SUBTRACTION</code></p><p><code>NO_ZERO_DATE</code></p><p><code>NO_ZERO_IN_DATE</code></p><p><code>ONLY_FULL_GROUP_BY</code></p><p><code>PAD_CHAR_TO_FULL_LENGTH</code></p><p><code>PIPES_AS_CONCAT</code></p><p><code>REAL_AS_FLOAT</code></p><p><code>STRICT_ALL_TABLES</code></p><p><code>STRICT_TRANS_TABLES</code></p><p><code>TIME_TRUNCATE_FRACTIONAL</code></p></td> </tr></tbody></table>
 
   Set the SQL mode. See  Section 7.1.11, “Server SQL Modes”.
 
@@ -561,17 +561,17 @@ You can change the values of most system variables at runtime with the  `SET` st
   :::
 *  `--standalone`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--standalone</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--standalone</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
 
   Available on Windows only; instructs the MySQL server not to run as a service.
 *  `--super-large-pages`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--super-large-pages[={OFF|ON}]</code></td> </tr><tr><th>Platform Specific</th> <td>Solaris</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--super-large-pages[={OFF|ON}]</code></td> </tr><tr><th>Platform Specific</th> <td>Solaris</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Standard use of large pages in MySQL attempts to use the largest size supported, up to 4MB. Under Solaris, a “super large pages” feature enables uses of pages up to 256MB. This feature is available for recent SPARC platforms. It can be enabled or disabled by using the `--super-large-pages` or `--skip-super-large-pages` option.
 *  `--symbolic-links`, `--skip-symbolic-links`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--symbolic-links[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--symbolic-links[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Enable or disable symbolic link support. On Unix, enabling symbolic links means that you can link a `MyISAM` index file or data file to another directory with the `INDEX DIRECTORY` or `DATA DIRECTORY` option of the `CREATE TABLE` statement. If you delete or rename the table, the files that its symbolic links point to also are deleted or renamed. See Section 10.12.2.2, “Using Symbolic Links for MyISAM Tables on Unix”.
 
@@ -584,12 +584,12 @@ You can change the values of most system variables at runtime with the  `SET` st
   This option has no meaning on Windows.
 *  `--sysdate-is-now`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--sysdate-is-now[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--sysdate-is-now[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
    `SYSDATE()` by default returns the time at which it executes, not the time at which the statement in which it occurs begins executing. This differs from the behavior of  `NOW()`. This option causes  `SYSDATE()` to be a synonym for  `NOW()`. For information about the implications for binary logging and replication, see the description for `SYSDATE()` in Section 14.7, “Date and Time Functions” and for `SET TIMESTAMP` in Section 7.1.8, “Server System Variables”.
 *  `--tc-heuristic-recover={COMMIT|ROLLBACK}`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tc-heuristic-recover=name</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>COMMIT</code></p><p><code>ROLLBACK</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tc-heuristic-recover=name</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OFF</code></p><p><code>COMMIT</code></p><p><code>ROLLBACK</code></p></td> </tr></tbody></table>
 
   The decision to use in a manual heuristic recovery.
 
@@ -604,21 +604,21 @@ You can change the values of most system variables at runtime with the  `SET` st
   ```
 *  `--transaction-isolation=level`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--transaction-isolation=name</code></td> </tr><tr><th>System Variable</th> <td><code>transaction_isolation</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>REPEATABLE-READ</code></td> </tr><tr><th>Valid Values</th> <td><p><code>READ-UNCOMMITTED</code></p><p><code>READ-COMMITTED</code></p><p><code>REPEATABLE-READ</code></p><p><code>SERIALIZABLE</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--transaction-isolation=name</code></td> </tr><tr><th>System Variable</th> <td><code>transaction_isolation</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>REPEATABLE-READ</code></td> </tr><tr><th>Valid Values</th> <td><p><code>READ-UNCOMMITTED</code></p><p><code>READ-COMMITTED</code></p><p><code>REPEATABLE-READ</code></p><p><code>SERIALIZABLE</code></p></td> </tr></tbody></table>
 
   Sets the default transaction isolation level. The `level` value can be `READ-UNCOMMITTED`, `READ-COMMITTED`, `REPEATABLE-READ`, or `SERIALIZABLE`. See Section 15.3.7, “SET TRANSACTION Statement”.
 
   The default transaction isolation level can also be set at runtime using the `SET TRANSACTION` statement or by setting the `transaction_isolation` system variable.
 *  `--transaction-read-only`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--transaction-read-only[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>transaction_read_only</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--transaction-read-only[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>transaction_read_only</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Sets the default transaction access mode. By default, read-only mode is disabled, so the mode is read/write.
 
   To set the default transaction access mode at runtime, use the `SET TRANSACTION` statement or set the  `transaction_read_only` system variable. See  Section 15.3.7, “SET TRANSACTION Statement”.
 *  `--tmpdir=dir_name`, `-t dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tmpdir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>tmpdir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tmpdir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>tmpdir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The path of the directory to use for creating temporary files. It might be useful if your default `/tmp` directory resides on a partition that is too small to hold temporary tables. This option accepts several paths that are used in round-robin fashion. Paths should be separated by colon characters (`:`) on Unix and semicolon characters (`;`) on Windows.
 
@@ -627,7 +627,7 @@ You can change the values of most system variables at runtime with the  `SET` st
   For more information about the storage location of temporary files, see  Section B.3.3.5, “Where MySQL Stores Temporary Files”.
 *  `--upgrade=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--upgrade=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p><code>AUTO</code></p><p><code>NONE</code></p><p><code>MINIMAL</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--upgrade=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p><code>AUTO</code></p><p><code>NONE</code></p><p><code>MINIMAL</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
   This option controls whether and how the server performs an automatic upgrade at startup. Automatic upgrade involves two steps:
 
@@ -673,10 +673,10 @@ You can change the values of most system variables at runtime with the  `SET` st
 
   The following table summarizes the actions taken by the server for each option value.
 
-  <table><col style="width: 20%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th scope="col">Option Value</th> <th scope="col">Server Performs Step 1?</th> <th scope="col">Server Performs Step 2?</th> </tr></thead><tbody><tr> <th><code>AUTO</code></th> <td>If necessary</td> <td>If necessary</td> </tr><tr> <th><code>NONE</code></th> <td>No</td> <td>No</td> </tr><tr> <th><code>MINIMAL</code></th> <td>If necessary</td> <td>No</td> </tr><tr> <th><code>FORCE</code></th> <td>If necessary</td> <td>Yes</td> </tr></tbody></table>
+  <table><col style="width: 20%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Option Value</th> <th>Server Performs Step 1?</th> <th>Server Performs Step 2?</th> </tr></thead><tbody><tr> <th><code>AUTO</code></th> <td>If necessary</td> <td>If necessary</td> </tr><tr> <th><code>NONE</code></th> <td>No</td> <td>No</td> </tr><tr> <th><code>MINIMAL</code></th> <td>If necessary</td> <td>No</td> </tr><tr> <th><code>FORCE</code></th> <td>If necessary</td> <td>Yes</td> </tr></tbody></table>
 *  `--user={user_name|user_id}`, `-u {user_name|user_id}`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--user=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--user=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Run the  `mysqld` server as the user having the name *`user_name`* or the numeric user ID *`user_id`*. (“User” in this context refers to a system login account, not a MySQL user listed in the grant tables.)
 
@@ -685,12 +685,12 @@ You can change the values of most system variables at runtime with the  `SET` st
   To avoid a possible security hole where a user adds a `--user=root` option to a `my.cnf` file (thus causing the server to run as `root`),  `mysqld` uses only the first  `--user` option specified and produces a warning if there are multiple `--user` options. Options in `/etc/my.cnf` and `$MYSQL_HOME/my.cnf` are processed before command-line options, so it is recommended that you put a `--user` option in `/etc/my.cnf` and specify a value other than `root`. The option in `/etc/my.cnf` is found before any other `--user` options, which ensures that the server runs as a user other than `root`, and that a warning results if any other  `--user` option is found.
 *  `--validate-config`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--validate-config[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--validate-config[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Validate the server startup configuration. If no errors are found, the server terminates with an exit code of 0. If an error is found, the server displays a diagnostic message and terminates with an exit code of 1. Warning and information messages may also be displayed, depending on the `log_error_verbosity` value, but do not produce immediate validation termination or an exit code of 1. For more information, see Section 7.1.3, “Server Configuration Validation”.
 *  `--validate-user-plugins[={OFF|ON}]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--validate-user-plugins[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--validate-user-plugins[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If this option is enabled (the default), the server checks each user account and produces a warning if conditions are found that would make the account unusable:
 

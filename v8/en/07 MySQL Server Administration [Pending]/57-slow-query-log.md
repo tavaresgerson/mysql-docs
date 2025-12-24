@@ -1,6 +1,6 @@
 ### 7.4.5 The Slow Query Log
 
-The slow query log consists of SQL statements that take more than `long_query_time` seconds to execute and require at least `min_examined_row_limit` rows to be examined. The slow query log can be used to find queries that take a long time to execute and are therefore candidates for optimization. However, examining a long slow query log can be a time-consuming task. To make this easier, you can use the **mysqldumpslow** command to process a slow query log file and summarize its contents. See Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”.
+The slow query log consists of SQL statements that take more than `long_query_time` seconds to execute and require at least `min_examined_row_limit` rows to be examined. The slow query log can be used to find queries that take a long time to execute and are therefore candidates for optimization. However, examining a long slow query log can be a time-consuming task. To make this easier, you can use the  `mysqldumpslow` command to process a slow query log file and summarize its contents. See Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”.
 
 The time to acquire the initial locks is not counted as execution time.  `mysqld` writes a statement to the slow query log after it has been executed and after all locks have been released, so log order might differ from execution order.
 

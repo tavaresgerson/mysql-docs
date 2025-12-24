@@ -1,6 +1,6 @@
 # Capítulo 3 Atualização do MySQL
 
-A atualização é um procedimento comum, como você pega correções de bugs dentro da mesma série de lançamentos do MySQL ou recursos significativos entre as principais versões do MySQL. Você executa este procedimento primeiro em alguns sistemas de teste para garantir que tudo funcione sem problemas, e depois nos sistemas de produção.
+A atualização é um procedimento comum, pois você pega correções de bugs dentro da mesma série de lançamentos do MySQL ou recursos significativos entre os principais lançamentos do MySQL.
 
 ::: info Note
 

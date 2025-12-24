@@ -19,7 +19,7 @@ The `C:\temp` directory must exist and have sufficient space for the MySQL serve
 
 Another cause of this error can be permissions issues. Make sure that the MySQL server can write to the  `tmpdir` directory.
 
-Check also the error code that you get with  **perror**. One reason the server cannot write to a table is that the file system is full:
+Check also the error code that you get with   `perror`. One reason the server cannot write to a table is that the file system is full:
 
 ```
 $> perror 28

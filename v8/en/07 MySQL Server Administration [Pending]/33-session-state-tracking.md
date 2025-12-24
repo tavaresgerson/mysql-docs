@@ -63,7 +63,7 @@ To enable client applications to extract state-change information from OK packet
 
 #### Test Suite Session State Tracker Support
 
-The **mysqltest** program has `disable_session_track_info` and `enable_session_track_info` commands that control whether session tracker notifications occur. You can use these commands to see from the command line what notifications SQL statements produce. Suppose that a file `testscript` contains the following **mysqltest** script:
+The `mysqltest` program has `disable_session_track_info` and `enable_session_track_info` commands that control whether session tracker notifications occur. You can use these commands to see from the command line what notifications SQL statements produce. Suppose that a file `testscript` contains the following `mysqltest` script:
 
 ```
 DROP TABLE IF EXISTS test.t1;
@@ -84,7 +84,7 @@ INSERT INTO test.t1 () VALUES(1, RAND());
 COMMIT;
 ```
 
-Run the script as follows to see the information provided by the enabled trackers. For a description of the `Tracker:` information displayed by **mysqltest** for the various trackers, see mysql\_session\_track\_get\_first().
+Run the script as follows to see the information provided by the enabled trackers. For a description of the `Tracker:` information displayed by `mysqltest` for the various trackers, see mysql\_session\_track\_get\_first().
 
 ```
 $> mysqltest < testscript

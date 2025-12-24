@@ -35,7 +35,7 @@ mysql> SELECT set_col+0 FROM tbl_name;
 
 If a number is stored into a `SET` column, the bits that are set in the binary representation of the number determine the set members in the column value. For a column specified as `SET('a','b','c','d')`, the members have the following decimal and binary values.
 
-<table><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col"><code>SET</code> Member</th> <th scope="col">Decimal Value</th> <th scope="col">Binary Value</th> </tr></thead><tbody><tr> <th><code>'a'</code></th> <td><code>1</code></td> <td><code>0001</code></td> </tr><tr> <th><code>'b'</code></th> <td><code>2</code></td> <td><code>0010</code></td> </tr><tr> <th><code>'c'</code></th> <td><code>4</code></td> <td><code>0100</code></td> </tr><tr> <th><code>'d'</code></th> <td><code>8</code></td> <td><code>1000</code></td> </tr></tbody></table>
+<table><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th><code>SET</code> Member</th> <th>Decimal Value</th> <th>Binary Value</th> </tr></thead><tbody><tr> <th><code>'a'</code></th> <td><code>1</code></td> <td><code>0001</code></td> </tr><tr> <th><code>'b'</code></th> <td><code>2</code></td> <td><code>0010</code></td> </tr><tr> <th><code>'c'</code></th> <td><code>4</code></td> <td><code>0100</code></td> </tr><tr> <th><code>'d'</code></th> <td><code>8</code></td> <td><code>1000</code></td> </tr></tbody></table>
 
 If you assign a value of `9` to this column, that is `1001` in binary, so the first and fourth `SET` value members `'a'` and `'d'` are selected and the resulting value is `'a,d'`.
 

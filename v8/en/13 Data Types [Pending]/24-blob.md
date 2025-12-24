@@ -37,7 +37,7 @@ Because `BLOB` and `TEXT` values can be extremely long, you might encounter some
       -> ORDER BY comment;
   ```
 * Instances of `BLOB` or `TEXT` columns in the result of a query that is processed using a temporary table causes the server to use a table on disk rather than in memory because the `MEMORY` storage engine does not support those data types (see Section 10.4.4, “Internal Temporary Table Use in MySQL”). Use of disk incurs a performance penalty, so include `BLOB` or `TEXT` columns in the query result only if they are really needed. For example, avoid using `SELECT *`, which selects all columns.
-* The maximum size of a `BLOB` or `TEXT` object is determined by its type, but the largest value you actually can transmit between the client and server is determined by the amount of available memory and the size of the communications buffers. You can change the message buffer size by changing the value of the `max_allowed_packet` variable, but you must do so for both the server and your client program. For example, both  `mysql` and  `mysqldump` enable you to change the client-side `max_allowed_packet` value. See  Section 7.1.1, “Configuring the Server”, Section 6.5.1, “mysql — The MySQL Command-Line Client”, and  Section 6.5.4, “mysqldump — A Database Backup Program”. You may also want to compare the packet sizes and the size of the data objects you are storing with the storage requirements, see  Section 13.7, “Data Type Storage Requirements”
+* The maximum size of a `BLOB` or `TEXT` object is determined by its type, but the largest value you actually can transmit between the client and server is determined by the amount of available memory and the size of the communications buffers. You can change the message buffer size by changing the value of the `max_allowed_packet` variable, but you must do so for both the server and your client program. For example, both `mysql` and  `mysqldump` enable you to change the client-side `max_allowed_packet` value. See  Section 7.1.1, “Configuring the Server”, Section 6.5.1, “mysql — The MySQL Command-Line Client”, and  Section 6.5.4, “mysqldump — A Database Backup Program”. You may also want to compare the packet sizes and the size of the data objects you are storing with the storage requirements, see  Section 13.7, “Data Type Storage Requirements”
 
 Each `BLOB` or `TEXT` value is represented internally by a separately allocated object. This is in contrast to all other data types, for which storage is allocated once per column when the table is opened.
 
@@ -45,7 +45,7 @@ In some cases, it may be desirable to store binary data such as media files in `
 
 ::: info Note
 
-Within the  `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+Within the `mysql` client, binary strings display using hexadecimal notation, depending on the value of the  `--binary-as-hex`. For more information about that option, see  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
 
 :::

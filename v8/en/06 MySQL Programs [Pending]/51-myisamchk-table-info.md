@@ -1,17 +1,17 @@
-#### 6.6.4.5 Obtaining Table Information with myisamchk
+#### 6.6.4.5 Obtaining Table Information with `myisamchk`
 
 To obtain a description of a `MyISAM` table or statistics about it, use the commands shown here. The output from these commands is explained later in this section.
 
-* **myisamchk -d *`tbl_name`***
+* `myisamchk -d 'tbl_name'`
 
-  Runs  `myisamchk` in “describe mode” to produce a description of your table. If you start the MySQL server with external locking disabled, `myisamchk` may report an error for a table that is updated while it runs. However, because `myisamchk` does not change the table in describe mode, there is no risk of destroying data.
-* **myisamchk -dv *`tbl_name`***
+  Runs `myisamchk` in “describe mode” to produce a description of your table. If you start the MySQL server with external locking disabled, `myisamchk` may report an error for a table that is updated while it runs. However, because `myisamchk` does not change the table in describe mode, there is no risk of destroying data.
+* `myisamchk -dv 'tbl_name'`
 
-  Adding `-v` runs  `myisamchk` in verbose mode so that it produces more information about the table. Adding `-v` a second time produces even more information.
-* **myisamchk -eis *`tbl_name`***
+  Adding `-v` runs `myisamchk` in verbose mode so that it produces more information about the table. Adding `-v` a second time produces even more information.
+* `myisamchk -eis 'tbl_name'`
 
   Shows only the most important information from a table. This operation is slow because it must read the entire table.
-* **myisamchk -eiv *`tbl_name`***
+* `myisamchk -eiv 'tbl_name'`
 
   This is like `-eis`, but tells you what is being done.
 
@@ -40,7 +40,7 @@ Suppose also that the table has these data and index file sizes:
 -rw-rw----  1 mysql  mysql  6066176 Aug 19 11:47 person.MYI
 ```
 
-Example of  **myisamchk -dvv** output:
+Example of `myisamchk -dvv` output:
 
 ```
 MyISAM file:         person
@@ -154,7 +154,7 @@ The `table description` part of the output includes a list of all keys in the ta
   The size of each index block. By default this is 1024, but the value may be changed at compile time when MySQL is built from source.
 * `Rec/key`
 
-  This is a statistical value used by the optimizer. It tells how many rows there are per value for this index. A unique index always has a value of 1. This may be updated after a table is loaded (or greatly changed) with **myisamchk -a**. If this is not updated at all, a default value of 30 is given.
+  This is a statistical value used by the optimizer. It tells how many rows there are per value for this index. A unique index always has a value of 1. This may be updated after a table is loaded (or greatly changed) with `myisamchk -a`. If this is not updated at all, a default value of 30 is given.
 
 The last part of the output provides information about each column:
 
@@ -208,9 +208,9 @@ The last part of the output provides information about each column:
 
   The number of bits used in the Huffman tree.
 
-The `Huff tree` and `Bits` fields are displayed if the table has been compressed with **myisampack**. See  Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”, for an example of this information.
+The `Huff tree` and `Bits` fields are displayed if the table has been compressed with `myisampack`. See  Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”, for an example of this information.
 
-Example of  **myisamchk -eiv** output:
+Example of `myisamchk -eiv` output:
 
 ```
 Checking MyISAM file: person
@@ -246,7 +246,7 @@ Voluntary context switches 0, Involuntary context switches 0
 Maximum memory usage: 1046926 bytes (1023k)
 ```
 
- **myisamchk -eiv** output includes the following information:
+`myisamchk -eiv` output includes the following information:
 
 * `Data records`
 

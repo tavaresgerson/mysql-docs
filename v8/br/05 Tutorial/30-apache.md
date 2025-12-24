@@ -1,8 +1,8 @@
 ## 5.7 Usando MySQL com Apache
 
-Existem programas que permitem autenticar seus usuários a partir de um banco de dados MySQL e também permitem que você escreva seus arquivos de registro em uma tabela MySQL.
+Existem programas que permitem autenticar seus usuários a partir de um banco de dados MySQL e também permitem que você escreva seus arquivos de log em uma tabela MySQL.
 
-Você pode alterar o formato de registro Apache para ser facilmente legível pelo MySQL colocando o seguinte no arquivo de configuração Apache:
+Você pode alterar o formato de registro do Apache para ser facilmente legível pelo MySQL colocando o seguinte no arquivo de configuração do Apache:
 
 ```
 LogFormat \

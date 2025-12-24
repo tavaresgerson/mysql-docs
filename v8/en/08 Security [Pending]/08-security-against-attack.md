@@ -6,7 +6,7 @@ All other information is transferred as text, and can be read by anyone who is a
 
 To make a MySQL system secure, you should strongly consider the following suggestions:
 
-* Require all MySQL accounts to have a password. A client program does not necessarily know the identity of the person running it. It is common for client/server applications that the user can specify any user name to the client program. For example, anyone can use the  `mysql` program to connect as any other person simply by invoking it as `mysql -u other_user db_name` if *`other_user`* has no password. If all accounts have a password, connecting using another user's account becomes much more difficult.
+* Require all MySQL accounts to have a password. A client program does not necessarily know the identity of the person running it. It is common for client/server applications that the user can specify any user name to the client program. For example, anyone can use the `mysql` program to connect as any other person simply by invoking it as `mysql -u other_user db_name` if *`other_user`* has no password. If all accounts have a password, connecting using another user's account becomes much more difficult.
 
   For a discussion of methods for setting passwords, see Section 8.2.14, “Assigning Account Passwords”.
 * Make sure that the only Unix user account with read or write privileges in the database directories is the account that is used for running  `mysqld`.

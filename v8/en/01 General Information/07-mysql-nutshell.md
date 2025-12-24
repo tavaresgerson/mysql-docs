@@ -274,7 +274,7 @@ A typical `mysql_upgrade_history` file might look something like this (formattin
 
 In addition, the installation process now checks for the presence of a `mysql_upgrade_info` file (deprecated in MySQL 8.0, and is no longer used). If found, the file is removed.
 
-**mysql client `--system-command` option.**: The  `--system-command` option for the  `mysql` client, available in MySQL 8.4.3 and later, enables or disables the `system` command.
+**mysql client `--system-command` option.**: The  `--system-command` option for the `mysql` client, available in MySQL 8.4.3 and later, enables or disables the `system` command.
 
 This option is enabled by default. To disable it, use `--system-command=OFF` or `--skip-system-command`, which causes the `system` command to be rejected with an error.
 
@@ -448,7 +448,7 @@ Options removed from the `START REPLICA` statement are listed here:
   * `MASTER_LOG_FILE`: Use `SOURCE_LOG_FILE`.
   * `MASTER_LOG_POS`: Use `SOURCE_LOG_POS`.
   
-**System variables and `NULL`**: It is not intended or supported for a MySQL server startup option to be set to `NULL` (`--my-option=NULL`) and have it interpreted by the server as SQL `NULL`, and should not be possible. MySQL 8.1 (and later) specifically disallows setting startup options to `NULL` in this fashion, and rejects an attempt to do with an error. Attempts to set the corresponding server system variables to `NULL` using `SET` or similar in the  `mysql` client are also rejected.
+**System variables and `NULL`**: It is not intended or supported for a MySQL server startup option to be set to `NULL` (`--my-option=NULL`) and have it interpreted by the server as SQL `NULL`, and should not be possible. MySQL 8.1 (and later) specifically disallows setting startup options to `NULL` in this fashion, and rejects an attempt to do with an error. Attempts to set the corresponding server system variables to `NULL` using `SET` or similar in the `mysql` client are also rejected.
 
 The server system variables in the following list are excepted from the restriction just described:
 
@@ -591,7 +591,7 @@ See  Obtaining Execution Plan Information, for more information.
 
 **Client comments preserved**: In MySQL 8.0, the stripping of comments from the `mysql` client was the default behavior; the default was changed to preserve such comments.
 
-To enable the stripping of comments as was performed in MySQL 8.0 and earlier, start the  `mysql` client with `--skip-comments`.
+To enable the stripping of comments as was performed in MySQL 8.0 and earlier, start the `mysql` client with `--skip-comments`.
 
 **`AUTO_INCREMENT` and floating-point columns**: The use of the `AUTO_INCREMENT` modifier with `FLOAT` and `DOUBLE` columns in `CREATE TABLE` and `ALTER TABLE` statements was deprecated in MySQL 8.0; support for it is removed altogether in MySQL 8.4, where it raises `ER_WRONG_FIELD_SPEC` (Incorrect column specifier for column).
 

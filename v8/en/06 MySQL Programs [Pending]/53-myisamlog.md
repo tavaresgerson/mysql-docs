@@ -1,8 +1,8 @@
-### 6.6.5 myisamlog — Display MyISAM Log File Contents
+### 6.6.5 `myisamlog` — Display MyISAM Log File Contents
 
- **myisamlog** processes the contents of a `MyISAM` log file. To create such a file, start the server with a `--log-isam=log_file` option.
+`myisamlog` processes the contents of a `MyISAM` log file. To create such a file, start the server with a `--log-isam=log_file` option.
 
-Invoke  **myisamlog** like this:
+Invoke `myisamlog` like this:
 
 ```
 myisamlog [options] [file_name [tbl_name] ...]
@@ -10,7 +10,7 @@ myisamlog [options] [file_name [tbl_name] ...]
 
 The default operation is update (`-u`). If a recovery is done (`-r`), all writes and possibly updates and deletes are done and errors are only counted. The default log file name is `myisam.log` if no *`log_file`* argument is given. If tables are named on the command line, only those tables are updated.
 
- **myisamlog** supports the following options:
+`myisamlog` supports the following options:
 
 * `-?`, `-I`
 

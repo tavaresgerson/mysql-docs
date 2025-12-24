@@ -91,7 +91,7 @@ All MySQL client programs are capable of reusing a prior session for new encrypt
 
 To store and reuse SSL session data, use this procedure:
 
-1. Invoke  `mysql` to establish an encrypted connection to a server running MySQL 8.4.
+1. Invoke `mysql` to establish an encrypted connection to a server running MySQL 8.4.
 2. Use the **ssl\_session\_data\_print** command to specify the path to a file where you can store the currently active session data securely. For example:
 
    ```
@@ -125,9 +125,9 @@ To store and reuse SSL session data, use this procedure:
 
    In each example, the client attempts to resume the original session while it establishes a new connection to the same server.
 
-   To confirm whether  `mysql` reused a session, see the output from the `status` command. If the currently active  `mysql` connection did resume the session, the status information includes `SSL session reused: true`.
+   To confirm whether `mysql` reused a session, see the output from the `status` command. If the currently active `mysql` connection did resume the session, the status information includes `SSL session reused: true`.
 
-In addition to  `mysql` and `mysqlshow`, SSL session reuse applies to `mysqladmin`,  **mysqlbinlog**, `mysqlcheck`,  `mysqldump`, `mysqlimport`,  **mysqlslap**, **mysqltest**, **mysql\_migrate\_keyring**, and `mysql_secure_installation`.
+In addition to `mysql` and `mysqlshow`, SSL session reuse applies to `mysqladmin`,   `mysqlbinlog`, `mysqlcheck`,  `mysqldump`, `mysqlimport`,   `mysqlslap`, `mysqltest`, `mysql_migrate_keyring`, and `mysql_secure_installation`.
 
 Several conditions may prevent the successful retrieval of session data. For instance, if the session is not fully connected, it is not an SSL session, the server has not yet sent the session data, or the SSL session is simply not reusable. Even with properly stored session data, the server's session cache can time out. Regardless of the cause, an error is returned by default if you specify `--ssl-session-data` but the session cannot be reused. For example:
 

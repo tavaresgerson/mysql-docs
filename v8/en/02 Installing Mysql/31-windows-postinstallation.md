@@ -116,4 +116,4 @@ C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 +------+-----------+-----------------------+
 ```
 
-For more information about  `mysql` and `mysqlshow`, see Section 6.5.1, “mysql — The MySQL Command-Line Client”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.
+For more information about `mysql` and `mysqlshow`, see Section 6.5.1, “mysql — The MySQL Command-Line Client”, and Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”.

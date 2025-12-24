@@ -12,11 +12,11 @@ As an example, suppose that around 20:06:00 on March 11, 2020, an SQL statement 
 
    ::: info Note
 
-   While the last binary log position recovered is also displayed by InnoDB after the restore and server restart, that is *not* a reliable means for obtaining the ending log position of your restore, as there could be DDL events and non-InnoDB changes that have taken place after the time reflected by the displayed position. Your backup and restore tool should provide you with the last binary log position for your recovery: for example, if you are using  **mysqlbinlog** for the task, check the stop position of the binary log replay; if you are using MySQL Enterprise Backup, the last binary log position has been saved in your backup. See Point-in-Time Recovery.
+   While the last binary log position recovered is also displayed by InnoDB after the restore and server restart, that is *not* a reliable means for obtaining the ending log position of your restore, as there could be DDL events and non-InnoDB changes that have taken place after the time reflected by the displayed position. Your backup and restore tool should provide you with the last binary log position for your recovery: for example, if you are using   `mysqlbinlog` for the task, check the stop position of the binary log replay; if you are using MySQL Enterprise Backup, the last binary log position has been saved in your backup. See Point-in-Time Recovery.
 
 
    :::
-2. Find the precise binary log event position corresponding to the point in time up to which you want to restore your database. In our example, given that we know the rough time where the table deletion took place (`tp`), we can find the log position by checking the log contents around that time using the  **mysqlbinlog** utility. Use the  `--start-datetime` and `--stop-datetime` options to specify a short time period around `tp`, and then look for the event in the output. For example:
+2. Find the precise binary log event position corresponding to the point in time up to which you want to restore your database. In our example, given that we know the rough time where the table deletion took place (`tp`), we can find the log position by checking the log contents around that time using the   `mysqlbinlog` utility. Use the  `--start-datetime` and `--stop-datetime` options to specify a short time period around `tp`, and then look for the event in the output. For example:
 
    ```
    $> mysqlbinlog --start-datetime="2020-03-11 20:05:00" \
@@ -56,7 +56,7 @@ As an example, suppose that around 20:06:00 on March 11, 2020, an SQL statement 
    CREATE TABLE dogs
    ```
 
-   From the output of  **mysqlbinlog**, the `` DROP TABLE `pets`.`cats` `` statement can be found in the segment of the binary log between the line `# at 232` and `# at 355`, which means the statement takes place *after* the log position 232, and the log is at position 355 after the `DROP TABLE` statement.
+   From the output of   `mysqlbinlog`, the `` DROP TABLE `pets`.`cats` `` statement can be found in the segment of the binary log between the line `# at 232` and `# at 355`, which means the statement takes place *after* the log position 232, and the log is at position 355 after the `DROP TABLE` statement.
 
    ::: info Note
 
@@ -71,10 +71,10 @@ As an example, suppose that around 20:06:00 on March 11, 2020, an SQL statement 
             | mysql -u root -p
    ```
 
-   The command recovers all the transactions from the starting position until just before the stop position. Because the output of  **mysqlbinlog** includes `SET TIMESTAMP` statements before each SQL statement recorded, the recovered data and related MySQL logs reflect the original times at which the transactions were executed.
+   The command recovers all the transactions from the starting position until just before the stop position. Because the output of   `mysqlbinlog` includes `SET TIMESTAMP` statements before each SQL statement recorded, the recovered data and related MySQL logs reflect the original times at which the transactions were executed.
 
    Your database has now been restored to the point-in-time of interest, `tp`, right before the table `pets.cats` was dropped.
-4. Beyond the point-in-time recovery that has been finished, if you also want to reexecute all the statements *after* your point-in-time of interest, use  **mysqlbinlog** again to apply all the events after `tp` to the server. We noted in step 2 that after the statement we wanted to skip, the log is at position 355; we can use it for the  `--start-position` option, so that any statements after the position are included:
+4. Beyond the point-in-time recovery that has been finished, if you also want to reexecute all the statements *after* your point-in-time of interest, use   `mysqlbinlog` again to apply all the events after `tp` to the server. We noted in step 2 that after the statement we wanted to skip, the log is at position 355; we can use it for the  `--start-position` option, so that any statements after the position are included:
 
    ```
    $> mysqlbinlog --start-position=355 /var/lib/mysql/bin.123456 \

@@ -13,8 +13,8 @@ When multiple MySQL instances, such as a cluster of servers, provide the same se
 MySQL supports use of DNS SRV records to connect to servers in these contexts:
 
 * Several MySQL Connectors implement DNS SRV support; connector-specific options enable requesting DNS SRV record lookup both for X Protocol connections and for classic MySQL protocol connections. For general information, see Connections Using DNS SRV Records. For details, see the documentation for individual MySQL Connectors.
-* The C API provides a `mysql_real_connect_dns_srv()` function that is similar to `mysql_real_connect()`, except that the argument list does not specify the particular host of the MySQL server to connect to. Instead, it names a DNS SRV record that specifies a group of servers. See mysql\_real\_connect\_dns\_srv().
-* The  `mysql` client has a `--dns-srv-name` option to indicate a DNS SRV record that specifies a group of servers. See  Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+* The C API provides a `mysql_real_connect_dns_srv()` function that is similar to `mysql_real_connect()`, except that the argument list does not specify the particular host of the MySQL server to connect to. Instead, it names a DNS SRV record that specifies a group of servers. See `mysql_real_connect_dns_srv()`.
+* The `mysql` client has a `--dns-srv-name` option to indicate a DNS SRV record that specifies a group of servers. See  Section 6.5.1, “`mysql` — The MySQL Command-Line Client”.
 
 A DNS SRV name consists of a service, protocol, and domain, with the service and protocol each prefixed by an underscore:
 
@@ -46,7 +46,7 @@ _mysql._tcp.example.com. 86400 IN SRV 20       5       3306 server4.example.com.
 
 Here, the name `mysql` designates the classic MySQL protocol service, and the port is 3306 (the default classic MySQL protocol port) rather than 33060 (the default X Protocol port).
 
-When DNS SRV record lookup is used, clients generally must apply these rules for connection requests (there may be client- or connector-specific exceptions):
+When DNS SRV record lookup is used, clients generally must apply these rules for connection requests (there may be `client-` or `connector-specific` exceptions):
 
 * The request must specify the full DNS SRV record name, with the service and protocol names prefixed by underscores.
 * The request must not specify multiple host names.

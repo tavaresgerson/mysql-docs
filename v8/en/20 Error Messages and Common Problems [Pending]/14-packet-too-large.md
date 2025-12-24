@@ -8,7 +8,7 @@ When a MySQL client or the  `mysqld` server receives a packet bigger than  `max_
 
 Both the client and the server have their own  `max_allowed_packet` variable, so if you want to handle big packets, you must increase this variable both in the client and in the server.
 
-If you are using the  `mysql` client program, its default  `max_allowed_packet` variable is 16MB. To set a larger value, start  `mysql` like this:
+If you are using the `mysql` client program, its default  `max_allowed_packet` variable is 16MB. To set a larger value, start `mysql` like this:
 
 ```
 $> mysql --max_allowed_packet=32M

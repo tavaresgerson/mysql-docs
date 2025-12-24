@@ -19,7 +19,7 @@ The following table shows the plugin and library file names. The file name suffi
 
 **Table 8.23 Plugin and Library Names for Kerberos Authentication**
 
-<table><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>authentication_kerberos</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>authentication_kerberos_client</code></td> </tr><tr> <td>Library file</td> <td><code>authentication_kerberos.so</code>, <code>authentication_kerberos_client.so</code></td> </tr></tbody></table>
+<table><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>authentication_kerberos</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>authentication_kerberos_client</code></td> </tr><tr> <td>Library file</td> <td><code>authentication_kerberos.so</code>, <code>authentication_kerberos_client.so</code></td> </tr></tbody></table>
 
 The server-side Kerberos authentication plugin is included only in MySQL Enterprise Edition. It is not included in MySQL community distributions. The client-side plugin is included in all distributions, including community distributions. This enables clients from any distribution to connect to a server that has the server-side plugin loaded.
 
@@ -81,7 +81,7 @@ Kerberos authentication follows these steps, where the server-side and client-si
 3. Using GSSAPI, the client application presents the MySQL ST to the MySQL server.
 4. Using GSSAPI, the MySQL server creates a Kerberos server-side authentication session. The server validates the user identity and the validity of the user request. It authenticates the ST using the service key configured in its service keytab file to determine whether authentication succeeds or fails, and returns the authentication result to the client.
 
-Applications are able to authenticate using a provided user name and password, or using a locally cached TGT or ST (for example, created using **kinit** or similar). This design therefore covers use cases ranging from completely userless and passwordless connections, where Kerberos service tickets are obtained from a locally stored Kerberos cache, to connections where both user name and password are provided and used to obtain a valid Kerberos service ticket from a KDC, to send to the MySQL server.
+Applications are able to authenticate using a provided user name and password, or using a locally cached TGT or ST (for example, created using `kinit` or similar). This design therefore covers use cases ranging from completely userless and passwordless connections, where Kerberos service tickets are obtained from a locally stored Kerberos cache, to connections where both user name and password are provided and used to obtain a valid Kerberos service ticket from a KDC, to send to the MySQL server.
 
 As indicated in the preceding description, MySQL Kerberos authentication uses two kinds of keytab files:
 
@@ -201,7 +201,7 @@ With those assumptions satisfied, follow this procedure:
    ```
 3. Check whether Kerberos authentication works correctly:
 
-   1. Use **kinit** to authenticate to Kerberos:
+   1. Use `kinit` to authenticate to Kerberos:
 
       ```
       $> kinit karl@MYSQL.LOCAL
@@ -276,8 +276,8 @@ The first step (authenticating to Kerberos) can be performed various ways:
 
 * Prior to connecting to MySQL:
 
-  + On Linux or on Windows in `GSSAPI` mode, invoke **kinit** to obtain the TGT and save it in the Kerberos credentials cache.
-  + On Windows in `SSPI` mode, authentication may already have been done at login time, which saves the TGT for the logged-in user in the Windows in-memory cache. **kinit** is not used and there is no Kerberos cache.
+  + On Linux or on Windows in `GSSAPI` mode, invoke `kinit` to obtain the TGT and save it in the Kerberos credentials cache.
+  + On Windows in `SSPI` mode, authentication may already have been done at login time, which saves the TGT for the logged-in user in the Windows in-memory cache. `kinit` is not used and there is no Kerberos cache.
 * When connecting to MySQL, the client program itself can obtain the TGT, if it can determine the required Kerberos UPN and password:
 
   + That information can come from sources such as command options or the operating system.
@@ -296,7 +296,7 @@ Details of the client commands for connecting to the MySQL server differ for Lin
 
 On Linux, the appropriate client command for connecting to the MySQL server varies depending on whether the command authenticates using a TGT from the Kerberos cache, or based on command options for the MySQL user name and the UPN password:
 
-* Prior to invoking the MySQL client program, the client user can obtain a TGT from the KDC independently of MySQL. For example, the client user can use **kinit** to authenticate to Kerberos by providing a Kerberos user principal name and the principal password:
+* Prior to invoking the MySQL client program, the client user can obtain a TGT from the KDC independently of MySQL. For example, the client user can use `kinit` to authenticate to Kerberos by providing a Kerberos user principal name and the principal password:
 
   ```
   $> kinit karl@MYSQL.LOCAL
@@ -440,7 +440,7 @@ It is possible to specify `GSSAPI` mode:
   [mysql]
   plugin-authentication-kerberos-client-mode=GSSAPI
   ```
-* At runtime from the command line using the `mysql` or  `mysqldump` client programs. For example, the following commands (with underscores or dashes) causes  `mysql` to connect to the server through the MIT Kerberos library on Windows.
+* At runtime from the command line using the `mysql` or  `mysqldump` client programs. For example, the following commands (with underscores or dashes) causes `mysql` to connect to the server through the MIT Kerberos library on Windows.
 
   ```
   mysql [connection-options] --plugin_authentication_kerberos_client_mode=GSSAPI
@@ -461,7 +461,7 @@ It is possible to specify `GSSAPI` mode:
 The appropriate client command for connecting to the MySQL server varies depending on whether the command authenticates using a TGT from the MIT Kerberos cache, or based on command options for the MySQL user name and the UPN password. GSSAPI support through the MIT library on Windows is similar to GSSAPI on Linux (see Commands for Linux Clients), with the following exceptions:
 
 * Tickets are always retrieved from or placed into the MIT Kerberos cache on hosts running Windows.
-* **kinit** runs with Functional Accounts on Windows that have narrow permissions and specific roles. The client user does not know the **kinit** password. For an overview, see <https://docs.oracle.com/en/java/javase/11/tools/kinit.html>.
+* `kinit` runs with Functional Accounts on Windows that have narrow permissions and specific roles. The client user does not know the `kinit` password. For an overview, see <https://docs.oracle.com/en/java/javase/11/tools/kinit.html>.
 * If the client user supplies a password, the MIT Kerberos library on Windows decides whether to use it or rely on the existing ticket.
 * The `destroy_tickets` parameter, described in Client Configuration Parameters for Kerberos Authentication, is not supported because the MIT Kerberos library on Windows does not support the required API member (`get_profile_boolean`) to read its value from configuration file.
 

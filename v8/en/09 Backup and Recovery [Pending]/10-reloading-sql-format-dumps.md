@@ -10,7 +10,7 @@ To reload a dump file written by  `mysqldump` that consists of SQL statements, u
 $> mysql < dump.sql
 ```
 
-Alternatively, from within  `mysql`, use a `source` command:
+Alternatively, from within `mysql`, use a `source` command:
 
 ```
 mysql> source dump.sql
@@ -28,7 +28,7 @@ Then specify the database name when you load the dump file:
 $> mysql db1 < dump.sql
 ```
 
-Alternatively, from within  `mysql`, create the database, select it as the default database, and load the dump file:
+Alternatively, from within `mysql`, create the database, select it as the default database, and load the dump file:
 
 ```
 mysql> CREATE DATABASE IF NOT EXISTS db1;

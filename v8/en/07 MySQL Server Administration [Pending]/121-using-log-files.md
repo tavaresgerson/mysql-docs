@@ -4,7 +4,7 @@ Note that before starting  `mysqld` with the general query log enabled, you shou
 
 If  `mysqld` dies or hangs, you should start `mysqld` with the general query log enabled. See  Section 7.4.3, “The General Query Log”. When  `mysqld` dies again, you can examine the end of the log file for the query that killed  `mysqld`.
 
-If you use the default general query log file, the log is stored in the database directory as `host_name.log` In most cases it is the last query in the log file that killed `mysqld`, but if possible you should verify this by restarting  `mysqld` and executing the found query from the  `mysql` command-line tools. If this works, you should also test all complicated queries that did not complete.
+If you use the default general query log file, the log is stored in the database directory as `host_name.log` In most cases it is the last query in the log file that killed `mysqld`, but if possible you should verify this by restarting  `mysqld` and executing the found query from the `mysql` command-line tools. If this works, you should also test all complicated queries that did not complete.
 
 You can also try the command `EXPLAIN` on all `SELECT` statements that takes a long time to ensure that  `mysqld` is using indexes properly. See  Section 15.8.2, “EXPLAIN Statement”.
 

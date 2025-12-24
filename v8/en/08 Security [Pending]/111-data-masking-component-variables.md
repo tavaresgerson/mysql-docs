@@ -4,7 +4,7 @@ The MySQL Enterprise Data Masking and De-Identification components support the f
 
 *  `component_masking.dictionaries_flush_interval_seconds`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-masking.dictionaries-flush-interval-seconds=#</code></td> </tr><tr><th>System Variable</th> <td><code>component_masking.dictionaries_flush_interval_seconds</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>60</code></td> </tr><tr><th>Maximum Value (Unix)</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Maximum Value (Windows)</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--component-masking.dictionaries-flush-interval-seconds=#</code></td> </tr><tr><th>System Variable</th> <td><code>component_masking.dictionaries_flush_interval_seconds</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>60</code></td> </tr><tr><th>Maximum Value (Unix)</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Maximum Value (Windows)</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
 
   Sets the interval, in seconds, to wait before attempting to schedule another flush of the data masking dictionaries table to the memory data masking dictionaries cache following a restart or previous execution. The value is handled as listed here:
 
@@ -13,7 +13,7 @@ The MySQL Enterprise Data Masking and De-Identification components support the f
   + >= 60: Wait this many seconds to perform flush
 *  `component_masking.masking_database`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-masking.masking-database[=value]</code></td> </tr><tr><th>System Variable</th> <td><code>component_masking.masking_database</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>mysql</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--component-masking.masking-database[=value]</code></td> </tr><tr><th>System Variable</th> <td><code>component_masking.masking_database</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>mysql</code></td> </tr></tbody></table>
 
   Specifies the database to use for data masking dictionaries at server startup. This variable is read only.
 

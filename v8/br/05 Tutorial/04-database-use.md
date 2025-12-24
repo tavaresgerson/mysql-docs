@@ -2,7 +2,7 @@
 
 Uma vez que você sabe como inserir instruções SQL, você está pronto para acessar um banco de dados.
 
-Suponha que você tenha vários animais de estimação em sua casa (sua menagerie) e queira manter o controle de vários tipos de informações sobre eles. Você pode fazer isso criando tabelas para armazenar seus dados e carregando-os com as informações desejadas. Então você pode responder a diferentes tipos de perguntas sobre seus animais recuperando dados das tabelas. Esta seção mostra como executar as seguintes operações:
+Suponha que você tem vários animais de estimação em sua casa (sua menagerie) e você gostaria de manter o controle de vários tipos de informações sobre eles. Você pode fazer isso criando tabelas para manter seus dados e carregá-los com a informação desejada. Então você pode responder a diferentes tipos de perguntas sobre seus animais, recuperando dados das tabelas. Esta seção mostra como executar as seguintes operações:
 
 - Criar uma base de dados
 - Criar uma tabela
@@ -10,7 +10,7 @@ Suponha que você tenha vários animais de estimação em sua casa (sua menageri
 - Recuperar dados da tabela de várias maneiras
 - Usar várias tabelas
 
-O banco de dados de menagerie é simples (deliberadamente), mas não é difícil pensar em situações do mundo real em que um tipo semelhante de banco de dados pode ser usado. Por exemplo, um banco de dados como este poderia ser usado por um fazendeiro para manter o controle do gado, ou por um veterinário para manter o controle de registros de pacientes. Uma distribuição de menagerie contendo algumas das consultas e dados de amostra usados nas seções seguintes pode ser obtida a partir do site MySQL. Ele está disponível em arquivo comprimido `tar` e formatos Zip em \[<https://dev.mysql.com/doc/>] (<https://dev.mysql.com/doc/>).
+O banco de dados de menagerie é simples (deliberadamente), mas não é difícil pensar em situações do mundo real em que um tipo semelhante de banco de dados pode ser usado. Por exemplo, um banco de dados como este poderia ser usado por um fazendeiro para acompanhar o gado, ou por um veterinário para acompanhar os registros de pacientes. Uma distribuição de menagerie contendo algumas das consultas e dados de amostra usados nas seções a seguir pode ser obtida a partir do site MySQL. Está disponível em ambos os formatos comprimidos de arquivo e Zip em \[<https://dev.mysql.com/doc/>] (<https://www.mysql.com/dev/doc/>).
 
 Use a instrução `SHOW` para descobrir quais bancos de dados existem atualmente no servidor:
 
@@ -29,16 +29,16 @@ O banco de dados `mysql` descreve os privilégios de acesso do usuário. O banco
 
 A lista de bancos de dados exibidos pela instrução pode ser diferente na sua máquina; `SHOW DATABASES` não mostra bancos de dados para os quais você não tem privilégios se você não tiver o privilégio `SHOW DATABASES`.
 
-Se o banco de dados `test` existir, tente acessá-lo:
+Se o banco de dados `test` existe, tente acessá-lo:
 
 ```
 mysql> USE test
 Database changed
 ```
 
-A instrução `USE`, como `QUIT`, não requer um ponto e vírgula. (Você pode terminar tais instruções com um ponto e vírgula, se quiser; não faz mal.) A instrução `USE` é especial de outra forma também: ela deve ser dada em uma única linha.
+`USE`, como `QUIT`, não requer um ponto e vírgula. (Você pode terminar tais instruções com um ponto e vírgula se quiser; não faz mal.) A instrução `USE` é especial de outra forma também: ela deve ser dada em uma única linha.
 
-Você pode usar o banco de dados `test` (se você tiver acesso a ele) para os exemplos a seguir, mas qualquer coisa que você criar nesse banco de dados pode ser removida por qualquer outra pessoa com acesso a ele. Por esta razão, você provavelmente deve pedir ao seu administrador do MySQL permissão para usar um banco de dados próprio. Suponha que você queira chamar o seu `menagerie`. O administrador precisa executar uma instrução como esta:
+Você pode usar o banco de dados `test` (se tiver acesso a ele) para os exemplos a seguir, mas qualquer coisa que você criar nesse banco de dados pode ser removida por qualquer outra pessoa com acesso a ele. Por esta razão, você provavelmente deve pedir ao seu administrador do MySQL permissão para usar um banco de dados próprio. Suponha que você queira chamar o seu `menagerie`. O administrador precisa executar uma instrução como esta:
 
 ```
 mysql> GRANT ALL ON menagerie.* TO 'your_mysql_name'@'your_client_host';

@@ -47,6 +47,6 @@ $> mysql -u finley -ppassword db_name
 
 If you use the `-p` option, there must be *no space* between `-p` and the following password value.
 
-Specifying a password on the command line should be considered insecure. See  Section 8.1.2.1, “End-User Guidelines for Password Security”. To avoid giving the password on the command line, use an option file or a login path file. See  Section 6.2.2.2, “Using Option Files”, and Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+Specifying a password on the command line should be considered insecure. See  Section 8.1.2.1, “End-User Guidelines for Password Security”. To avoid giving the password on the command line, use an option file or a login path file. See  Section 6.2.2.2, “Using Option Files”, and Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
 For additional information about specifying user names, passwords, and other connection parameters, see  Section 6.2.4, “Connecting to the MySQL Server Using Command Options”.

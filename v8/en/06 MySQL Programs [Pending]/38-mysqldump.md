@@ -1,6 +1,6 @@
-### 6.5.4 mysqldump — A Database Backup Program
+### 6.5.4 `mysqldump` — A Database Backup Program
 
-The  `mysqldump` client utility performs logical backups, producing a set of SQL statements that can be executed to reproduce the original database object definitions and table data. It dumps one or more MySQL databases for backup or transfer to another SQL server. The  `mysqldump` command can also generate output in CSV, other delimited text, or XML format.
+The `mysqldump` client utility performs logical backups, producing a set of SQL statements that can be executed to reproduce the original database object definitions and table data. It dumps one or more MySQL databases for backup or transfer to another SQL server. The  `mysqldump` command can also generate output in CSV, other delimited text, or XML format.
 
 Tip
 
@@ -54,13 +54,13 @@ It is not recommended to load a dump file when GTIDs are enabled on the server (
 
 For large-scale backup and restore, a physical backup is more appropriate, to copy the data files in their original format so that they can be restored quickly.
 
-If your tables are primarily  `InnoDB` tables, or if you have a mix of `InnoDB` and `MyISAM` tables, consider using **mysqlbackup**, which is available as part of MySQL Enterprise. This tool provides high performance for `InnoDB` backups with minimal disruption; it can also back up tables from `MyISAM` and other storage engines; it also provides a number of convenient options to accommodate different backup scenarios. See Section 32.1, “MySQL Enterprise Backup Overview”.
+If your tables are primarily  `InnoDB` tables, or if you have a mix of `InnoDB` and `MyISAM` tables, consider using `mysqlbackup`, which is available as part of MySQL Enterprise. This tool provides high performance for `InnoDB` backups with minimal disruption; it can also back up tables from `MyISAM` and other storage engines; it also provides a number of convenient options to accommodate different backup scenarios. See Section 32.1, “MySQL Enterprise Backup Overview”.
 
- `mysqldump` can retrieve and dump table contents row by row, or it can retrieve the entire content from a table and buffer it in memory before dumping it. Buffering in memory can be a problem if you are dumping large tables. To dump tables row by row, use the `--quick` option (or `--opt`, which enables `--quick`). The `--opt` option (and hence `--quick`) is enabled by default, so to enable memory buffering, use `--skip-quick`.
+`mysqldump` can retrieve and dump table contents row by row, or it can retrieve the entire content from a table and buffer it in memory before dumping it. Buffering in memory can be a problem if you are dumping large tables. To dump tables row by row, use the `--quick` option (or `--opt`, which enables `--quick`). The `--opt` option (and hence `--quick`) is enabled by default, so to enable memory buffering, use `--skip-quick`.
 
 If you are using a recent version of `mysqldump` to generate a dump to be reloaded into a very old MySQL server, use the `--skip-opt` option instead of the  `--opt` or `--extended-insert` option.
 
-For additional information about  `mysqldump`, see  Section 9.4, “Using mysqldump for Backups”.
+For additional information about `mysqldump`, see  Section 9.4, “Using mysqldump for Backups”.
 
 #### Invocation Syntax
 
@@ -72,54 +72,625 @@ mysqldump [options] --databases db_name ...
 mysqldump [options] --all-databases
 ```
 
-To dump entire databases, do not name any tables following *`db_name`*, or use the `--databases` or `--all-databases` option.
+To dump entire databases, do not name any tables following `db_name`, or use the `--databases` or `--all-databases` option.
 
 To see a list of the options your version of `mysqldump` supports, issue the command `mysqldump` `--help`.
 
 #### Option Syntax - Alphabetical Summary
 
- `mysqldump` supports the following options, which can be specified on the command line or in the `[mysqldump]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
+`mysqldump` supports the following options, which can be specified on the command line or in the `[mysqldump]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see  Section 6.2.2.2, “Using Option Files”.
 
-**Table 6.13 mysqldump Options**
+**Table 6.13 `mysqldump` Options**
 
-<table><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--add-drop-database</td> <td>Add DROP DATABASE statement before each CREATE DATABASE statement</td> </tr><tr><td>--add-drop-table</td> <td>Add DROP TABLE statement before each CREATE TABLE statement</td> </tr><tr><td>--add-drop-trigger</td> <td>Add DROP TRIGGER statement before each CREATE TRIGGER statement</td> </tr><tr><td>--add-locks</td> <td>Surround each table dump with LOCK TABLES and UNLOCK TABLES statements</td> </tr><tr><td>--all-databases</td> <td>Dump all tables in all databases</td> </tr><tr><td>--allow-keywords</td> <td>Allow creation of column names that are keywords</td> </tr><tr><td>--apply-replica-statements</td> <td>Include STOP REPLICA prior to CHANGE REPLICATION SOURCE TO statement and START REPLICA at end of output</td> </tr><tr><td>--apply-slave-statements</td> <td>Include STOP SLAVE prior to CHANGE MASTER statement and START SLAVE at end of output</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--column-statistics</td> <td>Write ANALYZE TABLE statements to generate statistics histograms</td> </tr><tr><td>--comments</td> <td>Add comments to dump file</td> </tr><tr><td>--compact</td> <td>Produce more compact output</td> </tr><tr><td>--compatible</td> <td>Produce output that is more compatible with other database systems or with older MySQL servers</td> </tr><tr><td>--complete-insert</td> <td>Use complete INSERT statements that include column names</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--create-options</td> <td>Include all MySQL-specific table options in CREATE TABLE statements</td> </tr><tr><td>--databases</td> <td>Interpret all name arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-auth</td> <td>Authentication plugin to use</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--delete-master-logs</td> <td>On a replication source server, delete the binary logs after performing the dump operation</td> </tr><tr><td>--delete-source-logs</td> <td>On a replication source server, delete the binary logs after performing the dump operation</td> </tr><tr><td>--disable-keys</td> <td>For each table, surround INSERT statements with statements to disable and enable keys</td> </tr><tr><td>--dump-date</td> <td>Include dump date as "Dump completed on" comment if --comments is given</td> </tr><tr><td>--dump-replica</td> <td>Include CHANGE REPLICATION SOURCE TO statement that lists binary log coordinates of replica's source</td> </tr><tr><td>--dump-slave</td> <td>Include CHANGE MASTER statement that lists binary log coordinates of replica's source</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--events</td> <td>Dump events from dumped databases</td> </tr><tr><td>--extended-insert</td> <td>Use multiple-row INSERT syntax</td> </tr><tr><td>--fields-enclosed-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--fields-escaped-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--fields-optionally-enclosed-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--fields-terminated-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--flush-logs</td> <td>Flush MySQL server log files before starting dump</td> </tr><tr><td>--flush-privileges</td> <td>Emit a FLUSH PRIVILEGES statement after dumping mysql database</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs during a table dump</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--hex-blob</td> <td>Dump binary columns using hexadecimal notation</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--ignore-error</td> <td>Ignore specified errors</td> </tr><tr><td>--ignore-table</td> <td>Do not dump given table</td> </tr><tr><td>--ignore-views</td> <td>Skip dumping table views</td> </tr><tr><td>--include-master-host-port</td> <td>Include MASTER_HOST/MASTER_PORT options in CHANGE MASTER statement produced with --dump-slave</td> </tr><tr><td>--include-source-host-port</td> <td>Include SOURCE_HOST and SOURCE_PORT options in CHANGE REPLICATION SOURCE TO statement produced with --dump-replica</td> </tr><tr><td>--init-command</td> <td>Single SQL statement to execute after connecting or re-connecting to MySQL server; resets existing defined commands</td> </tr><tr><td>--init-command-add</td> <td>Add an additional SQL statement to execute after connecting or re-connecting to MySQL server</td> </tr><tr><td>--insert-ignore</td> <td>Write INSERT IGNORE rather than INSERT statements</td> </tr><tr><td>--lines-terminated-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--lock-all-tables</td> <td>Lock all tables across all databases</td> </tr><tr><td>--lock-tables</td> <td>Lock all tables before dumping them</td> </tr><tr><td>--log-error</td> <td>Append warnings and errors to named file</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--master-data</td> <td>Write the binary log file name and position to the output</td> </tr><tr><td>--max-allowed-packet</td> <td>Maximum packet length to send to or receive from server</td> </tr><tr><td>--mysqld-long-query-time</td> <td>Session value for slow query threshold</td> </tr><tr><td>--net-buffer-length</td> <td>Buffer size for TCP/IP and socket communication</td> </tr><tr><td>--network-timeout</td> <td>Increase network timeouts to permit larger table dumps</td> </tr><tr><td>--no-autocommit</td> <td>Enclose the INSERT statements for each dumped table within SET autocommit = 0 and COMMIT statements</td> </tr><tr><td>--no-create-db</td> <td>Do not write CREATE DATABASE statements</td> </tr><tr><td>--no-create-info</td> <td>Do not write CREATE TABLE statements that re-create each dumped table</td> </tr><tr><td>--no-data</td> <td>Do not dump table contents</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--no-set-names</td> <td>Same as --skip-set-charset</td> </tr><tr><td>--no-tablespaces</td> <td>Do not write any CREATE LOGFILE GROUP or CREATE TABLESPACE statements in output</td> </tr><tr><td>--opt</td> <td>Shorthand for --add-drop-table --add-locks --create-options --disable-keys --extended-insert --lock-tables --quick --set-charset</td> </tr><tr><td>--order-by-primary</td> <td>Dump each table's rows sorted by its primary key, or by its first unique index</td> </tr><tr><td>--output-as-version</td> <td>Determines replica and event terminology used in dumps; for compatibility with older versions</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--plugin-authentication-kerberos-client-mode</td> <td>Permit GSSAPI pluggable authentication through the MIT Kerberos library on Windows</td> </tr><tr><td>--plugin-dir</td> <td>Directory where plugins are installed</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>Retrieve rows for a table from the server a row at a time</td> </tr><tr><td>--quote-names</td> <td>Quote identifiers within backtick characters</td> </tr><tr><td>--replace</td> <td>Write REPLACE statements rather than INSERT statements</td> </tr><tr><td>--result-file</td> <td>Direct output to a given file</td> </tr><tr><td>--routines</td> <td>Dump stored routines (procedures and functions) from dumped databases</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--set-charset</td> <td>Add SET NAMES default_character_set to output</td> </tr><tr><td>--set-gtid-purged</td> <td>Whether to add SET @@GLOBAL.GTID_PURGED to output</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--show-create-skip-secondary-engine</td> <td>Exclude SECONDARY ENGINE clause from CREATE TABLE statements</td> </tr><tr><td>--single-transaction</td> <td>Issue a BEGIN SQL statement before dumping data from server</td> </tr><tr><td>--skip-add-drop-table</td> <td>Do not add a DROP TABLE statement before each CREATE TABLE statement</td> </tr><tr><td>--skip-add-locks</td> <td>Do not add locks</td> </tr><tr><td>--skip-comments</td> <td>Do not add comments to dump file</td> </tr><tr><td>--skip-compact</td> <td>Do not produce more compact output</td> </tr><tr><td>--skip-disable-keys</td> <td>Do not disable keys</td> </tr><tr><td>--skip-extended-insert</td> <td>Turn off extended-insert</td> </tr><tr><td>--skip-generated-invisible-primary-key</td> <td>Do not include generated invisible primary keys in dump file</td> </tr><tr><td>--skip-opt</td> <td>Turn off options set by --opt</td> </tr><tr><td>--skip-quick</td> <td>Do not retrieve rows for a table from the server a row at a time</td> </tr><tr><td>--skip-quote-names</td> <td>Do not quote identifiers</td> </tr><tr><td>--skip-set-charset</td> <td>Do not write SET NAMES statement</td> </tr><tr><td>--skip-triggers</td> <td>Do not dump triggers</td> </tr><tr><td>--skip-tz-utc</td> <td>Turn off tz-utc</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--source-data</td> <td>Write the binary log file name and position to the output</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-crl</td> <td>File that contains certificate revocation lists</td> </tr><tr><td>--ssl-crlpath</td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tab</td> <td>Produce tab-separated data files</td> </tr><tr><td>--tables</td> <td>Override --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--triggers</td> <td>Dump triggers for each dumped table</td> </tr><tr><td>--tz-utc</td> <td>Add SET TIME_ZONE='+00:00' to dump file</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--where</td> <td>Dump only rows selected by given WHERE condition</td> </tr><tr><td>--xml</td> <td>Produce XML output</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>Option Name</th>
+         <th>Description</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td><code>--add-drop-database</code></td>
+         <td>Add <code>DROP DATABASE</code> statement before each <code>CREATE DATABASE</code> statement</td>
+      </tr>
+      <tr>
+         <td><code>--add-drop-table</code></td>
+         <td>Add <code>DROP TABLE</code> statement before each <code>CREATE TABLE</code> statement</td>
+      </tr>
+      <tr>
+         <td><code>--add-drop-trigger</code></td>
+         <td>Add <code>DROP TRIGGER</code> statement before each <code>CREATE TRIGGER</code> statement</td>
+      </tr>
+      <tr>
+         <td><code>--add-locks</code></td>
+         <td>Surround each table dump with <code>LOCK TABLES</code> and <code>UNLOCK TABLES</code> statements</td>
+      </tr>
+      <tr>
+         <td><code>--all-databases</code></td>
+         <td>Dump all tables in all databases</td>
+      </tr>
+      <tr>
+         <td><code>--allow-keywords</code></td>
+         <td>Allow creation of column names that are keywords</td>
+      </tr>
+      <tr>
+         <td><code>--apply-replica-statements</code></td>
+         <td>Include <code>STOP REPLICA</code> prior to <code>CHANGE REPLICATION SOURCE TO</code> statement and <code>START REPLICA</code> at end of output</td>
+      </tr>
+      <tr>
+         <td><code>--apply-slave-statements</code></td>
+         <td>Include <code>STOP SLAVE</code> prior to <code>CHANGE MASTER</code> statement and <code>START SLAVE</code> at end of output</td>
+      </tr>
+      <tr>
+         <td><code>--bind-address</code></td>
+         <td>Use specified network interface to connect to MySQL Server</td>
+      </tr>
+      <tr>
+         <td><code>--character-sets-dir</code></td>
+         <td>Directory where character sets are installed</td>
+      </tr>
+      <tr>
+         <td><code>--column-statistics</code></td>
+         <td>Write <code>ANALYZE TABLE</code> statements to generate statistics histograms</td>
+      </tr>
+      <tr>
+         <td><code>--comments</code></td>
+         <td>Add comments to dump file</td>
+      </tr>
+      <tr>
+         <td><code>--compact</code></td>
+         <td>Produce more compact output</td>
+      </tr>
+      <tr>
+         <td><code>--compatible</code></td>
+         <td>Produce output that is more compatible with other database systems or with older MySQL servers</td>
+      </tr>
+      <tr>
+         <td><code>--complete-insert</code></td>
+         <td>Use complete <code>INSERT</code> statements that include column names</td>
+      </tr>
+      <tr>
+         <td><code>--compress</code></td>
+         <td>Compress all information sent between client and server</td>
+      </tr>
+      <tr>
+         <td><code>--compression-algorithms</code></td>
+         <td>Permitted compression algorithms for connections to server</td>
+      </tr>
+      <tr>
+         <td><code>--create-options</code></td>
+         <td>Include all MySQL-specific table options in <code>CREATE TABLE</code> statements</td>
+      </tr>
+      <tr>
+         <td><code>--databases</code></td>
+         <td>Interpret all name arguments as database names</td>
+      </tr>
+      <tr>
+         <td><code>--debug</code></td>
+         <td>Write debugging log</td>
+      </tr>
+      <tr>
+         <td><code>--debug-check</code></td>
+         <td>Print debugging information when program exits</td>
+      </tr>
+      <tr>
+         <td><code>--debug-info</code></td>
+         <td>Print debugging information, memory, and CPU statistics when program exits</td>
+      </tr>
+      <tr>
+         <td><code>--default-auth</code></td>
+         <td>Authentication plugin to use</td>
+      </tr>
+      <tr>
+         <td><code>--default-character-set</code></td>
+         <td>Specify default character set</td>
+      </tr>
+      <tr>
+         <td><code>--defaults-extra-file</code></td>
+         <td>Read named option file in addition to usual option files</td>
+      </tr>
+      <tr>
+         <td><code>--defaults-file</code></td>
+         <td>Read only named option file</td>
+      </tr>
+      <tr>
+         <td><code>--defaults-group-suffix</code></td>
+         <td>Option group suffix value</td>
+      </tr>
+      <tr>
+         <td><code>--delete-master-logs</code></td>
+         <td>On a replication source server, delete the binary logs after performing the dump operation</td>
+      </tr>
+      <tr>
+         <td><code>--delete-source-logs</code></td>
+         <td>On a replication source server, delete the binary logs after performing the dump operation</td>
+      </tr>
+      <tr>
+         <td><code>--disable-keys</code></td>
+         <td>For each table, surround INSERT statements with statements to disable and enable keys</td>
+      </tr>
+      <tr>
+         <td><code>--dump-date</code></td>
+         <td>Include dump date as "Dump completed on" comment if --comments is given</td>
+      </tr>
+      <tr>
+         <td><code>--dump-replica</code></td>
+         <td>Include <code>CHANGE REPLICATION SOURCE TO</code> statement that lists binary log coordinates of replica's source</td>
+      </tr>
+      <tr>
+         <td><code>--dump-slave</code></td>
+         <td>Include <code>CHANGE MASTER</code> statement that lists binary log coordinates of replica's source</td>
+      </tr>
+      <tr>
+         <td><code>--enable-cleartext-plugin</code></td>
+         <td>Enable cleartext authentication plugin</td>
+      </tr>
+      <tr>
+         <td><code>--events</code></td>
+         <td>Dump events from dumped databases</td>
+      </tr>
+      <tr>
+         <td><code>--extended-insert</code></td>
+         <td>Use multiple-row <code>INSERT</code> syntax</td>
+      </tr>
+      <tr>
+         <td><code>--fields-enclosed-by</code></td>
+         <td>This option is used with the --tab option and has the same meaning as the corresponding clause for <code>LOAD DATA</code></td>
+      </tr>
+      <tr>
+         <td><code>--fields-escaped-by</code></td>
+         <td>This option is used with the --tab option and has the same meaning as the corresponding clause for <code>LOAD DATA</code></td>
+      </tr>
+      <tr>
+         <td><code>--fields-optionally-enclosed-by</code></td>
+         <td>This option is used with the --tab option and has the same meaning as the corresponding clause for <code>LOAD DATA</code></td>
+      </tr>
+      <tr>
+         <td><code>--fields-terminated-by</code></td>
+         <td>This option is used with the --tab option and has the same meaning as the corresponding clause for <code>LOAD DATA</code></td>
+      </tr>
+      <tr>
+         <td><code>--flush-logs</code></td>
+         <td>Flush MySQL server log files before starting dump</td>
+      </tr>
+      <tr>
+         <td><code>--flush-privileges</code></td>
+         <td>Emit a <code>FLUSH PRIVILEGES</code> statement after dumping mysql database</td>
+      </tr>
+      <tr>
+         <td><code>--force</code></td>
+         <td>Continue even if an SQL error occurs during a table dump</td>
+      </tr>
+      <tr>
+         <td><code>--get-server-public-key</code></td>
+         <td>Request RSA public key from server</td>
+      </tr>
+      <tr>
+         <td><code>--help</code></td>
+         <td>Display help message and exit</td>
+      </tr>
+      <tr>
+         <td><code>--hex-blob</code></td>
+         <td>Dump binary columns using hexadecimal notation</td>
+      </tr>
+      <tr>
+         <td><code>--host</code></td>
+         <td>Host on which MySQL server is located</td>
+      </tr>
+      <tr>
+         <td><code>--ignore-error</code></td>
+         <td>Ignore specified errors</td>
+      </tr>
+      <tr>
+         <td><code>--ignore-table</code></td>
+         <td>Do not dump given table</td>
+      </tr>
+      <tr>
+         <td><code>--ignore-views</code></td>
+         <td>Skip dumping table views</td>
+      </tr>
+      <tr>
+         <td><code>--include-master-host-port</code></td>
+         <td>Include <code>MASTER_HOST/MASTER_PORT</code> options in CHANGE MASTER statement produced with --dump-slave</td>
+      </tr>
+      <tr>
+         <td><code>--include-source-host-port</code></td>
+         <td>Include <code>SOURCE_HOST</code> and <code>SOURCE_PORT</code> options in <code>CHANGE REPLICATION SOURCE TO</code> statement produced with <code>--dump-replica</code></td>
+      </tr>
+      <tr>
+         <td><code>--init-command</code></td>
+         <td>Single SQL statement to execute after connecting or re-connecting to MySQL server; resets existing defined commands</td>
+      </tr>
+      <tr>
+         <td><code>--init-command-add</code></td>
+         <td>Add an additional SQL statement to execute after connecting or re-connecting to MySQL server</td>
+      </tr>
+      <tr>
+         <td><code>--insert-ignore</code></td>
+         <td>Write <code>INSERT IGNORE</code> rather than <code>INSERT</code> statements</td>
+      </tr>
+      <tr>
+         <td><code>--lines-terminated-by</code></td>
+         <td>This option is used with the --tab option and has the same meaning as the corresponding clause for <code>LOAD DATA</code></td>
+      </tr>
+      <tr>
+         <td><code>--lock-all-tables</code></td>
+         <td>Lock all tables across all databases</td>
+      </tr>
+      <tr>
+         <td><code>--lock-tables</code></td>
+         <td>Lock all tables before dumping them</td>
+      </tr>
+      <tr>
+         <td><code>--log-error</code></td>
+         <td>Append warnings and errors to named file</td>
+      </tr>
+      <tr>
+         <td><code>--login-path</code></td>
+         <td>Read login path options from .mylogin.cnf</td>
+      </tr>
+      <tr>
+         <td><code>--master-data</code></td>
+         <td>Write the binary log file name and position to the output</td>
+      </tr>
+      <tr>
+         <td><code>--max-allowed-packet</code></td>
+         <td>Maximum packet length to send to or receive from server</td>
+      </tr>
+      <tr>
+         <td><code>--mysqld-long-query-time</code></td>
+         <td>Session value for slow query threshold</td>
+      </tr>
+      <tr>
+         <td><code>--net-buffer-length</code></td>
+         <td>Buffer size for TCP/IP and socket communication</td>
+      </tr>
+      <tr>
+         <td><code>--network-timeout</code></td>
+         <td>Increase network timeouts to permit larger table dumps</td>
+      </tr>
+      <tr>
+         <td><code>--no-autocommit</code></td>
+         <td>Enclose the <code>INSERT</code> statements for each dumped table within <code>SET autocommit = 0</code> and <code>COMMIT</code> statements</td>
+      </tr>
+      <tr>
+         <td><code>--no-create-db</code></td>
+         <td>Do not write <code>CREATE DATABASE</code> statements</td>
+      </tr>
+      <tr>
+         <td><code>--no-create-info</code></td>
+         <td>Do not write <code>CREATE TABLE</code> statements that re-create each dumped table</td>
+      </tr>
+      <tr>
+         <td><code>--no-data</code></td>
+         <td>Do not dump table contents</td>
+      </tr>
+      <tr>
+         <td><code>--no-defaults</code></td>
+         <td>Read no option files</td>
+      </tr>
+      <tr>
+         <td><code>--no-login-paths</code></td>
+         <td>Do not read login paths from the login path file</td>
+      </tr>
+      <tr>
+         <td><code>--no-set-names</code></td>
+         <td>Same as <code>--skip-set-charset</code></td>
+      </tr>
+      <tr>
+         <td><code>--no-tablespaces</code></td>
+         <td>Do not write any <code>CREATE LOGFILE GROUP</code> or <code>CREATE TABLESPACE</code> statements in output</td>
+      </tr>
+      <tr>
+         <td><code>--opt</code></td>
+         <td>Shorthand for <code>--add-drop-table</code> <code>--add-locks</code> <code>--create-options</code> <code>--disable-keys</code> <code>--extended-insert</code> <code>--lock-tables</code> <code>--quick</code> <code>--set-charset</code></td>
+      </tr>
+      <tr>
+         <td><code>--order-by-primary</code></td>
+         <td>Dump each table's rows sorted by its primary key, or by its first unique index</td>
+      </tr>
+      <tr>
+         <td><code>--output-as-version</code></td>
+         <td>Determines replica and event terminology used in dumps; for compatibility with older versions</td>
+      </tr>
+      <tr>
+         <td><code>--password</code></td>
+         <td>Password to use when connecting to server</td>
+      </tr>
+      <tr>
+         <td><code>--password1</code></td>
+         <td>First multifactor authentication password to use when connecting to server</td>
+      </tr>
+      <tr>
+         <td><code>--password2</code></td>
+         <td>Second multifactor authentication password to use when connecting to server</td>
+      </tr>
+      <tr>
+         <td><code>--password3</code></td>
+         <td>Third multifactor authentication password to use when connecting to server</td>
+      </tr>
+      <tr>
+         <td><code>--pipe</code></td>
+         <td>Connect to server using named pipe (Windows only)</td>
+      </tr>
+      <tr>
+         <td><code>--plugin-authentication-kerberos-client-mode</code></td>
+         <td>Permit <code>GSSAPI</code> pluggable authentication through the MIT Kerberos library on Windows</td>
+      </tr>
+      <tr>
+         <td><code>--plugin-dir</code></td>
+         <td>Directory where plugins are installed</td>
+      </tr>
+      <tr>
+         <td><code>--port</code></td>
+         <td>TCP/IP port number for connection</td>
+      </tr>
+      <tr>
+         <td><code>--print-defaults</code></td>
+         <td>Print default options</td>
+      </tr>
+      <tr>
+         <td><code>--protocol</code></td>
+         <td>Transport protocol to use</td>
+      </tr>
+      <tr>
+         <td><code>--quick</code></td>
+         <td>Retrieve rows for a table from the server a row at a time</td>
+      </tr>
+      <tr>
+         <td><code>--quote-names</code></td>
+         <td>Quote identifiers within backtick characters</td>
+      </tr>
+      <tr>
+         <td><code>--replace</code></td>
+         <td>Write <code>REPLACE</code> statements rather than <code>INSERT</code> statements</td>
+      </tr>
+      <tr>
+         <td><code>--result-file</code></td>
+         <td>Direct output to a given file</td>
+      </tr>
+      <tr>
+         <td><code>--routines</code></td>
+         <td>Dump stored routines (procedures and functions) from dumped databases</td>
+      </tr>
+      <tr>
+         <td><code>--server-public-key-path</code></td>
+         <td>Path name to file containing RSA public key</td>
+      </tr>
+      <tr>
+         <td><code>--set-charset</code></td>
+         <td>Add <code>SET NAMES default_character_set</code> to output</td>
+      </tr>
+      <tr>
+         <td><code>--set-gtid-purged</code></td>
+         <td>Whether to add <code>SET @@GLOBAL.GTID_PURGED</code> to output</td>
+      </tr>
+      <tr>
+         <td><code>--shared-memory-base-name</code></td>
+         <td>Shared-memory name for shared-memory connections (Windows only)</td>
+      </tr>
+      <tr>
+         <td><code>--show-create-skip-secondary-engine</code></td>
+         <td>Exclude <code>SECONDARY ENGINE</code> clause from <code>CREATE TABLE</code> statements</td>
+      </tr>
+      <tr>
+         <td><code>--single-transaction</code></td>
+         <td>Issue a <code>BEGIN</code> SQL statement before dumping data from server</td>
+      </tr>
+      <tr>
+         <td><code>--skip-add-drop-table</code></td>
+         <td>Do not add a <code>DROP TABLE</code> statement before each <code>CREATE TABLE</code> statement</td>
+      </tr>
+      <tr>
+         <td><code>--skip-add-locks</code></td>
+         <td>Do not add locks</td>
+      </tr>
+      <tr>
+         <td><code>--skip-comments</code></td>
+         <td>Do not add comments to dump file</td>
+      </tr>
+      <tr>
+         <td><code>--skip-compact</code></td>
+         <td>Do not produce more compact output</td>
+      </tr>
+      <tr>
+         <td><code>--skip-disable-keys</code></td>
+         <td>Do not disable keys</td>
+      </tr>
+      <tr>
+         <td><code>--skip-extended-insert</code></td>
+         <td>Turn off extended-insert</td>
+      </tr>
+      <tr>
+         <td><code>--skip-generated-invisible-primary-key</code></td>
+         <td>Do not include generated invisible primary keys in dump file</td>
+      </tr>
+      <tr>
+         <td><code>--skip-opt</code></td>
+         <td>Turn off options set by --opt</td>
+      </tr>
+      <tr>
+         <td><code>--skip-quick</code></td>
+         <td>Do not retrieve rows for a table from the server a row at a time</td>
+      </tr>
+      <tr>
+         <td><code>--skip-quote-names</code></td>
+         <td>Do not quote identifiers</td>
+      </tr>
+      <tr>
+         <td><code>--skip-set-charset</code></td>
+         <td>Do not write <code>SET NAMES</code> statement</td>
+      </tr>
+      <tr>
+         <td><code>--skip-triggers</code></td>
+         <td>Do not dump triggers</td>
+      </tr>
+      <tr>
+         <td><code>--skip-tz-utc</code></td>
+         <td>Turn off <code>tz-utc</code></td>
+      </tr>
+      <tr>
+         <td><code>--socket</code></td>
+         <td>Unix socket file or Windows named pipe to use</td>
+      </tr>
+      <tr>
+         <td><code>--source-data</code></td>
+         <td>Write the binary log file name and position to the output</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-ca</code></td>
+         <td>File that contains list of trusted SSL Certificate Authorities</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-capath</code></td>
+         <td>Directory that contains trusted SSL Certificate Authority certificate files</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-cert</code></td>
+         <td>File that contains X.509 certificate</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-cipher</code></td>
+         <td>Permissible ciphers for connection encryption</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-crl</code></td>
+         <td>File that contains certificate revocation lists</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-crlpath</code></td>
+         <td>Directory that contains certificate revocation-list files</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-fips-mode</code></td>
+         <td>Whether to enable FIPS mode on client side</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-key</code></td>
+         <td>File that contains X.509 key</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-mode</code></td>
+         <td>Desired security state of connection to server</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-session-data</code></td>
+         <td>File that contains SSL session data</td>
+      </tr>
+      <tr>
+         <td><code>--ssl-session-data-continue-on-failed-reuse</code></td>
+         <td>Whether to establish connections if session reuse fails</td>
+      </tr>
+      <tr>
+         <td><code>--tab</code></td>
+         <td>Produce tab-separated data files</td>
+      </tr>
+      <tr>
+         <td><code>--tables</code></td>
+         <td>Override --databases or -B option</td>
+      </tr>
+      <tr>
+         <td><code>--tls-ciphersuites</code></td>
+         <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td>
+      </tr>
+      <tr>
+         <td><code>--tls-sni-servername</code></td>
+         <td>Server name supplied by the client</td>
+      </tr>
+      <tr>
+         <td><code>--tls-version</code></td>
+         <td>Permissible TLS protocols for encrypted connections</td>
+      </tr>
+      <tr>
+         <td><code>--triggers</code></td>
+         <td>Dump triggers for each dumped table</td>
+      </tr>
+      <tr>
+         <td><code>--tz-utc</code></td>
+         <td>Add <code>SET TIME_ZONE='+00:00'</code> to dump file</td>
+      </tr>
+      <tr>
+         <td><code>--user</code></td>
+         <td>MySQL user name to use when connecting to server</td>
+      </tr>
+      <tr>
+         <td><code>--verbose</code></td>
+         <td>Verbose mode</td>
+      </tr>
+      <tr>
+         <td><code>--version</code></td>
+         <td>Display version information and exit</td>
+      </tr>
+      <tr>
+         <td><code>--where</code></td>
+         <td>Dump only rows selected by given WHERE condition</td>
+      </tr>
+      <tr>
+         <td><code>--xml</code></td>
+         <td>Produce XML output</td>
+      </tr>
+      <tr>
+         <td><code>--zstd-compression-level</code></td>
+         <td>Compression level for connections to server that use zstd compression</td>
+      </tr>
+   </tbody>
+</table>
 
 #### Connection Options
 
-The  `mysqldump` command logs into a MySQL server to extract information. The following options specify how to connect to the MySQL server, either on the same machine or a remote system.
+The `mysqldump` command logs into a MySQL server to extract information. The following options specify how to connect to the MySQL server, either on the same machine or a remote system.
 
 *  `--bind-address=ip_address`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 *  `--compress`, `-C`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
   This option is deprecated. Expect it to be removed in a future version of MySQL. See Configuring Legacy Connection Compression.
 *  `--compression-algorithms=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
+<table>
+   <tbody>
+      <tr>
+         <th>Command-Line Format</th>
+         <td><code>--compression-algorithms=value</code></td>
+      </tr>
+      <tr>
+         <th>Type</th>
+         <td><code>Set</code></td>
+      </tr>
+      <tr>
+         <th>Default Value</th>
+         <td><code>uncompressed</code></td>
+      </tr>
+      <tr>
+         <th>Valid Values</th>
+         <td><code>zlib</code><code>zstd</code><code>uncompressed</code></td>
+      </tr>
+   </tbody>
+</table>
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
-  For more information, see Section 6.2.8, “Connection Compression Control”.
 *  `--default-auth=plugin`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td><code>String</code></td> </tr></tbody></table>
 
   A hint about which client-side authentication plugin to use. See  Section 8.2.17, “Pluggable Authentication”.
 *  `--enable-cleartext-plugin`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.4, “Client-Side Cleartext Pluggable Authentication”.)
 *  `--get-server-public-key`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -128,28 +699,28 @@ The  `mysqldump` command logs into a MySQL server to extract information. The fo
   For information about the `caching_sha2_password` plugin, see Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”.
 *  `--host=host_name`, `-h host_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>
 
   Dump data from the MySQL server on the given host. The default host is `localhost`.
 *  `--login-path=name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the `mysql_config_editor` utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--no-login-paths`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>
 
   Skips reading options from the login path file.
 
-  See  `--login-path` for related information.
+  See `--login-path` for related information.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--password[=password]`, `-p[password]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, `mysqldump` prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -173,36 +744,36 @@ The  `mysqldump` command logs into a MySQL server to extract information. The fo
   The password for multifactor authentication factor 3 of the MySQL account used for connecting to the server. The semantics of this option are similar to the semantics for `--password1`; see the description of that option for details.
 *  `--pipe`, `-W`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--pipe</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--pipe</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 *  `--plugin-authentication-kerberos-client-mode=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-authentication-kerberos-client-mode</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>SSPI</code></td> </tr><tr><th>Valid Values</th> <td><code>GSSAPI</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-authentication-kerberos-client-mode</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>SSPI</code></td> </tr><tr><th>Valid Values</th> <td><code>GSSAPI</code></td> </tr></tbody></table>
 
   On Windows, the `authentication_kerberos_client` authentication plugin supports this plugin option. It provides two possible values that the client user can set at runtime: `SSPI` and `GSSAPI`.
 
-  The default value for the client-side plugin option uses Security Support Provider Interface (SSPI), which is capable of acquiring credentials from the Windows in-memory cache. Alternatively, the client user can select a mode that supports Generic Security Service Application Program Interface (GSSAPI) through the MIT Kerberos library on Windows. GSSAPI is capable of acquiring cached credentials previously generated by using the **kinit** command.
+  The default value for the client-side plugin option uses Security Support Provider Interface (SSPI), which is capable of acquiring credentials from the Windows in-memory cache. Alternatively, the client user can select a mode that supports Generic Security Service Application Program Interface (GSSAPI) through the MIT Kerberos library on Windows. GSSAPI is capable of acquiring cached credentials previously generated by using the `kinit` command.
 
   For more information, see Commands for Windows Clients in GSSAPI Mode.
 *  `--plugin-dir=dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but `mysqldump` does not find it. See Section 8.2.17, “Pluggable Authentication”.
 *  `--port=port_num`, `-P port_num`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
 
   For TCP/IP connections, the port number to use.
 *  `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--protocol=type</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[see text]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>TCP</code></p><p class="valid-value"><code>SOCKET</code></p><p class="valid-value"><code>PIPE</code></p><p class="valid-value"><code>MEMORY</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--protocol=type</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[see text]</code></td> </tr><tr><th>Valid Values</th> <td><code>TCP</code><code>SOCKET</code><code>PIPE</code><code>MEMORY</code></td> </tr></tbody></table>
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 *  `--server-public-key-path=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--server-public-key-path=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--server-public-key-path=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` (deprecated) or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -213,7 +784,7 @@ The  `mysqldump` command logs into a MySQL server to extract information. The fo
   For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 8.4.1.3, “SHA-256 Pluggable Authentication”, and Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”.
 *  `--socket=path`, `-S path`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--socket={file_name|pipe_name}</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--socket={file_name|pipe_name}</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -223,11 +794,11 @@ The  `mysqldump` command logs into a MySQL server to extract information. The fo
   Options that begin with `--ssl` specify whether to connect to the server using encryption and indicate where to find SSL keys and certificates. See Command Options for Encrypted Connections.
 *  `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-fips-mode={OFF|ON|STRICT}</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>STRICT</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ssl-fips-mode={OFF|ON|STRICT}</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr><tr><th>Valid Values</th> <td><code>OFF</code><code>ON</code><code>STRICT</code></td> </tr></tbody></table>
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See  Section 8.8, “FIPS Support”.
 
-  These  `--ssl-fips-mode` values are permitted:
+  These `--ssl-fips-mode` values are permitted:
 
   + `OFF`: Disable FIPS mode.
   + `ON`: Enable FIPS mode.
@@ -242,31 +813,31 @@ The  `mysqldump` command logs into a MySQL server to extract information. The fo
   This option is deprecated. Expect it to be removed in a future version of MySQL.
 *  `--tls-ciphersuites=ciphersuite_list`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tls-ciphersuites=ciphersuite_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tls-ciphersuites=ciphersuite_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 *  `--tls-sni-servername=server_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tls-sni-servername=server_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tls-sni-servername=server_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
   Server Name Indication (SNI) is an extension to the TLS protocol (OpenSSL must be compiled using TLS extensions for this option to function). The MySQL implementation of SNI represents the client-side only.
 *  `--tls-version=protocol_list`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tls-version=protocol_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><p class="valid-value"><code>TLSv1,TLSv1.1,TLSv1.2,TLSv1.3</code> (OpenSSL 1.1.1 or higher)</p><p class="valid-value"><code>TLSv1,TLSv1.1,TLSv1.2</code> (otherwise)</p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tls-version=protocol_list</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>TLSv1,TLSv1.1,TLSv1.2,TLSv1.3</code> (OpenSSL 1.1.1 or higher)<code>TLSv1,TLSv1.1,TLSv1.2</code> (otherwise)</td> </tr></tbody></table>
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 *  `--user=user_name`, `-u user_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--user=user_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--user=user_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The user name of the MySQL account to use for connecting to the server.
 
   If you are using the `Rewriter` plugin, you should grant this user the `SKIP_QUERY_REWRITE` privilege.
 *  `--zstd-compression-level=level`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--zstd-compression-level=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--zstd-compression-level=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -278,14 +849,14 @@ These options are used to control which option files to read.
 
 *  `--defaults-extra-file=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--defaults-file=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -294,23 +865,23 @@ These options are used to control which option files to read.
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--defaults-group-suffix=str`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, `mysqldump` normally reads the `[client]` and `[mysqldump]` groups. If this option is given as `--defaults-group-suffix=_other`, `mysqldump` also reads the `[client_other]` and `[mysqldump_other]` groups.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--no-defaults`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-defaults</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-defaults</code></td> </tr></tbody></table>
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the `mysql_config_editor` utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see  Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 *  `--print-defaults`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--print-defaults</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--print-defaults</code></td> </tr></tbody></table>
 
   Print the program name and all options that it gets from option files.
 
@@ -318,13 +889,13 @@ These options are used to control which option files to read.
 
 #### DDL Options
 
-Usage scenarios for  `mysqldump` include setting up an entire new MySQL instance (including database tables), and replacing data inside an existing instance with existing databases and tables. The following options let you specify which things to tear down and set up when restoring a dump, by encoding various DDL statements within the dump file.
+Usage scenarios for `mysqldump` include setting up an entire new MySQL instance (including database tables), and replacing data inside an existing instance with existing databases and tables. The following options let you specify which things to tear down and set up when restoring a dump, by encoding various DDL statements within the dump file.
 
 *  `--add-drop-database`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
-  Write a  `DROP DATABASE` statement before each `CREATE DATABASE` statement. This option is typically used in conjunction with the `--all-databases` or `--databases` option because no  `CREATE DATABASE` statements are written unless one of those options is specified.
+  Write a `DROP DATABASE` statement before each `CREATE DATABASE` statement. This option is typically used in conjunction with the `--all-databases` or `--databases` option because no `CREATE DATABASE` statements are written unless one of those options is specified.
 
   ::: info Note
 
@@ -336,46 +907,46 @@ Usage scenarios for  `mysqldump` include setting up an entire new MySQL instance
 
 *  `--add-drop-table`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Write a  `DROP TABLE` statement before each  `CREATE TABLE` statement.
 *  `--add-drop-trigger`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-trigger</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-trigger</code></td> </tr></tbody></table>
 
-  Write a  `DROP TRIGGER` statement before each `CREATE TRIGGER` statement.
+  Write a `DROP TRIGGER` statement before each `CREATE TRIGGER` statement.
 *  `--all-tablespaces`, `-Y`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-tablespaces</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--all-tablespaces</code></td> </tr></tbody></table>
 
-  Adds to a table dump all SQL statements needed to create any tablespaces used by an  `NDB` table. This information is not otherwise included in the output from  `mysqldump`. This option is currently relevant only to NDB Cluster tables.
+  Adds to a table dump all SQL statements needed to create any tablespaces used by an  `NDB` table. This information is not otherwise included in the output from `mysqldump`. This option is currently relevant only to NDB Cluster tables.
 *  `--no-create-db`, `-n`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-create-db</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-create-db</code></td> </tr></tbody></table>
 
   Suppress the  `CREATE DATABASE` statements that are otherwise included in the output if the `--databases` or `--all-databases` option is given.
 *  `--no-create-info`, `-t`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-create-info</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-create-info</code></td> </tr></tbody></table>
 
   Do not write  `CREATE TABLE` statements that create each dumped table.
 
   ::: info Note
 
-  This option does *not* exclude statements creating log file groups or tablespaces from `mysqldump` output; however, you can use the  `--no-tablespaces` option for this purpose.
+  This option does *not* exclude statements creating log file groups or tablespaces from `mysqldump` output; however, you can use the `--no-tablespaces` option for this purpose.
 
   :::
 
 *  `--no-tablespaces`, `-y`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-tablespaces</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-tablespaces</code></td> </tr></tbody></table>
 
   This option suppresses all `CREATE LOGFILE GROUP` and `CREATE TABLESPACE` statements in the output of `mysqldump`.
 *  `--replace`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--replace</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--replace</code></td> </tr></tbody></table>
 
-  Write  `REPLACE` statements rather than  `INSERT` statements.
+  Write `REPLACE` statements rather than `INSERT` statements.
 
 #### Debug Options
 
@@ -383,49 +954,49 @@ The following options print debugging information, encode debugging information 
 
 *  `--allow-keywords`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-keywords</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--allow-keywords</code></td> </tr></tbody></table>
 
   Permit creation of column names that are keywords. This works by prefixing each column name with the table name.
 *  `--comments`, `-i`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--comments</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--comments</code></td> </tr></tbody></table>
 
-  Write additional information in the dump file such as program version, server version, and host. This option is enabled by default. To suppress this additional information, use  `--skip-comments`.
+  Write additional information in the dump file such as program version, server version, and host. This option is enabled by default. To suppress this additional information, use `--skip-comments`.
 *  `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o,/tmp/mysqldump.trace</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o,/tmp/mysqldump.trace</code></td> </tr></tbody></table>
 
-  Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default value is `d:t:o,/tmp/mysqldump.trace`.
+  Write a debugging log. A typical `debug_options` string is `d:t:o,file_name`. The default value is `d:t:o,/tmp/mysqldump.trace`.
 
   This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
 *  `--debug-check`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--debug-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Print some debugging information when the program exits.
 
   This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
 *  `--debug-info`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug-info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--debug-info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
   This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
 *  `--dump-date`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--dump-date</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--dump-date</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-  If the  `--comments` option is given,  `mysqldump` produces a comment at the end of the dump of the following form:
+  If the `--comments` option is given, `mysqldump` produces a comment at the end of the dump of the following form:
 
   ```
   -- Dump completed on DATE
   ```
 
-  However, the date causes dump files taken at different times to appear to be different, even if the data are otherwise identical.  `--dump-date` and `--skip-dump-date` control whether the date is added to the comment. The default is  `--dump-date` (include the date in the comment). `--skip-dump-date` suppresses date printing.
+  However, the date causes dump files taken at different times to appear to be different, even if the data are otherwise identical. `--dump-date` and `--skip-dump-date` control whether the date is added to the comment. The default is `--dump-date` (include the date in the comment). `--skip-dump-date` suppresses date printing.
 *  `--force`, `-f`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
 
   Ignore all errors; continue even if an SQL error occurs during a table dump.
 
@@ -434,17 +1005,17 @@ The following options print debugging information, encode debugging information 
   If the  `--ignore-error` option is also given to ignore specific errors, `--force` takes precedence.
 *  `--log-error=file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--log-error=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--log-error=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Log warnings and errors by appending them to the named file. The default is to do no logging.
 *  `--skip-comments`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-comments</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--skip-comments</code></td> </tr></tbody></table>
 
   See the description for the `--comments` option.
 *  `--verbose`, `-v`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Verbose mode. Print more information about what the program does.
 
@@ -454,12 +1025,12 @@ The following options display information about the `mysqldump` command itself.
 
 *  `--help`, `-?`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 *  `--version`, `-V`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr></tbody></table>
 
   Display version information and exit.
 
@@ -469,58 +1040,58 @@ The following options change how the `mysqldump` command represents character da
 
 *  `--character-sets-dir=dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 *  `--default-character-set=charset_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-character-set=charset_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>utf8</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--default-character-set=charset_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>utf8</code></td> </tr></tbody></table>
 
   Use *`charset_name`* as the default character set. See  Section 12.15, “Character Set Configuration”. If no character set is specified, `mysqldump` uses `utf8mb4`.
 *  `--no-set-names`, `-N`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-set-names</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-set-names</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
 
   Turns off the `--set-charset` setting, the same as specifying `--skip-set-charset`.
 *  `--set-charset`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--set-charset</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-set-charset</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--set-charset</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-set-charset</code></td> </tr></tbody></table>
 
   Write `SET NAMES default_character_set` to the output. This option is enabled by default. To suppress the  `SET NAMES` statement, use `--skip-set-charset`.
 
 #### Replication Options
 
-The  `mysqldump` command is frequently used to create an empty instance, or an instance including data, on a replica server in a replication configuration. The following options apply to dumping and restoring data on replication source servers and replicas.
+The `mysqldump` command is frequently used to create an empty instance, or an instance including data, on a replica server in a replication configuration. The following options apply to dumping and restoring data on replication source servers and replicas.
 
 *  `--apply-replica-statements`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--apply-replica-statements</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--apply-replica-statements</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   For a replica dump produced with the `--dump-replica` option, this option adds a `STOP REPLICA` statement before the statement with the binary log coordinates, and a `START REPLICA` statement at the end of the output.
 *  `--apply-slave-statements`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--apply-slave-statements</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--apply-slave-statements</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   This is a deprecated alias for `--apply-replica-statements`.
 *  `--delete-source-logs`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delete-source-logs</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--delete-source-logs</code></td> </tr></tbody></table>
 
-  On a replication source server, delete the binary logs by sending a  `PURGE BINARY LOGS` statement to the server after performing the dump operation. The options require the `RELOAD` privilege as well as privileges sufficient to execute that statement. This option automatically enables `--source-data`.
+  On a replication source server, delete the binary logs by sending a `PURGE BINARY LOGS` statement to the server after performing the dump operation. The options require the `RELOAD` privilege as well as privileges sufficient to execute that statement. This option automatically enables `--source-data`.
 *  `--delete-master-logs`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delete-master-logs</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--delete-master-logs</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
 
   This is a deprecated alias for `--delete-source-logs`.
 *  `--dump-replica[=value]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--dump-replica[=value]</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--dump-replica[=value]</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><code>1</code><code>2</code></td> </tr></tbody></table>
 
   This option is similar to `--source-data`, except that it is used to dump a replica server to produce a dump file that can be used to set up another server as a replica that has the same source as the dumped server. The option causes the dump output to include a `CHANGE REPLICATION SOURCE TO` statement that indicates the binary log coordinates (file name and position) of the dumped replica's source. The `CHANGE REPLICATION SOURCE TO` statement reads the values of `Relay_Master_Log_File` and `Exec_Master_Log_Pos` from the `SHOW REPLICA STATUS` output and uses them for `SOURCE_LOG_FILE` and `SOURCE_LOG_POS` respectively. These are the replication source server coordinates from which the replica starts replicating.
 
   ::: info Note
 
-  Inconsistencies in the sequence of transactions from the relay log which have been executed can cause the wrong position to be used. See Section 19.5.1.34, “Replication and Transaction Inconsistencies” for more information.
+  Inconsistencies in the sequence of transactions from the relay log which have been executed can cause the wrong position to be used.
 
   :::
 
@@ -539,27 +1110,27 @@ The  `mysqldump` command is frequently used to create an empty instance, or an i
    `--apply-replica-statements` and `--include-source-host-port` options can be used in conjunction with `--dump-replica`.
 *  `--dump-slave[=value]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--dump-slave[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--dump-slave[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><code>1</code><code>2</code></td> </tr></tbody></table>
 
   This is a deprecated alias for `--dump-replica`.
 *  `--include-source-host-port`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--include-source-host-port</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--include-source-host-port</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Adds the `SOURCE_HOST` and `SOURCE_PORT` options for the host name and TCP/IP port number of the replica's source, to the `CHANGE REPLICATION SOURCE TO` statement in a replica dump produced with the `--dump-replica` option.
 *  `--include-master-host-port`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--include-master-host-port</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--include-master-host-port</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   This is a deprecated alias for `--include-source-host-port`.
 *  `--master-data[=value]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--master-data[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--master-data[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><code>1</code><code>2</code></td> </tr></tbody></table>
 
   This is a deprecated alias for `--source-data`.
 *  `--output-as-version=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-as-version=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>SERVER</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>BEFORE_8_0_23</code></p><p class="valid-value"><code>BEFORE_8_2_0</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--output-as-version=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>SERVER</code></td> </tr><tr><th>Valid Values</th> <td><code>BEFORE_8_0_23</code><code>BEFORE_8_2_0</code></td> </tr></tbody></table>
 
   Determines the level of terminology used for statements relating to replicas and events, making it possible to create dumps compatible with older versions of MySQL that do not accept the newer terminology. This option can take any one of the following values, with effects described as listed here:
 
@@ -572,7 +1143,7 @@ The  `mysqldump` command is frequently used to create an empty instance, or an i
   This option affects the output from `--events`, `--dump-replica`, `--source-data`, `--apply-replica-statements`, and `--include-source-host-port`.
 *  `--source-data[=value]`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--source-data[=value]</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--source-data[=value]</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><code>1</code><code>2</code></td> </tr></tbody></table>
 
   Used to dump a replication source server to produce a dump file that can be used to set up another server as a replica of the source. The options cause the dump output to include a `CHANGE REPLICATION SOURCE TO` statement that indicates the binary log coordinates (file name and position) of the dumped server. These are the replication source server coordinates from which the replica should start replicating after you load the dump file into the replica.
 
@@ -580,14 +1151,14 @@ The  `mysqldump` command is frequently used to create an empty instance, or an i
 
   `--source-data` sends a `SHOW BINARY LOG STATUS` statement to the server to obtain information, so they require privileges sufficient to execute that statement. This option also requires the `RELOAD` privilege and the binary log must be enabled.
 
-  `--source-data` automatically turns off `--lock-tables`. They also turn on  `--lock-all-tables`, unless `--single-transaction` also is specified, in which case, a global read lock is acquired only for a short time at the beginning of the dump (see the description for `--single-transaction`). In all cases, any action on logs happens at the exact moment of the dump.
+  `--source-data` automatically turns off `--lock-tables`. They also turn on `--lock-all-tables`, unless `--single-transaction` also is specified, in which case, a global read lock is acquired only for a short time at the beginning of the dump (see the description for `--single-transaction`). In all cases, any action on logs happens at the exact moment of the dump.
 
   It is also possible to set up a replica by dumping an existing replica of the source, using the `--dump-replica` option, which overrides `--source-data` causing it to be ignored.
 *  `--set-gtid-purged=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--set-gtid-purged=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>AUTO</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--set-gtid-purged=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><code>OFF</code><code>ON</code><code>AUTO</code></td> </tr></tbody></table>
 
-  This option is for servers that use GTID-based replication ( `gtid_mode=ON`). It controls the inclusion of a `SET @@GLOBAL.gtid_purged` statement in the dump output, which updates the value of `gtid_purged` on a server where the dump file is reloaded, to add the GTID set from the source server's `gtid_executed` system variable.  `gtid_purged` holds the GTIDs of all transactions that have been applied on the server, but do not exist on any binary log file on the server.  `mysqldump` therefore adds the GTIDs for the transactions that were executed on the source server, so that the target server records these transactions as applied, although it does not have them in its binary logs. `--set-gtid-purged` also controls the inclusion of a `SET @@SESSION.sql_log_bin=0` statement, which disables binary logging while the dump file is being reloaded. This statement prevents new GTIDs from being generated and assigned to the transactions in the dump file as they are executed, so that the original GTIDs for the transactions are used.
+  This option is for servers that use GTID-based replication ( `gtid_mode=ON`). It controls the inclusion of a `SET @@GLOBAL.gtid_purged` statement in the dump output, which updates the value of `gtid_purged` on a server where the dump file is reloaded, to add the GTID set from the source server's `gtid_executed` system variable.  `gtid_purged` holds the GTIDs of all transactions that have been applied on the server, but do not exist on any binary log file on the server. `mysqldump` therefore adds the GTIDs for the transactions that were executed on the source server, so that the target server records these transactions as applied, although it does not have them in its binary logs. `--set-gtid-purged` also controls the inclusion of a `SET @@SESSION.sql_log_bin=0` statement, which disables binary logging while the dump file is being reloaded. This statement prevents new GTIDs from being generated and assigned to the transactions in the dump file as they are executed, so that the original GTIDs for the transactions are used.
 
   If you do not set the `--set-gtid-purged` option, the default is that a `SET @@GLOBAL.gtid_purged` statement is included in the dump output if GTIDs are enabled on the server you are backing up, and the set of GTIDs in the global value of the `gtid_executed` system variable is not empty. A `SET @@SESSION.sql_log_bin=0` statement is also included if GTIDs are enabled on the server.
 
@@ -599,13 +1170,13 @@ The  `mysqldump` command is frequently used to create an empty instance, or an i
 
   The possible values for the `--set-gtid-purged` option are as follows:
 
-  `AUTO` :   The default value. If GTIDs are enabled on the server you are backing up and `gtid_executed` is not empty, `SET @@GLOBAL.gtid_purged` is added to the output, containing the GTID set from `gtid_executed`. If GTIDs are enabled, `SET @@SESSION.sql_log_bin=0` is added to the output. If GTIDs are not enabled on the server, the statements are not added to the output.
+  `AUTO`: The default value. If GTIDs are enabled on the server you are backing up and `gtid_executed` is not empty, `SET @@GLOBAL.gtid_purged` is added to the output, containing the GTID set from `gtid_executed`. If GTIDs are enabled, `SET @@SESSION.sql_log_bin=0` is added to the output. If GTIDs are not enabled on the server, the statements are not added to the output.
 
-  `OFF` :   `SET @@GLOBAL.gtid_purged` is not added to the output, and `SET @@SESSION.sql_log_bin=0` is not added to the output. For a server where GTIDs are not in use, use this option or `AUTO`. Only use this option for a server where GTIDs are in use if you are sure that the required GTID set is already present in `gtid_purged` on the target server and should not be changed, or if you plan to identify and add any missing GTIDs manually.
+  `OFF`: `SET @@GLOBAL.gtid_purged` is not added to the output, and `SET @@SESSION.sql_log_bin=0` is not added to the output. For a server where GTIDs are not in use, use this option or `AUTO`. Only use this option for a server where GTIDs are in use if you are sure that the required GTID set is already present in `gtid_purged` on the target server and should not be changed, or if you plan to identify and add any missing GTIDs manually.
 
-  `ON` :   If GTIDs are enabled on the server you are backing up, `SET @@GLOBAL.gtid_purged` is added to the output (unless `gtid_executed` is empty), and `SET @@SESSION.sql_log_bin=0` is added to the output. An error occurs if you set this option but GTIDs are not enabled on the server. For a server where GTIDs are in use, use this option or `AUTO`, unless you are sure that the GTIDs in `gtid_executed` are not needed on the target server.
+  `ON`: If GTIDs are enabled on the server you are backing up, `SET @@GLOBAL.gtid_purged` is added to the output (unless `gtid_executed` is empty), and `SET @@SESSION.sql_log_bin=0` is added to the output. An error occurs if you set this option but GTIDs are not enabled on the server. For a server where GTIDs are in use, use this option or `AUTO`, unless you are sure that the GTIDs in `gtid_executed` are not needed on the target server.
 
-  `COMMENTED` :   If GTIDs are enabled on the server you are backing up, `SET @@GLOBAL.gtid_purged` is added to the output (unless `gtid_executed` is empty), but it is commented out. This means that the value of `gtid_executed` is available in the output, but no action is taken automatically when the dump file is reloaded. `SET @@SESSION.sql_log_bin=0` is added to the output, and it is not commented out. With `COMMENTED`, you can control the use of the  `gtid_executed` set manually or through automation. For example, you might prefer to do this if you are migrating data to another server that already has different active databases.
+  `COMMENTED`: If GTIDs are enabled on the server you are backing up, `SET @@GLOBAL.gtid_purged` is added to the output (unless `gtid_executed` is empty), but it is commented out. This means that the value of `gtid_executed` is available in the output, but no action is taken automatically when the dump file is reloaded. `SET @@SESSION.sql_log_bin=0` is added to the output, and it is not commented out. With `COMMENTED`, you can control the use of the  `gtid_executed` set manually or through automation. For example, you might prefer to do this if you are migrating data to another server that already has different active databases.
 
 #### Format Options
 
@@ -613,63 +1184,63 @@ The following options specify how to represent the entire dump file or certain k
 
 *  `--compact`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compact</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--compact</code></td> </tr></tbody></table>
 
   Produce more compact output. This option enables the `--skip-add-drop-table`, `--skip-add-locks`, `--skip-comments`, `--skip-disable-keys`, and `--skip-set-charset` options.
 *  `--compatible=name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compatible=name[,name,...]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>''</code></td> </tr><tr><th>Valid Values</th> <td><code>ansi</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--compatible=name[,name,...]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>''</code></td> </tr><tr><th>Valid Values</th> <td><code>ansi</code></td> </tr></tbody></table>
 
   Produce output that is more compatible with other database systems or with older MySQL servers. The only permitted value for this option is `ansi`, which has the same meaning as the corresponding option for setting the server SQL mode. See  Section 7.1.11, “Server SQL Modes”.
 *  `--complete-insert`, `-c`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--complete-insert</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--complete-insert</code></td> </tr></tbody></table>
 
-  Use complete  `INSERT` statements that include column names.
+  Use complete `INSERT` statements that include column names.
 *  `--create-options`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--create-options</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--create-options</code></td> </tr></tbody></table>
 
   Include all MySQL-specific table options in the `CREATE TABLE` statements.
 *  `--fields-terminated-by=...`, `--fields-enclosed-by=...`, `--fields-optionally-enclosed-by=...`, `--fields-escaped-by=...`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--fields-terminated-by=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table><table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--fields-enclosed-by=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table><table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--fields-optionally-enclosed-by=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table><table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--fields-escaped-by</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--fields-terminated-by=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table><table><tbody><tr><th>Command-Line Format</th> <td><code>--fields-enclosed-by=string</code></td> </tr><tr><th>Type</th> <td><code>String</code></td> </tr></tbody></table><table><tbody><tr><th>Command-Line Format</th> <td><code>--fields-optionally-enclosed-by=string</code></td> </tr><tr><th>Type</th> <td><code>String</code></td> </tr></tbody></table><table><tbody><tr><th>Command-Line Format</th> <td><code>--fields-escaped-by</code></td> </tr><tr><th>Type</th> <td><code>String</code></td> </tr></tbody></table>
 
   These options are used with the `--tab` option and have the same meaning as the corresponding `FIELDS` clauses for  `LOAD DATA`. See Section 15.2.9, “LOAD DATA Statement”.
 *  `--hex-blob`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--hex-blob</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--hex-blob</code></td> </tr></tbody></table>
 
   Dump binary columns using hexadecimal notation (for example, `'abc'` becomes `0x616263`). The affected data types are `BINARY`, `VARBINARY`, `BLOB` types, `BIT`, all spatial data types, and other non-binary data types when used with the `binary` character set.
 
   The  `--hex-blob` option is ignored when the  `--tab` is used.
 *  `--lines-terminated-by=...`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--lines-terminated-by=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--lines-terminated-by=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  This option is used with the `--tab` option and has the same meaning as the corresponding `LINES` clause for  `LOAD DATA`. See Section 15.2.9, “LOAD DATA Statement”.
+  This option is used with the `--tab` option and has the same meaning as the corresponding `LINES` clause for `LOAD DATA`. See Section 15.2.9, “LOAD DATA Statement”.
 *  `--quote-names`, `-Q`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--quote-names</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-quote-names</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--quote-names</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-quote-names</code></td> </tr></tbody></table>
 
   Quote identifiers (such as database, table, and column names) within `` ` `` characters. If the `ANSI_QUOTES` SQL mode is enabled, identifiers are quoted within `"` characters. This option is enabled by default. It can be disabled with `--skip-quote-names`, but this option should be given after any option such as `--compatible` that may enable  `--quote-names`.
 *  `--result-file=file_name`, `-r file_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--result-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--result-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Direct output to the named file. The result file is created and its previous contents overwritten, even if an error occurs while generating the dump.
 
   This option should be used on Windows to prevent newline `\n` characters from being converted to `\r\n` carriage return/newline sequences.
 *  `--show-create-skip-secondary-engine=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--show-create-skip-secondary-engine</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--show-create-skip-secondary-engine</code></td> </tr></tbody></table>
 
   Excludes the `SECONDARY ENGINE` clause from `CREATE TABLE` statements. It does so by enabling the `show_create_table_skip_secondary_engine` system variable for the duration of the dump operation. Alternatively, you can enable the `show_create_table_skip_secondary_engine` system variable prior to using  `mysqldump`.
 *  `--tab=dir_name`, `-T dir_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tab=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tab=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  Produce tab-separated text-format data files. For each dumped table,  `mysqldump` creates a `tbl_name.sql` file that contains the `CREATE TABLE` statement that creates the table, and the server writes a `tbl_name.txt` file that contains its data. The option value is the directory in which to write the files.
+  Produce tab-separated text-format data files. For each dumped table, `mysqldump` creates a `tbl_name.sql` file that contains the `CREATE TABLE` statement that creates the table, and the server writes a `tbl_name.txt` file that contains its data. The option value is the directory in which to write the files.
 
   ::: info Note
 
@@ -682,20 +1253,20 @@ The following options specify how to represent the entire dump file or certain k
   Column values are converted to the character set specified by the `--default-character-set` option.
 *  `--tz-utc`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tz-utc</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-tz-utc</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tz-utc</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-tz-utc</code></td> </tr></tbody></table>
 
   This option enables  `TIMESTAMP` columns to be dumped and reloaded between servers in different time zones.  `mysqldump` sets its connection time zone to UTC and adds `SET TIME_ZONE='+00:00'` to the dump file. Without this option,  `TIMESTAMP` columns are dumped and reloaded in the time zones local to the source and destination servers, which can cause the values to change if the servers are in different time zones. `--tz-utc` also protects against changes due to daylight saving time. `--tz-utc` is enabled by default. To disable it, use `--skip-tz-utc`.
 *  `--xml`, `-X`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--xml</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--xml</code></td> </tr></tbody></table>
 
   Write dump output as well-formed XML.
 
   **`NULL`, `'NULL'`, and Empty Values**: For a column named *`column_name`*, the `NULL` value, an empty string, and the string value `'NULL'` are distinguished from one another in the output generated by this option as follows.
 
-  <table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Value:</th> <th>XML Representation:</th> </tr></thead><tbody><tr> <td><code>NULL</code> (<span><em>unknown value</em></span>)</td> <td><p> <code>&lt;field name="<em><code>column_name</code></em>" xsi:nil="true" /&gt;</code> </p></td> </tr><tr> <td><code>''</code> (<span><em>empty string</em></span>)</td> <td><p> <code>&lt;field name="<em><code>column_name</code></em>"&gt;&lt;/field&gt;</code> </p></td> </tr><tr> <td><code>'NULL'</code> (<span><em>string value</em></span>)</td> <td><p> <code>&lt;field name="<em><code>column_name</code></em>"&gt;NULL&lt;/field&gt;</code> </p></td> </tr></tbody></table>
+  <table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Value:</th> <th>XML Representation:</th> </tr></thead><tbody><tr> <td><code>NULL</code> (<span><em>unknown value</em></span>)</td> <td><p> <code>&lt;field name="<em><code>column_name</code></em>" xsi:nil="true" /&gt;</code> </td> </tr><tr> <td><code>''</code> (<span><em>empty string</em></span>)</td> <td><p> <code>&lt;field name="<em><code>column_name</code></em>"&gt;&lt;/field&gt;</code> </td> </tr><tr> <td><code>'NULL'</code> (<span><em>string value</em></span>)</td> <td><p> <code>&lt;field name="<em><code>column_name</code></em>"&gt;NULL&lt;/field&gt;</code> </td> </tr></tbody></table>
 
-  The output from the  `mysql` client when run using the  `--xml` option also follows the preceding rules. (See Section 6.5.1.1, “mysql Client Options”.)
+  The output from the `mysql` client when run using the  `--xml` option also follows the preceding rules. (See Section 6.5.1.1, “mysql Client Options”.)
 
   XML output from  `mysqldump` includes the XML namespace, as shown here:
 
@@ -747,7 +1318,7 @@ The following options control which kinds of schema objects are written to the d
 
 *  `--all-databases`, `-A`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   Dump all tables in all databases. This is the same as using the  `--databases` option and naming all the databases on the command line.
 
@@ -760,7 +1331,7 @@ The following options control which kinds of schema objects are written to the d
   Prior to MySQL 8.4, the `--routines` and `--events` options for `mysqldump` were not required to include stored routines and events when using the `--all-databases` option: The dump included the `mysql` system database, and therefore also the `mysql.proc` and `mysql.event` tables containing stored routine and event definitions. As of MySQL 8.4, the `mysql.event` and `mysql.proc` tables are not used. Definitions for the corresponding objects are stored in data dictionary tables, but those tables are not dumped. To include stored routines and events in a dump made using `--all-databases`, use the `--routines` and `--events` options explicitly.
 *  `--databases`, `-B`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--databases</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--databases</code></td> </tr></tbody></table>
 
   Dump several databases. Normally, `mysqldump` treats the first name argument on the command line as a database name and following names as table names. With this option, it treats all name arguments as database names. `CREATE DATABASE` and  `USE` statements are included in the output before each new database.
 
@@ -773,61 +1344,61 @@ The following options control which kinds of schema objects are written to the d
   :::
 *  `--events`, `-E`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--events</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--events</code></td> </tr></tbody></table>
 
   Include Event Scheduler events for the dumped databases in the output. This option requires the `EVENT` privileges for those databases.
 
   The output generated by using `--events` contains  `CREATE EVENT` statements to create the events.
 *  `--ignore-error=error[,error]...`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-error=error[,error]...</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-error=error[,error]...</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Ignore the specified errors. The option value is a list of comma-separated error numbers specifying the errors to ignore during  `mysqldump` execution. If the `--force` option is also given to ignore all errors, `--force` takes precedence.
 *  `--ignore-table=db_name.tbl_name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-table=db_name.tbl_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-table=db_name.tbl_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Do not dump the given table, which must be specified using both the database and table names. To ignore multiple tables, use this option multiple times. This option also can be used to ignore views.
 *  `--ignore-views=boolean`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-views</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ignore-views</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Skips table views in the dump file.
 *  `--init-command=str`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--init-command=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--init-command=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Single SQL statement to execute after connecting to the MySQL server. The definition resets existing statements defined by it or `init-command-add`.
 *  `--init-command-add=str`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--init-command-add=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--init-command-add=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Add an additional SQL statement to execute after connecting or reconnecting to the MySQL server. It's usable without `--init-command` but has no effect if used before it because `init-command` resets the list of commands to call.
 *  `--no-data`, `-d`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-data</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-data</code></td> </tr></tbody></table>
 
   Do not write any table row information (that is, do not dump table contents). This is useful if you want to dump only the `CREATE TABLE` statement for the table (for example, to create an empty copy of the table by loading the dump file).
 *  `--routines`, `-R`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--routines</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--routines</code></td> </tr></tbody></table>
 
   Include stored routines (procedures and functions) for the dumped databases in the output. This option requires the global  `SELECT` privilege.
 
   The output generated by using `--routines` contains  `CREATE PROCEDURE` and `CREATE FUNCTION` statements to create the routines.
 *  `--skip-generated-invisible-primary-key`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-generated-invisible-primary-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--skip-generated-invisible-primary-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   This option causes generated invisible primary keys to be excluded from the output. For more information, see Section 15.1.20.11, “Generated Invisible Primary Keys”.
 *  `--tables`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tables</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--tables</code></td> </tr></tbody></table>
 
   Override the  `--databases` or `-B` option.  `mysqldump` regards all name arguments following the option as table names.
 *  `--triggers`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--triggers</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-triggers</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--triggers</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-triggers</code></td> </tr></tbody></table>
 
   Include triggers for each dumped table in the output. This option is enabled by default; disable it with `--skip-triggers`.
 
@@ -836,7 +1407,7 @@ The following options control which kinds of schema objects are written to the d
   Multiple triggers are permitted. `mysqldump` dumps triggers in activation order so that when the dump file is reloaded, triggers are created in the same activation order. However, if a `mysqldump` dump file contains multiple triggers for a table that have the same trigger event and action time, an error occurs for attempts to load the dump file into an older server that does not support multiple triggers. (For a workaround, see Downgrade Notes; you can convert triggers to be compatible with older servers.)
 *  `--where='where_condition'`, `-w 'where_condition'`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--where='where_condition'</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--where='where_condition'</code></td> </tr></tbody></table>
 
   Dump only rows selected by the given `WHERE` condition. Quotes around the condition are mandatory if it contains spaces or other characters that are special to your command interpreter.
 
@@ -856,27 +1427,27 @@ Performance is also affected by the transactional options, primarily for the dum
 
 *  `--column-statistics`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--column-statistics</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--column-statistics</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Add  `ANALYZE TABLE` statements to the output to generate histogram statistics for dumped tables when the dump file is reloaded. This option is disabled by default because histogram generation for large tables can take a long time.
 *  `--disable-keys`, `-K`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--disable-keys</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--disable-keys</code></td> </tr></tbody></table>
 
   For each table, surround the `INSERT` statements with `/*!40000 ALTER TABLE tbl_name DISABLE KEYS */;` and `/*!40000 ALTER TABLE tbl_name ENABLE KEYS */;` statements. This makes loading the dump file faster because the indexes are created after all rows are inserted. This option is effective only for nonunique indexes of `MyISAM` tables.
 *  `--extended-insert`, `-e`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--extended-insert</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-extended-insert</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--extended-insert</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-extended-insert</code></td> </tr></tbody></table>
 
   Write  `INSERT` statements using multiple-row syntax that includes several `VALUES` lists. This results in a smaller dump file and speeds up inserts when the file is reloaded.
 *  `--insert-ignore`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--insert-ignore</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--insert-ignore</code></td> </tr></tbody></table>
 
   Write `INSERT IGNORE` statements rather than `INSERT` statements.
 *  `--max-allowed-packet=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--max-allowed-packet=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>25165824</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--max-allowed-packet=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>25165824</code></td> </tr></tbody></table>
 
   The maximum size of the buffer for client/server communication. The default is 24MB, the maximum is 1GB.
 
@@ -887,36 +1458,36 @@ Performance is also affected by the transactional options, primarily for the dum
   :::
 *  `--mysqld-long-query-time=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--mysqld-long-query-time=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>Server global setting</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysqld-long-query-time=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>Server global setting</code></td> </tr></tbody></table>
 
   Set the session value of the `long_query_time` system variable. Use this option if you want to increase the time allowed for queries from  `mysqldump` before they are logged to the slow query log file. `mysqldump` performs a full table scan, which means its queries can often exceed a global `long_query_time` setting that is useful for regular queries. The default global setting is 10 seconds.
 
   You can use `--mysqld-long-query-time` to specify a session value from 0 (meaning that every query from  `mysqldump` is logged to the slow query log) to 31536000, which is 365 days in seconds. For `mysqldump`’s option, you can only specify whole seconds. When you do not specify this option, the server’s global setting applies to `mysqldump`’s queries.
 *  `--net-buffer-length=value`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--net-buffer-length=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>16384</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--net-buffer-length=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>16384</code></td> </tr></tbody></table>
 
-  The initial size of the buffer for client/server communication. When creating multiple-row `INSERT` statements (as with the  `--extended-insert` or `--opt` option), `mysqldump` creates rows up to `--net-buffer-length` bytes long. If you increase this variable, ensure that the MySQL server  `net_buffer_length` system variable has a value at least this large.
+  The initial size of the buffer for client/server communication. When creating multiple-row `INSERT` statements (as with the `--extended-insert` or `--opt` option), `mysqldump` creates rows up to `--net-buffer-length` bytes long. If you increase this variable, ensure that the MySQL server  `net_buffer_length` system variable has a value at least this large.
 *  `--network-timeout`, `-M`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--network-timeout[={0|1}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--network-timeout[={0|1}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Enable large tables to be dumped by setting `--max-allowed-packet` to its maximum value and network read and write timeouts to a large value. This option is enabled by default. To disable it, use `--skip-network-timeout`.
 *  `--opt`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--opt</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-opt</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--opt</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-opt</code></td> </tr></tbody></table>
 
   This option, enabled by default, is shorthand for the combination of `--add-drop-table` `--add-locks` `--create-options` `--disable-keys` `--extended-insert` `--lock-tables` `--quick` `--set-charset`. It gives a fast dump operation and produces a dump file that can be reloaded into a MySQL server quickly.
 
   Because the `--opt` option is enabled by default, you only specify its converse, the `--skip-opt` to turn off several default settings. See the discussion of `mysqldump` option groups for information about selectively enabling or disabling a subset of the options affected by `--opt`.
 *  `--quick`, `-q`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--quick</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-quick</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--quick</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-quick</code></td> </tr></tbody></table>
 
   This option is useful for dumping large tables. It forces `mysqldump` to retrieve rows for a table from the server a row at a time rather than retrieving the entire row set and buffering it in memory before writing it out.
 *  `--skip-opt`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-opt</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--skip-opt</code></td> </tr></tbody></table>
 
   See the description for the `--opt` option.
 
@@ -926,29 +1497,29 @@ The following options trade off the performance of the dump operation, against t
 
 *  `--add-locks`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
-  Surround each table dump with `LOCK TABLES` and `UNLOCK TABLES` statements. This results in faster inserts when the dump file is reloaded. See Section 10.2.5.1, “Optimizing INSERT Statements”.
+  Surround each table dump with `LOCK TABLES` and `UNLOCK TABLES` statements. This results in faster inserts when the dump file is reloaded.
 *  `--flush-logs`, `-F`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--flush-logs</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--flush-logs</code></td> </tr></tbody></table>
 
   Flush the MySQL server log files before starting the dump. This option requires the `RELOAD` privilege. If you use this option in combination with the `--all-databases` option, the logs are flushed *for each database dumped*. The exception is when using `--lock-all-tables`, `--source-data`, or `--single-transaction`. In these cases, the logs are flushed only once, corresponding to the moment that all tables are locked by `FLUSH TABLES WITH READ LOCK`. If you want your dump and the log flush to happen at exactly the same moment, you should use `--flush-logs` together with `--lock-all-tables`, `--source-data`, or `--single-transaction`.
 *  `--flush-privileges`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--flush-privileges</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--flush-privileges</code></td> </tr></tbody></table>
 
   Add a  `FLUSH PRIVILEGES` statement to the dump output after dumping the `mysql` database. This option should be used any time the dump contains the `mysql` database and any other database that depends on the data in the `mysql` database for proper restoration.
 
   Because the dump file contains a `FLUSH PRIVILEGES` statement, reloading the file requires privileges sufficient to execute that statement.
 *  `--lock-all-tables`, `-x`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--lock-all-tables</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--lock-all-tables</code></td> </tr></tbody></table>
 
   Lock all tables across all databases. This is achieved by acquiring a global read lock for the duration of the whole dump. This option automatically turns off `--single-transaction` and `--lock-tables`.
 *  `--lock-tables`, `-l`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--lock-tables</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--lock-tables</code></td> </tr></tbody></table>
 
   For each dumped database, lock all tables to be dumped before dumping them. The tables are locked with `READ LOCAL` to permit concurrent inserts in the case of `MyISAM` tables. For transactional tables such as `InnoDB`, `--single-transaction` is a much better option than `--lock-tables` because it does not need to lock the tables at all.
 
@@ -957,24 +1528,24 @@ The following options trade off the performance of the dump operation, against t
   Some options, such as `--opt`, automatically enable `--lock-tables`. If you want to override this, use `--skip-lock-tables` at the end of the option list.
 *  `--no-autocommit`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-autocommit</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--no-autocommit</code></td> </tr></tbody></table>
 
   Enclose the  `INSERT` statements for each dumped table within `SET autocommit = 0` and  `COMMIT` statements.
 *  `--order-by-primary`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--order-by-primary</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--order-by-primary</code></td> </tr></tbody></table>
 
   Dump each table's rows sorted by its primary key, or by its first unique index, if such an index exists. This is useful when dumping a `MyISAM` table to be loaded into an `InnoDB` table, but makes the dump operation take considerably longer.
 *  `--shared-memory-base-name=name`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--shared-memory-base-name=name</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--shared-memory-base-name=name</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
   This option applies only if the server was started with the `shared_memory` system variable enabled to support shared-memory connections.
 *  `--single-transaction`
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--single-transaction</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--single-transaction</code></td> </tr></tbody></table>
 
   This option sets the transaction isolation mode to `REPEATABLE READ` and sends a `START TRANSACTION` SQL statement to the server before dumping data. It is useful only with transactional tables such as `InnoDB`, because then it dumps the consistent state of the database at the time when `START TRANSACTION` was issued without blocking any applications.
 
@@ -1053,7 +1624,7 @@ Or:
 mysqldump --all-databases --flush-logs --source-data=2 > all_databases.sql
 ```
 
-The  `--source-data` option can be used simultaneously with the `--single-transaction` option, which provides a convenient way to make an online backup suitable for use prior to point-in-time recovery if tables are stored using the `InnoDB` storage engine.
+The `--source-data` option can be used simultaneously with the `--single-transaction` option, which provides a convenient way to make an online backup suitable for use prior to point-in-time recovery if tables are stored using the `InnoDB` storage engine.
 
 For more information on making backups, see Section 9.2, “Database Backup Methods”, and Section 9.3, “Example Backup and Recovery Strategy”.
 
@@ -1062,14 +1633,14 @@ For more information on making backups, see Section 9.2, “Database Backup Met
 
 #### Restrictions
 
- `mysqldump` does not dump the `performance_schema` or `sys` schema by default. To dump any of these, name them explicitly on the command line. You can also name them with the `--databases` option. For `performance_schema`, also use the `--skip-lock-tables` option.
+`mysqldump` does not dump the `performance_schema` or `sys` schema by default. To dump any of these, name them explicitly on the command line. You can also name them with the `--databases` option. For `performance_schema`, also use the `--skip-lock-tables` option.
 
- `mysqldump` does not dump the `INFORMATION_SCHEMA` schema.
+`mysqldump` does not dump the `INFORMATION_SCHEMA` schema.
 
- `mysqldump` does not dump `InnoDB` `CREATE TABLESPACE` statements.
+`mysqldump` does not dump `InnoDB` `CREATE TABLESPACE` statements.
 
- `mysqldump` does not dump the NDB Cluster `ndbinfo` information database.
+`mysqldump` does not dump the NDB Cluster `ndbinfo` information database.
 
- `mysqldump` includes statements to recreate the `general_log` and `slow_query_log` tables for dumps of the `mysql` database. Log table contents are not dumped.
+`mysqldump` includes statements to recreate the `general_log` and `slow_query_log` tables for dumps of the `mysql` database. Log table contents are not dumped.
 
 If you encounter problems backing up views due to insufficient privileges, see  Section 27.9, “Restrictions on Views” for a workaround.

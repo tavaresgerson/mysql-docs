@@ -7,11 +7,11 @@
 External locking is the use of file system locking to manage contention for  `MyISAM` database tables by multiple processes. External locking is used in situations where a single process such as the MySQL server cannot be assumed to be the only process that requires access to tables. Here are some examples:
 
 * If you run multiple servers that use the same database directory (not recommended), each server must have external locking enabled.
-* If you use  `myisamchk` to perform table maintenance operations on `MyISAM` tables, you must either ensure that the server is not running, or that the server has external locking enabled so that it locks table files as necessary to coordinate with  `myisamchk` for access to the tables. The same is true for use of **myisampack** to pack `MyISAM` tables.
+* If you use  `myisamchk` to perform table maintenance operations on `MyISAM` tables, you must either ensure that the server is not running, or that the server has external locking enabled so that it locks table files as necessary to coordinate with  `myisamchk` for access to the tables. The same is true for use of  `myisampack` to pack `MyISAM` tables.
 
   If the server is run with external locking enabled, you can use  `myisamchk` at any time for read operations such a checking tables. In this case, if the server tries to update a table that `myisamchk` is using, the server waits for `myisamchk` to finish before it continues.
 
-  If you use  `myisamchk` for write operations such as repairing or optimizing tables, or if you use **myisampack** to pack tables, you *must* always ensure that the `mysqld` server is not using the table. If you do not stop  `mysqld`, at least do a **mysqladmin flush-tables** before you run `myisamchk`. Your tables *may become corrupted* if the server and `myisamchk` access the tables simultaneously.
+  If you use  `myisamchk` for write operations such as repairing or optimizing tables, or if you use  `myisampack` to pack tables, you *must* always ensure that the `mysqld` server is not using the table. If you do not stop  `mysqld`, at least do a **mysqladmin flush-tables** before you run `myisamchk`. Your tables *may become corrupted* if the server and `myisamchk` access the tables simultaneously.
 
 With external locking in effect, each process that requires access to a table acquires a file system lock for the table files before proceeding to access the table. If all necessary locks cannot be acquired, the process is blocked from accessing the table until the locks can be obtained (after the process that currently holds the locks releases them).
 

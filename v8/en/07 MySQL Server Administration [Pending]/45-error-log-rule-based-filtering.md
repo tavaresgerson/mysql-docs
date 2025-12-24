@@ -175,7 +175,7 @@ For convenience, `log_filter_dragnet` supports symbolic names for comparisons to
   To find the error symbol corresponding to a given error code number, use one of these methods:
 
   + Check the list of server errors at Server Error Message Reference.
-  + Use the  **perror** command. Given an error number argument,  **perror** displays information about the error, including its symbol.
+  + Use the   `perror` command. Given an error number argument,   `perror` displays information about the error, including its symbol.
 
   Suppose that a rule set with error numbers looks like this:
 
@@ -184,7 +184,7 @@ For convenience, `log_filter_dragnet` supports symbolic names for comparisons to
   IF err_code == 1131 THEN drop.
   ```
 
-  Using  **perror**, determine the error symbols:
+  Using   `perror`, determine the error symbols:
 
   ```
   $> perror 10927 10914 1131
@@ -259,7 +259,7 @@ The `log_filter_dragnet` grammar at Grammar for log\_filter\_dragnet Rule Langua
 
   The following table shows the permitted priority levels.
 
-  <table><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Event Type</th> <th scope="col">Priority Symbol</th> <th scope="col">Numeric Priority</th> </tr></thead><tbody><tr> <th align="left">Error event</th> <td><code>ERROR</code></td> <td>1</td> </tr><tr> <th align="left">Warning event</th> <td><code>WARNING</code></td> <td>2</td> </tr><tr> <th align="left">Note/information event</th> <td><code>INFORMATION</code></td> <td>3</td> </tr></tbody></table>
+  <table><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Event Type</th> <th>Priority Symbol</th> <th>Numeric Priority</th> </tr></thead><tbody><tr> <th align="left">Error event</th> <td><code>ERROR</code></td> <td>1</td> </tr><tr> <th align="left">Warning event</th> <td><code>WARNING</code></td> <td>2</td> </tr><tr> <th align="left">Note/information event</th> <td><code>INFORMATION</code></td> <td>3</td> </tr></tbody></table>
 
   There is also a message priority of `SYSTEM`, but system messages cannot be filtered and are always written to the error log.
 

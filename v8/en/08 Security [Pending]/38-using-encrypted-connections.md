@@ -198,7 +198,7 @@ mysql> SHOW SESSION STATUS LIKE 'Ssl_cipher';
 +---------------+---------------------------+
 ```
 
-For the  `mysql` client, an alternative is to use the `STATUS` or `\s` command and check the `SSL` line:
+For the `mysql` client, an alternative is to use the `STATUS` or `\s` command and check the `SSL` line:
 
 ```
 mysql> \s

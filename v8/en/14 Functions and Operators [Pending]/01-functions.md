@@ -163,7 +163,7 @@ To tell the MySQL server to accept spaces after function names by starting it wi
 
 :::
 
-For the sake of brevity, some examples in this chapter display the output from the  `mysql` program in abbreviated form. Rather than showing examples in this format:
+For the sake of brevity, some examples in this chapter display the output from the `mysql` program in abbreviated form. Rather than showing examples in this format:
 
 ```
 mysql> SELECT MOD(29,9);

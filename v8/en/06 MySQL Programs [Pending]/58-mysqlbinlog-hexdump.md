@@ -1,6 +1,6 @@
 #### 6.6.9.1 mysqlbinlog Hex Dump Format
 
-The  `--hexdump` option causes **mysqlbinlog** to produce a hex dump of the binary log contents:
+The  `--hexdump` option causes  `mysqlbinlog` to produce a hex dump of the binary log contents:
 
 ```
 mysqlbinlog --hexdump source-bin.000001

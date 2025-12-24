@@ -39,7 +39,7 @@ If you encounter a full-table error, there are several reasons why it might have
 
   Other ways to work around file-size limits for `MyISAM` tables are as follows:
 
-  + If your large table is read only, you can use **myisampack** to compress it. **myisampack** usually compresses a table by at least 50%, so you can have, in effect, much bigger tables.  **myisampack** also can merge multiple tables into a single table. See Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”.
+  + If your large table is read only, you can use  `myisampack` to compress it.  `myisampack` usually compresses a table by at least 50%, so you can have, in effect, much bigger tables.   `myisampack` also can merge multiple tables into a single table. See Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”.
   + MySQL includes a `MERGE` library that enables you to handle a collection of `MyISAM` tables that have identical structure as a single `MERGE` table. See  Section 18.7, “The MERGE Storage Engine”.
 * You are using the `MEMORY` (`HEAP`) storage engine; in this case you need to increase the value of the `max_heap_table_size` system variable. See  Section 7.1.8, “Server System Variables”.
 
