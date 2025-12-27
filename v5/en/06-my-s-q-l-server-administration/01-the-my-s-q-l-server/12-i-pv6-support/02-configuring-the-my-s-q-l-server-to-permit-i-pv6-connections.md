@@ -1,0 +1,3 @@
+#### 5.1.12.2 Configuring the MySQL Server to Permit IPv6 Connections
+
+The MySQL server listens on a single network socket for TCP/IP connections. This socket is bound to a single address, but it is possible for an address to map onto multiple network interfaces. To specify an address, set [`bind_address=addr`](server-system-variables.html#sysvar_bind_address) at server startup, where *`addr`* is an IPv4 or IPv6 address or a host name. For details, see the [`bind_address`](server-system-variables.html#sysvar_bind_address) description in [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").

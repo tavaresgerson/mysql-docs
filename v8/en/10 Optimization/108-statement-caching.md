@@ -1,0 +1,48 @@
+### 10.10.3 Caching of Prepared Statements and Stored Programs
+
+For certain statements that a client might execute multiple times during a session, the server converts the statement to an internal structure and caches that structure to be used during execution. Caching enables the server to perform more efficiently because it avoids the overhead of reconverting the statement should it be needed again during the session. Conversion and caching occurs for these statements:
+
+* Prepared statements, both those processed at the SQL level (using the  `PREPARE` statement) and those processed using the binary client/server protocol (using the `mysql_stmt_prepare()` C API function). The `max_prepared_stmt_count` system variable controls the total number of statements the server caches. (The sum of the number of prepared statements across all sessions.)
+* Stored programs (stored procedures and functions, triggers, and events). In this case, the server converts and caches the entire program body. The `stored_program_cache` system variable indicates the approximate number of stored programs the server caches per session.
+
+The server maintains caches for prepared statements and stored programs on a per-session basis. Statements cached for one session are not accessible to other sessions. When a session ends, the server discards any statements cached for it.
+
+When the server uses a cached internal statement structure, it must take care that the structure does not go out of date. Metadata changes can occur for an object used by the statement, causing a mismatch between the current object definition and the definition as represented in the internal statement structure. Metadata changes occur for DDL statements such as those that create, drop, alter, rename, or truncate tables, or that analyze, optimize, or repair tables. Table content changes (for example, with  `INSERT` or `UPDATE`) do not change metadata, nor do  `SELECT` statements.
+
+Here is an illustration of the problem. Suppose that a client prepares this statement:
+
+```
+PREPARE s1 FROM 'SELECT * FROM t1';
+```
+
+The `SELECT *` expands in the internal structure to the list of columns in the table. If the set of columns in the table is modified with `ALTER TABLE`, the prepared statement goes out of date. If the server does not detect this change the next time the client executes `s1`, the prepared statement returns incorrect results.
+
+To avoid problems caused by metadata changes to tables or views referred to by the prepared statement, the server detects these changes and automatically reprepares the statement when it is next executed. That is, the server reparses the statement and rebuilds the internal structure. Reparsing also occurs after referenced tables or views are flushed from the table definition cache, either implicitly to make room for new entries in the cache, or explicitly due to `FLUSH TABLES`.
+
+Similarly, if changes occur to objects used by a stored program, the server reparses affected statements within the program.
+
+The server also detects metadata changes for objects in expressions. These might be used in statements specific to stored programs, such as `DECLARE CURSOR` or flow-control statements such as `IF`, `CASE`, and `RETURN`.
+
+To avoid reparsing entire stored programs, the server reparses affected statements or expressions within a program only as needed. Examples:
+
+* Suppose that metadata for a table or view is changed. Reparsing occurs for a `SELECT *` within the program that accesses the table or view, but not for a `SELECT *` that does not access the table or view.
+* When a statement is affected, the server reparses it only partially if possible. Consider this `CASE` statement:
+
+  ```
+  CASE case_expr
+    WHEN when_expr1 ...
+    WHEN when_expr2 ...
+    WHEN when_expr3 ...
+    ...
+  END CASE
+  ```
+
+  If a metadata change affects only `WHEN when_expr3`, that expression is reparsed. *`case_expr`* and the other `WHEN` expressions are not reparsed.
+
+Reparsing uses the default database and SQL mode that were in effect for the original conversion to internal form.
+
+The server attempts reparsing up to three times. An error occurs if all attempts fail.
+
+Reparsing is automatic, but to the extent that it occurs, diminishes prepared statement and stored program performance.
+
+For prepared statements, the `Com_stmt_reprepare` status variable tracks the number of repreparations.

@@ -1,0 +1,5 @@
+## 32.6 Visão Geral do Pool de Fios do MySQL Enterprise
+
+A Edição Empresarial do MySQL inclui o MySQL Enterprise Thread Pool, implementado usando um plugin do servidor. O modelo padrão de manipulação de fios no MySQL Server executa instruções usando um fio por conexão de cliente. À medida que mais clientes se conectam ao servidor e executam instruções, o desempenho geral degrada. Na Edição Empresarial do MySQL, um plugin de pool de fios oferece um modelo alternativo de manipulação de fios projetado para reduzir o overhead e melhorar o desempenho. O plugin implementa um pool de fios que aumenta o desempenho do servidor gerenciando eficientemente os fios de execução de instruções para um grande número de conexões de clientes.
+
+Para mais informações, consulte a Seção 7.6.3, “MySQL Enterprise Thread Pool”.

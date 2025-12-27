@@ -1,6 +1,6 @@
-#### 5.3.4.4 Linhas de classificação
+#### 5.3.4.4 Ordenação de Linhas
 
-Você pode ter notado nos exemplos anteriores que as linhas de resultados não são exibidas em nenhuma ordem particular. É muitas vezes mais fácil examinar a saída da consulta quando as linhas são classificadas de alguma forma significativa. Para classificar um resultado, use uma cláusula `ORDER BY`.
+Você pode ter notado nos exemplos anteriores que as linhas do resultado são exibidas sem ordem específica. Muitas vezes é mais fácil examinar o resultado da consulta quando as linhas estão ordenadas de alguma maneira significativa. Para ordenar um resultado, use uma cláusula `ORDER BY`.
 
 Aqui estão os aniversários dos animais, ordenados por data:
 
@@ -21,9 +21,9 @@ mysql> SELECT name, birth FROM pet ORDER BY birth;
 +----------+------------+
 ```
 
-Em colunas de tipo de caracteres, a classificação  como todas as outras operações de comparação  é normalmente executada de forma insensible a maiúsculas e minúsculas. Isso significa que a ordem não é definida para colunas que são idênticas, exceto por suas maiúsculas e minúsculas. Você pode forçar uma classificação sensível a maiúsculas e minúsculas para uma coluna usando `BINARY` assim: `ORDER BY BINARY col_name`.
+Em colunas de tipo de caractere, a ordenação, como todas as outras operações de comparação, é normalmente realizada de forma insensível ao caso. Isso significa que a ordem é indefinida para colunas que são idênticas, exceto pelo seu caso. Você pode forçar uma ordenação sensível ao caso para uma coluna usando `BINARY` da seguinte forma: `ORDER BY BINARY col_name`.
 
-A ordem de classificação padrão é ascendente, com os valores mais pequenos primeiro. Para classificar em ordem inversa (descendente), adicione a palavra-chave `DESC` ao nome da coluna que você está classificando por:
+A ordem de classificação padrão é ascendente, com os valores menores primeiro. Para ordenar em ordem reversa (descendente), adicione a palavra-chave `DESC` ao nome da coluna que você está classificando:
 
 ```sql
 mysql> SELECT name, birth FROM pet ORDER BY birth DESC;
@@ -42,7 +42,7 @@ mysql> SELECT name, birth FROM pet ORDER BY birth DESC;
 +----------+------------+
 ```
 
-Você pode classificar em várias colunas, e você pode classificar diferentes colunas em diferentes direções. Por exemplo, para classificar por tipo de animal em ordem ascendente, em seguida, por data de nascimento dentro do tipo de animal em ordem decrescente (animais mais jovens primeiro), use a seguinte consulta:
+Você pode ordenar em várias colunas e pode ordenar colunas diferentes em direções diferentes. Por exemplo, para ordenar por tipo de animal em ordem ascendente, depois por data de nascimento dentro do tipo de animal em ordem descendente (animais mais jovens primeiro), use a seguinte consulta:
 
 ```
 mysql> SELECT name, species, birth FROM pet
@@ -62,4 +62,4 @@ mysql> SELECT name, species, birth FROM pet
 +----------+---------+------------+
 ```
 
-A palavra-chave `DESC` aplica-se apenas ao nome da coluna imediatamente anterior (`birth`); ela não afeta a ordem de classificação da coluna `species`.
+A palavra-chave `DESC` se aplica apenas ao nome da coluna imediatamente anterior a ela (`birth`); ela não afeta a ordem de classificação da coluna `species`.

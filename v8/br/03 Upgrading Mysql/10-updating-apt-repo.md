@@ -1,3 +1,3 @@
-## 3.9 Atualização do MySQL com o MySQL APT Repository
+## 3.9 Atualização do MySQL com o Repositório MySQL APT
 
-Nas plataformas Debian e Ubuntu, para realizar uma atualização no local do MySQL e seus componentes, use o repositório MySQL APT.
+Nas plataformas Debian e Ubuntu, para realizar uma atualização local do MySQL e seus componentes, use o repositório MySQL APT. Consulte Atualização do MySQL com o Repositório MySQL APT.

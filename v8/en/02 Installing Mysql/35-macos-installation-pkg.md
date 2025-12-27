@@ -4,7 +4,7 @@ The package is located inside a disk image (`.dmg`) file that you first need to 
 
 ::: info Note
 
-Before proceeding with the installation, be sure to stop all running MySQL server instances by using either the MySQL Manager Application (on macOS Server), the preference pane, or **mysqladmin shutdown** on the command line.
+Before proceeding with the installation, be sure to stop all running MySQL server instances by using either the MySQL Manager Application (on macOS Server), the preference pane, or `mysqladmin shutdown` on the command line.
 
 :::
 

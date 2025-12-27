@@ -1,6 +1,6 @@
-#### 5.3.4.3 Selecção de colunas específicas
+#### 5.3.4.3 Selecionando Colunas Específicas
 
-Se você não quiser ver linhas inteiras da sua tabela, basta nomear as colunas nas quais você está interessado, separadas por vírgulas. Por exemplo, se você quiser saber quando seus animais nasceram, selecione as colunas `name` e `birth`:
+Se você não quiser ver linhas inteiras da sua tabela, basta nomear as colunas que lhe interessam, separadas por vírgulas. Por exemplo, se você quiser saber quando seus animais nasceram, selecione as colunas `nome` e `nascimento`:
 
 ```sql
 mysql> SELECT name, birth FROM pet;
@@ -19,7 +19,7 @@ mysql> SELECT name, birth FROM pet;
 +----------+------------+
 ```
 
-Para descobrir quem é dono de animais de estimação, use esta consulta:
+Para descobrir quem possui animais de estimação, use esta consulta:
 
 ```sql
 mysql> SELECT owner FROM pet;
@@ -38,7 +38,7 @@ mysql> SELECT owner FROM pet;
 +--------+
 ```
 
-Observe que a consulta simplesmente recupera a coluna `owner` de cada registro, e alguns deles aparecem mais de uma vez. Para minimizar a saída, recupere cada registro de saída único apenas uma vez adicionando a palavra-chave `DISTINCT`:
+Observe que a consulta simplesmente recupera a coluna `proprietário` de cada registro, e alguns deles aparecem mais de uma vez. Para minimizar o resultado, retorne cada registro de saída único apenas uma vez, adicionando a palavra-chave `DISTINCT`:
 
 ```sql
 mysql> SELECT DISTINCT owner FROM pet;
@@ -52,7 +52,7 @@ mysql> SELECT DISTINCT owner FROM pet;
 +--------+
 ```
 
-Você pode usar uma cláusula `WHERE` para combinar a seleção de linhas com a seleção de colunas. Por exemplo, para obter datas de nascimento apenas para cães e gatos, use esta consulta:
+Você pode usar uma cláusula `WHERE` para combinar a seleção de linhas com a seleção de colunas. Por exemplo, para obter as datas de nascimento apenas de cães e gatos, use esta consulta:
 
 ```sql
 mysql> SELECT name, species, birth FROM pet

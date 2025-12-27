@@ -1,4 +1,4 @@
-#### 5.3.4.1 Selecção de todos os dados
+#### 5.3.4.1 Selecionando Todos os Dados
 
 A forma mais simples de `SELECT` recupera tudo de uma tabela:
 
@@ -19,24 +19,24 @@ mysql> SELECT * FROM pet;
 +----------+--------+---------+------+------------+------------+
 ```
 
-Esta forma de `SELECT` usa `*`, que é uma abreviação para select all columns. Isso é útil se você quiser rever toda a sua tabela, por exemplo, depois de ter carregado o seu conjunto de dados inicial. Por exemplo, você pode pensar que a data de nascimento de Bowser não parece muito correta. Consultando seus documentos originais de pedigree, você descobre que o ano de nascimento correto deve ser 1989, não 1979.
+Essa forma de `SELECT` usa `*`, que é uma abreviação para "selecionar todas as colunas". Isso é útil se você quiser revisar toda a sua tabela, por exemplo, depois de ter carregado seus dados iniciais. Por exemplo, você pode achar que a data de nascimento de Bowser não parece certa. Consultando seus papéis de pedigree originais, você descobre que o ano de nascimento correto deve ser 1989, e não 1979.
 
-Há pelo menos duas maneiras de resolver isto:
+Existem pelo menos duas maneiras de corrigir isso:
 
-- Edite o arquivo `pet.txt` para corrigir o erro, então esvazie a tabela e recarregue-a usando `DELETE` e `LOAD DATA`:
+* Editar o arquivo `pet.txt` para corrigir o erro, depois esvazie a tabela e recarregue-a usando `DELETE` e `LOAD DATA`:
 
   ```sql
   mysql> DELETE FROM pet;
   mysql> LOAD DATA LOCAL INFILE 'pet.txt' INTO TABLE pet;
   ```
 
-  No entanto, se fizer isso, também deve voltar a entrar no registo para o Puffball.
-- Corrigir apenas o registro errôneo com uma instrução `UPDATE`:
+  No entanto, se você fizer isso, também deve reintroduzir o registro de Puffball.
+* Corrija apenas o registro errôneo com uma declaração `UPDATE`:
 
   ```sql
   mysql> UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';
   ```
 
-  O `UPDATE` altera apenas o registro em questão e não requer que você recarregue a tabela.
+  A `UPDATE` altera apenas o registro em questão e não exige que você recarregue a tabela.
 
-Há uma exceção ao princípio de que `SELECT *` seleciona todas as colunas. Se uma tabela contém colunas invisíveis, `*` não as inclui.
+Há uma exceção ao princípio de que `SELECT *` seleciona todas as colunas. Se uma tabela contiver colunas invisíveis, `*` não as inclui.

@@ -1,6 +1,6 @@
-### 2.8.7 Opções de configuração de fonte do MySQL
+### 2.8.7 Opções de Configuração de Fonte do MySQL
 
-O programa \[`CMake`] fornece uma grande quantidade de controle sobre como você configura uma distribuição de origem do MySQL. Normalmente, você faz isso usando opções na linha de comando \[`CMake`]. Para informações sobre opções suportadas pelo \[`CMake`], execute qualquer um desses comandos no diretório de origem de nível superior:
+O programa `CMake` oferece um grande controle sobre como você configura uma distribuição de fonte do MySQL. Normalmente, você faz isso usando opções na linha de comando do `CMake`. Para obter informações sobre as opções suportadas pelo `CMake`, execute qualquer um desses comandos no diretório de fonte de nível superior:
 
 ```
 $> cmake . -LH
@@ -8,231 +8,198 @@ $> cmake . -LH
 $> ccmake .
 ```
 
-Você também pode afetar o `CMake` usando certas variáveis de ambiente.
+Você também pode afetar o `CMake` usando certas variáveis de ambiente. Veja a Seção 6.9, “Variáveis de Ambiente”.
 
-Para opções booleanas, o valor pode ser especificado como `1` ou `ON` para ativar a opção, ou como `0` ou `OFF` para desativar a opção.
+Para opções booleanas, o valor pode ser especificado como `1` ou `ON` para habilitar a opção, ou como `0` ou `OFF` para desabilitar a opção.
 
-Muitas opções configuram padrões de tempo de compilação que podem ser substituídos na inicialização do servidor. Por exemplo, as opções `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, e `MYSQL_UNIX_ADDR` que configuram a localização padrão do diretório de base de instalação, o número da porta TCP/IP e o arquivo de soquete do Unix podem ser alterados na inicialização do servidor com as opções `--basedir`, `--port`, e `--socket` para `mysqld`. Quando aplicável, as descrições de opções de configuração indicam a opção de inicialização correspondente `mysqld`.
+Muitas opções configuram padrões de tempo de compilação que podem ser sobrescritos na inicialização do servidor. Por exemplo, as opções `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT` e `MYSQL_UNIX_ADDR` que configuram a localização padrão do diretório de instalação, o número de porta TCP/IP e o arquivo de socket Unix podem ser alteradas na inicialização do servidor com as opções  `--basedir`, `--port` e `--socket` para o `mysqld`. Onde aplicável, as descrições das opções de configuração indicam a opção de inicialização correspondente do `mysqld`.
 
-As seções a seguir fornecem mais informações sobre as opções `CMake`.
+As seções a seguir fornecem mais informações sobre as opções do `CMake`.
 
-- Referência à opção de marca
-- Opções gerais
-- Opções de layout da instalação
-- Opções de motor de armazenamento
-- Opções de funcionalidade
-- Bandeiras do compilador
-- CMake Opções para a Compilação de Cluster NDB
+*  Referência de Opções do CMake
+*  Opções Gerais
+*  Opções de Layout de Instalação
+*  Opções de Engrenagens de Armazenamento
+*  Opções de Recursos
+*  Ferramentas de Compilação
+*  Opções do CMake para Compilar o NDB Cluster
 
-#### Referência à opção de marca
+#### Referência de Opções do CMake
 
-A tabela a seguir mostra as opções disponíveis de `CMake`. Na coluna `Default`, `PREFIX` representa o valor da opção `CMAKE_INSTALL_PREFIX`, que especifica o diretório base de instalação. Este valor é usado como o local pai para vários dos subdiretórios de instalação.
+A tabela a seguir mostra as opções do `CMake` disponíveis. Na coluna `Default`, `PREFIX` representa o valor da opção `CMAKE_INSTALL_PREFIX`, que especifica o diretório de base de instalação. Esse valor é usado como a localização pai para vários dos subdiretórios de instalação.
 
-\*\*Tabela 2.15 Referência de opção de configuração de origem do MySQL (CMake) \*\*
+**Tabela 2.15 Referência de Opções de Configuração de Fonte do MySQL (CMake)**
 
-<table><thead><tr><th>Formato</th> <th>Descrição</th> <th>Parâmetro padrão</th> </tr></thead><tbody><tr><th>[[PH_HTML_CODE_<code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Se permitir a geração da secção [[PH_HTML_CODE_<code>INSTALL_PKGCONFIGDIR</code>] em binários</td> <td></td> </tr><tr><th>[[PH_HTML_CODE_<code>INSTALL_PLUGINDIR</code>]</th> <td>Usar as mesmas opções de compilação que as versões oficiais</td> <td></td> </tr><tr><th>[[PH_HTML_CODE_<code>PREFIX/lib/plugin</code>]</th> <td>Agrega bibliotecas de tempo de execução com pacotes MSI e Zip para Windows</td> <td>[[PH_HTML_CODE_<code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[PH_HTML_CODE_<code>INSTALL_SBINDIR</code>]</th> <td>Tipo de construção a produzir</td> <td>[[PH_HTML_CODE_<code>PREFIX/bin</code>]</td> </tr><tr><th>[[PH_HTML_CODE_<code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Bandeiras para o compilador C++</td> <td></td> </tr><tr><th>[[PH_HTML_CODE_<code>platform specific</code>]</th> <td>Bandeiras para o compilador C</td> <td></td> </tr><tr><th>[[PH_HTML_CODE_<code>INSTALL_SHAREDIR</code>]</th> <td>Diretório da base de instalação</td> <td>[[<code>.gdb_index</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>.gdb_index</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Comentário sobre o ambiente de compilação</td> <td></td> </tr><tr><th>[[<code>.gdb_index</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Comentário sobre o ambiente de compilação para uso pelo mysqld</td> <td></td> </tr><tr><th>[[<code>.gdb_index</code><code>PREFIX/lib/plugin</code>]</th> <td>Compressar seções de depuração de executáveis binários</td> <td>[[<code>.gdb_index</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>.gdb_index</code><code>INSTALL_SBINDIR</code>]</th> <td>Se a compilação do pacote produz um único ficheiro</td> <td>[[<code>.gdb_index</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>.gdb_index</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Conjunto de caracteres padrão do servidor</td> <td>[[<code>.gdb_index</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>.gdb_index</code><code>INSTALL_SHAREDIR</code>]</th> <td>A collação padrão do servidor</td> <td>[[<code>BUILD_CONFIG</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>BUILD_CONFIG</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Excluir a instrumentação das condições do esquema de desempenho</td> <td>[[<code>BUILD_CONFIG</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>BUILD_CONFIG</code><code>PREFIX/lib/plugin</code>]</th> <td>Excluir a instrumentação de bloqueio de dados do esquema de desempenho</td> <td>[[<code>BUILD_CONFIG</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>BUILD_CONFIG</code><code>INSTALL_SBINDIR</code>]</th> <td>Excluir a instrumentação de erro do servidor do esquema de desempenho</td> <td>[[<code>BUILD_CONFIG</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>BUILD_CONFIG</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Excluir a instrumentação do ficheiro do esquema de desempenho</td> <td>[[<code>BUILD_CONFIG</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>BUILD_CONFIG</code><code>INSTALL_SHAREDIR</code>]</th> <td>Excluir a instrumentação em vazio do esquema de performance</td> <td>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Excluir a instrumentação de memória do esquema de desempenho</td> <td>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>PREFIX/lib/plugin</code>]</th> <td>Excluir a instrumentação de metadados do esquema de desempenho</td> <td>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>INSTALL_SBINDIR</code>]</th> <td>Excluir a instrumentação mutex do esquema de desempenho</td> <td>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Excluir declarações preparadas para o esquema de desempenho</td> <td>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>BUNDLE_RUNTIME_LIBRARIES</code><code>INSTALL_SHAREDIR</code>]</th> <td>Excluir a instrumentação de bloqueio do esquema de desempenho</td> <td>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Excluir a instrumentação do soquete do esquema de desempenho</td> <td>[[<code>OFF</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>PREFIX/lib/plugin</code>]</th> <td>Excluir a instrumentação do programa armazenado no Performance Schema</td> <td>[[<code>OFF</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SBINDIR</code>]</th> <td>Excluir a instrumentação da fase do esquema de desempenho</td> <td>[[<code>OFF</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Excluir a instrumentação da declaração do esquema de desempenho</td> <td>[[<code>OFF</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SHAREDIR</code>]</th> <td>Excluir declarações de esquema de desempenho_digest instrumentação</td> <td>[[<code>CMAKE_BUILD_TYPE</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_BUILD_TYPE</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Excluir a instrumentação da tabela do esquema de desempenho</td> <td>[[<code>CMAKE_BUILD_TYPE</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_BUILD_TYPE</code><code>PREFIX/lib/plugin</code>]</th> <td>Excluir a instrumentação do fio do esquema de desempenho</td> <td>[[<code>CMAKE_BUILD_TYPE</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_BUILD_TYPE</code><code>INSTALL_SBINDIR</code>]</th> <td>Excluir a instrumentação de transacção do esquema de desempenho</td> <td>[[<code>CMAKE_BUILD_TYPE</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>CMAKE_BUILD_TYPE</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Se habilitar LOCAL para LOAD DATA</td> <td>[[<code>CMAKE_BUILD_TYPE</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>CMAKE_BUILD_TYPE</code><code>INSTALL_SHAREDIR</code>]</th> <td>Ativar o código de perfis de consulta</td> <td>[[<code>RelWithDebInfo</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>RelWithDebInfo</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Se as variáveis experimentais do sistema InnoDB estão habilitadas</td> <td>[[<code>RelWithDebInfo</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>RelWithDebInfo</code><code>PREFIX/lib/plugin</code>]</th> <td>Incluir ou não o suporte do gcov</td> <td></td> </tr><tr><th>[[<code>RelWithDebInfo</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Ativar gprof (apenas compilações do Linux otimizadas)</td> <td>[[<code>RelWithDebInfo</code><code>INSTALL_SBINDIR</code>]</td> </tr><tr><th>[[<code>RelWithDebInfo</code><code>PREFIX/bin</code>]</th> <td>Se a saída do compilador deve ser colorida</td> <td>[[<code>RelWithDebInfo</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</td> </tr><tr><th>[[<code>RelWithDebInfo</code><code>platform specific</code>]</th> <td>Se forçar uma compilação no código-fonte</td> <td>[[<code>RelWithDebInfo</code><code>INSTALL_SHAREDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_CXX_FLAGS</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Permitir compiladores não suportados</td> <td>[[<code>CMAKE_CXX_FLAGS</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_CXX_FLAGS</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Se deve gerar dados de otimização guiados por perfis</td> <td>[[<code>CMAKE_CXX_FLAGS</code><code>PREFIX/lib/plugin</code>]</td> </tr><tr><th>[[<code>CMAKE_CXX_FLAGS</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Utilização de dados de otimização guiados por perfis</td> <td>[[<code>CMAKE_CXX_FLAGS</code><code>INSTALL_SBINDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_CXX_FLAGS</code><code>PREFIX/bin</code>]</th> <td>Ativar o módulo de rastreamento de memória de esquema de desempenho para funções de alocação de memória utilizadas em armazenamento dinâmico de tipos sobre-alinhados</td> <td>[[<code>CMAKE_CXX_FLAGS</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_CXX_FLAGS</code><code>platform specific</code>]</th> <td>Com -DBUILD_CONFIG=mysql_release, ignore a verificação libaio</td> <td>[[<code>CMAKE_CXX_FLAGS</code><code>INSTALL_SHAREDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_C_FLAGS</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Diretório de executáveis do usuário</td> <td>[[<code>CMAKE_C_FLAGS</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_C_FLAGS</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Repertório de documentação</td> <td>[[<code>CMAKE_C_FLAGS</code><code>PREFIX/lib/plugin</code>]</td> </tr><tr><th>[[<code>CMAKE_C_FLAGS</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Directório de arquivos README</td> <td>[[<code>CMAKE_C_FLAGS</code><code>INSTALL_SBINDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_C_FLAGS</code><code>PREFIX/bin</code>]</th> <td>Arquivo de cabeçalho</td> <td>[[<code>CMAKE_C_FLAGS</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_C_FLAGS</code><code>platform specific</code>]</th> <td>Directório de ficheiros de informação</td> <td>[[<code>CMAKE_C_FLAGS</code><code>INSTALL_SHAREDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_INSTALL_PREFIX</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Selecionar layout de instalação predefinido</td> <td>[[<code>CMAKE_INSTALL_PREFIX</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_INSTALL_PREFIX</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Diretório de arquivos de biblioteca</td> <td>[[<code>CMAKE_INSTALL_PREFIX</code><code>PREFIX/lib/plugin</code>]</td> </tr><tr><th>[[<code>CMAKE_INSTALL_PREFIX</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Guia de páginas manuais</td> <td>[[<code>CMAKE_INSTALL_PREFIX</code><code>INSTALL_SBINDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_INSTALL_PREFIX</code><code>PREFIX/bin</code>]</th> <td>Diretório de dados partilhados</td> <td>[[<code>CMAKE_INSTALL_PREFIX</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</td> </tr><tr><th>[[<code>CMAKE_INSTALL_PREFIX</code><code>platform specific</code>]</th> <td>diretório mysql-test</td> <td>[[<code>CMAKE_INSTALL_PREFIX</code><code>INSTALL_SHAREDIR</code>]</td> </tr><tr><th>[[<code>INSTALL_PKGCONFIGDIR</code>]]</th> <td>Diretório para o arquivo mysqlclient.pc pkg-config</td> <td>[[<code>/usr/local/mysql</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>INSTALL_PLUGINDIR</code>]]</th> <td>Diretório de Plugins</td> <td>[[<code>PREFIX/lib/plugin</code>]]</td> </tr><tr><th>[[<code>INSTALL_PRIV_LIBDIR</code>]]</th> <td>Directório de instalação de biblioteca privada</td> <td></td> </tr><tr><th>[[<code>INSTALL_SBINDIR</code>]]</th> <td>Diretório executável do servidor</td> <td>[[<code>PREFIX/bin</code>]]</td> </tr><tr><th>[[<code>INSTALL_SECURE_FILE_PRIVDIR</code>]]</th> <td>Valor padrão de secure_file_priv</td> <td>[[<code>platform specific</code>]]</td> </tr><tr><th>[[<code>INSTALL_SHAREDIR</code>]]</th> <td>diretório de instalação aclocal/mysql.m4</td> <td>[[<code>COMPILATION_COMMENT</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Se instalar bibliotecas estáticas</td> <td>[[<code>COMPILATION_COMMENT</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT</code><code>PREFIX/lib/plugin</code>]</th> <td>Diretório de arquivos de suporte adicionais</td> <td>[[<code>COMPILATION_COMMENT</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT</code><code>INSTALL_SBINDIR</code>]</th> <td>Se a ordem dos símbolos no sistema binário mysqld deve ser aleatória</td> <td>[[<code>COMPILATION_COMMENT</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Valor de semente para a opção LINK_RANDOMIZE</td> <td>[[<code>COMPILATION_COMMENT</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT</code><code>INSTALL_SHAREDIR</code>]</th> <td>Índices máximos por quadro</td> <td>[[<code>COMPILATION_COMMENT_SERVER</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT_SERVER</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Ativar a análise do código MSVC.</td> <td>[[<code>COMPILATION_COMMENT_SERVER</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT_SERVER</code><code>PREFIX/lib/plugin</code>]</th> <td>Tipo InnoDB mutex</td> <td>[[<code>COMPILATION_COMMENT_SERVER</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT_SERVER</code><code>INSTALL_SBINDIR</code>]</th> <td>Número de porta TCP/IP utilizado pelo X Plugin</td> <td>[[<code>COMPILATION_COMMENT_SERVER</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT_SERVER</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Arquivo de soquete do Unix usado pelo X Plugin</td> <td>[[<code>COMPILATION_COMMENT_SERVER</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>COMPILATION_COMMENT_SERVER</code><code>INSTALL_SHAREDIR</code>]</th> <td>Repertório de dados</td> <td></td> </tr><tr><th>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Ativar ou não o ambiente de desenvolvimento específico do mantenedor do MySQL</td> <td>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Nome do projeto Windows/macOS</td> <td>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>PREFIX/lib/plugin</code>]</td> </tr><tr><th>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Número da porta TCP/IP</td> <td>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>INSTALL_SBINDIR</code>]</td> </tr><tr><th>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>PREFIX/bin</code>]</th> <td>Arquivo de soquete Unix</td> <td>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</td> </tr><tr><th>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>platform specific</code>]</th> <td>Fazer com que as ferramentas NDB sejam ligadas dinamicamente ao cliente NDB</td> <td></td> </tr><tr><th>[[<code>COMPRESS_DEBUG_SECTIONS</code><code>INSTALL_SHAREDIR</code>]</th> <td>ODBC inclui diretório</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Diretório da biblioteca ODBC</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Se o rastreamento do optimizador deve ser suportado</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Se otimizar construções de desinfetante</td> <td>[[<code>OFF</code><code>PREFIX/lib/plugin</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Tome cuidado extra para criar um resultado de construção independente de construção local e tempo</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SBINDIR</code>]</th> <td>Se mostrar avisos de compilador suprimidos e não falhar com -Werror.</td> <td>[[<code>OFF</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Diretório de arquivos de opções</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>platform specific</code>]</th> <td>Directório para arquivo PID sob systemd</td> <td>[[<code>OFF</code><code>INSTALL_SHAREDIR</code>]</td> </tr><tr><th>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Nome do serviço MySQL sob systemd</td> <td>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Valor padrão de tmpdir</td> <td></td> </tr><tr><th>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>PREFIX/lib/plugin</code>]</th> <td>Se desativar a função inlining</td> <td>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>INSTALL_SBINDIR</code>]</th> <td>Não construa o servidor; apenas para uso interno</td> <td>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Excluir o motor de armazenamento xxx da construção</td> <td></td> </tr><tr><th>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>platform specific</code>]</th> <td>Caminho para a Ant para a construção do wrapper Java GCS</td> <td></td> </tr><tr><th>[[<code>CPACK_MONOLITHIC_INSTALL</code><code>INSTALL_SHAREDIR</code>]</th> <td>Ativar AddressSanitizer</td> <td>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Ativar AddressSanitizer -fsanitize-address-use-after-scope Clang flag</td> <td>[[<code>OFF</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>PREFIX/lib/plugin</code>]</th> <td>Ativado automaticamente se qualquer plug-in de autenticação de servidor correspondente estiver construído</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Se deve ser comunicado um erro se os plugins de autenticação LDAP não puderem ser construídos</td> <td>[[<code>OFF</code><code>INSTALL_SBINDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>PREFIX/bin</code>]</th> <td>Construir plugin de autenticação PAM</td> <td>[[<code>OFF</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>platform specific</code>]</th> <td>Localização do kit de desenvolvimento de software do Amazon Web Services</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SHAREDIR</code>]</th> <td>Em sistemas Linux, gerar um ID de compilação único</td> <td>[[<code>DEFAULT_CHARSET</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>DEFAULT_CHARSET</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Path de classes para usar ao criar o MySQL Cluster Connector para Java. O padrão é uma string vazia.</td> <td>[[<code>DEFAULT_CHARSET</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>DEFAULT_CHARSET</code><code>PREFIX/lib/plugin</code>]</th> <td>Construir o protocolo de rastreamento do lado do cliente</td> <td>[[<code>DEFAULT_CHARSET</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>DEFAULT_CHARSET</code><code>INSTALL_SBINDIR</code>]</th> <td>Localização da biblioteca de curl</td> <td></td> </tr><tr><th>[[<code>DEFAULT_CHARSET</code><code>PREFIX/bin</code>]</th> <td>Se incluir suporte para depuração</td> <td>[[<code>DEFAULT_CHARSET</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</td> </tr><tr><th>[[<code>DEFAULT_CHARSET</code><code>platform specific</code>]</th> <td>Se usar opções padrão do compilador</td> <td>[[<code>DEFAULT_CHARSET</code><code>INSTALL_SHAREDIR</code>]</td> </tr><tr><th>[[<code>utf8mb4</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Se adicionar o direito "get-task-allow" a todos os executáveis no macOS para gerar um core dump em caso de parada inesperada do servidor</td> <td>[[<code>utf8mb4</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>utf8mb4</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Qual biblioteca libedit/editline usar</td> <td>[[<code>utf8mb4</code><code>PREFIX/lib/plugin</code>]</td> </tr><tr><th>[[<code>utf8mb4</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Permitir a injeção de erros no motor de armazenamento NDB. Não deve ser utilizado para a construção de binários destinados à produção.</td> <td>[[<code>utf8mb4</code><code>INSTALL_SBINDIR</code>]</td> </tr><tr><th>[[<code>utf8mb4</code><code>PREFIX/bin</code>]</th> <td>Tipo de suporte da UTI</td> <td>[[<code>utf8mb4</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</td> </tr><tr><th>[[<code>utf8mb4</code><code>platform specific</code>]</th> <td>Se incluir suporte extra de depuração para InnoDB.</td> <td>[[<code>utf8mb4</code><code>INSTALL_SHAREDIR</code>]</td> </tr><tr><th>[[<code>DEFAULT_COLLATION</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Se deve ligar com -ljemalloc</td> <td>[[<code>DEFAULT_COLLATION</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>DEFAULT_COLLATION</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Se usar o LLVM ou molde linker</td> <td>[[<code>DEFAULT_COLLATION</code><code>PREFIX/lib/plugin</code>]</td> </tr><tr><th>[[<code>DEFAULT_COLLATION</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Qual biblioteca libevent usar</td> <td>[[<code>DEFAULT_COLLATION</code><code>INSTALL_SBINDIR</code>]</td> </tr><tr><th>[[<code>DEFAULT_COLLATION</code><code>PREFIX/bin</code>]</th> <td>Se incluir suporte para libwrap (wrappers TCP)</td> <td>[[<code>DEFAULT_COLLATION</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</td> </tr><tr><th>[[<code>DEFAULT_COLLATION</code><code>platform specific</code>]</th> <td>Ativar ou não a ferramenta LOCK_ORDER</td> <td>[[<code>DEFAULT_COLLATION</code><code>INSTALL_SHAREDIR</code>]</td> </tr><tr><th>[[<code>utf8mb4_0900_ai_ci</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Se executar LeakSanitizer, sem AddressSanitizer</td> <td>[[<code>utf8mb4_0900_ai_ci</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>utf8mb4_0900_ai_ci</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Ativar o optimizador de tempo de ligação</td> <td>[[<code>utf8mb4_0900_ai_ci</code><code>PREFIX/lib/plugin</code>]</td> </tr><tr><th>[[<code>utf8mb4_0900_ai_ci</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Tipo de suporte à biblioteca LZ4</td> <td>[[<code>utf8mb4_0900_ai_ci</code><code>INSTALL_SBINDIR</code>]</td> </tr><tr><th>[[<code>utf8mb4_0900_ai_ci</code><code>PREFIX/bin</code>]</th> <td>Compila MeCab</td> <td></td> </tr><tr><th>[[<code>utf8mb4_0900_ai_ci</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Ativar o MemorySanitizer</td> <td>[[<code>utf8mb4_0900_ai_ci</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>utf8mb4_0900_ai_ci</code><code>INSTALL_SHAREDIR</code>]</th> <td>Ativar o rastreamento de vazamento de memória Visual Studio CRT</td> <td>[[<code>DISABLE_PSI_COND</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_COND</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Desativar o protocolo X</td> <td>[[<code>DISABLE_PSI_COND</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_COND</code><code>PREFIX/lib/plugin</code>]</th> <td>Construir o MySQL NDB Cluster, incluindo o motor de armazenamento NDB e todos os programas NDB</td> <td>[[<code>DISABLE_PSI_COND</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_COND</code><code>INSTALL_SBINDIR</code>]</th> <td>Crie programas de exemplo de API.</td> <td>[[<code>DISABLE_PSI_COND</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_COND</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>NDB 8.0.30 e anterior: Construa o motor de armazenamento NDB. NDB 8.0.31 e posterior: Obsoleto; use WITH_NDB em vez disso</td> <td>[[<code>DISABLE_PSI_COND</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_COND</code><code>INSTALL_SHAREDIR</code>]</th> <td>Antes da NDB 8.0.31, isso era apenas para uso interno.</td> <td>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Construir um binário de nó de dados multithreaded</td> <td>[[<code>OFF</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>PREFIX/lib/plugin</code>]</th> <td>Produzir uma compilação de depuração para testes ou solução de problemas.</td> <td>[[<code>OFF</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SBINDIR</code>]</th> <td>Ativar a construção de suporte Java e ClusterJ. Ativado por padrão. Só suportado no MySQL Cluster.</td> <td>[[<code>OFF</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Porta padrão usada por um servidor de gerenciamento construído com esta opção. Se esta opção não foi usada para construí-lo, a porta padrão do servidor de gerenciamento é 1186.</td> <td>[[<code>OFF</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SHAREDIR</code>]</th> <td>Incluir os programas de teste da API do NDB.</td> <td>[[<code>DISABLE_PSI_DATA_LOCK</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_DATA_LOCK</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Caminho padrão usado pelos programas NDB para procurar arquivos de certificado e chave TLS.</td> <td>[[<code>DISABLE_PSI_DATA_LOCK</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_DATA_LOCK</code><code>PREFIX/lib/plugin</code>]</th> <td>Definição da política de atribuição de memória NUMA</td> <td></td> </tr><tr><th>[[<code>DISABLE_PSI_DATA_LOCK</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Para as bandeiras normalmente utilizadas para pacotes RPM/DEB, se devem ser adicionadas a compilações independentes nessas plataformas</td> <td></td> </tr><tr><th>[[<code>DISABLE_PSI_DATA_LOCK</code><code>INSTALL_SBINDIR</code>]</th> <td>Que pacote de Protocol Buffers usar</td> <td>[[<code>DISABLE_PSI_DATA_LOCK</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_DATA_LOCK</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Se construir plugins de ciclo de desenvolvimento rápido</td> <td>[[<code>DISABLE_PSI_DATA_LOCK</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_DATA_LOCK</code><code>INSTALL_SHAREDIR</code>]</th> <td>Tipo de suporte ao RapidJSON</td> <td>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Construir ou não Roteador MySQL</td> <td>[[<code>OFF</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>PREFIX/lib/plugin</code>]</th> <td>Apenas para uso interno</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PRIV_LIBDIR</code>]</th> <td>Suporte para instruções de depuração SHOW PARSE_TREE</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SBINDIR</code>]</th> <td>Tipo de suporte SSL</td> <td>[[<code>OFF</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Permitir a instalação de arquivos de suporte do systemd</td> <td>[[<code>OFF</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SHAREDIR</code>]</th> <td>Ativar informações adicionais de depuração do sistema</td> <td>[[<code>DISABLE_PSI_ERROR</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_ERROR</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Defina o valor de sistema das opções de biblioteca não definidas explicitamente</td> <td>[[<code>DISABLE_PSI_ERROR</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_ERROR</code><code>PREFIX/lib/plugin</code>]</th> <td>Se ligar com -ltcmalloc. BUNDLED é suportado apenas no Linux</td> <td>[[<code>DISABLE_PSI_ERROR</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_ERROR</code><code>INSTALL_SBINDIR</code>]</th> <td>Construir protocolo de teste plugin de rastreamento</td> <td>[[<code>DISABLE_PSI_ERROR</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_ERROR</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Ativar o ThreadSanitizer</td> <td>[[<code>DISABLE_PSI_ERROR</code><code>platform specific</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_ERROR</code><code>INSTALL_SHAREDIR</code>]</th> <td>Ativar Desinfetante de Comportamento Não Definido</td> <td>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Compilar MySQL com testes unitários</td> <td>[[<code>OFF</code><code>INSTALL_PLUGINDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>PREFIX/lib/plugin</code>]</th> <td>Ativar suporte a unixODBC</td> <td>[[<code>OFF</code><code>INSTALL_PRIV_LIBDIR</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SBINDIR</code>]</th> <td>Se deve compilar em arquivos de cabeçalho Valgrind</td> <td>[[<code>OFF</code><code>PREFIX/bin</code>]</td> </tr><tr><th>[[<code>OFF</code><code>INSTALL_SECURE_FILE_PRIVDIR</code>]</th> <td>Caminho para o diretório que contém jemalloc.dll</td> <td></td> </tr><tr><th>[[<code>OFF</code><code>platform specific</code>]</th> <td>Tipo de suporte zlib</td> <td>[[<code>OFF</code><code>INSTALL_SHAREDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_FILE</code><code>INSTALL_PKGCONFIGDIR</code>]</th> <td>Tipo de suporte zstd</td> <td>[[<code>DISABLE_PSI_FILE</code><code>INSTALL_PKGCONFIGDIR</code>]</td> </tr><tr><th>[[<code>DISABLE_PSI_FILE</code><code>INSTALL_PLUGINDIR</code>]</th> <td>Compilar o motor de armazenamento xxx estaticamente no servidor</td> <td></td> </tr></tbody></table>
+System library directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_PATH</code></th> <td>System path directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER</code></th> <td>System user directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_DIR</code></th> <td>System user directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG</code></th> <td>System user log directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_DIR</code></th> <td>System user log directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_FILE</code></th> <td>System user log file</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_FILE_DIR</code></th> <td>System user log file directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_FILE_NAME</code></th> <td>System user log file name</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_FILE_PATH</code></th> <td>System user log file path</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_PATH</code></th> <td>System user log path</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER</code></th> <td>System user log user</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_DIR</code></th> <td>System user log user directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_DIR</code></th> <td>System user log user log directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_FILE</code></th> <td>System user log user log file</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_FILE_DIR</code></th> <td>System user log user log file directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_FILE_NAME</code></th> <td>System user log user log file name</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_FILE_PATH</code></th> <td>System user log user log file path</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER</code></th> <td>System user log user</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_DIR</code></th> <td>System user log user directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE</code></th> <td>System user log user log file</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE_DIR</code></th> <td>System user log user log file directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE_NAME</code></th> <td>System user log user log file name</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE_PATH</code></th> <td>System user log user log file path</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_USER</code></th> <td>System user log user</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_USER_DIR</code></th> <td>System user log user directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE_USER</code></th> <td>System user log user</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE_USER_DIR</code></th> <td>System user log user directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE_USER_LOG_FILE</code></th> <td>System user log user log file</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE_USER_LOG_FILE_DIR</code></th> <td>System user log user log file directory</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE_USER_LOG_FILE_NAME</code></th> <td>System user log user log file name</td> <td></td> </tr><tr><th><code>WITH_SYSTEM_USER_LOG_USER_LOG_USER_LOG_FILE_USER_LOG_FILE_PATH</code></th> <td>System user log user log file path</td> <td></td>
 
-#### Opções gerais
+#### Opções Gerais
 
-- `-DBUILD_CONFIG=mysql_release`
+* `-DBUILD_CONFIG=mysql_release`
 
-Esta opção configura uma distribuição de origem com as mesmas opções de compilação usadas pela Oracle para produzir distribuições binárias para lançamentos oficiais do MySQL.
+  Esta opção configura uma distribuição de código-fonte com as mesmas opções de compilação usadas pela Oracle para produzir distribuições binárias para as versões oficiais do MySQL.
+* `-DWITH_BUILD_ID=bool`
 
-- `-DWITH_BUILD_ID=bool`
+  Em sistemas Linux, gera um ID de compilação único que é usado como o valor da variável de sistema `build_id` e escrito no log do servidor MySQL ao iniciar. Defina esta opção para `OFF` para desativar este recurso.
 
-Em sistemas Linux, gera um ID de compilação exclusivo que é usado como o valor da variável do sistema `build_id` e escrito no log do servidor MySQL na inicialização. Defina esta opção em `OFF` para desativar este recurso.
+  Esta opção não tem efeito em plataformas diferentes de Linux.
+* `-DBUNDLE_RUNTIME_LIBRARIES=bool`
 
-Esta opção não tem efeito em outras plataformas que não o Linux.
+  Se agrupar as bibliotecas de tempo de execução com os pacotes MSI e Zip do servidor para o Windows.
+* `-DCMAKE_BUILD_TYPE=type`
 
-- `-DBUNDLE_RUNTIME_LIBRARIES=bool`
+  O tipo de compilação a ser produzido:
 
-Se as bibliotecas de tempo de execução devem ser agrupadas com os pacotes MSI e Zip do servidor para Windows.
+  + `RelWithDebInfo`: Habilitar otimizações e gerar informações de depuração. Este é o tipo de compilação MySQL padrão.
+  + `Release`: Habilitar otimizações, mas omitir informações de depuração para reduzir o tamanho da compilação.
+  + `Debug`: Desabilitar otimizações e gerar informações de depuração. Este tipo de compilação também é usado se a opção `WITH_DEBUG` for habilitada. Ou seja, `-DWITH_DEBUG=1` tem o mesmo efeito que `-DCMAKE_BUILD_TYPE=Debug`.
 
-- `-DCMAKE_BUILD_TYPE=type`
+  Os valores das opções `None` e `MinSizeRel` não são suportados.
+* `-DCPACK_MONOLITHIC_INSTALL=bool`
 
-Tipo de construção a produzir:
+  Esta opção afeta se a operação `make package` produz vários arquivos de pacote de instalação ou um único arquivo. Se desabilitada, a operação produz vários arquivos de pacote de instalação, o que pode ser útil se você quiser instalar apenas um subconjunto de uma instalação completa do MySQL. Se habilitada, produz um único arquivo para instalar tudo.
+* `-DFORCE_INSOURCE_BUILD=bool`
 
-- `RelWithDebInfo`: Ativar otimizações e gerar informações de depuração. Este é o tipo de compilação padrão do MySQL.
-- `Release`: Permite otimizações, mas omite informações de depuração para reduzir o tamanho da compilação.
-- `Debug`: Desativar otimizações e gerar informações de depuração. Este tipo de compilação também é usado se a opção `WITH_DEBUG` estiver ativada. Isto é, `-DWITH_DEBUG=1` tem o mesmo efeito que `-DCMAKE_BUILD_TYPE=Debug`.
+  Define se for forçado uma compilação in-source. As compilações fora da fonte são recomendadas, pois permitem múltiplas compilações a partir da mesma fonte e a limpeza pode ser realizada rapidamente removendo o diretório de compilação. Para forçar uma compilação in-source, inicie o `CMake` com `-DFORCE_INSOURCE_BUILD=ON`.
+* `-DFORCE_COLORED_OUTPUT=bool`
 
-Os valores de opção `None` e `MinSizeRel` não são suportados.
+Define se a saída colorida do compilador deve ser habilitada para `gcc` e `clang` ao compilar na linha de comando. A configuração padrão é `OFF`.
 
-- `-DCPACK_MONOLITHIC_INSTALL=bool`
+#### Opções de Layout de Instalação
 
-Esta opção afeta se a operação `make package` produz múltiplos arquivos de pacote de instalação ou um único arquivo. Se desativada, a operação produz múltiplos arquivos de pacote de instalação, o que pode ser útil se você quiser instalar apenas um subconjunto de uma instalação completa do MySQL. Se ativada, produz um único arquivo para instalar tudo.
+A opção `CMAKE_INSTALL_PREFIX` indica o diretório de instalação base. Outras opções com nomes na forma `INSTALL_xxx` que indicam os locais dos componentes são interpretadas em relação ao prefixo e seus valores são caminhos relativos. Seus valores não devem incluir o prefixo.
 
-- `-DFORCE_INSOURCE_BUILD=bool`
+*  `-DCMAKE_INSTALL_PREFIX=dir_name`
 
-Define se forçar uma compilação in-source. Recomenda-se compilações out-of-source, pois permitem várias compilações da mesma fonte, e a limpeza pode ser realizada rapidamente removendo o diretório de compilação. Para forçar uma compilação in-source, invoque `CMake` com `-DFORCE_INSOURCE_BUILD=ON`.
+  O diretório de instalação base.
 
-- `-DFORCE_COLORED_OUTPUT=bool`
+  Esse valor pode ser definido no início do servidor usando a opção `--basedir`.
+*  `-DINSTALL_BINDIR=dir_name`
 
-Define se deve habilitar a saída colorida do compilador para `gcc` e `clang` ao compilar na linha de comando. Defaults para `OFF`.
+  Onde instalar programas de usuário.
+*  `-DINSTALL_DOCDIR=dir_name`
 
-#### Opções de layout da instalação
+  Onde instalar a documentação.
+*  `-DINSTALL_DOCREADMEDIR=dir_name`
 
-A opção `CMAKE_INSTALL_PREFIX` indica o diretório de instalação base. Outras opções com nomes da forma `INSTALL_xxx` que indicam a localização dos componentes são interpretadas em relação ao prefixo e seus valores são nomes de caminho relativos. Seus valores não devem incluir o prefixo.
+  Onde instalar os arquivos `README`.
+*  `-DINSTALL_INCLUDEDIR=dir_name`
 
-- `-DCMAKE_INSTALL_PREFIX=dir_name`
+  Onde instalar os arquivos de cabeçalho.
+*  `-DINSTALL_INFODIR=dir_name`
 
-O diretório da base de instalação.
+  Onde instalar os arquivos Info.
+*  `-DINSTALL_LAYOUT=name`
 
-Este valor pode ser definido na inicialização do servidor usando a opção `--basedir`.
+  Selecionar um layout de instalação predefinido:
 
-- `-DINSTALL_BINDIR=dir_name`
+  + `STANDALONE`: O mesmo layout usado para pacotes `.tar.gz` e `.zip`. Esse é o padrão.
+  + `RPM`: Layout semelhante aos pacotes RPM.
+  + `SVR4`: Layout de pacotes Solaris.
+  + `DEB`: Layout de pacotes DEB (experimental).
 
-Onde instalar programas de utilizador.
+  Você pode selecionar um layout predefinido, mas modificar os locais de instalação individuais dos componentes especificando outras opções. Por exemplo:
 
-- `-DINSTALL_DOCDIR=dir_name`
+  ```
+  cmake . -DINSTALL_LAYOUT=SVR4 -DMYSQL_DATADIR=/var/mysql/data
+  ```
 
-Onde instalar a documentação.
+  O valor `INSTALL_LAYOUT` determina o valor padrão da variável de sistema `secure_file_priv`. Consulte a descrição dessa variável na Seção 7.1.8, “Variáveis do Sistema do Servidor”.
+*  `-DINSTALL_LIBDIR=dir_name`
 
-- `-DINSTALL_DOCREADMEDIR=dir_name`
+  Onde instalar arquivos de biblioteca.
+*  `-DINSTALL_MANDIR=dir_name`
 
-Onde instalar os arquivos `README`
+  Onde instalar páginas do manual.
+*  `-DINSTALL_MYSQLSHAREDIR=dir_name`
 
-- `-DINSTALL_INCLUDEDIR=dir_name`
-
-Onde instalar arquivos de cabeçalho.
-
-- `-DINSTALL_INFODIR=dir_name`
-
-Onde instalar os ficheiros de informação.
-
-- `-DINSTALL_LAYOUT=name`
-
-Selecionar um layout de instalação predefinido:
-
-- `STANDALONE`: O mesmo layout usado para os pacotes `.tar.gz` e `.zip`. Este é o padrão.
-- `RPM`: Layout semelhante aos pacotes RPM.
-- `SVR4`: Layout do pacote Solaris.
-- `DEB`: layout de pacotes DEB (experimental).
-
-Você pode selecionar um layout predefinido, mas modificar os locais de instalação de componentes individuais especificando outras opções.
-
-```
-cmake . -DINSTALL_LAYOUT=SVR4 -DMYSQL_DATADIR=/var/mysql/data
-```
-
-O valor `INSTALL_LAYOUT` determina o valor padrão da variável do sistema `secure_file_priv`.
-
-- `-DINSTALL_LIBDIR=dir_name`
-
-Onde instalar arquivos de biblioteca.
-
-- `-DINSTALL_MANDIR=dir_name`
-
-Onde instalar as páginas do manual.
-
-- `-DINSTALL_MYSQLSHAREDIR=dir_name`
-
-Onde instalar ficheiros de dados partilhados.
-
-- `-DINSTALL_MYSQLTESTDIR=dir_name`
+  Onde instalar arquivos de dados compartilhados.
+*  `-DINSTALL_MYSQLTESTDIR=dir_name`
 
 Onde instalar o diretório `mysql-test`. Para suprimir a instalação deste diretório, defina explicitamente a opção para o valor vazio `-DINSTALL_MYSQLTESTDIR=`.
+*  `-DINSTALL_PKGCONFIGDIR=dir_name`
 
-- `-DINSTALL_PKGCONFIGDIR=dir_name`
+  O diretório onde instalar o arquivo `mysqlclient.pc` para uso pelo `pkg-config`. O valor padrão é `INSTALL_LIBDIR/pkgconfig`, a menos que `INSTALL_LIBDIR` termine com `/mysql`, caso em que isso é removido primeiro.
+*  `-DINSTALL_PLUGINDIR=dir_name`
 
-O diretório no qual instalar o arquivo `mysqlclient.pc` para uso por `pkg-config`. O valor padrão é `INSTALL_LIBDIR/pkgconfig`, a menos que `INSTALL_LIBDIR` termine com `/mysql`, caso em que é removido primeiro.
+  A localização do diretório de plugins.
 
-- `-DINSTALL_PLUGINDIR=dir_name`
+  Este valor pode ser definido no início do servidor com a opção `--plugin_dir`.
+*  `-DINSTALL_PRIV_LIBDIR=dir_name`
 
-A localização do diretório do plugin.
+  A localização do diretório de bibliotecas dinâmicas.
 
-Este valor pode ser definido na inicialização do servidor com a opção `--plugin_dir`.
+  **Local padrão.** Para construções RPM, este é `/usr/lib64/mysql/private/`, para DEB é `/usr/lib/mysql/private/`, e para TAR é `lib/private/`.
 
-- `-DINSTALL_PRIV_LIBDIR=dir_name`
+  **Protobuf.** Como este é um local privado, o carregador (como `ld-linux.so` no Linux) pode não encontrar os arquivos `libprotobuf.so` sem ajuda. Para orientar o carregador, `RPATH=$ORIGIN/../$INSTALL_PRIV_LIBDIR` é adicionado a `mysqld` e `mysqlxtest`. Isso funciona na maioria dos casos, mas ao usar o recurso de Grupo de Recursos, `mysqld` é `setuid`, e o carregador ignora qualquer `RPATH` que contenha `$ORIGIN`. Para superar isso, um caminho completo explícito para o diretório é definido nas versões DEB e RPM de `mysqld`, já que o destino alvo é conhecido. Para instalações em arquivos TAR, é necessário fazer o patch de `mysqld` com uma ferramenta como `patchelf`.
+*  `-DINSTALL_SBINDIR=dir_name`
 
-A localização do diretório dinâmico da biblioteca.
+  Onde instalar o servidor `mysqld`.
+*  `-DINSTALL_SECURE_FILE_PRIVDIR=dir_name`
 
-\*\* Localização padrão. \*\* Para compilações RPM, este é `/usr/lib64/mysql/private/`, para DEB é `/usr/lib/mysql/private/`, e para TAR é `lib/private/`.
+  O valor padrão para a variável de sistema `secure_file_priv`. O valor padrão é específico da plataforma e depende do valor da opção `INSTALL_LAYOUT` do `CMake`; veja a descrição da variável de sistema `secure_file_priv` na Seção 7.1.8, “Variáveis de Sistema do Servidor”.
+*  `-DINSTALL_SHAREDIR=dir_name`
 
-\*\* Protobuf. \*\* Como este é um local privado, o carregador (como `ld-linux.so` no Linux) pode não encontrar os arquivos `libprotobuf.so` sem ajuda. Para orientar o carregador, `RPATH=$ORIGIN/../$INSTALL_PRIV_LIBDIR` é adicionado a `mysqld` e `mysqlxtest`. Isso funciona para a maioria dos casos, mas ao usar o recurso de grupo de recursos, `mysqld` é `setsuid`, e o carregador ignora qualquer `RPATH` que contenha `$ORIGIN`. Para superar isso, um caminho completo explícito para o diretório é definido nas versões DEB e RPM do `mysqld`, uma vez que o destino é conhecido. Para tarballs, é necessária a instalação de patches do \[\[PH\_CODE\_CODE\_10]] com uma ferramenta como o `patchelf`.
+  Onde instalar `aclocal/mysql.m4`.
+*  `-DINSTALL_STATIC_LIBRARIES=bool`
 
-- `-DINSTALL_SBINDIR=dir_name`
+Se instalar bibliotecas estáticas. O padrão é `ON`. Se definido como `OFF`, esses arquivos de biblioteca não são instalados: `libmysqlclient.a`, `libmysqlservices.a`.
+*  `-DINSTALL_SUPPORTFILESDIR=dir_name`
 
-Onde instalar o servidor `mysqld`.
+  Onde instalar arquivos de suporte adicionais.
+*  `-DLINK_RANDOMIZE=bool`
 
-- `-DINSTALL_SECURE_FILE_PRIVDIR=dir_name`
+  Se randomizar a ordem dos símbolos no binário `mysqld`. O padrão é `OFF`. Esta opção deve ser habilitada apenas para fins de depuração.
+*  `-DLINK_RANDOMIZE_SEED=val`
 
-O valor padrão para a variável do sistema `secure_file_priv` O valor padrão é específico da plataforma e depende do valor da opção `INSTALL_LAYOUT` `CMake`; consulte a descrição da variável do sistema `secure_file_priv` na Seção 7.1.8, Variáveis do Sistema do Servidor.
+  Valor de semente para a opção `LINK_RANDOMIZE`. O valor é uma string. O padrão é `mysql`, uma escolha arbitrária.
+*  `-DMYSQL_DATADIR=dir_name`
 
-- `-DINSTALL_SHAREDIR=dir_name`
+  A localização do diretório de dados do MySQL.
 
-Onde instalar `aclocal/mysql.m4`.
+  Este valor pode ser definido na inicialização do servidor com a opção `--datadir`.
+*  `-DODBC_INCLUDES=dir_name`
 
-- `-DINSTALL_STATIC_LIBRARIES=bool`
+  A localização do diretório de inclusões ODBC, que pode ser usado durante a configuração do Connector/ODBC.
+*  `-DODBC_LIB_DIR=dir_name`
 
-Se instalar bibliotecas estáticas. O padrão é `ON`. Se definido como `OFF`, estes arquivos de biblioteca não são instalados: `libmysqlclient.a`, `libmysqlservices.a`.
+  A localização do diretório de bibliotecas ODBC, que pode ser usado durante a configuração do Connector/ODBC.
+*  `-DSYSCONFDIR=dir_name`
 
-- `-DINSTALL_SUPPORTFILESDIR=dir_name`
+  O diretório do arquivo de opção `my.cnf` padrão.
 
-Onde instalar ficheiros de suporte adicionais.
+  Este local não pode ser definido na inicialização do servidor, mas você pode iniciar o servidor com um arquivo de opção específico usando a opção `--defaults-file=file_name`, onde `file_name` é o nome completo do arquivo.
+*  `-DSYSTEMD_PID_DIR=dir_name`
 
-- `-DLINK_RANDOMIZE=bool`
+  O nome do diretório em que o arquivo de PID será criado quando o MySQL for gerenciado pelo systemd. O padrão é `/var/run/mysqld`; este valor pode ser alterado implicitamente de acordo com o valor de `INSTALL_LAYOUT`.
 
-Se a ordem dos símbolos no `mysqld` binário deve ser aleatória. O padrão é `OFF`. Esta opção deve ser ativada apenas para fins de depuração.
+  Esta opção é ignorada a menos que `WITH_SYSTEMD` esteja habilitado.
+*  `-DSYSTEMD_SERVICE_NAME=name`
 
-- `-DLINK_RANDOMIZE_SEED=val`
+  O nome do serviço MySQL a ser usado quando o MySQL for gerenciado pelo `systemd`. O padrão é `mysqld`; este valor pode ser alterado implicitamente de acordo com o valor de `INSTALL_LAYOUT`.
 
-O valor de semente para a opção `LINK_RANDOMIZE` . O valor é uma string. O padrão é `mysql`, uma escolha arbitrária.
+  Esta opção é ignorada a menos que `WITH_SYSTEMD` esteja habilitado.
+*  `-DTMPDIR=dir_name`
 
-- `-DMYSQL_DATADIR=dir_name`
+  A localização padrão a ser usada para a variável de sistema `tmpdir`. Se não especificado, o valor é definido como `P_tmpdir` em `<stdio.h>`.
 
-Localização do diretório de dados MySQL.
+#### Opções de Motores de Armazenamento
 
-Este valor pode ser definido na inicialização do servidor com a opção `--datadir`.
+Os motores de armazenamento são construídos como plugins. Você pode construir um plugin como um módulo estático (compilado no servidor) ou um módulo dinâmico (construído como uma biblioteca dinâmica que deve ser instalada no servidor usando a instrução `INSTALL PLUGIN` ou a opção `--plugin-load` antes de poder ser usado). Alguns plugins podem não suportar a construção estática ou dinâmica.
 
-- `-DODBC_INCLUDES=dir_name`
+Os motores `InnoDB`, `MyISAM`, `MERGE`, `MEMORY` e `CSV` são obrigatórios (sempre compilados no servidor) e não precisam ser instalados explicitamente.
 
-A localização do ODBC inclui o diretório, que pode ser utilizado durante a configuração do Connector/ODBC.
-
-- `-DODBC_LIB_DIR=dir_name`
-
-Localização do diretório da biblioteca ODBC, que pode ser utilizado durante a configuração do Connector/ODBC.
-
-- `-DSYSCONFDIR=dir_name`
-
-O diretório padrão do arquivo de opções `my.cnf`.
-
-Esta localização não pode ser definida na inicialização do servidor, mas você pode iniciar o servidor com um determinado arquivo de opção usando a opção `--defaults-file=file_name`, onde `file_name` é o nome completo do caminho para o arquivo.
-
-- `-DSYSTEMD_PID_DIR=dir_name`
-
-O nome do diretório no qual criar o arquivo PID quando o MySQL é gerenciado pelo systemd. O padrão é `/var/run/mysqld`; isso pode ser alterado implicitamente de acordo com o valor `INSTALL_LAYOUT`.
-
-Esta opção é ignorada a menos que o `WITH_SYSTEMD` esteja habilitado.
-
-- `-DSYSTEMD_SERVICE_NAME=name`
-
-O nome do serviço MySQL para usar quando o MySQL é gerenciado por `systemd`. O padrão é `mysqld`; isso pode ser alterado implicitamente de acordo com o valor `INSTALL_LAYOUT`.
-
-Esta opção é ignorada a menos que o `WITH_SYSTEMD` esteja habilitado.
-
-- `-DTMPDIR=dir_name`
-
-A localização padrão a ser usada para a variável do sistema `tmpdir`. Se não especificado, o valor padrão é `P_tmpdir` em `<stdio.h>`.
-
-#### Opções de motor de armazenamento
-
-Os motores de armazenamento são construídos como plugins. Você pode construir um plugin como um módulo estático (compilado no servidor) ou um módulo dinâmico (construído como uma biblioteca dinâmica que deve ser instalada no servidor usando a instrução `INSTALL PLUGIN` ou a opção `--plugin-load` antes de poder ser usada). Alguns plugins podem não suportar construção estática ou dinâmica.
-
-Os motores `InnoDB`, `MyISAM`, `MERGE`, `MEMORY`, e `CSV` são obrigatórios (sempre compilados no servidor) e não precisam ser instalados explicitamente.
-
-Para compilar um motor de armazenamento estaticamente no servidor, use `-DWITH_engine_STORAGE_ENGINE=1`. Alguns valores `engine` permitidos são `ARCHIVE`, `BLACKHOLE`, `EXAMPLE`, e `FEDERATED`.
+Para compilar um motor de armazenamento staticamente no servidor, use `-DWITH_engine_STORAGE_ENGINE=1`. Alguns valores de *`engine`* permitidos são `ARCHIVE`, `BLACKHOLE`, `EXAMPLE` e `FEDERATED`. Exemplos:
 
 ```
 -DWITH_ARCHIVE_STORAGE_ENGINE=1
 -DWITH_BLACKHOLE_STORAGE_ENGINE=1
 ```
 
-Para criar o MySQL com suporte para o NDB Cluster, use a opção `WITH_NDB`.
+Para compilar o MySQL com suporte para o NDB Cluster, use a opção `WITH_NDB`.
 
-::: info Note
+::: info Nota
 
-Não é possível compilar sem o suporte do Performance Schema. Se for desejado compilar sem tipos específicos de instrumentação, isso pode ser feito com as seguintes opções de `CMake`:
+Não é possível compilar sem suporte ao Schema de Desempenho. Se for desejado compilar sem tipos específicos de instrumentação, isso pode ser feito com as seguintes opções `CMake`:
 
 ```
 DISABLE_PSI_COND
@@ -259,7 +226,7 @@ Por exemplo, para compilar sem instrumentação de mutex, configure o MySQL usan
 
 :::
 
-Para excluir um motor de armazenamento da compilação, use `-DWITH_engine_STORAGE_ENGINE=0`.
+Para excluir um motor de armazenamento da compilação, use `-DWITH_engine_STORAGE_ENGINE=0`. Exemplos:
 
 ```
 -DWITH_ARCHIVE_STORAGE_ENGINE=0
@@ -267,7 +234,7 @@ Para excluir um motor de armazenamento da compilação, use `-DWITH_engine_STORA
 -DWITH_FEDERATED_STORAGE_ENGINE=0
 ```
 
-Também é possível excluir um motor de armazenamento da compilação usando `-DWITHOUT_engine_STORAGE_ENGINE=1` (mas `-DWITH_engine_STORAGE_ENGINE=0` é preferido).
+Também é possível excluir um motor de armazenamento da compilação usando `-DWITHOUT_engine_STORAGE_ENGINE=1` (mas `-DWITH_engine_STORAGE_ENGINE=0` é preferido). Exemplos:
 
 ```
 -DWITHOUT_ARCHIVE_STORAGE_ENGINE=1
@@ -275,557 +242,456 @@ Também é possível excluir um motor de armazenamento da compilação usando `-
 -DWITHOUT_FEDERATED_STORAGE_ENGINE=1
 ```
 
-Se nem `-DWITH_engine_STORAGE_ENGINE` nem `-DWITHOUT_engine_STORAGE_ENGINE` são especificados para um determinado motor de armazenamento, o motor é construído como um módulo compartilhado, ou excluído se não puder ser construído como um módulo compartilhado.
+Se nenhuma das opções `-DWITH_engine_STORAGE_ENGINE` ou `-DWITHOUT_engine_STORAGE_ENGINE` for especificada para um motor de armazenamento dado, o motor é construído como um módulo compartilhado, ou excluído se não puder ser construído como um módulo compartilhado.
 
-#### Opções de funcionalidade
+#### Opções de Recursos
 
-- `-DADD_GDB_INDEX=bool`
+*  `-DADD_GDB_INDEX=bool`
 
-Esta opção determina se deve habilitar a geração de uma seção `.gdb_index` em binários, o que torna o carregamento deles em um depurador mais rápido. A opção é desativada por padrão. O linker `lld` é usado, e é desativado por Ele não tem efeito se um linker diferente do `lld` ou GNU `gold` é usado.
+  Esta opção determina se a geração de uma seção `.gdb_index` nos binários deve ser habilitada, o que torna o carregamento deles em um depurador mais rápido. A opção está desabilitada por padrão. O linkador `lld` é usado e é desabilitado se um linkador diferente de `lld` ou `gold` do GNU for usado.
+*  `-DCOMPILATION_COMMENT=string`
 
-- `-DCOMPILATION_COMMENT=string`
+Um comentário descritivo sobre o ambiente de compilação. Enquanto o `mysqld` usa `COMPILATION_COMMENT_SERVER`, outros programas usam `COMPILATION_COMMENT`.
+*  `-DCOMPRESS_DEBUG_SECTIONS=bool`
 
-Um comentário descritivo sobre o ambiente de compilação. Enquanto o `mysqld` usa o `COMPILATION_COMMENT_SERVER`, outros programas usam o `COMPILATION_COMMENT`.
+  Se comprimir as seções de depuração de execuções binárias (apenas no Linux). A compressão das seções de depuração de execuções salva espaço em detrimento do tempo adicional de CPU durante o processo de compilação.
 
-- `-DCOMPRESS_DEBUG_SECTIONS=bool`
+  O padrão é `OFF`. Se esta opção não for definida explicitamente, mas a variável de ambiente `COMPRESS_DEBUG_SECTIONS` for definida, a opção assume seu valor dessa variável.
+*  `-DCOMPILATION_COMMENT_SERVER=string`
 
-Se comprimir as seções de depuração de executáveis binários (somente Linux). A compressão de seções de depuração executáveis economiza espaço ao custo de tempo extra da CPU durante o processo de compilação.
+  Um comentário descritivo sobre o ambiente de compilação para uso pelo `mysqld` (por exemplo, para definir a variável de sistema `version_comment`). Programas diferentes do servidor usam `COMPILATION_COMMENT`.
+*  `-DDEFAULT_CHARSET=charset_name`
 
-O padrão é `OFF`. Se essa opção não for definida explicitamente, mas a variável de ambiente `COMPRESS_DEBUG_SECTIONS` for definida, a opção toma seu valor dessa variável.
+  O conjunto de caracteres do servidor. Por padrão, o MySQL usa o conjunto de caracteres `utf8mb4`.
 
-- `-DCOMPILATION_COMMENT_SERVER=string`
+  `charset_name`* pode ser um dos valores `binary`, `armscii8`, `ascii`, `big5`, `cp1250`, `cp1251`, `cp1256`, `cp1257`, `cp850`, `cp852`, `cp866`, `cp932`, `dec8`, `eucjpms`, `euckr`, `gb2312`, `gbk`, `geostd8`, `greek`, `hebrew`, `hp8`, `keybcs2`, `koi8r`, `koi8u`, `latin1`, `latin2`, `latin5`, `latin7`, `macce`, `macroman`, `sjis`, `swe7`, `tis620`, `ucs2`, `ujis`, `utf8mb3`, `utf8mb4`, `utf16`, `utf16le`, `utf32`.
 
-Um comentário descritivo sobre o ambiente de compilação para uso por `mysqld` (por exemplo, para definir a `version_comment` variável do sistema). Programas que não o servidor usam `COMPILATION_COMMENT`.
+  Este valor pode ser definido no início do servidor com a opção `--character-set-server`.
+*  `-DDEFAULT_COLLATION=collation_name`
 
-- `-DDEFAULT_CHARSET=charset_name`
+  O conjunto de collation do servidor. Por padrão, o MySQL usa `utf8mb4_0900_ai_ci`. Use a instrução `SHOW COLLATION` para determinar quais collation estão disponíveis para cada conjunto de caracteres.
 
-O conjunto de caracteres do servidor. Por padrão, o MySQL usa o conjunto de caracteres `utf8mb4`.
+  Este valor pode ser definido no início do servidor com a opção `--collation_server`.
+*  `-DDISABLE_PSI_COND=bool`
 
-- O \* CODE\_PH\_0\* pode ser um dos seguintes: \* CODE\_PH\_1 \* CODE\_PH\_2 \* CODE\_PH\_3 \* CODE\_PH\_4 \* CODE\_PH\_5 \* CODE\_PH\_6 \* CODE\_PH\_7 \* CODE\_PH\_8 \* CODE\_PH\_9 \* CODE\_PH\_10 \* CODE\_PH\_11 \* CODE\_PH\_12 \* CODE\_PH\_13 \* CODE\_PH\_14 \* CODE\_PH\_15 \* CODE\_PH\_16 \* CODE\_PH\_17 \* CODE\_PH\_18 \* CODE\_PH\_19 \* CODE\_PH\_20 \* CODE\_PH\_21 \* CODE\_PH\_22 \* CODE\_PH\_23 \* CODE\_PH\_24 \* CODE\_PH\_25 \* CODE\_PH\_10 \* CODE\_PH\_11 \* CODE\_PH\_12 \* CODE\_PH\_13 \* CODE\_PH\_14 \* CODE\_PH\_36 \* CODE\_CODE\_33 \* CODE\_CODE\_33 \* CODE\_CODE
+  Se excluir a instrumentação de condição do Performance Schema. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_FILE=bool`
 
-Este valor pode ser definido na inicialização do servidor com a opção `--character-set-server`.
+  Se excluir a instrumentação de arquivo do Performance Schema. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_IDLE=bool`
 
-- `-DDEFAULT_COLLATION=collation_name`
+Se deseja excluir a instrumentação de inatividade do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_MEMORY=bool`
 
-A collação do servidor. Por padrão, o MySQL usa `utf8mb4_0900_ai_ci`. Use a instrução `SHOW COLLATION` para determinar quais collações estão disponíveis para cada conjunto de caracteres.
+  Se deseja excluir a instrumentação de memória do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_METADATA=bool`
 
-Este valor pode ser definido na inicialização do servidor com a opção `--collation_server`.
+  Se deseja excluir a instrumentação de metadados do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_MUTEX=bool`
 
-- `-DDISABLE_PSI_COND=bool`
+  Se deseja excluir a instrumentação de mutex do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_RWLOCK=bool`
 
-Se excluir a instrumentação da condição do esquema de desempenho. O padrão é `OFF` (incluir).
+  Se deseja excluir a instrumentação de rwlock do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_SOCKET=bool`
 
-- `-DDISABLE_PSI_FILE=bool`
+  Se deseja excluir a instrumentação de socket do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_SP=bool`
 
-Se excluir a instrumentação do arquivo de esquema de desempenho. O padrão é `OFF` (incluir).
+  Se deseja excluir a instrumentação de programas armazenados do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_STAGE=bool`
 
-- `-DDISABLE_PSI_IDLE=bool`
+  Se deseja excluir a instrumentação de estágio do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_STATEMENT=bool`
 
-Se deve excluir a instrumentação ociosa do Performance Schema. O padrão é `OFF` (incluir).
+  Se deseja excluir a instrumentação de declaração do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_STATEMENT_DIGEST=bool`
 
-- `-DDISABLE_PSI_MEMORY=bool`
+  Se deseja excluir a instrumentação de digest de declaração do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_TABLE=bool`
 
-Se excluir a instrumentação de memória do Performance Schema. O padrão é `OFF` (incluir).
+  Se deseja excluir a instrumentação de tabela do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_PS=bool`
 
-- `-DDISABLE_PSI_METADATA=bool`
+  Excluir a instrumentação de instâncias de declarações preparadas do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_THREAD=bool`
 
-Se excluir a instrumentação de metadados do Performance Schema. O padrão é `OFF` (incluir).
+  Excluir a instrumentação de thread do Schema de Desempenho. O padrão é `OFF` (incluir).
 
-- `-DDISABLE_PSI_MUTEX=bool`
+  Desabilitar apenas os threads ao compilar sem nenhuma instrumentação, pois outras instrumentações dependem dos threads.
+*  `-DDISABLE_PSI_TRANSACTION=bool`
 
-Se excluir a instrumentação de mutex do Performance Schema. O padrão é `OFF` (incluir).
+  Excluir a instrumentação de transação do Schema de Desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_DATA_LOCK=bool`
 
-- `-DDISABLE_PSI_RWLOCK=bool`
+Exclua a instrumentação do bloqueio de dados do esquema de desempenho. O padrão é `OFF` (incluir).
+*  `-DDISABLE_PSI_ERROR=bool`
 
-Se deve excluir a instrumentação de bloqueio do esquema de desempenho. O padrão é `OFF` (incluir).
+Exclua a instrumentação de erros do servidor do esquema de desempenho. O padrão é `OFF` (incluir).
+*  `-DENABLE_EXPERIMENTAL_SYSVARS=bool`
 
-- `-DDISABLE_PSI_SOCKET=bool`
+Se habilitar as variáveis de sistema experimentais do `InnoDB`. As variáveis de sistema experimentais são destinadas a desenvolvedores do MySQL, devem ser usadas apenas em ambientes de desenvolvimento ou teste e podem ser removidas sem aviso prévio em uma futura versão do MySQL. Para obter informações sobre as variáveis de sistema experimentais, consulte `/storage/innobase/handler/ha_innodb.cc` no repositório de código-fonte do MySQL. As variáveis de sistema experimentais podem ser identificadas pesquisando `PLUGIN_VAR_EXPERIMENTAL`.
+*  `-DENABLE_GCOV=bool`
 
-Se excluir a instrumentação do soquete do esquema de desempenho. O padrão é `OFF` (incluir).
+Se incluir o suporte **gcov** (apenas Linux).
+*  `-DENABLE_GPROF=bool`
 
-- `-DDISABLE_PSI_SP=bool`
+Se habilitar o **gprof** (apenas compilações otimizadas para Linux).
+*  `-DENABLED_LOCAL_INFILE=bool`
 
-Se excluir a instrumentação do programa armazenado no Performance Schema. O padrão é `OFF` (incluir).
+Esta opção controla a capacidade `LOCAL` integrada ao cliente da biblioteca MySQL. Os clientes que não fazem arranjos explícitos, portanto, têm a capacidade `LOCAL` desabilitada ou habilitada de acordo com a configuração `ENABLED_LOCAL_INFILE` especificada no momento da compilação do MySQL.
 
-- `-DDISABLE_PSI_STAGE=bool`
+Por padrão, a biblioteca do cliente nas distribuições binárias do MySQL é compilada com `ENABLED_LOCAL_INFILE` desabilitada. Se você compilar o MySQL a partir do código-fonte, configure-o com `ENABLED_LOCAL_INFILE` desabilitada ou habilitada com base se os clientes que não fazem arranjos explícitos devem ter a capacidade `LOCAL` desabilitada ou habilitada, respectivamente.
 
-Se excluir a instrumentação do estágio do esquema de desempenho. O padrão é `OFF` (incluir).
+`ENABLED_LOCAL_INFILE` controla o padrão para a capacidade `LOCAL` no lado do cliente. Para o servidor, a variável de sistema `local_infile` controla a capacidade `LOCAL` no lado do servidor. Para forçar explicitamente o servidor a recusar ou permitir as instruções `LOAD DATA LOCAL` (independentemente de como os programas e bibliotecas do cliente forem configurados no momento da compilação ou execução), inicie o `mysqld` com `--local-infile` desativado ou ativado, respectivamente. O `local_infile` também pode ser definido em tempo de execução. Veja a Seção 8.1.6, “Considerações de Segurança para LOAD DATA LOCAL”.
+*  `-DENABLED_PROFILING=bool`
 
-- `-DDISABLE_PSI_STATEMENT=bool`
+  Se habilitar o código de perfilagem de consultas (para as instruções `SHOW PROFILE` e `SHOW PROFILES`).
+*  `-DFORCE_UNSUPPORTED_COMPILER=bool`
 
-Se excluir a instrumentação de instruções do Performance Schema. O padrão é `OFF` (incluir).
+  Por padrão, o `CMake` verifica as versões mínimas dos compiladores suportados; para desabilitar essa verificação, use `-DFORCE_UNSUPPORTED_COMPILER=ON`.
+*  `-DFPROFILE_GENERATE=bool`
 
-- `-DDISABLE_PSI_STATEMENT_DIGEST=bool`
+  Se gerar dados de otimização guiada por perfil (PGO). Esta opção está disponível para experimentar com PGO com o GCC. Veja o arquivo `cmake/fprofile.cmake` na distribuição de código-fonte do MySQL para obter informações sobre o uso de `FPROFILE_GENERATE` e `FPROFILE_USE`. Essas opções foram testadas com o GCC 8 e 9.
+*  `-DFPROFILE_USE=bool`
 
-Se deve excluir a instrumentação do resumo de instruções do esquema de desempenho. O padrão é `OFF` (incluir).
+  Se usar dados de otimização guiada por perfil (PGO). Esta opção está disponível para experimentar com PGO com o GCC. Veja o arquivo `cmake/fprofile.cmake` em uma distribuição de código-fonte do MySQL para obter informações sobre o uso de `FPROFILE_GENERATE` e `FPROFILE_USE`. Essas opções foram testadas com o GCC 8 e 9.
 
-- `-DDISABLE_PSI_TABLE=bool`
+  Ativação de `FPROFILE_USE` também ativa `WITH_LTO`.
+*  `-DHAVE_PSI_MEMORY_INTERFACE=bool`
 
-Se excluir a instrumentação da tabela de esquema de desempenho. O padrão é `OFF` (incluir).
+  Se habilitar o módulo de rastreamento de memória do esquema de desempenho para funções de alocação de memória (`ut::aligned_name` funções da biblioteca) usadas no armazenamento dinâmico de tipos sobrealinhados.
+*  `-DIGNORE_AIO_CHECK=bool`
 
-- `-DDISABLE_PSI_PS=bool`
+Se a opção `-DBUILD_CONFIG=mysql_release` for fornecida no Linux, a biblioteca `libaio` deve ser vinculada por padrão. Se você não tiver `libaio` ou não quiser instalá-lo, pode suprimir a verificação para ele especificando `-DIGNORE_AIO_CHECK=1`.
+*  `-DMAX_INDEXES=num`
 
-Excluir a instrumentação de instâncias de instruções preparadas do Performance Schema. O padrão é `OFF` (incluir).
+  O número máximo de índices por tabela. O padrão é 64. O máximo é 255. Valores menores que 64 são ignorados e o padrão de 64 é usado.
+*  `-DMYSQL_MAINTAINER_MODE=bool`
 
-- `-DDISABLE_PSI_THREAD=bool`
+  Se habilitar o ambiente de desenvolvimento específico para o maintainer do MySQL. Se habilitado, esta opção faz com que as avisos do compilador se tornem erros.
+*  `-DWITH_DEVELOPER_ENTITLEMENTS=bool`
 
-Excluir a instrumentação do thread do Performance Schema. O padrão é `OFF` (incluir).
+  Se adicionar o direito `get-task-allow` a todos os executáveis para gerar um dump de núcleo no caso de uma parada inesperada do servidor.
 
-Desativar apenas os fios quando se constrói sem qualquer instrumentação, porque outras instrumentações têm uma dependência de fios.
+  No macOS 11+, os dumps de núcleo são limitados a processos com o direito `com.apple.security.get-task-allow`, que esta opção do CMake habilita. O direito permite que outros processos se acomodem e leiam/modifiquem a memória dos processos e permite que o `--core-file` funcione como esperado.
+*  `-DMUTEX_TYPE=type`
 
-- `-DDISABLE_PSI_TRANSACTION=bool`
+  O tipo de mutex usado pelo `InnoDB`. As opções incluem:
 
-Excluir a instrumentação de transação do Esquema de Desempenho. O padrão é `OFF` (incluir).
+  + `event`: Use mutexes de evento. Este é o valor padrão e a implementação original do mutex `InnoDB`.
+  + `sys`: Use mutexes POSIX em sistemas UNIX. Use objetos `CRITICAL_SECTION` em Windows, se disponível.
+  + `futex`: Use futexes Linux em vez de variáveis de condição para agendar threads em espera.
+*  `-DMYSQLX_TCP_PORT=port_num`
 
-- `-DDISABLE_PSI_DATA_LOCK=bool`
+  O número de porta no qual o Plugin X escuta por conexões TCP/IP. O padrão é 33060.
 
-Excluir a instrumentação de bloqueio de dados do esquema de desempenho. O padrão é `OFF` (incluir).
+  Este valor pode ser definido no início do servidor com a variável de sistema `mysqlx_port`.
+*  `-DMYSQLX_UNIX_ADDR=file_name`
 
-- `-DDISABLE_PSI_ERROR=bool`
+  O caminho do arquivo de soquete Unix no qual o servidor escuta por conexões de soquete do Plugin X. Este deve ser um nome de caminho absoluto. O padrão é `/tmp/mysqlx.sock`.
 
-Excluir a instrumentação de erro do servidor de esquema de desempenho. O padrão é `OFF` (incluir).
+  Este valor pode ser definido no início do servidor com a variável de sistema `mysqlx_port`.
+*  `-DMYSQL_PROJECT_NAME=name`
 
-- `-DENABLE_EXPERIMENTAL_SYSVARS=bool`
+Para Windows ou macOS, o nome do projeto a ser incorporado no nome do arquivo do projeto.
+*  `-DMYSQL_TCP_PORT=port_num`
 
-Se deve habilitar variáveis experimentais do sistema. As variáveis experimentais do sistema são destinadas àqueles envolvidos no desenvolvimento do MySQL, devem ser usadas apenas em um ambiente de desenvolvimento ou teste, e podem ser removidas sem aviso prévio em uma versão futura do MySQL. Para informações sobre variáveis experimentais do sistema, consulte a `/storage/innobase/handler/ha_innodb.cc` na árvore de fontes do MySQL. As variáveis experimentais do sistema podem ser identificadas pesquisando `PLUGIN_VAR_EXPERIMENTAL`.
+  O número de porta no qual o servidor escuta conexões TCP/IP. O padrão é 3306.
 
-- `-DENABLE_GCOV=bool`
+  Esse valor pode ser definido na inicialização do servidor com a opção `--port`.
+*  `-DMYSQL_UNIX_ADDR=file_name`
 
-Se deve incluir suporte **gcov** (apenas Linux).
+  O caminho do arquivo de socket Unix no qual o servidor escuta conexões de socket. Esse caminho deve ser um nome de caminho absoluto. O padrão é `/tmp/mysql.sock`.
 
-- `-DENABLE_GPROF=bool`
+  Esse valor pode ser definido na inicialização do servidor com a opção `--socket`.
+*  `-DOPTIMIZER_TRACE=bool`
 
-Se habilitar **gprof** (somente compilações otimizadas do Linux).
+  Se suportar o rastreamento do otimizador. Consulte a Seção 10.15, “Rastrear o Otimizador”.
+*  `-DREPRODUCIBLE_BUILD=bool`
 
-- `-DENABLED_LOCAL_INFILE=bool`
+  Para builds em sistemas Linux, essa opção controla se deve ter cuidado extra para criar um resultado de build independente da localização e do tempo da build.
 
-Esta opção controla a capacidade `LOCAL` compilada padrão para a biblioteca do cliente MySQL. Clientes que não fazem arranjos explícitos, portanto, têm a capacidade `LOCAL` desativada ou ativada de acordo com a configuração `ENABLED_LOCAL_INFILE` especificada no tempo de compilação do MySQL.
+  Essa opção tem o valor padrão `ON` para builds `RelWithDebInfo`.
+*  `-DSHOW_SUPPRESSED_COMPILER_WARNINGS=bool`
 
-Por padrão, a biblioteca do cliente em distribuições binárias do MySQL é compilada com o `ENABLED_LOCAL_INFILE` desativado. Se você compilar o MySQL a partir do código-fonte, configure-o com o `ENABLED_LOCAL_INFILE` desativado ou habilitado com base em se os clientes que não fazem arranjos explícitos devem ter a capacidade do `LOCAL` desativada ou habilitada, respectivamente.
+  Mostrar avisos de compilador suprimidos e fazê-lo sem falhar com `-Werror`. O padrão é `OFF`.
+*  `-DWIN_DEBUG_NO_INLINE=bool`
 
-Para fazer com que o servidor explicitamente recuse ou permita instruções de código 4 (independentemente de como os programas e bibliotecas do cliente são configurados no tempo de compilação ou no tempo de execução), inicie o código 5 com o código 6 desativado ou ativado, respectivamente. O código 7 também pode ser definido no tempo de execução.
+  Se desabilitar a inlining de funções no Windows. O padrão é `OFF` (inlining habilitado).
+*  `-DWITH_LD=string`
 
-- `-DENABLED_PROFILING=bool`
+  O `CMake` usa o linkador padrão por padrão. Opcionalmente, passe `lld` ou `mold` para especificar um linkador alternativo. `mold` deve ser versão 2 ou superior.
 
-Se o código de perfis de consulta deve ser habilitado (para as instruções `SHOW PROFILE` e `SHOW PROFILES`).
+  Essa opção pode ser usada em sistemas baseados em Linux, exceto o Enterprise Linux, que sempre usa o linkador `ld`.
 
-- `-DFORCE_UNSUPPORTED_COMPILER=bool`
+  ::: info Nota
 
-Por padrão, `CMake` verifica as versões mínimas dos compiladores suportados; para desativar esta verificação, use `-DFORCE_UNSUPPORTED_COMPILER=ON`.
+  Anteriormente, a opção `USE_LD_LLD` poderia ser usada para habilitar (o padrão) ou desabilitar explicitamente o linkador `lld` do LLVM para o Clang. No MySQL 8.3, `USE_LD_LLD` foi removida.
 
-- `-DFPROFILE_GENERATE=bool`
+  :::
+*  `-DWITH_ANT=path_name`
 
-Esta opção está disponível para experimentar com PGO com GCC. Veja `cmake/fprofile.cmake` na distribuição de origem do MySQL para informações sobre o uso de `FPROFILE_GENERATE` e `FPROFILE_USE`.
+  Defina o caminho para o Ant, necessário ao construir o wrapper GCS Java. Defina `WITH_ANT` com o caminho de um diretório onde o pacote tarball do Ant ou o arquivo descompactado é salvo. Quando `WITH_ANT` não é definido ou é definido com o valor especial `system`, o processo de build assume que um binário `ant` existe no `$PATH`.
 
-- `-DFPROFILE_USE=bool`
+Se habilitar o AddressSanitizer, para os compiladores que o suportam. O padrão é `OFF`.
+*  `-DWITH_ASAN_SCOPE=bool`
 
-Se usar dados de otimização guiada por perfil (PGO). Esta opção está disponível para experimentar com PGO com GCC. Veja o arquivo `cmake/fprofile.cmake` em uma distribuição de fonte MySQL para informações sobre o uso de `FPROFILE_GENERATE` e `FPROFILE_USE`. Estas opções foram testadas com GCC 8 e 9.
+  Se habilitar a bandeira `-fsanitize-address-use-after-scope` do Clang para detecção de uso após escopo. O padrão é desativado. Para usar essa opção, `-DWITH_ASAN` também deve ser habilitado.
+*  `-DWITH_AUTHENTICATION_CLIENT_PLUGINS=bool`
 
-Ativar `FPROFILE_USE` também ativa `WITH_LTO`.
+  Essa opção é habilitada automaticamente se forem compilados os plugins de autenticação do servidor correspondentes. Seu valor depende de outras opções do `CMake` e não deve ser definido explicitamente.
+*  `-DWITH_AUTHENTICATION_LDAP=bool`
 
-- `-DHAVE_PSI_MEMORY_INTERFACE=bool`
+  Se reportar um erro se os plugins de autenticação LDAP não puderem ser compilados:
 
-Se o módulo de rastreamento de memória de esquema de desempenho deve ser ativado para funções de alocação de memória (funções de biblioteca `ut::aligned_name`) utilizadas no armazenamento dinâmico de tipos sobrealinhados.
+  + Se essa opção for desativada (o padrão), os plugins LDAP são compilados se os arquivos de cabeçalho e bibliotecas necessários forem encontrados. Se não forem, o `CMake` exibe uma nota sobre isso.
+  + Se essa opção for habilitada, a falta de encontrar o arquivo de cabeçalho e as bibliotecas necessárias faz com que o `CMake` produza um erro, impedindo a construção do servidor.
+*  `-DWITH_AUTHENTICATION_PAM=bool`
 
-- `-DIGNORE_AIO_CHECK=bool`
+  Se construir o plugin de autenticação PAM, para os repositórios de código-fonte que incluem esse plugin. (Veja a Seção 8.4.1.5, “Autenticação PAM Pluggable”.) Se essa opção for especificada e o plugin não puder ser compilado, a construção falha.
+*  `-DWITH_AWS_SDK=path_name`
 
-Se a opção `-DBUILD_CONFIG=mysql_release` for dada no Linux, a biblioteca `libaio` deve ser vinculada por padrão. Se você não tiver `libaio` ou não quiser instalá-lo, você pode suprimir a verificação especificando `-DIGNORE_AIO_CHECK=1`.
+  A localização do kit de desenvolvimento de software da Amazon Web Services.
+*  `-DWITH_CLIENT_PROTOCOL_TRACING=bool`
 
-- `-DMAX_INDEXES=num`
+  Se construir a estrutura de rastreamento de protocolo do lado do cliente na biblioteca do cliente. Por padrão, essa opção está habilitada.
 
-O número máximo de índices por tabela. O padrão é 64. O máximo é 255. Valores menores que 64 são ignorados e o padrão de 64 é usado.
+  Para obter informações sobre como escrever plugins de cliente de rastreamento de protocolo, consulte  Escrevendo Plugins de Rastreamento de Protocolo.
 
-- `-DMYSQL_MAINTAINER_MODE=bool`
+  Veja também a opção `WITH_TEST_TRACE_PLUGIN`.
+*  `-DWITH_CURL=curl_type`
 
-Se ativar um ambiente de desenvolvimento específico para o mantenedor do MySQL. Se ativada, esta opção faz com que os avisos do compilador se tornem erros.
+  A localização da biblioteca `curl`. *`curl_type`* pode ser `system` (use a biblioteca `curl` do sistema), um nome de caminho para a biblioteca `curl`, `no`|`off`|`none` para desabilitar o suporte ao curl, ou `bundled` para usar a distribuição de curl empacotada em `extra/curl/`.
+*  `-DWITH_DEBUG=bool`
 
-- `-DWITH_DEVELOPER_ENTITLEMENTS=bool`
+Incluir suporte de depuração.
 
-Se deve adicionar o direito `get-task-allow` a todos os executáveis para gerar um core dump no caso de uma parada inesperada do servidor.
+Configurar o MySQL com suporte de depuração permite que você use a opção `--debug="d,parser_debug"`, ao iniciar o servidor. Isso faz com que o analisador Bison, que é usado para processar instruções SQL, armazene uma traça do analisador na saída de erro padrão do servidor. Normalmente, essa saída é escrita no log de erro.
 
-No macOS 11+, os core dumps estão limitados a processos com o direito `com.apple.security.get-task-allow`, que esta opção CMake habilita. O direito permite que outros processos anexem e leiam/modifiquem a memória de processos, e permite que `--core-file` funcione como esperado.
+A verificação de sincronização do debug para o mecanismo de armazenamento `InnoDB` é definida em `UNIV_DEBUG` e está disponível quando o suporte de depuração é compilado com a opção `WITH_DEBUG`. Quando o suporte de depuração é compilado, a opção de configuração `innodb_sync_debug` pode ser usada para habilitar ou desabilitar a verificação de debug de sincronização do `InnoDB`.
 
-- `-DMUTEX_TYPE=type`
+Habilitar `WITH_DEBUG` também habilita o Debug Sync. Essa facilidade é usada para testes e depuração. Quando compilado, o Debug Sync é desabilitado por padrão no runtime. Para ativá-lo, inicie o `mysqld` com a opção `--debug-sync-timeout=N`, onde *`N`* é um valor de timeout maior que 0. (O valor padrão é 0, o que desabilita o Debug Sync.) *`N`* se torna o timeout padrão para pontos de sincronização individuais.
 
-O tipo de mutex usado por `InnoDB`.
+A verificação de sincronização do debug para o mecanismo de armazenamento `InnoDB` está disponível quando o suporte de depuração é compilado com a opção `WITH_DEBUG`.
 
-- `event`: Use mutex de eventos. Este é o valor padrão e a implementação original de mutex `InnoDB`.
-- `sys`: Use mutex POSIX em sistemas UNIX. Use objetos `CRITICAL_SECTION` no Windows, se disponível.
-- `futex`: Use futexes do Linux em vez de variáveis de condição para agendar threads de espera.
+Para uma descrição da facilidade Debug Sync e de como usar pontos de sincronização, consulte MySQL Internals: Test Synchronization.
+*  `-DWITH_EDITLINE=value`
 
-* `-DMYSQLX_TCP_PORT=port_num`
+  Qual biblioteca `libedit`/`editline` usar. Os valores permitidos são `bundled` (o padrão) e `system`.
+*  `-DWITH_ICU={icu_type|path_name}`
 
-O número de porta no qual o X Plugin escuta para conexões TCP/IP. O padrão é 33060.
+  O MySQL usa Componentes Internacionais para Unicode (ICU) para suportar operações de expressão regular. A opção `WITH_ICU` indica o tipo de suporte ICU a incluir ou o nome do caminho da instalação do ICU a ser usado.
 
-Este valor pode ser definido na inicialização do servidor com a variável de sistema `mysqlx_port`.
+  + *`icu_type`* pode ser um dos seguintes valores:
 
-- `-DMYSQLX_UNIX_ADDR=file_name`
+- `bundled`: Use a biblioteca ICU empacotada com a distribuição. Este é o padrão e é a única opção suportada para o Windows.
+  + *`path_name`* é o nome do caminho para a instalação do ICU a ser usada. Isso pode ser preferível ao usar o valor *`icu_type`* de `system` porque pode evitar que o CMake detecte e use uma versão mais antiga ou incorreta do ICU instalada no sistema. (Outra maneira permitida de fazer a mesma coisa é definir `WITH_ICU` para `system` e definir a opção `CMAKE_PREFIX_PATH` para *`path_name`*.)
+*  `-DWITH_INNODB_EXTRA_DEBUG=bool`
 
-O caminho do arquivo do soquete do Unix no qual o servidor escuta as conexões do soquete do X Plugin. Este deve ser um nome de caminho absoluto. O padrão é `/tmp/mysqlx.sock`.
+  Se incluir suporte extra para depuração do InnoDB.
 
-Este valor pode ser definido na inicialização do servidor com a variável de sistema `mysqlx_port`.
+  Ativação de `WITH_INNODB_EXTRA_DEBUG` aciona verificações de depuração extras do InnoDB. Esta opção só pode ser habilitada quando `WITH_DEBUG` está habilitado.
+*  `-DWITH_JEMALLOC=bool`
 
-- `-DMYSQL_PROJECT_NAME=name`
+  Se vincular com `-ljemalloc`. Se habilitado, as rotinas integradas `malloc()`, `calloc()`, `realloc()`, e `free()` são desabilitadas. O padrão é `OFF`.
 
-Para Windows ou macOS, o nome do projecto a incorporar no nome do ficheiro do projecto.
+   `WITH_JEMALLOC` e `WITH_TCMALLOC` são mutuamente exclusivos.
+*  `-DWITH_LIBEVENT=string`
 
-- `-DMYSQL_TCP_PORT=port_num`
+  Qual biblioteca `libevent` usar. Os valores permitidos são `bundled` (padrão) e `system`. Se `system` for especificado e nenhuma biblioteca `libevent` do sistema puder ser encontrada, um erro ocorrerá independentemente, e a biblioteca `libevent` empacotada não é usada.
 
-O número de porta no qual o servidor escuta para conexões TCP/IP. O padrão é 3306.
+  A biblioteca `libevent` é necessária pelo X Plugin e pelo MySQL Router.
+*  `-DWITH_LIBWRAP=bool`
 
-Este valor pode ser definido na inicialização do servidor com a opção `--port`.
+  Se incluir suporte para `libwrap` (envoltórios TCP).
+*  `-DWITH_LOCK_ORDER=bool`
 
-- `-DMYSQL_UNIX_ADDR=file_name`
+  Se habilitar a ferramenta LOCK_ORDER. Por padrão, esta opção está desabilitada e as compilações do servidor não contêm ferramentas. Se a ferramenta for habilitada, a ferramenta LOCK_ORDER estará disponível e pode ser usada conforme descrito na Seção 7.9.3, “A Ferramenta LOCK_ORDER”.
 
-O caminho do arquivo de soquete do Unix no qual o servidor escuta para conexões de soquete. Este deve ser um nome de caminho absoluto. O padrão é `/tmp/mysql.sock`.
+  ::: info Nota
 
-Este valor pode ser definido na inicialização do servidor com a opção `--socket`.
+  Com a opção `WITH_LOCK_ORDER` habilitada, as compilações do MySQL requerem o programa `flex`.
 
-- `-DOPTIMIZER_TRACE=bool`
+  :::
 
-Se o rastreamento do optimizador deve ser suportado, ver Secção 10.15, "Rastreamento do optimizador".
+Se habilitar o otimizador de link-time, se o compilador o suportar. O padrão é `OFF`, a menos que `FPROFILE_USE` esteja habilitado.
+*  `-DWITH_LZ4=lz4_type`
 
-- `-DREPRODUCIBLE_BUILD=bool`
+  A opção `WITH_LZ4` indica a fonte do suporte ao `zlib`:
 
-Para compilações em sistemas Linux, essa opção controla se deve ter cuidado extra para criar um resultado de compilação independente do local e do tempo de compilação.
+  + `bundled`: Use a biblioteca `lz4` incluída na distribuição. Este é o padrão.
+  + `system`: Use a biblioteca `lz4` do sistema.
+*  `-DWITH_MECAB={disabled|system|path_name}`
 
-Esta opção é padrão para `ON` para `RelWithDebInfo` compilações.
+  Use esta opção para compilar o analisador MeCab. Se você instalou o MeCab no diretório de instalação padrão, defina `-DWITH_MECAB=system`. A opção `system` aplica-se a instalações do MeCab realizadas a partir de fontes ou de binários usando uma ferramenta de gerenciamento de pacotes nativa. Se você instalou o MeCab em um diretório de instalação personalizado, especifique o caminho para a instalação do MeCab, por exemplo, `-DWITH_MECAB=/opt/mecab`. Se a opção `system` não funcionar, especificar o caminho de instalação do MeCab deve funcionar em todos os casos.
 
-- `-DSHOW_SUPPRESSED_COMPILER_WARNINGS=bool`
+*  `-DWITH_MSAN=bool`
 
-Mostrar avisos de compilador suprimidos, e fazê-lo sem falhar com `-Werror`.
+  Se habilitar o MemorySanitizer, para compiladores que o suportam. O padrão é `OFF`.
 
-- `-DWIN_DEBUG_NO_INLINE=bool`
+  Para que esta opção tenha efeito se habilitada, todas as bibliotecas vinculadas ao MySQL também devem ter sido compiladas com a opção habilitada.
+*  `-DWITH_MSCRT_DEBUG=bool`
 
-Se desativar a função de inlining no Windows. O padrão é `OFF` (inlining habilitado).
+  Se habilitar a rastreamento de vazamentos de memória do CRT do Visual Studio. O padrão é `OFF`.
+*  `-DMSVC_CPPCHECK=bool`
 
-- `-DWITH_LD=string`
+  Se habilitar a análise de código do MSVC. O padrão é `ON`.
+*  `-DWITH_MYSQLX=bool`
 
-\[`CMake`] usa o linker padrão por padrão. Opcionalmente, passe em \[`lld`]] ou \[`mold`]] para especificar um linker alternativo. \[`mold`]] deve ser a versão 2 ou mais recente.
+  Se compilar com suporte para o Plugin X. O padrão é `ON`. Veja  Capítulo 22, *Usando o MySQL como uma Armazenamento de Documentos*.
+*  `-DWITH_NUMA=bool`
 
-Esta opção pode ser usada em sistemas baseados em Linux que não o Enterprise Linux, que sempre usa o linker `ld`.
+  Defina explicitamente a política de alocação de memória NUMA. O `CMake` define o valor padrão `WITH_NUMA` com base se a plataforma atual tem suporte `NUMA`. Para plataformas sem suporte `NUMA`, o `CMake` se comporta da seguinte forma:
 
-::: info Note
++ Sem a opção NUMA (o caso normal), o `CMake` continua normalmente, produzindo apenas este aviso: biblioteca NUMA ausente ou versão exigida não disponível.
++ Com `-DWITH_NUMA=ON`, o `CMake` interrompe com este erro: biblioteca NUMA ausente ou versão exigida não disponível.
+*  `-DWITH_PACKAGE_FLAGS=bool`
 
-Anteriormente, a opção `USE_LD_LLD` poderia ser usada para habilitar (o padrão) ou desativar explicitamente o linker LLVM `lld` para Clang. No MySQL 8.3, `USE_LD_LLD` foi removido.
+  Para as flags tipicamente usadas para pacotes RPM e Debian, se devem ser adicionadas às compilações independentes nessas plataformas. O padrão é `ON` para compilações não de depuração.
+*  `-DWITH_PROTOBUF=protobuf_type`
 
-:::
+  Qual pacote de Protocol Buffers usar. *`protobuf_type`* pode ser um dos seguintes valores:
 
-- `-DWITH_ANT=path_name`
-
-Defina o caminho para Ant, necessário ao construir o wrapper Java GCS. Defina `WITH_ANT` para o caminho de um diretório onde o tarball Ant ou arquivo descompactado é salvo. Quando `WITH_ANT` não é definido, ou é definido com o valor especial `system`, o processo de compilação assume que um `ant` binário existe em `$PATH`.
-
-- `-DWITH_ASAN=bool`
-
-Se habilitar o AddressSanitizer, para compiladores que o suportam. O padrão é `OFF`.
-
-- `-DWITH_ASAN_SCOPE=bool`
-
-Se deve habilitar o AddressSanitizer `-fsanitize-address-use-after-scope` Clang flag para detecção de uso após o escopo. O padrão está desativado. Para usar esta opção, `-DWITH_ASAN` também deve ser habilitado.
-
-- `-DWITH_AUTHENTICATION_CLIENT_PLUGINS=bool`
-
-Esta opção é ativada automaticamente se qualquer plug-in de autenticação de servidor correspondente for construído. Seu valor depende de outras opções de `CMake` e não deve ser definido explicitamente.
-
-- `-DWITH_AUTHENTICATION_LDAP=bool`
-
-Se deve ser comunicado um erro se os complementos de autenticação LDAP não puderem ser construídos:
-
-- Se esta opção for desativada (o padrão), os plugins LDAP serão criados se os arquivos de cabeçalho e bibliotecas necessários forem encontrados. Se não forem, o `CMake` exibirá uma nota sobre isso.
-- Se esta opção estiver habilitada, um fracasso em encontrar o arquivo de cabeçalho e as bibliotecas necessárias faz com que o CMake produza um erro, impedindo a construção do servidor.
-
-* `-DWITH_AUTHENTICATION_PAM=bool`
-
-Se construir o plugin de autenticação PAM, para árvores de origem que incluem este plugin. (Veja Seção 8.4.1.5, PAM Pluggable Authentication.) Se esta opção for especificada e o plugin não puder ser compilado, a compilação falhará.
-
-- `-DWITH_AWS_SDK=path_name`
-
-A localização do kit de desenvolvimento de software da Amazon Web Services.
-
-- `-DWITH_CLIENT_PROTOCOL_TRACING=bool`
-
-Se a estrutura de rastreamento de protocolo do lado do cliente deve ser construída na biblioteca do cliente. Por padrão, esta opção está habilitada.
-
-Para obter informações sobre a escrita de protocolos de rastreamento de plugins de cliente, consulte Writing Protocol Trace Plugins.
-
-Ver também a opção `WITH_TEST_TRACE_PLUGIN`.
-
-- `-DWITH_CURL=curl_type`
-
-A localização da biblioteca `curl`. `curl_type` pode ser `system` (use a biblioteca do sistema `curl`), um nome de caminho para a biblioteca `curl`, `no` para desativar o suporte ao curl, ou `bundled` para usar a distribuição de curl em bundle no `extra/curl/`.
-
-- `-DWITH_DEBUG=bool`
-
-Se deve incluir suporte à depuração.
-
-Configurar o MySQL com suporte de depuração permite que você use a opção `--debug="d,parser_debug"` quando você inicia o servidor. Isso faz com que o analisador Bison que é usado para processar instruções SQL para despejar um rastreamento do analisador para a saída de erro padrão do servidor. Normalmente, esta saída é escrita para o log de erro.
-
-A verificação de depuração de sincronização para o motor de armazenamento `InnoDB` é definida em `UNIV_DEBUG` e está disponível quando o suporte de depuração é compilado usando a opção `WITH_DEBUG`.
-
-Para ativá-lo, inicie o `mysqld` com a opção `--debug-sync-timeout=N`, onde `N` é um valor de tempo de espera maior que 0. (O valor padrão é 0, que desativa o Debug Sync.) `N` torna-se o tempo de espera padrão para os pontos de sincronização individuais.
-
-A verificação de depuração de sincronização para o motor de armazenamento `InnoDB` está disponível quando o suporte de depuração é compilado usando a opção `WITH_DEBUG`.
-
-Para uma descrição da instalação Debug Sync e como usar pontos de sincronização, consulte MySQL Internals: Test Synchronization.
-
-- `-DWITH_EDITLINE=value`
-
-Quais bibliotecas de `libedit`/`editline` usar. Os valores permitidos são `bundled` (o padrão) e `system`.
-
-- `-DWITH_ICU={icu_type|path_name}`
-
-O MySQL usa International Components for Unicode (ICU) para suportar operações de expressão regular. A opção `WITH_ICU` indica o tipo de suporte da ICU a ser incluído ou o nome do caminho para a instalação da ICU a ser usada.
-
-- `icu_type` pode ser um dos seguintes valores:
-
-  - `bundled`: Use a biblioteca ICU incluída com a distribuição. Esta é a opção padrão e é a única opção suportada para o Windows.
-  - `system`: Utilize a biblioteca da UTI do sistema.
-- `path_name` é o nome do caminho para a instalação da UTI. Isso pode ser preferível ao uso do valor `icu_type` de `system` porque pode impedir que a CMake detecte e use uma versão antiga ou incorreta da UTI instalada no sistema. (Outra maneira permitida de fazer a mesma coisa é definir `WITH_ICU` para `system` e definir a opção `CMAKE_PREFIX_PATH` para `path_name`.)
-
-* `-DWITH_INNODB_EXTRA_DEBUG=bool`
-
-Se deve incluir suporte extra de depuração do InnoDB.
-
-Ativando `WITH_INNODB_EXTRA_DEBUG` se ativam verificações de depuração de erros InnoDB extra. Esta opção só pode ser ativada quando `WITH_DEBUG` está ativado.
-
-- `-DWITH_JEMALLOC=bool`
-
-Se ligar com o `-ljemalloc`. Se ativado, as rotinas integradas `malloc()`, `calloc()`, `realloc()`, e `free()` são desativadas. O padrão é `OFF`.
-
-`WITH_JEMALLOC` e `WITH_TCMALLOC` são mutuamente exclusivas.
-
-- `-DWITH_LIBEVENT=string`
-
-Qual biblioteca `libevent` usar. Os valores permitidos são `bundled` (padrão) e `system`. Se o `system` é especificado e nenhuma biblioteca `libevent` do sistema pode ser encontrada, um erro ocorre independentemente, e o pacote `libevent` não é usado.
-
-A biblioteca `libevent` é requerida pelo Plugin X e pelo Roteador MySQL.
-
-- `-DWITH_LIBWRAP=bool`
-
-Se deve incluir suporte a `libwrap` (wrappers TCP).
-
-- `-DWITH_LOCK_ORDER=bool`
-
-Se a ferramenta LOCK\_ORDER deve ser habilitada. Por padrão, esta opção está desativada e as compilações do servidor não contêm ferramentas. Se a ferramenta estiver habilitada, a ferramenta LOCK\_ORDER está disponível e pode ser usada como descrito na Seção 7.9.3, A Ferramenta LOCK\_ORDER.
-
-::: info Note
-
-Com a opção `WITH_LOCK_ORDER` ativada, as compilações do MySQL requerem o programa `flex`.
-
-:::
-
-- `-DWITH_LSAN=bool`
-
-Se o LeakSanitizer deve ser executado sem o AddressSanitizer. O padrão é `OFF`.
-
-- `-DWITH_LTO=bool`
-
-Se o link-time optimizer deve ser ativado, se o compilador o suportar. O padrão é `OFF` a menos que `FPROFILE_USE` esteja ativado.
-
-- `-DWITH_LZ4=lz4_type`
-
-A opção `WITH_LZ4` indica a fonte de suporte `zlib`:
-
-- `bundled`: Use a biblioteca `lz4` incluída na distribuição.
-- `system`: Use a biblioteca do sistema `lz4`.
-
-* `-DWITH_MECAB={disabled|system|path_name}`
-
-Se você instalou o MeCab em um diretório de instalação personalizado, especifique o caminho para a instalação do MeCab, por exemplo, `-DWITH_MECAB=/opt/mecab`. Se a opção `system` não funcionar, especificar o caminho de instalação do MeCab deve funcionar em todos os casos.
-
-- `-DWITH_MSAN=bool`
-
-Se ativar o MemorySanitizer, para compiladores que o suportam. O padrão está desativado.
-
-Para que esta opção tenha efeito se ativada, todas as bibliotecas ligadas ao MySQL também devem ter sido compiladas com a opção ativada.
-
-- `-DWITH_MSCRT_DEBUG=bool`
-
-Se habilitar o rastreamento de vazamento de memória do Visual Studio CRT. O padrão é `OFF`.
-
-- `-DMSVC_CPPCHECK=bool`
-
-Se deve habilitar a análise de código MSVC. O padrão é `ON`.
-
-- `-DWITH_MYSQLX=bool`
-
-Se construir com suporte para X Plugin. O padrão é `ON`. Veja Capítulo 22, *Using MySQL as a Document Store*.
-
-- `-DWITH_NUMA=bool`
-
-Configure explicitamente a política de alocação de memória NUMA. `CMake` define o valor padrão `WITH_NUMA` com base em se a plataforma atual tem `NUMA` suporte. Para plataformas sem suporte NUMA, `CMake` se comporta da seguinte forma:
-
-- Sem opção NUMA (o caso normal), `CMake` continua normalmente, produzindo apenas este aviso: biblioteca NUMA ausente ou versão requerida não disponível.
-- Com `-DWITH_NUMA=ON`, `CMake` aborda com este erro: biblioteca NUMA ausente ou versão requerida não disponível.
-
-* `-DWITH_PACKAGE_FLAGS=bool`
-
-Para os flags normalmente usados para pacotes RPM e Debian, se adicioná-los a compilações autônomas nessas plataformas. O padrão é `ON` para compilações não debug.
-
-- `-DWITH_PROTOBUF=protobuf_type`
-
-Qual pacote de Protocol Buffers usar. `protobuf_type` pode ser um dos seguintes valores:
-
-- `bundled`: Use o pacote incluído com a distribuição. Este é o padrão. Opcionalmente use `INSTALL_PRIV_LIBDIR` para modificar o diretório dinâmico da biblioteca Protobuf.
-- `system`: Utilize o pacote instalado no sistema.
-
+  + `bundled`: Use o pacote empacotado com a distribuição. Este é o padrão. Opcionalmente, use `INSTALL_PRIV_LIBDIR` para modificar o diretório dinâmico da biblioteca Protobuf.
+  + `system`: Use o pacote instalado no sistema.
+  
 Outros valores são ignorados, com um fallback para `bundled`.
+*  `-DWITH_RAPID=bool`
 
-- `-DWITH_RAPID=bool`
+  Se devem ser compiladas as extensões do ciclo de desenvolvimento rápido. Quando habilitado, um diretório `rapid` é criado na árvore de compilação contendo essas extensões. Quando desabilitado, nenhum diretório `rapid` é criado na árvore de compilação. O padrão é `ON`, a menos que o diretório `rapid` seja removido da árvore de origem, caso em que o padrão se torna `OFF`.
+*  `-DWITH_RAPIDJSON=rapidjson_type`
 
-Se construir os plugins de ciclo de desenvolvimento rápido. Quando ativado, um diretório `rapid` é criado na árvore de compilação contendo esses plugins. Quando desativado, nenhum diretório `rapid` é criado na árvore de compilação. O padrão é `ON`, a menos que o diretório `rapid` seja removido da árvore de origem, caso em que o padrão se torna `OFF`.
+  O tipo de suporte da biblioteca RapidJSON a ser incluído. *`rapidjson_type`* pode ser um dos seguintes valores:
 
-- `-DWITH_RAPIDJSON=rapidjson_type`
+  + `bundled`: Use a biblioteca RapidJSON empacotada com a distribuição. Este é o padrão.
+  + `system`: Use a biblioteca RapidJSON do sistema. A versão 1.1.0 ou posterior é necessária.
+*  `-DWITH_ROUTER=bool`
 
-O tipo de suporte de biblioteca RapidJSON a incluir. `rapidjson_type` pode ser um dos seguintes valores:
+  Se devem ser compiladas as extensões do MySQL Router. O padrão é `ON`.
+*  `-DWITH_SASL=value`
 
-- `bundled`: Use a biblioteca RapidJSON incluída na distribuição.
-- `system`: Use a biblioteca RapidJSON do sistema. É necessária a versão 1.1.0 ou posterior.
+  Uso interno apenas. Não suportado no Windows.
+*  `-DWITH_SSL={ssl_type|path_name}`
 
-* `-DWITH_ROUTER=bool`
+  Para suporte de conexões criptografadas, entropia para geração de números aleatórios e outras operações relacionadas à criptografia, o MySQL deve ser compilado usando uma biblioteca SSL. Esta opção especifica qual biblioteca SSL usar.
 
-Se construir o Roteador MySQL. O padrão é `ON`.
++ `ssl_type` pode ser um dos seguintes valores:
 
-- `-DWITH_SASL=value`
+    - `system`: Use a biblioteca OpenSSL do sistema. Este é o valor padrão.
 
-Apenas para uso interno. Não é suportado no Windows.
+      No macOS e no Windows, usar `system` configura o MySQL para ser compilado como se o CMake tivesse sido invocado com `path_name` apontando para uma biblioteca OpenSSL instalada manualmente. Isso ocorre porque eles não têm bibliotecas SSL do sistema. No macOS, *brew install openssl* é instalado em `/usr/local/opt/openssl` para que `system` possa encontrá-lo. No Windows, ele verifica `%ProgramFiles%/OpenSSL`, `%ProgramFiles%/OpenSSL-Win32`, `%ProgramFiles%/OpenSSL-Win64`, `C:/OpenSSL`, `C:/OpenSSL-Win32` e `C:/OpenSSL-Win64`.
+    - `yes`: Este é um sinônimo de `system`.
+    - `opensslversion`: Use um pacote de sistema OpenSSL alternativo, como `openssl11` no EL7, ou `openssl3` (ou `openssl3-fips`) no EL8.
 
-- `-DWITH_SSL={ssl_type|path_name}`
+      Plugins de autenticação, como LDAP e Kerberos, são desativados, pois não suportam essas versões alternativas do OpenSSL.
+  + `path_name` é o nome do caminho para a instalação do OpenSSL a ser usada. Isso pode ser preferível ao usar o valor `system` de `ssl_type`, pois pode impedir que o CMake detecte e use uma versão do OpenSSL mais antiga ou incorreta instalada no sistema. (Outra maneira permitida de fazer a mesma coisa é definir `WITH_SSL` para `system` e definir a opção `CMAKE_PREFIX_PATH` para `path_name`.)
 
-Para suporte de conexões criptografadas, entropia para geração de números aleatórios e outras operações relacionadas à criptografia, o MySQL deve ser construído usando uma biblioteca SSL.
+*  `-DWITH_SHOW_PARSE_TREE=bool`
 
-- \[`ssl_type`]] pode ser um dos seguintes valores:
+  Habilita o suporte para `SHOW PARSE_TREE` no servidor, usado apenas em desenvolvimento e depuração. Não é usado para builds de lançamento ou suportado em produção.
+*  `-DWITH_SYSTEMD=bool`
 
-  - `system`: Use a biblioteca OpenSSL do sistema. Este é o padrão.
+  Se habilitar a instalação de arquivos de suporte `systemd`. Por padrão, esta opção está desabilitada. Quando habilitada, os arquivos de suporte `systemd` são instalados, e scripts como `mysqld_safe` e o script de inicialização System V não são instalados. Em plataformas onde `systemd` não está disponível, habilitar `WITH_SYSTEMD` resulta em um erro do `CMake`.
 
-    No macOS e no Windows, usar o `system` configura o MySQL para construir como se o CMake fosse invocado com o `path_name` aponta para uma biblioteca OpenSSL instalada manualmente. Isso ocorre porque eles não têm bibliotecas SSL do sistema. No macOS, \*brew install abre as instalações do \[\[SL\_SL]] para o `/usr/local/opt/openssl` para que o `system` possa encontrá-lo. No Windows, ele verifica o `%ProgramFiles%/OpenSSL`, `%ProgramFiles%/OpenSSL-Win32`, `%ProgramFiles%/OpenSSL-Win64`, `C:/OpenSSL`, `C:/OpenSSL-Win32`, e `C:/OpenSSL-Win64`.
-  - `yes`: Este é um sinônimo de `system`.
-  - `opensslversion`: Use um pacote de sistema OpenSSL alternativo, como `openssl11` no EL7, ou `openssl3` (ou `openssl3-fips`) no EL8.
+Quando o servidor foi construído usando essa opção, o MySQL inclui todas as mensagens do `systemd` no log de erro do servidor (veja a Seção 7.4.2, “O Log de Erro”).
 
-    Os plugins de autenticação, como LDAP e Kerberos, estão desativados, pois não suportam essas versões alternativas do OpenSSL.
-- `path_name` é o nome do caminho para a instalação do OpenSSL a ser usado. Isso pode ser preferível ao uso do valor \* `ssl_type` \* `system` porque pode impedir que a CMake detecte e use uma versão mais antiga ou incorreta do OpenSSL instalada no sistema. (Outra maneira permitida de fazer a mesma coisa é definir `WITH_SSL` para `system` e definir a opção `CMAKE_PREFIX_PATH` para `path_name`.)
+Para obter mais informações sobre o uso do `systemd`, consulte a Seção 2.5.9, “Gerenciamento do Servidor MySQL com systemd”. Essa seção também inclui informações sobre a especificação de opções que não são especificadas explicitamente nos grupos de opções `[mysqld_safe]`. Como o `mysqld_safe` não é instalado quando o `systemd` é usado, essas opções devem ser especificadas de outra forma.
+*  `-DWITH_SYSTEM_LIBS=bool`
 
-* `-DWITH_SHOW_PARSE_TREE=bool`
+Esta opção serve como uma opção “guarda-chuva” para definir o valor `system` de qualquer uma das seguintes opções do `CMake` que não são definidas explicitamente: `WITH_CURL`, `WITH_EDITLINE`, `WITH_ICU`, `WITH_LIBEVENT`, `WITH_LZ4`, `WITH_LZMA`, `WITH_PROTOBUF`, `WITH_RE2`, `WITH_SSL`, `WITH_ZLIB`, `WITH_ZSTD`.
+*  `-DWITH_SYSTEMD_DEBUG=bool`
 
-Permite o suporte para `SHOW PARSE_TREE` no servidor, usado apenas no desenvolvimento e depuração. Não é usado para builds de lançamento ou suportado na produção.
+Se produzir informações de depuração adicionais do `systemd`, para plataformas em que o `systemd` é usado para executar o MySQL. O padrão é `OFF`.
+*  `-DWITH_TCMALLOC=bool`
 
-- `-DWITH_SYSTEMD=bool`
+Se vincular com `-ltcmalloc`. Se habilitado, as rotinas integradas `malloc()`, `calloc()`, `realloc()` e `free()` são desabilitadas. O padrão é `OFF`.
 
-Se a instalação de arquivos de suporte do `systemd` deve ser ativada. Por padrão, essa opção está desativada. Quando ativada, os arquivos de suporte do `systemd` são instalados, e scripts como o `mysqld_safe` e o script de inicialização do Sistema V não são instalados. Em plataformas onde o `systemd` não está disponível, ativar o `WITH_SYSTEMD` resulta em um erro do `CMake`.
-
-Quando o servidor foi construído usando esta opção, o MySQL inclui todas as mensagens `systemd` no registro de erros do servidor (ver Seção 7.4.2, The Error Log).
-
-Para obter mais informações sobre o uso de \[`systemd`], consulte a Seção 2.5.9, Gerenciando o MySQL Server com systemd. Essa seção também inclui informações sobre a especificação de opções especificadas de outra forma nos grupos de opções \[`[mysqld_safe]`]. Como \[`mysqld_safe`]] não é instalado quando \[`systemd`]] é usado, essas opções devem ser especificadas de outra maneira.
-
-- `-DWITH_SYSTEM_LIBS=bool`
-
-Esta opção serve como uma opção  guarda-chuva para definir o valor `system` de qualquer uma das seguintes `CMake` opções que não são definidas explicitamente: `WITH_CURL`, `WITH_EDITLINE`, `WITH_ICU`, `WITH_LIBEVENT`, `WITH_LZ4`, `WITH_LZMA`, `WITH_PROTOBUF`, `WITH_RE2`, `WITH_SSL`, `WITH_ZLIB`, `WITH_ZSTD`.
-
-- `-DWITH_SYSTEMD_DEBUG=bool`
-
-Se deve produzir informações adicionais de depuração de `systemd`, para plataformas nas quais `systemd` é usado para executar o MySQL. O padrão é `OFF`.
-
-- `-DWITH_TCMALLOC=bool`
-
-Se ligar com o `-ltcmalloc`. Se ativado, as rotinas integradas `malloc()`, `calloc()`, `realloc()`, e `free()` são desativadas. O padrão é `OFF`.
-
-Começando com o MySQL 8.4.1, uma biblioteca `tcmalloc` está incluída na fonte; você pode fazer com que a compilação use a versão em pacote definindo essa opção para `BUNDLED`. `BUNDLED` é suportado apenas em sistemas Linux.
+A partir do MySQL 8.4.1, uma biblioteca `tcmalloc` é incluída na fonte; você pode fazer com que a compilação use a versão incluída configurando essa opção para `BUNDLED`. `BUNDLED` é suportado apenas em sistemas Linux.
 
 `WITH_TCMALLOC` e `WITH_JEMALLOC` são mutuamente exclusivas.
+*  `-DWITH_TEST_TRACE_PLUGIN=bool`
 
-- `-DWITH_TEST_TRACE_PLUGIN=bool`
+Se deseja construir o plugin de registro de protocolo de teste do cliente (consulte Usar o plugin de registro de protocolo de teste). Por padrão, essa opção está desabilitada. Ativação dessa opção não tem efeito, a menos que a opção `WITH_CLIENT_PROTOCOL_TRACING` esteja habilitada. Se o MySQL estiver configurado com ambas as opções habilitadas, a biblioteca de clientes `libmysqlclient` será construída com o plugin de registro de protocolo de teste embutido e todos os clientes padrão do MySQL carregarão o plugin. No entanto, mesmo quando o plugin de teste estiver habilitado, ele não tem efeito por padrão. O controle do plugin é concedido usando variáveis de ambiente; consulte Usar o plugin de registro de protocolo de teste.
 
-Se construir o plugin do cliente de rastreamento do protocolo de teste (ver Usando o Plugin de rastreamento do protocolo de teste). Por padrão, essa opção está desativada. Ativar essa opção não tem efeito a menos que a opção `WITH_CLIENT_PROTOCOL_TRACING` esteja ativada. Se o MySQL estiver configurado com ambas as opções ativadas, a biblioteca do cliente `libmysqlclient` é criada com o plugin de rastreamento do protocolo de teste incorporado e todos os clientes padrão do MySQL carregam o plugin. No entanto, mesmo quando o plugin de teste está ativado, ele não tem efeito por padrão. O controle sobre o plugin é oferecido usando variáveis de ambiente; veja Usando o Plugin de rastreamento do protocolo de teste.
+::: info Nota
 
-::: info Note
-
-Não habilite a opção `WITH_TEST_TRACE_PLUGIN` se você quiser usar seus próprios plugins de rastreamento de protocolo, porque apenas um desses plugins pode ser carregado de cada vez e ocorre um erro para tentativas de carregar um segundo. Se você já construiu o MySQL com o plugin de rastreamento de protocolo de teste habilitado para ver como ele funciona, você deve reconstruir o MySQL sem ele antes de poder usar seus próprios plugins.
-
-:::
-
-Para obter informações sobre como escrever plugins de rastreamento, consulte Plugins de rastreamento de protocolo de escrita.
-
-- `-DWITH_TSAN=bool`
-
-Se ativar o ThreadSanitizer, para compiladores que o suportam. O padrão está desativado.
-
-- `-DWITH_UBSAN=bool`
-
-Se ativar o Desinfetador de Comportamento Não Definido, para compiladores que o suportam. O padrão está desativado.
-
-- `-DWITH_UNIT_TESTS={ON|OFF}`
-
-Se ativado, compilar MySQL com testes unitários. O padrão é `ON` a menos que o servidor não esteja sendo compilado.
-
-- `-DWITH_UNIXODBC=1`
-
-Permite o suporte a unixODBC, para Connector/ODBC.
-
-- `-DWITH_VALGRIND=bool`
-
-Se deve compilar nos arquivos de cabeçalho do Valgrind, o que expõe a API do Valgrind ao código MySQL. O padrão é `OFF`.
-
-Para gerar uma compilação de depuração consciente da Valgrind, o `-DWITH_VALGRIND=1` normalmente é combinado com o `-DWITH_DEBUG=1`.
-
-- `-DWITH_WIN_JEMALLOC=string`
-
-No Windows, passe em um caminho para um diretório contendo `jemalloc.dll` para habilitar a funcionalidade jemalloc. O sistema de compilação copia `jemalloc.dll` para o mesmo diretório que `mysqld.exe` e/ou `mysqld-debug.exe` e o utiliza para operações de gerenciamento de memória. Funções de memória padrão são usadas se `jemalloc.dll` não for encontrado ou não exportar as funções necessárias. Uma mensagem de registro de nível INFORMATION registra se o jemalloc é encontrado e usado ou
-
-Esta opção está habilitada para binários oficiais do MySQL para Windows.
-
-- `-DWITH_ZLIB=zlib_type`
-
-Alguns recursos exigem que o servidor seja construído com suporte à biblioteca de compressão, como as funções `COMPRESS()` e `UNCOMPRESS()`, e compressão do protocolo cliente/servidor. A opção `WITH_ZLIB` indica a fonte de suporte `zlib`:
-
-A versão mínima suportada de `zlib` é 1.2.13.
-
-- `bundled`: Use a biblioteca `zlib` incluída na distribuição.
-- `system`: Use a biblioteca do sistema `zlib`.
-
-* `-DWITH_ZSTD=zstd_type`
-
-A compressão de conexão usando o algoritmo `zstd` (ver Seção 6.2.8, Connection Compression Control) requer que o servidor seja construído com suporte à biblioteca `zstd`.
-
-- `bundled`: Use a biblioteca `zstd` incluída na distribuição.
-- `system`: Use a biblioteca do sistema `zstd`.
-
-* `-DWITHOUT_SERVER=bool`
-
-Se construir sem MySQL Server. O padrão é OFF, que faz construir o servidor.
-
-Esta é considerada uma opção experimental; é preferível construir com o servidor.
-
-Esta opção também impede a construção do `NDB` motor de armazenamento ou qualquer `NDB` binários, incluindo programas de gerenciamento e nó de dados.
-
-#### Bandeiras do compilador
-
-- `-DCMAKE_C_FLAGS="flags`"
-
-Bandeiras para o compilador C.
-
-- `-DCMAKE_CXX_FLAGS="flags`"
-
-Bandeiras para o compilador C++.
-
-- `-DWITH_DEFAULT_COMPILER_OPTIONS=bool`
-
-Se usar as bandeiras de `cmake/build_configurations/compiler_options.cmake`.
-
-::: info Note
-
-Todas as bandeiras de otimização são cuidadosamente escolhidas e testadas pela equipe de construção do MySQL.
+Não habilite a opção `WITH_TEST_TRACE_PLUGIN` se quiser usar seus próprios plugins de registro de protocolo, pois apenas um desses plugins pode ser carregado por vez e ocorrerá um erro para tentativas de carregar um segundo. Se você já construiu o MySQL com o plugin de registro de protocolo de teste habilitado para ver como ele funciona, você deve reconstruir o MySQL sem ele antes de poder usar seus próprios plugins.
 
 :::
 
-- `-DOPTIMIZE_SANITIZER_BUILDS=bool`
+Para informações sobre como escrever plugins de registro, consulte Escrever plugins de registro de protocolo.
+* `-DWITH_TSAN=bool`
 
-Se deve adicionar `-O1 -fno-inline` às compilações de desinfetante. O padrão é `ON`.
+Se deseja habilitar o ThreadSanitizer, para compiladores que o suportam. O padrão é desativado.
+* `-DWITH_UBSAN=bool`
 
-Para especificar suas próprias bandeiras de compilador C e C ++, para bandeiras que não afetam a otimização, use as opções `CMAKE_C_FLAGS` e `CMAKE_CXX_FLAGS` CMake.
+Se deseja habilitar o Undefined Behavior Sanitizer, para compiladores que o suportam. O padrão é desativado.
+* `-DWITH_UNIT_TESTS={ON|OFF}`
 
-Ao fornecer seus próprios sinais de compilador, você pode especificar `CMAKE_BUILD_TYPE` também.
+Se habilitado, compile o MySQL com testes unitários. O padrão é `ON`, a menos que o servidor não esteja sendo compilado.
+* `-DWITH_UNIXODBC=1`
 
-Por exemplo, para criar uma versão de lançamento de 32 bits em uma máquina Linux de 64 bits, faça isso:
+Habilita o suporte unixODBC, para Connector/ODBC.
+* `-DWITH_VALGRIND=bool`
+
+Se deseja compilar os arquivos de cabeçalho do Valgrind, que expõe a API do Valgrind ao código do MySQL. O padrão é `OFF`.
+
+Para gerar uma compilação de depuração consciente do Valgrind, `-DWITH_VALGRIND=1` normalmente é combinado com `-DWITH_DEBUG=1`. Consulte Construção de configurações de depuração.
+* `-DWITH_WIN_JEMALLOC=string`
+
+Em Windows, forneça um caminho para um diretório que contenha `jemalloc.dll` para habilitar a funcionalidade do jemalloc. O sistema de compilação copia `jemalloc.dll` para o mesmo diretório que `mysqld.exe` e/ou `mysqld-debug.exe` e utiliza-o para operações de gerenciamento de memória. As funções de memória padrão são usadas se `jemalloc.dll` não for encontrado ou não exportar as funções necessárias. Uma mensagem de log de nível INFORMÁTICO registra se o jemalloc é encontrado e usado ou não.
+
+Esta opção está habilitada para os binários oficiais do MySQL para Windows.
+*  `-DWITH_ZLIB=zlib_type`
+
+Algumas funcionalidades exigem que o servidor seja compilado com suporte à biblioteca de compressão, como as funções `COMPRESS()` e `UNCOMPRESS()`, e a compressão do protocolo cliente/servidor. A opção `WITH_ZLIB` indica a fonte do suporte ao `zlib`:
+
+A versão mínima suportada do `zlib` é 1.2.13.
+
++ `bundled`: Use a biblioteca `zlib` incluída na distribuição. Este é o padrão.
++ `system`: Use a biblioteca `zlib` do sistema.
+*  `-DWITH_ZSTD=zstd_type`
+
+A compressão da conexão usando o algoritmo `zstd` (consulte a Seção 6.2.8, “Controle de Compressão de Conexão”) requer que o servidor seja compilado com suporte à biblioteca `zstd`. A opção `WITH_ZSTD` indica a fonte do suporte ao `zstd`:
+
++ `bundled`: Use a biblioteca `zstd` incluída na distribuição. Este é o padrão.
++ `system`: Use a biblioteca `zstd` do sistema.
+*  `-DWITHOUT_SERVER=bool`
+
+Se compilar sem o MySQL Server. O padrão é OFF, o que compilará o servidor.
+
+Esta é considerada uma opção experimental; é preferível compilar com o servidor.
+
+Esta opção também impede a compilação do motor de armazenamento `NDB` ou de quaisquer binários `NDB`, incluindo programas de gerenciamento e nó de dados.
+
+#### Finais do Compilador
+
+*  `-DCMAKE_C_FLAGS="flags"`
+
+Finais para o compilador C.
+*  `-DCMAKE_CXX_FLAGS="flags"`
+
+Finais para o compilador C++.
+*  `-DWITH_DEFAULT_COMPILER_OPTIONS=bool`
+
+Se usar as flags do `cmake/build_configurations/compiler_options.cmake`.
+
+::: info Nota
+
+Todas as flags de otimização são cuidadosamente escolhidas e testadas pela equipe de compilação do MySQL. A supressão delas pode levar a resultados inesperados e é feita por sua conta e risco.
+
+:::
+
+*  `-DOPTIMIZE_SANITIZER_BUILDS=bool`
+
+Se adicionar `-O1 -fno-inline` às compilações do sanitizador. O padrão é `ON`.
+
+Para especificar suas próprias flags do compilador C e C++, para flags que não afetam a otimização, use as opções `CMAKE_C_FLAGS` e `CMAKE_CXX_FLAGS` do CMake.
+
+Ao fornecer suas próprias flags do compilador, você pode querer especificar `CMAKE_BUILD_TYPE` também.
+
+Por exemplo, para criar uma compilação de versão de 32 bits em uma máquina Linux de 64 bits, faça isso:
 
 ```
 $> mkdir build
@@ -835,73 +701,61 @@ $> cmake .. -DCMAKE_C_FLAGS=-m32
   -DCMAKE_BUILD_TYPE=RelWithDebInfo
 ```
 
-Se você definir as bandeiras que afetam a otimização (`-Onumber`), você deve definir as opções `CMAKE_C_FLAGS_build_type` e/ou `CMAKE_CXX_FLAGS_build_type`, onde `build_type` corresponde ao valor `CMAKE_BUILD_TYPE`. Para especificar uma otimização diferente para o tipo de compilação padrão (`RelWithDebInfo`), defina as opções `CMAKE_C_FLAGS_RELWITHDEBINFO` e `CMAKE_CXX_FLAGS_RELWITHDEBINFO`. Por exemplo, para compilar no Linux com `-O3` e com símbolos de depuração, faça o seguinte:
+Se você definir flags que afetam a otimização ( `-Onumber` ), você deve definir as opções `CMAKE_C_FLAGS_build_type` e/ou `CMAKE_CXX_FLAGS_build_type`, onde `build_type` corresponde ao valor de `CMAKE_BUILD_TYPE`. Para especificar uma otimização diferente para o tipo de compilação padrão (`RelWithDebInfo`), defina as opções `CMAKE_C_FLAGS_RELWITHDEBINFO` e `CMAKE_CXX_FLAGS_RELWITHDEBINFO`. Por exemplo, para compilar no Linux com `-O3` e com símbolos de depuração, faça isso:
 
 ```
 $> cmake .. -DCMAKE_C_FLAGS_RELWITHDEBINFO="-O3 -g" 
   -DCMAKE_CXX_FLAGS_RELWITHDEBINFO="-O3 -g"
 ```
 
-#### CMake Opções para a Compilação de Cluster NDB
+#### Opções do CMake para Compilar o NDB Cluster
 
-Para compilar com suporte para NDB Cluster, você pode usar `-DWITH_NDB`, o que faz com que a compilação inclua o motor de armazenamento NDB e todos os programas NDB. Esta opção está habilitada por padrão. Para evitar a compilação do plugin do motor de armazenamento NDB, use `-DWITH_NDBCLUSTER_STORAGE_ENGINE=OFF`. Outros aspectos da compilação podem ser controlados usando as outras opções listadas nesta seção.
+Para compilar com suporte para o NDB Cluster, você pode usar `-DWITH_NDB`, o que faz com que a compilação inclua o motor de armazenamento NDB e todos os programas NDB. Esta opção está habilitada por padrão. Para evitar a compilação do plugin do motor de armazenamento NDB, use `-DWITH_NDBCLUSTER_STORAGE_ENGINE=OFF`. Outros aspectos da compilação podem ser controlados usando as outras opções listadas nesta seção.
 
-As seguintes opções se aplicam ao criar as fontes MySQL com suporte ao cluster NDB.
+As seguintes opções se aplicam ao compilar as fontes do MySQL com suporte para o NDB Cluster.
 
-- `-DNDB_UTILS_LINK_DYNAMIC={ON|OFF}`
+*  `-DNDB_UTILS_LINK_DYNAMIC={ON|OFF}`
 
-Controla se os utilitários NDB, como `ndb_drop_table` estão ligados com `ndbclient` estaticamente (`OFF`) ou dinamicamente (`ON`); `OFF` (ligação estática) é o padrão. Normalmente, a ligação estática é usada ao construí-los para evitar problemas com `LD_LIBRARY_PATH`, ou quando várias versões de `ndbclient` estão instaladas. Esta opção destina-se a criar imagens Docker e possivelmente outros casos em que o ambiente de destino está sujeito a controle preciso e é desejável reduzir o tamanho da imagem.
+Controla se as utilidades do NDB, como `ndb_drop_table`, são vinculadas ao `ndbclient` de forma estática (`OFF`) ou dinâmica (`ON`); a vinculação estática (`OFF`) é a padrão. Normalmente, a vinculação estática é usada ao compilar essas utilidades para evitar problemas com o `LD_LIBRARY_PATH` ou quando múltiplas versões do `ndbclient` estão instaladas. Esta opção é destinada à criação de imagens Docker e, possivelmente, outros casos em que o ambiente de destino está sujeito a um controle preciso e é desejável reduzir o tamanho da imagem.
+*  `-DWITH_CLASSPATH=caminho`
 
-- `-DWITH_CLASSPATH=path`
+  Define o caminho do classpath para a construção do Conector do NDB Cluster do MySQL para Java. O padrão é vazio. Esta opção é ignorada se `-DWITH_NDB_JAVA=OFF` for usada.
+*  `-DWITH_ERROR_INSERT={ON|OFF}`
 
-Define o caminho de classe para a construção do MySQL NDB Cluster Connector para Java. O padrão é vazio. Esta opção é ignorada se `-DWITH_NDB_JAVA=OFF` é usado.
+  Habilita a injeção de erros no kernel `NDB`. Apenas para testes; não é destinado ao uso na construção de binários de produção. O padrão é `OFF`.
+*  `-DWITH_NDB={ON|OFF}`
 
-- `-DWITH_ERROR_INSERT={ON|OFF}`
+  Construir o MySQL NDB Cluster; construir o plugin NDB e todos os programas do NDB Cluster.
+*  `-DWITH_NDBAPI_EXAMPLES={ON|OFF}`
 
-Permite a injeção de erro no kernel `NDB`. Apenas para testes; não destinado a ser usado na construção de binários de produção. O padrão é `OFF`.
+  Construir programas de exemplo do API NDB em `storage/ndb/ndbapi-examples/`. Consulte Exemplos do API NDB para informações sobre esses.
+*  `-DWITH_NDBCLUSTER_STORAGE_ENGINE={ON|OFF}`
 
-- `-DWITH_NDB={ON|OFF}`
+  Controla (apenas) se o motor de armazenamento `NDBCLUSTER` é incluído na construção; `WITH_NDB` habilita essa opção automaticamente, portanto, é recomendável que você use `WITH_NDB` em vez disso.
+*  `-DWITH_NDBCLUSTER={ON|OFF}` (DESUSO)
 
-Crie o MySQL NDB Cluster; crie o plug-in NDB e todos os programas do NDB Cluster.
+  Construir e vincular o suporte para o motor de armazenamento `NDB` no `mysqld`.
 
-- `-DWITH_NDBAPI_EXAMPLES={ON|OFF}`
+  Esta opção está desatualizada e sujeita à eventual remoção; use `WITH_NDB` em vez disso.
+*  `-DWITH_NDBMTD={ON|OFF}`
 
-Crie programas de exemplo da API do NDB em `storage/ndb/ndbapi-examples/`.
+  Construir o executável do nó de dados multithread `ndbmtd`. O padrão é `ON`.
+*  `-DWITH_NDB_DEBUG={ON|OFF}`
 
-- `-DWITH_NDBCLUSTER_STORAGE_ENGINE={ON|OFF}`
+  Habilitar a construção das versões de depuração dos binários do NDB Cluster. Isso é `OFF` por padrão.
+*  `-DWITH_NDB_JAVA={ON|OFF}`
 
-Controla (apenas) se o motor de armazenamento `NDBCLUSTER` está incluído na compilação; `WITH_NDB` habilita essa opção automaticamente, por isso é recomendado que você use `WITH_NDB` em vez disso.
+  Habilitar a construção do NDB Cluster com suporte para Java, incluindo suporte para ClusterJ (consulte Conector do NDB Cluster do MySQL para Java).
 
-- \[`-DWITH_NDBCLUSTER={ON|OFF}`]] (DEPRECADO)
+Esta opção está ativada por padrão. Se você não deseja compilar o NDB Cluster com suporte ao Java, deve desabilitá-lo explicitamente especificando `-DWITH_NDB_JAVA=OFF` ao executar o `CMake`. Caso contrário, se o Java não for encontrado, a configuração da compilação falha.
+*  `-DWITH_NDB_PORT=port`
 
-Construir e vincular em suporte para o motor de armazenamento `NDB` em `mysqld`.
+  Faz com que o servidor de gerenciamento do NDB Cluster (`ndb_mgmd`) que é compilado use essa `port` por padrão. Se esta opção não for definida, o servidor de gerenciamento resultante tenta usar a porta 1186 por padrão.
+*  `-DWITH_NDB_TEST={ON|OFF}`
 
-Esta opção está desatualizada e sujeita a eventual remoção; use `WITH_NDB` em vez disso.
+  Se ativado, inclua um conjunto de programas de teste da API NDB. O padrão é `OFF`.
+*  `-DWITH_NDB_TLS_SEARCH_PATH=path`
 
-- `-DWITH_NDBMTD={ON|OFF}`
+  Defina o caminho padrão pesquisado pelo `ndb_sign_keys` e outros programas `NDB` para arquivos de certificados e chaves TLS.
 
-Construir o node de dados multithread executável `ndbmtd`. O padrão é `ON`.
-
-- `-DWITH_NDB_DEBUG={ON|OFF}`
-
-Permitir a construção das versões de depuração dos binários do cluster NDB. Este é o `OFF` por padrão.
-
-- `-DWITH_NDB_JAVA={ON|OFF}`
-
-Permitir a construção de Cluster NDB com suporte Java, incluindo suporte para ClusterJ (ver MySQL NDB Cluster Connector para Java).
-
-Esta opção é `ON` por padrão. Se você não deseja compilar o NDB Cluster com suporte ao Java, você deve desativá-lo explicitamente especificando `-DWITH_NDB_JAVA=OFF` ao executar `CMake`. Caso contrário, se o Java não puder ser encontrado, a configuração da compilação falhará.
-
-- `-DWITH_NDB_PORT=port`
-
-Faz com que o servidor de gerenciamento de cluster do NDB (`ndb_mgmd`) que é construído para usar este `port` por padrão. Se esta opção for desativada, o servidor de gerenciamento resultante tentará usar a porta 1186 por padrão.
-
-- `-DWITH_NDB_TEST={ON|OFF}`
-
-Se ativado, inclua um conjunto de programas de teste de API NDB. O padrão é `OFF`.
-
-- `-DWITH_NDB_TLS_SEARCH_PATH=path`
-
-Defina o caminho padrão pesquisado por `ndb_sign_keys` e outros programas `NDB` para arquivos de certificado e chave TLS.
-
-O padrão para plataformas Windows é `$HOMEDIR/ndb-tls`; para outras plataformas, como Linux, é `$HOME/ndb-tls`.
+  O padrão para plataformas Windows é `$HOMEDIR/ndb-tls`; para outras plataformas, como Linux, é `$HOME/ndb-tls`.

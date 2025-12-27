@@ -1,3 +1,3 @@
-### 2.3.3 Configuração: manual
+### 2.3.3 Configuração: Manual
 
-Estas instruções se aplicam àqueles que não usam o aplicativo MySQL Configurator para configurar e configurar o servidor MySQL; ou para fazer manualmente alterações adicionais.
+Essas instruções se aplicam àqueles que não estão usando o aplicativo MySQL Configurator para configurar e configurar o servidor MySQL; ou para fazer alterações adicionais manualmente. Recomenda-se o uso do MySQL Configurator.

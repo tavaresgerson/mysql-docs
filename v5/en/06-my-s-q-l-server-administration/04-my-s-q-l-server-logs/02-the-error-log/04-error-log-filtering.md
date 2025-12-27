@@ -1,0 +1,3 @@
+#### 5.4.2.4 Error Log Filtering
+
+The [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) system variable controls server verbosity for writing error, warning, and note messages to the error log. Permitted values are 1 (errors only), 2 (errors and warnings), 3 (errors, warnings, and notes), with a default of 3. If the value is greater than 2, the server logs aborted connections and access-denied errors for new connection attempts. See [Section B.3.2.9, “Communication Errors and Aborted Connections”](communication-errors.html "B.3.2.9 Communication Errors and Aborted Connections").

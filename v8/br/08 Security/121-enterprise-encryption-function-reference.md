@@ -1,0 +1,7 @@
+### 8.6.4 Referência das Funções de Criptografia do MySQL Enterprise
+
+As funções de criptografia do MySQL Enterprise são fornecidas pelo componente `component_enterprise_encryption` do MySQL. Consulte a Seção 8.6.5, “Descrição das Funções do Componente de Criptografia do MySQL Enterprise”.
+
+**Tabela 8.48 Funções de Criptografia do MySQL Enterprise**
+
+<table><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>asymmetric_decrypt()</code></td> <td> Decriptografa o texto cifrado usando uma chave privada ou pública </td> </tr><tr><td><code>asymmetric_derive()</code></td> <td> Deriva uma chave simétrica a partir de chaves assimétricas </td> </tr><tr><td><code>asymmetric_encrypt()</code></td> <td> Criptografa o texto claro usando uma chave privada ou pública </td> </tr><tr><td><code>asymmetric_sign()</code></td> <td> Gera uma assinatura a partir de um digest </td> </tr><tr><td><code>asymmetric_verify()</code></td> <td> Verifica se a assinatura corresponde ao digest </td> </tr><tr><td><code>create_asymmetric_priv_key()</code></td> <td> Cria uma chave privada </td> </tr><tr><td><code>create_asymmetric_pub_key()</code></td> <td> Cria uma chave pública </td> </tr><tr><td><code>create_dh_parameters()</code></td> <td> Gera um segredo compartilhado DH </td> </tr><tr><td><code>create_digest()</code></td> <td> Gera um digest a partir de uma string </td> </tr></tbody></table>

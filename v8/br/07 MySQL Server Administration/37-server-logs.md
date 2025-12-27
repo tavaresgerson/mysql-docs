@@ -1,0 +1,17 @@
+## 7.4 Registros do Servidor MySQL
+
+O Servidor MySQL possui vários registros que podem ajudá-lo a descobrir quais atividades estão ocorrendo.
+
+<table><thead><tr> <th>Tipo de Registro</th> <th>Informações Registradas no Registro</th> </tr></thead><tbody><tr> <td>Registro de Erros</td> <td>Problemas encontrados ao iniciar, executar ou parar o <span><strong>mysqld</strong></span></td> </tr><tr> <td>Registro de Consultas Gerais</td> <td>Conexões estabelecidas com clientes e instruções recebidas dos clientes</td> </tr><tr> <td>Registro Binário</td> <td>Instruções que alteram dados (também usadas para replicação)</td> </tr><tr> <td>Registro de Relevo</td> <td>Alterações de dados recebidas de um servidor de origem de replicação</td> </tr><tr> <td>Registro de Consultas Lentas</td> <td>Consultas que levaram mais de <code>long_query_time</code> segundos para serem executadas</td> </tr><tr> <td>Registros DDL</td> <td>Operações DDL atômicas realizadas por instruções DDL</td> </tr></tbody></table>
+
+Por padrão, nenhum registro está habilitado, exceto o registro de erros no Windows. Para obter informações sobre o comportamento do registro DDL, consulte Visualizar Registros DDL. As seções específicas de registro a seguir fornecem informações sobre as opções do servidor que habilitam o registro.
+
+Por padrão, o servidor escreve arquivos para todos os registros habilitados no diretório de dados. Você pode forçar o servidor a fechar e reabrir os arquivos de registro (ou, em alguns casos, alternar para um novo arquivo de registro) ao limpar os registros. A limpeza de registros ocorre quando você emite uma instrução `FLUSH LOGS`; execute `mysqladmin` com um argumento `flush-logs` ou `refresh`; ou execute `mysqldump` com a opção `--flush-logs`. Consulte a Seção 15.7.8.3, “Instrução FLUSH”,  a Seção 6.5.2, “`mysqladmin` — Um Programa de Administração do Servidor MySQL”, e a Seção 6.5.4, “mysqldump — Um Programa de Backup de Bancos de Dados”. Além disso, o registro binário é limpo quando seu tamanho atinge o valor da variável de sistema `max_binlog_size`.
+
+Você pode controlar os registros de consultas gerais e consultas lentas durante a execução. Você pode habilitar ou desabilitar o registro ou alterar o nome do arquivo de registro. Você pode informar ao servidor para escrever as entradas de consultas gerais e consultas lentas em tabelas de registro, arquivos de registro ou em ambos. Para obter detalhes, consulte a Seção 7.4.1, “Selecionando destinos de saída de registros de consultas gerais e registros de consultas lentas”,  a Seção 7.4.3, “O registro de consultas gerais” e a Seção 7.4.5, “O registro de consultas lentas”.
+
+O registro de relevo é usado apenas em réplicas, para armazenar alterações de dados do servidor de origem da replicação que também devem ser feitas na replica. Para discussão sobre o conteúdo e a configuração do registro de relevo, consulte a Seção 19.2.4.1, “O registro de relevo”.
+
+Para obter informações sobre operações de manutenção de registros, como a expiração de arquivos de registro antigos, consulte a Seção 7.4.6, “Manutenção de registro do servidor”.
+
+Para obter informações sobre como manter os registros seguros, consulte a Seção 8.1.2.3, “Senhas e registro”.

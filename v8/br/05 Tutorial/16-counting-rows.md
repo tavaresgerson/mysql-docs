@@ -1,8 +1,8 @@
-#### 5.3.4.8 Linhas de contagem
+#### 5.3.4.8 Contagem de Linhas
 
-As bases de dados são frequentemente utilizadas para responder à pergunta:  Com que frequência um determinado tipo de dados ocorre numa tabela? Por exemplo, talvez queira saber quantos animais de estimação tem ou quantos animais de estimação tem cada proprietário, ou talvez queira realizar vários tipos de operações de censo nos seus animais.
+As bases de dados são frequentemente usadas para responder à pergunta: “Com que frequência um determinado tipo de dado ocorre em uma tabela?” Por exemplo, você pode querer saber quantos animais você tem ou quantos animais cada proprietário tem, ou pode querer realizar vários tipos de operações de censo em seus animais.
 
-Contar o número total de animais que você tem é a mesma pergunta que "Quantas linhas há na tabela `pet`?" porque há um registro por animal de estimação. `COUNT(*)` conta o número de linhas, então a consulta para contar seus animais é assim:
+Contar o número total de animais que você tem é a mesma pergunta que “Quantas linhas existem na tabela `pet`?” porque há um registro por animal. `COUNT(*)` conta o número de linhas, então a consulta para contar seus animais parece assim:
 
 ```
 mysql> SELECT COUNT(*) FROM pet;
@@ -13,7 +13,7 @@ mysql> SELECT COUNT(*) FROM pet;
 +----------+
 ```
 
-Anteriormente, você recuperou os nomes das pessoas que possuíam animais de estimação. Você pode usar `COUNT()` se quiser descobrir quantos animais de estimação cada proprietário tem:
+Anteriormente, você recuperou os nomes das pessoas que possuíam animais. Você pode usar `COUNT()` se quiser descobrir quantos animais cada proprietário tem:
 
 ```
 mysql> SELECT owner, COUNT(*) FROM pet GROUP BY owner;
@@ -27,7 +27,7 @@ mysql> SELECT owner, COUNT(*) FROM pet GROUP BY owner;
 +--------+----------+
 ```
 
-A consulta anterior usa `GROUP BY` para agrupar todos os registros para cada `owner`. O uso de `COUNT()` em conjunto com `GROUP BY` é útil para caracterizar seus dados sob vários agrupamentos. Os exemplos a seguir mostram diferentes maneiras de realizar operações de censo de animais.
+A consulta anterior usa `GROUP BY` para agrupar todos os registros para cada `owner`. O uso de `COUNT()` em conjunto com `GROUP BY` é útil para caracterizar seus dados sob vários agrupamentos. Os exemplos seguintes mostram diferentes maneiras de realizar operações de censo de animais.
 
 Número de animais por espécie:
 
@@ -57,9 +57,9 @@ mysql> SELECT sex, COUNT(*) FROM pet GROUP BY sex;
 +------+----------+
 ```
 
-(Nesta saída, \[`NULL`] indica que o sexo é desconhecido.)
+(Neste resultado, `NULL` indica que o sexo é desconhecido.)
 
-Número de animais por combinação de espécies e sexo:
+Número de animais por combinação de espécie e sexo:
 
 ```
 mysql> SELECT species, sex, COUNT(*) FROM pet GROUP BY species, sex;
@@ -77,7 +77,7 @@ mysql> SELECT species, sex, COUNT(*) FROM pet GROUP BY species, sex;
 +---------+------+----------+
 ```
 
-Você não precisa recuperar uma tabela inteira quando usa `COUNT()`. Por exemplo, a consulta anterior, quando executada apenas em cães e gatos, parece assim:
+Você não precisa recuperar uma tabela inteira quando usa `COUNT()`. Por exemplo, a consulta anterior, quando realizada apenas em cães e gatos, parece assim:
 
 ```
 mysql> SELECT species, sex, COUNT(*) FROM pet
@@ -93,7 +93,7 @@ mysql> SELECT species, sex, COUNT(*) FROM pet
 +---------+------+----------+
 ```
 
-Ou, se quiser o número de animais por sexo apenas para animais cujo sexo é conhecido:
+Ou, se você quisesse o número de animais por sexo apenas para animais cujos sexos são conhecidos:
 
 ```
 mysql> SELECT species, sex, COUNT(*) FROM pet
@@ -112,9 +112,9 @@ mysql> SELECT species, sex, COUNT(*) FROM pet
 +---------+------+----------+
 ```
 
-Se você nomear colunas para selecionar além do valor `COUNT()`, uma cláusula `GROUP BY` deve estar presente que nomeia essas mesmas colunas. Caso contrário, ocorre o seguinte:
+Se você nomear as colunas para selecionar além do valor de `COUNT()`, uma cláusula `GROUP BY` deve estar presente que nomeie essas mesmas colunas. Caso contrário, o seguinte ocorre:
 
-- Se o modo SQL `ONLY_FULL_GROUP_BY` estiver habilitado, ocorre um erro:
+* Se o modo SQL `ONLY_FULL_GROUP_BY` estiver habilitado, um erro ocorre:
 
   ```
   mysql> SET sql_mode = 'ONLY_FULL_GROUP_BY';
@@ -125,9 +125,9 @@ Se você nomear colunas para selecionar além do valor `COUNT()`, uma cláusula 
   #1 of SELECT list contains nonaggregated column 'menagerie.pet.owner';
   this is incompatible with sql_mode=only_full_group_by
   ```
-- Se `ONLY_FULL_GROUP_BY` não estiver habilitado, a consulta é processada tratando todas as linhas como um único grupo, mas o valor selecionado para cada coluna nomeada é não-determinista. O servidor é livre para selecionar o valor de qualquer linha:
+* Se `ONLY_FULL_GROUP_BY` não estiver habilitado, a consulta é processada tratando todas as linhas como um único grupo, mas o valor selecionado para cada coluna nomeada é não determinístico. O servidor é livre para selecionar o valor de qualquer linha:
 
-  ```
+```
   mysql> SET sql_mode = '';
   Query OK, 0 rows affected (0.00 sec)
 

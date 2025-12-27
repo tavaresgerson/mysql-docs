@@ -1,8 +1,8 @@
-### 5.6.2 A linha que contém o máximo de uma determinada coluna
+### 5.6.2 A Linha que Retém o Valor Máximo de uma Coluna Específica
 
-\*Tarefa: Encontre o número, o vendedor e o preço do artigo mais caro. \*
+*Tarefa: Encontrar o número, o revendedor e o preço do artigo mais caro.*
 
-Isso é facilmente feito com uma subquery:
+Isso é facilmente feito com uma subconsulta:
 
 ```sql
 SELECT article, dealer, price
@@ -16,7 +16,7 @@ WHERE  price=(SELECT MAX(price) FROM shop);
 +---------+--------+-------+
 ```
 
-Outra solução é usar um `LEFT JOIN`, como mostrado aqui:
+Outra solução é usar uma `JOIN LEFT`, como mostrado aqui:
 
 ```sql
 SELECT s1.article, s1.dealer, s1.price
@@ -25,7 +25,7 @@ LEFT JOIN shop s2 ON s1.price < s2.price
 WHERE s2.article IS NULL;
 ```
 
-Você também pode fazer isso classificando todas as linhas descendentes por preço e obter apenas a primeira linha usando a cláusula `LIMIT` específica do MySQL, assim:
+Você também pode fazer isso ordenando todas as linhas em ordem decrescente de preço e obtendo apenas a primeira linha usando a cláusula `LIMIT` específica do MySQL, assim:
 
 ```sql
 SELECT article, dealer, price
@@ -34,8 +34,6 @@ ORDER BY price DESC
 LIMIT 1;
 ```
 
-::: info Note
+::: info Nota
 
 Se houvesse vários artigos mais caros, cada um com um preço de 19,95, a solução `LIMIT` mostraria apenas um deles.
-
-:::

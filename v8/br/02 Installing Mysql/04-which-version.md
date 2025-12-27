@@ -1,29 +1,26 @@
-### 2.1.2 Qual versão e distribuição do MySQL instalar
+### 2.1.2 Qual versão e distribuição do MySQL para instalar
 
-Ao se preparar para instalar o MySQL, decida qual versão e formato de distribuição (binário ou de origem) usar.
+Ao preparar-se para instalar o MySQL, decida qual versão e formato de distribuição (binário ou fonte) usar.
 
-Em primeiro lugar, decida se instalará a partir de uma série LTS como o MySQL 8.4, ou instalará a partir de uma série Innovation como o MySQL 9.5.
+Primeiro, decida se vai instalar a partir de uma série LTS, como o MySQL 8.4, ou instalar a partir de uma série de inovação, como o MySQL 9.5. Ambas as faixas incluem correções de bugs, enquanto as versões de inovação incluem as últimas novas funcionalidades e mudanças. Para detalhes adicionais, consulte a Seção 1.3, “Versões do MySQL: Inovação e LTS”.
 
 O esquema de nomeação no MySQL 8.4 usa nomes de versão que consistem em três números e um sufixo opcional (por exemplo, `mysql-8.4.0`). Os números dentro do nome da versão são interpretados da seguinte forma:
 
-- O primeiro número (**8**) é o número da versão principal.
-- O segundo número (**4**) é o número da versão menor. O número da versão menor não muda para uma série LTS, mas muda para uma série Innovation.
-- O terceiro número (**0**) é o número de versão dentro de uma série LTS. Este é incrementado para cada nova versão LTS, mas provavelmente é sempre 0 para versões de inovação.
+* O primeiro número (**8**) é o número da versão principal.
+* O segundo número (**4**) é o número da versão secundária. O número da versão secundária não muda para uma série LTS, mas muda para uma série de inovação.
+* O terceiro número (**0**) é o número da versão dentro de uma série LTS. Esse número é incrementado para cada nova versão LTS, mas provavelmente sempre é 0 para versões de inovação.
 
-Depois de escolher qual versão do MySQL instalar, decida qual formato de distribuição instalar para o seu sistema operacional. Para a maioria dos casos de uso, uma distribuição binária é a escolha certa. Distribuições binárias estão disponíveis em formato nativo para muitas plataformas, como pacotes RPM para Linux ou pacotes DMG para macOS. Distribuições também estão disponíveis em formatos mais genéricos, como arquivos Zip ou arquivos comprimidos `tar`. No Windows, você pode usar um MSI para instalar uma distribuição binária.
+Após escolher qual versão do MySQL instalar, decida qual formato de distribuição instalar para o seu sistema operacional. Para a maioria dos casos de uso, uma distribuição binária é a escolha certa. Distribuições binárias estão disponíveis no formato nativo para muitas plataformas, como pacotes RPM para Linux ou pacotes DMG para macOS. Distribuições também estão disponíveis em formatos mais genéricos, como arquivos Zip ou arquivos `tar` comprimidos. No Windows, você pode usar um MSI para instalar uma distribuição binária.
 
-Em algumas circunstâncias, pode ser preferível instalar o MySQL a partir de uma distribuição de origem:
+Em algumas circunstâncias, pode ser preferível instalar o MySQL a partir de uma distribuição de fonte:
 
-- As distribuições binárias padrão estão prontas para serem executadas em qualquer local de instalação, mas você pode precisar de ainda mais flexibilidade para colocar componentes MySQL onde quiser.
+* Você deseja instalar o MySQL em um local específico. As distribuições binárias padrão estão prontas para serem executadas em qualquer local de instalação, mas você pode precisar de mais flexibilidade para colocar os componentes do MySQL onde desejar.
+* Você deseja configurar o `mysqld` com recursos que podem não estar incluídos nas distribuições binárias padrão. Aqui está uma lista das opções extras mais comuns usadas para garantir a disponibilidade dos recursos:
 
-- Você deseja configurar `mysqld` com recursos que podem não ser incluídos nas distribuições binárias padrão. Aqui está uma lista das opções extras mais comuns usadas para garantir a disponibilidade de recursos:
+  + `-DWITH_LIBWRAP=1` para suporte a wrappers TCP.
+  + `-DWITH_ZLIB={system|bundled}` para recursos que dependem da compressão
+  + `-DWITH_DEBUG=1` para suporte de depuração
 
-  - `-DWITH_LIBWRAP=1` para suporte de wrappers TCP.
-  - `-DWITH_ZLIB={system|bundled}` para características que dependem da compressão
-  - `-DWITH_DEBUG=1` para suporte de depuração
-
-- Você quer configurar `mysqld` sem alguns recursos que estão incluídos nas distribuições binárias padrão.
-
-- Você deseja ler ou modificar o código C e C++ que compõe o MySQL. Para este propósito, obtenha uma distribuição de origem.
-
-- As distribuições de origem contêm mais testes e exemplos do que as distribuições binárias.
+* Você deseja configurar o `mysqld` sem alguns recursos incluídos nas distribuições binárias padrão.
+* Você deseja ler ou modificar o código C e C++ que compõe o MySQL. Para isso, obtenha uma distribuição de código-fonte.
+* As distribuições de código-fonte contêm mais testes e exemplos do que as distribuições binárias.

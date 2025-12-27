@@ -1,0 +1,7 @@
+#### 20.8.1.1 Member Versions During Upgrades
+
+During an online upgrade procedure, if the group is in single-primary mode, all the servers that are not currently offline for upgrading function as they did before. The group elects a new primary whenever necessary, following the election policies described in Section 20.1.3.1, “Single-Primary Mode”. Note that if you require the primary to remain the same throughout (except when it is being upgraded itself), you must first upgrade all of the secondaries to a version higher than or equal to the target primary member version, then upgrade the primary last. The primary cannot remain as the primary unless it is running the lowest MySQL Server version in the group. After the primary has been upgraded, you can use the `group_replication_set_as_primary()` function to reappoint it as the primary.
+
+If the group is in multi-primary mode, fewer online members are available to perform writes during the upgrade procedure, because upgraded members join in read-only mode after their upgrade. When all members have been upgraded to the same release, they all change back to read/write mode automatically.
+
+To deal with a problem situation, for example if you have to roll back an upgrade to a previous major version or add extra capacity to a group in an emergency, it is possible to allow a member to join an online group from a version that otherwise couldn't.

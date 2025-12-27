@@ -1,0 +1,3 @@
+## 10.4 Otimizando a Estrutura do Banco de Dados
+
+Na sua função como projetista de banco de dados, procure a maneira mais eficiente de organizar seus esquemas, tabelas e colunas. Assim como ao ajustar o código do aplicativo, minimize o I/O, mantenha itens relacionados juntos e planeje com antecedência para que o desempenho permaneça alto à medida que o volume de dados aumenta. Começar com um design de banco de dados eficiente facilita para os membros da equipe escreverem código de aplicativo de alto desempenho e torna o banco de dados mais resistente à medida que os aplicativos evoluem e são reescritos.

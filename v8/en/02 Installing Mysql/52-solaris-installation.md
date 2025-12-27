@@ -15,7 +15,7 @@ To obtain a binary MySQL distribution for Solaris in tarball or PKG format, <htt
 
 Additional notes to be aware of when installing and using MySQL on Solaris:
 
-* If you want to use MySQL with the `mysql` user and group, use the **groupadd** and **useradd** commands:
+* If you want to use MySQL with the `mysql` user and group, use the `groupadd` and `useradd` commands:
 
   ```
   groupadd mysql

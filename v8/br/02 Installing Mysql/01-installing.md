@@ -1,54 +1,54 @@
-# Capítulo 2 Instalação do MySQL
+# Capítulo 2: Instalando o MySQL
 
-Este capítulo descreve como obter e instalar o MySQL. Um resumo do procedimento segue e seções posteriores fornecem os detalhes. Se você planeja atualizar uma versão existente do MySQL para uma versão mais nova em vez de instalar o MySQL pela primeira vez, consulte o Capítulo 3, \* Atualização do MySQL \*, para obter informações sobre procedimentos de atualização e sobre problemas que você deve considerar antes da atualização.
+Este capítulo descreve como obter e instalar o MySQL. Um resumo do procedimento segue, e as seções posteriores fornecem os detalhes. Se você planeja atualizar uma versão existente do MySQL para uma versão mais recente, em vez de instalar o MySQL pela primeira vez, consulte o Capítulo 3, *Atualizando o MySQL*, para obter informações sobre os procedimentos de atualização e sobre os problemas que você deve considerar antes de atualizar.
 
-Se você estiver interessado em migrar para o MySQL a partir de outro sistema de banco de dados, que contém respostas a algumas perguntas comuns sobre problemas de migração.
+Se você estiver interessado em migrar para o MySQL a partir de outro sistema de banco de dados, que contém respostas para algumas perguntas comuns sobre problemas de migração.
 
 A instalação do MySQL geralmente segue os passos descritos aqui:
 
-1. \*\* Determine se o MySQL é executado e suportado na sua plataforma. \*\*
+1. **Determine se o MySQL está em execução e é suportado na sua plataforma.**
 
-   Por favor, note que nem todas as plataformas são igualmente adequadas para executar o MySQL, e que nem todas as plataformas em que o MySQL é conhecido para executar são oficialmente suportadas pela Oracle Corporation.
-2. \*\* Escolha qual trilha instalar. \*\*
+   Por favor, note que nem todas as plataformas são igualmente adequadas para executar o MySQL, e que nem todas as plataformas nas quais o MySQL é conhecido por ser executado são oficialmente suportadas pela Oracle Corporation. Para obter informações sobre as plataformas que são oficialmente suportadas, consulte <https://www.mysql.com/support/supportedplatforms/database.html> no site do MySQL.
+2. **Escolha qual versão instalar.**
 
-   O MySQL oferece uma série de LTS, como o MySQL 8.4, e uma série de Inovação.
-3. \*\* Escolha qual distribuição instalar. \*\*
+   O MySQL oferece uma série LTS, como o MySQL 8.4, e uma série de Inovação. Elas abordam diferentes casos de uso, conforme descrito na Seção 1.3, “Lançamentos do MySQL: Inovação e LTS”.
+3. **Escolha qual distribuição instalar.**
 
-   Várias versões do MySQL estão disponíveis, e a maioria está disponível em vários formatos de distribuição. Você pode escolher entre distribuições pré-empacotadas contendo programas binários (pré-compilados) ou código-fonte. Em caso de dúvida, use uma distribuição binária. A Oracle também fornece acesso ao código-fonte do MySQL para aqueles que querem ver desenvolvimentos recentes e testar novos códigos. Para determinar qual versão e tipo de distribuição você deve usar, consulte a Seção 2.1.2, Qual versão do MySQL e distribuição para instalar.
-4. \*\* Descarregue a distribuição que deseja instalar. \*\*
+   Várias versões do MySQL estão disponíveis, e a maioria está disponível em vários formatos de distribuição. Você pode escolher entre distribuições pré-embaladas contendo programas binários (pré-compilados) ou código-fonte. Quando houver dúvida, use uma distribuição binária. A Oracle também fornece acesso ao código-fonte do MySQL para aqueles que desejam ver desenvolvimentos recentes e testar novos códigos. Para determinar qual versão e tipo de distribuição você deve usar, consulte a Seção 2.1.2, “Qual Versão e Distribuição do MySQL Instalar”.
+4. **Baixe a distribuição que você deseja instalar.**
 
-   Para obter instruções, consulte a Seção 2.1.3, Como Obter o MySQL. Para verificar a integridade da distribuição, use as instruções da Seção 2.1.4, Verificando a integridade do pacote usando MD5 Checksums ou GnuPG.
-5. \*\* Instalar a distribuição. \*\*
+Para obter instruções, consulte a Seção 2.1.3, “Como obter o MySQL”. Para verificar a integridade da distribuição, use as instruções na Seção 2.1.4, “Verificação da integridade do pacote usando verificações MD5 ou GnuPG”.
+5. **Instale a distribuição.**
 
-   Para instalar o MySQL a partir de uma distribuição binária, use as instruções na Seção 2.2, Instalar o MySQL no Unix/Linux Usando Binários Genéricos. Alternativamente, use o Guia de Implantação Segura, que fornece procedimentos para implantar uma distribuição binária genérica do MySQL Enterprise Edition Server com recursos para gerenciar a segurança de sua instalação do MySQL.
+   Para instalar o MySQL a partir de uma distribuição binária, use as instruções na Seção 2.2, “Instalando o MySQL no Unix/Linux usando binários genéricos”. Alternativamente, use o Guia de implantação segura, que fornece procedimentos para implantar uma distribuição binária genérica do MySQL Enterprise Edition Server com recursos para gerenciar a segurança da sua instalação do MySQL.
 
-   Para instalar o MySQL a partir de uma distribuição de origem ou da árvore de origem de desenvolvimento atual, use as instruções na Seção 2.8, Instalar o MySQL a partir da Fonte.
-6. \*\* Realizar todas as configurações necessárias após a instalação. \*\*
+   Para instalar o MySQL a partir de uma distribuição de código-fonte ou da árvore de código-fonte de desenvolvimento atual, use as instruções na Seção 2.8, “Instalando o MySQL a partir de código-fonte”.
+6. **Realize qualquer configuração pós-instalação necessária.**
 
-   Depois de instalar o MySQL, consulte a Seção 2.9, Postinstallation Setup and Testing, para obter informações sobre como garantir que o servidor MySQL esteja funcionando corretamente.
+   Após instalar o MySQL, consulte a Seção 2.9, “Configuração e teste pós-instalação”, para obter informações sobre como garantir que o servidor MySQL esteja funcionando corretamente. Também consulte as informações fornecidas na Seção 2.9.4, “Segurança da conta inicial do MySQL”. Esta seção descreve como proteger a conta inicial do usuário `root` do MySQL, *que não tem senha até que você a atribua*. A seção se aplica independentemente de você instalar o MySQL usando uma distribuição binária ou de código-fonte.
 7. Se você quiser executar os scripts de benchmark do MySQL, o suporte do Perl para o MySQL deve estar disponível.
 
-Instruções para a instalação do MySQL em diferentes plataformas e ambientes está disponível em uma plataforma por plataforma base:
+As instruções para instalar o MySQL em diferentes plataformas e ambientes estão disponíveis em uma base de plataforma por plataforma:
 
-- \*\* Unix, Linux \*\*
+* **Unix, Linux**
 
-  Para instruções sobre a instalação do MySQL na maioria das plataformas Linux e Unix usando um binário genérico (por exemplo, um pacote `.tar.gz`).
+   Para instruções sobre como instalar o MySQL na maioria das plataformas Linux e Unix usando um binário genérico (por exemplo, um pacote `.tar.gz`).
 
-  Para informações sobre a construção do MySQL inteiramente a partir das distribuições de código-fonte ou dos repositórios de código-fonte.
+   Para informações sobre a construção do MySQL inteiramente a partir das distribuições de código-fonte ou dos repositórios de código-fonte.
 
-  Para ajuda específica de plataforma sobre instalação, configuração e construção a partir da fonte, consulte a seção de plataforma correspondente:
+   Para ajuda específica da plataforma sobre instalação, configuração e construção a partir de código-fonte, consulte a seção da plataforma correspondente:
 
-  - Linux, incluindo notas sobre métodos específicos de distribuição, ver Seção 2.5, "Instalar MySQL no Linux".
-  - IBM AIX, ver Seção 2.7, "Instalar MySQL no Solaris".
-- - Microsoft Windows \*
++ Linux, incluindo notas sobre métodos específicos da distribuição, consulte a Seção 2.5, “Instalando o MySQL no Linux”.
+  + IBM AIX, consulte a Seção 2.7, “Instalando o MySQL no Solaris”.
+* **Microsoft Windows**
 
-  Para obter instruções sobre a instalação do MySQL no Microsoft Windows, usando o instalador MSI ou o binário Zipped, consulte a Seção 2.3, Instalar o MySQL no Microsoft Windows.
+  Para instruções sobre a instalação do MySQL no Microsoft Windows, usando o instalador MSI ou o binário compactado, consulte a Seção 2.3, “Instalando o MySQL no Microsoft Windows”.
 
-  Para detalhes e instruções sobre a construção do MySQL a partir do código-fonte, consulte a Seção 2.8, "Instalar o MySQL a partir do código-fonte".
-- **macOS**
+  Para detalhes e instruções sobre a construção do MySQL a partir do código-fonte, consulte a Seção 2.8, “Instalando o MySQL a partir do Código-Fonte”.
+* **macOS**
 
-  Para a instalação no macOS, incluindo o uso do pacote binário e dos formatos PKG nativos, consulte a Seção 2.4, "Instalar MySQL no macOS".
+  Para instalação no macOS, incluindo o uso de pacotes binários e formatos nativos PKG, consulte a Seção 2.4, “Instalando o MySQL no macOS”.
 
-  Para obter informações sobre o uso de um Daemon de Lançamento do macOS para iniciar e parar automaticamente o MySQL, consulte a Seção 2.4.3, "Instalar e usar o Daemon de Lançamento do MySQL".
+  Para informações sobre o uso de um Daemon de Inicialização do macOS para iniciar e parar automaticamente o MySQL, consulte a Seção 2.4.3, “Instalando e Usando o Daemon de Inicialização do MySQL”.
 
-  Para obter informações sobre o painel de preferências do MySQL, consulte a secção 2.4.4, "Instalar e utilizar o painel de preferências do MySQL".
+  Para informações sobre o Painel de Preferências do MySQL, consulte a Seção 2.4.4, “Instalando e Usando o Painel de Preferências do MySQL”.

@@ -1,9 +1,9 @@
-### 2.5.6 Implantação do MySQL no Linux com Docker Containers
+### 2.5.6 Implantação do MySQL no Linux com Contenedores Docker
 
-Esta seção explica como implantar o MySQL Server usando containers do Docker.
+Esta seção explica como implantar o MySQL Server usando contenedores Docker.
 
-Enquanto o cliente `docker` é usado nas seguintes instruções para fins de demonstração, em geral, as imagens de contêiner MySQL fornecidas pela Oracle funcionam com qualquer ferramenta de contêiner que seja compatível com a especificação OCI 1.0.
+Embora o cliente `docker` seja usado nas instruções a seguir para fins de demonstração, geralmente, as imagens de contêineres MySQL fornecidas pela Oracle funcionam com qualquer ferramenta de contêiner que esteja em conformidade com a especificação [OCI 1.0](https://opencontainers.org/posts/announcements/2021-05-04-oci-dist-spec-v1/).
 
 Aviso
 
-Antes de implantar o MySQL com contêineres do Docker, certifique-se de entender os riscos de segurança de executar contêineres e mitigá-los adequadamente.
+Antes de implantar o MySQL com contenedores Docker, certifique-se de entender os riscos de segurança de executar contêineres e mitigá-los adequadamente.

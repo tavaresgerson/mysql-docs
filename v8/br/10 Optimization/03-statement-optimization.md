@@ -1,0 +1,3 @@
+## 10.2 Otimização de Instruções SQL
+
+A lógica central de uma aplicação de banco de dados é executada através de instruções SQL, seja emitidas diretamente por um interpretador ou enviadas nos bastidores por meio de uma API. As diretrizes de ajuste nesta seção ajudam a acelerar todos os tipos de aplicações MySQL. As diretrizes cobrem operações SQL que leem e escrevem dados, o overhead nos bastidores para operações SQL em geral e operações usadas em cenários específicos, como monitoramento de banco de dados.

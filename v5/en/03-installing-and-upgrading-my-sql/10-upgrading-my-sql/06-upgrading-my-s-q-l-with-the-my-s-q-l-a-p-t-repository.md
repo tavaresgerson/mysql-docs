@@ -1,0 +1,3 @@
+### 2.10.6 Upgrading MySQL with the MySQL APT Repository
+
+On Debian and Ubuntu platforms, to perform an in-place upgrade of MySQL and its components, use the MySQL APT repository. See Upgrading MySQL with the MySQL APT Repository in A Quick Guide to Using the MySQL APT Repository.

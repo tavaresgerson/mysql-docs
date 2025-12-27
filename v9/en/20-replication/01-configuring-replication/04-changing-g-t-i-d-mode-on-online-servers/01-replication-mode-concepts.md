@@ -1,0 +1,57 @@
+#### 19.1.4.1 Replication Mode Concepts
+
+Before setting the replication mode of an online server, it is important to understand some key concepts of replication. This section explains these concepts and is essential reading before attempting to modify the replication mode of an online server.
+
+The modes of replication available in MySQL rely on different techniques for identifying logged transactions. The types of transactions used by replication are listed here:
+
+* A GTID transaction is identified by a global transaction identifier (GTID) which takes one of two forms: `UUID:NUMBER` or `UUID:TAG:NUMBER`. Every GTID transaction in the binary log is preceded by a `Gtid_log_event`. A GTID transaction can be addressed either by its GTID, or by the name of the file in which it is logged and its position within that file.
+
+* An anonymous transaction has no GTID; MySQL 9.5 ensures that every anonymous transaction in a log is preceded by an `Anonymous_gtid_log_event`. (In old versions of MySQL, an anonymous transaction was not preceded by any particular event.) An anonymous transaction can be addressed by file name and position only.
+
+When using GTIDs you can take advantage of GTID auto-positioning and automatic failover, and use `WAIT_FOR_EXECUTED_GTID_SET()`, `session_track_gtids`, and Performance Schema tables to monitor replicated transactions (see Section 29.12.11, “Performance Schema Replication Tables”).
+
+A transaction in a relay log from a source running a previous version of MySQL might not be preceded by any particular event, but after being replayed and recorded in the replica's binary log, it is preceded with an `Anonymous_gtid_log_event`.
+
+To change the replication mode online, it is necessary to set the `gtid_mode` and `enforce_gtid_consistency` variables using an account that has privileges sufficient to set global system variables; see Section 7.1.9.1, “System Variable Privileges”. Permitted values for `gtid_mode` are listed here, in order, with their meanings:
+
+* `OFF`: Only anonymous transactions can be replicated.
+
+* `OFF_PERMISSIVE`: New transactions are anonymous; replicated transactions may be either GTID or anonymous.
+
+* `ON_PERMISSIVE`: New transactions use GTIDs; replicated transactions may be either GTID or anonymous.
+
+* `ON`: All transaction must have GTIDs; anonymous transactions cannot be replicated.
+
+It is possible to have servers using anonymous and servers using GTID transactions in the same replication topology. For example, a source where `gtid_mode=ON` can replicate to a replica where `gtid_mode=ON_PERMISSIVE`.
+
+Replication from a source using `gtid_mode=ON` provides the ability to use GTID auto-positioning, configured using the `SOURCE_AUTO_POSITION` option of the `CHANGE REPLICATION SOURCE TO` statement. The replication topology in use has an impact on whether it is possible to enable auto-positioning or not, since this feature relies on GTIDs and is not compatible with anonymous transactions. It is strongly recommended to ensure there are no anonymous transactions remaining in the topology before enabling auto-positioning; see Section 19.1.4.2, “Enabling GTID Transactions Online”.
+
+Valid combinations of `gtid_mode` and auto-positioning on source and replica are shown in the next table. The meaning of each entry is as follows:
+
+* `Y`: The values of `gtid_mode` on the source and on the replica are compatible.
+
+* `N`: The values of `gtid_mode` on the source and on the replica are not compatible.
+
+* `*`: Auto-positioning can be used with this combination of values.
+
+**Table 19.1 Valid Combinations of Source and Replica gtid\_mode**
+
+<table summary="Explains compatible (Y) and incompatible (N) combinations of source and replica GTID mode. An asterisk (*) indicates that auto-positioning can be used with this combination of GTID modes."><col style="width: 26%"/><col style="width: 12%"/><col style="width: 24%"/><col style="width: 24%"/><col style="width: 12%"/><thead><tr> <th scope="col"><p> <a class="link" href="replication-options-gtids.html#sysvar_gtid_mode"><code class="literal">gtid_mode</code></a> </p></th> <th scope="col"><p> Source <code class="literal">OFF</code> </p></th> <th scope="col"><p> Source <code class="literal">OFF_PERMISSIVE</code> </p></th> <th scope="col"><p> Source <code class="literal">ON_PERMISSIVE</code> </p></th> <th scope="col"><p> Source <code class="literal">ON</code> </p></th> </tr></thead><tbody><tr> <th scope="row"><p> Replica <code class="literal">OFF</code> </p></th> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> N </p></td> <td><p> N </p></td> </tr><tr> <th scope="row"><p> Replica <code class="literal">OFF_PERMISSIVE</code> </p></th> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> Y* </p></td> </tr><tr> <th scope="row"><p> Replica <code class="literal">ON_PERMISSIVE</code> </p></th> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> Y </p></td> <td><p> Y* </p></td> </tr><tr> <th scope="row"><p> Replica <code class="literal">ON</code> </p></th> <td><p> N </p></td> <td><p> N </p></td> <td><p> Y </p></td> <td><p> Y* </p></td> </tr></tbody></table>
+
+The current value of `gtid_mode` also affects `gtid_next`. The next table shows the behavior of the server for combinations of different values of `gtid_mode` and `gtid_next`. The meaning of each entry is as follows:
+
+* `ANONYMOUS`: Generate an anonymous transaction.
+
+* `Error`: Generate an error, and do not execute `SET GTID_NEXT`.
+
+* `UUID:NUMBER`: Generate a GTID with the specified UUID:NUMBER.
+
+* `UUID:TAG:NUMBER`: Generate a GTID with the specified UUID:TAG:NUMBER.
+
+* `New GTID`: Generate a GTID with an automatically generated number.
+
+**Table 19.2 Valid Combinations of gtid\_mode and gtid\_next**
+
+<table summary="Explains the behavior for each of the possible combinations of GTID mode and setting for the gtid_next variable. With gtid_next set to AUTOMATIC, the behavior also varies depending on whether binary logging is enabled or disabled."><col style="width:16%"/><col style="width:14%"/><col style="width:14%"/><col style="width:14%"/><col style="width:14%"/><col style="width:14%"/><col style="width:14%"/><thead><tr> <th scope="col"></th> <th scope="col"><code class="literal">gtid_next</code> = <code class="literal">AUTOMATIC</code> (binary log on)</th> <th scope="col"><code class="literal">gtid_next</code> = <code class="literal">AUTOMATIC</code> (binary log off)</th> <th scope="col"><code class="literal">gtid_next</code> = <code class="literal">AUTOMATIC:&lt;TAG&gt;</code></th> <th scope="col"><code class="literal">gtid_next</code> = <code class="literal">ANONYMOUS</code></th> <th scope="col"><code class="literal">gtid_next</code> = <code class="literal">&lt;UUID&gt;:&lt;NUMBER&gt;</code></th> <th scope="col"><code class="literal">gtid_next</code> = <code class="literal">&lt;UUID&gt;:&lt;TAG&gt;:&lt;NUMBER&gt;</code></th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">gtid_mode</code> = <code class="literal">OFF</code></th> <td>ANONYMOUS</td> <td>ANONYMOUS</td> <td>Error</td> <td>ANONYMOUS</td> <td>Error</td> <td>Error</td> </tr><tr> <th scope="row"><code class="literal">gtid_mode</code> = <code class="literal">OFF_PERMISSIVE</code></th> <td>ANONYMOUS</td> <td>ANONYMOUS</td> <td>Error</td> <td>ANONYMOUS</td> <td>&lt;UUID&gt;:&lt;NUMBER&gt;</td> <td>&lt;UUID&gt;:&lt;TAG&gt;:&lt;NUMBER&gt;</td> </tr><tr> <th scope="row"><code class="literal">gtid_mode</code> = <code class="literal">ON_PERMISSIVE</code></th> <td>New GTID</td> <td>ANONYMOUS</td> <td>New GTID</td> <td>ANONYMOUS</td> <td>&lt;UUID&gt;:&lt;NUMBER&gt;</td> <td>&lt;UUID&gt;:&lt;TAG&gt;:&lt;NUMBER&gt;</td> </tr><tr> <th scope="row"><code class="literal">gtid_mode</code> = <code class="literal">ON</code></th> <td>New GTID</td> <td>ANONYMOUS</td> <td>New GTID</td> <td>Error</td> <td>&lt;UUID&gt;:&lt;NUMBER&gt;</td> <td>&lt;UUID&gt;:&lt;TAG&gt;:&lt;NUMBER&gt;</td> </tr></tbody></table>
+
+When binary logging is not in use and `gtid_next` is `AUTOMATIC`, then no GTID is generated.

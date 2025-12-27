@@ -1,0 +1,9 @@
+### 2.3.1 MySQL Installation Layout on Microsoft Windows
+
+For MySQL 5.7 on Windows, the default installation directory is `C:\Program Files\MySQL\MySQL Server 5.7` for installations performed with MySQL Installer. If you use the ZIP archive method to install MySQL, you may prefer to install in `C:\mysql`. However, the layout of the subdirectories remains the same.
+
+All of the files are located within this parent directory, using the structure shown in the following table.
+
+**Table 2.4 Default MySQL Installation Layout for Microsoft Windows**
+
+<table><col style="width: 30%"/><col style="width: 40%"/><col style="width: 30%"/><thead><tr> <th scope="col">Directory</th> <th scope="col">Contents of Directory</th> <th scope="col">Notes</th> </tr></thead><tbody><tr> <th scope="row"><code class="filename">bin</code></th> <td><a class="link" href="mysqld.html" title="4.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> server, client and utility programs</td> <td></td> </tr><tr> <th scope="row"><code class="filename">%PROGRAMDATA%\MySQL\MySQL Server 5.7\</code></th> <td>Log files, databases</td> <td>The Windows system variable <code class="varname">%PROGRAMDATA%</code> defaults to <code class="filename">C:\ProgramData</code>.</td> </tr><tr> <th scope="row"><code class="filename">docs</code></th> <td>Release documentation</td> <td>With MySQL Installer, use the <code class="literal">Modify</code> operation to select this optional folder.</td> </tr><tr> <th scope="row"><code class="filename">include</code></th> <td>Include (header) files</td> <td></td> </tr><tr> <th scope="row"><code class="filename">lib</code></th> <td>Libraries</td> <td></td> </tr><tr> <th scope="row"><code class="filename">share</code></th> <td>Miscellaneous support files, including error messages, character set files, sample configuration files, SQL for database installation</td> <td></td> </tr></tbody></table>

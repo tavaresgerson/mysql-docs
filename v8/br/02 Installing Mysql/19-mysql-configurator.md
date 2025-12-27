@@ -1,13 +1,13 @@
-### 2.3.2 Configuração: Usando o configurador MySQL
+### 2.3.2 Configuração: Usando o Configurável MySQL
 
-O MySQL Configurator é um aplicativo autônomo projetado para facilitar a complexidade de configurar um servidor MySQL para executar o MySQL no Microsoft Windows.
+O Configurável MySQL é uma aplicação autônoma projetada para facilitar a configuração de um servidor MySQL para executar o MySQL no Microsoft Windows. Ele vem junto com o servidor MySQL, tanto no arquivo MSI quanto no arquivo Zip autônomo.
 
-#### Métodos para iniciar o configurador do MySQL
+#### Métodos para Iniciar o Configurável MySQL
 
-O MySQL Configurator pode configurar e reconfigurar o servidor MySQL; e os métodos para iniciar o MySQL Configurator são:
+O Configurável MySQL pode tanto configurar quanto reconfigurar o servidor MySQL; e os métodos para iniciar o Configurável MySQL são:
 
-- O MSI do servidor MySQL solicita a execução do MySQL Configurator imediatamente após a instalação do servidor MySQL.
-- Do menu Iniciar: o MSI cria um item do menu Iniciar do configurador MySQL.
-- Da linha de comando: o `mysql-configurator.exe` executável está localizado no mesmo diretório que `mysqld.exe` e outros binários do MySQL instalados com o servidor MySQL.
+* O prompt do MSI do servidor MySQL solicita a execução do Configurável MySQL imediatamente após ele instalar o servidor MySQL.
+* No Menu Iniciar: o MSI cria um item de menu de inicialização do Configurável MySQL.
+* Da linha de comando: o executável `mysql-configurator.exe` está localizado no mesmo diretório que o `mysqld.exe` e outros binários do MySQL instalados com o servidor MySQL.
 
-  Normalmente, esse local está em `C:\Program Files\MySQL\MySQL Server X.Y\bin` se instalado via MSI, ou um diretório personalizado para o arquivo Zip.
+Normalmente, esse local está em `C:\Program Files\MySQL\MySQL Server X.Y\bin` se instalado via MSI, ou em um diretório personalizado para o arquivo Zip.

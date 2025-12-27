@@ -1,6 +1,6 @@
-### 1.7.2 Diferenças entre o MySQL e o SQL padrão
+### 1.7.2 Diferenças do MySQL em relação ao SQL Padrão
 
-Nós tentamos fazer o MySQL Server seguir o padrão ANSI SQL e o padrão ODBC SQL, mas o MySQL Server executa operações de forma diferente em alguns casos:
+Tentamos fazer com que o MySQL Server siga o padrão ANSI SQL e o padrão ODBC SQL, mas o MySQL Server executa operações de maneira diferente em alguns casos:
 
-- Existem várias diferenças entre o MySQL e os sistemas de privilégios SQL padrão. Por exemplo, no MySQL, os privilégios para uma tabela não são automaticamente revogados quando você elimina uma tabela. Você deve emitir explicitamente uma instrução `REVOKE` para revogar privilégios para uma tabela.
-- A função `CAST()` não suporta o cast para `REAL`, `FLOAT`, `DOUBLE` ou `BIGINT` - `INTEGER`, `INT`, `SMALLINT`, `TINYINT`, `MEDIUMINT`, `BIGINT`.
+* Existem várias diferenças entre os sistemas de privilégios do MySQL e do SQL padrão. Por exemplo, no MySQL, os privilégios de uma tabela não são revogados automaticamente quando você exclui uma tabela. Você deve emitir explicitamente uma declaração `REVOKE` para revogar os privilégios de uma tabela. Para mais informações.
+* A função `CAST()` não suporta conversão para `REAL`, `FLOAT`, `DOUBLE` ou `BIGINT` - `INTEGER`, `INT`, `SMALLINT`, `TINYINT`, `MEDIUMINT`, `BIGINT`.

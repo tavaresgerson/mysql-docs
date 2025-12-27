@@ -1,0 +1,3 @@
+#### 16.4.1.22 Replication and the Query Optimizer
+
+It is possible for the data on the source and replica to become different if a statement is written in such a way that the data modification is nondeterministic; that is, left up the query optimizer. (In general, this is not a good practice, even outside of replication.) Examples of nondeterministic statements include [`DELETE`](delete.html "13.2.2 DELETE Statement") or [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements that use `LIMIT` with no `ORDER BY` clause; see [Section 16.4.1.17, “Replication and LIMIT”](replication-features-limit.html "16.4.1.17 Replication and LIMIT"), for a detailed discussion of these.

@@ -1,0 +1,11 @@
+### 13.2.7 Qual calendário é usado pelo MySQL?
+
+O MySQL utiliza o que é conhecido como calendário gregoriano proleptico.
+
+Todos os países que mudaram do calendário juliano para o calendário gregoriano tiveram que descartar pelo menos dez dias durante a mudança. Para entender como isso funciona, considere o mês de outubro de 1582, quando ocorreu a primeira mudança do calendário juliano para o gregoriano.
+
+<table><col style="width: 14%"/><col style="width: 14%"/><col style="width: 14%"/><col style="width: 14%"/><col style="width: 14%"/><col style="width: 14%"/><col style="width: 14%"/><thead><tr> <th>Segunda-feira</th> <th>Terça-feira</th> <th>Quarta-feira</th> <th>Quinta-feira</th> <th>Sexta-feira</th> <th>Sábado</th> <th>Domingo</th> </tr></thead><tbody><tr> <th>1</th> <td>2</td> <td>3</td> <td>4</td> <td>15</td> <td>16</td> <td>17</td> </tr><tr> <th>18</th> <td>19</td> <td>20</td> <td>21</td> <td>22</td> <td>23</td> <td>24</td> </tr><tr> <th>25</th> <td>26</td> <td>27</td> <td>28</td> <td>29</td> <td>30</td> <td>31</td> </tr></tbody></table>
+
+Não há datas entre 4 de outubro e 15 de outubro. Essa descontinuidade é chamada de transição. Quaisquer datas antes da transição são julianas, e quaisquer datas após a transição são gregorianas. As datas durante uma transição são inexistentes.
+
+Um calendário aplicado a datas em que ele não estava realmente em uso é chamado proléptico. Assim, se assumirmos que nunca houve uma mudança e as regras gregorianas sempre governassem, temos um calendário gregoriano proléptico. É isso que é usado pelo MySQL, conforme exigido pelo SQL padrão. Por essa razão, as datas anteriores à mudança, armazenadas como valores `DATE` ou `DATETIME` no MySQL, devem ser ajustadas para compensar a diferença. É importante perceber que a mudança não ocorreu ao mesmo tempo em todos os países, e que quanto mais tarde ela ocorreu, mais dias foram perdidos. Por exemplo, na Grã-Bretanha, ocorreu em 1752, quando a quarta-feira de 2 de setembro foi seguida pela quinta-feira de 14 de setembro. A Rússia permaneceu no calendário juliano até 1918, perdendo 13 dias no processo, e o que é popularmente referido como sua “Revolução de Outubro” ocorreu em novembro, de acordo com o calendário gregoriano.

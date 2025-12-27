@@ -1,8 +1,8 @@
-### 5.6.4 As linhas que contêm o máximo do grupo de uma determinada coluna
+### 5.6.4 As Linhas que Retêm o Máximo de um Cálculo por Grupo de uma Cálculo Específica
 
-\*Tarefa: Para cada artigo, encontrar o revendedor ou revendedores com o preço mais caro. \*
+*Tarefa: Para cada artigo, encontre o revendedor ou os revendedores com o preço mais caro.*
 
-Este problema pode ser resolvido com uma subquery como esta:
+Este problema pode ser resolvido com uma subconsulta como esta:
 
 ```sql
 SELECT article, dealer, price
@@ -22,7 +22,7 @@ ORDER BY article;
 +---------+--------+-------+
 ```
 
-O exemplo anterior usa uma subquery correlacionada, que pode ser ineficiente. Outras possibilidades para resolver o problema são usar uma subquery não correlacionada na cláusula `FROM`, um `LEFT JOIN`, ou uma expressão de tabela comum com uma função de janela.
+O exemplo anterior usa uma subconsulta correlacionada, o que pode ser ineficiente. Outras possibilidades para resolver o problema são usar uma subconsulta não correlacionada na cláusula `FROM`, uma `JOIN LEFT` ou uma expressão de tabela comum com uma função de janela.
 
 Subconsulta não correlacionada:
 
@@ -37,7 +37,7 @@ JOIN (
 ORDER BY article;
 ```
 
-`LEFT JOIN`:
+`JOIN LEFT`:
 
 ```sql
 SELECT s1.article, s1.dealer, s1.price
@@ -47,9 +47,9 @@ WHERE s2.article IS NULL
 ORDER BY s1.article;
 ```
 
-O `LEFT JOIN` funciona com base no fato de que quando o `s1.price` está em seu valor máximo, não há um `s2.price` com um valor maior e, portanto, o valor correspondente do `s2.article` é o `NULL`.
+A `JOIN LEFT` funciona com base no fato de que, quando `s1.price` está no seu valor máximo, não há `s2.price` com um valor maior e, portanto, o valor correspondente de `s2.article` é `NULL`.
 
-Expressão comum de tabela com função de janela:
+Expressão de tabela comum com função de janela:
 
 ```sql
 WITH s1 AS (

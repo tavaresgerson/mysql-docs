@@ -1,0 +1,5 @@
+### 10.5.10 Otimizando o InnoDB para Sistemas com Muitas Tabelas
+
+* Se você configurou estatísticas de otimizador não persistentes (uma configuração não padrão), o `InnoDB` calcula os valores de cardinalidade dos índices para uma tabela na primeira vez que a tabela é acessada após a inicialização, em vez de armazenar esses valores na tabela. Essa etapa pode levar tempo significativo em sistemas que particionam os dados em muitas tabelas. Como esse overhead só se aplica à operação inicial de abertura da tabela, para “aquecer” uma tabela para uso posterior, acesse-a imediatamente após a inicialização, executando uma instrução como `SELECT 1 FROM tbl_name LIMIT 1`.
+
+  As estatísticas do otimizador são persistidas no disco por padrão, habilitadas pela opção de configuração `innodb_stats_persistent`. Para informações sobre estatísticas de otimizador persistentes, consulte a Seção 17.8.10.1, “Configurando Parâmetros de Estatísticas de Otimizador Persistente”.

@@ -1,0 +1,11 @@
+#### 16.4.1.25 Replication and Reserved Words
+
+You can encounter problems when you attempt to replicate from an older source to a newer replica and you make use of identifiers on the source that are reserved words in the newer MySQL version running on the replica. An example of this is using a table column named `virtual` on a 5.6 source that is replicating to a 5.7 or higher replica because `VIRTUAL` is a reserved word beginning in MySQL 5.7. Replication can fail in such cases with Error 1064 You have an error in your SQL syntax..., *even if a database or table named using the reserved word or a table having a column named using the reserved word is excluded from replication*. This is due to the fact that each SQL event must be parsed by the replica prior to execution, so that the replica knows which database object or objects would be affected; only after the event is parsed can the replica apply any filtering rules defined by [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db), [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table), [`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db), and [`--replicate-ignore-table`](replication-options-replica.html#option_mysqld_replicate-ignore-table).
+
+To work around the problem of database, table, or column names on the source which would be regarded as reserved words by the replica, do one of the following:
+
+* Use one or more [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements on the source to change the names of any database objects where these names would be considered reserved words on the replica, and change any SQL statements that use the old names to use the new names instead.
+
+* In any SQL statements using these database object names, write the names as quoted identifiers using backtick characters (`` ` ``).
+
+For listings of reserved words by MySQL version, see [Keywords and Reserved Words in MySQL 5.7](/doc/mysqld-version-reference/en/keywords-5-7.html), in the *MySQL Server Version Reference*. For identifier quoting rules, see [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names").

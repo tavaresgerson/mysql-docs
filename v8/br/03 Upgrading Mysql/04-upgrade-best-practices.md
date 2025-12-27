@@ -1,91 +1,91 @@
-## 3.3 Reforçar as melhores práticas
+## 3.3 Práticas de Atualização
 
-O MySQL suporta a atualização entre versões menores (dentro de uma série LTS) e para a próxima versão principal (em uma série LTS).
+O MySQL suporta a atualização entre versões menores (dentro de uma série LTS) e para a próxima versão principal (através de uma série LTS). A atualização fornece os recursos mais recentes, desempenho e correções de segurança.
 
-Para se preparar e ajudar a garantir que a atualização para a versão mais recente do MySQL seja bem-sucedida, recomendamos as seguintes melhores práticas:
+Para preparar e ajudar a garantir que sua atualização para a versão mais recente do MySQL seja bem-sucedida, recomendamos as seguintes melhores práticas:
 
-- Decidir sobre a versão maior ou menor para atualização
-- Decidir sobre o tipo de atualização
-- Revisão das plataformas suportadas
-- Compreender alterações no servidor MySQL
-- Executar o verificador de atualização e corrigir incompatibilidades
-- Executar aplicações num ambiente de teste
-- Aplicações de referência e desempenho da carga de trabalho
-- Executar ambas as versões do MySQL em paralelo
-- Execute a atualização de teste final
-- Verifique o backup do MySQL
-- Atualizar o servidor de produção
-- Apoio às empresas
+*  Decida sobre a Versão Principal ou Menor para a Atualização
+*  Decida sobre o Tipo de Atualização
+*  Revise as Plataformas Suportadas
+*  Entenda as Mudanças no Servidor MySQL
+*  Execute o Verificador de Atualização e Corrija Incompatibilidades
+*  Execute as Aplicações em um Ambiente de Teste
+*  Avalie o Desempenho das Aplicações e do Carregamento de Trabalho
+*  Execute Ambas as Versões do MySQL Paralelamente
+*  Execute a Atualização de Teste Final
+*  Verifique o Backup do MySQL
+*  Atualize o Servidor de Produção
+*  Suporte Empresarial
 
-### Decidir sobre a versão maior ou menor para atualização
+### Decida sobre a Versão Principal ou Menor para a Atualização
 
-O modelo de lançamento do MySQL faz uma distinção entre LTS (Suporte a Longo Prazo) e lançamentos de inovação. Os lançamentos do LTS têm mais de 8 anos de suporte e são destinados ao uso de produção.
+O Modelo de Lançamento do MySQL faz uma distinção entre as versões LTS (Suporte de Longo Prazo) e as versões de Inovação. As versões LTS têm suporte por mais de 8 anos e são destinadas ao uso em produção. As versões de Inovação fornecem aos usuários os recursos e capacidades mais recentes. Saiba mais sobre o Modelo de Lançamento do MySQL.
 
-A realização de uma atualização de versão menor é direta, enquanto as atualizações de versão principal exigem planejamento estratégico e testes adicionais antes da atualização.
+Realizar uma atualização de versão menor é simples, enquanto as atualizações de versão principal requerem planejamento estratégico e testes adicionais antes da atualização. Este guia é especialmente útil para atualizações de versão principal.
 
-### Decidir sobre o tipo de atualização
+### Decida sobre o Tipo de Atualização
 
 Existem três maneiras principais de atualizar o MySQL; leia a documentação associada para determinar qual tipo de atualização é mais adequado para sua situação.
 
-- Uma atualização no local: substituição dos pacotes do MySQL Server.
-- Uma atualização lógica: exportando SQL da antiga instância do MySQL para o novo.
-- Uma atualização da topologia de replicação: contabiliza a função de topologia de cada servidor.
+* Uma atualização in-place: substituindo os pacotes do Servidor MySQL.
+* Uma atualização lógica: exportando o SQL da antiga instância do MySQL para a nova.
+* Uma atualização de topologia de replicação: considere o papel de topologia de cada servidor.
 
-### Revisão das plataformas suportadas
+### Revise as Plataformas Suportadas
 
-Se o seu sistema operacional atual não for suportado pela nova versão do MySQL, planeje atualizar o sistema operacional, pois de outra forma uma atualização no local não será suportada.
+Se o seu sistema operacional atual não for suportado pela nova versão do MySQL, planeje atualizar o sistema operacional, pois, caso contrário, uma atualização in-place não é suportada.
 
-Para uma lista atual de plataformas suportadas, consulte: \[<https://www.mysql.com/support/supportedplatforms/database.html>]
+Para uma lista atualizada das plataformas suportadas, consulte: <https://www.mysql.com/support/supportedplatforms/database.html>
 
-### Compreender alterações no servidor MySQL
+### Entenda as Mudanças no MySQL Server
 
-Cada versão principal vem com novos recursos, mudanças de comportamento, deprecações e remoções. É importante entender o impacto de cada um deles em aplicativos existentes.
+Cada versão principal vem com novos recursos, mudanças no comportamento, descontinuidades e remoções. É importante entender o impacto de cada uma dessas mudanças nos aplicativos existentes.
 
-Ver: Secção 3.5,  Alterações no MySQL 8.4.
+Veja: Seção 3.5, “Mudanças no MySQL 8.4”.
 
-### Executar o verificador de atualização e corrigir incompatibilidades
+### Execute o Verificador de Atualização e Corrija Incompatibilidades
 
-O Utilitário de Verificador de Atualização do MySQL Shell detecta incompatibilidades entre versões de banco de dados que devem ser resolvidas antes de executar a atualização. A função `util.checkForServerUpgrade()` verifica se as instâncias do servidor MySQL estão prontas para atualização. Conecte-se ao servidor MySQL existente e selecione a versão do MySQL Server para a qual você planeja atualizar para que o utilitário informe problemas a serem resolvidos antes de uma atualização. Estes incluem incompatibilidades em tipos de dados, motores de armazenamento e assim por diante.
+A Ferramenta de Verificador de Atualização do MySQL Shell detecta incompatibilidades entre as versões do banco de dados que devem ser resolvidas antes de realizar a atualização. A função `util.checkForServerUpgrade()` verifica se as instâncias do servidor MySQL estão prontas para a atualização. Conecte-se ao servidor MySQL existente e selecione a versão do MySQL Server que você planeja atualizar para que a ferramenta informe os problemas a serem resolvidos antes da atualização. Esses incluem incompatibilidades em tipos de dados, motores de armazenamento e assim por diante.
 
-Você está pronto para atualizar quando o utilitário de verificação de atualização não mais relata quaisquer problemas.
+Você está pronto para atualizar quando a ferramenta de verificação de atualização não mais relatar quaisquer problemas.
 
-### Executar aplicações num ambiente de teste
+### Execute Aplicações em um Ambiente de Teste
 
-Depois de completar os requisitos do verificador de atualização, teste seus aplicativos no novo servidor MySQL de destino. Verifique se há erros e avisos no registro de erros e aplicativos do MySQL.
+Após completar os requisitos do verificador de atualização, teste suas aplicações no novo servidor MySQL de destino. Verifique erros e avisos no log de erro do MySQL e nos logs das aplicações.
 
-### Aplicações de referência e desempenho da carga de trabalho
+### Benchmark de Aplicações e Desempenho de Carga de Trabalho
 
-Recomendamos comparar seus próprios aplicativos e cargas de trabalho comparando como eles executam usando as versões anteriores e novas do MySQL. Geralmente, versões mais recentes do MySQL adicionam recursos e melhoram o desempenho, mas há casos em que uma atualização pode ser mais lenta para consultas específicas.
+Recomendamos que você faça o benchmarking de suas próprias aplicações e cargas de trabalho, comparando como elas se comportam usando as versões anteriores e novas do MySQL. Geralmente, versões mais recentes do MySQL adicionam recursos e melhoram o desempenho, mas há casos em que uma atualização pode ser mais lenta para consultas específicas. Possíveis problemas resultando em regressão de desempenho:
 
-- A configuração anterior do servidor não é otimizada para versões mais recentes
-- Alterações dos tipos de dados
-- Armazenamento adicional exigido pelo suporte a conjuntos de caracteres de vários bytes
-- Alterações nos motores de armazenamento
-- Índices descartados ou alterados
-- Encriptação mais forte
-- Autenticação mais forte
-- Alterações do optimizador SQL
-- Versão mais recente do MySQL requer memória adicional
-- Hardware físico ou virtual é mais lento - computação ou armazenamento
+* A configuração do servidor anterior não é ideal para a versão mais recente
+* Alterações nos tipos de dados
+* Armazenamento adicional necessário para o suporte ao conjunto de caracteres multi-byte
+* Alterações nos motores de armazenamento
+* Índices eliminados ou alterados
+* Criptografia mais forte
+* Autenticação mais forte
+* Alterações no otimizador SQL
+* A versão mais recente do MySQL requer mais memória
+* O hardware físico ou virtual é mais lento - computação ou armazenamento
 
-Para obter informações relacionadas e técnicas potenciais de mitigação, ver Regressões de Desempenho Validas.
+Para informações relacionadas e técnicas de mitigação potenciais, consulte Regressões de Desempenho Válidas.
 
-### Executar ambas as versões do MySQL em paralelo
+### Execute Ambas as Versões do MySQL Paralelamente
 
-Para minimizar o risco, é melhor manter o sistema atual funcionando enquanto o sistema atualizado é executado em paralelo.
+Para minimizar o risco, é melhor manter o sistema atual em funcionamento enquanto executa o sistema atualizado em paralelo.
 
-### Execute a atualização de teste final
+### Execute a Atualização de Teste Final
 
-Pratique e faça uma corrida antes de atualizar seu servidor de produção. Teste completamente os procedimentos de atualização antes de atualizar um sistema de produção.
+Pratique e execute antes de atualizar seu servidor de produção. Teste minuciosamente os procedimentos de atualização antes de atualizar um sistema de produção.
 
-### Verifique o backup do MySQL
+### Verifique o Backup do MySQL
 
-Verifique se o backup completo existe e é viável antes de executar a atualização.
+Verifique se o backup completo existe e é viável antes de realizar a atualização.
 
-### Atualizar o servidor de produção
+### Atualize o Servidor de Produção
 
-Está pronto para completar a atualização.
+Você está pronto para concluir a atualização.
 
-### Apoio às empresas
+### Suporte Empresarial
 
-Se você é um cliente do MySQL Enterprise Edition, você também pode entrar em contato com os especialistas da equipe de suporte do MySQL com quaisquer perguntas que você possa ter.
+Se você é cliente da Edição Empresarial do MySQL, também pode entrar em contato com os especialistas da equipe de suporte do MySQL com quaisquer perguntas que possa ter.

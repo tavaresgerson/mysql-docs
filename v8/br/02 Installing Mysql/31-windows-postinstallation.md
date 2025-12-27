@@ -1,17 +1,17 @@
-### 2.3.5 Procedimentos pós-instalação do Windows
+### 2.3.5 Procedimentos Pós-Instalação do Windows
 
-Existem ferramentas de GUI que executam a maioria das tarefas descritas nesta seção, incluindo:
+Existem ferramentas de interface gráfica que realizam a maioria das tarefas descritas nesta seção, incluindo:
 
-- MySQL Configurator: Usado para configurar o servidor MySQL.
-- MySQL Workbench: Gerencia o servidor MySQL e edita instruções SQL.
+*  MySQL Configurator: Usado para configurar o servidor MySQL.
+*  MySQL Workbench: Gerencia o servidor MySQL e edita instruções SQL.
 
-Se necessário, inicie o diretório de dados e crie as tabelas de concessão do MySQL. As operações de instalação do Windows executadas pelo MySQL Configurator podem inicializar o diretório de dados automaticamente. Para instalação a partir de um pacote ZIP Archive, inicie o diretório de dados conforme descrito na Seção 2.9.1, "Initializando o Diretório de Dados".
+Se necessário, inicie o diretório de dados e crie as tabelas de concessão do MySQL. As operações de instalação do Windows realizadas pelo MySQL Configurator podem inicializar o diretório de dados automaticamente. Para a instalação a partir de um pacote de arquivo ZIP, inicie o diretório de dados conforme descrito na Seção 2.9.1, “Inicializando o Diretório de Dados”.
 
-Em relação às senhas, se você configurou o MySQL usando o Configurador do MySQL, você pode já ter atribuído uma senha para a conta inicial `root`. (Veja Seção 2.3.2, Configuração: Usando o Configurador do MySQL.) Caso contrário, use o procedimento de atribuição de senha dado na Seção 2.9.4, Securing the Initial MySQL Account.
+Quanto às senhas, se você configurou o MySQL usando o MySQL Configurator, pode ter atribuído uma senha à conta inicial `root`. (Veja a Seção 2.3.2, “Configuração: Usando o MySQL Configurator”.) Caso contrário, use o procedimento de atribuição de senha dado na Seção 2.9.4, “Segurando a Conta Inicial do MySQL”.
 
-Antes de atribuir uma senha, você pode querer tentar executar alguns programas cliente para se certificar de que você pode se conectar ao servidor e que ele está funcionando corretamente. Certifique-se de que o servidor está em execução (ver Seção 2.3.3.5,  Iniciar o Servidor pela primeira vez). Você também pode configurar um serviço MySQL que é executado automaticamente quando o Windows é iniciado (ver Seção 2.3.3.8,  Iniciar o MySQL como um Serviço Windows).
+Antes de atribuir uma senha, você pode querer tentar executar alguns programas cliente para garantir que você possa se conectar ao servidor e que ele esteja funcionando corretamente. Certifique-se de que o servidor esteja em execução (veja  Seção 2.3.3.5, “Iniciando o Servidor pela Primeira Vez”). Você também pode configurar um serviço MySQL que seja executado automaticamente quando o Windows iniciar (veja  Seção 2.3.3.8, “Iniciando o MySQL como Serviço do Windows”).
 
-Essas instruções assumem que sua localização atual é o diretório de instalação do MySQL e que ele tem um subdiretório `bin` contendo os programas do MySQL usados aqui. Se isso não for verdade, ajuste os nomes do caminho de comando de acordo.
+Essas instruções assumem que sua localização atual é o diretório de instalação do MySQL e que ele tem um subdiretório `bin` contendo os programas MySQL usados aqui. Se isso não for verdade, ajuste os nomes dos caminhos dos comandos de acordo.
 
 Se você instalou o MySQL usando o MSI, o diretório de instalação padrão é `C:\Program Files\MySQL\MySQL Server 8.4`:
 
@@ -19,15 +19,15 @@ Se você instalou o MySQL usando o MSI, o diretório de instalação padrão é 
 C:\> cd "C:\Program Files\MySQL\MySQL Server 8.4"
 ```
 
-Um local de instalação comum para instalação de um arquivo ZIP é `C:\mysql`:
+Uma localização comum para a instalação a partir de um arquivo ZIP é `C:\mysql`:
 
 ```
 C:\> cd C:\mysql
 ```
 
-Alternativamente, adicione o diretório `bin` à sua configuração de variável de ambiente `PATH`. Isso permite que seu interpretador de comandos encontre os programas do MySQL corretamente, para que você possa executar um programa digitando apenas seu nome, não seu nome de caminho.
+Como alternativa, adicione o diretório `bin` à configuração da variável de ambiente `PATH`. Isso permite que o interpretador de comandos encontre os programas do MySQL corretamente, para que você possa executar um programa digitando apenas seu nome, e não seu nome de caminho.
 
-Com o servidor em execução, emitir os seguintes comandos para verificar que você pode recuperar informações do servidor. A saída deve ser semelhante ao mostrado aqui.
+Com o servidor em execução, execute os seguintes comandos para verificar se você pode recuperar informações do servidor. A saída deve ser semelhante à mostrada aqui.
 
 Use `mysqlshow` para ver quais bancos de dados existem:
 
@@ -45,7 +45,7 @@ C:\> bin\mysqlshow
 
 A lista de bancos de dados instalados pode variar, mas sempre inclui pelo menos `mysql` e `information_schema`.
 
-O comando anterior (e comandos para outros programas MySQL, como `mysql`) pode não funcionar se a conta correta do MySQL não existir. Por exemplo, o programa pode falhar com um erro, ou você pode não ser capaz de ver todos os bancos de dados. Se você configurou o MySQL usando o MySQL Configurator, o usuário `root` é criado automaticamente com a senha que você forneceu. Nesse caso, você deve usar as opções `-u root` e `-p` (Você deve usar essas opções se você já tiver protegido as contas iniciais do MySQL). Com `-p`, o programa cliente solicita a senha `root` Por exemplo:
+O comando anterior (e comandos para outros programas do MySQL, como `mysql`) podem não funcionar se a conta correta do MySQL não existir. Por exemplo, o programa pode falhar com um erro ou você pode não conseguir visualizar todos os bancos de dados. Se você configurou o MySQL usando o MySQL Configurator, o usuário `root` é criado automaticamente com a senha que você forneceu. Nesse caso, você deve usar as opções `-u root` e `-p`. (Você deve usar essas opções se já tiver protegido as contas iniciais do MySQL.) Com `-p`, o programa cliente solicita a senha do `root`. Por exemplo:
 
 ```
 C:\> bin\mysqlshow -u root -p
@@ -60,7 +60,7 @@ Enter password: (enter root password here)
 +--------------------+
 ```
 
-Se você especificar um nome de banco de dados, `mysqlshow` exibirá uma lista das tabelas dentro do banco de dados:
+Se você especificar um nome de banco de dados, o `mysqlshow` exibe uma lista das tabelas dentro do banco de dados:
 
 ```
 C:\> bin\mysqlshow mysql
@@ -116,4 +116,4 @@ C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 +------+-----------+-----------------------+
 ```
 
-Para obter mais informações sobre `mysql` e `mysqlshow`, consulte a Seção 6.5.1, mysql  The MySQL Command-Line Client, e a Seção 6.5.6, mysqlshow  Display Database, Table, and Column Information.
+Para obter mais informações sobre `mysql` e `mysqlshow`, consulte a Seção 6.5.1, “mysql — O Cliente de Linha de Comando do MySQL”, e a Seção 6.5.6, “mysqlshow — Exibir Informações de Banco de Dados, Tabela e Coluna”.

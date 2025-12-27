@@ -1,11 +1,11 @@
-### 2.1.4 Verificação da integridade do pacote usando MD5 Checksums ou GnuPG
+### 2.1.4 Verificar a integridade do pacote usando verificações MD5 ou GnuPG
 
-Depois de baixar o pacote do MySQL que atenda às suas necessidades e antes de tentar instalá-lo, verifique se ele está intacto e não foi adulterado. Existem três meios de verificação de integridade:
+Depois de baixar o pacote MySQL que atende às suas necessidades e antes de tentar instalá-lo, certifique-se de que ele está intacto e não foi adulterado. Existem três métodos para verificar a integridade:
 
-- Somas de verificação MD5
-- Assinaturas criptográficas usando `GnuPG`, o GNU Privacy Guard
-- Para os pacotes RPM, o mecanismo de verificação da integridade do RPM incorporado
+* Verificações MD5
+* Assinaturas criptográficas usando `GnuPG`, o GNU Privacy Guard
+* Para pacotes RPM, o mecanismo de verificação de integridade integrado do RPM
 
-As secções seguintes descrevem como utilizar estes métodos.
+As seções a seguir descrevem como usar esses métodos.
 
-Se você notar que a soma de verificação MD5 ou as assinaturas GPG não coincidem, primeiro tente baixar o pacote respectivo mais uma vez, talvez de outro site espelho.
+Se você notar que a verificação MD5 ou as assinaturas GnuPG não correspondem, tente primeiro baixar o pacote respectivo mais uma vez, talvez de outro site de espelhamento.

@@ -1,8 +1,8 @@
-#### 2.1.4.5 GPG Public Build Key para Pacotes Arquivados
+#### 2.1.4.5 Chave de Construção Pública GPG para Pacotes Arquivados
 
-A seguinte chave de compilação pública do GPG (keyID `3A79BD29`) pode ser usada para verificar a autenticidade e integridade dos pacotes MySQL versões 8.0.28 a 8.0.35, 8.1.0 e 8.2.0.
+A seguinte chave de construção pública GPG (keyID `3A79BD29`) pode ser usada para verificar a autenticidade e a integridade das versões dos pacotes MySQL 8.0.28 a 8.0.35, 8.1.0 e 8.2.0. Para instruções de verificação de assinatura, consulte a Seção 2.1.4.2, “Verificação de Assinatura Usando GnuPG”. Ela expirou em 14 de dezembro de 2023.
 
-##### GPG Public Build Key para MySQL 8.0.36 a 8.0.43, e 8.3.0 a 8.4.6, e 9.0.0 a 9.4.0 Pacotes
+##### Chave de Construção Pública GPG para Pacotes MySQL 8.0.36 a 8.0.43 e 8.3.0 a 8.4.6 e 9.0.0 a 9.4.0
 
 ```
         -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -56,7 +56,7 @@ cAZUlaj3id3TxquAlud4lWDz
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-##### GPG Public Build Key para MySQL 8.0.28 a 8.0.35, e 8.1.0/8.2.0 Pacotes
+##### Chave de Construção Pública GPG para Pacotes MySQL 8.0.28 a 8.0.35 e 8.1.0/8.2.0
 
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -113,9 +113,9 @@ HAB5DGMkx92HUMidsTSKHe+QnnnoFmu4gnmDU31i
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-A seguinte chave de compilação pública GPG (keyID `5072E1F5`) pode ser usada para verificar a autenticidade e integridade dos pacotes MySQL 8.0.27 e anteriores.
+A seguinte chave de construção pública GPG (keyID `5072E1F5`) pode ser usada para verificar a autenticidade e a integridade dos pacotes MySQL 8.0.27 e anteriores. Para instruções de verificação de assinatura, consulte a Seção 2.1.4.2, “Verificação de Assinatura Usando GnuPG”.
 
-##### GPG Public Build Key para Pacotes MySQL 8.0.27 e Anteriores
+##### Chave de Construção Pública GPG para Pacotes MySQL 8.0.27 e Prévios
 
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----

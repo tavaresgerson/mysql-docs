@@ -1,8 +1,8 @@
-#### 5.3.4.7 Correspondência de padrões
+#### 5.3.4.7 Correspondência de Padrões
 
-O MySQL fornece padrão de correspondência de padrões SQL, bem como uma forma de correspondência de padrões baseada em expressões regulares estendidas semelhantes às usadas por utilitários Unix, como `vi`, `grep`, e `sed`.
+O MySQL oferece correspondência de padrões SQL padrão, bem como uma forma de correspondência de padrões baseada em expressões regulares extensas, semelhantes às usadas por utilitários do Unix, como `vi`, `grep` e `sed`.
 
-A correspondência de padrões SQL permite que você use `_` para corresponder a qualquer caractere e `%` para corresponder a um número arbitrário de caracteres (incluindo zero caracteres). No MySQL, os padrões SQL são case-insensíveis por padrão. Alguns exemplos são mostrados aqui. Não use `=` ou `<>` quando você usa padrões SQL. Use os operadores de comparação `LIKE` ou `NOT LIKE` em vez disso.
+A correspondência de padrões SQL permite que você use `_` para corresponder a qualquer caractere único e `%` para corresponder a um número arbitrário de caracteres (incluindo zero caracteres). No MySQL, os padrões SQL são case-insensitive por padrão. Alguns exemplos são mostrados aqui. Não use `=` ou `<>` ao usar padrões SQL. Use os operadores de comparação  `LIKE` ou `NOT LIKE` em vez disso.
 
 Para encontrar nomes que começam com `b`:
 
@@ -28,7 +28,7 @@ mysql> SELECT * FROM pet WHERE name LIKE '%fy';
 +--------+--------+---------+------+------------+-------+
 ```
 
-Para encontrar nomes contendo um `w`:
+Para encontrar nomes que contêm uma `w`:
 
 ```
 mysql> SELECT * FROM pet WHERE name LIKE '%w%';
@@ -41,7 +41,7 @@ mysql> SELECT * FROM pet WHERE name LIKE '%w%';
 +----------+-------+---------+------+------------+------------+
 ```
 
-Para encontrar nomes contendo exatamente cinco caracteres, use cinco instâncias do padrão de `_`:
+Para encontrar nomes que contêm exatamente cinco caracteres, use cinco instâncias do caractere de padrão `_`:
 
 ```
 mysql> SELECT * FROM pet WHERE name LIKE '_____';
@@ -53,15 +53,15 @@ mysql> SELECT * FROM pet WHERE name LIKE '_____';
 +-------+--------+---------+------+------------+-------+
 ```
 
-O outro tipo de correspondência de padrão fornecido pelo MySQL usa expressões regulares estendidas. Quando você testa uma correspondência para este tipo de padrão, use a função `REGEXP_LIKE()` (ou os operadores `REGEXP` ou `RLIKE`, que são sinônimos de `REGEXP_LIKE()`).
+O outro tipo de correspondência de padrões fornecido pelo MySQL usa expressões regulares extensas. Ao testar uma correspondência para esse tipo de padrão, use a função `REGEXP_LIKE()` (ou os operadores `REGEXP` ou `RLIKE`, que são sinônimos de `REGEXP_LIKE()`).
 
-A lista a seguir descreve algumas características das expressões regulares estendidas:
+A lista a seguir descreve algumas características das expressões regulares extensas:
 
-- `.` corresponde a qualquer caractere.
-- Uma classe de caracteres `[...]` corresponde a qualquer caracter dentro dos parênteses. Por exemplo, `[abc]` corresponde a `a`, `b`, ou `c`. Para nomear um intervalo de caracteres, use um traço. `[a-z]` corresponde a qualquer letra, enquanto `[0-9]` corresponde a qualquer dígito.
-- `*` corresponde a zero ou mais instâncias da coisa que o precede. Por exemplo, `x*` corresponde a qualquer número de `x` caracteres, `[0-9]*` corresponde a qualquer número de dígitos, e `.*` corresponde a qualquer número de qualquer coisa.
-- Uma correspondência de padrão de expressão regular é bem-sucedida se o padrão corresponder a qualquer lugar no valor sendo testado. (Isso difere de uma correspondência de padrão `LIKE`, que é bem-sucedida apenas se o padrão corresponder ao valor inteiro.)
-- Para ancorar um padrão para que ele corresponda ao início ou ao fim do valor a ser testado, use `^` no início ou `$` no final do padrão.
+* `.` corresponde a qualquer caractere único.
+* Uma classe de caracteres `[...]` corresponde a qualquer caractere dentro dos colchetes. Por exemplo, `[abc]` corresponde a `a`, `b` ou `c`. Para nomear uma faixa de caracteres, use uma barra. `[a-z]` corresponde a qualquer letra, enquanto `[0-9]` corresponde a qualquer dígito.
+* `*` corresponde a zero ou mais instâncias da coisa que o precede. Por exemplo, `x*` corresponde a qualquer número de caracteres `x`, `[0-9]*` corresponde a qualquer número de dígitos, e `.*` corresponde a qualquer número de qualquer coisa.
+* Uma correspondência de padrão de expressão regular é bem-sucedida se o padrão corresponder em qualquer lugar no valor sendo testado. (Isso difere de uma correspondência de padrão `LIKE`, que é bem-sucedida apenas se o padrão corresponder ao valor inteiro.)
+* Para ancorar um padrão de modo que ele deva corresponder ao início ou fim do valor sendo testado, use `^` no início ou `$` no fim do padrão.
 
 Para demonstrar como as expressões regulares estendidas funcionam, as consultas `LIKE` mostradas anteriormente são reescritas aqui para usar `REGEXP_LIKE()`.
 
@@ -77,7 +77,7 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^b');
 +--------+--------+---------+------+------------+------------+
 ```
 
-Para forçar uma comparação de expressões regulares a ser sensível a maiúsculas e minúsculas, use uma coleta sensível a maiúsculas e minúsculas, ou use a palavra-chave `BINARY` para tornar uma das strings uma string binária, ou especifique o `c` caracter de controle de correspondência. Cada uma dessas consultas corresponde apenas a `b` minúscula no início de um nome:
+Para forçar uma comparação de expressão regular a ser sensível ao caso, use uma ordenação sensível ao caso, ou use a palavra-chave `BINARY` para tornar uma das strings uma string binária, ou especifique o caractere de controle de correspondência `c`. Cada uma dessas consultas corresponde apenas a `b` minúsculo no início de um nome:
 
 ```
 SELECT * FROM pet WHERE REGEXP_LIKE(name, '^b' COLLATE utf8mb4_0900_as_cs);
@@ -97,7 +97,7 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, 'fy$');
 +--------+--------+---------+------+------------+-------+
 ```
 
-Para encontrar nomes contendo um `w`, use esta consulta:
+Para encontrar nomes que contenham uma `w`, use esta consulta:
 
 ```
 mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, 'w');
@@ -110,9 +110,9 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, 'w');
 +----------+-------+---------+------+------------+------------+
 ```
 
-Como um padrão de expressão regular corresponde se ocorrer em qualquer lugar no valor, não é necessário na consulta anterior colocar um wildcard em ambos os lados do padrão para que ele corresponda ao valor inteiro, como seria verdadeiro com um padrão SQL.
+Como um padrão de expressão regular corresponde se ocorrer em qualquer lugar no valor, não é necessário na consulta anterior colocar um caractere wildcard em qualquer lado do padrão para fazê-lo corresponder ao valor inteiro, como seria verdadeiro com um padrão SQL.
 
-Para encontrar nomes contendo exatamente cinco caracteres, use `^` e `$` para combinar o início e o fim do nome, e cinco instâncias de `.` no meio:
+Para encontrar nomes que contenham exatamente cinco caracteres, use `^` e `$` para corresponder ao início e fim do nome, e cinco instâncias de `.` entre eles:
 
 ```
 mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^.....$');
@@ -124,7 +124,7 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^.....$');
 +-------+--------+---------+------+------------+-------+
 ```
 
-Você também pode escrever a consulta anterior usando o operador `{n}` (`“repeat-*n*-times”`):
+Você também pode escrever a consulta anterior usando o operador `{n}` (`“repeat-*n*-times”`) :
 
 ```
 mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^.{5}$');
@@ -136,4 +136,4 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^.{5}$');
 +-------+--------+---------+------+------------+-------+
 ```
 
-Para obter mais informações sobre a sintaxe das expressões regulares, ver Secção 14.8.2, "Expressões regulares".
+Para mais informações sobre a sintaxe de expressões regulares, consulte a Seção 14.8.2, “Expressões Regulares”.

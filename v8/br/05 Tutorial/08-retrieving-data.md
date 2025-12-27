@@ -1,6 +1,6 @@
-### 5.3.4 Recuperação de informações de uma tabela
+### 5.3.4 Recuperação de Informações de uma Tabela
 
-O comando `SELECT` é usado para extrair informações de uma tabela. A forma geral do comando é:
+A instrução `SELECT` é usada para extrair informações de uma tabela. O formato geral da instrução é:
 
 ```sql
 SELECT what_to_select
@@ -8,4 +8,4 @@ FROM which_table
 WHERE conditions_to_satisfy;
 ```
 
-A cláusula `what_to_select` indica o que você deseja ver. Esta pode ser uma lista de colunas, ou `*` para indicar  todas as colunas. `which_table` indica a tabela da qual você deseja recuperar dados. A cláusula `WHERE` é opcional. Se estiver presente, `conditions_to_satisfy` especifica uma ou mais condições que as linhas devem satisfazer para se qualificarem para a recuperação.
+`what_to_select` indica o que você deseja ver. Isso pode ser uma lista de colunas ou `*` para indicar “todas as colunas”. `which_table` indica a tabela de onde você deseja recuperar dados. A cláusula `WHERE` é opcional. Se estiver presente, `conditions_to_satisfy` especifica uma ou mais condições que as linhas devem satisfazer para serem qualificadas para a recuperação.

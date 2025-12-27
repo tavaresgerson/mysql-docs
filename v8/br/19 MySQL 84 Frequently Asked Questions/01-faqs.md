@@ -1,0 +1,1 @@
+# Apêndice A Perguntas Frequentes sobre o MySQL 8.4

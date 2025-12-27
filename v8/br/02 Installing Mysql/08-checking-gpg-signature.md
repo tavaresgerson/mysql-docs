@@ -1,14 +1,14 @@
-#### 2.1.4.2 Verificação de assinaturas usando GnuPG
+#### 2.1.4.2 Verificação de Assinaturas Usando o GnuPG
 
-Outro método de verificar a integridade e autenticidade de um pacote é usar assinaturas criptográficas. Isso é mais confiável do que usar checksums MD5, mas requer mais trabalho.
+Outro método de verificar a integridade e autenticidade de um pacote é usar assinaturas criptográficas. Isso é mais confiável do que usar verificações de checksum MD5, mas requer mais trabalho.
 
-Assinamos pacotes para download do MySQL com **GnuPG** (GNU Privacy Guard). **GnuPG** é uma alternativa de código aberto ao conhecido Pretty Good Privacy (**PGP**) de Phil Zimmermann. A maioria das distribuições Linux vem com **GnuPG** instalado por padrão. Caso contrário, consulte \[<http://www.gnupg.org/>] para obter mais informações sobre **GnuPG** e como obtê-lo e instalá-lo.
+Assinamos os pacotes baixáveis do MySQL com **GnuPG** (GNU Privacy Guard). **GnuPG** é uma alternativa de código aberto ao bem conhecido Pretty Good Privacy (**PGP**) de Phil Zimmermann. A maioria das distribuições Linux vem com **GnuPG** instalado por padrão. Caso contrário, consulte <http://www.gnupg.org/> para obter mais informações sobre **GnuPG** e como obtê-lo e instalá-lo.
 
-Para verificar a assinatura de um pacote específico, você primeiro precisa obter uma cópia da nossa chave de compilação pública GPG, que você pode baixar em \[<http://pgp.mit.edu/>]<http://pgp.mit.edu/>. A chave que você deseja obter é chamada `mysql-build@oss.oracle.com`. O keyID para pacotes MySQL 8.0.44 e superiores, MySQL 8.4.7 e superiores, e MySQL 9.5.0 e superiores é `B7B3B788A8D3785C`. Depois de obter essa chave, você deve compará-la com o valor da chave seguinte antes de usá-la para verificar pacotes MySQL. Alternativamente, você pode copiar e colar a chave diretamente do texto abaixo.
+Para verificar a assinatura de um pacote específico, você primeiro precisa obter uma cópia da nossa chave de construção GPG pública, que você pode baixar de <http://pgp.mit.edu/>. A chave que você deseja obter é chamada `mysql-build@oss.oracle.com`. O keyID para pacotes do MySQL 8.0.44 e superiores, MySQL 8.4.7 e superiores, e MySQL 9.5.0 e superiores é `B7B3B788A8D3785C`. Após obter essa chave, você deve compará-la com o valor seguinte da chave antes de usá-la para verificar pacotes do MySQL. Alternativamente, você pode copiar e colar a chave diretamente do texto abaixo.
 
-::: info Note
+::: info Nota
 
-A chave de compilação pública do GPG para pacotes de versões anteriores do MySQL (keyID `A8D3785C`, `5072E1F5` ou `3A79BD29`), veja Seção 2.1.4.5, Clave de compilação pública do GPG para pacotes arquivados.
+A chave de construção GPG pública para pacotes de versões anteriores do MySQL (keyID `A8D3785C`, `5072E1F5` ou `3A79BD29`), consulte  Seção 2.1.4.5, “Chave de Construção GPG Pública para Pacotes Arquivados”.
 
 :::
 
@@ -66,7 +66,7 @@ udMv77etKsN/mPdhJotVLMUpzeespcu5G2qqc5zt
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-Para importar a chave de compilação para o seu keyring pessoal público GPG, use **gpg --import**. Por exemplo, se você salvou a chave em um arquivo chamado `mysql_pubkey.asc`, o comando de importação parece assim:
+Para importar a chave de construção em seu chaveiro GPG público pessoal, use **gpg --import**. Por exemplo, se você salvou a chave em um arquivo chamado `mysql_pubkey.asc`, o comando de importação é assim:
 
 ```
 $> gpg --import mysql_pubkey.asc
@@ -76,7 +76,7 @@ gpg: Total number processed: 1
 gpg:               imported: 1
 ```
 
-Você também pode baixar a chave do servidor de chaves públicas usando o id de chave pública, `A8D3785C`:
+Você também pode baixar a chave do servidor de chaves públicas usando o ID da chave pública, `A8D3785C`:
 
 ```
 $> gpg --recv-keys B7B3B788A8D3785C
@@ -91,27 +91,27 @@ gpg:           new user IDs: 1
 gpg:         new signatures: 53
 ```
 
-Se você quiser importar a chave em sua configuração RPM para validar pacotes de instalação RPM, você deve ser capaz de importar a chave diretamente:
+Se você quiser importar a chave para sua configuração RPM para validar pacotes de instalação do RPM, você deve ser capaz de importar a chave diretamente:
 
 ```bash
 $> rpm --import mysql_pubkey.asc
 ```
 
-Se tiver problemas ou necessitar de informações específicas de RPM, consulte a secção 2.1.4.4, " Verificação de assinatura utilizando RPM " .
+Se você tiver problemas ou precisar de informações específicas do RPM, consulte  Seção 2.1.4.4, “Verificação de Assinaturas Usando RPM”.
 
-Depois de ter baixado e importado a chave de compilação pública, baixe o pacote MySQL desejado e a assinatura correspondente, que também está disponível na página de download. O arquivo de assinatura tem o mesmo nome do arquivo de distribuição com uma extensão `.asc`, como mostrado pelos exemplos na tabela a seguir.
+Depois de baixar e importar a chave de construção pública, baixe o pacote MySQL desejado e a assinatura correspondente, que também está disponível na página de download. O arquivo de assinatura tem o mesmo nome do arquivo de distribuição com a extensão `.asc`, conforme mostrado nos exemplos da tabela a seguir.
 
-**Tabela 2.1 Arquivos de pacotes e assinaturas do MySQL para arquivos de origem**
+**Tabela 2.1 Arquivos de Pacote e Assinatura MySQL para arquivos de fonte**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Tipo de ficheiro</th> <th>Nome do ficheiro</th> </tr></thead><tbody><tr> <td>Arquivo de distribuição</td> <td>[[<code>mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz</code>]]</td> </tr><tr> <td>Ficheiro de assinatura</td> <td>[[<code>mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz.asc</code>]]</td> </tr></tbody></table>
+<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Tipo de arquivo</th> <th>Nome do arquivo</th> </tr></thead><tbody><tr> <td>Arquivo de distribuição</td> <td><code>mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz</code></td> </tr><tr> <td>Arquivo de assinatura</td> <td><code>mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz.asc</code></td> </tr></tbody></table>
 
-Verifique se ambos os arquivos estão armazenados no mesmo diretório e execute o seguinte comando para verificar a assinatura do arquivo de distribuição:
+Certifique-se de que ambos os arquivos estejam armazenados no mesmo diretório e, em seguida, execute o seguinte comando para verificar a assinatura do arquivo de distribuição:
 
 ```bash
 $> gpg --verify package_name.asc
 ```
 
-Se o pacote baixado for válido, você deve ver uma mensagem semelhante a esta:
+Se o pacote baixado for válido, você deve ver uma mensagem de `Boa assinatura`, semelhante à seguinte:
 
 ```bash
 $> gpg --verify mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz.asc
@@ -120,7 +120,7 @@ gpg:                using RSA key BCA43417C3B485DD128EC6D4B7B3B788A8D3785C
 gpg: Good signature from "MySQL Release Engineering <mysql-build@oss.oracle.com>"
 ```
 
-A mensagem `Good signature` indica que a assinatura do arquivo é válida, quando comparada com a assinatura listada em nosso site. Mas você também pode ver avisos, como este:
+A mensagem de `Boa assinatura` indica que a assinatura do arquivo é válida, quando comparada à assinatura listada em nosso site. Mas você também pode ver avisos, como este:
 
 ```bash
 $> gpg --verify mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz.asc
@@ -132,9 +132,9 @@ gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: BCA4 3417 C3B4 85DD 128E  C6D4 B7B3 B788 A8D3 785C
 ```
 
-Isso é normal, pois dependem da sua configuração e configuração.
+Isso é normal, pois depende da sua configuração e do seu sistema. Aqui estão as explicações para esses avisos:
 
-- *gpg: não foram encontradas chaves de confiança final*: Isso significa que a chave específica não é "de confiança final" por você ou sua rede de confiança, o que está bem para fins de verificação de assinaturas de arquivos.
-- - AVISO: Esta chave não é certificada com uma assinatura confiável! Não há indicação de que a assinatura pertence ao proprietário. \*: Isso se refere ao seu nível de confiança na sua crença de que você possui nossa chave pública real. Esta é uma decisão pessoal. Idealmente, um desenvolvedor MySQL iria entregar-lhe a chave pessoalmente, mas mais comumente, você o baixou. O download foi adulterado? Provavelmente não, mas esta decisão é de você. Configurar uma rede de confiança é um método para confiar neles.
+* *gpg: não foram encontradas chaves de confiança ultimate*: Isso significa que a chave específica não é "ultimately confiável" por você ou sua rede de confiança, o que está bem para os fins de verificar assinaturas de arquivos.
+* *AVISO: Esta chave não está certificada com uma assinatura confiável! Não há indicação de que a assinatura pertence ao proprietário.*: Isso se refere ao seu nível de confiança na sua crença de que você possui nossa chave pública real. Essa é uma decisão pessoal. Idealmente, um desenvolvedor do MySQL entregaria a chave pessoalmente, mas mais comumente, você a baixou. A transferência foi adulterada? Provavelmente não, mas essa decisão cabe a você. Configurar uma rede de confiança é um método para confiar neles.
 
 Consulte a documentação do GPG para obter mais informações sobre como trabalhar com chaves públicas.

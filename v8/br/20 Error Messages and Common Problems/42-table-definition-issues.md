@@ -1,0 +1,1 @@
+### B.3.6 Questões relacionadas à definição de tabela

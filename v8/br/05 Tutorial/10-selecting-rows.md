@@ -1,8 +1,8 @@
-#### 5.3.4.2 Selecção de linhas específicas
+#### 5.3.4.2 Selecionando Linhas Específicas
 
-Como mostrado na seção anterior, é fácil recuperar uma tabela inteira. Apenas omita a cláusula `WHERE` da instrução `SELECT`. Mas normalmente você não quer ver a tabela inteira, especialmente quando ela se torna grande. Em vez disso, você geralmente está mais interessado em responder a uma pergunta específica, caso em que você especifica algumas restrições sobre as informações desejadas. Vamos olhar para algumas consultas de seleção em termos de perguntas sobre seus animais de estimação que eles respondem.
+Como mostrado na seção anterior, é fácil recuperar toda uma tabela. Basta omitir a cláusula `WHERE` da instrução `SELECT`. Mas, normalmente, você não quer ver toda a tabela, especialmente quando ela se torna grande. Em vez disso, você geralmente está mais interessado em responder a uma pergunta específica, caso em que você especifica algumas restrições sobre as informações que deseja. Vamos analisar algumas consultas de seleção em termos de perguntas sobre seus animais de estimação que elas respondem.
 
-Você pode selecionar apenas linhas específicas da sua tabela. Por exemplo, se você quiser verificar a mudança que você fez na data de nascimento do Bowser, selecione o registro do Bowser assim:
+Você pode selecionar apenas linhas específicas de sua tabela. Por exemplo, se você quiser verificar a mudança que fez na data de nascimento de Bowser, selecione o registro de Bowser assim:
 
 ```
 mysql> SELECT * FROM pet WHERE name = 'Bowser';
@@ -13,11 +13,11 @@ mysql> SELECT * FROM pet WHERE name = 'Bowser';
 +--------+-------+---------+------+------------+------------+
 ```
 
-A produção confirma que o ano é corretamente registrado como 1989, e não 1979.
+A saída confirma que o ano está registrado corretamente como 1989, não 1979.
 
-As comparações de strings normalmente não são sensíveis a maiúsculas e minúsculas, então você pode especificar o nome como `'bowser'`, `'BOWSER'`, e assim por diante. O resultado da consulta é o mesmo.
+As comparações de strings normalmente são case-insensitive, então você pode especificar o nome como `'bowser'`, `'BOWSER'`, e assim por diante. O resultado da consulta é o mesmo.
 
-Você pode especificar condições em qualquer coluna, não apenas em `name`. Por exemplo, se você quiser saber quais animais nasceram durante ou depois de 1998, teste a coluna `birth`:
+Você pode especificar condições em qualquer coluna, não apenas `name`. Por exemplo, se você quiser saber quais animais nasceram durante ou após 1998, teste a coluna `birth`:
 
 ```
 mysql> SELECT * FROM pet WHERE birth >= '1998-1-1';
@@ -40,7 +40,7 @@ mysql> SELECT * FROM pet WHERE species = 'dog' AND sex = 'f';
 +-------+--------+---------+------+------------+-------+
 ```
 
-A consulta anterior usa o `AND` operador lógico. Há também um `OR` operador:
+A consulta anterior usa o operador lógico `AND`. Há também um operador `OR`:
 
 ```sql
 mysql> SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
@@ -53,7 +53,7 @@ mysql> SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
 +----------+-------+---------+------+------------+-------+
 ```
 
-`AND` e `OR` podem ser misturados, embora `AND` tenha maior precedência do que `OR`. Se você usar ambos os operadores, é uma boa ideia usar parênteses para indicar explicitamente como as condições devem ser agrupadas:
+`AND` e `OR` podem ser misturados, embora `AND` tenha precedência maior que `OR`. Se você usar ambos os operadores, é uma boa ideia usar parênteses para indicar explicitamente como as condições devem ser agrupadas:
 
 ```sql
 mysql> SELECT * FROM pet WHERE (species = 'cat' AND sex = 'm')
@@ -65,3 +65,10 @@ mysql> SELECT * FROM pet WHERE (species = 'cat' AND sex = 'm')
 | Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |
 +-------+--------+---------+------+------------+-------+
 ```
+
+O texto acima usa o operador lógico `AND`. Há também um operador `OR`:
+
+
+
+`AND` e `OR` podem ser misturados, embora `AND` tenha precedência maior que `OR`. Se você usar ambos os operadores, é uma boa ideia usar parênteses para indicar explicitamente como as condições devem ser agrupadas:
+

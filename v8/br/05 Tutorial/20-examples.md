@@ -1,8 +1,8 @@
-## 5.6 Exemplos de perguntas comuns
+## 5.6 Exemplos de Perguntas Comuns
 
 Aqui estão exemplos de como resolver alguns problemas comuns com o MySQL.
 
-Alguns dos exemplos usam a tabela `shop` para manter o preço de cada artigo (número de item) para certos comerciantes (revendedores).
+Alguns dos exemplos usam a tabela `shop` para armazenar o preço de cada artigo (número de item) para certos comerciantes (distribuidores). Supondo que cada comerciante tenha um preço fixo único por artigo, então (`article`, `dealer`) é uma chave primária para os registros.
 
 Inicie a ferramenta de linha de comando `mysql` e selecione um banco de dados:
 
@@ -10,7 +10,7 @@ Inicie a ferramenta de linha de comando `mysql` e selecione um banco de dados:
 $> mysql your-database-name
 ```
 
-Para criar e preencher a tabela de exemplo, use estas instruções:
+Para criar e popolar a tabela de exemplo, use essas instruções:
 
 ```
 CREATE TABLE shop (
@@ -23,7 +23,7 @@ INSERT INTO shop VALUES
     (3,'C',1.69),(3,'D',1.25),(4,'D',19.95);
 ```
 
-Após a emissão das declarações, o quadro deve ter o seguinte conteúdo:
+Após emitir as instruções, a tabela deve ter o seguinte conteúdo:
 
 ```
 SELECT * FROM shop ORDER BY article;

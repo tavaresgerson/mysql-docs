@@ -1,0 +1,3 @@
+# Capítulo 10 Otimização
+
+Este capítulo explica como otimizar o desempenho do MySQL e fornece exemplos. A otimização envolve a configuração, o ajuste e a medição do desempenho, em vários níveis. Dependendo do seu papel (desenvolvedor, DBA ou uma combinação dos dois), você pode otimizar no nível de instruções SQL individuais, aplicações inteiras, um único servidor de banco de dados ou múltiplos servidores de banco de dados em rede. Às vezes, você pode ser proativo e planejar com antecedência para o desempenho, enquanto outras vezes você pode solucionar um problema de configuração ou código após o problema ocorrer. A otimização do uso da CPU e da memória também pode melhorar a escalabilidade, permitindo que o banco de dados lide com mais carga sem desacelerar.

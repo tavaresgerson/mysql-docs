@@ -1,0 +1,52 @@
+### 14.24.3 Manipulação de Expressões
+
+Números de valor exato são usados sempre que possível. Por exemplo, os números em comparações são usados exatamente como fornecidos, sem alteração de valor. No modo SQL rigoroso, para `INSERT` em uma coluna com um tipo de dados exato ( `DECIMAL` - DECIMAL, NUMERIC") ou inteiro), um número é inserido com seu valor exato se estiver dentro do intervalo da coluna. Ao ser recuperado, o valor deve ser o mesmo que o inserido. (Se o modo SQL rigoroso não estiver habilitado, a truncação para `INSERT` é permitida.)
+
+A manipulação de uma expressão numérica depende do tipo de valores que a expressão contém:
+
+* Se houver valores aproximados, a expressão é aproximada e é avaliada usando aritmética de ponto flutuante.
+* Se não houver valores aproximados, a expressão contém apenas valores exatos. Se qualquer valor exato contiver uma parte fracionária (um valor após o ponto decimal), a expressão é avaliada usando aritmética exata `DECIMAL` - DECIMAL, NUMERIC") com precisão de 65 dígitos. O termo “exato” está sujeito aos limites do que pode ser representado em binário. Por exemplo, `1.0/3.0` pode ser aproximado em notação decimal como `.333...`, mas não escrito como um número exato, então `(1.0/3.0)*3.0` não avalia exatamente `1.0`.
+* Caso contrário, a expressão contém apenas valores inteiros. A expressão é exata e é avaliada usando aritmética inteira e tem a mesma precisão que `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (64 bits).
+
+Se uma expressão numérica contiver strings, elas são convertidas em valores de ponto flutuante de dupla precisão e a expressão é aproximada.
+
+As inserções em colunas numéricas são afetadas pelo modo SQL, que é controlado pela variável de sistema `sql_mode`. (Veja a Seção 7.1.11, “Modos SQL do Servidor”.) A discussão a seguir menciona o modo estrito (selecionado pelos valores de modo `STRICT_ALL_TABLES` ou `STRICT_TRANS_TABLES`) e `ERROR_FOR_DIVISION_BY_ZERO`. Para ativar todas as restrições, você pode simplesmente usar o modo `TRADITIONAL`, que inclui tanto os valores de modo estrito quanto `ERROR_FOR_DIVISION_BY_ZERO`:
+
+```
+SET sql_mode='TRADITIONAL';
+```
+
+Se um número for inserido em uma coluna de tipo exato ( `DECIMAL` - DECIMAL, NUMERIC") ou inteiro), ele será inserido com seu valor exato se estiver dentro do intervalo e precisão da coluna.
+
+Se o valor tiver muitas casas decimais na parte fracionária, ocorrerá arredondamento e será gerado uma nota. O arredondamento é feito conforme descrito na Seção 14.24.4, “Comportamento de Arredondamento”. A truncação devido ao arredondamento da parte fracionária não é um erro, mesmo no modo estrito.
+
+Se o valor tiver muitas casas decimais na parte inteira, ele é muito grande (fora do intervalo) e é tratado da seguinte forma:
+
+* Se o modo estrito não estiver habilitado, o valor é truncado para o valor legal mais próximo e um aviso é gerado.
+* Se o modo estrito estiver habilitado, ocorre um erro de overflow.
+
+O subfluxo não é detectado, portanto, o tratamento do subfluxo é indefinido.
+
+Para inserções de strings em colunas numéricas, a conversão de string para número é tratada da seguinte forma se a string tiver conteúdo não numérico:
+
+* Uma string que não começa com um número não pode ser usada como um número e produz um erro no modo estrito, ou um aviso caso contrário. Isso inclui a string vazia.
+* Uma string que começa com um número pode ser convertida, mas a parte não numérica final é truncada. Se a parte truncada contiver algo além de espaços, isso produz um erro no modo estrito, ou um aviso caso contrário.
+
+Por padrão, a divisão por zero produz um resultado de `NULL` e nenhum aviso. Ao configurar o modo SQL apropriadamente, a divisão por zero pode ser restringida.
+
+Com o modo `ERROR_FOR_DIVISION_BY_ZERO` habilitado, o MySQL lida com a divisão por zero de maneira diferente:
+
+* Se o modo rigoroso não estiver habilitado, uma mensagem de aviso é exibida.
+* Se o modo rigoroso estiver habilitado, as inserções e atualizações que envolvem a divisão por zero são proibidas, e um erro é exibido.
+
+Em outras palavras, as inserções e atualizações que envolvem expressões que realizam a divisão por zero podem ser tratadas como erros, mas isso requer `ERROR_FOR_DIVISION_BY_ZERO` além do modo rigoroso.
+
+Suponha que tenhamos esta declaração:
+
+```
+INSERT INTO t SET i = 1/0;
+```
+
+Isso é o que acontece com combinações de modos rigoroso e `ERROR_FOR_DIVISION_BY_ZERO`.
+
+<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><code>sql_mode</code> Valor</th> <th>Resultado</th> </tr></thead><tbody><tr> <td><code>''</code> (Padrão)</td> <td>Sem aviso, sem erro; <code>i</code> é definido como <code>NULL</code>.</td> </tr><tr> <td>rigoroso</td> <td>Sem aviso, sem erro; <code>i</code> é definido como <code>NULL</code>.</td> </tr><tr> <td><code>ERROR_FOR_DIVISION_BY_ZERO</code></td> <td>Aviso, sem erro; <code>i</code> é definido como <code>NULL</code>.</td> </tr><tr> <td>rigoroso,<code>ERROR_FOR_DIVISION_BY_ZERO</code></td> <td>Condição de erro; nenhuma linha é inserida.</td> </tr></tbody></table>

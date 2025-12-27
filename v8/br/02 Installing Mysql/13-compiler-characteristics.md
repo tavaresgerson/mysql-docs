@@ -1,9 +1,9 @@
-### 2.1.6 Características de construção específicas do compilador
+### 2.1.6 Características de Compilação Específicas ao Compilador
 
-Em alguns casos, o compilador usado para construir o MySQL afeta os recursos disponíveis para uso. As notas nesta seção se aplicam a distribuições binárias fornecidas pela Oracle Corporation ou que você compila a partir do código-fonte.
+Em alguns casos, o compilador usado para compilar o MySQL afeta as funcionalidades disponíveis para uso. As notas nesta seção se aplicam a distribuições binárias fornecidas pela Oracle Corporation ou que você compilar sozinho a partir de código-fonte.
 
-\*\* `icc` (Compilador Intel C++) Edições\*\*
+**Compilações com `icc` (Compilador C++ da Intel)**
 
-Um servidor construído com `icc` tem estas características:
+Um servidor compilado com `icc` tem estas características:
 
-- O suporte SSL não está incluído.
+* O suporte SSL não está incluído.

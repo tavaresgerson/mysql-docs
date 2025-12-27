@@ -1,32 +1,32 @@
-#### 2.3.3.5 Iniciar o servidor pela primeira vez
+#### 2.3.3.5 Começando o Servidor pela Primeira Vez
 
-Esta seção fornece uma visão geral de como iniciar o servidor MySQL. As seções seguintes fornecem informações mais específicas para iniciar o servidor MySQL a partir da linha de comando ou como um serviço do Windows.
+Esta seção fornece uma visão geral geral sobre como iniciar o servidor MySQL. As seções seguintes fornecem informações mais específicas sobre como iniciar o servidor MySQL a partir da linha de comando ou como um serviço do Windows.
 
-As informações aqui se aplicam principalmente se você instalou o MySQL usando a versão `noinstall`, ou se você deseja configurar e testar o MySQL manualmente em vez de usar o MySQL Configurator.
+As informações aqui aplicam-se principalmente se você instalou o MySQL usando a versão `noinstall`, ou se deseja configurar e testar o MySQL manualmente em vez de usar o Configurável MySQL.
 
-Os exemplos nestas seções assumem que o MySQL está instalado sob a localização padrão de `C:\Program Files\MySQL\MySQL Server 8.4`. Ajuste os nomes de caminho mostrados nos exemplos se você tiver o MySQL instalado em um local diferente.
+Os exemplos nessas seções assumem que o MySQL está instalado na localização padrão de `C:\Program Files\MySQL\MySQL Server 8.4`. Ajuste os nomes de caminho mostrados nos exemplos se o MySQL estiver instalado em um local diferente.
 
-Os clientes têm duas opções. Eles podem usar TCP/IP, ou podem usar um tubo nomeado se o servidor suportar conexões de tubo nomeado.
+Os clientes têm duas opções. Eles podem usar TCP/IP ou podem usar um tubo nomeado se o servidor suportar conexões por tubo nomeado.
 
-O MySQL para Windows também suporta conexões de memória compartilhada se o servidor for iniciado com a variável de sistema `shared_memory` ativada. Os clientes podem se conectar através de memória compartilhada usando a opção `--protocol=MEMORY`.
+O MySQL para Windows também suporta conexões de memória compartilhada se o servidor for iniciado com a variável de sistema `shared_memory` habilitada. Os clientes podem se conectar através da memória compartilhada usando a opção `--protocol=MEMORY`.
 
-Para obter informações sobre qual servidor binário executar, consulte a Seção 2.3.3.3, "Seleção de um tipo de servidor MySQL".
+Para obter informações sobre qual binário do servidor deve ser executado, consulte a Seção 2.3.3.3, “Selecionando um Tipo de Servidor MySQL”.
 
-O teste é melhor feito a partir de um prompt de comando em uma janela de console (ou Windows DOS). desta forma, você pode ter o servidor exibir mensagens de status na janela onde eles são fáceis de ver.
+Testar é melhor feito a partir de um prompt de comando em uma janela de console (ou “janela DOS”). Dessa forma, você pode ter o servidor exibindo mensagens de status na janela onde elas são fáceis de ver. Se algo estiver errado com sua configuração, essas mensagens facilitam a identificação e correção de quaisquer problemas.
 
-::: info Note
+::: info Nota
 
-Para obter informações adicionais sobre o processo de inicialização, consulte a Seção 2.9.1, "Initializando o Diretório de Dados".
+A base de dados deve ser inicializada antes que o MySQL possa ser iniciado. Para obter informações adicionais sobre o processo de inicialização, consulte a Seção 2.9.1, “Inicializando o Diretório de Dados”.
 
 :::
 
-Para iniciar o servidor, digite este comando:
+Para iniciar o servidor, insira este comando:
 
 ```
 C:\> "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysqld" --console
 ```
 
-Você deve ver mensagens semelhantes às seguintes quando ele começa (os nomes de caminho e tamanhos podem ser diferentes). As mensagens `ready for connections` indicam que o servidor está pronto para atender conexões de cliente.
+Você deve ver mensagens semelhantes às seguintes enquanto ele inicia (os nomes de caminho e tamanhos podem diferir). As mensagens `pronto para conexões` indicam que o servidor está pronto para atender conexões de clientes.
 
 ```
 [Server] C:\mysql\bin\mysqld.exe (mysqld 8.0.30) starting as process 21236
@@ -40,12 +40,10 @@ Encrypted connections are now supported for this channel.
 Version: '8.0.30'  socket: ''  port: 3306  MySQL Community Server - GPL.
 ```
 
-Agora você pode abrir uma nova janela de console na qual executar programas de cliente.
+Agora você pode abrir uma nova janela de console na qual executar programas de clientes.
 
-Se você omitir a opção `--console`, o servidor escreve a saída de diagnóstico para o log de erro no diretório de dados (`C:\Program Files\MySQL\MySQL Server 8.4\data` por padrão). O log de erro é o arquivo com a extensão `.err`, e pode ser definido usando a opção `--log-error`.
+Se você omitir a opção `--console`, o servidor escreverá a saída de diagnóstico no log de erro no diretório de dados (`C:\Program Files\MySQL\MySQL Server 8.4\data` por padrão). O log de erro é o arquivo com a extensão `.err` e pode ser configurado usando a opção `--log-error`.
 
-::: info Note
+::: info Nota
 
-A conta inicial `root` nas tabelas de concessão do MySQL não tem senha. Depois de iniciar o servidor, você deve configurar uma senha para ele usando as instruções na Seção 2.9.4, Securing the Initial MySQL Account.
-
-:::
+A conta `root` inicial nas tabelas de concessão do MySQL não tem senha. Após iniciar o servidor, você deve configurá-la usando as instruções na Seção 2.9.4, “Segurança da Conta Inicial do MySQL”.

@@ -1,8 +1,8 @@
-#### 5.3.4.5 Cálculos de data
+#### 5.3.4.5 Cálculos de Datas
 
-O MySQL fornece várias funções que você pode usar para realizar cálculos em datas, por exemplo, para calcular idades ou extrair partes de datas.
+O MySQL fornece várias funções que você pode usar para realizar cálculos com datas, por exemplo, para calcular idades ou extrair partes de datas.
 
-Para determinar a idade de cada um dos seus animais de estimação, use a função `TIMESTAMPDIFF()` . Seus argumentos são a unidade em que você deseja que o resultado seja expresso e as duas datas para as quais a diferença seja tomada. A seguinte consulta mostra, para cada animal de estimação, a data de nascimento, a data atual e a idade em anos. Um \* alias \* (`age`) é usado para tornar o rótulo da coluna de saída final mais significativo.
+Para determinar quantos anos cada um de seus animais de estimação tem, use a função `TIMESTAMPDIFF()`. Seus argumentos são a unidade na qual você deseja que o resultado seja expresso e as duas datas para as quais deseja-se calcular a diferença. A consulta a seguir mostra, para cada animal de estimação, a data de nascimento, a data atual e a idade em anos. Uma *alias* (`idade`) é usada para tornar a etiqueta da coluna de saída mais significativa.
 
 ```sql
 mysql> SELECT name, birth, CURDATE(),
@@ -23,7 +23,7 @@ mysql> SELECT name, birth, CURDATE(),
 +----------+------------+------------+------+
 ```
 
-A consulta funciona, mas o resultado pode ser escaneado mais facilmente se as linhas forem apresentadas em alguma ordem. Isso pode ser feito adicionando uma cláusula `ORDER BY name` para classificar a saída por nome:
+A consulta funciona, mas o resultado poderia ser lido mais facilmente se as linhas fossem apresentadas em algum tipo de ordem. Isso pode ser feito adicionando uma cláusula `ORDER BY nome` para ordenar a saída por nome:
 
 ```
 mysql> SELECT name, birth, CURDATE(),
@@ -44,7 +44,7 @@ mysql> SELECT name, birth, CURDATE(),
 +----------+------------+------------+------+
 ```
 
-Para classificar a saída por `age` em vez de `name`, basta usar uma cláusula `ORDER BY` diferente:
+Para ordenar a saída por `idade` em vez de `nome`, basta usar uma cláusula `ORDER BY` diferente:
 
 ```
 mysql> SELECT name, birth, CURDATE(),
@@ -65,7 +65,7 @@ mysql> SELECT name, birth, CURDATE(),
 +----------+------------+------------+------+
 ```
 
-Uma consulta semelhante pode ser usada para determinar a idade na morte de animais que morreram. Você determina quais animais são verificando se o valor de `death` é `NULL`. Então, para aqueles com valores não `NULL`, calcule a diferença entre os valores de `death` e `birth`:
+Uma consulta semelhante pode ser usada para determinar a idade na morte para animais que morreram. Você determina quais são esses animais verificando se o valor `morte` é `NULL`. Em seguida, para aqueles com valores não `NULL`, calcule a diferença entre os valores `morte` e `nascimento`:
 
 ```
 mysql> SELECT name, birth, death,
@@ -78,9 +78,9 @@ mysql> SELECT name, birth, death,
 +--------+------------+------------+------+
 ```
 
-A consulta usa `death IS NOT NULL` em vez de `death <> NULL` porque `NULL` é um valor especial que não pode ser comparado usando os operadores de comparação usuais.
+A consulta usa `morte IS NOT NULL` em vez de `morte <> NULL` porque `NULL` é um valor especial que não pode ser comparado usando os operadores de comparação usuais. Isso é discutido mais adiante. Veja  Seção 5.3.4.6, “Trabalhando com Valores NULL”.
 
-E se você quiser saber quais animais têm aniversários no próximo mês? Para este tipo de cálculo, o ano e o dia são irrelevantes; você simplesmente quer extrair a parte do mês da coluna `birth`. O MySQL fornece várias funções para extrair partes de datas, como `YEAR()`, `MONTH()`, e `DAYOFMONTH()`. `MONTH()` é a função apropriada aqui. Para ver como funciona, execute uma consulta simples que exibe o valor de ambos `birth` e `MONTH(birth)`:
+E se você quiser saber quais animais têm aniversários no próximo mês? Para esse tipo de cálculo, ano e dia são irrelevantes; você simplesmente deseja extrair a parte do mês da coluna `nascimento`. O MySQL fornece várias funções para extrair partes de datas, como `YEAR()`, `MONTH()` e `DAYOFMONTH()`. `MONTH()` é a função apropriada aqui. Para ver como funciona, execute uma consulta simples que exiba o valor de `nascimento` e `MONTH(nascimento)`:
 
 ```
 mysql> SELECT name, birth, MONTH(birth) FROM pet;
@@ -99,7 +99,7 @@ mysql> SELECT name, birth, MONTH(birth) FROM pet;
 +----------+------------+--------------+
 ```
 
-Encontrar animais com aniversários no próximo mês também é simples. Suponha que o mês atual seja abril. Então o valor do mês é `4` e você pode procurar animais nascidos em maio (mês `5`) assim:
+Encontrar animais com aniversários no próximo mês também é simples. Suponha que o mês atual seja abril. Então, o valor do mês é `4` e você pode procurar por animais nascidos em maio (mês `5`) da seguinte forma:
 
 ```
 mysql> SELECT name, birth FROM pet WHERE MONTH(birth) = 5;
@@ -110,25 +110,25 @@ mysql> SELECT name, birth FROM pet WHERE MONTH(birth) = 5;
 +-------+------------+
 ```
 
-Há uma pequena complicação se o mês atual for dezembro. Você não pode simplesmente adicionar um ao número do mês (\[`12`]]) e procurar animais nascidos no mês \[`13`]], porque não há tal mês. Em vez disso, você procura animais nascidos em janeiro (mês \[`1`]]).
+Há uma pequena complicação se o mês atual for dezembro. Você não pode simplesmente adicionar um ao número do mês (`12`) e procurar por animais nascidos no mês `13`, porque não existe tal mês. Em vez disso, você procura por animais nascidos em janeiro (mês `1`).
 
-Você pode escrever a consulta para que ela funcione independentemente do mês atual, para que você não precise usar o número para um mês específico. \[`DATE_ADD()`] permite adicionar um intervalo de tempo a uma data dada. Se você adicionar um mês ao valor de \[`CURDATE()`], então extrair a parte do mês com \[`MONTH()`], o resultado produz o mês em que procurar aniversários:
+Você pode escrever a consulta para que ela funcione independentemente do mês atual, para que você não precise usar o número de um mês específico. `DATE_ADD()` permite que você adicione um intervalo de tempo a uma data dada. Se você adicionar um mês ao valor de `CURDATE()`, e depois extrair a parte do mês com `MONTH()`, o resultado produzirá o mês em que procurar por aniversários:
 
 ```
 mysql> SELECT name, birth FROM pet
        WHERE MONTH(birth) = MONTH(DATE_ADD(CURDATE(),INTERVAL 1 MONTH));
 ```
 
-Uma maneira diferente de realizar a mesma tarefa é adicionar `1` para obter o próximo mês após o atual após usar a função modulo (`MOD`) para envolver o valor do mês em `0` se for atualmente `12`:
+Uma maneira diferente de realizar a mesma tarefa é adicionar `1` para obter o próximo mês após o atual, após usar a função módulo (`MOD`) para encurtar o valor do mês para `0` se ele estiver atualmente `12`:
 
 ```
 mysql> SELECT name, birth FROM pet
        WHERE MONTH(birth) = MOD(MONTH(CURDATE()), 12) + 1;
 ```
 
-\[`MONTH()`] retorna um número entre \[`1`] e \[`12`]. E \[`MOD(something,12)`] retorna um número entre \[`0`] e \[`11`]. Então a adição tem que ser depois do \[`MOD()`], caso contrário, iríamos de novembro (`11`) para janeiro (`1`).
+`MONTH()` retorna um número entre `1` e `12`. E `MOD(algo, 12)` retorna um número entre `0` e `11`. Então, a adição tem que ser depois do `MOD()`, caso contrário, iremos de novembro (`11`) para janeiro (`1`).
 
-Se um cálculo utilizar datas inválidas, o cálculo falhará e produzirá avisos:
+Se um cálculo usa datas inválidas, o cálculo falha e produz avisos:
 
 ```
 mysql> SELECT '2018-10-31' + INTERVAL 1 DAY;
