@@ -1,0 +1,5 @@
+#### 10.4.2.1 Otimização para Dados Numéricos
+
+* Para IDs únicos ou outros valores que podem ser representados como strings ou números, prefira colunas numéricas em vez de colunas de texto. Como valores numéricos grandes podem ser armazenados em menos bytes do que as strings correspondentes, é mais rápido e consome menos memória para transferi-los e compará-los.
+
+* Se você estiver usando dados numéricos, em muitos casos, acessar informações de um banco de dados (usando uma conexão ao vivo) é mais rápido do que acessar um arquivo de texto. As informações no banco de dados provavelmente serão armazenadas em um formato mais compacto do que no arquivo de texto, então acessar elas envolve menos acessos ao disco. Você também economiza código em sua aplicação porque pode evitar a análise do arquivo de texto para encontrar limites de linha e coluna.

@@ -1,0 +1,9 @@
+### 30.4.2 Tabelas e gatilhos do esquema `sys`
+
+30.4.2.1 A tabela `sys\_config`
+
+30.4.2.2 O gatilho `sys\_config\_insert\_set\_user`
+
+30.4.2.3 O gatilho `sys\_config\_update\_set\_user`
+
+As seções a seguir descrevem as tabelas e gatilhos do esquema `sys`.

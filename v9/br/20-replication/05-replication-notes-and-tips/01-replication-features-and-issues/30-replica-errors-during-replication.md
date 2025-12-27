@@ -1,0 +1,15 @@
+#### 19.5.1.30 Erros de Replicação Durante a Replicação
+
+Se uma declaração produzir o mesmo erro (código de erro idêntico) tanto na fonte quanto na replica, o erro é registrado, mas a replicação continua.
+
+Se uma declaração produzir diferentes erros na fonte e na replica, o fio de SQL da replicação é encerrado e a replica escreve uma mensagem em seu log de erros e aguarda que o administrador do banco de dados decida o que fazer com o erro. Isso inclui o caso em que uma declaração produz um erro na fonte ou na replica, mas não em ambos. Para resolver o problema, conecte-se manualmente à replica e determine a causa do problema. `SHOW REPLICA STATUS` é útil para isso. Em seguida, corrija o problema e execute `START REPLICA`. Por exemplo, você pode precisar criar uma tabela inexistente antes de poder iniciar a replica novamente.
+
+Observação
+
+Se um erro temporário for registrado no log de erros da replica, você não precisa necessariamente tomar nenhuma ação sugerida na mensagem de erro citada. Erros temporários devem ser tratados pelo cliente refazendo a transação. Por exemplo, se o fio de SQL da replicação registrar um erro temporário relacionado a um deadlock, você não precisa reiniciar a transação manualmente na replica, a menos que o fio de SQL da replicação encerre posteriormente com uma mensagem de erro não temporária.
+
+Se esse comportamento de validação de código de erro não for desejado, alguns ou todos os erros podem ser mascarados (ignorado) com a opção `--replica-skip-errors`.
+
+Para motores de armazenamento não transacionais, como `MyISAM`, é possível ter uma instrução que atualiza apenas parcialmente uma tabela e retorna um código de erro. Isso pode acontecer, por exemplo, em uma inserção de várias linhas que tem uma linha que viola uma restrição de chave, ou se uma instrução de atualização longa for cancelada após atualizar algumas das linhas. Se isso acontecer na fonte, a replica espera que a execução da instrução resulte no mesmo código de erro. Se não, o fio de SQL de replicação para.
+
+As regras do filtro de replicação são aplicadas primeiro, antes de realizar qualquer verificação de privilégios ou formatação de linhas, permitindo filtrar quaisquer transações que falhem na validação; não são realizadas verificações e, portanto, não são gerados erros para transações que foram filtradas. Isso significa que a replicação pode aceitar apenas a parte do banco de dados para a qual um usuário específico foi concedido acesso (desde que quaisquer atualizações nesta parte do banco de dados utilizem o formato de replicação baseado em linhas). Isso pode ser útil ao realizar uma atualização ou ao migrar para um sistema ou aplicativo que utiliza tabelas de administração para as quais o usuário de replicação de entrada não tem acesso. Veja também a Seção 19.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”.

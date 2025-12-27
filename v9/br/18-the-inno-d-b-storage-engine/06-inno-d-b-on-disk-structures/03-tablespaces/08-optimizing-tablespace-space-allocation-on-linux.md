@@ -1,0 +1,11 @@
+#### 17.6.3.8 Otimizando a Alocação de Espaço do Tablespace no Linux
+
+Você pode otimizar a forma como o `InnoDB` aloca espaço para tablespace por arquivo e tablespace gerais no Linux. Por padrão, quando é necessário espaço adicional, o `InnoDB` aloca páginas para o tablespace e escreve NULLs fisicamente nessas páginas. Esse comportamento pode afetar o desempenho se novas páginas forem alocadas frequentemente. Você pode desabilitar `innodb_extend_and_initialize` em sistemas Linux para evitar escrever NULLs fisicamente em páginas recém-alocadas do tablespace. Quando `innodb_extend_and_initialize` está desativado, o espaço é alocado para os arquivos do tablespace usando chamadas `posix_fallocate()`, que reservam espaço sem escrever NULLs fisicamente.
+
+Quando as páginas são alocadas usando chamadas `posix_fallocate()`, o tamanho da extensão é pequeno por padrão e as páginas são frequentemente alocadas apenas algumas de cada vez, o que pode causar fragmentação e aumentar o I/O aleatório. Para evitar esse problema, aumente o tamanho da extensão do tablespace ao habilitar chamadas `posix_fallocate()`. O tamanho da extensão do tablespace pode ser aumentado até 4GB usando a opção `AUTOEXTEND_SIZE`. Para mais informações, consulte a Seção 17.6.3.9, “Configuração de AUTOEXTEND\_SIZE do Tablespace”.
+
+O `InnoDB` escreve um registro de log de refazer antes de alocar uma nova página do tablespace. Se uma operação de alocação de página for interrompida, a operação é rejogada a partir do registro de log de refazer durante a recuperação. (Uma operação de alocação de página rejogada a partir de um registro de log de refazer escreve NULLs fisicamente na página recém-alocada.) Um registro de log de refazer é escrito antes de alocar uma página, independentemente da configuração de `innodb_extend_and_initialize`.
+
+Em sistemas que não são Linux e no Windows, o `InnoDB` aloca novas páginas para o espaço de tabelas e escreve fisicamente NULLs nessas páginas, que é o comportamento padrão. Tentar desabilitar `innodb_extend_and_initialize` nesses sistemas retorna o seguinte erro:
+
+Alterar `innodb_extend_and_initialize` não é suportado nesta plataforma. Revertendo para o comportamento padrão.

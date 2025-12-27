@@ -1,0 +1,20 @@
+#### 8.5.2.5 Componentes de Máscara de Dados do MySQL Enterprise Variáveis
+
+Os componentes de Máscara de Dados do MySQL Enterprise suportam as seguintes variáveis de sistema. Use essas variáveis para configurar operações relacionadas aos componentes. As variáveis não estão disponíveis a menos que os componentes apropriados de Máscara de Dados do MySQL Enterprise estejam instalados (consulte a Seção 8.5.2.1, “Instalação de Componentes de Máscara de Dados do MySQL Enterprise”).
+
+* `component_masking.dictionaries_flush_interval_seconds`
+
+  <table frame="box" rules="all" summary="Propriedades para component_masking.dictionaries_flush_interval_seconds"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--component-masking.dictionaries-flush-interval-seconds=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="data-masking-component-variables.html#sysvar_component_masking.dictionaries_flush_interval_seconds">component_masking.dictionaries_flush_interval_seconds</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Configuração de Hints</th> <td>Não</td> </tr><tr><th>Hinta de Configuração de Hints <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code class="literal">SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">60</code></td> </tr><tr><th>Valor Máximo (Unix)</th> <td><code class="literal">18446744073709551615</code></td> </tr><tr><th>Valor Máximo (Windows)</th> <td><code class="literal">4294967295</code></td> </tr><tr><th>Unidade</th> <td>segundos</td> </tr></tbody></table>
+
+Define o intervalo, em segundos, para aguardar antes de tentar agendar outro esvaziamento das tabelas de dicionários de mascaramento de dados para o cache de dicionários de mascaramento de dados da memória após um reinício ou execução anterior. O valor é tratado conforme listado aqui:
+
+  + 0: Sem esvaziamento
+  + 1 a 59 (inclusive): Arredonda para 60, com um aviso
+  + >= 60: Aguarde esse número de segundos para realizar o esvaziamento
+* `component_masking.masking_database`
+
+  <table frame="box" rules="all" summary="Propriedades para component_masking.masking_database"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--component-masking.masking-database[=value]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="data-masking-component-variables.html#sysvar_component_masking.masking_database">component_masking.masking_database</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code class="literal">SET_VAR</code></a></code> Dicas de Configuração de Variáveis Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">mysql</code></td> </tr></tbody></table>
+
+  Especifica o banco de dados a ser usado para os dicionários de mascaramento de dados no início do servidor. Esta variável é de leitura somente.
+
+  Use esta variável para definir e persistir um esquema diferente do valor padrão (`mysql`). Para obter informações adicionais sobre como configurar os componentes de mascaramento de dados para usar um local alternativo para a tabela de mascaramento de dados, consulte Instalação Usando um Esquema Dedicado. Para diretrizes gerais sobre o uso da palavra-chave `PERSIST ONLY`, consulte Seção 15.7.6.1, “Sintaxe de Configuração para Atribuição de Variáveis”.

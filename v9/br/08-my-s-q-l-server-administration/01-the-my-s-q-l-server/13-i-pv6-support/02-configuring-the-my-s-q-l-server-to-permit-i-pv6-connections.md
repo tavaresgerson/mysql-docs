@@ -1,0 +1,5 @@
+#### 7.1.13.2 Configurando o servidor MySQL para permitir conexões IPv6
+
+O servidor MySQL escuta em um ou mais sockets de rede para conexões TCP/IP. Cada soquete está vinculado a um endereço, mas é possível que um endereço mapeie para múltiplas interfaces de rede.
+
+Defina a variável de sistema `bind_address` no início do servidor para especificar as conexões TCP/IP que uma instância do servidor aceita. Você pode especificar vários valores para essa opção, incluindo qualquer combinação de endereços IPv6, endereços IPv4 e nomes de host que resolvam para endereços IPv6 ou IPv4. Alternativamente, você pode especificar um dos formatos de endereço wildcard que permitem ouvir em múltiplas interfaces de rede. Um valor de \*, que é o padrão, ou um valor de `::`, permite conexões IPv4 e IPv6 em todas as interfaces IPv4 e IPv6 do host do servidor. Para mais informações, consulte a descrição da variável `bind_address` na Seção 7.1.8, “Variáveis de sistema do servidor”.

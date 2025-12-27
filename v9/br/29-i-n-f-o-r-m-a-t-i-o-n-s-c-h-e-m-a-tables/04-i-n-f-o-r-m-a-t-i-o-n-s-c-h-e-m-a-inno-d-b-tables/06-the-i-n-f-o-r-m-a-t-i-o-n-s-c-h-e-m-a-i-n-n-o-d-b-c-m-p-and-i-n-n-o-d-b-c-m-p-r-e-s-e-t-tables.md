@@ -1,0 +1,80 @@
+### 28.4.6 As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET
+
+As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` fornecem informações de status sobre operações relacionadas a tabelas `InnoDB` compactadas.
+
+As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` possuem as seguintes colunas:
+
+* `PAGE_SIZE`
+
+  O tamanho da página compactada em bytes.
+
+* `COMPRESS_OPS`
+
+  O número de vezes que uma página B-tree do tamanho `PAGE_SIZE` foi compactada. As páginas são compactadas sempre que uma página vazia é criada ou o espaço para o log de modificação não compactado esgota-se.
+
+* `COMPRESS_OPS_OK`
+
+  O número de vezes que uma página B-tree do tamanho `PAGE_SIZE` foi compactada com sucesso. Esse contagem nunca deve exceder `COMPRESS_OPS`.
+
+* `COMPRESS_TIME`
+
+  O tempo total em segundos usado para tentativas de comprimir páginas B-tree do tamanho `PAGE_SIZE`.
+
+* `UNCOMPRESS_OPS`
+
+  O número de vezes que uma página B-tree do tamanho `PAGE_SIZE` foi descompactada. As páginas B-tree são descompactadas sempre que a compactação falha ou no primeiro acesso quando a página não compactada não existe no buffer pool.
+
+* `UNCOMPRESS_TIME`
+
+  O tempo total em segundos usado para descompactar páginas B-tree do tamanho `PAGE_SIZE`.
+
+#### Exemplo
+
+```
+mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_CMP\G
+*************************** 1. row ***************************
+      page_size: 1024
+   compress_ops: 0
+compress_ops_ok: 0
+  compress_time: 0
+ uncompress_ops: 0
+uncompress_time: 0
+*************************** 2. row ***************************
+      page_size: 2048
+   compress_ops: 0
+compress_ops_ok: 0
+  compress_time: 0
+ uncompress_ops: 0
+uncompress_time: 0
+*************************** 3. row ***************************
+      page_size: 4096
+   compress_ops: 0
+compress_ops_ok: 0
+  compress_time: 0
+ uncompress_ops: 0
+uncompress_time: 0
+*************************** 4. row ***************************
+      page_size: 8192
+   compress_ops: 86955
+compress_ops_ok: 81182
+  compress_time: 27
+ uncompress_ops: 26828
+uncompress_time: 5
+*************************** 5. row ***************************
+      page_size: 16384
+   compress_ops: 0
+compress_ops_ok: 0
+  compress_time: 0
+ uncompress_ops: 0
+uncompress_time: 0
+```
+
+#### Notas
+
+* Use essas tabelas para medir a eficácia da compactação de tabelas `InnoDB` no seu banco de dados.
+
+* Você deve ter o privilégio `PROCESS` para consultar essa tabela.
+
+* Use a tabela `COLUMNS` do `INFORMATION_SCHEMA` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas dessa tabela, incluindo tipos de dados e valores padrão.
+
+* Para informações sobre o uso, consulte a Seção 17.9.1.4, “Monitoramento da Compressão de Tabelas InnoDB em Tempo Real” e a Seção 17.15.1.3, “Uso das Tabelas do Esquema de Informações de Compressão”. Para informações gerais sobre a compressão de tabelas `InnoDB`, consulte a Seção 17.9, “Compressão de Tabelas e Páginas InnoDB”.

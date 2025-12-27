@@ -1,0 +1,3 @@
+#### 19.5.1.23 Replicação do esquema do sistema mysql
+
+As instruções de modificação de dados feitas em tabelas no esquema `mysql` são replicadas de acordo com o valor de `binlog_format`; se esse valor for `MIXED`, essas instruções são replicadas usando o formato baseado em linha. No entanto, as instruções que normalmente atualizariam essa informação indiretamente — como `GRANT`, `REVOKE` e instruções que manipulam gatilhos, rotinas armazenadas e visualizações — são replicadas para réplicas usando a replicação baseada em instruções.

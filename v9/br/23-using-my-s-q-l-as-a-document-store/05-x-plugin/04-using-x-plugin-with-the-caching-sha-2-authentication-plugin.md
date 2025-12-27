@@ -1,0 +1,9 @@
+### 22.5.4 Usando o Plugin X com o Plugin de Autenticação Caching SHA-2
+
+O Plugin X suporta contas de usuário MySQL criadas com o plugin de autenticação `caching_sha2_password`. Para obter mais informações sobre este plugin, consulte a Seção 8.4.1.1, “Autenticação Pluggable SHA-2”. Você pode usar o Plugin X para autenticar contra tais contas usando conexões não SSL com autenticação `SHA256_MEMORY` e conexões SSL com autenticação `PLAIN`.
+
+Embora o plugin de autenticação `caching_sha2_password` mantenha um cache de autenticação, este cache não é compartilhado com o Plugin X, então o Plugin X usa seu próprio cache de autenticação para a autenticação `SHA256_MEMORY`. O cache de autenticação do Plugin X armazena hashes das senhas das contas de usuário e não pode ser acessado usando SQL. Se uma conta de usuário for modificada ou removida, as entradas relevantes são removidas do cache. O cache de autenticação do Plugin X é mantido pelo plugin `mysqlx_cache_cleaner`, que é ativado por padrão, e não tem variáveis de sistema relacionadas ou variáveis de status.
+
+Antes que você possa usar conexões X Protocol não SSL para autenticar uma conta que usa o plugin de autenticação `caching_sha2_password`, a conta deve ter autenticado pelo menos uma vez em uma conexão X Protocol com SSL, para fornecer a senha ao cache de autenticação do Plugin X. Uma vez que essa autenticação inicial com SSL tenha sido bem-sucedida, conexões X Protocol não SSL podem ser usadas.
+
+É possível desativar o plugin `mysqlx_cache_cleaner` iniciando o servidor MySQL com a opção `--mysqlx_cache_cleaner=0`. Se você fizer isso, o cache de autenticação do Plugin X é desativado, e, portanto, SSL deve ser sempre usado para conexões X Protocol ao autenticar com autenticação `SHA256_MEMORY`.

@@ -1,0 +1,5 @@
+#### 19.5.1.25 Replicação e Partição
+
+A replicação é suportada entre tabelas particionadas, desde que utilizem o mesmo esquema de particionamento e, de outra forma, tenham a mesma estrutura, exceto quando uma exceção é especificamente permitida (consulte a Seção 19.5.1.9, “Replicação com Definições de Tabela Diferentes na Fonte e na Replicação”).
+
+A replicação entre tabelas com particionamento diferente geralmente não é suportada. Isso ocorre porque declarações (como `ALTER TABLE ... DROP PARTITION`) que atuam diretamente em partições nesses casos podem produzir resultados diferentes na fonte e na replica. No caso em que uma tabela é particionada na fonte, mas não na replica, quaisquer declarações que operem em partições na cópia da fonte da replica falham na replica. Quando a cópia da replica da tabela está particionada, mas a cópia da fonte não, declarações que atuam diretamente em partições não podem ser executadas na fonte sem causar erros. Para evitar interromper a replicação ou criar inconsistências entre a fonte e a replica, sempre garanta que uma tabela na fonte e a tabela replicada correspondente na replica estejam particionadas da mesma maneira.

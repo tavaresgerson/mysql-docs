@@ -1,0 +1,17 @@
+## A.9 FAQ sobre MySQL 9.5: Segurança
+
+A.9.1. Onde posso encontrar documentação que aborde questões de segurança para o MySQL?
+
+A.9.2. Qual é o plugin de autenticação padrão no MySQL 9.5?
+
+A.9.3. O MySQL tem suporte nativo para SSL?
+
+A.9.4. O suporte ao SSL está embutido nos binários do MySQL, ou eu preciso recompilar o binário para ativá-lo?
+
+A.9.5. O MySQL tem autenticação integrada contra diretórios LDAP?
+
+A.9.6. O MySQL inclui suporte para Controle de Acesso Baseado em Papéis (RBAC)?
+
+A.9.7. O MySQL suporta TLS 1.0 e 1.1?
+
+<table border="0" style="width: 100%;"><tbody><tr class="question"><td><a name="faq-mysql-where-docs-security"></a><a name="id469122"></a><p><b>A.9.1.</b></p></td><td><a name="id469122"></a><p><b>A.9.1.1.</b></p></td></tr><tr class="answer"><td><a class="xref" href="security.html" title="Capítulo 8 Segurança">Capítulo 8, <i>Segurança</i></a></td><td><p> O melhor lugar para começar é <a class="xref" href="security.html" title="Capítulo 8, <i>Segurança</i>">Capítulo 8, <i>Segurança</i></a>. </p></td></tr><tr class="answer"><td><a class="xref" href="security-guidelines.html" title="8.1.1 Guias de segurança">Seção 8.1.1, “Guias de segurança”</a></td><td><p> <a class="xref" href="security-guidelines.html" title="8.1.1 Guias de segurança">Seção 8.1.1, “Guias de segurança”</a>. </p></td></tr><tr class="answer"><td><a class="xref" href="security-against-attack.html" title="8.1.3 Como tornar MySQL seguro contra atacantes">Seção 8.1.3, “Como tornar MySQL seguro contra atacantes”</a></td><td><p> <a class="xref" href="security-against-attack.html" title="8.1.3 Como tornar MySQL seguro contra atacantes">Seção 8.1.3, “Como tornar MySQL seguro contra atacantes”</a>. </p></td></tr><tr class="answer"><td><a class="xref" href="resetting-permissions.html" title="B.3.3.2 Como resetear a senha da raiz">Seção B.3.3.2, “Como resetear a senha da raiz”</a></td><td><p> <a class="xref" href="resetting-permissions.html" title="B.3.3.2, “Como resetear a senha da raiz”">Seção B.3.3.2, “Como resetear a senha da raiz”</a>. </p></td></tr><tr class="answer"><td><a class="xref" href="changing-mysql-user.html" title="8.1.5, “Como executar MySQL como um usuário normal”">Seção 8.1.5, “Como executar MySQL como um usuário normal”</a></td><td><p> <a class="xref" href="changing-mysql-user.html" title="8.1.5, “Como executar MySQL como um usuário normal”">Seção 8.1.5, “Como executar MySQL como um usuário normal”</a>. </p></td></tr><tr class="answer"><td><a class="xref" href="security-options.html" title="8.1.4, “Opções de segurança e variáveis mysqld”">Seção 8.1.4, “Opções de segurança e variáveis mysqld”</a></td><td><p> <a class="xref" href="security-options.html" title="8.1.4, “Opções de segurança e variáveis mysqld”">Seção 8.1.4, “Opções de segurança e variáveis mysqld”</a>. </p></td></tr><tr class="answer"><td><a class="xref" href="load-data-local-security.html" title="8.1.6, “Considerações de segurança para LOAD DATA LOCAL”">Seção 8.1.6, “Considerações de segurança para LOAD DATA LOCAL”</a></td><td><p> <a class="xref" href="load-data-local-security.html" title="8.1.6, “Considerações de segurança para LOAD DATA LOCAL”">Seção 8.1.6, “Considerações de segurança para LOAD DATA LOCAL”</a>. </p></td></tr><tr class="answer"><td><a class="xref" href="postinstallation.html" title="2.9, “Configuração e teste após a instalação”">Seção 2.9, “Configuração e teste após a instalação”</a></td><td><p> <a class="xref" href="postinstallation.html" title="

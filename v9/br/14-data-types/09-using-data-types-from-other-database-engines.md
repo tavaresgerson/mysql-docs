@@ -1,0 +1,23 @@
+## 13.9 Usando Tipos de Dados de Outros Motores de Banco de Dados
+
+Para facilitar o uso de código escrito para implementações SQL de outros fornecedores, o MySQL mapeia os tipos de dados conforme mostrado na tabela a seguir. Esses mapeamentos facilitam a importação de definições de tabelas de outros sistemas de banco de dados para o MySQL.
+
+<table summary="Mapeamento dos tipos de dados MySQL aos tipos de dados de outros fornecedores."><col style="width: 35%"/><col style="width: 55%"/><thead><tr> <th>Tipo de Outro Fornecedor</th> <th>Tipo MySQL</th> </tr></thead><tbody><tr> <td><a class="link" href="tipos-de-inteiros.html" title="13.1.2 Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">BOOL</code></a></td> <td><a class="link" href="tipos-de-inteiros.html" title="13.1.2 Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">TINYINT</code></a></td> </tr><tr> <td><a class="link" href="tipos-de-inteiros.html" title="13.1.2 Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">BOOLEAN</code></a></td> <td><a class="link" href="tipos-de-inteiros.html" title="13.1.2 Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">TINYINT</code></a></td> </tr><tr> <td><code class="literal">CHARACTER VARYING(<em class="replaceable"><code>M</code></em>)</code></td> <td><code class="literal">VARCHAR(<em class="replaceable"><code>M</code></em>)</code></td> </tr><tr> <td><a class="link" href="tipos-de-pontos-fixos.html" title="13.1.3 Tipos de Ponto Fixo (Valor Exato) - DECIMAL, NUMERIC"><code class="literal">FIXED</code></a></td> <td><a class="link" href="tipos-de-pontos-fixos.html" title="13.1.3 Tipos de Ponto Fixo (Valor Exato) - DECIMAL, NUMERIC"><code class="literal">DECIMAL</code></a></td> </tr><tr> <td><a class="link" href="tipos-de-pontos-flutuantes.html" title="13.1.4 Tipos de Ponto Flutuante (Valor Aproximado) - FLOAT, DOUBLE"><code class="literal">FLOAT4</code></a></td> <td><a class="link" href="tipos-de-pontos-flutuantes.html" title="13.1.4 Tipos de Ponto Flutuante (Valor Aproximado) - FLOAT, DOUBLE"><code class="literal">FLOAT</code></a></td> </tr><tr> <td><a class="link" href="tipos-de-pontos-flutuantes.html" title="13.1.4 Tipos de Ponto Flutuante (Valor Aproximado) - FLOAT, DOUBLE"><code class="literal">FLOAT8</code></a></td> <td><a class="link" href="tipos-de-pontos-flutuantes.html" title="13.1.4 Tipos de Ponto Flutuante (Valor Aproximado) - FLOAT, DOUBLE"><code class="literal">DOUBLE</code></a></td> </tr><tr> <td><a class="link" href="tipos-de-inteiros.html" title="13.1.2 Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">INT1</code></a></td> <td><a class="link" href="tipos-de-inteiros.html" title="13.1.2 Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">TINYINT</code></a></td> </tr><tr> <td><a class="link" href="tipos-de-inteiros.html" title="13.1.2 Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">INT2</code></a></td> <td><a class="link" href="tipos-de-inteiros.html" title="13.1.2 Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">SMALLINT</code></a></td> </tr><tr>
+
+A mapeo do tipo de dados ocorre no momento da criação da tabela, após o qual as especificações originais do tipo são descartadas. Se você criar uma tabela com tipos usados por outros fornecedores e, em seguida, emitir uma declaração `DESCRIBE tbl_name`, o MySQL relata a estrutura da tabela usando os tipos equivalentes do MySQL. Por exemplo:
+
+```
+mysql> CREATE TABLE t (a BOOL, b FLOAT8, c LONG VARCHAR, d NUMERIC);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DESCRIBE t;
++-------+---------------+------+-----+---------+-------+
+| Field | Type          | Null | Key | Default | Extra |
++-------+---------------+------+-----+---------+-------+
+| a     | tinyint(1)    | YES  |     | NULL    |       |
+| b     | double        | YES  |     | NULL    |       |
+| c     | mediumtext    | YES  |     | NULL    |       |
+| d     | decimal(10,0) | YES  |     | NULL    |       |
++-------+---------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+```

@@ -1,0 +1,3 @@
+### 10.15.11 Estrutura Geral de Rastreamento
+
+O rastreamento segue o caminho de execução real de forma muito próxima; para cada junção, há um objeto de preparação de junção, um objeto de otimização de junção e um objeto de execução de junção. As transformações de consulta (`IN` para `EXISTS`, junção externa para junção interna, e assim por diante), simplificações (eliminação de cláusulas) e propagação de igualdade são mostradas em subobjetos. Chamadas ao otimizador de intervalo, avaliações de custo, razões pelas quais um caminho de acesso é escolhido em detrimento de outro, ou por que um método de ordenação é escolhido em detrimento de outro, também são mostradas.

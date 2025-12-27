@@ -1,0 +1,5 @@
+#### 19.5.1.10 Opções de tabela de diretório e `DATA DIRECTORY`
+
+Se uma opção de tabela `DATA DIRECTORY` ou `INDEX DIRECTORY` for usada em uma instrução `CREATE TABLE` no servidor de origem, a opção de tabela também será usada na replica. Isso pode causar problemas se não houver um diretório correspondente no sistema de arquivos do host da replica ou se ele existir, mas não for acessível ao servidor MySQL da replica. Isso pode ser contornado usando o modo SQL do servidor `NO_DIR_IN_CREATE` na replica, o que faz com que a replica ignore as opções de tabela `DATA DIRECTORY` e `INDEX DIRECTORY` ao replicar instruções `CREATE TABLE`. O resultado é que os arquivos de dados e índices `MyISAM` são criados no diretório do banco de dados da tabela.
+
+Para mais informações, consulte a Seção 7.1.11, “Modos SQL do servidor”.

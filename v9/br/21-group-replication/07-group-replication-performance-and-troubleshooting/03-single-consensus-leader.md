@@ -1,0 +1,16 @@
+### 20.7.3 Líder de Consenso Único
+
+Por padrão, o motor de comunicação de grupo para a Replicação de Grupo (XCom, uma variante do Paxos) opera com todos os membros do grupo de replicação como líderes. O motor de comunicação de grupo pode usar um único líder para impulsionar o consenso quando o grupo estiver no modo de único primário. Operar com um único líder de consenso melhora o desempenho e a resiliência no modo de único primário, especialmente quando alguns dos membros secundários do grupo estão atualmente inacessíveis.
+
+Para usar um único líder de consenso, o grupo deve ser configurado da seguinte forma:
+
+* O grupo deve estar no modo de único primário.
+* A variável de sistema `group_replication_paxos_single_leader` deve ser definida como `ON`. Com o ajuste padrão `OFF`, o comportamento é desativado. É necessário realizar um reinício completo do grupo de replicação (bootstrap) para que a Replicação de Grupo possa adotar uma mudança nesta configuração.
+
+* A versão do protocolo de comunicação da Replicação de Grupo deve ser definida para 8.0.27 ou posterior. Use a função `group_replication_get_communication_protocol()` para visualizar a versão do protocolo de comunicação do grupo. Se estiver sendo usada uma versão inferior, o grupo não pode usar esse comportamento. Você pode usar a função `group_replication_set_communication_protocol()` para definir o protocolo de comunicação do grupo para uma versão mais alta, se todos os membros do grupo o suportarem. O MySQL InnoDB Cluster gerencia automaticamente a versão do protocolo de comunicação. Para mais informações, consulte a Seção 20.5.1.4, “Definindo a Versão do Protocolo de Comunicação de um Grupo”.
+
+Quando essa configuração estiver em vigor, o Replicação em Grupo instrui o motor de comunicação do grupo a usar o primário do grupo como o único líder para impulsionar o consenso. Quando um novo primário é eleito, o Replicação em Grupo informa ao motor de comunicação do grupo a usar esse primário em vez disso. Se o primário estiver atualmente indisponível, o motor de comunicação do grupo usa um membro alternativo como líder de consenso. A tabela do Schema de Desempenho `replication_group_communication_information` mostra o líder de consenso preferido e atual, sendo o líder preferido a escolha do Replicação em Grupo e o líder atual aquele selecionado pelo motor de comunicação do grupo.
+
+Se o grupo estiver no modo multi-primário, tiver uma versão de protocolo de comunicação mais baixa ou o comportamento estiver desativado pela configuração `group_replication_paxos_single_leader`, todos os membros são usados como líderes para impulsionar o consenso. Nessa situação, a tabela do Schema de Desempenho `replication_group_communication_information` mostra todos os membros como líderes preferidos e atuais.
+
+A coluna `WRITE_CONSENSUS_SINGLE_LEADER_CAPABLE` da tabela do Schema de Desempenho `replication_group_communication_information` mostra se o grupo suporta o uso de um único líder, mesmo que `group_replication_paxos_single_leader` esteja atualmente definido como `OFF` no membro pesquisado. O valor da coluna é 1 se o grupo foi iniciado com `group_replication_paxos_single_leader` definido como `ON` e sua versão do protocolo de comunicação é MySQL 8.0.27 ou superior. Esta informação é retornada apenas para membros do grupo em estado `ONLINE` ou `RECOVERING`.
