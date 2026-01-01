@@ -1,5 +1,7 @@
 node_modules
 dist
-.vitepress/cache
-.vitepress/dist
 .idea
+v8/br/.vitepress/cache
+v8/br/.vitepress/dist
+v5/br/.vitepress/cache
+v5/br/.vitepress/dist
