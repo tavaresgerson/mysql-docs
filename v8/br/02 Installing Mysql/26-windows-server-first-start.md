@@ -47,3 +47,5 @@ Se você omitir a opção `--console`, o servidor escreverá a saída de diagnó
 ::: info Nota
 
 A conta `root` inicial nas tabelas de concessão do MySQL não tem senha. Após iniciar o servidor, você deve configurá-la usando as instruções na Seção 2.9.4, “Segurança da Conta Inicial do MySQL”.
+
+:::

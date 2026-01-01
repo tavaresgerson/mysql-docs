@@ -45,7 +45,44 @@ Embora o MySQL Configurator possa tentar (e conseguir) realizar uma atualizaçã
 
 **Tabela 2.5 Caminhos de Atualização Suportado**
 
-<table><thead><tr> <th>Um cenário de atualização suportado</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>8.0.35+ para 8.1</td> <td>De 8.0.35 ou superior para a primeira versão de inovação do MySQL 8.</td> </tr><tr> <td>8.0.35+ para 8.4</td> <td>De 8.0.35 ou superior para a próxima versão LTS do MySQL.</td> </tr><tr> <td>8.X para 8.Y onde Y = X + 1</td> <td>De uma versão de inovação para a próxima versão de inovação consecutiva.</td> </tr><tr> <td>8.3 para 8.4</td> <td>De última versão de inovação do MySQL 8 para a próxima versão LTS do MySQL 8.</td> </tr><tr> <td>8.4.X para 8.4.Y onde Y &gt; X</td> <td>Dentro da mesma versão LTS.</td> </tr><tr> <td>8.4.X para 9.0.0</td> <td>De uma versão LTS para a primeira versão de inovação consecutiva.</td> </tr><tr> <td>8.4 para 9.7</td> <td>De uma versão LTS para a próxima versão LTS consecutiva.</td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>Um cenário de atualização suportado</th>
+         <th>Descrição</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>8.0.35+ para 8.1</td>
+         <td>De 8.0.35 ou superior para a primeira versão de inovação do MySQL 8.</td>
+      </tr>
+      <tr>
+         <td>8.0.35+ para 8.4</td>
+         <td>De 8.0.35 ou superior para a próxima versão LTS do MySQL.</td>
+      </tr>
+      <tr>
+         <td>8.X para 8.Y onde Y = X + 1</td>
+         <td>De uma versão de inovação para a próxima versão de inovação consecutiva.</td>
+      </tr>
+      <tr>
+         <td>8.3 para 8.4</td>
+         <td>De última versão de inovação do MySQL 8 para a próxima versão LTS do MySQL 8.</td>
+      </tr>
+      <tr>
+         <td>8.4.X para 8.4.Y onde Y &gt; X</td>
+         <td>Dentro da mesma versão LTS.</td>
+      </tr>
+      <tr>
+         <td>8.4.X para 9.0.0</td>
+         <td>De uma versão LTS para a primeira versão de inovação consecutiva.</td>
+      </tr>
+      <tr>
+         <td>8.4 para 9.7</td>
+         <td>De uma versão LTS para a próxima versão LTS consecutiva.</td>
+      </tr>
+   </tbody>
+</table>
 
 Este diálogo solicita o protocolo (padrão: `TCP/IP`), porta (padrão: `3306`) e senha do root para a instalação existente. Execute conectar e, em seguida, revise e confirme as informações da instância do MySQL (como versão, caminhos e arquivo de configuração) antes de prosseguir com a atualização.
 
@@ -67,30 +104,33 @@ Configure uma instalação padrão lado a lado com a nova instalação do servid
   + **Servidor**: Espera-se que várias outras aplicações sejam executadas neste computador, como um servidor web. A configuração de Servidor configura o MySQL para usar uma quantidade média de memória.
   + **Dedicado**: Um computador dedicado para executar o servidor MySQL. Como nenhuma outra aplicação importante é executada neste servidor, esta configuração configura o MySQL para usar a maioria da memória disponível.
   + **Manual**: Impedir que o MySQL Configurator tente otimizar a instalação do servidor e, em vez disso, definir os valores padrão para as variáveis do servidor incluídas no arquivo de configuração `my.ini`. Com o tipo `Manual` selecionado, o MySQL Configurator usa o valor padrão de 16M para a atribuição da variável `tmp_table_size`.
+
 * Conectividade
 
   As opções de conectividade controlam como a conexão com o MySQL é feita. As opções incluem:
 
   + `TCP/IP`: Esta opção é selecionada por padrão. Você pode desabilitar a Rede `TCP/IP` para permitir conexões apenas do host local. Com a opção de conexão `TCP/IP` selecionada, você pode modificar os seguintes itens:
 
-- Porta para conexões clássicas com o protocolo MySQL. O valor padrão é `3306`.
-- A porta do protocolo X defaults para `33060`
-- Abra a porta do Firewall do Windows para acesso à rede, que é selecionada por padrão para conexões `TCP/IP`.
+    - Porta para conexões clássicas com o protocolo MySQL. O valor padrão é `3306`.
+    - A porta do protocolo X defaults para `33060`
+    - Abra a porta do Firewall do Windows para acesso à rede, que é selecionada por padrão para conexões `TCP/IP`.
 
-Se um número de porta já estiver em uso, você verá o ícone de erro (![](images/mi-info-symbol.png)) ao lado do valor padrão e o botão Próximo será desativado até que você forneça um novo número de porta.
-+ Tensão de nome: Ative e defina o nome da tensão, semelhante ao ajuste da variável de sistema `named_pipe`. O nome padrão é `MySQL`.
+    Se um número de porta já estiver em uso, você verá o ícone de erro (![](images/mi-info-symbol.png)) ao lado do valor padrão e o botão Próximo será desativado até que você forneça um novo número de porta.
+  + Tensão de nome: Ative e defina o nome da tensão, semelhante ao ajuste da variável de sistema `named_pipe`. O nome padrão é `MySQL`.
 
-Quando você selecionar a conectividade de Tensão de nome e prosseguir para o próximo passo, você será solicitado a definir o nível de controle de acesso concedido ao software cliente nas conexões de tensão de nome. Alguns clientes exigem apenas controle mínimo de acesso para a comunicação, enquanto outros clientes exigem acesso total à tensão de nome.
+  Quando você selecionar a conectividade de Tensão de nome e prosseguir para o próximo passo, você será solicitado a definir o nível de controle de acesso concedido ao software cliente nas conexões de tensão de nome. Alguns clientes exigem apenas controle mínimo de acesso para a comunicação, enquanto outros clientes exigem acesso total à tensão de nome.
 
-Você pode definir o nível de controle de acesso com base no usuário (ou usuários) do Windows que executam o software cliente da seguinte forma:
+  Você pode definir o nível de controle de acesso com base no usuário (ou usuários) do Windows que executam o software cliente da seguinte forma:
 
-- **Acesso mínimo para todos os usuários (RECOMENDADO).** Esse nível é ativado por padrão porque é o mais seguro.
-- **Acesso total aos membros de um grupo local.** Se a opção de acesso mínimo for restritiva demais para o software cliente, use essa opção para reduzir o número de usuários que têm acesso total na tensão de nome. O grupo deve ser estabelecido no Windows antes que você possa selecioná-lo da lista. A associação a esse grupo deve ser limitada e gerenciada. O Windows exige que um membro recém-adicionado faça logout e depois faça login novamente para se juntar a um grupo local.
-- **Acesso total para todos os usuários (NÃO RECOMENDADO).** Essa opção é menos segura e deve ser definida apenas quando outras salvaguardas forem implementadas.
-+ Memória compartilhada: Ative e defina o nome da memória, semelhante ao ajuste da variável de sistema `shared_memory`. O nome padrão é `MySQL`.
+    - **Acesso mínimo para todos os usuários (RECOMENDADO).** Esse nível é ativado por padrão porque é o mais seguro.
+    - **Acesso total aos membros de um grupo local.** Se a opção de acesso mínimo for restritiva demais para o software cliente, use essa opção para reduzir o número de usuários que têm acesso total na tensão de nome. O grupo deve ser estabelecido no Windows antes que você possa selecioná-lo da lista. A associação a esse grupo deve ser limitada e gerenciada. O Windows exige que um membro recém-adicionado faça logout e depois faça login novamente para se juntar a um grupo local.
+    - **Acesso total para todos os usuários (NÃO RECOMENDADO).** Essa opção é menos segura e deve ser definida apenas quando outras salvaguardas forem implementadas.
+  + Memória compartilhada: Ative e defina o nome da memória, semelhante ao ajuste da variável de sistema `shared_memory`. O nome padrão é `MySQL`.
+
 * Configuração Avançada
 
-Verifique a opção Mostrar Opções Avançadas e de Registro para definir opções personalizadas de registro e avançadas nas etapas subsequentes. A etapa Opções de Registro permite que você defina caminhos de arquivo personalizados para o log de erro, log geral, log de consultas lentas (incluindo a configuração de segundos necessários para executar uma consulta) e o log binário. A etapa Opções Avançadas permite que você defina o ID de servidor único necessário quando o registro binário estiver habilitado em uma topologia de replicação.
+  Verifique a opção Mostrar Opções Avançadas e de Registro para definir opções personalizadas de registro e avançadas nas etapas subsequentes. A etapa Opções de Registro permite que você defina caminhos de arquivo personalizados para o log de erro, log geral, log de consultas lentas (incluindo a configuração de segundos necessários para executar uma consulta) e o log binário. A etapa Opções Avançadas permite que você defina o ID de servidor único necessário quando o registro binário estiver habilitado em uma topologia de replicação.
+
 * MySQL Enterprise Firewall (Apenas a Edição Empresarial)
 
   A caixa de seleção Habilitar Firewall Empresarial MySQL está desmarcada por padrão. Selecione essa opção para habilitar uma lista de segurança que oferece proteção contra certos tipos de ataques. É necessária uma configuração adicional após a instalação (consulte a Seção 8.4.7, “Firewall Empresarial MySQL”).
@@ -104,25 +144,26 @@ Verifique a opção Mostrar Opções Avançadas e de Registro para definir opç�
 
   Clique em Adicionar Usuário ou Editar Usuário para criar ou modificar contas de usuário MySQL com papéis pré-definidos. Em seguida, insira as credenciais de conta necessárias:
 
-+ Nome do usuário: Os nomes dos usuários do MySQL podem ter até 32 caracteres.
-+ Host: Selecione `localhost` para conexões locais ou `<Todos os hosts (%)>` quando são necessárias conexões remotas ao servidor.
-+ Papel: Cada papel predefinido, como `Administrador de banco de dados`, é configurado com seu próprio conjunto de privilégios. Por exemplo, o papel `Administrador de banco de dados` tem mais privilégios do que o papel `Designer de banco de dados`. A lista suspensa de papéis contém uma descrição de cada papel.
-+ Senha: A avaliação da força da senha é realizada enquanto você digita a senha. As senhas devem ser confirmadas. O MySQL permite uma senha em branco ou vazia (considerada insegura).
+  + Nome do usuário: Os nomes dos usuários do MySQL podem ter até 32 caracteres.
+  + Host: Selecione `localhost` para conexões locais ou `<Todos os hosts (%)>` quando são necessárias conexões remotas ao servidor.
+  + Papel: Cada papel predefinido, como `Administrador de banco de dados`, é configurado com seu próprio conjunto de privilégios. Por exemplo, o papel `Administrador de banco de dados` tem mais privilégios do que o papel `Designer de banco de dados`. A lista suspensa de papéis contém uma descrição de cada papel.
+  + Senha: A avaliação da força da senha é realizada enquanto você digita a senha. As senhas devem ser confirmadas. O MySQL permite uma senha em branco ou vazia (considerada insegura).
 
 **Apenas para lançamento comercial do MySQL Configurator:** A Edição Empresarial do MySQL para Windows, um produto comercial, também suporta um método de autenticação que realiza autenticação externa no Windows. Contas autenticadas pelo sistema operacional Windows podem acessar o servidor MySQL sem fornecer uma senha adicional.
 
 Para criar uma nova conta MySQL que use autenticação do Windows, insira o nome do usuário e, em seguida, selecione um valor para Host e Papel. Clique em Autenticação do Windows para habilitar o plugin `authentication_windows`. Na área de Tokens de segurança do Windows, insira um token para cada usuário (ou grupo) do Windows que possa autenticar com o nome do usuário do MySQL. As contas do MySQL podem incluir tokens de segurança para usuários locais do Windows e usuários do Windows que pertencem a um domínio. Múltiplos tokens de segurança são separados pelo caractere ponto e vírgula (`;`). Use o seguinte formato para contas locais e de domínio:
 
-+ Conta local
+  + Conta local
 
-Insira o nome simples do usuário do Windows como token de segurança para cada usuário ou grupo local; por exemplo, `finley;jeffrey;admin`.
-+ Conta de domínio
+  Insira o nome simples do usuário do Windows como token de segurança para cada usuário ou grupo local; por exemplo, `finley;jeffrey;admin`.
+  
+  + Conta de domínio
 
-Use a sintaxe padrão do Windows (*`domain`*`\`*`domainuser`) ou a sintaxe do MySQL (*`domain`*`\\`*`domainuser*) para inserir usuários e grupos de domínio do Windows.
+    Use a sintaxe padrão do Windows (*`domain`*`\`*`domainuser`) ou a sintaxe do MySQL (*`domain`*`\\`*`domainuser*) para inserir usuários e grupos de domínio do Windows.
 
-Para contas de domínio, você pode precisar usar as credenciais de um administrador dentro do domínio, caso a conta que executa o MySQL Configurator não tenha as permissões para consultar o Active Directory. Se esse for o caso, selecione Validação de usuários do Active Directory para ativar as credenciais do administrador do domínio.
+    Para contas de domínio, você pode precisar usar as credenciais de um administrador dentro do domínio, caso a conta que executa o MySQL Configurator não tenha as permissões para consultar o Active Directory. Se esse for o caso, selecione Validação de usuários do Active Directory para ativar as credenciais do administrador do domínio.
 
-A autenticação do Windows permite que você teste todos os tokens de segurança cada vez que adicionar ou modificar um token. Clique em Testar tokens de segurança para validar (ou revalidar) cada token. Tokens inválidos geram uma mensagem de erro descritiva junto com um ícone `X` vermelho e texto do token vermelho. Quando todos os tokens forem resolvidos como válidos (texto verde sem o ícone `X`), você pode clicar em OK para salvar as alterações.
+    A autenticação do Windows permite que você teste todos os tokens de segurança cada vez que adicionar ou modificar um token. Clique em Testar tokens de segurança para validar (ou revalidar) cada token. Tokens inválidos geram uma mensagem de erro descritiva junto com um ícone `X` vermelho e texto do token vermelho. Quando todos os tokens forem resolvidos como válidos (texto verde sem o ícone `X`), você pode clicar em OK para salvar as alterações.
 
 ##### 2.3.2.1.4 Servidor Windows
 
@@ -162,6 +203,7 @@ Opcionalmente, as permissões definidas nas pastas e arquivos localizados em `C:
 Este passo está disponível se a caixa de seleção Mostrar Configuração Avançada foi selecionada durante a etapa Tipo e Redes. Para habilitar este passo agora, clique em Voltar para retornar à etapa Tipo e Redes e selecione a caixa de seleção.
 
 As opções de configuração avançada estão relacionadas aos seguintes arquivos de log do MySQL:
+
 * Registro de Erros
 * Registro Geral
 * Registro de Consultas Lentas
@@ -174,17 +216,15 @@ Essa etapa está disponível se a caixa de seleção Mostrar configuração avan
 As opções de configuração avançada incluem:
 
 * ID do servidor
-
   Defina o identificador único usado em uma topologia de replicação. Se o registro binário estiver habilitado, você deve especificar um ID de servidor. O valor padrão do ID depende da versão do servidor. Para mais informações, consulte a descrição da variável de sistema `server_id`.
+
 * Nomes das tabelas em maiúsculas
 
   Essas opções só se aplicam à configuração inicial do servidor MySQL.
 
   + Maiúsculas
-
     Define o valor da opção `lower_case_table_names` para 1 (padrão), na qual os nomes das tabelas são armazenados em minúsculas no disco e as comparações não são case-sensitive.
   + Preservar caso dado
-
     Define o valor da opção `lower_case_table_names` para 2, na qual os nomes das tabelas são armazenados como dados, mas comparados em minúsculas.
 
 ##### 2.3.2.1.8 Bancos de dados de amostra

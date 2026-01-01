@@ -19,7 +19,8 @@ As seguintes restrições se aplicam ao uso do MySQL na plataforma Windows:
   Para mais informações sobre esse problema, consulte <https://support.microsoft.com/kb/196271>.
 * **`DIRECTÓRIO DE DADOS` e `DIRECTÓRIO DE ÍNDICES`**
 
-A cláusula `DATA DIRECTORY` da instrução `CREATE TABLE` é suportada no Windows apenas para tabelas `InnoDB`, conforme descrito na Seção 17.6.1.2, “Criando Tabelas Externamente”. Para `MyISAM` e outros motores de armazenamento, as cláusulas `DATA DIRECTORY` e `INDEX DIRECTORY` para `CREATE TABLE` são ignoradas no Windows e em outras plataformas com uma chamada `realpath()` não funcional.
+  A cláusula `DATA DIRECTORY` da instrução `CREATE TABLE` é suportada no Windows apenas para tabelas `InnoDB`, conforme descrito na Seção 17.6.1.2, “Criando Tabelas Externamente”. Para `MyISAM` e outros motores de armazenamento, as cláusulas `DATA DIRECTORY` e `INDEX DIRECTORY` para `CREATE TABLE` são ignoradas no Windows e em outras plataformas com uma chamada `realpath()` não funcional.
+
 * **`DROP DATABASE`**
 
   Você não pode excluir um banco de dados que esteja sendo usado por outra sessão.

@@ -18,7 +18,130 @@ For more information about enabling, using, and disabling `mysql_native_password
 
 **Table 1.1 InnoDB system variable default values in MySQL 8.4 differing from MySQL 8.0**
 
-  <table><thead><tr> <th>InnoDB System Variable Name</th> <th>New Default Value (MySQL 8.4)</th> <th>Previous Default Value (MySQL 8.0)</th> </tr></thead><tbody><tr> <th><code>innodb_buffer_pool_in_core_file</code></th> <td><code>OFF</code> if <code>MADV_DONTDUMP</code> is supported, otherwise <code>ON</code></td> <td>ON</td> </tr><tr> <th><code>innodb_buffer_pool_instances</code></th> <td><p> If <code>innodb_buffer_pool_size</code> &lt;= 1 GiB, then <code>innodb_buffer_pool_instances=1</code> </p><p> If <code>innodb_buffer_pool_size</code> &gt; 1 GiB, then this is the minimum value from the following two calculated hints in the range of 1-64: </p> <div> <ul style="list-style-type: circle; "><li><p> Buffer pool hint: Calculated as 1/2 of (<code>innodb_buffer_pool_size</code> / <code>innodb_buffer_pool_chunk_size</code>) </p></li><li><p> CPU hint: Calculated as 1/4 of the number of available logical processors </p></li></ul> </div> </td> <td>8 (or 1 if <code>innodb_buffer_pool_size</code> &lt; 1 GiB)</td> </tr><tr> <th><code>innodb_change_buffering</code></th> <td><code>none</code></td> <td><code>all</code></td> </tr><tr> <th><code class="option">--innodb-dedicated-server</code></th> <td>If <code>ON</code>, the value of <code>innodb_flush_method</code> is no longer changed as in MySQL 8.0, but the calculation of <code>innodb_redo_log_capacity</code> is changed from memory-based to CPU-based. For more information, see Section 17.8.12, “Enabling Automatic InnoDB Configuration for a Dedicated MySQL Server”. (The actual default value of this variable is <code>OFF</code>; this is unchanged from MySQL 8.0.)</td> <td><code>OFF</code></td> </tr><tr> <th><code>innodb_adaptive_hash_index</code></th> <td><code>OFF</code></td> <td><code>ON</code></td> </tr><tr> <th><code>innodb_doublewrite_files</code></th> <td>2</td> <td><code>innodb_buffer_pool_instances</code> * 2</td> </tr><tr> <th><code>innodb_doublewrite_pages</code></th> <td>128</td> <td><code>innodb_write_io_threads</code>, which meant a default of 4</td> </tr><tr> <th><code>innodb_flush_method</code> on Linux</th> <td><code>O_DIRECT</code> if supported, otherwise <code>fsync</code></td> <td>fsync</td> </tr><tr> <th><code>innodb_io_capacity</code></th> <td>10000</td> <td>200</td> </tr><tr> <th><code>innodb_io_capacity_max</code></th> <td>2 * <code>innodb_io_capacity</code></td> <td>2 * <code>innodb_io_capacity</code>, with a minimum default value of 2000</td> </tr><tr> <th><code>innodb_log_buffer_size</code></th> <td>67108864 (64 MiB)</td> <td>16777216 (16 MiB)</td> </tr><tr> <th><code>innodb_numa_interleave</code></th> <td><code>ON</code></td> <td><code>OFF</code></td> </tr><tr> <th><code>innodb_page_cleaners</code></th> <td><code>innodb_buffer_pool_instances</code></td> <td>4</td> </tr><tr> <th><code>innodb_parallel_read_threads</code></th> <td>available logical processors / 8, with a minimum default value of 4</td> <td>4</td> </tr><tr> <th><code>innodb_purge_threads</code></th> <td>1 if available logical processors is &lt;= 16, otherwise 4</td> <td>4</td> </tr><tr> <th><code>innodb_read_io_threads</code></th> <td>available logical processors / 2, with a minimum default value of 4</td> <td>4</td> </tr><tr> <th><code>innodb_use_fdatasync</code></th> <td><code>ON</code></td> <td><code>OFF</code></td> </tr><tr> <th><code>temptable_max_ram</code></th> <td>3% of total memory, with a default value within a range of 1-4 GiB</td> <td>1073741824 (1 GiB)</td> </tr><tr> <th><code>temptable_max_mmap</code></th> <td>0, which means <code>OFF</code></td> <td>1073741824 (1 GiB)</td> </tr><tr> <th><code>temptable_use_mmap</code> (Deprecated in MySQL 8.0.26)</th> <td><code>OFF</code></td> <td><code>ON</code></td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>InnoDB System Variable Name</th>
+         <th>New Default Value (MySQL 8.4)</th>
+         <th>Previous Default Value (MySQL 8.0)</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th><code>innodb_buffer_pool_in_core_file</code></th>
+         <td><code>OFF</code> if <code>MADV_DONTDUMP</code> is supported, otherwise <code>ON</code></td>
+         <td>ON</td>
+      </tr>
+      <tr>
+         <th><code>innodb_buffer_pool_instances</code></th>
+         <td>
+            <p> If <code>innodb_buffer_pool_size</code> &lt;= 1 GiB, then <code>innodb_buffer_pool_instances=1</code> </p>
+            <p> If <code>innodb_buffer_pool_size</code> &gt; 1 GiB, then this is the minimum value from the following two calculated hints in the range of 1-64: </p>
+            <div>
+               <ul style="list-style-type: circle; ">
+                  <li>
+                     <p> Buffer pool hint: Calculated as 1/2 of (<code>innodb_buffer_pool_size</code> / <code>innodb_buffer_pool_chunk_size</code>) </p>
+                  </li>
+                  <li>
+                     <p> CPU hint: Calculated as 1/4 of the number of available logical processors </p>
+                  </li>
+               </ul>
+            </div>
+         </td>
+         <td>8 (or 1 if <code>innodb_buffer_pool_size</code> &lt; 1 GiB)</td>
+      </tr>
+      <tr>
+         <th><code>innodb_change_buffering</code></th>
+         <td><code>none</code></td>
+         <td><code>all</code></td>
+      </tr>
+      <tr>
+         <th><code class="option">--innodb-dedicated-server</code></th>
+         <td>If <code>ON</code>, the value of <code>innodb_flush_method</code> is no longer changed as in MySQL 8.0, but the calculation of <code>innodb_redo_log_capacity</code> is changed from memory-based to CPU-based. For more information, see Section 17.8.12, “Enabling Automatic InnoDB Configuration for a Dedicated MySQL Server”. (The actual default value of this variable is <code>OFF</code>; this is unchanged from MySQL 8.0.)</td>
+         <td><code>OFF</code></td>
+      </tr>
+      <tr>
+         <th><code>innodb_adaptive_hash_index</code></th>
+         <td><code>OFF</code></td>
+         <td><code>ON</code></td>
+      </tr>
+      <tr>
+         <th><code>innodb_doublewrite_files</code></th>
+         <td>2</td>
+         <td><code>innodb_buffer_pool_instances</code> * 2</td>
+      </tr>
+      <tr>
+         <th><code>innodb_doublewrite_pages</code></th>
+         <td>128</td>
+         <td><code>innodb_write_io_threads</code>, which meant a default of 4</td>
+      </tr>
+      <tr>
+         <th><code>innodb_flush_method</code> on Linux</th>
+         <td><code>O_DIRECT</code> if supported, otherwise <code>fsync</code></td>
+         <td>fsync</td>
+      </tr>
+      <tr>
+         <th><code>innodb_io_capacity</code></th>
+         <td>10000</td>
+         <td>200</td>
+      </tr>
+      <tr>
+         <th><code>innodb_io_capacity_max</code></th>
+         <td>2 * <code>innodb_io_capacity</code></td>
+         <td>2 * <code>innodb_io_capacity</code>, with a minimum default value of 2000</td>
+      </tr>
+      <tr>
+         <th><code>innodb_log_buffer_size</code></th>
+         <td>67108864 (64 MiB)</td>
+         <td>16777216 (16 MiB)</td>
+      </tr>
+      <tr>
+         <th><code>innodb_numa_interleave</code></th>
+         <td><code>ON</code></td>
+         <td><code>OFF</code></td>
+      </tr>
+      <tr>
+         <th><code>innodb_page_cleaners</code></th>
+         <td><code>innodb_buffer_pool_instances</code></td>
+         <td>4</td>
+      </tr>
+      <tr>
+         <th><code>innodb_parallel_read_threads</code></th>
+         <td>available logical processors / 8, with a minimum default value of 4</td>
+         <td>4</td>
+      </tr>
+      <tr>
+         <th><code>innodb_purge_threads</code></th>
+         <td>1 if available logical processors is &lt;= 16, otherwise 4</td>
+         <td>4</td>
+      </tr>
+      <tr>
+         <th><code>innodb_read_io_threads</code></th>
+         <td>available logical processors / 2, with a minimum default value of 4</td>
+         <td>4</td>
+      </tr>
+      <tr>
+         <th><code>innodb_use_fdatasync</code></th>
+         <td><code>ON</code></td>
+         <td><code>OFF</code></td>
+      </tr>
+      <tr>
+         <th><code>temptable_max_ram</code></th>
+         <td>3% of total memory, with a default value within a range of 1-4 GiB</td>
+         <td>1073741824 (1 GiB)</td>
+      </tr>
+      <tr>
+         <th><code>temptable_max_mmap</code></th>
+         <td>0, which means <code>OFF</code></td>
+         <td>1073741824 (1 GiB)</td>
+      </tr>
+      <tr>
+         <th><code>temptable_use_mmap</code> (Deprecated in MySQL 8.0.26)</th>
+         <td><code>OFF</code></td>
+         <td><code>ON</code></td>
+      </tr>
+   </tbody>
+</table>
 
 **Clone plugin**: The  clone plugin versioning requirement was relaxed to allow cloning between different point releases in the same series. In other words, only the major and minor version numbers must match when previously the point release number also had to match.
 

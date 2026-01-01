@@ -17,6 +17,8 @@ mysql-community-server-8.4.6-1.el8.x86_64.rpm: digests signatures OK
 
 Se você estiver usando o RPM 4.1 e ele reclamar sobre `(GPG) NOT OK (MISSING KEYS: GPG#a8d3785c)`, mesmo que você tenha importado a chave de construção pública do MySQL em seu próprio conjunto de chaves GPG, você precisa importar a chave no conjunto de chaves RPM primeiro. O RPM 4.1 não usa mais seu conjunto de chaves GPG pessoal (ou o GPG em si). Em vez disso, o RPM mantém um conjunto de chaves separado porque é um aplicativo de nível de sistema e o conjunto de chaves públicas GPG de um usuário é um arquivo específico do usuário. Para importar a chave pública do MySQL no conjunto de chaves RPM, obtenha a chave primeiro, em seguida, use `rpm --import` para importar a chave. Por exemplo:
 
+:::
+
 ```bash
 $> gpg --export -a a8d3785c > a8d3785c.asc
 $> rpm --import a8d3785c.asc

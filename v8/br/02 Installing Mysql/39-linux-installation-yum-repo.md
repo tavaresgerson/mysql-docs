@@ -24,141 +24,148 @@ Adicione o repositório Yum do MySQL à lista de repositórios do seu sistema. I
 2. **Selecione e baixe o pacote de lançamento para sua plataforma.**
 3. **Instale o pacote de lançamento baixado.** O formato do arquivo do pacote é:
 
-      ```
-      mysql84-community-release-{platform}-{version-number}.noarch.rpm
-      ```
+	```
+	mysql84-community-release-{platform}-{version-number}.noarch.rpm
+	```
 
 * *`mysql84`*: Indica a versão do MySQL que está habilitada por padrão. Neste caso, o MySQL 8.4 está habilitado por padrão, e tanto o MySQL 8.0 quanto a série de inovação do MySQL estão disponíveis, mas desabilitadas por padrão.
 * *`{platform}`*: O código da plataforma, como `el7`, `el8`, `el9`, `fc41` ou `fc42`. O `'`el'` representa o Enterprise Linux, `'`fc'` para o Fedora, e termina com o número da versão base da plataforma.
 * *`{version-number}`*: Versão da configuração do repositório do MySQL RPM, pois eles recebem atualizações ocasionais.
 
-Instale o RPM que você baixou para o seu sistema, por exemplo:
+	Instale o RPM que você baixou para o seu sistema, por exemplo:
 
-```
-      $> sudo yum localinstall mysql84-community-release-{platform}-{version-number}.noarch.rpm
-      ```
+	```bash
+	$> sudo yum localinstall mysql84-community-release-{platform}-{version-number}.noarch.rpm
+	```
 
-O comando de instalação adiciona o repositório Yum do MySQL à lista de repositórios do seu sistema e baixa a chave GnuPG para verificar a integridade dos pacotes de software. Veja a Seção 2.1.4.2, “Verificação de Assinatura Usando GnuPG” para detalhes sobre a verificação de chave GnuPG.
+	O comando de instalação adiciona o repositório Yum do MySQL à lista de repositórios do seu sistema e baixa a chave GnuPG para verificar a integridade dos pacotes de software. Veja a Seção 2.1.4.2, “Verificação de Assinatura Usando GnuPG” para detalhes sobre a verificação de chave GnuPG.
 
-Você pode verificar se o repositório Yum do MySQL foi adicionado e habilitado com sucesso pelo seguinte comando (para sistemas com `dnf` habilitado, substitua `yum` no comando por `dnf`):
+	Você pode verificar se o repositório Yum do MySQL foi adicionado e habilitado com sucesso pelo seguinte comando (para sistemas com `dnf` habilitado, substitua `yum` no comando por `dnf`):
 
-```
-      $> yum repolist enabled | grep mysql.*-community
-      ```
+	```
+	$> yum repolist enabled | grep mysql.*-community
+	```
 
-Exemplo de saída:
+	Exemplo de saída:
 
-```
-      mysql-8.4-lts-community               MySQL 8.4 LTS Community Server
-      mysql-tools-8.4-lts-community            MySQL Tools 8.4 LTS Community
-      ```
+	```
+	mysql-8.4-lts-community               MySQL 8.4 LTS Community Server
+	mysql-tools-8.4-lts-community            MySQL Tools 8.4 LTS Community
+	```
 
-Isso também demonstra que a versão mais recente do MySQL LTS está habilitada por padrão. Os métodos para escolher uma série de lançamento diferente, como a trilha de inovação (que hoje é 9.5) ou uma série anterior (como o MySQL 8.0), são descritos abaixo.
+	Isso também demonstra que a versão mais recente do MySQL LTS está habilitada por padrão. Os métodos para escolher uma série de lançamento diferente, como a trilha de inovação (que hoje é 9.5) ou uma série anterior (como o MySQL 8.0), são descritos abaixo.
   
-::: info Nota
+	::: info Nota
 
-Uma vez que o repositório Yum do MySQL é habilitado no seu sistema, qualquer atualização em nível de sistema pelo comando **yum update** (ou **dnf upgrade** para sistemas com `dnf` habilitado) atualiza os pacotes do MySQL no seu sistema e substitui quaisquer pacotes de terceiros nativos, se o Yum encontrar substitutos para eles no repositório Yum do MySQL; veja a Seção 3.8, “Atualizando o MySQL com o Repositório Yum do MySQL”, para uma discussão sobre alguns efeitos possíveis disso no seu sistema, veja Atualizando as Bibliotecas de Cliente Compartilhadas.
+	Uma vez que o repositório Yum do MySQL é habilitado no seu sistema, qualquer atualização em nível de sistema pelo comando **yum update** (ou **dnf upgrade** para sistemas com `dnf` habilitado) atualiza os pacotes do MySQL no seu sistema e substitui quaisquer pacotes de terceiros nativos, se o Yum encontrar substitutos para eles no repositório Yum do MySQL; veja a Seção 3.8, “Atualizando o MySQL com o Repositório Yum do MySQL”, para uma discussão sobre alguns efeitos possíveis disso no seu sistema, veja Atualizando as Bibliotecas de Cliente Compartilhadas.
+	
+	:::
 
-Ao usar o repositório MySQL Yum, a série de correções de bugs mais recente (atualmente MySQL 8.4) é selecionada para instalação por padrão. Se isso é o que você deseja, você pode pular para o próximo passo, Instalar o MySQL.
+2. #### Selecionando uma Série de Lançamento
 
-Dentro do repositório MySQL Yum, cada série de lançamentos do MySQL Community Server é hospedada em um subrepositório diferente. O subrepositório para a série LTS mais recente (atualmente MySQL 8.4) é ativado por padrão, e os subrepositórios para todas as outras séries (por exemplo, MySQL 8.0 e a série MySQL Innovation) são desativados por padrão. Use este comando para ver todos os subrepositórios relacionados ao MySQL disponíveis (para sistemas habilitados para `dnf`, substitua `yum` no comando por `dnf`):
+	Ao usar o repositório MySQL Yum, a série de correções de bugs mais recente (atualmente MySQL 8.4) é selecionada para instalação por padrão. Se isso é o que você deseja, você pode pular para o próximo passo, Instalar o MySQL.
 
-```
-   $> yum repolist all | grep mysql
-   ```
+	Dentro do repositório MySQL Yum, cada série de lançamentos do MySQL Community Server é hospedada em um subrepositório diferente. O subrepositório para a série LTS mais recente (atualmente MySQL 8.4) é ativado por padrão, e os subrepositórios para todas as outras séries (por exemplo, MySQL 8.0 e a série MySQL Innovation) são desativados por padrão. Use este comando para ver todos os subrepositórios relacionados ao MySQL disponíveis (para sistemas habilitados para `dnf`, substitua `yum` no comando por `dnf`):
 
-   Exemplo de saída:
+	```
+	$> yum repolist all | grep mysql
+	```
 
-   ```
-   mysql-connectors-community                 MySQL Connectors Community   enabled
-   mysql-tools-8.4-lts-community               MySQL Tools 8.4 LTS Community        enabled
-   mysql-tools-community                      MySQL Tools Community        disabled
-   mysql-tools-innovation-community           MySQL Tools Innovation Commu disabled
-   mysql-innovation-community                 MySQL Innovation Release Com disabled
-   mysql-8.4-lts-community                          MySQL 8.4 Community LTS Server   enabled
-   mysql-8.4-lts-community-debuginfo                MySQL 8.4 Community LTS Server - disabled
-   mysql-8.4-lts-community-source                   MySQL 8.4 Community LTS Server - disabled
-   mysql80-community                        MySQL 8.0 Community Server - disabled
-   mysql80-community-debuginfo              MySQL 8.0 Community Server - disabled
-   mysql80-community-source                 MySQL 8.0 Community Server - disabled
-   ```
+	Exemplo de saída:
 
-   Para instalar o lançamento mais recente de uma série específica diferente da série LTS mais recente, desative o subrepositório de bugs para a série LTS mais recente e ative o subrepositório para a série específica antes de executar o comando de instalação. Se sua plataforma suportar o comando **yum-config-manager** ou **dnf config-manager**, você pode fazer isso emitindo os seguintes comandos para desativar o subrepositório para a série 8.4 e ativar o para a série 8.0:
+	```
+	mysql-connectors-community                 MySQL Connectors Community   enabled
+	mysql-tools-8.4-lts-community               MySQL Tools 8.4 LTS Community        enabled
+	mysql-tools-community                      MySQL Tools Community        disabled
+	mysql-tools-innovation-community           MySQL Tools Innovation Commu disabled
+	mysql-innovation-community                 MySQL Innovation Release Com disabled
+	mysql-8.4-lts-community                          MySQL 8.4 Community LTS Server   enabled
+	mysql-8.4-lts-community-debuginfo                MySQL 8.4 Community LTS Server - disabled
+	mysql-8.4-lts-community-source                   MySQL 8.4 Community LTS Server - disabled
+	mysql80-community                        MySQL 8.0 Community Server - disabled
+	mysql80-community-debuginfo              MySQL 8.0 Community Server - disabled
+	mysql80-community-source                 MySQL 8.0 Community Server - disabled
+	```
 
-   ```
-   $> sudo yum-config-manager --disable mysql-8.4-lts-community
-   $> sudo yum-config-manager --enable  mysql80-community
-   ```
+	Para instalar o lançamento mais recente de uma série específica diferente da série LTS mais recente, desative o subrepositório de bugs para a série LTS mais recente e ative o subrepositório para a série específica antes de executar o comando de instalação. Se sua plataforma suportar o comando **yum-config-manager** ou **dnf config-manager**, você pode fazer isso emitindo os seguintes comandos para desativar o subrepositório para a série 8.4 e ativar o para a série 8.0:
 
-   Para plataformas habilitadas para `dnf`:
+	```
+	$> sudo yum-config-manager --disable mysql-8.4-lts-community
+	$> sudo yum-config-manager --enable  mysql80-community
+	```
 
-   ```
-   $> sudo dnf config-manager --disable mysql-8.4-lts-community
-   $> sudo dnf config-manager --enable mysql80-community
-   ```
+	Para plataformas habilitadas para `dnf`:
 
-   Em vez de usar os comandos config-manager, você pode editar manualmente o arquivo `/etc/yum.repos.d/mysql-community.repo`, alternando a opção `enabled`. Por exemplo, uma entrada padrão típica para EL8:
+	```
+	$> sudo dnf config-manager --disable mysql-8.4-lts-community
+	$> sudo dnf config-manager --enable mysql80-community
+	```
 
-   ```
-   [mysql-8.4-lts-community]
-   name=MySQL 8.4 LTS Community Server
-   baseurl=http://repo.mysql.com/yum/mysql-8.4-community/el/8/$basearch/
-   enabled=1
-   gpgcheck=1
-   gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2023
-   ```
+	Em vez de usar os comandos config-manager, você pode editar manualmente o arquivo `/etc/yum.repos.d/mysql-community.repo`, alternando a opção `enabled`. Por exemplo, uma entrada padrão típica para EL8:
 
-   Encontre a entrada para o subrepositório que você deseja configurar e edite a opção `enabled`. Especifique `enabled=0` para desativar um subrepositório ou `enabled=1` para ativar um subrepositório. Por exemplo, para instalar a partir da trilha de inovação do MySQL, certifique-se de ter `enabled=0` para as entradas de subrepositório 8.4 e ter `enabled=1` para as entradas de inovação:
+	```
+	[mysql-8.4-lts-community]
+	name=MySQL 8.4 LTS Community Server
+	baseurl=http://repo.mysql.com/yum/mysql-8.4-community/el/8/$basearch/
+	enabled=1
+	gpgcheck=1
+	gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2023
+	```
 
-   ```
-   [mysql80-community]
-   name=MySQL 8.0 Community Server
-   baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/8/$basearch
-   enabled=1
-   gpgcheck=1
-   gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2023
-   ```
+	Encontre a entrada para o subrepositório que você deseja configurar e edite a opção `enabled`. Especifique `enabled=0` para desativar um subrepositório ou `enabled=1` para ativar um subrepositório. Por exemplo, para instalar a partir da trilha de inovação do MySQL, certifique-se de ter `enabled=0` para as entradas de subrepositório 8.4 e ter `enabled=1` para as entradas de inovação:
 
-   Você só deve habilitar subrepositórios para uma série de lançamento de cada vez.
+	```
+	[mysql80-community]
+	name=MySQL 8.0 Community Server
+	baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/8/$basearch
+	enabled=1
+	gpgcheck=1
+	gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2023
+	```
+
+	Você só deve habilitar subrepositórios para uma série de lançamento de cada vez.
 
 Verifique se os subrepositórios corretos foram habilitados e desabilitados executando o seguinte comando e verificando sua saída (para sistemas habilitados para `dnf`, substitua `yum` no comando por `dnf`):
 
-```
-   $> yum repolist enabled | grep mysql
-   ```
+	```
+	$> yum repolist enabled | grep mysql
+	```
+
 3. #### Desabilitando o Módulo Padrão do MySQL
 
-   (`EL8` sistemas apenas) Sistemas baseados em EL8, como RHEL8 e Oracle Linux 8, incluem um módulo MySQL que está habilitado por padrão. A menos que este módulo seja desabilitado, ele mascara pacotes fornecidos pelos repositórios do MySQL. Para desabilitar o módulo incluído e tornar os pacotes do repositório do MySQL visíveis, use o seguinte comando (para sistemas habilitados para `dnf`, substitua `yum` no comando por `dnf`):
+	(`EL8` sistemas apenas) Sistemas baseados em EL8, como RHEL8 e Oracle Linux 8, incluem um módulo MySQL que está habilitado por padrão. A menos que este módulo seja desabilitado, ele mascara pacotes fornecidos pelos repositórios do MySQL. Para desabilitar o módulo incluído e tornar os pacotes do repositório do MySQL visíveis, use o seguinte comando (para sistemas habilitados para `dnf`, substitua `yum` no comando por `dnf`):
 
-```
-   $> sudo yum module disable mysql
-   ```
+	```
+	$> sudo yum module disable mysql
+	```
+
 4. #### Instalando o MySQL
 
-   Instale o MySQL pelo seguinte comando (para sistemas habilitados para `dnf`, substitua `yum` no comando por `dnf`):
+	Instale o MySQL pelo seguinte comando (para sistemas habilitados para `dnf`, substitua `yum` no comando por `dnf`):
 
-   ```
-   $> sudo yum install mysql-community-server
-   ```
+	```
+	$> sudo yum install mysql-community-server
+	```
 
-   Isso instala o pacote para o servidor MySQL (`mysql-community-server`) e também pacotes para os componentes necessários para executar o servidor, incluindo pacotes para o cliente (`mysql-community-client`), os mensagens de erro comuns e os conjuntos de caracteres para cliente e servidor (`mysql-community-common`) e as bibliotecas de cliente compartilhadas (`mysql-community-libs`).
+	Isso instala o pacote para o servidor MySQL (`mysql-community-server`) e também pacotes para os componentes necessários para executar o servidor, incluindo pacotes para o cliente (`mysql-community-client`), os mensagens de erro comuns e os conjuntos de caracteres para cliente e servidor (`mysql-community-common`) e as bibliotecas de cliente compartilhadas (`mysql-community-libs`).
+
 5. #### Iniciando o Servidor MySQL
 
-   Inicie o servidor MySQL com o seguinte comando:
+	Inicie o servidor MySQL com o seguinte comando:
 
-   ```
-   $> systemctl start mysqld
-   ```
+	```
+	$> systemctl start mysqld
+	```
 
-   Você pode verificar o status do servidor MySQL com o seguinte comando:
+	Você pode verificar o status do servidor MySQL com o seguinte comando:
 
-   ```
-   $> systemctl status mysqld
-   ```
+	```bash
+	$> systemctl status mysqld
+	```
 
-Se o sistema operacional estiver habilitado para systemd, os comandos padrão `systemctl` (ou, alternativamente, `service` com os argumentos invertidos) como `stop`, `start`, `status` e `restart` devem ser usados para gerenciar o serviço do servidor MySQL. O serviço `mysqld` está habilitado por padrão e inicia ao reiniciar o sistema.
-
-No início da inicialização do servidor, o seguinte acontece, dado que o diretório de dados do servidor está vazio:
+	Se o sistema operacional estiver habilitado para systemd, os comandos padrão `systemctl` (ou, alternativamente, `service` com os argumentos invertidos) como `stop`, `start`, `status` e `restart` devem ser usados para gerenciar o serviço do servidor MySQL. O serviço `mysqld` está habilitado por padrão e inicia ao reiniciar o sistema.
+	
+	No início da inicialização do servidor, o seguinte acontece, dado que o diretório de dados do servidor está vazio:
 
 * O servidor é inicializado.
 * Os arquivos de certificado SSL e chave são gerados no diretório de dados.
@@ -199,13 +206,25 @@ Você pode usar o Yum para instalar e gerenciar componentes individuais do MySQL
 
 ```
 $> sudo yum --disablerepo=* --enablerepo='mysql*-community*' list available
-```nSWg2u3LkA```
+```
+
+Instale os pacotes de sua escolha com o seguinte comando, substituindo `nome-do-pacote` pelo nome do pacote (para sistemas com suporte a `dnf`, substitua `yum` no comando por `dnf`):
+
+```
 $> sudo yum install package-name
-```WScwBCaOac```
+```
+
+Por exemplo, para instalar o MySQL Workbench no Fedora:
+
+```
 $> sudo dnf install mysql-workbench-community
-```afJckPDeFs```
+```
+
+Para instalar as bibliotecas de cliente compartilhadas (para sistemas com suporte a `dnf`, substitua `yum` por `dnf` no comando):
+
+```
 $> sudo yum install mysql-community-libs
-```ewsTB9mrJS```
+```
 
 #### Atualizando o MySQL com o Yum
 
@@ -230,3 +249,5 @@ Após atualizar o MySQL usando o repositório Yum, as aplicações compiladas co
 ::: info Nota
 
 *Para plataformas baseadas no EL7:* Consulte Informações de Compatibilidade para plataformas baseadas no EL7.
+
+:::

@@ -71,14 +71,14 @@ These functions are available for obtaining linestring properties:
 
   Returns a double-precision number indicating the length of the `LineString` or `MultiLineString` value *`ls`* in its associated spatial reference system. The length of a `MultiLineString` value is equal to the sum of the lengths of its elements.
 
-   `ST_Length()` computes a result as follows:
+  `ST_Length()` computes a result as follows:
 
   + If the geometry is a valid `LineString` in a Cartesian SRS, the return value is the Cartesian length of the geometry.
   + If the geometry is a valid `MultiLineString` in a Cartesian SRS, the return value is the sum of the Cartesian lengths of its elements.
   + If the geometry is a valid `LineString` in a geographic SRS, the return value is the geodetic length of the geometry in that SRS, in meters.
   + If the geometry is a valid `MultiLineString` in a geographic SRS, the return value is the sum of the geodetic lengths of its elements in that SRS, in meters.
 
-   `ST_Length()` handles its arguments as described in the introduction to this section, with these exceptions:
+  `ST_Length()` handles its arguments as described in the introduction to this section, with these exceptions:
 
   + If the geometry is not a `LineString` or `MultiLineString`, the return value is `NULL`.
   + If the geometry is geometrically invalid, either the result is an undefined length (that is, it can be any number), or an error occurs.
@@ -140,7 +140,7 @@ These functions are available for obtaining linestring properties:
 
   Returns the number of `Point` objects in the `LineString` value *`ls`*.
 
-   `ST_NumPoints()` handles its arguments as described in the introduction to this section.
+  `ST_NumPoints()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET @ls = 'LineString(1 1,2 2,3 3)';
@@ -151,6 +151,7 @@ These functions are available for obtaining linestring properties:
   |                                  3 |
   +------------------------------------+
   ```
+
 * `ST_PointN(ls, N)`
 
   Returns the *`N`*-th `Point` in the `Linestring` value *`ls`*. Points are numbered beginning with 1.
@@ -170,7 +171,7 @@ These functions are available for obtaining linestring properties:
 
   Returns the `Point` that is the start point of the `LineString` value *`ls`*.
 
-   `ST_StartPoint()` handles its arguments as described in the introduction to this section.
+  `ST_StartPoint()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET @ls = 'LineString(1 1,2 2,3 3)';

@@ -26,20 +26,58 @@ Avisos
   $> apt-cache search libaio # search for info
   $> apt-get install libaio1 # install library
   ```
-* **Oracle Linux 8 / Red Hat 8** (EL8): Essas plataformas, por padrão, não instalam o arquivo `/lib64/libtinfo.so.5`, que é necessário pelo cliente MySQL `bin/mysql` para os pacotes `mysql-VERSION-el7-x86_64.tar.gz` e `mysql-VERSION-linux-glibc2.12-x86_64.tar.xz`. Para contornar esse problema, instale o pacote `ncurses-compat-libs`:
+* **Oracle Linux 8/Red Hat 8** (EL8): Essas plataformas, por padrão, não instalam o arquivo `/lib64/libtinfo.so.5`, que é necessário pelo cliente MySQL `bin/mysql` para os pacotes `mysql-VERSION-el7-x86_64.tar.gz` e `mysql-VERSION-linux-glibc2.12-x86_64.tar.xz`. Para contornar esse problema, instale o pacote `ncurses-compat-libs`:
 
   ```bash
   $> yum install ncurses-compat-libs
   ```
+
 * Se nenhum arquivo RPM ou `.deb` específico para sua distribuição for fornecido pela Oracle (ou pelo seu fornecedor de Linux), você pode tentar os binários genéricos. Em alguns casos, devido a incompatibilidades de bibliotecas ou outros problemas, eles podem não funcionar com sua instalação do Linux. Nesses casos, você pode tentar compilar e instalar o MySQL a partir da fonte. Consulte a Seção 2.8, “Instalando o MySQL a partir da Fonte”, para obter mais informações e instruções.
 
 Para instalar uma distribuição binária de arquivo `tar` compactado, descompacte-a no local de instalação que você escolher (tipicamente `/usr/local/mysql`). Isso cria os diretórios mostrados na tabela a seguir.
 
 **Tabela 2.3 Layout de Instalação do MySQL para Pacote Binário Genérico Unix/Linux**
 
-<table><thead><tr> <th>Diretório</th> <th>Conteúdo do Diretório</th> </tr></thead><tbody><tr> <td><code>bin</code></td> <td>Programas do servidor, cliente e utilitários do <code>mysqld</code></td> </tr><tr> <td><code>docs</code></td> <td>Manual do MySQL no formato Info</td> </tr><tr> <td><code>man</code></td> <td>Páginas de manual do Unix</td> </tr><tr> <td><code>include</code></td> <td>Arquivos de inclusão (cabeçalho)</td> </tr><tr> <td><code>lib</code></td> <td>Bibliotecas</td> </tr><tr> <td><code>share</code></td> <td>Mensagens de erro, dicionário e SQL para instalação do banco de dados</td> </tr><tr> <td><code>support-files</code></td> <td>Arquivos de suporte diversos</td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>Diretório</th>
+         <th>Conteúdo do Diretório</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td><code>bin</code></td>
+         <td>Programas do servidor, cliente e utilitários do <code>mysqld</code></td>
+      </tr>
+      <tr>
+         <td><code>docs</code></td>
+         <td>Manual do MySQL no formato Info</td>
+      </tr>
+      <tr>
+         <td><code>man</code></td>
+         <td>Páginas de manual do Unix</td>
+      </tr>
+      <tr>
+         <td><code>include</code></td>
+         <td>Arquivos de inclusão (cabeçalho)</td>
+      </tr>
+      <tr>
+         <td><code>lib</code></td>
+         <td>Bibliotecas</td>
+      </tr>
+      <tr>
+         <td><code>share</code></td>
+         <td>Mensagens de erro, dicionário e SQL para instalação do banco de dados</td>
+      </tr>
+      <tr>
+         <td><code>support-files</code></td>
+         <td>Arquivos de suporte diversos</td>
+      </tr>
+   </tbody>
+</table>
 
-Versões de depuração do pacote binário do <code>mysqld</code> estão disponíveis como `mysqld-debug`. Para compilar sua própria versão de depuração do MySQL a partir de uma distribuição de código-fonte, use as opções de configuração apropriadas para habilitar o suporte de depuração. Veja a Seção 2.8, “Instalando o MySQL a partir de Código-Fonte”.
+Versões de depuração do pacote binário do `mysqld` estão disponíveis como `mysqld-debug`. Para compilar sua própria versão de depuração do MySQL a partir de uma distribuição de código-fonte, use as opções de configuração apropriadas para habilitar o suporte de depuração. Veja a Seção 2.8, “Instalando o MySQL a partir de Código-Fonte”.
 
 Para instalar e usar uma distribuição binária do MySQL, a sequência de comandos é a seguinte:
 

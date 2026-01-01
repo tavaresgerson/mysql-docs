@@ -36,38 +36,28 @@ Se não houver linhas correspondentes, `AVG()` retorna `NULL`. A função també
 Esta função é executada como uma função de janela se *`over_clause`* estiver presente. *`over_clause`* é descrito na Seção 14.20.2, “Conceitos e Sintaxe de Funções de Janela”; não pode ser usada com `DISTINCT`.
 
 ```
-  mysql> SELECT student_name, AVG(test_score)
-         FROM student
-         GROUP BY student_name;
-  ```XdFdKmbXMR```
-  mysql> SELECT student.student_name,COUNT(*)
-         FROM student,course
-         WHERE student.student_id=course.student_id
-         GROUP BY student_name;
-  ```aggKtcaaAT```
-  mysql> SELECT COUNT(*) FROM student;
-  ```FznoIyMtAi```
-  mysql> SELECT COUNT(DISTINCT results) FROM student;
-  ```H7B2gBnzkC```
-  GROUP_CONCAT([DISTINCT] expr [,expr ...]
-               [ORDER BY {unsigned_integer | col_name | expr}
-                   [ASC | DESC] [,col_name ...]]
-               [SEPARATOR str_val])
-  ```qDFmMkKdC9```
-  mysql> SELECT student_name,
-           GROUP_CONCAT(test_score)
-         FROM student
-         GROUP BY student_name;
-  ```Tbn9KrJAnu```
-  mysql> SELECT student_name,
-           GROUP_CONCAT(DISTINCT test_score
-                        ORDER BY test_score DESC SEPARATOR ' ')
-         FROM student
-         GROUP BY student_name;
-  ```59KIhgu0Tz
-```
-  SET [GLOBAL | SESSION] group_concat_max_len = val;
-  ```9ijiXg5sNg
+  mysql> SELECT o_id, attribute, value FROM t3;
+  +------+-----------+-------+
+  | o_id | attribute | value |
+  +------+-----------+-------+
+  |    2 | color     | red   |
+  |    2 | fabric    | silk  |
+  |    3 | color     | green |
+  |    3 | shape     | square|
+  +------+-----------+-------+
+  4 rows in set (0.00 sec)
+
+  mysql> SELECT o_id, JSON_ARRAYAGG(attribute) AS attributes
+      -> FROM t3 GROUP BY o_id;
+  +------+---------------------+
+  | o_id | attributes          |
+  +------+---------------------+
+  |    2 | ["color", "fabric"] |
+  |    3 | ["color", "shape"]  |
+  +------+---------------------+
+  2 rows in set (0.00 sec)
+  ```
+  
 * `JSON_OBJECTAGG(key, value) [over_clause]`
 
 Aceita dois nomes de coluna ou expressões como argumentos, sendo o primeiro usado como chave e o segundo como valor, e retorna um objeto JSON contendo pares chave-valor. Retorna `NULL` se o resultado contiver nenhuma linha ou em caso de erro. Um erro ocorre se qualquer nome de chave for `NULL` ou se o número de argumentos não for igual a 2.

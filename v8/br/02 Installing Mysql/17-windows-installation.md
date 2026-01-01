@@ -33,12 +33,48 @@ Todos os arquivos estão localizados dentro deste diretório pai usando a estrut
 
 **Tabela 2.4 Layout de Instalação Padrão do MySQL para Microsoft Windows**
 
-<table><thead><tr> <th>Diretório</th> <th>Conteúdo do Diretório</th> <th>Notas</th> </tr></thead><tbody><tr> <th><code>bin</code></th> <td>Programas do servidor, cliente e utilitários mysqld</td> <td></td> </tr><tr> <th><code>%PROGRAMDATA%\MySQL\MySQL Server 8.4\</code></th> <td>Arquivos de log, bancos de dados</td> <td>A variável do sistema do Windows <code>%PROGRAMDATA%</code> tem como padrão <code>C:\ProgramData</code>.</td> </tr><tr> <th><code>docs</code></th> <td>Documentação de lançamento</td> <td>Com o MSI, use o tipo <code>Custom</code> para incluir este componente opcional.</td> </tr><tr> <th><code>include</code></th> <td>Arquivos de inclusão (cabeçalho)</td> <td></td> </tr><tr> <th><code>lib</code></th> <td>Bibliotecas</td> <td></td> </tr><tr> <th><code>share</code></th> <td>Arquivos de suporte diversos, incluindo mensagens de erro, arquivos de conjunto de caracteres, arquivos de configuração de amostra, SQL para instalação de banco de dados</td> <td></td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>Diretório</th>
+         <th>Conteúdo do Diretório</th>
+         <th>Notas</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th><code>bin</code></th>
+         <td>Programas do servidor, cliente e utilitários mysqld</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th><code>%PROGRAMDATA%\MySQL\MySQL Server 8.4\</code></th>
+         <td>Arquivos de log, bancos de dados</td>
+         <td>A variável do sistema do Windows <code>%PROGRAMDATA%</code> tem como padrão <code>C:\ProgramData</code>.</td>
+      </tr>
+      <tr>
+         <th><code>docs</code></th>
+         <td>Documentação de lançamento</td>
+         <td>Com o MSI, use o tipo <code>Custom</code> para incluir este componente opcional.</td>
+      </tr>
+      <tr>
+         <th><code>include</code></th>
+         <td>Arquivos de inclusão (cabeçalho)</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th><code>lib</code></th>
+         <td>Bibliotecas</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th><code>share</code></th>
+         <td>Arquivos de suporte diversos, incluindo mensagens de erro, arquivos de conjunto de caracteres, arquivos de configuração de amostra, SQL para instalação de banco de dados</td>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
 
-### Métodos de Instalação Silenciosa
-English:
-### Silent Installation Methods
-Portuguese (Brazil):
 ### Métodos de Instalação Silenciosa
 
 Use as opções padrão do msiexec para uma instalação silenciosa. Este exemplo inclui `/i` para uma instalação normal, `/qn` para não exibir uma GUI e evitar a interação do usuário, e `/lv` para gravar a saída da instalação detalhada em um novo arquivo de log. Execute a instalação como Administrador a partir da linha de comando, por exemplo:
@@ -69,15 +105,15 @@ Além do pacote do MySQL Server, você pode precisar ou querer componentes adici
 * Para usar o servidor MySQL com aplicativos .NET, você deve ter o driver Connector/NET. Para obter mais informações, incluindo instruções de instalação e configuração, consulte o Guia de Desenvolvimento MySQL Connector/NET.
 As distribuições do MySQL para Windows podem ser baixadas em <https://dev.mysql.com/downloads/>. Consulte a Seção 2.1.3, “Como obter o MySQL”.
 O MySQL para Windows está disponível em vários formatos de distribuição, detalhados aqui. De maneira geral, você deve usar o MSI para instalar o servidor MySQL e o MySQL Configurator para configurá-lo. O MSI é mais simples de usar do que o arquivo compactado, e você não precisa de ferramentas adicionais para fazer o MySQL funcionar. O MySQL Configurator configura automaticamente o MySQL Server, cria um arquivo de opções, inicia o servidor, permite que você crie contas de usuário padrão e muito mais. Para obter mais informações sobre a escolha de um pacote, consulte a Seção 2.3.1, “Escolhendo um Pacote de Instalação”.
+
 ### Considerações sobre o MySQL no Windows
 
 * **Suporte a Tabelas Grandes**
-
   Se você precisar de tabelas com um tamanho maior que 4GB, instale o MySQL em um sistema de arquivos NTFS ou mais recente. Não se esqueça de usar `MAX_ROWS` e `AVG_ROW_LENGTH` ao criar tabelas.
-* **MySQL e Software de Verificação de Vírus**
 
+* **MySQL e Software de Verificação de Vírus**
   Software de verificação de vírus, como o Norton/Symantec Anti-Virus, em diretórios que contêm dados do MySQL e tabelas temporárias, pode causar problemas, tanto em termos do desempenho do MySQL quanto da identificação incorreta do conteúdo dos arquivos pelo software de verificação de vírus. Isso ocorre devido ao mecanismo de impressão digital usado pelo software de verificação de vírus e à maneira como o MySQL atualiza rapidamente diferentes arquivos, que podem ser identificados como um risco potencial de segurança.
 
-Após instalar o MySQL Server, recomenda-se desativar a varredura de vírus no diretório principal (`datadir`) usado para armazenar os dados das tabelas do MySQL. Geralmente, o software de varredura de vírus inclui um sistema para ignorar diretórios específicos.
+  Após instalar o MySQL Server, recomenda-se desativar a varredura de vírus no diretório principal (`datadir`) usado para armazenar os dados das tabelas do MySQL. Geralmente, o software de varredura de vírus inclui um sistema para ignorar diretórios específicos.
 
-Além disso, por padrão, o MySQL cria arquivos temporários no diretório temporário padrão do Windows. Para evitar que os arquivos temporários também sejam verificados, configure um diretório temporário separado para os arquivos temporários do MySQL e adicione esse diretório à lista de exclusão da varredura de vírus. Para fazer isso, adicione uma opção de configuração para o parâmetro `tmpdir` ao seu arquivo de configuração `my.ini`. Para mais informações, consulte a Seção 2.3.3.2, “Criando um arquivo de opção”.
+  Além disso, por padrão, o MySQL cria arquivos temporários no diretório temporário padrão do Windows. Para evitar que os arquivos temporários também sejam verificados, configure um diretório temporário separado para os arquivos temporários do MySQL e adicione esse diretório à lista de exclusão da varredura de vírus. Para fazer isso, adicione uma opção de configuração para o parâmetro `tmpdir` ao seu arquivo de configuração `my.ini`. Para mais informações, consulte a Seção 2.3.3.2, “Criando um arquivo de opção”.

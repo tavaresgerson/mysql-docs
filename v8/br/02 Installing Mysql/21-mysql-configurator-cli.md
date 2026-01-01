@@ -20,7 +20,47 @@ mysql_configurator.exe --console [--help] | [--action=action_name | -a=action_na
 
 **Tabela 2.6 Sintaxe**
 
-<table><thead><tr> <th>Nome da opção</th> <th>Atalho</th> <th>Valores suportados</th> <th>Exemplo de uso</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>console</td> <td>c</td> <td>N/A</td> <td>--console</td> <td>Ativa o CLI no MySQL Configurator, caso contrário, o GUI é iniciado.</td> </tr><tr> <td>action</td> <td>a</td> <td>configure, reconfigure, remove ou upgrade</td> <td>--action=configure</td> <td>Executa o MySQL Configurator CLI em um novo modo de configuração, reconfiguração, remoção ou atualização.</td> </tr><tr> <td>help</td> <td>h</td> <td>N/A</td> <td>--help</td> <td>Exibe ajuda geral ou ajuda para a ação correspondente. Se não for fornecido o elemento <code>--action</code>, a seção de ajuda geral é exibida.</td> </tr><tr> <td>opção da ação e valor</td> <td>N/A</td> <td>Veja a seção "Opções de Configuração/Reconfiguração/Remoção/Atualização" para valores e detalhes suportados</td> <td>--datadir="C:MySQL...", --port=3306</td> <td>Define as várias opções de configuração disponíveis para cada ação CLI (configuração, reconfiguração, remoção ou atualização)</td> </tr></tbody></table>
+<table>
+	<thead>
+		<tr>
+			<th>Nome da opção</th>
+			<th>Atalho</th>
+			<th>Valores suportados</th>
+			<th>Exemplo de uso</th>
+			<th>Descrição</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>console</td>
+			<td>c</td>
+			<td>N/A</td>
+			<td>--console</td>
+			<td>Ativa o CLI no MySQL Configurator, caso contrário, o GUI é iniciado.</td>
+		</tr>
+		<tr>
+			<td>action</td>
+			<td>a</td>
+			<td>configure, reconfigure, remove ou upgrade</td>
+			<td>--action=configure</td>
+			<td>Executa o MySQL Configurator CLI em um novo modo de configuração, reconfiguração, remoção ou atualização.</td>
+		</tr>
+		<tr>
+			<td>help</td>
+			<td>h</td>
+			<td>N/A</td>
+			<td>--help</td>
+			<td>Exibe ajuda geral ou ajuda para a ação correspondente. Se não for fornecido o elemento <code>--action</code>, a seção de ajuda geral é exibida.</td>
+		</tr>
+		<tr>
+			<td>opção da ação e valor</td>
+			<td>N/A</td>
+			<td>Veja a seção "Opções de Configuração/Reconfiguração/Remoção/Atualização" para valores e detalhes suportados</td>
+			<td>--datadir="C:MySQL...", --port=3306</td>
+			<td>Define as várias opções de configuração disponíveis para cada ação CLI (configuração, reconfiguração, remoção ou atualização)</td>
+		</tr>
+	</tbody>
+</table>
 
 ##### Ações disponíveis
 

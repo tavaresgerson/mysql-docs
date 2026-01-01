@@ -488,6 +488,7 @@
   ```
   CREATE TABLE t (c VARCHAR(288) DEFAULT (SYSTEM_USER()));
   ```
+
 *  `USER()`
 
   Returns the current MySQL user name and host name as a string in the `utf8mb3` character set.

@@ -459,4 +459,3 @@ MySQL bit functions and operators permit binary string type arguments ( `BINARY`
   If there are no matching rows, or if *`expr`* is `NULL`, `VARIANCE()` returns `NULL`.
 
   This function executes as a window function if *`over_clause`* is present. *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.
-

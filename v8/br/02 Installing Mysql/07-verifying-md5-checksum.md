@@ -19,5 +19,5 @@ aaab65abbec64d5e907dcd41b8699945  mysql-installer-community-8.4.6.msi
 Você deve verificar se o checksum resultante (a string de dígitos hexadecimais) corresponde ao exibido na página de download logo abaixo do respectivo pacote.
 
 ::: info Nota
-
 Certifique-se de verificar o checksum do *arquivo de armazém* (por exemplo, o arquivo `.zip`, `.tar.gz` ou `.msi`) e não dos arquivos que estão contidos dentro do arquivo. Em outras palavras, verifique o arquivo antes de extraí-lo.
+:::

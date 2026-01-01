@@ -33,7 +33,7 @@ Observe que o mesmo pacote funciona em todas as plataformas Debian e Ubuntu supo
 
    ::: info Nota
 
-A trilha de inovação, que começa com o MySQL 8.1, inclui "-innovation-" no nome do componente.
+   A trilha de inovação, que começa com o MySQL 8.1, inclui "-innovation-" no nome do componente.
 
    :::
 
@@ -48,13 +48,13 @@ Em vez de usar o pacote de lançamento, você também pode adicionar e configura
 
    ::: info Nota
 
-Uma vez que o repositório MySQL APT seja habilitado no seu sistema, você não poderá mais instalar quaisquer pacotes MySQL dos repositórios de software nativos da sua plataforma até que o repositório MySQL APT seja desabilitado.
+   Uma vez que o repositório MySQL APT seja habilitado no seu sistema, você não poderá mais instalar quaisquer pacotes MySQL dos repositórios de software nativos da sua plataforma até que o repositório MySQL APT seja desabilitado.
 
    :::
 
    ::: info Nota
 
-Uma vez que o repositório MySQL APT seja habilitado no seu sistema, qualquer atualização em nível de sistema pelo comando `apt-get upgrade` atualizará automaticamente os pacotes MySQL no seu sistema e também substituirá quaisquer pacotes MySQL nativos que você instalou do repositório de software da sua distribuição Linux, se o APT encontrar substitutos para eles dentro do repositório MySQL APT.
+   Uma vez que o repositório MySQL APT seja habilitado no seu sistema, qualquer atualização em nível de sistema pelo comando `apt-get upgrade` atualizará automaticamente os pacotes MySQL no seu sistema e também substituirá quaisquer pacotes MySQL nativos que você instalou do repositório de software da sua distribuição Linux, se o APT encontrar substitutos para eles dentro do repositório MySQL APT.
 
    :::
 
@@ -196,9 +196,10 @@ Consulte também as informações fornecidas em Começando e Parando o Servidor 
 #### Atualizando o MySQL com o Repositório APT do MySQL
 
 ::: info Notas
+	
 ```
-     sudo apt-get -f install
-     ```
+sudo apt-get -f install
+```
 
 * Antes de realizar qualquer atualização no MySQL, siga cuidadosamente as instruções no Capítulo 3, *Atualizando o MySQL*. Entre outras instruções discutidas, *é especialmente importante fazer backup do seu banco de dados antes da atualização*.
 * As instruções a seguir assumem que o MySQL foi instalado no seu sistema usando o repositório MySQL APT; se não for esse o caso, siga as instruções fornecidas em Substituindo uma Distribuição Native do MySQL Usando o Repositório MySQL APT ou Substituindo um Servidor MySQL Instalado por um Download de Pacote Deb Direto. Além disso, note que você não pode usar o repositório MySQL APT para atualizar uma distribuição do MySQL que você instalou a partir de um repositório de software não nativo (por exemplo, de MariaDB ou Percona).
@@ -210,39 +211,40 @@ Use o repositório MySQL APT para realizar uma atualização in-place para sua i
 1. Certifique-se de que você já tem o repositório MySQL APT na lista de repositórios do seu sistema (consulte Adicionando o Repositório Apt MySQL para obter instruções).
 2. Certifique-se de que você tem as informações de pacote mais atualizadas no repositório MySQL APT executando:
 
-   ```
-   $> sudo apt-get update
-   ```
+	```
+	$> sudo apt-get update
+	```
 3. Observe que, por padrão, o repositório MySQL APT atualizará o MySQL para a série de lançamento que você selecionou quando você estava adicionando o repositório MySQL APT ao seu sistema (linux-installation-apt-repo.html#apt-repo-setup "Adicionando o Repositório Apt MySQL"). Se você deseja atualizar para outra série de lançamento, selecione-a seguindo os passos fornecidos em Selecionando uma Versão de Lançamento Principal.
 
-   Como regra geral, para atualizar de uma série de lançamento para outra, vá para a próxima série em vez de pular uma série. Por exemplo, se você está atualmente executando MySQL 5.7 e deseja atualizar para uma série mais recente, atualize para MySQL 8.0 primeiro antes de atualizar para 8.4.
+	Como regra geral, para atualizar de uma série de lançamento para outra, vá para a próxima série em vez de pular uma série. Por exemplo, se você está atualmente executando MySQL 5.7 e deseja atualizar para uma série mais recente, atualize para MySQL 8.0 primeiro antes de atualizar para 8.4.
 
-   Importante
+	Importante
 
 A atualização para uma versão menor do MySQL não é suportada pelo repositório MySQL APT. Siga as instruções no Capítulo 4, *Atualizando o MySQL*.
 4. Atualize o MySQL com o seguinte comando:
 
-   ```
-   $> sudo apt-get install mysql-server
-   ```
+```
+$> sudo apt-get install mysql-server
+```
 
-   O servidor MySQL, o cliente e os arquivos comuns do banco de dados são atualizados se versões mais recentes estiverem disponíveis. Para atualizar qualquer outro pacote MySQL, use o mesmo comando `apt-get install` e forneça o nome do pacote que você deseja atualizar:
+O servidor MySQL, o cliente e os arquivos comuns do banco de dados são atualizados se versões mais recentes estiverem disponíveis. Para atualizar qualquer outro pacote MySQL, use o mesmo comando `apt-get install` e forneça o nome do pacote que você deseja atualizar:
 
-   ```
-   $> sudo apt-get install package-name
-   ```
+```
+$> sudo apt-get install package-name
+```
 
-   Para ver os nomes dos pacotes que você instalou do repositório MySQL APT, use o seguinte comando:
+Para ver os nomes dos pacotes que você instalou do repositório MySQL APT, use o seguinte comando:
 
-   ```
-   $> dpkg -l | grep mysql | grep ii
-   ```
+```
+$> dpkg -l | grep mysql | grep ii
+```
 
 ::: info Nota
 
 Se você realizar uma atualização em todo o sistema usando `apt-get upgrade`, apenas a biblioteca e os pacotes de desenvolvimento do MySQL são atualizados com versões mais recentes (se disponíveis). Para atualizar outros componentes, incluindo o servidor, cliente, conjunto de testes, etc., use o comando **apt-get install**.
 
 :::
+
 5. O servidor MySQL é sempre reiniciado após uma atualização pelo APT.
 
 #### Substituindo uma Distribuição Native do MySQL Usando o Repositório MySQL APT
@@ -259,15 +261,17 @@ Aviso
 
 Alguns pacotes nativos de repositório de terceiros que dependem dos pacotes nativos MySQL podem não funcionar com os pacotes de repositório MySQL APT e não devem ser usados juntos com eles; esses incluem `akonadi-backend-mysql`, `handlersocket-mysql-5.5` e `zoneminder`.
 
-1. ##### Fazendo backup do seu banco de dados
+##### Fazendo backup do seu banco de dados
 
-   Para evitar a perda de dados, sempre faça um backup do seu banco de dados antes de tentar substituir sua instalação do MySQL usando o repositório MySQL APT. Consulte o Capítulo 9, *Backup e Recuperação* para obter instruções.
-2. ##### Adicionando o repositório MySQL APT e selecionando uma série de lançamento
+Para evitar a perda de dados, sempre faça um backup do seu banco de dados antes de tentar substituir sua instalação do MySQL usando o repositório MySQL APT. Consulte o Capítulo 9, *Backup e Recuperação* para obter instruções.
 
-   Adicione o repositório MySQL APT à lista de repositórios do seu sistema e selecione a série de lançamento desejada seguindo as instruções fornecidas em Adicionando o repositório MySQL Apt.
-3. ##### Substituindo a distribuição nativa pelo MySQL APT
+##### Adicionando o repositório MySQL APT e selecionando uma série de lançamento
 
-   Por design, o repositório MySQL APT substitui sua distribuição nativa do MySQL quando você realiza atualizações nos pacotes MySQL. Para realizar as atualizações, siga as mesmas instruções fornecidas no Passo 4 em Atualizando o MySQL com o repositório MySQL APT. Aviso
+Adicione o repositório MySQL APT à lista de repositórios do seu sistema e selecione a série de lançamento desejada seguindo as instruções fornecidas em Adicionando o repositório MySQL Apt.
+
+##### Substituindo a distribuição nativa pelo MySQL APT
+
+Por design, o repositório MySQL APT substitui sua distribuição nativa do MySQL quando você realiza atualizações nos pacotes MySQL. Para realizar as atualizações, siga as mesmas instruções fornecidas no Passo 4 em Atualizando o MySQL com o repositório MySQL APT. Aviso
 
 Uma vez que a distribuição nativa do MySQL tenha sido substituída usando o repositório MySQL APT, a purga dos pacotes MySQL antigos do repositório nativo usando o comando `apt-get purge`, `apt-get remove --purge` ou `dpkg -P` pode impactar o servidor MySQL recém-instalado de várias maneiras. Portanto, *não purgue os pacotes MySQL antigos dos pacotes do repositório nativo*.
 
@@ -347,14 +351,14 @@ Siga os passos em Adicionando o repositório MySQL Apt para adicionar o reposit�
 Se você já tiver o pacote de configuração instalado no seu sistema, certifique-se de que ele esteja atualizado executando o seguinte comando:
 
 ```
-   $> sudo apt-get install mysql-apt-config
-   ```
+$> sudo apt-get install mysql-apt-config
+```
 
 Em seguida, use o mesmo método descrito em Selecionando uma versão principal de lançamento para selecionar o MySQL NDB Cluster para instalação. Quando for perguntado qual produto do MySQL você deseja configurar, escolha “MySQL Server & Cluster”; quando for perguntado qual versão você deseja receber, escolha “`mysql-cluster-`*`x`*.*`y`*.” Após retornar à linha de comando, atualize as informações do pacote do repositório MySQL APT com este comando:
 
 ```
-   $> sudo apt-get update
-   ```
+$> sudo apt-get update
+```
 
 2. ##### Instalando o MySQL NDB Cluster
 
@@ -386,12 +390,16 @@ Em seguida, use o mesmo método descrito em Selecionando uma versão principal d
    * O diretório de dados está em `/var/lib/mysql`
 
 ##### Instalando Produtos e Componentes Adicionais do MySQL NDB Cluster
+
 ```
-  $> sudo apt-key add path/to/signature-file
-  ```json"
+$> sudo apt-key add path/to/signature-file
 ```
-  $> sudo apt-key adv --keyserver pgp.mit.edu --recv-keys A8D3785C
-  ```json
+
+```
+$> sudo apt-key adv --keyserver pgp.mit.edu --recv-keys A8D3785C
+```
+
+```json
 {
   "title": "Instalando o MySQL NDB Cluster",
   "description": "Para uma instalação mínima do MySQL NDB Cluster, siga estes passos:",

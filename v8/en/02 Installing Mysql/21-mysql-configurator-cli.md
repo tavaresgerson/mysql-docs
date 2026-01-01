@@ -1,107 +1,468 @@
 #### 2.3.2.2 MySQL Configurator CLI
 
-MySQL Configurator supports GUI (default) and CLI (by passing in `--console`) modes using the `mysql_configurator.exe` executable.
+O MySQL Configurator suporta modos GUI (padrão) e CLI (através da passagem de `--console`) usando o executável `mysql_configurator.exe`.
 
-::: info Note
+::: info Nota
 
-MySQL Configurator CLI functionality was added in MySQL Configurator 9.2.0.
+A funcionalidade do MySQL Configurator CLI foi adicionada no MySQL Configurator 9.2.0.
 
 :::
 
-Executing MySQL Configurator requires a Windows user with administrative privileges, as otherwise the system prompts for the credentials.
+Para executar o MySQL Configurator, é necessário um usuário do Windows com privilégios administrativos, pois, caso contrário, o sistema solicitará as credenciais.
 
-##### CLI Syntax
+##### Sintaxe CLI
 
-The general syntax is:
+A sintaxe geral é:
 
 ```
 mysql_configurator.exe --console [--help] | [--action=action_name | -a=action_name] | ...]
 ```
 
-**Table 2.6 Syntax**
+**Tabela 2.6 Sintaxe**
 
-<table><thead><tr> <th>Option name</th> <th>Shortcut</th> <th>Supported values</th> <th>Usage example</th> <th>Description</th> </tr></thead><tbody><tr> <td>console</td> <td>c</td> <td>N/A</td> <td>--console</td> <td>Activates the CLI in MySQL Configurator, otherwise the GUI is launched.</td> </tr><tr> <td>action</td> <td>a</td> <td>configure, reconfigure, remove, or upgrade</td> <td>--action=configure</td> <td>Runs MySQL Configurator CLI in new configuration, reconfiguration, removal or upgrade mode.</td> </tr><tr> <td>help</td> <td>h</td> <td>N/A</td> <td>--help</td> <td>Displays general help or help for the corresponding action. If no <code>--action</code> element is provided, the general help section is displayed.</td> </tr><tr> <td>action option and value</td> <td>N/A</td> <td>See section "Configure/Reconfigure/Remove/Upgrade options" for supported values and details</td> <td>--datadir="C:MySQL...", --port=3306</td> <td>Defines the various configuration options available for each CLI action (configuration, reconfiguration, removal or upgrade)</td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>Nome da ação</th>
+         <th>Atalho</th>
+         <th>Valores suportados</th>
+         <th>Exemplo de uso</th>
+         <th>Descrição</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>console</td>
+         <td>c</td>
+         <td>N/A</td>
+         <td>--console</td>
+         <td>Ativa o CLI no Configuratore MySQL, caso contrário, o GUI é iniciado.</td>
+      </tr>
+      <tr>
+         <td>action</td>
+         <td>a</td>
+         <td>configure, reconfigure, remove ou upgrade</td>
+         <td>--action=configure</td>
+         <td>Executa o CLI do Configuratore MySQL em modo de nova configuração, reconfiguração, remoção ou atualização.</td>
+      </tr>
+      <tr>
+         <td>help</td>
+         <td>h</td>
+         <td>N/A</td>
+         <td>--help</td>
+         <td>Exibe ajuda geral ou ajuda para a ação correspondente. Se não for fornecido o elemento <code>--action</code>, a seção de ajuda geral é exibida.</td>
+      </tr>
+      <tr>
+         <td>opção e valor da ação</td>
+         <td>N/A</td>
+         <td>Consulte a seção "Opções de Configurar/Reconfigurar/Remover/Atualizar" para valores e detalhes suportados</td>
+         <td>--datadir="C:MySQL...", --port=3306</td>
+         <td>Define as várias opções de configuração disponíveis para cada ação do CLI (configuração, reconfiguração, remoção ou atualização)</td>
+      </tr>
+   </tbody>
+</table>
 
-##### Available Actions
+Cada ação (configurar, reconfigurar, remover e atualizar) tem um conjunto específico de opções que definem os elementos a serem configurados ao realizar a operação. A sintaxe é *`--action_option`*=*`action_value`* com uma lista completa das opções de ação abaixo:
 
-Each action (configure, reconfigure, remove, and upgrade) have a specific set of options that define the elements to configure when performing the operation. The syntax is *`--action_option`*=*`action_value`* with a full list of action options below:
+**Tabela 2.7 Opções de Ação**
 
-**Table 2.7 Action Options**
+<table>
+   <thead>
+      <tr>
+         <th>Opção</th>
+         <th>Atalho</th>
+         <th>Aliases</th>
+         <th>Tipo</th>
+         <th>Valores</th>
+         <th>Valor padrão</th>
+         <th>Ação</th>
+         <th>Condição</th>
+         <th>Descrição</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>datadir</td>
+         <td>d</td>
+         <td>data-dir, data-directory</td>
+         <td>Caminho</td>
+         <td>N/A</td>
+         <td>"C:ProgramDataMySQLMySQL Server x.x" onde <code>x.x</code> corresponde à versão principal e menor do servidor.</td>
+         <td>configure</td>
+         <td>N/A</td>
+         <td>Configura a variável de sistema <code>datadir</code>.</td>
+      </tr>
+      <tr>
+         <td>config-type</td>
+         <td>N/A</td>
+         <td>list</td>
+         <td>list</td>
+         <td>Desenvolvedor, Servidor, Dedicado, Manual</td>
+         <td>desenvolvedor, servidor, dedicado</td>
+         <td>configure, reconfigure</td>
+         <td>N/A</td>
+         <td>Optimiza os recursos do sistema dependendo do uso pretendido da instância do servidor.</td>
+      </tr>
+      <tr>
+         <td>enable-tcp-ip</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>bool</td>
+         <td>true, false</td>
+         <td>true</td>
+         <td>configure, reconfigure</td>
+         <td>N/A</td>
+         <td>Indica se o servidor permite conexões através de TCP/IP.</td>
+      </tr>
+      <tr>
+         <td>port</td>
+         <td>P</td>
+         <td>N/A</td>
+         <td>número</td>
+         <td>N/A</td>
+         <td>3306</td>
+         <td>configure, reconfigure</td>
+         <td>enable-tcp-ip=true</td>
+         <td>O número de porta a usar ao ouvir conexões TCP/IP.</td>
+      </tr>
+      <tr>
+         <td>mysqlx-port</td>
+         <td>X</td>
+         <td>x-port, xport</td>
+         <td>número</td>
+         <td>N/A</td>
+         <td>3306</td>
+         <td>configure, reconfigure</td>
+         <td>enable-tcp-ip=true</td>
+         <td>O equivalente do X Plugin à porta.</td>
+      </tr>
+      <tr>
+         <td>open_win_firewall</td>
+         <td>N/A</td>
+         <td>open-windows-firewall, openfirewall</td>
+         <td>bool</td>
+         <td>true, false</td>
+         <td>true</td>
+         <td>configure, reconfigure</td>
+         <td>enable-tcp-ip=true</td>
+         <td>Cria regras de firewall do Windows para conexões TCP/IP tanto para a porta quanto para o X Plugin.</td>
+      </tr>
+      <tr>
+         <td>enable-named-pipes</td>
+         <td>N/A</td>
+         <td>named-pipes</td>
+         <td>bool</td>
+         <td>true, false</td>
+         <td>false</td>
+         <td>configure, reconfigure</td>
+         <td>N/A</td>
+         <td>Indica se o servidor permite conexões através de named pipes.</td>
+      </tr>
+      <tr>
+         <td>socket</td>
+         <td>N/A</td>
+         <td>pipe-name, named-pipe-name, named-pipe</td>
+         <td>string</td>
+         <td>N/A</td>
+         <td>MYSQL</td>
+         <td>configure, reconfigure</td>
+         <td>enable-named-pipes=true</td>
+         <td>Especifica o nome do pipe usado ao ouvir conexões locais que utilizam um named pipe. O valor padrão é MySQL, e não é case-sensitive.</td>
+      </tr>
+      <tr>
+         <td>named-pipe-full-access-group</td>
+         <td>N/A</td>
+         <td>full-access-group</td>
+         <td>string</td>
+         <td>"", <span><em>everyone</em></span>, válido o nome de grupo local do Windows</td>
+         <td>"" (string vazio)</td>
+         <td>configure, reconfigure</td>
+         <td>enable-named-pipes=true</td>
+         <td>Define o nome de um grupo de usuários do Windows cujos membros tenham acesso suficiente por parte do servidor para utilizar clientes de named pipe. O valor padrão é um string vazio, o que significa que nenhum usuário do Windows tem acesso total ao named pipe.</td>
+      </tr>
+      <tr>
+         <td>shared-memory</td>
+         <td>N/A</td>
+         <td>enable-shared-memory</td>
+         <td>bool</td>
+         <td>true, false</td>
+         <td>false</td>
+         <td>configure, reconfigure</td>
+         <td>N/A</td>
+         <td>Indica se o servidor permite conexões compartilhadas de memória.</td>
+      </tr>
+      <tr>
+         <td>shared-memory-base-name</td>
+         <td>N/A</td>
+         <td>shared-memory-name, shared-mem-name</td>
+         <td>string</td>
+         <td>N/A</td>
+         <td>MYSQL</td>
+         <td>configure, reconfigure</td>
+         <td>shared-memory=true</td>
+         <td>Nome da conexão compartilhada de memória usada para comunicar-se com o servidor.</td>
+      </tr>
+      <tr>
+         <td>password</td>
+         <td>p</td>
+         <td>pwd, root-password, passwd, rootpasswd</td>
+         <td>string</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>configure, reconfigure</td>
+         <td>N/A</td>
+         <td>A senha atribuída ao usuário root durante uma configuração ou reconfiguração. A senha não pode ser alterada durante uma reconfiguração, embora seja necessária para validar uma conexão ao servidor.</td>
+      </tr>
+      <tr>
+         <td>configure-as-service</td>
+         <td>N/A</td>
+         <td>as-windows-service, as-win-service</td>
+         <td>bool</td>
+         <td>true, false</td>
+         <td>true</td>
+         <td>configure, reconfigure</td>
+         <td>N/A</td>
+         <td>Configura o servidor MySQL Server para funcionar como um serviço do Windows. Por padrão, o serviço do Windows funciona usando a conta padrão do sistema (Network Service).</td>
+      </tr>
+      <tr>
+         <td>windows-service-name</td>
+         <td>N/A</td>
+         <td>service-name, win-service-name, servicename</td>
+         <td>string</td>
+         <td>"MySQLxx" onde <code>xx</code> corresponde à versão principal e menor do servidor.</td>
+         <td>configure, reconfigure</td>
+         <td>configure-as-service=true</td>
+         <td>O nome dado ao serviço do Windows usado para executar o servidor MySQL.</td>
+      </tr>
+      <tr>
+         <td>windows-service-auto-start</td>
+         <td>N/A</td>
+         <td>win-service-auto-start, service-auto-start, autostart</td>
+         <td>bool</td>
+         <td>true, false</td>
+         <td>true</td>
+         <td>configure, reconfigure</td>
+         <td>configure-as-service=true</td>
+         <td>Se configurado como um serviço do Windows, este valor define se o serviço deve iniciar automaticamente ao iniciar o sistema.</td>
+      </tr>
+      <tr>
+         <td>windows-service-user</td>
+         <td>N/A</td>
+         <td>win-service-user, service-user</td>
+         <td>string</td>
+         <td>N/A</td>
+         <td>NT AUTHORITY</td>
+         <td>configure, reconfigure</td>
+         <td>configure-as-service=true</td>
+         <td>O nome de um usuário do Windows que deve executar o serviço do Windows.</td>
+      </tr>
+      <tr>
+         <td>windows-service-password</td>
+         <td>N/A</td>
+         <td>win-service-password, win-service-pwd, service-password, servicepwd</td>
+         <td>string</td>
+         <td>N/A</td>
+         <td>"" (string vazio)</td>
+         <td>configure, reconfigure</td>
+         <td>configure-as-service=true</td>
+         <td>O nome de um usuário do Windows que deve executar o serviço do Windows.</td>
+      </tr>
+      <tr>
+         <td>server-file-permissions-access</td>
+         <td>N/A</td>
+         <td>server-file-access</td>
+         <td>comma-separated list</td>
+         <td>FullAccess, Configure, Manual</td>
+         <td>windows users/groups</td>
+         <td>user running the Windows service (if applicable) and Administrators group</td>
+         <td>server-file-permissions-access=configure</td>
+         <td>Define uma lista de separação por vírgula de usuários ou grupos que têm permissão para acessar os arquivos do servidor.</td>
+      </tr>
+      <tr>
+         <td>server-file-no-access-list</td>
+         <td>N/A</td>
+         <td>no-access-list</td>
+         <td>comma-separated list</td>
+         <td>windows users/groups</td>
+         <td>empty</td>
+         <td>configure, reconfigure</td>
+         <td>server-file-permissions-access=configure</td>
+         <td>Define uma lista de separação por vírgula de usuários ou grupos que não devem ter acesso aos arquivos do servidor.</td>
+      </tr>
+      <tr>
+         <td>enable-error-log</td>
+         <td>N/A</td>
+         <td>enable-err-log</td>
+         <td>bool</td>
+         <td>true, false</td>
+         <td>true</td>
+         <td>configure, reconfigure</td>
+         <td>N/A</td>
+         <td>Habilita o log de erros. O log de erros contém um registro dos tempos de inicialização e desligamento do mysqld. Também contém mensagens de diagnóstico, como erros, avisos e notas, durante o funcionamento do servidor.</td>
+      </tr>
+      <tr>
+         <td>log-error</td>
+         <td>N/A</td>
+         <td>error-log, logname</td>
+         <td>File Name</td>
+         <td>N/A</td>
+         ="{host_name}.err</td>
+         <td>configure, reconfigure</td>
+         <td>log-error=true</td>
+         <td>O nome do arquivo do log de erros. Se um caminho não for fornecido, o local do arquivo é o diretório de dados.</td>
+      </tr>
+      <tr>
+         <td>general-log</td>
+         <td>N/A</td>
+         <td>generallogname</td>
+         <td>File Name</td>
+         <td>N/A</td>
+         ="{host_name}-gen.log</td>
+         <td>configure, reconfigure</td>
+         <td>general-log=true</td>
+         <td>O nome do arquivo do log geral.</td>
+      </tr>
+      <tr>
+         <td>install-sample-database</td>
+         <td>N/A</td>
+         <td>install-example-database</td>
+         <td>list</td>
+         <td>All, Sakila, World, None</td>
+         <td>none</td>
+         <td>configure, reconfigure</td>
+         <td>N/A</td>
+         <td>Instala as bases de dados de amostra especificadas.</td>
+      </tr>
+      <tr>
+         <td>uninstall-sample-database</td>
+         <td>N/A</td>
+         <td>uninstall-example-database</td>
+         <td>list</td>
+         <td>All, Sakila, World, None</td>
+         <td>none</td>
+         <td>configure, reconfigure</td>
+         <td>N/A</td>
+         <td>Desinstala as bases de dados de amostra especificadas.</td>
+      </tr>
+      <tr>
+         <td>old-instance-protocol</td>
+         <td>N/A</td>
+         <td>existing-instance-protocol</td>
+         <td>list</td>
+         <td>Socket, Sockets, Tcp, Pipe, NamedPipe, SharedMemory, Memory</td>
+         <td>N/A</td>
+         <td>tcp-ip</td>
+         <td>upgrade</td>
+         <td>O protocolo de conexão usado pela instância do servidor que está sendo atualizada.</td>
+      </tr>
+      <tr>
+         <td>old-instance-port</td>
+         <td>N/A</td>
+         <td>existing-instance-port</td>
+         <td>number</td>
+         <td>N/A</td>
+         <td>3306</td>
+         <td>upgrade</td>
+         <td>N/A</td>
+         <td>O número de porta a usar pela instância do servidor que está sendo atualizada ao ouvir conexões TCP/IP.</td>
+      </tr>
+      <tr>
+         <td>old-instance-pipe-name</td>
+         <td>N/A</td>
+         <td>existing-instance-pipe-name</td>
+         <td>string</td>
+         <td>N/A</td>
+         <td>MYSQL</td>
+         <td>upgrade</td>
+         <td>N/A</td>
+         <td>Especifica o nome do pipe usado pela instância do servidor que está sendo atualizada ao ouvir conexões locais que utilizam um named pipe. O valor padrão é MySQL, e não é case-sensitive.</td>
+      </tr>
+      <tr>
+         <td>old-instance-password</td>
+         <td>N/A</td>
+         <td>old-instance-pwd, old-instance-root-password, existing-instance-password, existing-instance-pwd, existing-instance-pwd</td>
+         <td>string</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>upgrade</td>
+         <td>N/A</td>
+         <td>A senha do usuário root usada pela instância do servidor que está sendo atualizada.</td>
+      </tr>
+   </tbody>
+</table>
 
-<table><thead><tr> <th>Action option</th> <th>Shortcut</th> <th>Aliases</th> <th>Type</th> <th>Values</th> <th>Default value</th> <th>Action</th> <th>Condition</th> <th>Description</th> </tr></thead><tbody><tr> <td>datadir</td> <td>d</td> <td>data-dir, data-directory</td> <td>Path</td> <td>N/A</td> <td>"C:ProgramDataMySQLMySQL Server x.x" where <code>x.x</code> corresponds to the corresponding server major and minor version.</td> <td>configure</td> <td>N/A</td> <td>The path to the MySQL server data directory. This option sets the <code>datadir</code> system variable.</td> </tr><tr> <td>config-type</td> <td>N/A</td> <td>configuration-type</td> <td>list</td> <td>Developer, Server, Dedicated, Manual</td> <td>development</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Optimizes system resources depending on the intended use of the server instance.</td> </tr><tr> <td>enable-tcp-ip</td> <td>N/A</td> <td>N/A</td> <td>bool</td> <td>true, false</td> <td>true</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Indicates whether the server permits connections over TCP/IP.</td> </tr><tr> <td>port</td> <td>P</td> <td>N/A</td> <td>number</td> <td>N/A</td> <td>3306</td> <td>configure, reconfigure</td> <td>enable-tcp-id=true</td> <td>The port number to use when listening for TCP/IP connections.</td> </tr><tr> <td>mysqlx-port</td> <td>X</td> <td>x-port, xport</td> <td>number</td> <td>N/A</td> <td>3306</td> <td>configure, reconfigure</td> <td>enable-tcp-ip=true</td> <td>The network port on which X Plugin listens for TCP/IP connections. This is the X Plugin equivalent of <code class="option">port</code>.</td> </tr><tr> <td>open_win_firewall</td> <td>N/A</td> <td>open-windows-firewall, openfirewall</td> <td>bool</td> <td>true, false</td> <td>true</td> <td>configure, reconfigure</td> <td>enable-tcp-ip=true</td> <td>Creates Windows Firewall rules for TCP/IP connections for both the <code class="option">port</code> and <code class="option">mysqlx-port</code> options.</td> </tr><tr> <td>enable-named-pipes</td> <td>N/A</td> <td>named-pipes</td> <td>bool</td> <td>true, false</td> <td>false</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Indicates whether the server permits connections over a named pipe.</td> </tr><tr> <td>socket</td> <td>N/A</td> <td>pipe-name, named-pipe-name, named-pipe, pipename</td> <td>string</td> <td>N/A</td> <td>MYSQL</td> <td>configure, reconfigure</td> <td>enable-named-pipes=true</td> <td>Specifies the pipe name to use when listening for local connections that use a named pipe. The default value is MySQL, and it is not case-sensitive.</td> </tr><tr> <td>named-pipe-full-access-group</td> <td>N/A</td> <td>full-access-group</td> <td>string</td> <td>"", <span><em>everyone</em></span>, valid Windows local group name</td> <td>"" (empty string)</td> <td>configure, reconfigure</td> <td>enable-named-pipes=true</td> <td>Sets the name of a Windows local group whose members are granted sufficient access by the MySQL server to use named-pipe clients. The default value is an empty string, which means that no Windows users are granted full access to the named pipe.</td> </tr><tr> <td>shared-memory</td> <td>N/A</td> <td>enable-shared-memory</td> <td>bool</td> <td>true, false</td> <td>false</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Whether the server permits shared-memory connections.</td> </tr><tr> <td>shared-memory-base-name</td> <td>N/A</td> <td>shared-memory-name, shared-mem-name</td> <td>string</td> <td>N/A</td> <td>MYSQL</td> <td>configure, reconfigure</td> <td>shared-memory=true</td> <td>Name of the shared-memory connection used to communicate with the server.</td> </tr><tr> <td>password</td> <td>p</td> <td>pwd, root-password, passwd, rootpasswd</td> <td>string</td> <td>N/A</td> <td>N/A</td> <td>configure, reconfigure</td> <td>N/A</td> <td>The password assigned to the root user during a configuration or reconfiguration. The password can't be changed during a reconfiguration, although it is required to validate a connection to the server.</td> </tr><tr> <td>configure-as-service</td> <td>N/A</td> <td>as-windows-service, as-win-service</td> <td>bool</td> <td>true, false</td> <td>true</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Configures the MySQL server to run as a Windows service. By default the Windows service runs using the Standard System Account (Network Service).</td> </tr><tr> <td>windows-service-name</td> <td>N/A</td> <td>service-name, win-service-name, servicename</td> <td>string</td> <td>N/A</td> <td>"MySQLxx" where <code>xx</code> corresponds to the server major and minor version.</td> <td>configure, reconfigure</td> <td>configure-as-service=true</td> <td>The name given to the Windows service used to run MySQL Server.</td> </tr><tr> <td>windows-service-auto-start</td> <td>N/A</td> <td>win-service-auto-start, service-auto-start, auto-start, autostart</td> <td>bool</td> <td>true, false</td> <td>true</td> <td>configure, reconfigure</td> <td>configure-as-service=true</td> <td>If configured as a Windows Service, this value sets the service to start automatically at system startup.</td> </tr><tr> <td>windows-service-user</td> <td>N/A</td> <td>win-service-user, service-user</td> <td>string</td> <td>N/A</td> <td>NT AUTHORITY</td> <td>configure, reconfigure</td> <td>configure-as-service=true</td> <td>The name of a Windows User Account used to run the Windows service.</td> </tr><tr> <td>windows-service-password</td> <td>N/A</td> <td>win-service-password, win-service-pwd, service-password, service-pwd, sapass</td> <td>string</td> <td>N/A</td> <td>"" (empty string)</td> <td>configure, reconfigure</td> <td>configure-as-service=true</td> <td>The password of the Windows User Account used to run the Windows Service.</td> </tr><tr> <td>server-file-permissions-access</td> <td>N/A</td> <td>server-file-access</td> <td>list</td> <td>FullAccess, Configure, Manual</td> <td>full-access</td> <td>configure, upgrade</td> <td>N/A</td> <td>Configures the user level access for the server files (data directory and any files inside that location).</td> </tr><tr> <td>server-file-full-control-list</td> <td>N/A</td> <td>full-control-list</td> <td>comma separated list</td> <td>windows users/groups</td> <td>user running the windows service (if applicable) and Administrators group</td> <td>configure, upgrade</td> <td>server-file-permissions-access=configure</td> <td>Defines a comma-separated list of users or groups to have full access to the server files.</td> </tr><tr> <td>server-file-no-access-list</td> <td>N/A</td> <td>no-access-list</td> <td>comma separated list</td> <td>windows users/groups</td> <td>empty</td> <td>configure, upgrade</td> <td>server-file-permissions-access=configure</td> <td>Defines a comma-separated list of users or groups to have access to the server files.</td> </tr><tr> <td>enable-error-log</td> <td>N/A</td> <td>enable-err-log</td> <td>bool</td> <td>true, false</td> <td>true</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Enables the error log. The error log contains a record of mysqld startup and shutdown times. It also contains diagnostic messages such as errors, warnings, and notes that occur during server startup and shutdown; and while the server is running.</td> </tr><tr> <td>log-error</td> <td>N/A</td> <td>error-log, error-log-file, errorlogname</td> <td>Path/File name</td> <td>N/A</td> <td>{host_name}.err</td> <td>configure, reconfigure</td> <td>enable-error-log=true</td> <td>Defines the error log location. If a path is not provided, the location of the file is the data directory.</td> </tr><tr> <td>slow-query-log</td> <td>N/A</td> <td>enable-slow-log</td> <td>bool</td> <td>true, false</td> <td>false</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Whether the slow query log is enabled.</td> </tr><tr> <td>slow-query-log-file</td> <td>N/A</td> <td>slow-log-file, slowlogname</td> <td>File name</td> <td>N/A</td> <td>{host_name}-slow.log</td> <td>configure, reconfigure</td> <td>slow-query-log=true</td> <td>The name of the slow query log file.</td> </tr><tr> <td>general-log</td> <td>N/A</td> <td>enable-general-log, generallog</td> <td>bool</td> <td>true, false</td> <td>false</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Whether the general query log is enabled.</td> </tr><tr> <td>general-log-file</td> <td>N/A</td> <td>generallogname</td> <td>File name</td> <td>N/A</td> <td>{host_name}.log</td> <td>configure, reconfigure</td> <td>general-log=true</td> <td>The name of the general query log file.</td> </tr><tr> <td>enable-log-bin</td> <td>N/A</td> <td>enable-binary-log</td> <td>bool</td> <td>true, false</td> <td>true</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Enables binary logging.</td> </tr><tr> <td>log-bin</td> <td>N/A</td> <td>binary-log</td> <td>File name</td> <td>N/A</td> <td>{host_name}-bin</td> <td>configure, reconfigure</td> <td>enable-log-bin=true</td> <td>Specifies the base name to use for binary log files. With binary logging enabled, the server logs all statements that change data to the binary log, which is used for backup and replication. The binary log is a sequence of files with a base name and numeric extension.</td> </tr><tr> <td>server-id</td> <td>N/A</td> <td>serverid</td> <td>number</td> <td>N/A</td> <td>1</td> <td>configure</td> <td>N/A</td> <td>For servers that are used in a replication topology, you must specify a unique server ID for each replication server in the range from 1 to 2^32 - 1. "Unique" means that each ID must be different from every other ID in use by any other source or replica servers in the replication topology.</td> </tr><tr> <td>lower-case-table-names</td> <td>N/A</td> <td>N/A</td> <td>list</td> <td>0, 1, 2</td> <td>1</td> <td>configure</td> <td>N/A</td> <td>If set to 0, table names are stored as specified and comparisons are case-sensitive. If set to 1, table names are stored in lowercase on disk and comparisons are not case-sensitive. If set to 2, table names are stored as given but compared in lowercase. This option also applies to database names and table aliases.</td> </tr><tr> <td>install-sample-database</td> <td>N/A</td> <td>install-example-database</td> <td>list</td> <td>All, Sakila, World, None</td> <td>none</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Installs the specified sample databases.</td> </tr><tr> <td>uninstall-sample-database</td> <td>N/A</td> <td>uninstall-example-database</td> <td>list</td> <td>All, Sakila, World, None</td> <td>none</td> <td>configure, reconfigure</td> <td>N/A</td> <td>Uninstalls the specified sample databases.</td> </tr><tr> <td>old-instance-protocol</td> <td>N/A</td> <td>existing-instance-protocol</td> <td>list</td> <td>Socket, Sockets, Tcp, Pipe, NamedPipe, SharedMemory, Memory</td> <td>N/A</td> <td>tcp-ip</td> <td>upgrade</td> <td>The connection protocol used by the server instance that is being upgraded.</td> </tr><tr> <td>old-instance-port</td> <td>N/A</td> <td>existing-instance-port</td> <td>number</td> <td>N/A</td> <td>3306</td> <td>upgrade</td> <td>N/A</td> <td>The port number to use by the server instance that is being upgraded when listening for TCP/IP connections</td> </tr><tr> <td>old-instance-pipe-name</td> <td>N/A</td> <td>existing-instance-pipe-name</td> <td>string</td> <td>N/A</td> <td>MYSQL</td> <td>upgrade</td> <td>N/A</td> <td>Specifies the pipe name to use by the server instance that is being upgraded when listening for local connections that use a named pipe.</td> </tr><tr> <td>old-instance-memory-name</td> <td>N/A</td> <td>old-instance-shared-memory-name, existing-instance-memory-name, existing-instance-shared-memory-name</td> <td>string</td> <td>N/A</td> <td>MYSQL</td> <td>upgrade</td> <td>N/A</td> <td>The name of the shared-memory connection used by the server instance that is being upgraded to communicate with the server.</td> </tr><tr> <td>old-instance-password</td> <td>N/A</td> <td>old-instance-pwd, old-instance-root-password, existing-instance-password, existing-instance-pwd, existing-instance-pwd</td> <td>string</td> <td>N/A</td> <td>N/A</td> <td>upgrade</td> <td>N/A</td> <td>The password of the root user used by the server instance that is being upgraded.</td> </tr><tr> <td>backup-data</td> <td>N/A</td> <td>backup-data-directory</td> <td>bool</td> <td>true, false</td> <td>true</td> <td>upgrade</td> <td>N/A</td> <td>Creates a backup of the databases to ensure data can be restored in case of any failure.</td> </tr><tr> <td>keep-data-directory</td> <td>N/A</td> <td>keep-data</td> <td>bool</td> <td>true, false</td> <td>false</td> <td>remove</td> <td>N/A</td> <td>Prevents the data directory from being deleted when other configurations are removed.</td> </tr><tr> <td>defaults-extra-file</td> <td>N/A</td> <td>password-file, pass-file, pwd-file</td> <td>Path</td> <td>N/A</td> <td>N/A</td> <td>reconfigure, upgrade</td> <td>N/A</td> <td>The path and file name of the file containing the <code class="option">password</code> entry that specifies the password of the root user.</td> </tr><tr> <td>windows-service-account-password-file</td> <td>N/A</td> <td>windows-service-account-password-file, win-service-account-pass-file, service-account-pwd-file, win-service-account-pwd-file, service-account-password-file</td> <td>Path</td> <td>N/A</td> <td>N/A</td> <td>configure, reconfigure</td> <td>N/A</td> <td>The path and file name of the file containing the <code class="option">password</code> entry that specifies the password of the Windows service account user associated with the Windows Service that runs the server.</td> </tr></tbody></table>
+##### Gerenciamento de Usuários do MySQL
 
-##### MySQL User Management
+As ações de configurar e reconfigurar permitem que você crie e edite usuários do MySQL conforme a opção `--add-user`:
 
-The configure and reconfigure actions allow you to create and edit MySQL users as per the `--add-user` option:
+* `--add-user='nome_do_usuário':'senha'|'caminho_do_arquivo'|'token_de_segurança_do_Windows':host:role:autenticação`
 
-* `--add-user='user_name':'password'|'file_path'|'windows_security_token':host:role:authentication`
+  Só válido para a ação de configurar (não reconfigurar).
 
-  Only valid for the configure (not reconfigure) action.
+O nome de usuário, senha e caminho do arquivo do token devem estar entre aspas simples ou duplas. Escape as aspas simples, duplas e barras invertidas se estiverem presentes no nome de usuário ou senha.
 
-The username, password, and token file path must be enclosed in single or double quotes. Escape single quotes, double quotes, and back slashes if present in the username or password.
-
-Add user examples:
+Exemplos de adição de usuários:
 
 ```
 mysql_configurator.exe --console --action=configure --add-user='john':'mypass12%':%:"Db Admin":MYSQL
 mysql_configurator.exe --console --action=configure --add-user='jenny':'jenny-T480jenny':localhost:"Administrator":Windows
 ```
 
-##### General Examples
+##### Exemplos Gerais
 
-A new configuration:
+Uma nova configuração:
 
 ```
-# Simple
+# Simples
 mysql_configurator.exe --console --action=configure --password=test
 
-# More complex
+# Mais complexo
 mysql_configurator.exe --console --action=configure --password=test --port=3320 --enable-pipe-names --pipe-name=MYSQL_PIPE --server-id=2 --install-sample-database=both
 
-# More complex, also with users
+# Mais complexo, também com usuários
 mysql_configurator.exe --console --action=configure --password=other123 --add-user='john':'pa$$':"Db Admin":MYSQL --add-user='mary':'p4ssW0rd':"Administrator":MYSQL
 ```
 
-A reconfiguration:
+Uma reconfiguração:
 
 ```
-# Basic reconfiguration
+# Reconfiguração básica
 mysql_configurator.exe --console --action=reconfigure --password=test --port=3310
 
-# Complex reconfiguration
+# Reconfiguração complexa
 mysql_configurator.exe --console --action=reconfigure --password=test --enable-shared-memory=false
 ```
 
-A removal:
+Uma remoção:
 
 ```
 mysql_configurator.exe --console --action=remove --keep-data-directory=true
 ```
 
-An upgrade:
+Uma atualização:
 
 ```
-# Basic removal
+# Remoção básica
 mysql_configurator.exe --console --action=upgrade --old-instance-password=test
 
-# Complex removal
+# Remoção complexa
 mysql_configurator.exe --console --action=upgrade --old-instance-password=test --backup-data=false --server-file-permissions-access=full
 ```
 
-##### Root Password Handling
+##### Gerenciamento da Senha do Usuário Root
 
-There are multiple ways to pass in the root user password, depending on the needs in terms of security and simplicity. The different methods, in order of precedence:
+Existem várias maneiras de passar a senha do usuário root, dependendo das necessidades em termos de segurança e simplicidade. Os diferentes métodos, em ordem de precedência:
 
-1. Pass passwords as command-line arguments:
+1. Passar senhas como argumentos da linha de comando:
 
-   Pass in the `--password` (for configuration and reconfiguration) or `--old-instance-password` (for upgrades) to the command line.
-2. Set passwords in the `my.ini` MySQL configuration file:
+   Passe as senhas `--password` (para configuração e reconfiguração) ou `--old-instance-password` (para atualizações) na linha de comando.
+2. Definir senhas no arquivo de configuração MySQL `my.ini`:
 
-   Having the entry "`password={password_here}`" directly in the `my.ini` defines the root user password.
+   Ter a entrada ``password={password_here}` diretamente no `my.ini` define a senha do usuário root.
 
-   Having the entry "`password={password_here}`" in the extra configuration file (as per `--defaults-extra-file`) can define the root user password.
-3. Defining passwords using environment variables:
+   Ter a entrada ``password={password_here}` no arquivo de configuração extra (de acordo com `--defaults-extra-file`) pode definir a senha do usuário root.
+3. Definir senhas usando variáveis de ambiente:
 
-   `MYSQL_PWD`: Similar to the MySQL client, the value defined in the `MYSQL_PWD` environment variable can define the root user password if no other method was used to define it. This variable applies to the configure, reconfigure, and upgrade actions.
+   `MYSQL_PWD`: Semelhante ao cliente MySQL, o valor definido na variável de ambiente `MYSQL_PWD` pode definir a senha do usuário root se nenhum outro método foi usado para defini-la. Esta variável se aplica às ações de configurar, reconfigurar e atualizar.
 
-   `WIN_SERVICE_ACCOUNT_PWD`: This environment variable can set the password of the Windows service account user that is configured to run the MySQL Windows Service if the server has been configured to run as a service. This variable applies to the configure and reconfigure actions.
+`WIN_SERVICE_ACCOUNT_PWD`: Esta variável de ambiente pode definir a senha do usuário da conta de serviço do Windows que está configurada para executar o serviço MySQL do Windows, se o servidor tiver sido configurado para ser executado como um serviço. Esta variável se aplica às ações de configuração e recarga.

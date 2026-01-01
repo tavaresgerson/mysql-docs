@@ -26,9 +26,9 @@ The following system variables, status variables, and server options have been a
 
 * `Com_explain_other`: Count of EXPLAIN FOR CONNECTION statements. Added in MySQL 5.7.2.
 
-* `Com_group_replication_start`: Count of START GROUP\_REPLICATION statements. Added in MySQL 5.7.6.
+* `Com_group_replication_start`: Count of START GROUP_REPLICATION statements. Added in MySQL 5.7.6.
 
-* `Com_group_replication_stop`: Count of STOP GROUP\_REPLICATION statements. Added in MySQL 5.7.6.
+* `Com_group_replication_stop`: Count of STOP GROUP_REPLICATION statements. Added in MySQL 5.7.6.
 
 * `Com_show_create_user`: Count of SHOW CREATE USER statements. Added in MySQL 5.7.6.
 
@@ -60,7 +60,7 @@ The following system variables, status variables, and server options have been a
 
 * `Max_statement_time_set_failed`: Number of statements for which execution timeout setting failed. Added in MySQL 5.7.4.
 
-* `Max_used_connections_time`: Time at which Max\_used\_connections reached its current value. Added in MySQL 5.7.5.
+* `Max_used_connections_time`: Time at which Max_used_connections reached its current value. Added in MySQL 5.7.5.
 
 * `Performance_schema_index_stat_lost`: Number of indexes for which statistics were lost. Added in MySQL 5.7.6.
 
@@ -190,7 +190,7 @@ The following system variables, status variables, and server options have been a
 
 * `binlog_group_commit_sync_delay`: Sets number of microseconds to wait before synchronizing transactions to disk. Added in MySQL 5.7.5.
 
-* `binlog_group_commit_sync_no_delay_count`: Sets maximum number of transactions to wait for before aborting current delay specified by binlog\_group\_commit\_sync\_delay. Added in MySQL 5.7.5.
+* `binlog_group_commit_sync_no_delay_count`: Sets maximum number of transactions to wait for before aborting current delay specified by binlog_group_commit_sync_delay. Added in MySQL 5.7.5.
 
 * `binlog_gtid_simple_recovery`: Controls how binary logs are iterated during GTID recovery. Added in MySQL 5.7.6.
 
@@ -198,7 +198,7 @@ The following system variables, status variables, and server options have been a
 
 * `binlog_transaction_dependency_tracking`: Source of dependency information (commit timestamps or transaction write sets) from which to assess which transactions can be executed in parallel by replica's multithreaded applier. Added in MySQL 5.7.22.
 
-* `binlogging_impossible_mode`: Deprecated and later removed. Use binlog\_error\_action instead. Added in MySQL 5.7.5.
+* `binlogging_impossible_mode`: Deprecated and later removed. Use binlog_error_action instead. Added in MySQL 5.7.5.
 
 * `block_encryption_mode`: Mode for block-based encryption algorithms. Added in MySQL 5.7.4.
 
@@ -224,7 +224,7 @@ The following system variables, status variables, and server options have been a
 
 * `early-plugin-load`: Specify plugins to load before loading mandatory built-in plugins and before storage engine initialization. Added in MySQL 5.7.11.
 
-* `executed_gtids_compression_period`: Renamed to gtid\_executed\_compression\_period. Added in MySQL 5.7.5.
+* `executed_gtids_compression_period`: Renamed to gtid_executed_compression_period. Added in MySQL 5.7.5.
 
 * `group_replication_allow_local_disjoint_gtids_join`: Allow current server to join group even if it has transactions not present in group. Added in MySQL 5.7.17.
 
@@ -298,7 +298,7 @@ The following system variables, status variables, and server options have been a
 
 * `group_replication_unreachable_majority_timeout`: How long to wait for network partitions that result in minority to leave group. Added in MySQL 5.7.19.
 
-* `gtid_executed_compression_period`: Compress gtid\_executed table each time this many transactions have occurred. 0 means never compress this table. Applies only when binary logging is disabled. Added in MySQL 5.7.6.
+* `gtid_executed_compression_period`: Compress gtid_executed table each time this many transactions have occurred. 0 means never compress this table. Applies only when binary logging is disabled. Added in MySQL 5.7.6.
 
 * `have_statement_timeout`: Whether statement execution timeout is available. Added in MySQL 5.7.4.
 
@@ -324,7 +324,7 @@ The following system variables, status variables, and server options have been a
 
 * `innodb_fill_factor`: Percentage for B-tree leaf and non-leaf page space to be filled with data. Remaining space is reserved for future growth. Added in MySQL 5.7.5.
 
-* `innodb_flush_sync`: Enable innodb\_flush\_sync to ignore the innodb\_io\_capacity and innodb\_io\_capacity\_max settings for bursts of I/O activity that occur at checkpoints. Disable innodb\_flush\_sync to adhere to limits on I/O activity as defined by innodb\_io\_capacity and innodb\_io\_capacity\_max. Added in MySQL 5.7.8.
+* `innodb_flush_sync`: Enable innodb_flush_sync to ignore the innodb_io_capacity and innodb_io_capacity_max settings for bursts of I/O activity that occur at checkpoints. Disable innodb_flush_sync to adhere to limits on I/O activity as defined by innodb_io_capacity and innodb_io_capacity_max. Added in MySQL 5.7.8.
 
 * `innodb_ft_result_cache_limit`: InnoDB FULLTEXT search query result cache limit. Added in MySQL 5.7.2.
 
@@ -340,9 +340,9 @@ The following system variables, status variables, and server options have been a
 
 * `innodb_max_undo_log_size`: Sets threshold for truncating InnoDB undo log. Added in MySQL 5.7.5.
 
-* `innodb_merge_threshold_set_all_debug`: Overrides current MERGE\_THRESHOLD setting with specified value for all indexes that are currently in dictionary cache. Added in MySQL 5.7.6.
+* `innodb_merge_threshold_set_all_debug`: Overrides current MERGE_THRESHOLD setting with specified value for all indexes that are currently in dictionary cache. Added in MySQL 5.7.6.
 
-* `innodb_numa_interleave`: Enables NUMA MPOL\_INTERLEAVE memory policy for allocation of InnoDB buffer pool. Added in MySQL 5.7.9.
+* `innodb_numa_interleave`: Enables NUMA MPOL_INTERLEAVE memory policy for allocation of InnoDB buffer pool. Added in MySQL 5.7.9.
 
 * `innodb_optimize_point_storage`: Enable this option to store POINT data as fixed-length data rather than variable-length data. Added in MySQL 5.7.5.
 
@@ -352,9 +352,9 @@ The following system variables, status variables, and server options have been a
 
 * `innodb_stats_include_delete_marked`: Include delete-marked records when calculating persistent InnoDB statistics. Added in MySQL 5.7.17.
 
-* `innodb_status_output`: Used to enable or disable periodic output for standard InnoDB Monitor. Also used in combination with innodb\_status\_output\_locks to enable and disable periodic output for InnoDB Lock Monitor. Added in MySQL 5.7.4.
+* `innodb_status_output`: Used to enable or disable periodic output for standard InnoDB Monitor. Also used in combination with innodb_status_output_locks to enable and disable periodic output for InnoDB Lock Monitor. Added in MySQL 5.7.4.
 
-* `innodb_status_output_locks`: Used to enable or disable periodic output for standard InnoDB Lock Monitor. innodb\_status\_output must also be enabled to produce periodic output for InnoDB Lock Monitor. Added in MySQL 5.7.4.
+* `innodb_status_output_locks`: Used to enable or disable periodic output for standard InnoDB Lock Monitor. innodb_status_output must also be enabled to produce periodic output for InnoDB Lock Monitor. Added in MySQL 5.7.4.
 
 * `innodb_sync_debug`: Enables InnoDB sync debug checking. Added in MySQL 5.7.8.
 
@@ -388,11 +388,11 @@ The following system variables, status variables, and server options have been a
 
 * `keyring_aws_region`: AWS keyring plugin region. Added in MySQL 5.7.19.
 
-* `keyring_encrypted_file_data`: keyring\_encrypted\_file plugin data file. Added in MySQL 5.7.21.
+* `keyring_encrypted_file_data`: keyring_encrypted_file plugin data file. Added in MySQL 5.7.21.
 
-* `keyring_encrypted_file_password`: keyring\_encrypted\_file plugin password. Added in MySQL 5.7.21.
+* `keyring_encrypted_file_password`: keyring_encrypted_file plugin password. Added in MySQL 5.7.21.
 
-* `keyring_file_data`: keyring\_file plugin data file. Added in MySQL 5.7.11.
+* `keyring_file_data`: keyring_file plugin data file. Added in MySQL 5.7.11.
 
 * `keyring_okv_conf_dir`: Oracle Key Vault keyring plugin configuration directory. Added in MySQL 5.7.12.
 
@@ -424,7 +424,7 @@ The following system variables, status variables, and server options have been a
 
 * `max_execution_time`: Statement execution timeout value. Added in MySQL 5.7.8.
 
-* `max_points_in_geometry`: Maximum number of points in geometry values for ST\_Buffer\_Strategy(). Added in MySQL 5.7.8.
+* `max_points_in_geometry`: Maximum number of points in geometry values for ST_Buffer_Strategy(). Added in MySQL 5.7.8.
 
 * `max_statement_time`: Statement execution timeout value. Added in MySQL 5.7.4.
 
@@ -436,7 +436,7 @@ The following system variables, status variables, and server options have been a
 
 * `mysql_firewall_trace`: Whether to enable MySQL Enterprise Firewall plugin trace. Added in MySQL 5.7.9.
 
-* `mysql_native_password_proxy_users`: Whether mysql\_native\_password authentication plugin does proxying. Added in MySQL 5.7.7.
+* `mysql_native_password_proxy_users`: Whether mysql_native_password authentication plugin does proxying. Added in MySQL 5.7.7.
 
 * `mysqlx`: Whether X Plugin is initialized. Added in MySQL 5.7.12.
 
@@ -486,9 +486,9 @@ The following system variables, status variables, and server options have been a
 
 * `performance-schema-consumer-events-transactions-history-long`: Configure events-transactions-history-long consumer. Added in MySQL 5.7.3.
 
-* `performance_schema_events_transactions_history_long_size`: Number of rows in events\_transactions\_history\_long table. Added in MySQL 5.7.3.
+* `performance_schema_events_transactions_history_long_size`: Number of rows in events_transactions_history_long table. Added in MySQL 5.7.3.
 
-* `performance_schema_events_transactions_history_size`: Number of rows per thread in events\_transactions\_history table. Added in MySQL 5.7.3.
+* `performance_schema_events_transactions_history_size`: Number of rows per thread in events_transactions_history table. Added in MySQL 5.7.3.
 
 * `performance_schema_max_digest_length`: Maximum Performance Schema digest size in bytes. Added in MySQL 5.7.8.
 
@@ -498,7 +498,7 @@ The following system variables, status variables, and server options have been a
 
 * `performance_schema_max_metadata_locks`: Maximum number of metadata locks to track. Added in MySQL 5.7.3.
 
-* `performance_schema_max_prepared_statements_instances`: Number of rows in prepared\_statements\_instances table. Added in MySQL 5.7.4.
+* `performance_schema_max_prepared_statements_instances`: Number of rows in prepared_statements_instances table. Added in MySQL 5.7.4.
 
 * `performance_schema_max_program_instances`: Maximum number of stored programs for statistics. Added in MySQL 5.7.2.
 
@@ -542,17 +542,17 @@ The following system variables, status variables, and server options have been a
 
 * `sha256_password_auto_generate_rsa_keys`: Whether to generate RSA key-pair files automatically. Added in MySQL 5.7.5.
 
-* `sha256_password_proxy_users`: Whether sha256\_password authentication plugin does proxying. Added in MySQL 5.7.7.
+* `sha256_password_proxy_users`: Whether sha256_password authentication plugin does proxying. Added in MySQL 5.7.7.
 
 * `show_compatibility_56`: Compatibility for SHOW STATUS/VARIABLES. Added in MySQL 5.7.6.
 
-* `show_create_table_verbosity`: Whether to display ROW\_FORMAT in SHOW CREATE TABLE even if it has default value. Added in MySQL 5.7.22.
+* `show_create_table_verbosity`: Whether to display ROW_FORMAT in SHOW CREATE TABLE even if it has default value. Added in MySQL 5.7.22.
 
 * `show_old_temporals`: Whether SHOW CREATE TABLE should indicate pre-5.6.4 temporal columns. Added in MySQL 5.7.6.
 
-* `simplified_binlog_gtid_recovery`: Renamed to binlog\_gtid\_simple\_recovery. Added in MySQL 5.7.5.
+* `simplified_binlog_gtid_recovery`: Renamed to binlog_gtid_simple_recovery. Added in MySQL 5.7.5.
 
-* `slave_parallel_type`: Tells replica to use timestamp information (LOGICAL\_CLOCK) or database partioning (DATABASE) to parallelize transactions. Added in MySQL 5.7.2.
+* `slave_parallel_type`: Tells replica to use timestamp information (LOGICAL_CLOCK) or database partioning (DATABASE) to parallelize transactions. Added in MySQL 5.7.2.
 
 * `slave_preserve_commit_order`: Ensures that all commits by replica workers happen in same order as on source to maintain consistency when using parallel applier threads. Added in MySQL 5.7.5.
 
@@ -588,7 +588,7 @@ The following system variables, status variables, and server options have been a
 
 The following system variables, status variables, and options have been deprecated in MySQL 5.7.
 
-* `Innodb_available_undo_logs`: Total number of InnoDB rollback segments; different from innodb\_rollback\_segments, which displays number of active rollback segments. Deprecated in MySQL 5.7.19.
+* `Innodb_available_undo_logs`: Total number of InnoDB rollback segments; different from innodb_rollback_segments, which displays number of active rollback segments. Deprecated in MySQL 5.7.19.
 
 * `Qcache_free_blocks`: Number of free memory blocks in query cache. Deprecated in MySQL 5.7.20.
 
@@ -600,7 +600,7 @@ The following system variables, status variables, and options have been deprecat
 
 * `Qcache_lowmem_prunes`: Number of queries which were deleted from query cache due to lack of free memory in cache. Deprecated in MySQL 5.7.20.
 
-* `Qcache_not_cached`: Number of noncached queries (not cacheable, or not cached due to query\_cache\_type setting). Deprecated in MySQL 5.7.20.
+* `Qcache_not_cached`: Number of noncached queries (not cacheable, or not cached due to query_cache_type setting). Deprecated in MySQL 5.7.20.
 
 * `Qcache_queries_in_cache`: Number of queries registered in query cache. Deprecated in MySQL 5.7.20.
 
@@ -622,7 +622,7 @@ The following system variables, status variables, and options have been deprecat
 
 * `bootstrap`: Used by mysql installation scripts. Deprecated in MySQL 5.7.6.
 
-* `des-key-file`: Load keys for des\_encrypt() and des\_encrypt from given file. Deprecated in MySQL 5.7.6.
+* `des-key-file`: Load keys for des_encrypt() and des_encrypt from given file. Deprecated in MySQL 5.7.6.
 
 * `disable-partition-engine-check`: Whether to disable startup check for tables without native partitioning. Deprecated in MySQL 5.7.17.
 
@@ -648,7 +648,7 @@ The following system variables, status variables, and options have been deprecat
 
 * `innodb_support_xa`: Enable InnoDB support for XA two-phase commit. Deprecated in MySQL 5.7.10.
 
-* `innodb_undo_logs`: Number of undo logs (rollback segments) used by InnoDB; alias for innodb\_rollback\_segments. Deprecated in MySQL 5.7.19.
+* `innodb_undo_logs`: Number of undo logs (rollback segments) used by InnoDB; alias for innodb_rollback_segments. Deprecated in MySQL 5.7.19.
 
 * `innodb_undo_tablespaces`: Number of tablespace files that rollback segments are divided between. Deprecated in MySQL 5.7.21.
 
@@ -702,11 +702,11 @@ The following system variables, status variables, and options have been removed 
 
 * `Max_statement_time_set_failed`: Number of statements for which execution timeout setting failed. Removed in MySQL 5.7.8.
 
-* `binlogging_impossible_mode`: Deprecated and later removed. Use binlog\_error\_action instead. Removed in MySQL 5.7.6.
+* `binlogging_impossible_mode`: Deprecated and later removed. Use binlog_error_action instead. Removed in MySQL 5.7.6.
 
 * `default-authentication-plugin`: Default authentication plugin. Removed in MySQL 5.7.2.
 
-* `executed_gtids_compression_period`: Renamed to gtid\_executed\_compression\_period. Removed in MySQL 5.7.6.
+* `executed_gtids_compression_period`: Renamed to gtid_executed_compression_period. Removed in MySQL 5.7.6.
 
 * `innodb_additional_mem_pool_size`: Size of memory pool InnoDB uses to store data dictionary information and other internal data structures. Removed in MySQL 5.7.4.
 
@@ -726,7 +726,7 @@ The following system variables, status variables, and options have been removed 
 
 * `myisam_repair_threads`: Number of threads to use when repairing MyISAM tables. 1 disables parallel repair. Removed in MySQL 5.7.39.
 
-* `simplified_binlog_gtid_recovery`: Renamed to binlog\_gtid\_simple\_recovery. Removed in MySQL 5.7.6.
+* `simplified_binlog_gtid_recovery`: Renamed to binlog_gtid_simple_recovery. Removed in MySQL 5.7.6.
 
 * `storage_engine`: Default storage engine. Removed in MySQL 5.7.5.
 

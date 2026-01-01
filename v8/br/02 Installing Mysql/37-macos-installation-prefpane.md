@@ -23,6 +23,7 @@ Para instalar o painel de preferências do MySQL:
 ::: info Nota
 
 O painel de preferências do MySQL só inicia e para a instalação do MySQL instalada a partir da instalação do pacote do MySQL que foi instalado na localização padrão.
+:::
 
 Uma vez que o painel de preferências do MySQL tenha sido instalado, você pode controlar sua instância do servidor MySQL usando este painel de preferências.
 
@@ -30,12 +31,12 @@ A página Instâncias inclui uma opção para iniciar ou parar o MySQL, e Inicia
 
 **Figura 2.10 Painel de Preferências do MySQL: Instâncias**
 
-![O lado esquerdo mostra uma lista de instâncias do MySQL separadas pelas seções "Instância Ativa", "Instâncias Instaladas" e "Diretórios de Dados". O lado direito mostra um botão "Parar o Servidor MySQL", uma caixa de seleção intitulada "Iniciar o MySQL quando o computador for iniciado" e os botões "Inicializar Banco de Dados" e "Desinstalar."] (images/mac-installer-preference-pane-instances.png)
+![O lado esquerdo mostra uma lista de instâncias do MySQL separadas pelas seções "Instância Ativa", "Instâncias Instaladas" e "Diretórios de Dados". O lado direito mostra um botão "Parar o Servidor MySQL", uma caixa de seleção intitulada "Iniciar o MySQL quando o computador for iniciado" e os botões "Inicializar Banco de Dados" e "Desinstalar."](images/mac-installer-preference-pane-instances.png)
 
 A página de Configuração mostra as opções do Servidor MySQL, incluindo o caminho para o arquivo de configuração do MySQL.
 
 **Figura 2.11 Painel de Preferências do MySQL: Configuração**
 
-![O conteúdo é descrito no texto ao redor.] (images/mac-installer-preference-pane-configuration.png)
+![O conteúdo é descrito no texto ao redor.](images/mac-installer-preference-pane-configuration.png)
 
 O Painel de Preferências do MySQL mostra o status atual do servidor MySQL, mostrando parado (em vermelho) se o servidor não estiver em execução e em execução (em verde) se o servidor já tiver sido iniciado. O painel de preferências também mostra a configuração atual de se o servidor MySQL foi configurado para iniciar automaticamente.

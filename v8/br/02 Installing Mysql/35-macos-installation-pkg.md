@@ -20,13 +20,14 @@ Para instalar o MySQL usando o instalador de pacotes:
 
    ::: info Nota
 
-Embora a opção Alterar Local de Instalação seja visível, o local de instalação não pode ser alterado.
+   Embora a opção Alterar Local de Instalação seja visível, o local de instalação não pode ser alterado.
 
-:::
+   :::
 
-**Figura 2.5 Assistente de Instalação do Pacote MySQL: Personalizar**
+   **Figura 2.5 Assistente de Instalação do Pacote MySQL: Personalizar**
 
-![Personalizar mostra três opções de nome de pacote: MySQL Server, MySQL Test, Painel de Preferências e Suporte ao Launchd. Todas as três opções estão marcadas.](images/mac-installer-installation-type-customize.png)
+   ![Personalizar mostra três opções de nome de pacote: MySQL Server, MySQL Test, Painel de Preferências e Suporte ao Launchd. Todas as três opções estão marcadas.](images/mac-installer-installation-type-customize.png)
+
 4. Clique em Instalar para instalar o MySQL Server. O processo de instalação termina aqui se estiver atualizando uma instalação atual do MySQL Server, caso contrário, siga os passos de configuração adicionais do assistente para sua nova instalação do MySQL Server.
 5. Após a instalação bem-sucedida do novo MySQL Server, complete a configuração definindo a senha do usuário root e habilitando (ou desabilitando) o servidor MySQL no início.
 6. Defina uma senha para o usuário root e também alterne se o MySQL Server deve ser iniciado após a etapa de configuração ser concluída.
@@ -44,4 +45,53 @@ O processo de instalação do macOS não cria nem instala um arquivo de configur
 
 **Tabela 2.8 Layout da Instalação do MySQL no macOS**
 
-<table><thead><tr> <th>Diretório</th> <th>Conteúdo do Diretório</th> </tr></thead><tbody><tr> <td><code>bin</code></td> <td>Servidores, programas de cliente e utilitários do <code>mysqld</code></td> </tr><tr> <td><code>data</code></td> <td>Arquivos de log, bancos de dados, onde <code>/usr/local/mysql/data/mysqld.local.err</code> é o log de erro padrão</td> </tr><tr> <td><code>docs</code></td> <td>Documentos de ajuda, como as Notas de Lançamento e informações de compilação</td> </tr><tr> <td><code>include</code></td> <td>Arquivos de inclusão (cabeçalho)</td> </tr><tr> <td><code>lib</code></td> <td>Bibliotecas</td> </tr><tr> <td><code>man</code></td> <td>Páginas de manual do Unix</td> </tr><tr> <td><code>mysql-test</code></td> <td>Suíte de testes do MySQL ('MySQL Test' é desativado por padrão durante o processo de instalação ao usar o pacote de instalador (DMG))</td> </tr><tr> <td><code>share</code></td> <td>Arquivos de suporte variados, incluindo mensagens de erro, <code>dictionary.txt</code> e rewriter SQL</td> </tr><tr> <td><code>support-files</code></td> <td>Scripts de suporte, como <code>mysqld_multi.server</code>, <code>mysql.server</code> e <code>mysql-log-rotate</code>.</td> </tr><tr> <td><code>/tmp/mysql.sock</code></td> <td>Local do soquete Unix do MySQL</td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>Diretório</th>
+         <th>Conteúdo do Diretório</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td><code>bin</code></td>
+         <td>Servidores, programas de cliente e utilitários do <code>mysqld</code></td>
+      </tr>
+      <tr>
+         <td><code>data</code></td>
+         <td>Arquivos de log, bancos de dados, onde <code>/usr/local/mysql/data/mysqld.local.err</code> é o log de erro padrão</td>
+      </tr>
+      <tr>
+         <td><code>docs</code></td>
+         <td>Documentos de ajuda, como as Notas de Lançamento e informações de compilação</td>
+      </tr>
+      <tr>
+         <td><code>include</code></td>
+         <td>Arquivos de inclusão (cabeçalho)</td>
+      </tr>
+      <tr>
+         <td><code>lib</code></td>
+         <td>Bibliotecas</td>
+      </tr>
+      <tr>
+         <td><code>man</code></td>
+         <td>Páginas de manual do Unix</td>
+      </tr>
+      <tr>
+         <td><code>mysql-test</code></td>
+         <td>Suíte de testes do MySQL ('MySQL Test' é desativado por padrão durante o processo de instalação ao usar o pacote de instalador (DMG))</td>
+      </tr>
+      <tr>
+         <td><code>share</code></td>
+         <td>Arquivos de suporte variados, incluindo mensagens de erro, <code>dictionary.txt</code> e rewriter SQL</td>
+      </tr>
+      <tr>
+         <td><code>support-files</code></td>
+         <td>Scripts de suporte, como <code>mysqld_multi.server</code>, <code>mysql.server</code> e <code>mysql-log-rotate</code>.</td>
+      </tr>
+      <tr>
+         <td><code>/tmp/mysql.sock</code></td>
+         <td>Local do soquete Unix do MySQL</td>
+      </tr>
+   </tbody>
+</table>

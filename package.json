@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vitepress dev v8/br --host",
     "docs:build": "vitepress build v8/br",
-    "docs:preview": "vitepress preview v8/br"
+    "docs:preview": "vitepress preview v8/br",
+    "docs5:dev": "vitepress dev v5/br --host",
+    "docs5:build": "vitepress build v5/br",
+    "docs5:preview": "vitepress preview v5/br"
   },
   "author": "",
   "license": "ISC",

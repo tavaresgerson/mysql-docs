@@ -6,7 +6,7 @@ Para informações sobre o uso de funções de janela e exemplos, e definições
 
 **Tabela 14.30 Funções de Janela**
 
-<table><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>CUME_DIST()</code></td> <td> Valor da distribuição cumulativa </td> </tr><tr><td><code>DENSE_RANK()</code></td> <td> Rank da linha atual dentro de sua partição, sem lacunas </td> </tr><tr><td><code>FIRST_VALUE()</code></td> <td> Valor do argumento da primeira linha do quadro de janela </td> </tr><tr><td><code>LAG()</code></td> <td> Valor do argumento da linha que está atrasada em relação à linha atual dentro da partição </td> </tr><tr><td><code>LAST_VALUE()</code></td> <td> Valor do argumento da última linha do quadro de janela </td> </tr><tr><td><code>LEAD()</code></td> <td> Valor do argumento da linha que está à frente da linha atual dentro da partição </td> </tr><tr><td><code>NTH_VALUE()</code></td> <td> Valor do argumento da N-ésima linha do quadro de janela </td> </tr><tr><td><code>NTILE()</code></td> <td> Número de buckets da linha atual dentro de sua partição. </td> </tr><tr><td><code>PERCENT_RANK()</code></td> <td> Valor de classificação percentual </td> </tr><tr><td><code>RANK()</code></td> <td> Rank da linha atual dentro de sua partição, com lacunas </td> </tr><tr><td><code>ROW_NUMBER()</code></td> <td> Número da linha atual dentro de sua partição </td> </tr></tbody></table>
+<table><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>CUME_DIST()</code></td> <td> Valor da distribuição cumulativa </td> </tr><tr><td><code>DENSE_RANK()</code></td> <td> Rank da linha atual dentro de sua partição, sem lacunas </td> </tr><tr><td><code>FIRST_VALUE()</code></td> <td> Valor do argumento da primeira linha do quadro de janela </td> </tr><tr><td><code>LAG()</code></td> <td> Valor do argumento da linha que está atrasada em relação à linha atual dentro da partição </td> </tr><tr><td><code>LAST_VALUE()</code></td> <td> Valor do argumento da última linha do quadro de janela </td> </tr><tr><td><code>LEAD()</code></td> <td> Valor do argumento da linha que está à frente da linha atual dentro da partição </td> </tr><tr><td><code>NTH_VALUE()</code></td> <td> Valor do argumento da N-ésima linha do quadro de janela </td> </tr><tr><td><code>NTILE()</code></td> <td> Número de buckets da linha atual dentro de sua partição. </td> </tr><tr><td><code>PERCENT_RANK()</code></td> <td> Valor de classificação percentual </td> </tr><tr><td><code>RANK()</code></td> <td> Rank da linha atual dentro de sua partição, com lacunas </td> </tr><tr><td><code>ROW_NUMBER()</code></td> <td> Número da linha atual dentro de sua partição </td> </tr></tbody></table>
 
 Nas seguintes descrições de funções, *`over_clause`* representa a cláusula `OVER`, descrita na Seção 14.20.2, “Conceitos e Sintaxe de Funções Janela”. Algumas funções de janela permitem uma cláusula *`null_treatment`* que especifica como lidar com valores `NULL` ao calcular os resultados. Esta cláusula é opcional. Faz parte do padrão SQL, mas a implementação do MySQL permite apenas `RESPECT NULLS` (que também é o padrão). Isso significa que os valores `NULL` são considerados ao calcular os resultados. `IGNORE NULLS` é analisado, mas produz um erro.
 
@@ -20,7 +20,7 @@ Nas seguintes descrições de funções, *`over_clause`* representa a cláusula 
 
   A seguinte consulta mostra, para o conjunto de valores na coluna `val`, o valor de `CUME_DIST()` para cada linha, bem como o valor de classificação percentual retornado pela função semelhante `PERCENT_RANK()`. Para referência, a consulta também exibe os números de linha usando `ROW_NUMBER()`:
 
-  ```
+  ```sql
   mysql> SELECT
            val,
            ROW_NUMBER()   OVER w AS 'row_number',
@@ -49,7 +49,8 @@ Nas seguintes descrições de funções, *`over_clause`* representa a cláusula 
 Essa função deve ser usada com `ORDER BY` para ordenar as linhas da partição no pedido desejado. Sem `ORDER BY`, todas as linhas são iguais.
 
 *`over_clause`* é conforme descrito na Seção 14.20.2, “Conceitos e Sintaxe de Funções de Janela”.
-*  `FIRST_VALUE(expr)` [*`null_treatment`*] *`over_clause`*
+
+* `FIRST_VALUE(expr)` [*`null_treatment`*] *`over_clause`*
 
 Retorna o valor de *`expr`* da primeira linha do quadro de janela.
 
@@ -83,7 +84,8 @@ A seguinte consulta demonstra `FIRST_VALUE()`, `LAST_VALUE()` e duas instâncias
   ```
 
   Cada função usa as linhas no quadro atual, que, conforme a definição da janela mostrada, se estende da primeira linha da partição até a linha atual. Para as chamadas de `NTH_VALUE()`, o quadro atual nem sempre inclui a linha solicitada; nesses casos, o valor de retorno é `NULL`.
-[`LAG(expr [, N[, default]])`](window-function-descriptions.html#function_lag)
+
+* `LAG(expr [, N[, default]])`
 
   Retorna o valor de *`expr`* da linha que está atrasada (antecedente) da linha atual por *`N`* linhas dentro de sua partição. Se não houver tal linha, o valor de retorno é *`default`*. Por exemplo, se *`N`* é 3, o valor de retorno é *`default`* para as três primeiras linhas. Se *`N`* ou *`default`* estiverem ausentes, os valores padrão são 1 e `NULL`, respectivamente.
 
@@ -168,14 +170,15 @@ A consulta a seguir mostra os valores `LAG()` e `LEAD()` para as linhas adjacent
 Uma maneira de gerar o conjunto inicial de números de Fibonacci é usar uma expressão de tabela comum recursiva. Para um exemplo, consulte Geração da Série de Fibonacci.
 
 Você não pode usar um valor negativo para o argumento `rows` desta função.
-*  `LAST_VALUE(expr)` [*`null_treatment`*] *`over_clause`*
+* `LAST_VALUE(expr)` [*`null_treatment`*] *`over_clause`*
 
 Retorna o valor de *`expr`* da última linha do quadro de janela.
 
 *`over_clause`* é conforme descrito na Seção 14.20.2, “Conceitos e Sintaxe de Funções de Janela”. *`null_treatment`* é conforme descrito na introdução da seção.
 
 Para um exemplo, consulte a descrição da função `FIRST_VALUE()`.
-[`LEAD(expr [, N[, default]])`](window-function-descriptions.html#function_lead)
+
+* `LEAD(expr [, N[, default]])`
 
 Retorna o valor de *`expr`* da linha que antecede (sucede) a linha atual por *`N`* linhas dentro de sua partição. Se não houver tal linha, o valor de retorno é *`default`*. Por exemplo, se *`N`* for 3, o valor de retorno é *`default`* para as três últimas linhas. Se *`N`* ou *`default`* estiverem ausentes, os valores padrão são 1 e `NULL`, respectivamente.
 
@@ -272,7 +275,29 @@ Esta função deve ser usada com `ORDER BY` para ordenar as linhas da partição
 
 A seguinte consulta mostra a diferença entre `RANK()`, que produz rankings com lacunas, e `DENSE_RANK()`, que produz rankings sem lacunas. A consulta mostra os valores de ranking para cada membro de um conjunto de valores na coluna `val`, que contém alguns duplicados. `RANK()` atribui aos pares (os duplicados) o mesmo valor de ranking, e o próximo valor maior tem um ranking maior em um número de pares menos um. `DENSE_RANK()` também atribui aos pares o mesmo valor de ranking, mas o próximo valor maior tem um ranking um maior. Para referência, a consulta também exibe os números de linha usando `ROW_NUMBER()`:
 
-```kE6BYgv3rG
+```sql
+  mysql> SELECT
+           val,
+           ROW_NUMBER() OVER w AS 'row_number',
+           RANK()       OVER w AS 'rank',
+           DENSE_RANK() OVER w AS 'dense_rank'
+         FROM numbers
+         WINDOW w AS (ORDER BY val);
+  +------+------------+------+------------+
+  | val  | row_number | rank | dense_rank |
+  +------+------------+------+------------+
+  |    1 |          1 |    1 |          1 |
+  |    1 |          2 |    1 |          1 |
+  |    2 |          3 |    3 |          2 |
+  |    3 |          4 |    4 |          3 |
+  |    3 |          5 |    4 |          3 |
+  |    3 |          6 |    4 |          3 |
+  |    4 |          7 |    7 |          4 |
+  |    4 |          8 |    7 |          4 |
+  |    5 |          9 |    9 |          5 |
+  +------+------------+------+------------+
+  ```
+
 *  `ROW_NUMBER()` *`over_clause`*
 
 Retorna o número da linha atual dentro de sua partição. Os números de linha variam de 1 a o número de linhas da partição.
