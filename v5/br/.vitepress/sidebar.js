@@ -264,6 +264,37 @@ export default [
                         link: '/03-installing-and-upgrading-my-sql/04-installing-my-sql-on-mac-os/04-installing-and-using-the-mysql-preference-pane.md'
                     }
                 ]
+            },
+            {
+                text: 'Instalar o MySQL no Linux',
+                link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/index.md',
+                collapsed: true,
+                items: [
+                    {
+                        text: 'Instalar o MySQL no Linux usando o repositório Yum do MySQL',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/01-installing-mysql-on-linux-using-the-mysql-yum-repository.md'
+                    },
+                    {
+                        text: 'Substituindo uma Distribuição de Terceiros do MySQL Usando o Repositório Yum do MySQL',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/02-replacing-a-third-party-distribution.md'
+                    },
+                    {
+                        text: 'Instalar o MySQL no Linux usando o repositório APT do MySQL',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/03-installing-mysql-on-linux-using-the-mysql-apt-repository.md'
+                    },
+                    {
+                        text: 'Instalando o MySQL no Linux usando o repositório MySQL SLES',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/04-installing-mysql-on-linux-using-the-mysql-s-l-e-s-repository.md'
+                    },
+                    {
+                        text: 'Instalar o MySQL no Linux usando pacotes RPM da Oracle',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/05-installing-my-s-q-l-on-linux-using-r-p-m-packages-from-oracle.md'
+                    },
+                    {
+                        text: 'Instalar o MySQL no Linux usando pacotes do Debian da Oracle',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/06-installing-my-s-q-l-on-linux-using-debian-packages-from-oracle.md'
+                    }
+                ]
             }
         ]
     }

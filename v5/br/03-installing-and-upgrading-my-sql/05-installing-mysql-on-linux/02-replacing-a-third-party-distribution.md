@@ -34,7 +34,7 @@ Se você instalou uma distribuição de MySQL de terceiros a partir de um reposi
 
    Por exemplo, se você instalou o MariaDB usando o próprio repositório de software, obtenha uma lista dos pacotes instalados do MariaDB usando o seguinte comando:
 
-   ```sql
+   ```shell
    $> yum list installed mariadb\*
    MariaDB-common.i686                      10.0.4-1                       @mariadb
    MariaDB-compat.i686                      10.0.4-1                       @mariadb
@@ -45,7 +45,7 @@ Se você instalou uma distribuição de MySQL de terceiros a partir de um reposi
 
    Como outro exemplo, se você instalou o Percona usando seu próprio repositório de software, obtenha uma lista dos pacotes instalados do Percona usando o seguinte comando:
 
-   ```sql
+   ```shell
    $> yum list installed Percona\*
    Percona-Server-client-55.i686     5.5.39-rel36.0.el6          @percona-release-i386
    Percona-Server-server-55.i686     5.5.39-rel36.0.el6          @percona-release-i386
@@ -63,19 +63,19 @@ Se você instalou uma distribuição de MySQL de terceiros a partir de um reposi
 
    O próximo passo é impedir que o Yum receba pacotes do repositório não nativo. Se o utilitário **yum-config-manager** for suportado na sua plataforma, você pode, por exemplo, usar este comando para interromper a entrega da MariaDB:
 
-   ```sql
+   ```shell
    $> sudo yum-config-manager --disable mariadb
    ```
 
    Use este comando para interromper a entrega do Percona:
 
-   ```sql
+   ```shell
    $> sudo yum-config-manager --disable percona-release
    ```
 
    Você pode realizar a mesma tarefa removendo a entrada para o repositório de software existente em um dos arquivos de repositório na pasta `/etc/yum.repos.d/`. É assim que a entrada geralmente parece para o MariaDB:
 
-   ```sql
+   ```
    [mariadb] name = MariaDB
     baseurl = [base URL for repository]
     gpgkey = [URL for GPG key]
@@ -84,21 +84,21 @@ Se você instalou uma distribuição de MySQL de terceiros a partir de um reposi
 
    A entrada geralmente é encontrada no arquivo `/etc/yum.repos.d/MariaDB.repo` para o MariaDB — exclua o arquivo ou remova a entrada dele (ou do arquivo em que você encontrar a entrada).
 
-   Nota
-
+   ::: info Nota
    Essa etapa não é necessária para uma instalação configurada com um pacote de versão do repositório Yum (como o Percona), se você vai remover o pacote de versão (`percona-release.noarch` para o Percona), conforme mostrado no comando de desinstalação para o Percona no Passo 3 abaixo.
+   :::
 
 3. #### Desinstalação da Distribuição de Terceiros Não Nativos do MySQL
 
    A distribuição de terceiros do MySQL não nativa deve ser desinstalada primeiro antes que você possa usar o repositório MySQL Yum para instalar o MySQL. Para os pacotes do MariaDB encontrados no Passo 2 acima, desinstale-os com o seguinte comando:
 
-   ```sql
+   ```shell
    $> sudo yum remove MariaDB-common MariaDB-compat MariaDB-server
    ```
 
    Para os pacotes Percona que encontramos no Passo 2 acima:
 
-   ```sql
+   ```shell
    $> sudo yum remove Percona-Server-client-55 Percona-Server-server-55 \
      Percona-Server-shared-55.i686 percona-release
    ```
@@ -109,6 +109,6 @@ Se você instalou uma distribuição de MySQL de terceiros a partir de um reposi
 
    Importante
 
-   Se você optou por substituir sua distribuição MySQL de terceiros por uma versão mais recente do MySQL do repositório MySQL Yum, lembre-se de executar o **mysql\_upgrade** após o servidor ser iniciado, para verificar e possivelmente resolver quaisquer incompatibilidades entre os dados antigos e o software atualizado. O **mysql\_upgrade** também realiza outras funções; consulte a Seção 4.4.7, “mysql\_upgrade — Verificar e Atualizar Tabelas MySQL”, para obter detalhes.
+   Se você optou por substituir sua distribuição MySQL de terceiros por uma versão mais recente do MySQL do repositório MySQL Yum, lembre-se de executar o **mysql_upgrade** após o servidor ser iniciado, para verificar e possivelmente resolver quaisquer incompatibilidades entre os dados antigos e o software atualizado. O **mysql_upgrade** também realiza outras funções; consulte a Seção 4.4.7, “mysql_upgrade — Verificar e Atualizar Tabelas MySQL”, para obter detalhes.
 
    *Para plataformas baseadas no EL7:* Consulte as Informações de Compatibilidade para plataformas baseadas no EL7.
