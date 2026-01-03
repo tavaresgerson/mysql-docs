@@ -4,9 +4,9 @@ Você deve ter em mente os seguintes pontos e notas:
 
 - A partir do macOS 10.14 (Mojave), o aplicativo Instalador do MySQL 5.7 do macOS requer permissão para controlar *Eventos do Sistema* para que possa exibir uma senha de root MySQL gerada (temporária). Escolher "Não Permitir" significa que essa senha não será exibida para uso.
 
-  Se anteriormente foi desativado, a correção está habilitando o *System Events.app* para o *Installer.app* na aba \*Segurança e privacidade | \*Automação | *Privacidade*.
+  Se anteriormente foi desativado, a correção está habilitando o *System Events.app* para o *Installer.app* na aba *Segurança e privacidade* | *Automação* | *Privacidade*.
 
-- Um daemon do launchd está instalado e inclui opções de configuração do MySQL. Considere editá-lo, se necessário, consulte a documentação abaixo para obter informações adicionais. Além disso, o macOS 10.10 removeu o suporte a itens de inicialização em favor dos demonios do launchd. O painel de preferências MySQL opcional nas Preferências do Sistema do macOS usa o daemon do launchd.
+- Um daemon do `launchd` está instalado e inclui opções de configuração do MySQL. Considere editá-lo, se necessário, consulte a documentação abaixo para obter informações adicionais. Além disso, o macOS 10.10 removeu o suporte a itens de inicialização em favor dos demonios do `launchd`. O painel de preferências MySQL opcional nas Preferências do Sistema do macOS usa o daemon do `launchd`.
 
 - Você pode precisar (ou querer) criar um usuário específico `mysql` para possuir o diretório e os dados do MySQL. Você pode fazer isso através do **Utilitário de Diretório**, e o usuário `mysql` já deve existir. Para uso no modo de usuário único, uma entrada para `_mysql` (observe o prefixo sublinhado) já deve existir no arquivo `/etc/passwd` do sistema.
 

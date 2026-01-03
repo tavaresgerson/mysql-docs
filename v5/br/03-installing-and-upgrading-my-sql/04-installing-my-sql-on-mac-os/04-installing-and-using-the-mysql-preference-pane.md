@@ -6,7 +6,7 @@ Essa janela de preferências é instalada por padrão e está listada na janela 
 
 **Figura 2.21 Painel de Preferências do MySQL: Localização**
 
-![O conteúdo é descrito no texto ao redor.](images/mac-installer-preference-pane-location.png)
+![](images/mac-installer-preference-pane-location.png)
 
 Para instalar o Painel de Preferências do MySQL:
 
@@ -14,7 +14,7 @@ Para instalar o Painel de Preferências do MySQL:
 
    **Figura 2.22: Instalador de Pacotes MySQL: Conteúdo do DMG**
 
-   ![O conteúdo é descrito no texto ao redor.](images/mac-installer-dmg-contents.png)
+   ![](images/mac-installer-dmg-contents.png)
 
 2. Siga o processo de instalação do servidor MySQL, conforme descrito na documentação na Seção 2.4.2, “Instalando o MySQL no macOS usando pacotes nativos”.
 
@@ -22,23 +22,23 @@ Para instalar o Painel de Preferências do MySQL:
 
    **Figura 2.23: Instalação do MySQL no macOS: Personalizar**
 
-   ![O conteúdo é descrito no texto ao redor.](images/mac-installer-installation-customize.png)
+   ![](images/mac-installer-installation-customize.png)
 
 4. Complete o processo de instalação do servidor MySQL.
 
-Nota
-
+::: info Nota
 A janela de preferências do MySQL só inicia e para a instalação do MySQL instalada a partir da instalação do pacote MySQL que foram instalados na localização padrão.
+:::
 
 Depois que o painel de preferências do MySQL for instalado, você pode controlar sua instância do servidor MySQL usando o painel de preferências. Para usar o painel de preferências, abra as Preferências do Sistema... no menu Apple. Selecione o painel de preferências do MySQL clicando no ícone do MySQL na lista de painéis de preferências.
 
 **Figura 2.24 Painel de Preferências do MySQL: Localização**
 
-![O conteúdo é descrito no texto ao redor.](images/mac-installer-preference-pane-location.png)
+![](images/mac-installer-preference-pane-location.png)
 
 **Figura 2.25 Painel de Preferências do MySQL: Uso**
 
-![O conteúdo é descrito no texto ao redor.](images/mac-installer-preference-pane-usage.png)
+![](images/mac-installer-preference-pane-usage.png)
 
 O Painel de Preferências do MySQL mostra o status atual do servidor MySQL, mostrando parado (em vermelho) se o servidor não estiver em execução e em execução (em verde) se o servidor já tiver sido iniciado. O painel de preferências também mostra a configuração atual de se o servidor MySQL foi configurado para iniciar automaticamente.
 

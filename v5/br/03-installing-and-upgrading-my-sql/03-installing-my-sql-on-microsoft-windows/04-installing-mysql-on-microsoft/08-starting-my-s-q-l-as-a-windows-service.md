@@ -13,15 +13,15 @@ C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqladmin"
           -u root shutdown
 ```
 
-Nota
-
+::: info Nota
 Se a conta de usuário `root` do MySQL tiver uma senha, você precisa invocar o **mysqladmin** com a opção `-p` e fornecer a senha quando solicitado.
+:::
 
 Este comando invoca o utilitário administrativo MySQL **mysqladmin** para se conectar ao servidor e informá-lo a desligar. O comando se conecta como o usuário `root` do MySQL, que é a conta administrativa padrão no sistema de concessão do MySQL.
 
-Nota
-
+::: info Nota
 Os usuários no sistema de concessão MySQL são totalmente independentes de quaisquer usuários do sistema operacional Windows.
+:::
 
 Instale o servidor como um serviço usando este comando:
 
@@ -39,21 +39,20 @@ Para facilitar o uso de programas do MySQL, você pode adicionar o nome do camin
 
 - Em Variáveis do sistema, selecione Caminho e, em seguida, clique no botão Editar. O diálogo Editar variável do sistema deve aparecer.
 
-- Coloque o cursor no final do texto que aparece no espaço marcado como "Valor da variável". (Use a tecla **Final** para garantir que o cursor esteja posicionado no final do texto neste espaço.) Em seguida, insira o nome completo do diretório `bin` do MySQL (por exemplo, `C:\Program Files\MySQL\MySQL Server 5.7\bin`), e deve haver um ponto e vírgula separando este caminho de quaisquer valores presentes neste campo. Fechar este diálogo e, em seguida, cada diálogo, clicando em OK até que todos os diálogos abertos tenham sido fechados. Agora você deve ser capaz de invocar qualquer programa executável do MySQL digitando seu nome no prompt do DOS a partir de qualquer diretório do sistema, sem precisar fornecer o caminho. Isso inclui os servidores, o cliente **mysql** e todas as ferramentas de linha de comando do MySQL, como **mysqladmin** e **mysqldump**.
+- Coloque o cursor no final do texto que aparece no espaço marcado como "Valor da variável". (Use a tecla **End** para garantir que o cursor esteja posicionado no final do texto neste espaço.) Em seguida, insira o nome completo do diretório `bin` do MySQL (por exemplo, `C:\Program Files\MySQL\MySQL Server 5.7\bin`), e deve haver um ponto e vírgula separando este caminho de quaisquer valores presentes neste campo. Fechar este diálogo e, em seguida, cada diálogo, clicando em OK até que todos os diálogos abertos tenham sido fechados. Agora você deve ser capaz de invocar qualquer programa executável do MySQL digitando seu nome no prompt do DOS a partir de qualquer diretório do sistema, sem precisar fornecer o caminho. Isso inclui os servidores, o cliente **mysql** e todas as ferramentas de linha de comando do MySQL, como **mysqladmin** e **mysqldump**.
 
-  Você não deve adicionar o diretório `bin` do MySQL ao seu `PATH` do Windows se estiver executando vários servidores MySQL na mesma máquina.
+  * Você não deve adicionar o diretório `bin` do MySQL ao seu `PATH` do Windows se estiver executando vários servidores MySQL na mesma máquina.
 
-Aviso
-
+::: warning Aviso
 Você deve ter muito cuidado ao editar manualmente o seu sistema `PATH`; a exclusão ou modificação acidental de qualquer parte do valor existente do `PATH` pode deixar o sistema com mau funcionamento ou até mesmo inutilizável.
+:::
 
 Os seguintes argumentos adicionais podem ser usados ao instalar o serviço:
 
 - Você pode especificar um nome de serviço imediatamente após a opção `--install`. O nome de serviço padrão é `MySQL`.
 
 - Se um nome de serviço for fornecido, ele pode ser seguido por uma única opção. Por convenção, isso deve ser `--defaults-file=file_name` para especificar o nome de um arquivo de opções a partir do qual o servidor deve ler as opções ao iniciar.
-
-  O uso de uma única opção além de `--defaults-file` é possível, mas desaconselhado. `--defaults-file` é mais flexível porque permite que você especifique várias opções de inicialização para o servidor, colocando-as em um arquivo de opção nomeado.
+  * O uso de uma única opção além de `--defaults-file` é possível, mas desaconselhado. `--defaults-file` é mais flexível porque permite que você especifique várias opções de inicialização para o servidor, colocando-as em um arquivo de opção nomeado.
 
 - Você também pode especificar a opção `--local-service` após o nome do serviço. Isso faz com que o servidor seja executado usando a conta `LocalService` do Windows, que tem privilégios de sistema limitados. Se `--defaults-file` e `--local-service` forem fornecidos após o nome do serviço, eles podem ser em qualquer ordem.
 
@@ -74,9 +73,9 @@ C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld"
 
 Aqui, o nome do serviço padrão (`MySQL`) é fornecido após a opção `--install`. Se a opção `--defaults-file` não tivesse sido fornecida, este comando teria o efeito de fazer com que o servidor levasse em consideração o grupo `[mysqld]` dos arquivos de opção padrão. No entanto, como a opção `--defaults-file` está presente, o servidor lê as opções do grupo de opção `[mysqld]` e apenas do arquivo nomeado.
 
-Nota
-
+::: info Nota
 No Windows, se o servidor for iniciado com as opções `--defaults-file` e `--install`, a opção `--install` deve ser a primeira. Caso contrário, o `mysqld.exe` tentará iniciar o servidor MySQL.
+:::
 
 Você também pode especificar opções como parâmetros de início no utilitário **Serviços** do Windows antes de iniciar o serviço MySQL.
 

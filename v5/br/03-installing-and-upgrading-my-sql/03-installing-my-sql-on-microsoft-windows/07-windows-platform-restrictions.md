@@ -20,7 +20,7 @@ As seguintes restrições se aplicam ao uso do MySQL na plataforma Windows:
 
   Para obter mais informações sobre esse problema, consulte <https://support.microsoft.com/kb/196271>.
 
-- **`DÍAIONÁRIO DE DADOS` e `DÍAIONÁRIO DE ÍNDICES`**
+- **`DATA DICTIONARY` e `INDEX DICTIONARY`**
 
   A cláusula `DATA DIRECTORY` da instrução `CREATE TABLE` é suportada no Windows apenas para tabelas `InnoDB`, conforme descrito na Seção 14.6.1.2, “Criando Tabelas Externamente”. Para `MyISAM` e outros motores de armazenamento, as cláusulas `DATA DIRECTORY` e `INDEX DIRECTORY` para `CREATE TABLE` são ignoradas no Windows e em outras plataformas com uma chamada `realpath()` não funcional.
 
@@ -36,7 +36,7 @@ As seguintes restrições se aplicam ao uso do MySQL na plataforma Windows:
 
   No Windows, o MySQL Server suporta apenas nomes de diretórios e arquivos compatíveis com as páginas de código ANSI atuais. Por exemplo, o seguinte nome de diretório japonês não funciona no local ocidental (página de código 1252):
 
-  ```sql
+  ```
   datadir="C:/私たちのプロジェクトのデータ"
   ```
 
@@ -58,9 +58,9 @@ As seguintes restrições se aplicam ao uso do MySQL na plataforma Windows:
   mysql> SELECT * INTO OUTFILE 'C:\\tmp\\skr.txt' FROM skr;
   ```
 
-- **Problemas com os tubos**
+- **Problemas com os pipes**
 
-  Os tubos não funcionam de forma confiável a partir do prompt de comando do Windows. Se o tubo incluir o caractere `^Z`/`CHAR(24)`, o Windows acha que encontrou o fim de arquivo e interrompe o programa.
+  Os pipes não funcionam de forma confiável a partir do prompt de comando do Windows. Se o tubo incluir o caractere `^Z`/`CHAR(24)`, o Windows acha que encontrou o fim de arquivo e interrompe o programa.
 
   Isso é principalmente um problema quando você tenta aplicar um log binário da seguinte forma:
 

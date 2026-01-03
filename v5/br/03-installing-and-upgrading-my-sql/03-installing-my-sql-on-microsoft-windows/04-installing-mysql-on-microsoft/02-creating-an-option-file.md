@@ -24,7 +24,7 @@ Você também pode usar os arquivos de exemplo de opção incluídos com sua dis
 
 Um arquivo de opções pode ser criado e modificado com qualquer editor de texto, como o Bloco de Notas. Por exemplo, se o MySQL estiver instalado em `E:\mysql` e o diretório de dados estiver em `E:\mydata\data`, você pode criar um arquivo de opções contendo uma seção `[mysqld]` para especificar valores para as opções `basedir` e `datadir`:
 
-```sql
+```
 [mysqld]
 # set basedir to your installation path
 basedir=E:/mysql
@@ -34,7 +34,7 @@ datadir=E:/mydata/data
 
 Os nomes de caminho do Microsoft Windows são especificados em arquivos de opção usando barras inclinadas (forward slashes) em vez de barras invertidas (back slashes). Se você usar barras invertidas, duplique-as:
 
-```sql
+```
 [mysqld]
 # set basedir to your installation path
 basedir=E:\\mysql

@@ -2,9 +2,9 @@
 
 O pacote está localizado dentro de um arquivo de imagem de disco (`.dmg`), que você precisa montar primeiro clicando duas vezes em seu ícone no Finder. Ele deve então montar a imagem e exibir seu conteúdo.
 
-Nota
-
+::: info Nota
 Antes de prosseguir com a instalação, certifique-se de parar todas as instâncias do servidor MySQL em execução usando o aplicativo MySQL Manager (no macOS Server), o painel de preferências ou **mysqladmin shutdown** na linha de comando.
+:::
 
 Para instalar o MySQL usando o instalador de pacotes:
 
@@ -26,9 +26,9 @@ Para instalar o MySQL usando o instalador de pacotes:
 
 5. Na página Tipo de Instalação, você pode clicar em Instalar para executar o assistente de instalação com todos os parâmetros padrão, clicar em Personalizar para alterar quais componentes serão instalados (servidor MySQL, Painel de Preferências, Suporte Launchd — todos habilitados por padrão).
 
-   Nota
-
+   ::: info Nota
    Embora a opção "Alterar Local de Instalação" esteja visível, o local de instalação não pode ser alterado.
+   :::
 
    **Figura 2.15: Assistente do Instalador do Pacote MySQL: Tipo de Instalação**
 
@@ -62,6 +62,57 @@ Ao instalar usando o instalador de pacotes, os arquivos são instalados em um di
 
 **Tabela 2.7. Estrutura de instalação do MySQL no macOS**
 
-<table><col style="width: 45%"/><col style="width: 55%"/><thead><tr> <th>Diretório</th> <th>Conteúdo do diretório</th> </tr></thead><tbody><tr> <td>[[<code class="filename">bin</code>]]</td> <td><a class="link" href="mysqld.html" title="4.3.1 mysqld — O Servidor MySQL"><span class="command"><strong>mysqld</strong></span></a>programas de servidor, cliente e utilitário</td> </tr><tr> <td>[[<code class="filename">data</code>]]</td> <td>Arquivos de registro, bancos de dados</td> </tr><tr> <td>[[<code class="filename">docs</code>]]</td> <td>Documentos auxiliares, como as Notas de Lançamento e informações de construção</td> </tr><tr> <td>[[<code class="filename">include</code>]]</td> <td>Incluir arquivos (cabeçalho)</td> </tr><tr> <td>[[<code class="filename">lib</code>]]</td> <td>Livrarias</td> </tr><tr> <td>[[<code class="filename">man</code>]]</td> <td>Páginas de manual do Unix</td> </tr><tr> <td>[[<code class="filename">mysql-test</code>]]</td> <td>Conjunto de testes do MySQL</td> </tr><tr> <td>[[<code class="filename">share</code>]]</td> <td>Arquivos de suporte variados, incluindo mensagens de erro, arquivos de configuração de exemplo, SQL para instalação de banco de dados</td> </tr><tr> <td>[[<code class="filename">support-files</code>]]</td> <td>Scripts e arquivos de configuração de amostra</td> </tr><tr> <td>[[<code class="filename">/tmp/mysql.sock</code>]]</td> <td>Localização do soquete Unix do MySQL</td> </tr></tbody></table>
+<table>
+   <col style="width: 45%"/>
+   <col style="width: 55%"/>
+   <thead>
+      <tr>
+         <th>Diretório</th>
+         <th>Conteúdo do diretório</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>[[<code>bin</code>]]</td>
+         <td><strong>mysqld</strong> programas de servidor, cliente e utilitário</td>
+      </tr>
+      <tr>
+         <td>[[<code>data</code>]]</td>
+         <td>Arquivos de registro, bancos de dados</td>
+      </tr>
+      <tr>
+         <td>[[<code>docs</code>]]</td>
+         <td>Documentos auxiliares, como as Notas de Lançamento e informações de construção</td>
+      </tr>
+      <tr>
+         <td>[[<code>include</code>]]</td>
+         <td>Incluir arquivos (cabeçalho)</td>
+      </tr>
+      <tr>
+         <td>[[<code>lib</code>]]</td>
+         <td>Livrarias</td>
+      </tr>
+      <tr>
+         <td>[[<code>man</code>]]</td>
+         <td>Páginas de manual do Unix</td>
+      </tr>
+      <tr>
+         <td>[[<code>mysql-test</code>]]</td>
+         <td>Conjunto de testes do MySQL</td>
+      </tr>
+      <tr>
+         <td>[[<code>share</code>]]</td>
+         <td>Arquivos de suporte variados, incluindo mensagens de erro, arquivos de configuração de exemplo, SQL para instalação de banco de dados</td>
+      </tr>
+      <tr>
+         <td>[[<code>support-files</code>]]</td>
+         <td>Scripts e arquivos de configuração de amostra</td>
+      </tr>
+      <tr>
+         <td>[[<code>/tmp/mysql.sock</code>]]</td>
+         <td>Localização do soquete Unix do MySQL</td>
+      </tr>
+   </tbody>
+</table>
 
 Durante o processo de instalação do pacote, um link simbólico de `/usr/local/mysql` para o diretório específico da versão/plataforma criado durante a instalação é criado automaticamente.

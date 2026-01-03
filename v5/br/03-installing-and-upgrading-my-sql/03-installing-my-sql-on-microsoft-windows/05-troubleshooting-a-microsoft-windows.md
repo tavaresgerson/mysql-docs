@@ -10,7 +10,7 @@ Os exemplos a seguir mostram outras mensagens de erro comuns que você pode enco
 
 - Se o servidor MySQL não conseguir encontrar o banco de dados de privilégios `mysql` ou outros arquivos críticos, ele exibe essas mensagens:
 
-  ```sql
+  ```
   System error 1067 has occurred.
   Fatal error: Can't open and lock privilege tables:
   Table 'mysql.user' doesn't exist
@@ -22,13 +22,13 @@ Os exemplos a seguir mostram outras mensagens de erro comuns que você pode enco
 
   Se você instalou o MySQL em um diretório diferente de `C:\Program Files\MySQL\MySQL Server 5.7`, certifique-se de que o servidor MySQL esteja ciente disso por meio de um arquivo de configuração (`my.ini`). Coloque o arquivo `my.ini` em seu diretório do Windows, geralmente `C:\WINDOWS`. Para determinar sua localização exata a partir do valor da variável de ambiente `WINDIR`, execute o seguinte comando no prompt de comando:
 
-  ```sql
+  ```bash
   C:\> echo %WINDIR%
   ```
 
   Você pode criar ou modificar um arquivo de opções com qualquer editor de texto, como o Bloco de Notas. Por exemplo, se o MySQL estiver instalado em `E:\mysql` e o diretório de dados estiver em `D:\MySQLdata`, você pode criar o arquivo de opções e configurar uma seção `[mysqld]` para especificar valores para as opções `basedir` e `datadir`:
 
-  ```sql
+  ```
   [mysqld]
   # set basedir to your installation path
   basedir=E:/mysql
@@ -38,7 +38,7 @@ Os exemplos a seguir mostram outras mensagens de erro comuns que você pode enco
 
   Os nomes de caminho do Microsoft Windows são especificados em arquivos de opção usando barras inclinadas (forward slashes) em vez de barras invertidas (back slashes). Se você usar barras invertidas, duplique-as:
 
-  ```sql
+  ```
   [mysqld]
   # set basedir to your installation path
   basedir=C:\\Program Files\\MySQL\\MySQL Server 5.7
@@ -54,7 +54,7 @@ Os exemplos a seguir mostram outras mensagens de erro comuns que você pode enco
 
 - Se você reinstalar ou atualizar o MySQL sem primeiro parar e remover o serviço MySQL existente e instalar o MySQL usando o Instalador do MySQL, você pode ver este erro:
 
-  ```sql
+  ```
   Error: Cannot create Windows service for MySql. Error: 0
   ```
 
@@ -64,7 +64,7 @@ Os exemplos a seguir mostram outras mensagens de erro comuns que você pode enco
 
   Para remover permanentemente o serviço antigo `mysql`, execute o seguinte comando como um usuário com privilégios administrativos, na linha de comando:
 
-  ```sql
+  ```
   C:\> SC DELETE mysql
   [SC] DeleteService SUCCESS
   ```

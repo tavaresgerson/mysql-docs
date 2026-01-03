@@ -184,6 +184,84 @@ export default [
                                 link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/03-mysql-installer-for-windows/05-my-sql-installer-console-reference.md'
                             }
                         ]
+                    },
+                    {
+                        text: 'Instalando o MySQL no Microsoft Windows usando um arquivo ZIP `noinstall`',
+                        link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/index.md',
+                        collapsed: true,
+                        items: [
+                            {
+                                text: 'Extrair o arquivo de instalação',
+                                link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/01-extracting-the-install-archive.md'
+                            },
+                            {
+                                text: 'Criando um arquivo de opção',
+                                link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/02-creating-an-option-file.md'
+                            },
+                            {
+                                text: 'Selecionando um tipo de servidor MySQL',
+                                link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/03-selecting-a-my-s-q-l-server-type.md'
+                            },
+                            {
+                                text: 'Inicializando o Diretório de Dados',
+                                link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/04-initializing-the-data-directory.md'
+                            },
+                            {
+                                text: 'Começando o servidor pela primeira vez',
+                                link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/05-starting-the-server-for-the-first-time.md'
+                            },
+                            {
+                                text: 'Começando o MySQL a partir da linha de comando do Windows',
+                                link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/06-starting-my-s-q-l-from-the-windows-command-line.md'
+                            },
+                            {
+                                text: 'Personalizar o caminho para as ferramentas do MySQL',
+                                link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/07-customizing-the-p-a-t-h-for-my-s-q-l-tools.md'
+                            },
+                            {
+                                text: 'Começar o MySQL como um serviço do Windows',
+                                link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/08-starting-my-s-q-l-as-a-windows-service.md'
+                            },
+                            {
+                                text: 'Testando a Instalação do MySQL',
+                                link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/04-installing-mysql-on-microsoft/09-testing-the-my-s-q-l-installation.md'
+                            }
+                        ]
+                    },
+                    {
+                        text: 'Solução de problemas de instalação do Microsoft Windows MySQL Server',
+                        link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/05-troubleshooting-a-microsoft-windows.md'
+                    },
+                    {
+                        text: 'Procedimentos pós-instalação do Windows',
+                        link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/06-windows-postinstallation-procedures.md'
+                    },
+                    {
+                        text: 'Restrições da Plataforma Windows',
+                        link: '/03-installing-and-upgrading-my-sql/03-installing-my-sql-on-microsoft-windows/07-windows-platform-restrictions.md'
+                    }
+                ]
+            },
+            {
+                text: 'Instalando o MySQL no macOS',
+                link: '/03-installing-and-upgrading-my-sql/04-installing-my-sql-on-mac-os/index.md',
+                collapsed: true,
+                items: [
+                    {
+                        text: 'Notas gerais sobre a instalação do MySQL no macOS',
+                        link: '/03-installing-and-upgrading-my-sql/04-installing-my-sql-on-mac-os/01-general-notes-on-installing.md'
+                    },
+                    {
+                        text: 'Instalando o MySQL no macOS usando pacotes nativos',
+                        link: '/03-installing-and-upgrading-my-sql/04-installing-my-sql-on-mac-os/02-installing-mysql-on-mac-os-using-native-packages.md'
+                    },
+                    {
+                        text: 'Instalação do Daemon de Inicialização do MySQL',
+                        link: '/03-installing-and-upgrading-my-sql/04-installing-my-sql-on-mac-os/03-installing-a-mysql-launch-daemon.md'
+                    },
+                    {
+                        text: 'Instalando e usando o painel de preferências do MySQL',
+                        link: '/03-installing-and-upgrading-my-sql/04-installing-my-sql-on-mac-os/04-installing-and-using-the-mysql-preference-pane.md'
                     }
                 ]
             }

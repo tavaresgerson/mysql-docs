@@ -1,10 +1,10 @@
-### 2.4.3 Instalação do Daemon de Lançamento do MySQL
+### 2.4.3 Instalação do Daemon de Inicialização do MySQL
 
-O macOS usa demoníaios de inicialização para iniciar, parar e gerenciar automaticamente processos e aplicativos, como o MySQL.
+O macOS usa daemons de inicialização para iniciar, parar e gerenciar automaticamente processos e aplicativos, como o MySQL.
 
 Por padrão, o pacote de instalação (DMG) no macOS instala um arquivo launchd chamado `/Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist` que contém uma definição plist semelhante a:
 
-```sql
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -35,9 +35,9 @@ Por padrão, o pacote de instalação (DMG) no macOS instala um arquivo launchd 
 </plist>
 ```
 
-Nota
-
+::: info Nota
 Alguns usuários relatam que a adição de uma declaração de DOCTYPE plist causa o falha da operação do launchd, apesar de passar na verificação de lint. Acreditamos que seja um erro de cópia e colagem. O checksum md5 de um arquivo que contém o trecho acima é *24710a27dc7a28fb7ee6d825129cd3cf*.
+:::
 
 Para habilitar o serviço launchd, você pode:
 
@@ -45,11 +45,11 @@ Para habilitar o serviço launchd, você pode:
 
   **Figura 2.19 Painel de Preferências do MySQL: Localização**
 
-  ![O conteúdo é descrito no texto ao redor.](images/mac-installer-preference-pane-location.png)
+  ![](images/mac-installer-preference-pane-location.png)
 
   **Figura 2.20: Painel de Preferências do MySQL: Uso**
 
-  ![O conteúdo é descrito no texto ao redor.](images/mac-installer-preference-pane-usage.png)
+  ![](images/mac-installer-preference-pane-usage.png)
 
 - Ou, carregue manualmente o arquivo launchd.
 
@@ -64,9 +64,9 @@ Para habilitar o serviço launchd, você pode:
   $> sudo launchctl load -w com.oracle.oss.mysql.mysqld.plist
   ```
 
-Nota
-
+::: info Nota
 Ao atualizar o servidor MySQL, o processo de instalação do launchd remove os itens de inicialização antigos que foram instalados com o servidor MySQL 5.7.7 e versões anteriores.
+:::
 
 A atualização também substitui seu arquivo existente **launchd** com o mesmo nome.
 
@@ -82,7 +82,7 @@ Informações adicionais relacionadas ao **launchd**:
 
 Como a definição padrão do `plist` define vários **ProgramArguments**, você pode remover a maioria desses argumentos e, em vez disso, confiar no arquivo de configuração MySQL `my.cnf` para defini-los. Por exemplo:
 
-```sql
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
