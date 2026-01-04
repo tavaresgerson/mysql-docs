@@ -325,6 +325,17 @@ export default [
                         link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/10-managing-my-s-q-l-server-with-systemd.md'
                     }
                 ]
+            },
+            {
+                text: 'Instalando o MySQL no Solaris',
+                link: '/03-installing-and-upgrading-my-sql/07-installing-mysql-on-solaris/index.md',
+                collapsed: true,
+                items: [
+                    {
+                        text: 'Instalar o MySQL no Solaris usando um PKG do Solaris',
+                        link: '/03-installing-and-upgrading-my-sql/07-installing-mysql-on-solaris/01-installing-my-s-q-l-on-solaris-using-a-solaris-pkg.md'
+                    }
+                ]
             }
         ]
     }

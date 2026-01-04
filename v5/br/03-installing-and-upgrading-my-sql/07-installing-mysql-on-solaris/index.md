@@ -1,10 +1,8 @@
 ## 2.7 Instalando o MySQL no Solaris
 
-2.7.1 Instalação do MySQL no Solaris usando um PKG Solaris
-
-Nota
-
+::: info Nota
 O MySQL 5.7 suporta o Solaris 11 (Atualização 3 e versões posteriores).
+:::
 
 O MySQL no Solaris está disponível em vários formatos diferentes.
 
@@ -39,7 +37,7 @@ Observações adicionais a serem consideradas ao instalar e usar o MySQL no Sola
 
 - Se muitos processos tentarem se conectar muito rapidamente ao **mysqld**, você deve ver esse erro no log do MySQL:
 
-  ```sql
+  ```
   Error in accept: Protocol error
   ```
 
