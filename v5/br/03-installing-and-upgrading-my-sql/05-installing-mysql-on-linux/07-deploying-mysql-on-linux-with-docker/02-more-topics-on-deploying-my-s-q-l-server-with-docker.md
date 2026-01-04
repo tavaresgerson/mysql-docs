@@ -1,8 +1,8 @@
 #### 2.5.7.2 Mais tópicos sobre implantação do servidor MySQL com Docker
 
-Nota
-
+::: info Nota
 A maioria dos comandos da amostra abaixo tem `mysql/mysql-server` como o repositório da imagem Docker, quando isso precisa ser especificado (como nos comandos **docker pull** e **docker run**); mude isso se sua imagem vier de outro repositório — por exemplo, substitua por `container-registry.oracle.com/mysql/enterprise-server` para imagens da Edição Empresarial do MySQL baixadas do Oracle Container Registry (OCR), ou `mysql/enterprise-server` para imagens da Edição Empresarial do MySQL baixadas do [My Oracle Support](https://support.oracle.com/).
+:::
 
 - A Instalação MySQL Otimizada para Docker
 - Configurando o servidor MySQL
@@ -18,25 +18,24 @@ A maioria dos comandos da amostra abaixo tem `mysql/mysql-server` como o reposit
 As imagens Docker para MySQL são otimizadas para o tamanho do código, o que significa que elas incluem apenas os componentes cruciais que são esperados para serem relevantes para a maioria dos usuários que executam instâncias do MySQL em contêineres Docker. Uma instalação do MySQL Docker é diferente de uma instalação comum, não Docker, nos seguintes aspectos:
 
 - Os binários incluídos são limitados a:
-
-  - `/usr/bin/my_print_defaults`
-  - `/usr/bin/mysql`
-  - `/usr/bin/mysql_config`
-  - `/usr/bin/mysql_install_db`
-  - `/usr/bin/mysql_tzinfo_to_sql`
-  - `/usr/bin/mysql_upgrade`
-  - `/usr/bin/mysqladmin`
-  - `/usr/bin/mysqlcheck`
-  - `/usr/bin/mysqldump`
-  - /usr/bin/mysqlpump
-  - `/usr/sbin/mysqld`
+  + `/usr/bin/my_print_defaults`
+  + `/usr/bin/mysql`
+  + `/usr/bin/mysql_config`
+  + `/usr/bin/mysql_install_db`
+  + `/usr/bin/mysql_tzinfo_to_sql`
+  + `/usr/bin/mysql_upgrade`
+  + `/usr/bin/mysqladmin`
+  + `/usr/bin/mysqlcheck`
+  + `/usr/bin/mysqldump`
+  + `/usr/bin/mysqlpump`
+  + `/usr/sbin/mysqld`
 - Todos os binários são desprovidos de informações de depuração; eles não contêm informações de depuração.
 
 ##### Configurando o servidor MySQL
 
 Ao iniciar o contêiner MySQL Docker, você pode passar opções de configuração para o servidor através do comando **docker run**. Por exemplo:
 
-```sql
+```shell
 docker run --name mysql1 -d mysql/mysql-server:tag --character-set-server=utf8mb4 --collation-server=utf8mb4_col
 ```
 
@@ -48,7 +47,7 @@ Outra maneira de configurar o MySQL Server é preparar um arquivo de configuraç
 
 Os contêineres Docker são, em princípio, efêmeros, e espera-se que quaisquer dados ou configurações sejam perdidos se o contêiner for excluído ou corrompido (veja as discussões [aqui](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)). No entanto, os [volumes Docker](https://docs.docker.com/engine/admin/volumes/volumes/) fornecem um mecanismo para persistir dados criados dentro de um contêiner Docker. Na sua inicialização, o contêiner do MySQL Server cria um volume Docker para o diretório de dados do servidor. A saída JSON para executar o comando **docker inspect** no contêiner tem uma chave `Mount`, cujo valor fornece informações sobre o volume do diretório de dados:
 
-```sql
+```shell
 $> docker inspect mysql1
 ...
  "Mounts": [
@@ -70,7 +69,7 @@ A saída mostra que a pasta de origem `/var/lib/docker/volumes/4f2d463cfc4bdd4ba
 
 Outra maneira de preservar os dados é [ligar-montar](https://docs.docker.com/engine/reference/commandline/service_create/#add-bind-mounts-or-volumes) um diretório do host usando a opção `--mount` ao criar o contêiner. A mesma técnica pode ser usada para persistir a configuração do servidor. O comando a seguir cria um contêiner do MySQL Server e liga-montar tanto o diretório de dados quanto o arquivo de configuração do servidor:
 
-```sql
+```shell
 docker run --name=mysql1 \
 --mount type=bind,src=/path-on-host-machine/my.cnf,dst=/etc/my.cnf \
 --mount type=bind,src=/path-on-host-machine/datadir,dst=/var/lib/mysql \
@@ -81,7 +80,7 @@ O comando monta `path-on-host-machine/my.cnf` em `/etc/my.cnf` (o arquivo de con
 
 - O arquivo de configuração `path-on-host-machine/my.cnf` já deve existir e deve conter a especificação para iniciar o servidor usando o usuário `mysql`:
 
-  ```sql
+  ```shell
   [mysqld]
   user=mysql
   ```
@@ -94,7 +93,7 @@ O comando monta `path-on-host-machine/my.cnf` em `/etc/my.cnf` (o arquivo de con
 
 Se houver quaisquer scripts `.sh` ou `.sql` que você queira executar no banco de dados imediatamente após ele ter sido criado, você pode colocá-los em um diretório hospedeiro e, em seguida, montar o diretório em `/docker-entrypoint-initdb.d/` dentro do contêiner. Por exemplo:
 
-```sql
+```shell
 docker run --name=mysql1 \
 --mount type=bind,src=/path-on-host-machine/scripts/,dst=/docker-entrypoint-initdb.d/ \
 -d mysql/mysql-server:tag
@@ -104,23 +103,23 @@ docker run --name=mysql1 \
 
 Ao configurar uma rede Docker, você pode permitir que vários contêineres Docker se comuniquem entre si, para que um aplicativo cliente em outro contêiner Docker possa acessar o servidor MySQL no contêiner do servidor. Primeiro, crie uma rede Docker:
 
-```sql
+```shell
 docker network create my-custom-net
 ```
 
 Depois, ao criar e iniciar os contêineres do servidor e do cliente, use a opção `--network` para colocá-los na rede que você criou. Por exemplo:
 
-```sql
+```shell
 docker run --name=mysql1 --network=my-custom-net -d mysql/mysql-server
 ```
 
-```sql
+```shell
 docker run --name=myapp1 --network=my-custom-net -d myapp
 ```
 
-O contêiner `myapp1` pode então se conectar ao contêiner `mysql1` com o nome de host `mysql1` e vice-versa, pois o Docker configura automaticamente um DNS para os nomes de contêineres fornecidos. No exemplo a seguir, executamos o cliente \*\*`mysq`l`** do interior do contêiner `myapp1`para se conectar ao host`mysql1\` em seu próprio contêiner:
+O contêiner `myapp1` pode então se conectar ao contêiner `mysql1` com o nome de host `mysql1` e vice-versa, pois o Docker configura automaticamente um DNS para os nomes de contêineres fornecidos. No exemplo a seguir, executamos o cliente **`mysql`** do interior do contêiner `myapp1`para se conectar ao host`mysql1\` em seu próprio contêiner:
 
-```sql
+```shell
 docker exec -it myapp1 mysql --host=mysql1 --user=myuser --password
 ```
 
@@ -158,26 +157,26 @@ Notas
 
 - `MYSQL_USER`, `MYSQL_PASSWORD`: Essas variáveis são usadas em conjunto para criar um usuário e definir a senha desse usuário, e o usuário recebe permissões de superusuário para o banco de dados especificado pela variável `MYSQL_DATABASE`. Tanto `MYSQL_USER` quanto `MYSQL_PASSWORD` são necessários para que um usuário seja criado — se qualquer uma das duas variáveis não for definida, a outra é ignorada. Se ambas as variáveis forem definidas, mas `MYSQL_DATABASE` não, o usuário será criado sem quaisquer privilégios.
 
-  Nota
-
+  ::: info Nota
   Não é necessário usar esse mecanismo para criar o superusuário raiz, que é criado por padrão com a senha definida por um dos mecanismos discutidos nas descrições para `MYSQL_ROOT_PASSWORD` e `MYSQL_RANDOM_ROOT_PASSWORD`, a menos que `MYSQL_ALLOW_EMPTY_PASSWORD` seja verdadeiro.
+  :::
 
 - `MYSQL_ROOT_HOST`: Por padrão, o MySQL cria a conta `'root'@'localhost'`. Essa conta só pode ser conectada a partir do interior do contêiner, conforme descrito em Conectar ao servidor MySQL dentro do contêiner. Para permitir conexões de root de outros hosts, defina essa variável de ambiente. Por exemplo, o valor `172.17.0.1`, que é o IP padrão do gateway do Docker, permite conexões da máquina host que executa o contêiner. A opção aceita apenas uma entrada, mas caracteres curinga são permitidos (por exemplo, `MYSQL_ROOT_HOST=172.*.*.*` ou `MYSQL_ROOT_HOST=%`).
 
 - `MYSQL_LOG_CONSOLE`: Quando a variável é `true` (o estado padrão da variável para os contêineres do servidor MySQL 5.7 é `false`), o log de erro do MySQL Server é redirecionado para `stderr`, de modo que o log de erro vá para o log do contêiner Docker e possa ser visualizado usando o comando **docker logs *`mysqld-container`***.
 
-  Nota
-
+  ::: info Nota
   A variável não tem efeito se um arquivo de configuração do servidor do host tiver sido montado (consulte Persistência de alterações de dados e configuração ao vincular um arquivo de configuração).
+  :::
 
 - `MYSQL_ROOT_PASSWORD`: Esta variável especifica uma senha definida para a conta raiz do MySQL.
 
-  Aviso
-
+  ::: warning Aviso
   Definir a senha do usuário root do MySQL na linha de comando é inseguro. Como alternativa para especificar a senha explicitamente, você pode definir a variável com um caminho de arquivo de contêiner para um arquivo de senha e, em seguida, montar um arquivo do seu host que contenha a senha no caminho do arquivo de contêiner. Isso ainda não é muito seguro, pois a localização do arquivo de senha ainda está exposta. É preferível usar as configurações padrão de `MYSQL_RANDOM_ROOT_PASSWORD` e `MYSQL_ONETIME_PASSWORD`, ambas como verdadeiras.
+  :::
 
 - `MYSQL_ALLOW_EMPTY_PASSWORD`. Defina para `true` para permitir que o contêiner seja iniciado com uma senha em branco para o usuário root.
 
-  Aviso
-
+  ::: warning Aviso
   Definir essa variável para verdadeiro é inseguro, pois deixará sua instância MySQL completamente desprotegida, permitindo que qualquer pessoa obtenha acesso completo como superusuário. É preferível usar as configurações padrão de `MYSQL_RANDOM_ROOT_PASSWORD` e `MYSQL_ONETIME_PASSWORD`, ambas com o valor `true`.
+  :::

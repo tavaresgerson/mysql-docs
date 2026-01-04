@@ -293,6 +293,36 @@ export default [
                     {
                         text: 'Instalar o MySQL no Linux usando pacotes do Debian da Oracle',
                         link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/06-installing-my-s-q-l-on-linux-using-debian-packages-from-oracle.md'
+                    },
+                    {
+                        text: 'Implantação do MySQL no Linux com Docker',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/07-deploying-mysql-on-linux-with-docker/index.md',
+                        items: [
+                            {
+                                text: 'Passos básicos para a implantação do servidor MySQL com o Docker',
+                                link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/07-deploying-mysql-on-linux-with-docker/01-basic-steps-for-my-s-q-l-server-deployment-with-docker.md'
+                            },
+                            {
+                                text: 'Mais tópicos sobre implantação do servidor MySQL com Docker',
+                                link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/07-deploying-mysql-on-linux-with-docker/02-more-topics-on-deploying-my-s-q-l-server-with-docker.md'
+                            },
+                            {
+                                text: 'Implantação do MySQL no Windows e em outras plataformas não Linux com o Docker',
+                                link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/07-deploying-mysql-on-linux-with-docker/03-deploying-my-s-q-l-on-windows-and-other-non-linux-platforms-with-docker.md'
+                            }
+                        ]
+                    },
+                    {
+                        text: 'Instalando o MySQL no Linux a partir dos repositórios de software nativo',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/08-installing-my-s-q-l-on-linux-from-the-native-software-repositories.md'
+                    },
+                    {
+                        text: 'Instalando o MySQL no Linux com o Juju',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/09-installing-my-s-q-l-on-linux-with-juju.md'
+                    },
+                    {
+                        text: 'Gerenciando o servidor MySQL com o systemd',
+                        link: '/03-installing-and-upgrading-my-sql/05-installing-mysql-on-linux/10-managing-my-s-q-l-server-with-systemd.md'
                     }
                 ]
             }

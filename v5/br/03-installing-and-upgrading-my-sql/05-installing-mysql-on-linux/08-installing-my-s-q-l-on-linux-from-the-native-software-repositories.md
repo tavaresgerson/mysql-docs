@@ -18,7 +18,7 @@ As instruções específicas de distribuição estão mostradas abaixo:
 
   Para instalar, use o comando **yum** para especificar os pacotes que você deseja instalar. Por exemplo:
 
-  ```sql
+  ```shell
   #> yum install mysql mysql-server mysql-libs mysql-server
   Loaded plugins: presto, refresh-packagekit
   Setting up Install Process
@@ -83,13 +83,13 @@ As instruções específicas de distribuição estão mostradas abaixo:
 
   Agora, o MySQL e o servidor MySQL devem estar instalados. Um arquivo de configuração de exemplo está instalado em `/etc/my.cnf`. Um script de inicialização, para iniciar e parar o servidor, está instalado em `/etc/init.d/mysqld`. Para iniciar o servidor MySQL, use **service**:
 
-  ```sql
+  ```shell
   #> service mysqld start
   ```
 
   Para permitir que o servidor seja iniciado e desligado automaticamente durante o boot, use o **chkconfig**:
 
-  ```sql
+  ```shell
   #> chkconfig --levels 235 mysqld on
   ```
 
@@ -113,7 +113,7 @@ As instruções específicas de distribuição estão mostradas abaixo:
 
   Uma instalação de amostra dos pacotes MySQL pode parecer assim (algumas seções foram cortadas para clareza):
 
-  ```sql
+  ```shell
   #> apt-get install mysql-client-5.1 mysql-server-5.1
   Reading package lists... Done
   Building dependency tree
@@ -177,7 +177,7 @@ As instruções específicas de distribuição estão mostradas abaixo:
 
   O servidor já está iniciado. Você pode iniciar e parar o servidor manualmente usando:
 
-  ```sql
+  ```shell
   #> service mysql [start|stop]
   ```
 
