@@ -10,7 +10,7 @@ Para instalar o MySQL a partir do código-fonte, os seguintes requisitos de sist
 
   Em sistemas semelhantes ao Unix, incluindo o Linux, você pode verificar a versão do **make** do seu sistema da seguinte maneira:
 
-  ```sql
+  ```shell
   $> make --version
   GNU Make 4.2.1
   ```
@@ -21,7 +21,7 @@ Para instalar o MySQL a partir do código-fonte, os seguintes requisitos de sist
 
 - As bibliotecas Boost C++ são necessárias para construir o MySQL (mas não para usá-lo). O Boost 1.59.0 deve ser instalado. Para obter o Boost e suas instruções de instalação, visite o [site oficial do Boost](https://www.boost.org). Após o Boost ser instalado, informe ao sistema de construção onde os arquivos do Boost estão localizados de acordo com o valor definido para a opção `WITH_BOOST` ao invocar o CMake. Por exemplo:
 
-  ```sql
+  ```shell
   cmake . -DWITH_BOOST=/usr/local/boost_version_number
   ```
 
@@ -53,8 +53,8 @@ Para instalar o MySQL a partir de um repositório de código-fonte de desenvolvi
 
 - No Solaris Express, **m4** deve ser instalado em conjunto com **bison**. **m4** está disponível em <http://www.gnu.org/software/m4/>.
 
-Nota
-
+::: info Nota
 Se você precisar instalar algum programa, modifique a variável de ambiente `PATH` para incluir quaisquer diretórios nos quais os programas estão localizados. Consulte a Seção 4.2.7, “Definindo Variáveis de Ambiente”.
+:::
 
 Se você encontrar problemas e precisar fazer um relatório de erro, use as instruções na Seção 1.5, “Como relatar erros ou problemas”.

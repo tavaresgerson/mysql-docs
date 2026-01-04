@@ -17,7 +17,7 @@ Para configurar um repositório Git MySQL em sua máquina:
 
 1. Clone o repositório Git do MySQL em sua máquina. O comando a seguir cloneia o repositório Git do MySQL em um diretório chamado `mysql-server`. O download inicial pode levar algum tempo para ser concluído, dependendo da velocidade da sua conexão.
 
-   ```sql
+   ```bash
    $> git clone https://github.com/mysql/mysql-server.git
    Cloning into 'mysql-server'...
    remote: Counting objects: 1198513, done.
@@ -30,7 +30,7 @@ Para configurar um repositório Git MySQL em sua máquina:
 
 2. Quando a operação de clone for concluída, o conteúdo do seu repositório local do MySQL Git parecerá semelhante ao seguinte:
 
-   ```sql
+   ```bash
    ~> cd mysql-server
    ~/mysql-server> ls
    client             extra                mysys              storage
@@ -47,7 +47,7 @@ Para configurar um repositório Git MySQL em sua máquina:
 
 3. Use o comando **git branch -r** para visualizar os ramos de rastreamento remoto do repositório MySQL.
 
-   ```sql
+   ```bash
    ~/mysql-server> git branch -r
      origin/5.7
      origin/8.0
@@ -60,14 +60,14 @@ Para configurar um repositório Git MySQL em sua máquina:
 
 4. Para visualizar o ramo que está sendo verificado no seu repositório local, execute o comando **git branch**. Ao clonar o repositório Git do MySQL, o ramo MySQL mais recente é verificado automaticamente. O asterisco identifica o ramo ativo.
 
-   ```sql
+   ```bash
    ~/mysql-server$ git branch
    * trunk
    ```
 
 5. Para verificar um ramo anterior do MySQL, execute o comando **git checkout**, especificando o nome do ramo. Por exemplo, para verificar o ramo MySQL 5.7:
 
-   ```sql
+   ```bash
    ~/mysql-server$ git checkout 5.7
    Checking out files: 100% (9600/9600), done.
    Branch 5.7 set up to track remote branch 5.7 from origin.
@@ -76,14 +76,14 @@ Para configurar um repositório Git MySQL em sua máquina:
 
 6. Para obter as alterações feitas após a configuração inicial do repositório Git do MySQL, mude para o ramo que deseja atualizar e execute o comando **git pull**:
 
-   ```sql
+   ```bash
    ~/mysql-server$ git checkout 8.0
    ~/mysql-server$ git pull
    ```
 
    Para examinar a história de commits, use o comando **git log**:
 
-   ```sql
+   ```bash
    ~/mysql-server$ git log
    ```
 

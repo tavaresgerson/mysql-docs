@@ -16,13 +16,13 @@ Para compilar usando o OpenSSL, use este procedimento:
 
 2. A opção `WITH_SSL` do **CMake** determina qual biblioteca SSL deve ser usada para compilar o MySQL (consulte a Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”). O padrão é `-DWITH_SSL=system`, que usa o OpenSSL. Para tornar isso explícito, especifique essa opção. Por exemplo:
 
-   ```sql
+   ```bash
    cmake . -DWITH_SSL=system
    ```
 
    Esse comando configura a distribuição para usar a biblioteca OpenSSL instalada. Alternativamente, para especificar explicitamente o nome do caminho da instalação do OpenSSL, use a seguinte sintaxe. Isso pode ser útil se você tiver várias versões do OpenSSL instaladas, para evitar que o **CMake** escolha a versão errada:
 
-   ```sql
+   ```bash
    cmake . -DWITH_SSL=path_name
    ```
 

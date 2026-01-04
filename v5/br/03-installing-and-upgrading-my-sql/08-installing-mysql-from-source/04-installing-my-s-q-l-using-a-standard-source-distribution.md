@@ -3,18 +3,15 @@
 Para instalar o MySQL a partir de uma distribuição de fonte padrão:
 
 1. Verifique se o seu sistema atende aos requisitos da ferramenta listados na Seção 2.8.2, “Pré-requisitos de Instalação da Fonte”.
-
 2. Obtenha um arquivo de distribuição usando as instruções na Seção 2.1.3, “Como obter o MySQL”.
-
 3. Configure, construa e instale a distribuição usando as instruções nesta seção.
-
 4. Realize os procedimentos pós-instalação usando as instruções na Seção 2.9, “Configuração e Teste Pós-Instalação”.
 
 O MySQL utiliza **CMake** como o framework de compilação em todas as plataformas. As instruções fornecidas aqui devem permitir que você produza uma instalação funcional. Para obter informações adicionais sobre como usar **CMake** para compilar o MySQL, consulte Como construir o servidor MySQL com CMake.
 
 Se você começar com um RPM de origem, use o seguinte comando para criar um RPM binário que você pode instalar. Se você não tiver **rpmbuild**, use **rpm** em vez disso.
 
-```sql
+```shell
 $> rpmbuild --rebuild --clean MySQL-VERSION.src.rpm
 ```
 
@@ -22,7 +19,7 @@ O resultado é um ou mais pacotes RPM binários que você instala conforme indic
 
 A sequência para a instalação a partir de uma distribuição de fonte em formato **tar** comprimido ou de um arquivo ZIP é semelhante ao processo para a instalação a partir de uma distribuição de binários genéricos (consulte a Seção 2.2, “Instalando o MySQL no Unix/Linux Usando Binários Genéricos”), exceto que é usada em todas as plataformas e inclui etapas para configurar e compilar a distribuição. Por exemplo, com uma distribuição de fonte em formato **tar** comprimido no Unix, a sequência básica do comando de instalação é a seguinte:
 
-```sql
+```shell
 # Preconfiguration setup
 $> groupadd mysql
 $> useradd -r -g mysql -s /bin/false mysql
@@ -49,9 +46,9 @@ $> cp support-files/mysql.server /etc/init.d/mysql.server
 
 Uma versão mais detalhada das instruções específicas para o build de origem é mostrada a seguir.
 
-Nota
-
+::: info Nota
 O procedimento mostrado aqui não configura senhas para contas do MySQL. Após seguir o procedimento, prossiga para a Seção 2.9, “Configuração e Teste Pós-Instalação”, para a configuração e teste pós-instalação.
+:::
 
 - Realize a configuração préconfigurada
 - Obtenha e desempacote a distribuição
@@ -74,19 +71,19 @@ Descompacte a distribuição no diretório atual:
 
 - Para desempacotar um arquivo **tar** compactado, o **tar** pode descompactar e desempacotar a distribuição se tiver suporte à opção `z`:
 
-  ```sql
+  ```shell
   $> tar zxvf mysql-VERSION.tar.gz
   ```
 
   Se o seu **tar** não tiver suporte à opção `z`, use **gunzip** para descomprimir a distribuição e **tar** para descompac-la:
 
-  ```sql
+  ```shell
   $> gunzip < mysql-VERSION.tar.gz | tar xvf -
   ```
 
   Alternativamente, o **CMake** pode descomprimir e desempacotar a distribuição:
 
-  ```sql
+  ```shell
   $> cmake -E tar zxvf mysql-VERSION.tar.gz
   ```
 
@@ -98,33 +95,33 @@ Ao descompactar o arquivo de distribuição, é criado um diretório chamado `my
 
 Altere a localização para o diretório de nível superior da distribuição desempacotada:
 
-```sql
+```shell
 $> cd mysql-VERSION
 ```
 
 Construa fora da árvore de origem para manter a árvore limpa. Se o diretório de origem de nível superior estiver nomeado `mysql-src` sob o diretório de trabalho atual, você pode construir em um diretório nomeado `build` no mesmo nível. Crie o diretório e vá até lá:
 
-```sql
+```shell
 $> mkdir bld
 $> cd bld
 ```
 
 Configure o diretório de compilação. O comando de configuração mínima não inclui opções para substituir os valores padrão de configuração:
 
-```sql
+```shell
 $> cmake ../mysql-src
 ```
 
 O diretório de compilação não precisa estar fora da árvore de origem. Por exemplo, você pode compilar em um diretório chamado `build` sob a árvore de origem de nível superior. Para fazer isso, começando com `mysql-src` como seu diretório de trabalho atual, crie o diretório `build` e vá até lá:
 
-```sql
+```shell
 $> mkdir build
 $> cd build
 ```
 
 Configure o diretório de compilação. O comando de configuração mínima não inclui opções para substituir os valores padrão de configuração:
 
-```sql
+```shell
 $> cmake ..
 ```
 
@@ -132,7 +129,7 @@ Se você tiver vários repositórios de origem no mesmo nível (por exemplo, par
 
 Em Windows, especifique o ambiente de desenvolvimento. Por exemplo, os seguintes comandos configuram o MySQL para compilações de 32 bits ou 64 bits, respectivamente:
 
-```sql
+```shell
 $> cmake .. -G "Visual Studio 12 2013"
 
 $> cmake .. -G "Visual Studio 12 2013 Win64"
@@ -140,25 +137,22 @@ $> cmake .. -G "Visual Studio 12 2013 Win64"
 
 No macOS, para usar o IDE Xcode:
 
-```sql
+```shell
 $> cmake .. -G Xcode
 ```
 
 Quando você executar o **Cmake**, você pode querer adicionar opções à linha de comando. Aqui estão alguns exemplos:
 
 - `-DBUILD_CONFIG=mysql_release`: Configure a fonte com as mesmas opções de compilação usadas pela Oracle para produzir distribuições binárias para as versões oficiais do MySQL.
-
 - `-DCMAKE_INSTALL_PREFIX=dir_name`: Configure a distribuição para instalação em um local específico.
-
 - `-DCPACK_MONOLITHIC_INSTALL=1`: Faça com que o **make package** gere um único arquivo de instalação em vez de vários arquivos.
-
 - `-DWITH_DEBUG=1`: Construa a distribuição com suporte de depuração.
 
 Para uma lista mais extensa de opções, consulte a Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”.
 
 Para listar as opções de configuração, use um dos seguintes comandos:
 
-```sql
+```shell
 $> cmake .. -L   # overview
 
 $> cmake .. -LH  # overview with help text
@@ -171,19 +165,18 @@ $> ccmake ..     # interactive display
 Se o **CMake** falhar, você pode precisar reconfigurá-lo executando-o novamente com opções diferentes. Se você reconfigurar, anote o seguinte:
 
 - Se o **CMake** for executado após ter sido executado anteriormente, ele pode usar informações coletadas durante sua invocação anterior. Essas informações são armazenadas no `CMakeCache.txt`. Quando o **CMake** começa, ele procura esse arquivo e lê seu conteúdo, se ele existir, assumindo que as informações ainda estão corretas. Essa suposição é inválida quando você reconfigura.
-
 - Cada vez que você executar o **CMake**, você deve executar novamente o **make** para recompilar. No entanto, você pode querer remover os arquivos de objeto antigos de construções anteriores primeiro, pois eles foram compilados usando opções de configuração diferentes.
 
 Para evitar que arquivos de objeto antigos ou informações de configuração sejam usados, execute esses comandos no diretório de compilação no Unix antes de executar novamente o **CMake**:
 
-```sql
+```shell
 $> make clean
 $> rm CMakeCache.txt
 ```
 
 Ou, no Windows:
 
-```sql
+```shell
 $> devenv MySQL.sln /clean
 $> del CMakeCache.txt
 ```
@@ -194,7 +187,7 @@ Antes de fazer uma solicitação no [MySQL Community Slack](https://mysqlcommuni
 
 No Unix:
 
-```sql
+```shell
 $> make
 $> make VERBOSE=1
 ```
@@ -205,7 +198,7 @@ Use **gmake** em vez disso em sistemas onde você está usando o **GNU make** e 
 
 No Windows:
 
-```sql
+```shell
 $> devenv MySQL.sln /build RelWithDebInfo
 ```
 
@@ -215,7 +208,7 @@ Se você chegou à fase de compilação, mas a distribuição não compila, cons
 
 No Unix:
 
-```sql
+```shell
 $> make install
 ```
 
@@ -223,13 +216,13 @@ Isso instala os arquivos no diretório de instalação configurado (por padrão,
 
 Para instalar em um diretório específico, adicione um parâmetro `DESTDIR` à linha de comando:
 
-```sql
+```shell
 $> make install DESTDIR="/opt/mysql"
 ```
 
 Alternativamente, você pode gerar arquivos de pacote de instalação que você pode instalar onde quiser:
 
-```sql
+```shell
 $> make package
 ```
 
@@ -237,7 +230,7 @@ Essa operação gera um ou mais arquivos `.tar.gz` que podem ser instalados como
 
 No Windows, crie o diretório de dados e, em seguida, crie um pacote de instalação de arquivo `.zip`:
 
-```sql
+```shell
 $> devenv MySQL.sln /build RelWithDebInfo /project initial_database
 $> devenv MySQL.sln /build RelWithDebInfo /project package
 ```
@@ -248,6 +241,6 @@ Você pode instalar o arquivo `.zip` resultante onde desejar. Veja a Seção 2.3
 
 O restante do processo de instalação envolve a configuração do arquivo de configuração, a criação dos bancos de dados principais e o início do servidor MySQL. Para obter instruções, consulte a Seção 2.9, “Configuração e Teste Pós-Instalação”.
 
-Nota
-
+::: info Nota
 As contas listadas nas tabelas de concessão do MySQL inicialmente não têm senhas. Após iniciar o servidor, você deve configurá-las usando as instruções na Seção 2.9, "Configuração e Teste Pós-Instalação".
+:::

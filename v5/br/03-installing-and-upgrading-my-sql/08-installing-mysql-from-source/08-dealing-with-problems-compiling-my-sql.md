@@ -10,14 +10,14 @@ Para evitar que arquivos de objeto antigos ou informações de configuração se
 
 No Unix:
 
-```sql
+```shell
 $> make clean
 $> rm CMakeCache.txt
 ```
 
 No Windows:
 
-```sql
+```shell
 $> devenv MySQL.sln /clean
 $> del CMakeCache.txt
 ```
@@ -28,7 +28,7 @@ Em alguns sistemas, podem ocorrer avisos devido a diferenças nos arquivos de in
 
 - Para definir quais compiladores C e C++ usar, você pode definir as variáveis de ambiente `CC` e `CXX`. Por exemplo:
 
-  ```sql
+  ```shell
   $> CC=gcc
   $> CXX=g++
   $> export CC CXX
@@ -46,20 +46,20 @@ Em alguns sistemas, podem ocorrer avisos devido a diferenças nos arquivos de in
 
 - Se a compilação falhar com erros como qualquer um dos seguintes, você deve atualizar sua versão do **make** para o **make** do GNU:
 
-  ```sql
+  ```
   make: Fatal error in reader: Makefile, line 18:
   Badly formed macro assignment
   ```
 
   Ou:
 
-  ```sql
+  ```
   make: file `Makefile' line 18: Must be a separator (:
   ```
 
   Ou:
 
-  ```sql
+  ```
   pthread.h: No such file or directory
   ```
 
@@ -69,7 +69,7 @@ Em alguns sistemas, podem ocorrer avisos devido a diferenças nos arquivos de in
 
 - O arquivo `sql_yacc.cc` é gerado a partir do `sql_yacc.yy`. Normalmente, o processo de compilação não precisa criar `sql_yacc.cc` porque o MySQL vem com uma cópia pré-gerada. No entanto, se você precisar recriá-lo, você pode encontrar esse erro:
 
-  ```sql
+  ```
   "sql_yacc.yy", line xxx fatal: default action causes potential...
   ```
 
@@ -77,7 +77,7 @@ Em alguns sistemas, podem ocorrer avisos devido a diferenças nos arquivos de in
 
   Versões do **bison** mais antigas que 1,75 podem apresentar esse erro:
 
-  ```sql
+  ```
   sql_yacc.yy:#####: fatal error: maximum table size (32767) exceeded
   ```
 

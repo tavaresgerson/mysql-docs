@@ -30,7 +30,920 @@ The following table shows the available **CMake** options. In the `Default` colu
 
 **Table 2.14 MySQL Source-Configuration Option Reference (CMake)**
 
-<table frame="box" rules="all" summary="CMake options that are available to configure MySQL when building from source."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 20%"/><col style="width: 10%"/><col style="width: 10%"/><thead><tr><th scope="col">Formats</th> <th scope="col">Description</th> <th scope="col">Default</th> <th scope="col">Introduced</th> <th scope="col">Removed</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_build_config"><code class="literal">BUILD_CONFIG</code></a></th> <td>Use same build options as official releases</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cmake_build_type"><code class="literal">CMAKE_BUILD_TYPE</code></a></th> <td>Type of build to produce</td> <td><code class="literal">RelWithDebInfo</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cmake_cxx_flags"><code class="literal">CMAKE_CXX_FLAGS</code></a></th> <td>Flags for C++ Compiler</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cmake_c_flags"><code class="literal">CMAKE_C_FLAGS</code></a></th> <td>Flags for C Compiler</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cmake_install_prefix"><code class="literal">CMAKE_INSTALL_PREFIX</code></a></th> <td>Installation base directory</td> <td><code class="literal">/usr/local/mysql</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_compilation_comment"><code class="literal">COMPILATION_COMMENT</code></a></th> <td>Comment about compilation environment</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cpack_monolithic_install"><code class="literal">CPACK_MONOLITHIC_INSTALL</code></a></th> <td>Whether package build produces single file</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_default_charset"><code class="literal">DEFAULT_CHARSET</code></a></th> <td>The default server character set</td> <td><code class="literal">latin1</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_default_collation"><code class="literal">DEFAULT_COLLATION</code></a></th> <td>The default server collation</td> <td><code class="literal">latin1_swedish_ci</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_cond"><code class="literal">DISABLE_PSI_COND</code></a></th> <td>Exclude Performance Schema condition instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_file"><code class="literal">DISABLE_PSI_FILE</code></a></th> <td>Exclude Performance Schema file instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_idle"><code class="literal">DISABLE_PSI_IDLE</code></a></th> <td>Exclude Performance Schema idle instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_memory"><code class="literal">DISABLE_PSI_MEMORY</code></a></th> <td>Exclude Performance Schema memory instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_metadata"><code class="literal">DISABLE_PSI_METADATA</code></a></th> <td>Exclude Performance Schema metadata instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_mutex"><code class="literal">DISABLE_PSI_MUTEX</code></a></th> <td>Exclude Performance Schema mutex instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_ps"><code class="literal">DISABLE_PSI_PS</code></a></th> <td>Exclude the performance schema prepared statements</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_rwlock"><code class="literal">DISABLE_PSI_RWLOCK</code></a></th> <td>Exclude Performance Schema rwlock instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_socket"><code class="literal">DISABLE_PSI_SOCKET</code></a></th> <td>Exclude Performance Schema socket instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_sp"><code class="literal">DISABLE_PSI_SP</code></a></th> <td>Exclude Performance Schema stored program instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_stage"><code class="literal">DISABLE_PSI_STAGE</code></a></th> <td>Exclude Performance Schema stage instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_statement"><code class="literal">DISABLE_PSI_STATEMENT</code></a></th> <td>Exclude Performance Schema statement instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_statement_digest"><code class="literal">DISABLE_PSI_STATEMENT_DIGEST</code></a></th> <td>Exclude Performance Schema statements_digest instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_table"><code class="literal">DISABLE_PSI_TABLE</code></a></th> <td>Exclude Performance Schema table instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_thread"><code class="literal">DISABLE_PSI_THREAD</code></a></th> <td>Exclude the performance schema thread instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_transaction"><code class="literal">DISABLE_PSI_TRANSACTION</code></a></th> <td>Exclude the performance schema transaction instrumentation</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_download_boost"><code class="literal">DOWNLOAD_BOOST</code></a></th> <td>Whether to download the Boost library</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_download_boost_timeout"><code class="literal">DOWNLOAD_BOOST_TIMEOUT</code></a></th> <td>Timeout in seconds for downloading the Boost library</td> <td><code class="literal">600</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enabled_local_infile"><code class="literal">ENABLED_LOCAL_INFILE</code></a></th> <td>Whether to enable LOCAL for LOAD DATA</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enabled_profiling"><code class="literal">ENABLED_PROFILING</code></a></th> <td>Whether to enable query profiling code</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enable_downloads"><code class="literal">ENABLE_DOWNLOADS</code></a></th> <td>Whether to download optional files</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enable_dtrace"><code class="literal">ENABLE_DTRACE</code></a></th> <td>Whether to include DTrace support</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enable_gcov"><code class="literal">ENABLE_GCOV</code></a></th> <td>Whether to include gcov support</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enable_gprof"><code class="literal">ENABLE_GPROF</code></a></th> <td>Enable gprof (optimized Linux builds only)</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_force_unsupported_compiler"><code class="literal">FORCE_UNSUPPORTED_COMPILER</code></a></th> <td>Whether to permit unsupported compilers</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_ignore_aio_check"><code class="literal">IGNORE_AIO_CHECK</code></a></th> <td>With -DBUILD_CONFIG=mysql_release, ignore libaio check</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_bindir"><code class="literal">INSTALL_BINDIR</code></a></th> <td>User executables directory</td> <td><code class="literal">PREFIX/bin</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_docdir"><code class="literal">INSTALL_DOCDIR</code></a></th> <td>Documentation directory</td> <td><code class="literal">PREFIX/docs</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_docreadmedir"><code class="literal">INSTALL_DOCREADMEDIR</code></a></th> <td>README file directory</td> <td><code class="literal">PREFIX</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_includedir"><code class="literal">INSTALL_INCLUDEDIR</code></a></th> <td>Header file directory</td> <td><code class="literal">PREFIX/include</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_infodir"><code class="literal">INSTALL_INFODIR</code></a></th> <td>Info file directory</td> <td><code class="literal">PREFIX/docs</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_layout"><code class="literal">INSTALL_LAYOUT</code></a></th> <td>Select predefined installation layout</td> <td><code class="literal">STANDALONE</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_libdir"><code class="literal">INSTALL_LIBDIR</code></a></th> <td>Library file directory</td> <td><code class="literal">PREFIX/lib</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_mandir"><code class="literal">INSTALL_MANDIR</code></a></th> <td>Manual page directory</td> <td><code class="literal">PREFIX/man</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_mysqlkeyringdir"><code class="literal">INSTALL_MYSQLKEYRINGDIR</code></a></th> <td>Directory for keyring_file plugin data file</td> <td><code class="literal">platform specific</code></td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_mysqlsharedir"><code class="literal">INSTALL_MYSQLSHAREDIR</code></a></th> <td>Shared data directory</td> <td><code class="literal">PREFIX/share</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_mysqltestdir"><code class="literal">INSTALL_MYSQLTESTDIR</code></a></th> <td>mysql-test directory</td> <td><code class="literal">PREFIX/mysql-test</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_pkgconfigdir"><code class="literal">INSTALL_PKGCONFIGDIR</code></a></th> <td>Directory for mysqlclient.pc pkg-config file</td> <td><code class="literal">INSTALL_LIBDIR/pkgconfig</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_plugindir"><code class="literal">INSTALL_PLUGINDIR</code></a></th> <td>Plugin directory</td> <td><code class="literal">PREFIX/lib/plugin</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_sbindir"><code class="literal">INSTALL_SBINDIR</code></a></th> <td>Server executable directory</td> <td><code class="literal">PREFIX/bin</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_scriptdir"><code class="literal">INSTALL_SCRIPTDIR</code></a></th> <td>Scripts directory</td> <td><code class="literal">PREFIX/scripts</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_secure_file_privdir"><code class="literal">INSTALL_SECURE_FILE_PRIVDIR</code></a></th> <td>secure_file_priv default value</td> <td><code class="literal">platform specific</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_secure_file_priv_embeddeddir"><code class="literal">INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR</code></a></th> <td>secure_file_priv default value for libmysqld</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_sharedir"><code class="literal">INSTALL_SHAREDIR</code></a></th> <td>aclocal/mysql.m4 installation directory</td> <td><code class="literal">PREFIX/share</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_supportfilesdir"><code class="literal">INSTALL_SUPPORTFILESDIR</code></a></th> <td>Extra support files directory</td> <td><code class="literal">PREFIX/support-files</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_max_indexes"><code class="literal">MAX_INDEXES</code></a></th> <td>Maximum indexes per table</td> <td><code class="literal">64</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_memcached_home"><code class="literal">MEMCACHED_HOME</code></a></th> <td>Path to memcached; obsolete</td> <td><code class="literal">[none]</code></td> <td></td> <td>5.7.33</td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mutex_type"><code class="literal">MUTEX_TYPE</code></a></th> <td>InnoDB mutex type</td> <td><code class="literal">event</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysqlx_tcp_port"><code class="literal">MYSQLX_TCP_PORT</code></a></th> <td>TCP/IP port number used by X Plugin</td> <td><code class="literal">33060</code></td> <td>5.7.17</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysqlx_unix_addr"><code class="literal">MYSQLX_UNIX_ADDR</code></a></th> <td>Unix socket file used by X Plugin</td> <td><code class="literal">/tmp/mysqlx.sock</code></td> <td>5.7.15</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_datadir"><code class="literal">MYSQL_DATADIR</code></a></th> <td>Data directory</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_maintainer_mode"><code class="literal">MYSQL_MAINTAINER_MODE</code></a></th> <td>Whether to enable MySQL maintainer-specific development environment</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_project_name"><code class="literal">MYSQL_PROJECT_NAME</code></a></th> <td>Windows/macOS project name</td> <td><code class="literal">MySQL</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_tcp_port"><code class="literal">MYSQL_TCP_PORT</code></a></th> <td>TCP/IP port number</td> <td><code class="literal">3306</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_unix_addr"><code class="literal">MYSQL_UNIX_ADDR</code></a></th> <td>Unix socket file</td> <td><code class="literal">/tmp/mysql.sock</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_odbc_includes"><code class="literal">ODBC_INCLUDES</code></a></th> <td>ODBC includes directory</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_odbc_lib_dir"><code class="literal">ODBC_LIB_DIR</code></a></th> <td>ODBC library directory</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_optimizer_trace"><code class="literal">OPTIMIZER_TRACE</code></a></th> <td>Whether to support optimizer tracing</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_reproducible_build"><code class="literal">REPRODUCIBLE_BUILD</code></a></th> <td>Take extra care to create a build result independent of build location and time</td> <td></td> <td>5.7.19</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_sunpro_cxx_library"><code class="literal">SUNPRO_CXX_LIBRARY</code></a></th> <td>Client link library on Solaris 10+</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_sysconfdir"><code class="literal">SYSCONFDIR</code></a></th> <td>Option file directory</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_systemd_pid_dir"><code class="literal">SYSTEMD_PID_DIR</code></a></th> <td>Directory for PID file under systemd</td> <td><code class="literal">/var/run/mysqld</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_systemd_service_name"><code class="literal">SYSTEMD_SERVICE_NAME</code></a></th> <td>Name of MySQL service under systemd</td> <td><code class="literal">mysqld</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_tmpdir"><code class="literal">TMPDIR</code></a></th> <td>tmpdir default value</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_win_debug_no_inline"><code class="literal">WIN_DEBUG_NO_INLINE</code></a></th> <td>Whether to disable function inlining</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_without_server"><code class="literal">WITHOUT_SERVER</code></a></th> <td>Do not build the server; internal use only</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_storage_engine_options" title="Storage Engine Options"><code class="literal">WITHOUT_xxx_STORAGE_ENGINE</code></a></th> <td>Exclude storage engine xxx from build</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_asan"><code class="literal">WITH_ASAN</code></a></th> <td>Enable AddressSanitizer</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_asan_scope"><code class="literal">WITH_ASAN_SCOPE</code></a></th> <td>Enable AddressSanitizer -fsanitize-address-use-after-scope Clang flag</td> <td><code class="literal">OFF</code></td> <td>5.7.21</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_authentication_ldap"><code class="literal">WITH_AUTHENTICATION_LDAP</code></a></th> <td>Whether to report error if LDAP authentication plugins cannot be built</td> <td><code class="literal">OFF</code></td> <td>5.7.19</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_authentication_pam"><code class="literal">WITH_AUTHENTICATION_PAM</code></a></th> <td>Build PAM authentication plugin</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_aws_sdk"><code class="literal">WITH_AWS_SDK</code></a></th> <td>Location of Amazon Web Services software development kit</td> <td></td> <td>5.7.19</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_boost"><code class="literal">WITH_BOOST</code></a></th> <td>The location of the Boost library sources</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_bundled_libevent"><code class="literal">WITH_BUNDLED_LIBEVENT</code></a></th> <td>Use bundled libevent when building ndbmemcache; obsolete</td> <td><code class="literal">ON</code></td> <td></td> <td>5.7.33</td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_bundled_memcached"><code class="literal">WITH_BUNDLED_MEMCACHED</code></a></th> <td>Use bundled memcached when building ndbmemcache; obsolete</td> <td><code class="literal">ON</code></td> <td></td> <td>5.7.33</td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_classpath"><code class="literal">WITH_CLASSPATH</code></a></th> <td>Classpath to use when building MySQL Cluster Connector for Java. Default is an empty string.</td> <td><code class="literal"></code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_client_protocol_tracing"><code class="literal">WITH_CLIENT_PROTOCOL_TRACING</code></a></th> <td>Build client-side protocol tracing framework</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_curl"><code class="literal">WITH_CURL</code></a></th> <td>Location of curl library</td> <td></td> <td>5.7.19</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_debug"><code class="literal">WITH_DEBUG</code></a></th> <td>Whether to include debugging support</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_default_compiler_options"><code class="literal">WITH_DEFAULT_COMPILER_OPTIONS</code></a></th> <td>Whether to use default compiler options</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_default_feature_set"><code class="literal">WITH_DEFAULT_FEATURE_SET</code></a></th> <td>Whether to use default feature set</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_editline"><code class="literal">WITH_EDITLINE</code></a></th> <td>Which libedit/editline library to use</td> <td><code class="literal">bundled</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_embedded_server"><code class="literal">WITH_EMBEDDED_SERVER</code></a></th> <td>Whether to build embedded server</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_embedded_shared_library"><code class="literal">WITH_EMBEDDED_SHARED_LIBRARY</code></a></th> <td>Whether to build a shared embedded server library</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_error_insert"><code class="literal">WITH_ERROR_INSERT</code></a></th> <td>Enable error injection in the NDB storage engine. Should not be used for building binaries intended for production.</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_extra_charsets"><code class="literal">WITH_EXTRA_CHARSETS</code></a></th> <td>Which extra character sets to include</td> <td><code class="literal">all</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_gmock"><code class="literal">WITH_GMOCK</code></a></th> <td>Path to googlemock distribution</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_innodb_extra_debug"><code class="literal">WITH_INNODB_EXTRA_DEBUG</code></a></th> <td>Whether to include extra debugging support for InnoDB.</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_innodb_memcached"><code class="literal">WITH_INNODB_MEMCACHED</code></a></th> <td>Whether to generate memcached shared libraries.</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_keyring_test"><code class="literal">WITH_KEYRING_TEST</code></a></th> <td>Build the keyring test program</td> <td><code class="literal">OFF</code></td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ldap"><code class="literal">WITH_LDAP</code></a></th> <td>Internal use only</td> <td></td> <td>5.7.29</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_libevent"><code class="literal">WITH_LIBEVENT</code></a></th> <td>Which libevent library to use</td> <td><code class="literal">bundled</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_libwrap"><code class="literal">WITH_LIBWRAP</code></a></th> <td>Whether to include libwrap (TCP wrappers) support</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_lz4"><code class="literal">WITH_LZ4</code></a></th> <td>Type of LZ4 library support</td> <td><code class="literal">bundled</code></td> <td>5.7.14</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_mecab"><code class="literal">WITH_MECAB</code></a></th> <td>Compiles MeCab</td> <td></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_msan"><code class="literal">WITH_MSAN</code></a></th> <td>Enable MemorySanitizer</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_mscrt_debug"><code class="literal">WITH_MSCRT_DEBUG</code></a></th> <td>Enable Visual Studio CRT memory leak tracing</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndbapi_examples"><code class="literal">WITH_NDBAPI_EXAMPLES</code></a></th> <td>Build API example programs.</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndbcluster"><code class="literal">WITH_NDBCLUSTER</code></a></th> <td>NDB 8.0.30 and earlier: Build NDB storage engine. NDB 8.0.31 and later: Deprecated; use WITH_NDB instead</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndbcluster_storage_engine"><code class="literal">WITH_NDBCLUSTER_STORAGE_ENGINE</code></a></th> <td>Prior to NDB 8.0.31, this was for internal use only. NDB 8.0.31 and later: toggles (only) inclusion of NDBCLUSTER storage engine</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndbmtd"><code class="literal">WITH_NDBMTD</code></a></th> <td>Build multithreaded data node binary</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_binlog"><code class="literal">WITH_NDB_BINLOG</code></a></th> <td>Enable binary logging by default by mysqld.</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_debug"><code class="literal">WITH_NDB_DEBUG</code></a></th> <td>Produce a debug build for testing or troubleshooting.</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_java"><code class="literal">WITH_NDB_JAVA</code></a></th> <td>Enable building of Java and ClusterJ support. Enabled by default. Supported in MySQL Cluster only.</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_port"><code class="literal">WITH_NDB_PORT</code></a></th> <td>Default port used by a management server built with this option. If this option was not used to build it, the management server's default port is 1186.</td> <td><code class="literal">[none]</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_test"><code class="literal">WITH_NDB_TEST</code></a></th> <td>Include NDB API test programs.</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_numa"><code class="literal">WITH_NUMA</code></a></th> <td>Set NUMA memory allocation policy</td> <td></td> <td>5.7.17</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_protobuf"><code class="literal">WITH_PROTOBUF</code></a></th> <td>Which Protocol Buffers package to use</td> <td><code class="literal">bundled</code></td> <td>5.7.12</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_rapid"><code class="literal">WITH_RAPID</code></a></th> <td>Whether to build rapid development cycle plugins</td> <td><code class="literal">ON</code></td> <td>5.7.12</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_sasl"><code class="literal">WITH_SASL</code></a></th> <td>Internal use only</td> <td></td> <td>5.7.29</td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ssl"><code class="literal">WITH_SSL</code></a></th> <td>Type of SSL support</td> <td><code class="literal">system</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_systemd"><code class="literal">WITH_SYSTEMD</code></a></th> <td>Enable installation of systemd support files</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_test_trace_plugin"><code class="literal">WITH_TEST_TRACE_PLUGIN</code></a></th> <td>Build test protocol trace plugin</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ubsan"><code class="literal">WITH_UBSAN</code></a></th> <td>Enable Undefined Behavior Sanitizer</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_unit_tests"><code class="literal">WITH_UNIT_TESTS</code></a></th> <td>Compile MySQL with unit tests</td> <td><code class="literal">ON</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_unixodbc"><code class="literal">WITH_UNIXODBC</code></a></th> <td>Enable unixODBC support</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_valgrind"><code class="literal">WITH_VALGRIND</code></a></th> <td>Whether to compile in Valgrind header files</td> <td><code class="literal">OFF</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_zlib"><code class="literal">WITH_ZLIB</code></a></th> <td>Type of zlib support</td> <td><code class="literal">bundled</code></td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_storage_engine_options" title="Storage Engine Options"><code class="literal">WITH_xxx_STORAGE_ENGINE</code></a></th> <td>Compile storage engine xxx statically into server</td> <td></td> <td></td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="CMake options that are available to configure MySQL when building from source.">
+   <col style="width: 30%"/>
+   <col style="width: 30%"/>
+   <col style="width: 20%"/>
+   <col style="width: 10%"/>
+   <col style="width: 10%"/>
+   <thead>
+      <tr>
+         <th scope="col">Formats</th>
+         <th scope="col">Description</th>
+         <th scope="col">Default</th>
+         <th scope="col">Introduced</th>
+         <th scope="col">Removed</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_build_config"><code class="literal">BUILD_CONFIG</code></a></th>
+         <td>Use same build options as official releases</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cmake_build_type"><code class="literal">CMAKE_BUILD_TYPE</code></a></th>
+         <td>Type of build to produce</td>
+         <td><code class="literal">RelWithDebInfo</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cmake_cxx_flags"><code class="literal">CMAKE_CXX_FLAGS</code></a></th>
+         <td>Flags for C++ Compiler</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cmake_c_flags"><code class="literal">CMAKE_C_FLAGS</code></a></th>
+         <td>Flags for C Compiler</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cmake_install_prefix"><code class="literal">CMAKE_INSTALL_PREFIX</code></a></th>
+         <td>Installation base directory</td>
+         <td><code class="literal">/usr/local/mysql</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_compilation_comment"><code class="literal">COMPILATION_COMMENT</code></a></th>
+         <td>Comment about compilation environment</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_cpack_monolithic_install"><code class="literal">CPACK_MONOLITHIC_INSTALL</code></a></th>
+         <td>Whether package build produces single file</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_default_charset"><code class="literal">DEFAULT_CHARSET</code></a></th>
+         <td>The default server character set</td>
+         <td><code class="literal">latin1</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_default_collation"><code class="literal">DEFAULT_COLLATION</code></a></th>
+         <td>The default server collation</td>
+         <td><code class="literal">latin1_swedish_ci</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_cond"><code class="literal">DISABLE_PSI_COND</code></a></th>
+         <td>Exclude Performance Schema condition instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_file"><code class="literal">DISABLE_PSI_FILE</code></a></th>
+         <td>Exclude Performance Schema file instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_idle"><code class="literal">DISABLE_PSI_IDLE</code></a></th>
+         <td>Exclude Performance Schema idle instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_memory"><code class="literal">DISABLE_PSI_MEMORY</code></a></th>
+         <td>Exclude Performance Schema memory instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_metadata"><code class="literal">DISABLE_PSI_METADATA</code></a></th>
+         <td>Exclude Performance Schema metadata instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_mutex"><code class="literal">DISABLE_PSI_MUTEX</code></a></th>
+         <td>Exclude Performance Schema mutex instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_ps"><code class="literal">DISABLE_PSI_PS</code></a></th>
+         <td>Exclude the performance schema prepared statements</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_rwlock"><code class="literal">DISABLE_PSI_RWLOCK</code></a></th>
+         <td>Exclude Performance Schema rwlock instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_socket"><code class="literal">DISABLE_PSI_SOCKET</code></a></th>
+         <td>Exclude Performance Schema socket instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_sp"><code class="literal">DISABLE_PSI_SP</code></a></th>
+         <td>Exclude Performance Schema stored program instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_stage"><code class="literal">DISABLE_PSI_STAGE</code></a></th>
+         <td>Exclude Performance Schema stage instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_statement"><code class="literal">DISABLE_PSI_STATEMENT</code></a></th>
+         <td>Exclude Performance Schema statement instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_statement_digest"><code class="literal">DISABLE_PSI_STATEMENT_DIGEST</code></a></th>
+         <td>Exclude Performance Schema statements_digest instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_table"><code class="literal">DISABLE_PSI_TABLE</code></a></th>
+         <td>Exclude Performance Schema table instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_thread"><code class="literal">DISABLE_PSI_THREAD</code></a></th>
+         <td>Exclude the performance schema thread instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_disable_psi_transaction"><code class="literal">DISABLE_PSI_TRANSACTION</code></a></th>
+         <td>Exclude the performance schema transaction instrumentation</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_download_boost"><code class="literal">DOWNLOAD_BOOST</code></a></th>
+         <td>Whether to download the Boost library</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_download_boost_timeout"><code class="literal">DOWNLOAD_BOOST_TIMEOUT</code></a></th>
+         <td>Timeout in seconds for downloading the Boost library</td>
+         <td><code class="literal">600</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enabled_local_infile"><code class="literal">ENABLED_LOCAL_INFILE</code></a></th>
+         <td>Whether to enable LOCAL for LOAD DATA</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enabled_profiling"><code class="literal">ENABLED_PROFILING</code></a></th>
+         <td>Whether to enable query profiling code</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enable_downloads"><code class="literal">ENABLE_DOWNLOADS</code></a></th>
+         <td>Whether to download optional files</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enable_dtrace"><code class="literal">ENABLE_DTRACE</code></a></th>
+         <td>Whether to include DTrace support</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enable_gcov"><code class="literal">ENABLE_GCOV</code></a></th>
+         <td>Whether to include gcov support</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_enable_gprof"><code class="literal">ENABLE_GPROF</code></a></th>
+         <td>Enable gprof (optimized Linux builds only)</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_force_unsupported_compiler"><code class="literal">FORCE_UNSUPPORTED_COMPILER</code></a></th>
+         <td>Whether to permit unsupported compilers</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_ignore_aio_check"><code class="literal">IGNORE_AIO_CHECK</code></a></th>
+         <td>With -DBUILD_CONFIG=mysql_release, ignore libaio check</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_bindir"><code class="literal">INSTALL_BINDIR</code></a></th>
+         <td>User executables directory</td>
+         <td><code class="literal">PREFIX/bin</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_docdir"><code class="literal">INSTALL_DOCDIR</code></a></th>
+         <td>Documentation directory</td>
+         <td><code class="literal">PREFIX/docs</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_docreadmedir"><code class="literal">INSTALL_DOCREADMEDIR</code></a></th>
+         <td>README file directory</td>
+         <td><code class="literal">PREFIX</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_includedir"><code class="literal">INSTALL_INCLUDEDIR</code></a></th>
+         <td>Header file directory</td>
+         <td><code class="literal">PREFIX/include</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_infodir"><code class="literal">INSTALL_INFODIR</code></a></th>
+         <td>Info file directory</td>
+         <td><code class="literal">PREFIX/docs</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_layout"><code class="literal">INSTALL_LAYOUT</code></a></th>
+         <td>Select predefined installation layout</td>
+         <td><code class="literal">STANDALONE</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_libdir"><code class="literal">INSTALL_LIBDIR</code></a></th>
+         <td>Library file directory</td>
+         <td><code class="literal">PREFIX/lib</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_mandir"><code class="literal">INSTALL_MANDIR</code></a></th>
+         <td>Manual page directory</td>
+         <td><code class="literal">PREFIX/man</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_mysqlkeyringdir"><code class="literal">INSTALL_MYSQLKEYRINGDIR</code></a></th>
+         <td>Directory for keyring_file plugin data file</td>
+         <td><code class="literal">platform specific</code></td>
+         <td>5.7.11</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_mysqlsharedir"><code class="literal">INSTALL_MYSQLSHAREDIR</code></a></th>
+         <td>Shared data directory</td>
+         <td><code class="literal">PREFIX/share</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_mysqltestdir"><code class="literal">INSTALL_MYSQLTESTDIR</code></a></th>
+         <td>mysql-test directory</td>
+         <td><code class="literal">PREFIX/mysql-test</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_pkgconfigdir"><code class="literal">INSTALL_PKGCONFIGDIR</code></a></th>
+         <td>Directory for mysqlclient.pc pkg-config file</td>
+         <td><code class="literal">INSTALL_LIBDIR/pkgconfig</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_plugindir"><code class="literal">INSTALL_PLUGINDIR</code></a></th>
+         <td>Plugin directory</td>
+         <td><code class="literal">PREFIX/lib/plugin</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_sbindir"><code class="literal">INSTALL_SBINDIR</code></a></th>
+         <td>Server executable directory</td>
+         <td><code class="literal">PREFIX/bin</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_scriptdir"><code class="literal">INSTALL_SCRIPTDIR</code></a></th>
+         <td>Scripts directory</td>
+         <td><code class="literal">PREFIX/scripts</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_secure_file_privdir"><code class="literal">INSTALL_SECURE_FILE_PRIVDIR</code></a></th>
+         <td>secure_file_priv default value</td>
+         <td><code class="literal">platform specific</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_secure_file_priv_embeddeddir"><code class="literal">INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR</code></a></th>
+         <td>secure_file_priv default value for libmysqld</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_sharedir"><code class="literal">INSTALL_SHAREDIR</code></a></th>
+         <td>aclocal/mysql.m4 installation directory</td>
+         <td><code class="literal">PREFIX/share</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_install_supportfilesdir"><code class="literal">INSTALL_SUPPORTFILESDIR</code></a></th>
+         <td>Extra support files directory</td>
+         <td><code class="literal">PREFIX/support-files</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_max_indexes"><code class="literal">MAX_INDEXES</code></a></th>
+         <td>Maximum indexes per table</td>
+         <td><code class="literal">64</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_memcached_home"><code class="literal">MEMCACHED_HOME</code></a></th>
+         <td>Path to memcached; obsolete</td>
+         <td><code class="literal">[none]</code></td>
+         <td></td>
+         <td>5.7.33</td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mutex_type"><code class="literal">MUTEX_TYPE</code></a></th>
+         <td>InnoDB mutex type</td>
+         <td><code class="literal">event</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysqlx_tcp_port"><code class="literal">MYSQLX_TCP_PORT</code></a></th>
+         <td>TCP/IP port number used by X Plugin</td>
+         <td><code class="literal">33060</code></td>
+         <td>5.7.17</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysqlx_unix_addr"><code class="literal">MYSQLX_UNIX_ADDR</code></a></th>
+         <td>Unix socket file used by X Plugin</td>
+         <td><code class="literal">/tmp/mysqlx.sock</code></td>
+         <td>5.7.15</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_datadir"><code class="literal">MYSQL_DATADIR</code></a></th>
+         <td>Data directory</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_maintainer_mode"><code class="literal">MYSQL_MAINTAINER_MODE</code></a></th>
+         <td>Whether to enable MySQL maintainer-specific development environment</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_project_name"><code class="literal">MYSQL_PROJECT_NAME</code></a></th>
+         <td>Windows/macOS project name</td>
+         <td><code class="literal">MySQL</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_tcp_port"><code class="literal">MYSQL_TCP_PORT</code></a></th>
+         <td>TCP/IP port number</td>
+         <td><code class="literal">3306</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_mysql_unix_addr"><code class="literal">MYSQL_UNIX_ADDR</code></a></th>
+         <td>Unix socket file</td>
+         <td><code class="literal">/tmp/mysql.sock</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_odbc_includes"><code class="literal">ODBC_INCLUDES</code></a></th>
+         <td>ODBC includes directory</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_odbc_lib_dir"><code class="literal">ODBC_LIB_DIR</code></a></th>
+         <td>ODBC library directory</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_optimizer_trace"><code class="literal">OPTIMIZER_TRACE</code></a></th>
+         <td>Whether to support optimizer tracing</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_reproducible_build"><code class="literal">REPRODUCIBLE_BUILD</code></a></th>
+         <td>Take extra care to create a build result independent of build location and time</td>
+         <td></td>
+         <td>5.7.19</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_sunpro_cxx_library"><code class="literal">SUNPRO_CXX_LIBRARY</code></a></th>
+         <td>Client link library on Solaris 10+</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_sysconfdir"><code class="literal">SYSCONFDIR</code></a></th>
+         <td>Option file directory</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_systemd_pid_dir"><code class="literal">SYSTEMD_PID_DIR</code></a></th>
+         <td>Directory for PID file under systemd</td>
+         <td><code class="literal">/var/run/mysqld</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_systemd_service_name"><code class="literal">SYSTEMD_SERVICE_NAME</code></a></th>
+         <td>Name of MySQL service under systemd</td>
+         <td><code class="literal">mysqld</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_tmpdir"><code class="literal">TMPDIR</code></a></th>
+         <td>tmpdir default value</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_win_debug_no_inline"><code class="literal">WIN_DEBUG_NO_INLINE</code></a></th>
+         <td>Whether to disable function inlining</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_without_server"><code class="literal">WITHOUT_SERVER</code></a></th>
+         <td>Do not build the server; internal use only</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_storage_engine_options" title="Storage Engine Options"><code class="literal">WITHOUT_xxx_STORAGE_ENGINE</code></a></th>
+         <td>Exclude storage engine xxx from build</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_asan"><code class="literal">WITH_ASAN</code></a></th>
+         <td>Enable AddressSanitizer</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_asan_scope"><code class="literal">WITH_ASAN_SCOPE</code></a></th>
+         <td>Enable AddressSanitizer -fsanitize-address-use-after-scope Clang flag</td>
+         <td><code class="literal">OFF</code></td>
+         <td>5.7.21</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_authentication_ldap"><code class="literal">WITH_AUTHENTICATION_LDAP</code></a></th>
+         <td>Whether to report error if LDAP authentication plugins cannot be built</td>
+         <td><code class="literal">OFF</code></td>
+         <td>5.7.19</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_authentication_pam"><code class="literal">WITH_AUTHENTICATION_PAM</code></a></th>
+         <td>Build PAM authentication plugin</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_aws_sdk"><code class="literal">WITH_AWS_SDK</code></a></th>
+         <td>Location of Amazon Web Services software development kit</td>
+         <td></td>
+         <td>5.7.19</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_boost"><code class="literal">WITH_BOOST</code></a></th>
+         <td>The location of the Boost library sources</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_bundled_libevent"><code class="literal">WITH_BUNDLED_LIBEVENT</code></a></th>
+         <td>Use bundled libevent when building ndbmemcache; obsolete</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td>5.7.33</td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_bundled_memcached"><code class="literal">WITH_BUNDLED_MEMCACHED</code></a></th>
+         <td>Use bundled memcached when building ndbmemcache; obsolete</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td>5.7.33</td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_classpath"><code class="literal">WITH_CLASSPATH</code></a></th>
+         <td>Classpath to use when building MySQL Cluster Connector for Java. Default is an empty string.</td>
+         <td><code class="literal"></code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_client_protocol_tracing"><code class="literal">WITH_CLIENT_PROTOCOL_TRACING</code></a></th>
+         <td>Build client-side protocol tracing framework</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_curl"><code class="literal">WITH_CURL</code></a></th>
+         <td>Location of curl library</td>
+         <td></td>
+         <td>5.7.19</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_debug"><code class="literal">WITH_DEBUG</code></a></th>
+         <td>Whether to include debugging support</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_default_compiler_options"><code class="literal">WITH_DEFAULT_COMPILER_OPTIONS</code></a></th>
+         <td>Whether to use default compiler options</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_default_feature_set"><code class="literal">WITH_DEFAULT_FEATURE_SET</code></a></th>
+         <td>Whether to use default feature set</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_editline"><code class="literal">WITH_EDITLINE</code></a></th>
+         <td>Which libedit/editline library to use</td>
+         <td><code class="literal">bundled</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_embedded_server"><code class="literal">WITH_EMBEDDED_SERVER</code></a></th>
+         <td>Whether to build embedded server</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_embedded_shared_library"><code class="literal">WITH_EMBEDDED_SHARED_LIBRARY</code></a></th>
+         <td>Whether to build a shared embedded server library</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_error_insert"><code class="literal">WITH_ERROR_INSERT</code></a></th>
+         <td>Enable error injection in the NDB storage engine. Should not be used for building binaries intended for production.</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_extra_charsets"><code class="literal">WITH_EXTRA_CHARSETS</code></a></th>
+         <td>Which extra character sets to include</td>
+         <td><code class="literal">all</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_gmock"><code class="literal">WITH_GMOCK</code></a></th>
+         <td>Path to googlemock distribution</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_innodb_extra_debug"><code class="literal">WITH_INNODB_EXTRA_DEBUG</code></a></th>
+         <td>Whether to include extra debugging support for InnoDB.</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_innodb_memcached"><code class="literal">WITH_INNODB_MEMCACHED</code></a></th>
+         <td>Whether to generate memcached shared libraries.</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_keyring_test"><code class="literal">WITH_KEYRING_TEST</code></a></th>
+         <td>Build the keyring test program</td>
+         <td><code class="literal">OFF</code></td>
+         <td>5.7.11</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ldap"><code class="literal">WITH_LDAP</code></a></th>
+         <td>Internal use only</td>
+         <td></td>
+         <td>5.7.29</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_libevent"><code class="literal">WITH_LIBEVENT</code></a></th>
+         <td>Which libevent library to use</td>
+         <td><code class="literal">bundled</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_libwrap"><code class="literal">WITH_LIBWRAP</code></a></th>
+         <td>Whether to include libwrap (TCP wrappers) support</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_lz4"><code class="literal">WITH_LZ4</code></a></th>
+         <td>Type of LZ4 library support</td>
+         <td><code class="literal">bundled</code></td>
+         <td>5.7.14</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_mecab"><code class="literal">WITH_MECAB</code></a></th>
+         <td>Compiles MeCab</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_msan"><code class="literal">WITH_MSAN</code></a></th>
+         <td>Enable MemorySanitizer</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_mscrt_debug"><code class="literal">WITH_MSCRT_DEBUG</code></a></th>
+         <td>Enable Visual Studio CRT memory leak tracing</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndbapi_examples"><code class="literal">WITH_NDBAPI_EXAMPLES</code></a></th>
+         <td>Build API example programs.</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndbcluster"><code class="literal">WITH_NDBCLUSTER</code></a></th>
+         <td>NDB 8.0.30 and earlier: Build NDB storage engine. NDB 8.0.31 and later: Deprecated; use WITH_NDB instead</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndbcluster_storage_engine"><code class="literal">WITH_NDBCLUSTER_STORAGE_ENGINE</code></a></th>
+         <td>Prior to NDB 8.0.31, this was for internal use only. NDB 8.0.31 and later: toggles (only) inclusion of NDBCLUSTER storage engine</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndbmtd"><code class="literal">WITH_NDBMTD</code></a></th>
+         <td>Build multithreaded data node binary</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_binlog"><code class="literal">WITH_NDB_BINLOG</code></a></th>
+         <td>Enable binary logging by default by mysqld.</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_debug"><code class="literal">WITH_NDB_DEBUG</code></a></th>
+         <td>Produce a debug build for testing or troubleshooting.</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_java"><code class="literal">WITH_NDB_JAVA</code></a></th>
+         <td>Enable building of Java and ClusterJ support. Enabled by default. Supported in MySQL Cluster only.</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_port"><code class="literal">WITH_NDB_PORT</code></a></th>
+         <td>Default port used by a management server built with this option. If this option was not used to build it, the management server's default port is 1186.</td>
+         <td><code class="literal">[none]</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ndb_test"><code class="literal">WITH_NDB_TEST</code></a></th>
+         <td>Include NDB API test programs.</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_numa"><code class="literal">WITH_NUMA</code></a></th>
+         <td>Set NUMA memory allocation policy</td>
+         <td></td>
+         <td>5.7.17</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_protobuf"><code class="literal">WITH_PROTOBUF</code></a></th>
+         <td>Which Protocol Buffers package to use</td>
+         <td><code class="literal">bundled</code></td>
+         <td>5.7.12</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_rapid"><code class="literal">WITH_RAPID</code></a></th>
+         <td>Whether to build rapid development cycle plugins</td>
+         <td><code class="literal">ON</code></td>
+         <td>5.7.12</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_sasl"><code class="literal">WITH_SASL</code></a></th>
+         <td>Internal use only</td>
+         <td></td>
+         <td>5.7.29</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ssl"><code class="literal">WITH_SSL</code></a></th>
+         <td>Type of SSL support</td>
+         <td><code class="literal">system</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_systemd"><code class="literal">WITH_SYSTEMD</code></a></th>
+         <td>Enable installation of systemd support files</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_test_trace_plugin"><code class="literal">WITH_TEST_TRACE_PLUGIN</code></a></th>
+         <td>Build test protocol trace plugin</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_ubsan"><code class="literal">WITH_UBSAN</code></a></th>
+         <td>Enable Undefined Behavior Sanitizer</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_unit_tests"><code class="literal">WITH_UNIT_TESTS</code></a></th>
+         <td>Compile MySQL with unit tests</td>
+         <td><code class="literal">ON</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_unixodbc"><code class="literal">WITH_UNIXODBC</code></a></th>
+         <td>Enable unixODBC support</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_valgrind"><code class="literal">WITH_VALGRIND</code></a></th>
+         <td>Whether to compile in Valgrind header files</td>
+         <td><code class="literal">OFF</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_with_zlib"><code class="literal">WITH_ZLIB</code></a></th>
+         <td>Type of zlib support</td>
+         <td><code class="literal">bundled</code></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th scope="row"><a class="link" href="source-configuration-options.html#option_cmake_storage_engine_options" title="Storage Engine Options"><code class="literal">WITH_xxx_STORAGE_ENGINE</code></a></th>
+         <td>Compile storage engine xxx statically into server</td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
 
 #### General Options
 
