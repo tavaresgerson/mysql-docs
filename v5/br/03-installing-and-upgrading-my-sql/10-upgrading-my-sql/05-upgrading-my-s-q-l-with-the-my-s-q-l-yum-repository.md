@@ -22,47 +22,47 @@ Notas
 
    Atualize o MySQL e seus componentes pelo seguinte comando, para plataformas que não são habilitadas para dnf:
 
-   ```sql
+   ```sh
    sudo yum update mysql-server
    ```
 
    Para plataformas que estão habilitadas para dnf:
 
-   ```sql
+   ```sh
    sudo dnf upgrade mysql-server
    ```
 
    Alternativamente, você pode atualizar o MySQL dizendo ao Yum para atualizar tudo no seu sistema, o que pode levar muito mais tempo. Para plataformas que não são compatíveis com dnf:
 
-   ```sql
+   ```sh
    sudo yum update
    ```
 
    Para plataformas que estão habilitadas para dnf:
 
-   ```sql
+   ```sh
    sudo dnf upgrade
    ```
 
 3. #### Reiniciar o MySQL
 
-   O servidor MySQL é sempre reiniciado após uma atualização pelo Yum. Após o servidor ser reiniciado, execute o **mysql\_upgrade** para verificar e, se necessário, resolver quaisquer incompatibilidades entre os dados antigos e o software atualizado. O **mysql\_upgrade** também executa outras funções; consulte a Seção 4.4.7, “mysql\_upgrade — Verificar e Atualizar Tabelas do MySQL”, para obter detalhes.
+   O servidor MySQL é sempre reiniciado após uma atualização pelo Yum. Após o servidor ser reiniciado, execute o **mysql_upgrade** para verificar e, se necessário, resolver quaisquer incompatibilidades entre os dados antigos e o software atualizado. O **mysql_upgrade** também executa outras funções; consulte a Seção 4.4.7, “mysql_upgrade — Verificar e Atualizar Tabelas do MySQL”, para obter detalhes.
 
 Você também pode atualizar apenas um componente específico. Use o seguinte comando para listar todos os pacotes instalados para os componentes do MySQL (para sistemas com dnf, substitua **yum** no comando por **dnf**):
 
-```sql
+```sh
 sudo yum list installed | grep "^mysql"
 ```
 
 Depois de identificar o nome do pacote do componente da sua escolha, atualize o pacote com o seguinte comando, substituindo *`package-name`* pelo nome do pacote. Para plataformas que não são habilitadas para dnf:
 
-```sql
+```sh
 sudo yum update package-name
 ```
 
 Para plataformas habilitadas para dnf:
 
-```sql
+```sh
 sudo dnf upgrade package-name
 ```
 

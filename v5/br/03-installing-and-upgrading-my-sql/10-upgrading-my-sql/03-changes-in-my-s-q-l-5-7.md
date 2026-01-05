@@ -18,7 +18,7 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   A criptografia do espaço de tabelas `InnoDB` exige que o plugin de chave seja carregado antes da inicialização do `InnoDB`, portanto, essa alteração do valor padrão `--early-plugin-load` introduz uma incompatibilidade para atualizações de 5.7.11 para 5.7.12 ou superior. Os administradores que criptografaram os espaços de tabelas `InnoDB` devem tomar medidas explícitas para garantir o carregamento contínuo do plugin de chave: Inicie o servidor com uma opção `--early-plugin-load` que nomeie o arquivo da biblioteca do plugin. Para obter informações adicionais, consulte a Seção 6.4.4.1, “Instalação do Plugin de Chave”.
 
-- **Mudança incompatível**: O `INFORMATION_SCHEMA` possui tabelas que contêm informações sobre variáveis de sistema e status (veja a Seção 24.3.11, “As tabelas GLOBAL\_VARIABLES e SESSION\_VARIABLES do INFORMATION\_SCHEMA” e a Seção 24.3.10, “As tabelas GLOBAL\_STATUS e SESSION\_STATUS do INFORMATION\_SCHEMA”). A partir do MySQL 5.7.6, o Schema de Desempenho também contém tabelas de variáveis de sistema e status (veja a Seção 25.12.13, “Tabelas de variáveis de sistema do Schema de Desempenho” e a Seção 25.12.14, “Tabelas de variáveis de status do Schema de Desempenho”). As tabelas do Schema de Desempenho são destinadas a substituir as tabelas do `INFORMATION_SCHEMA`, que são desaconselhadas a partir do MySQL 5.7.6 e serão removidas no MySQL 8.0.
+- **Mudança incompatível**: O `INFORMATION_SCHEMA` possui tabelas que contêm informações sobre variáveis de sistema e status (veja a Seção 24.3.11, “As tabelas GLOBAL_VARIABLES e SESSION_VARIABLES do INFORMATION_SCHEMA” e a Seção 24.3.10, “As tabelas GLOBAL_STATUS e SESSION_STATUS do INFORMATION_SCHEMA”). A partir do MySQL 5.7.6, o Schema de Desempenho também contém tabelas de variáveis de sistema e status (veja a Seção 25.12.13, “Tabelas de variáveis de sistema do Schema de Desempenho” e a Seção 25.12.14, “Tabelas de variáveis de status do Schema de Desempenho”). As tabelas do Schema de Desempenho são destinadas a substituir as tabelas do `INFORMATION_SCHEMA`, que são desaconselhadas a partir do MySQL 5.7.6 e serão removidas no MySQL 8.0.
 
   Para obter conselhos sobre a migração das tabelas do `INFORMATION_SCHEMA` para as tabelas do Performance Schema, consulte a Seção 25.20, “Migração para as tabelas do Sistema e Variáveis de Estado do Performance Schema”. Para auxiliar na migração, você pode usar a variável de sistema `show_compatibility_56`, que afeta a forma como as informações das variáveis de sistema e de estado são fornecidas pelas tabelas do `INFORMATION_SCHEMA` e do Performance Schema, além das instruções `SHOW VARIABLES` e `SHOW STATUS`. `show_compatibility_56` está habilitado por padrão no 5.7.6 e 5.7.7, e desabilitado por padrão no MySQL 5.7.8.
 
@@ -35,11 +35,11 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
   CREATE USER 'root'@'::1' IDENTIFIED BY 'root-password';
   ```
 
-- **Mudança incompatível**: a partir do MySQL 5.7.6, para algumas plataformas Linux, quando o MySQL é instalado usando pacotes RPM e Debian, o início e o desligamento do servidor agora são gerenciados usando o systemd, em vez de **mysqld\_safe**, e **mysqld\_safe** não é instalado. Isso pode exigir algum ajuste na maneira como você especifica as opções do servidor. Para detalhes, consulte a Seção 2.5.10, “Gerenciamento do Servidor MySQL com o systemd”.
+- **Mudança incompatível**: a partir do MySQL 5.7.6, para algumas plataformas Linux, quando o MySQL é instalado usando pacotes RPM e Debian, o início e o desligamento do servidor agora são gerenciados usando o systemd, em vez de **mysqld_safe**, e **mysqld_safe** não é instalado. Isso pode exigir algum ajuste na maneira como você especifica as opções do servidor. Para detalhes, consulte a Seção 2.5.10, “Gerenciamento do Servidor MySQL com o systemd”.
 
-- **Mudança incompatível**: No MySQL 5.7.5, a versão binária executável do **mysql\_install\_db** está localizada no diretório de instalação `bin`, enquanto a versão em Perl estava localizada no diretório de instalação `scripts`. Para atualizações de uma versão mais antiga do MySQL, você pode encontrar uma versão em ambos os diretórios. Para evitar confusão, remova a versão no diretório `scripts`. Para instalações novas do MySQL 5.7.5 ou posterior, o **mysql\_install\_db** só está presente no diretório `bin`, e o diretório `scripts` não está mais presente. Aplicativos que esperam encontrar o **mysql\_install\_db** no diretório `scripts` devem ser atualizados para procurar no diretório `bin` em vez disso.
+- **Mudança incompatível**: No MySQL 5.7.5, a versão binária executável do **mysql_install_db** está localizada no diretório de instalação `bin`, enquanto a versão em Perl estava localizada no diretório de instalação `scripts`. Para atualizações de uma versão mais antiga do MySQL, você pode encontrar uma versão em ambos os diretórios. Para evitar confusão, remova a versão no diretório `scripts`. Para instalações novas do MySQL 5.7.5 ou posterior, o **mysql_install_db** só está presente no diretório `bin`, e o diretório `scripts` não está mais presente. Aplicativos que esperam encontrar o **mysql_install_db** no diretório `scripts` devem ser atualizados para procurar no diretório `bin` em vez disso.
 
-  A localização do **mysql\_install\_db** torna-se menos importante a partir do MySQL 5.7.6, pois, a partir dessa versão, ele é desaconselhado em favor do **mysqld --initialize** (ou **mysqld --initialize-insecure**). Veja a Seção 2.9.1, “Inicializando o diretório de dados”
+  A localização do **mysql_install_db** torna-se menos importante a partir do MySQL 5.7.6, pois, a partir dessa versão, ele é desaconselhado em favor do **mysqld --initialize** (ou **mysqld --initialize-insecure**). Veja a Seção 2.9.1, “Inicializando o diretório de dados”
 
 - **Mudança incompatível**: No MySQL 5.7.5, foram feitas as seguintes alterações no modo SQL:
 
@@ -61,7 +61,7 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
 #### Alterações na tabela do sistema
 
-- **Mudança incompatível**: A coluna `Password` da tabela de sistema `mysql.user` foi removida no MySQL 5.7.6. Todas as credenciais são armazenadas na coluna `authentication_string`, incluindo aquelas que antes estavam armazenadas na coluna `Password`. Se estiver realizando uma atualização local para o MySQL 5.7.6 ou uma versão posterior, execute **mysql\_upgrade** conforme orientado pelo procedimento de atualização local para migrar o conteúdo da coluna `Password` para a coluna `authentication_string`.
+- **Mudança incompatível**: A coluna `Password` da tabela de sistema `mysql.user` foi removida no MySQL 5.7.6. Todas as credenciais são armazenadas na coluna `authentication_string`, incluindo aquelas que antes estavam armazenadas na coluna `Password`. Se estiver realizando uma atualização local para o MySQL 5.7.6 ou uma versão posterior, execute **mysql_upgrade** conforme orientado pelo procedimento de atualização local para migrar o conteúdo da coluna `Password` para a coluna `authentication_string`.
 
   Se você estiver realizando uma atualização lógica usando um arquivo de dump **mysqldump** de uma instalação do MySQL anterior à versão 5.7.6, você deve observar essas condições para o comando **mysqldump** usado para gerar o arquivo de dump:
 
@@ -69,13 +69,13 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   - Você não deve incluir a opção `--flush-privileges`
 
-  Como descrito no procedimento de atualização lógica, carregue o arquivo de dump pré-5.7.6 no servidor 5.7.6 (ou posterior) antes de executar o **mysql\_upgrade**.
+  Como descrito no procedimento de atualização lógica, carregue o arquivo de dump pré-5.7.6 no servidor 5.7.6 (ou posterior) antes de executar o **mysql_upgrade**.
 
 #### Alterações no servidor
 
 - **Mudança incompatível**: a partir do MySQL 5.7.5, o suporte para senhas que usam o formato de hashing de senha anterior ao 4.1 é removido, o que envolve as seguintes mudanças. As aplicações que utilizam qualquer recurso que não seja mais suportado devem ser modificadas.
 
-  - O plugin de autenticação `mysql_old_password` que usava valores de hash de senha anteriores à versão 4.1 foi removido. As contas que usam este plugin são desativadas ao iniciar o servidor e o servidor escreve uma mensagem de “plugin desconhecido” no log de erros. Para obter instruções sobre a atualização das contas que usam este plugin, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha anterior à versão 4.1 e do plugin mysql\_old\_password”.
+  - O plugin de autenticação `mysql_old_password` que usava valores de hash de senha anteriores à versão 4.1 foi removido. As contas que usam este plugin são desativadas ao iniciar o servidor e o servidor escreve uma mensagem de “plugin desconhecido” no log de erros. Para obter instruções sobre a atualização das contas que usam este plugin, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha anterior à versão 4.1 e do plugin mysql_old_password”.
 
   - Para a variável de sistema `old_passwords`, um valor de 1 (produzir valores de hash anteriores à versão 4.1) não é mais permitido.
 
@@ -87,15 +87,15 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   - A função `OLD_PASSWORD()` foi removida.
 
-- **Mudança incompatível**: No MySQL 5.6.6, o tipo de dados `YEAR(2)` de 2 dígitos foi descontinuado. No MySQL 5.7.5, o suporte ao `YEAR(2)` foi removido. Uma vez que você faça a atualização para o MySQL 5.7.5 ou superior, quaisquer colunas `YEAR(2)` de 2 dígitos restantes devem ser convertidas em colunas `YEAR` de 4 dígitos para serem novamente utilizáveis. Para estratégias de conversão, consulte a Seção 11.2.5, “Limitações do `YEAR(2)` de 2 dígitos e Migração para `YEAR` de 4 dígitos” (Limitações e Migração para `YEAR` de 4 dígitos”). Executar **mysql\_upgrade** após a atualização é uma das possíveis estratégias de conversão.
+- **Mudança incompatível**: No MySQL 5.6.6, o tipo de dados `YEAR(2)` de 2 dígitos foi descontinuado. No MySQL 5.7.5, o suporte ao `YEAR(2)` foi removido. Uma vez que você faça a atualização para o MySQL 5.7.5 ou superior, quaisquer colunas `YEAR(2)` de 2 dígitos restantes devem ser convertidas em colunas `YEAR` de 4 dígitos para serem novamente utilizáveis. Para estratégias de conversão, consulte a Seção 11.2.5, “Limitações do `YEAR(2)` de 2 dígitos e Migração para `YEAR` de 4 dígitos” (Limitações e Migração para `YEAR` de 4 dígitos”). Executar **mysql_upgrade** após a atualização é uma das possíveis estratégias de conversão.
 
-- A partir do MySQL 5.7.7, o comando `CHECK TABLE ... FOR UPGRADE` relata que uma tabela precisa ser reconstruída se contiver colunas temporais antigas no formato pré-5.6.4 (`TIME`, `DATETIME` e `TIMESTAMP` sem suporte para precisão de frações de segundo) e se a variável de sistema `avoid_temporal_upgrade` estiver desabilitada. Isso ajuda o **mysql\_upgrade** a detectar e atualizar tabelas que contêm colunas temporais antigas. Se `avoid_temporal_upgrade` estiver habilitado, o comando `FOR UPGRADE` ignora as colunas temporais antigas presentes na tabela; consequentemente, o **mysql\_upgrade** não as atualiza.
+- A partir do MySQL 5.7.7, o comando `CHECK TABLE ... FOR UPGRADE` relata que uma tabela precisa ser reconstruída se contiver colunas temporais antigas no formato pré-5.6.4 (`TIME`, `DATETIME` e `TIMESTAMP` sem suporte para precisão de frações de segundo) e se a variável de sistema `avoid_temporal_upgrade` estiver desabilitada. Isso ajuda o **mysql_upgrade** a detectar e atualizar tabelas que contêm colunas temporais antigas. Se `avoid_temporal_upgrade` estiver habilitado, o comando `FOR UPGRADE` ignora as colunas temporais antigas presentes na tabela; consequentemente, o **mysql_upgrade** não as atualiza.
 
   A partir do MySQL 5.7.7, o comando `REPAIR TABLE` atualiza uma tabela se ela contiver colunas temporais antigas no formato anterior ao 5.6.4 e a variável de sistema `avoid_temporal_upgrade` estiver desabilitada. Se `avoid_temporal_upgrade` estiver habilitada, o comando `REPAIR TABLE` ignora as colunas temporais antigas presentes na tabela e não as atualiza.
 
   Para verificar tabelas que contêm colunas temporais e precisam ser reconstruídas, desative `avoid_temporal_upgrade` antes de executar `CHECK TABLE ... FOR UPGRADE`.
 
-  Para atualizar tabelas que contêm colunas temporais, desative `avoid_temporal_upgrade` antes de executar `REPAIR TABLE` ou **mysql\_upgrade**.
+  Para atualizar tabelas que contêm colunas temporais, desative `avoid_temporal_upgrade` antes de executar `REPAIR TABLE` ou **mysql_upgrade**.
 
 - **Mudança incompatível**: a partir do MySQL 5.7.2, o servidor exige que as linhas de conta na tabela de sistema `mysql.user` tenham um valor de coluna `plugin` não vazio e desabilita as contas com um valor vazio. Isso exige que você atualize sua tabela `mysql.user` para preencher todos os valores de `plugin`. A partir do MySQL 5.7.6, use este procedimento:
 
@@ -107,7 +107,7 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   3. Inicie o servidor MySQL 5.7 normalmente (sem opções especiais)
 
-  4. Execute o **mysql\_upgrade** para atualizar as tabelas do sistema
+  4. Execute o **mysql_upgrade** para atualizar as tabelas do sistema
 
   5. Reinicie o servidor MySQL 5.7
 
@@ -123,7 +123,7 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   5. Recarregue o arquivo de dump (**mysql < *`dump_file`***)
 
-  6. Execute o **mysql\_upgrade** para atualizar as tabelas do sistema
+  6. Execute o **mysql_upgrade** para atualizar as tabelas do sistema
 
   7. Reinicie o servidor MySQL 5.7
 
@@ -137,7 +137,7 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   3. Reinicie o servidor com a opção `--skip-grant-tables` para desabilitar a verificação de privilégios
 
-  4. Execute o **mysql\_upgrade** para atualizar as tabelas do sistema
+  4. Execute o **mysql_upgrade** para atualizar as tabelas do sistema
 
   5. Reinicie o servidor normalmente (sem `--skip-grant-tables`)
 
@@ -153,13 +153,13 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   5. Recarregue o arquivo de dump (**mysql < *`dump_file`***)
 
-  6. Execute o **mysql\_upgrade** para atualizar as tabelas do sistema
+  6. Execute o **mysql_upgrade** para atualizar as tabelas do sistema
 
   7. Reinicie o servidor normalmente (sem `--skip-grant-tables`)
 
-  O **mysql\_upgrade** é executado, por padrão, como usuário `root` do MySQL. Para os procedimentos anteriores, se a senha do `root` expirar quando você executar o **mysql\_upgrade**, ele exibirá uma mensagem informando que sua senha expirou e que o **mysql\_upgrade** falhou como resultado. Para corrigir isso, redefina a senha do `root` e execute o **mysql\_upgrade** novamente:
+  O **mysql_upgrade** é executado, por padrão, como usuário `root` do MySQL. Para os procedimentos anteriores, se a senha do `root` expirar quando você executar o **mysql_upgrade**, ele exibirá uma mensagem informando que sua senha expirou e que o **mysql_upgrade** falhou como resultado. Para corrigir isso, redefina a senha do `root` e execute o **mysql_upgrade** novamente:
 
-  ```sql
+  ```sh
   $> mysql -u root -p
   Enter password: ****  <- enter root password here
   mysql> ALTER USER USER() IDENTIFIED BY 'root-password'; # MySQL 5.7.6 and up
@@ -170,11 +170,11 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
   Enter password: ****  <- enter root password here
   ```
 
-  A declaração de redefinição da senha normalmente não funciona se o servidor for iniciado com `--skip-grant-tables`, mas a primeira invocação do **mysql\_upgrade** esvazia os privilégios, então, quando você executa o **mysql**, a declaração é aceita.
+  A declaração de redefinição da senha normalmente não funciona se o servidor for iniciado com `--skip-grant-tables`, mas a primeira invocação do **mysql_upgrade** esvazia os privilégios, então, quando você executa o **mysql**, a declaração é aceita.
 
-  Se o próprio **mysql\_upgrade** expirar a senha do usuário `root`, você deve redefinir a senha da mesma maneira.
+  Se o próprio **mysql_upgrade** expirar a senha do usuário `root`, você deve redefinir a senha da mesma maneira.
 
-  Após seguir as instruções anteriores, os administradores de banco de dados são aconselhados a converter contas que utilizam o plugin de autenticação `mysql_old_password` para usar `mysql_native_password` em vez disso, porque o suporte ao `mysql_old_password` foi removido. Para obter instruções de atualização de contas, consulte a Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql\_old\_password”.
+  Após seguir as instruções anteriores, os administradores de banco de dados são aconselhados a converter contas que utilizam o plugin de autenticação `mysql_old_password` para usar `mysql_native_password` em vez disso, porque o suporte ao `mysql_old_password` foi removido. Para obter instruções de atualização de contas, consulte a Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql_old_password”.
 
 - **Mudança incompatível**: É possível que o valor da coluna `DEFAULT` seja válido para o valor `sql_mode` no momento da criação da tabela, mas inválido para o valor `sql_mode` quando as linhas são inseridas ou atualizadas. Exemplo:
 
@@ -197,7 +197,7 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   Exemplo do antigo formato de `<AUDIT_RECORD>`:
 
-  ```sql
+  ```xml
   <AUDIT_RECORD
    TIMESTAMP="2013-04-15T15:27:27"
    NAME="Query"
@@ -209,7 +209,7 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   Exemplo de novo formato:
 
-  ```sql
+  ```xml
   <AUDIT_RECORD>
    <TIMESTAMP>2013-04-15T15:27:27 UTC</TIMESTAMP>
    <RECORD_ID>3998_2013-04-15T15:27:27</RECORD_ID>
@@ -268,7 +268,7 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
 
   - Para atualizar uma tabela individual do manipulador de particionamento genérico para a particionamento nativo do *`InnoDB`*, execute a instrução `ALTER TABLE table_name UPGRADE PARTITIONING`.
 
-  - Para atualizar todas as tabelas `InnoDB` que usam o manipulador de particionamento genérico para usar o manipulador de particionamento nativo, execute **mysql\_upgrade**.
+  - Para atualizar todas as tabelas `InnoDB` que usam o manipulador de particionamento genérico para usar o manipulador de particionamento nativo, execute **mysql_upgrade**.
 
 #### Alterações no SQL
 

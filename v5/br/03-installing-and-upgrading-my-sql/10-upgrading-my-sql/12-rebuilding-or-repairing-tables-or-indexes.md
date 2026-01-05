@@ -4,7 +4,7 @@ Esta seção descreve como reconstruir ou reparar tabelas ou índices, o que pod
 
 - Alterações na forma como o MySQL lida com tipos de dados ou conjuntos de caracteres. Por exemplo, um erro em uma colagem pode ter sido corrigido, exigindo a reconstrução de uma tabela para atualizar os índices para colunas de caracteres que usam a colagem.
 
-- Reparações ou atualizações de tabelas necessárias relatadas por `CHECK TABLE`, **mysqlcheck** ou **mysql\_upgrade**.
+- Reparações ou atualizações de tabelas necessárias relatadas por `CHECK TABLE`, **mysqlcheck** ou **mysql_upgrade**.
 
 Os métodos para reconstruir uma tabela incluem:
 
@@ -22,21 +22,21 @@ Se você precisar reconstruir uma tabela `InnoDB` porque uma operação `CHECK T
 
 Para reconstruir uma tabela, descarregando e recarregando-a, use **mysqldump** para criar um arquivo de dump e **mysql** para recarregar o arquivo:
 
-```sql
+```sh
 mysqldump db_name t1 > dump.sql
 mysql db_name < dump.sql
 ```
 
 Para reconstruir todas as tabelas em um único banco de dados, especifique o nome do banco de dados sem nenhum nome de tabela subsequente:
 
-```sql
+```sh
 mysqldump db_name > dump.sql
 mysql db_name < dump.sql
 ```
 
 Para reconstruir todas as tabelas em todos os bancos de dados, use a opção `--all-databases`:
 
-```sql
+```sh
 mysqldump --all-databases > dump.sql
 mysql < dump.sql
 ```
@@ -57,13 +57,13 @@ O método `REPAIR TABLE` só é aplicável a tabelas `MyISAM`, `ARCHIVE` e `CSV`
 
 Você pode usar `REPAIR TABLE` se a operação de verificação da tabela indicar que há uma corrupção ou que é necessário fazer uma atualização. Por exemplo, para reparar uma tabela `MyISAM`, use esta instrução:
 
-```sql
+```sh
 REPAIR TABLE t1;
 ```
 
 O **mysqlcheck --repair** oferece acesso à linha de comando à instrução `REPAIR TABLE`. Isso pode ser uma maneira mais conveniente de reparar tabelas, pois você pode usar a opção `--databases` ou `--all-databases` para reparar todas as tabelas em bancos de dados específicos ou todos os bancos de dados, respectivamente:
 
-```sql
+```sh
 mysqlcheck --repair --databases db_name ...
 mysqlcheck --repair --all-databases
 ```

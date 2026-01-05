@@ -9,15 +9,15 @@ Esta seção descreve como atualizar as instalações binárias e baseadas em pa
 
 Uma atualização in-place envolve o desligamento do servidor MySQL antigo, a substituição dos binários ou pacotes MySQL antigos pelos novos, o reinício do MySQL no diretório de dados existente e a atualização de quaisquer partes restantes da instalação existente que precisem ser atualizadas.
 
-Nota
-
+::: info Nota
 Atualize apenas uma instância do servidor MySQL que foi desligada corretamente. Se a instância desligar inesperadamente, reinicie-a e desligue-a com `innodb_fast_shutdown=0` antes da atualização.
+:::
 
-Nota
-
+::: info Nota
 Se você atualizar uma instalação originalmente produzida instalando vários pacotes RPM, atualize todos os pacotes, não apenas alguns. Por exemplo, se você instalou anteriormente os RPMs do servidor e do cliente, não atualize apenas o RPM do servidor.
+:::
 
-Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld\_safe** não é instalado. Nesses casos, use o systemd para o início e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Veja a Seção 2.5.10, “Gerenciamento do Servidor MySQL com o systemd”.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld_safe** não é instalado. Nesses casos, use o systemd para o início e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Veja a Seção 2.5.10, “Gerenciamento do Servidor MySQL com o systemd”.
 
 Para realizar uma atualização local:
 
@@ -25,7 +25,7 @@ Para realizar uma atualização local:
 
 2. Configure o MySQL para realizar um desligamento lento, definindo `innodb_fast_shutdown` para `0`. Por exemplo:
 
-   ```sql
+   ```sh
    mysql -u root -p --execute="SET GLOBAL innodb_fast_shutdown=0"
    ```
 
@@ -33,7 +33,7 @@ Para realizar uma atualização local:
 
 3. Desligue o servidor MySQL antigo. Por exemplo:
 
-   ```sql
+   ```sh
    mysqladmin -u root -p shutdown
    ```
 
@@ -41,25 +41,25 @@ Para realizar uma atualização local:
 
 5. Inicie o servidor MySQL 5.7, usando o diretório de dados existente. Por exemplo:
 
-   ```sql
+   ```sh
    mysqld_safe --user=mysql --datadir=/path/to/existing-datadir &
    ```
 
-6. Execute **mysql\_upgrade**. Por exemplo:
+6. Execute **mysql_upgrade**. Por exemplo:
 
-   ```sql
+   ```sh
    mysql_upgrade -u root -p
    ```
 
-   O **mysql\_upgrade** analisa todas as tabelas em todos os bancos de dados para encontrar incompatibilidades com a versão atual do MySQL. O **mysql\_upgrade** também atualiza o banco de dados do sistema **mysql** para que você possa aproveitar novos privilégios ou capacidades.
+   O **mysql_upgrade** analisa todas as tabelas em todos os bancos de dados para encontrar incompatibilidades com a versão atual do MySQL. O **mysql_upgrade** também atualiza o banco de dados do sistema **mysql** para que você possa aproveitar novos privilégios ou capacidades.
 
-   Nota
-
-   O **mysql\_upgrade** não atualiza o conteúdo das tabelas de fuso horário ou das tabelas de ajuda. Para obter instruções de atualização, consulte a Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”, e a Seção 5.1.14, “Suporte ao Ajuda no Servidor”.
+   ::: info Nota
+   O **mysql_upgrade** não atualiza o conteúdo das tabelas de fuso horário ou das tabelas de ajuda. Para obter instruções de atualização, consulte a Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”, e a Seção 5.1.14, “Suporte ao Ajuda no Servidor”.
+   :::
 
 7. Desligue e reinicie o servidor MySQL para garantir que quaisquer alterações feitas nas tabelas do sistema sejam efetivas. Por exemplo:
 
-   ```sql
+   ```sh
    mysqladmin -u root -p shutdown
    mysqld_safe --user=mysql --datadir=/path/to/existing-datadir &
    ```
@@ -68,9 +68,9 @@ Para realizar uma atualização local:
 
 Uma atualização lógica envolve exportar o SQL da antiga instância do MySQL usando um utilitário de backup ou exportação, como **mysqldump** ou **mysqlpump**, instalar o novo servidor MySQL e aplicar o SQL à sua nova instância do MySQL.
 
-Nota
-
-Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld\_safe** não é instalado. Nesses casos, use o systemd para o início e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Veja a Seção 2.5.10, “Gerenciamento do Servidor MySQL com o systemd”.
+::: info Nota
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld_safe** não é instalado. Nesses casos, use o systemd para o início e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Veja a Seção 2.5.10, “Gerenciamento do Servidor MySQL com o systemd”.
+:::
 
 Para realizar uma atualização lógica:
 
@@ -78,15 +78,15 @@ Para realizar uma atualização lógica:
 
 2. Exporte seus dados existentes da instalação anterior do MySQL:
 
-   ```sql
+   ```sh
    mysqldump -u root -p
      --add-drop-table --routines --events
      --all-databases --force > data-for-upgrade.sql
    ```
 
-   Nota
-
+   ::: info Nota
    Use as opções `--routines` e `--events` com o **mysqldump** (como mostrado acima) se seus bancos de dados incluem programas armazenados. A opção `--all-databases` inclui todos os bancos de dados no dump, incluindo o banco de dados `mysql` que contém as tabelas do sistema.
+   :::
 
    Importante
 
@@ -94,7 +94,7 @@ Para realizar uma atualização lógica:
 
 3. Desligue o servidor MySQL antigo. Por exemplo:
 
-   ```sql
+   ```sh
    mysqladmin -u root -p shutdown
    ```
 
@@ -102,7 +102,7 @@ Para realizar uma atualização lógica:
 
 5. Inicialize um novo diretório de dados, conforme descrito na Seção 2.9.1, “Inicializando o Diretório de Dados”. Por exemplo:
 
-   ```sql
+   ```sh
    mysqld --initialize --datadir=/path/to/5.7-datadir
    ```
 
@@ -110,13 +110,13 @@ Para realizar uma atualização lógica:
 
 6. Inicie o servidor MySQL 5.7, usando o novo diretório de dados. Por exemplo:
 
-   ```sql
+   ```sh
    mysqld_safe --user=mysql --datadir=/path/to/5.7-datadir &
    ```
 
 7. Reinicie a senha do `root`:
 
-   ```sql
+   ```sh
    $> mysql -u root -p
    Enter password: ****  <- enter temporary root password
    ```
@@ -131,25 +131,25 @@ Para realizar uma atualização lógica:
    mysql -u root -p --force < data-for-upgrade.sql
    ```
 
-   Nota
-
+   ::: info Nota
    Não é recomendado carregar um arquivo de dump quando os GTIDs estão habilitados no servidor (`gtid_mode=ON`), se o seu arquivo de dump incluir tabelas do sistema. O **mysqldump** emite instruções DML para as tabelas do sistema que usam o motor de armazenamento não transacional MyISAM, e essa combinação não é permitida quando os GTIDs estão habilitados. Além disso, esteja ciente de que carregar um arquivo de dump de um servidor com GTIDs habilitados para outro servidor com GTIDs habilitados gera identificadores de transação diferentes.
+   :::
 
-9. Execute **mysql\_upgrade**. Por exemplo:
+9. Execute **mysql_upgrade**. Por exemplo:
 
-   ```sql
+   ```sh
    mysql_upgrade -u root -p
    ```
 
-   O **mysql\_upgrade** analisa todas as tabelas em todos os bancos de dados para encontrar incompatibilidades com a versão atual do MySQL. O **mysql\_upgrade** também atualiza o banco de dados do sistema **mysql** para que você possa aproveitar novos privilégios ou capacidades.
+   O **mysql_upgrade** analisa todas as tabelas em todos os bancos de dados para encontrar incompatibilidades com a versão atual do MySQL. O **mysql_upgrade** também atualiza o banco de dados do sistema **mysql** para que você possa aproveitar novos privilégios ou capacidades.
 
-   Nota
-
-   O **mysql\_upgrade** não atualiza o conteúdo das tabelas de fuso horário ou das tabelas de ajuda. Para obter instruções de atualização, consulte a Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”, e a Seção 5.1.14, “Suporte ao Ajuda no Servidor”.
+   ::: info Nota
+   O **mysql_upgrade** não atualiza o conteúdo das tabelas de fuso horário ou das tabelas de ajuda. Para obter instruções de atualização, consulte a Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”, e a Seção 5.1.14, “Suporte ao Ajuda no Servidor”.
+   :::
 
 10. Desligue e reinicie o servidor MySQL para garantir que quaisquer alterações feitas nas tabelas do sistema sejam efetivas. Por exemplo:
 
-    ```sql
+    ```sh
     mysqladmin -u root -p shutdown
     mysqld_safe --user=mysql --datadir=/path/to/5.7-datadir &
     ```

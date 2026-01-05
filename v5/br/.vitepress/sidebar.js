@@ -413,6 +413,65 @@ export default [
 						link: '/03-installing-and-upgrading-my-sql/09-postinstallation-setup-and-testing/05-starting-and-stopping-my-s-q-l-automatically.md'
 					}
 				]
+			},
+			{
+				text: 'Atualização do MySQL',
+				link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/index.md',
+				collapsed: true,
+				items: [
+					{
+						text: 'Antes de começar',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/01-before-you-begin.md'
+					},
+					{
+						text: 'Caminhos de atualização',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/02-upgrade-paths.md'
+					},
+					{
+						text: 'Alterações no MySQL 5.7',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/03-changes-in-my-s-q-l-5-7.md'
+					},
+					{
+						text: 'Atualização de instalações binárias ou baseadas em pacotes do MySQL no Unix/Linux',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/04-upgrading-my-s-q-l-binary-or-package-based-installations-on-unix-linux.md'
+					},
+					{
+						text: 'Atualizando o MySQL com o Repositório Yum do MySQL',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/05-upgrading-my-s-q-l-with-the-my-s-q-l-yum-repository.md'
+					},
+					{
+						text: 'Atualizando o MySQL com o Repositório MySQL APT',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/06-upgrading-my-s-q-l-with-the-my-s-q-l-a-p-t-repository.md'
+					},
+					{
+						text: 'Atualização do MySQL com o Repositório MySQL SLES',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/07-upgrading-my-s-q-l-with-the-my-s-q-l-s-l-e-s-repository.md'
+					},
+					{
+						text: 'Atualização do MySQL no Windows',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/08-upgrading-my-s-q-l-on-windows.md'
+					},
+					{
+						text: 'Atualizando uma Instalação Docker do MySQL',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/09-upgrading-a-docker-installation-of-my-sql.md'
+					},
+					{
+						text: 'Atualizando o MySQL com pacotes RPM baixados diretamente',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/10-upgrading-my-s-q-l-with-directly-downloaded-r-p-m-packages.md'
+					},
+					{
+						text: 'Solução de problemas de atualização',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/11-upgrade-troubleshooting.md'
+					},
+					{
+						text: 'Reestruturação ou reparo de tabelas ou índices',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/12-rebuilding-or-repairing-tables-or-indexes.md'
+					},
+					{
+						text: 'Copiar bancos de dados MySQL para outra máquina',
+						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/13-copying-my-s-q-l-databases-to-another-machine.md'
+					}
+				]
 			}
 		]
 	}

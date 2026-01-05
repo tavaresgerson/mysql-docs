@@ -20,9 +20,9 @@ Revise as informações nesta seção antes de fazer a atualização. Realize as
 
   - Para instalações binárias e baseadas em pacotes em plataformas não Windows, consulte a Seção 2.10.4, “Atualizando instalações binárias ou baseadas em pacotes do MySQL em Unix/Linux”.
 
-    Nota
-
+    ::: info Nota
     Para as distribuições Linux suportadas, o método preferido para atualizar instalações baseadas em pacotes é usar os repositórios de software MySQL (MySQL Yum Repository, MySQL APT Repository e MySQL SLES Repository).
+    :::
 
   - Para instalações em uma plataforma Enterprise Linux ou Fedora usando o Repositório Yum do MySQL, consulte a Seção 2.10.5, “Atualizando o MySQL com o Repositório Yum do MySQL”.
 
