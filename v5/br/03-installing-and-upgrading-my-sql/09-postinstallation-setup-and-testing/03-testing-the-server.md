@@ -6,21 +6,21 @@ Como alternativa, adicione o diretório `bin` à sua configuração da variável
 
 Use **mysqladmin** para verificar se o servidor está em execução. Os seguintes comandos fornecem testes simples para verificar se o servidor está ativo e respondendo às conexões:
 
-```sql
+```sh
 $> bin/mysqladmin version
 $> bin/mysqladmin variables
 ```
 
 Se você não conseguir se conectar ao servidor, especifique a opção `-u root` para se conectar como `root`. Se você já tiver atribuído uma senha para a conta `root`, também precisará especificar `-p` na linha de comando e digitar a senha quando solicitado. Por exemplo:
 
-```sql
+```sh
 $> bin/mysqladmin -u root -p version
 Enter password: (enter root password here)
 ```
 
 A saída da **versão mysqladmin** varia um pouco dependendo da sua plataforma e da versão do MySQL, mas deve ser semelhante à mostrada aqui:
 
-```sql
+```sh
 $> bin/mysqladmin version
 mysqladmin  Ver 14.12 Distrib 5.7.44, for pc-linux-gnu on i686
 ...
@@ -40,23 +40,23 @@ Para ver o que mais você pode fazer com **mysqladmin**, invocá-lo com a opçã
 
 Verifique se você pode desligar o servidor (inclua a opção `-p` se a conta `root` já tiver uma senha):
 
-```sql
+```sh
 $> bin/mysqladmin -u root shutdown
 ```
 
-Verifique se você pode iniciar o servidor novamente. Faça isso usando **mysqld\_safe** ou invocando diretamente o **mysqld**. Por exemplo:
+Verifique se você pode iniciar o servidor novamente. Faça isso usando **mysqld_safe** ou invocando diretamente o **mysqld**. Por exemplo:
 
-```sql
+```sh
 $> bin/mysqld_safe --user=mysql &
 ```
 
-Se o **mysqld\_safe** falhar, consulte a Seção 2.9.2.1, “Soluções para problemas ao iniciar o servidor MySQL”.
+Se o **mysqld_safe** falhar, consulte a Seção 2.9.2.1, “Soluções para problemas ao iniciar o servidor MySQL”.
 
 Execute alguns testes simples para verificar se você pode recuperar informações do servidor. A saída deve ser semelhante à mostrada aqui.
 
 Use **mysqlshow** para ver quais bancos de dados existem:
 
-```sql
+```sh
 $> bin/mysqlshow
 +--------------------+
 |     Databases      |
@@ -72,7 +72,7 @@ A lista de bancos de dados instalados pode variar, mas sempre inclui pelo menos 
 
 Se você especificar um nome de banco de dados, o **mysqlshow** exibe uma lista das tabelas dentro do banco de dados:
 
-```sql
+```sh
 $> bin/mysqlshow mysql
 Database: mysql
 +---------------------------+

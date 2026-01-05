@@ -10,7 +10,7 @@ Meios alternativos para realizar o processo descrito nesta seção:
 
 - No Windows, você pode realizar o processo durante a instalação com o Instalador do MySQL (consulte a Seção 2.3.3, “Instalador do MySQL para Windows”).
 
-- Em todas as plataformas, a distribuição do MySQL inclui o **mysql\_secure\_installation**, uma ferramenta de linha de comando que automatiza grande parte do processo de segurança de uma instalação do MySQL.
+- Em todas as plataformas, a distribuição do MySQL inclui o **mysql_secure_installation**, uma ferramenta de linha de comando que automatiza grande parte do processo de segurança de uma instalação do MySQL.
 
 - Em todas as plataformas, o MySQL Workbench está disponível e oferece a capacidade de gerenciar contas de usuário (veja o Capítulo 29, *MySQL Workbench*).
 
@@ -42,7 +42,7 @@ A conta inicial `root` pode ou não ter uma senha. Escolha o procedimento que se
 
   2. Conecte-se ao servidor como `root` usando a senha:
 
-     ```sql
+     ```sh
      $> mysql -u root -p
      Enter password: (enter the random root password here)
      ```
@@ -57,7 +57,7 @@ A conta inicial `root` pode ou não ter uma senha. Escolha o procedimento que se
 
   1. Conecte-se ao servidor como `root` sem senha:
 
-     ```sql
+     ```sh
      $> mysql -u root --skip-password
      ```
 
@@ -69,20 +69,20 @@ A conta inicial `root` pode ou não ter uma senha. Escolha o procedimento que se
 
 Depois de atribuir uma senha à conta `root`, você deve fornecer essa senha sempre que se conectar ao servidor usando a conta. Por exemplo, para se conectar ao servidor usando o cliente **mysql**, use este comando:
 
-```sql
+```sh
 $> mysql -u root -p
 Enter password: (enter root password here)
 ```
 
 Para desligar o servidor com o **mysqladmin**, use este comando:
 
-```sql
+```sh
 $> mysqladmin -u root -p shutdown
 Enter password: (enter root password here)
 ```
 
-Nota
-
+::: info Nota
 Para obter informações adicionais sobre a definição de senhas, consulte a Seção 6.2.10, “Atribuição de Senhas de Conta”. Se você esquecer a senha do `root` após defini-la, consulte a Seção B.3.3.2, “Como Redefinir a Senha do `root`”.
 
 Para configurar contas adicionais, consulte a Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”.
+:::

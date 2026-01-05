@@ -6,7 +6,7 @@ Se você tiver problemas para iniciar o servidor, aqui estão algumas coisas que
 
 - Verifique o log de erros para ver por que o servidor não está sendo iniciado. Os arquivos de log estão localizados no diretório de dados (tipicamente `C:\Program Files\MySQL\MySQL Server 5.7\data` no Windows, `/usr/local/mysql/data` para uma distribuição binária Unix/Linux, e `/usr/local/var` para uma distribuição de código-fonte Unix/Linux). Procure no diretório de dados por arquivos com nomes na forma `host_name.err` e `host_name.log`, onde *`host_name`* é o nome do seu host do servidor. Em seguida, examine as últimas linhas desses arquivos. Use `tail` para exibí-las:
 
-  ```sql
+  ```sh
   $> tail host_name.err
   $> tail host_name.log
   ```
@@ -17,11 +17,11 @@ Se você tiver problemas para iniciar o servidor, aqui estão algumas coisas que
 
 - Certifique-se de que o servidor saiba onde encontrar o diretório de dados. O servidor **mysqld** usa esse diretório como seu diretório atual. É aqui que ele espera encontrar bancos de dados e onde espera escrever arquivos de log. O servidor também escreve o arquivo pid (ID de processo) no diretório de dados.
 
-  A localização padrão do diretório de dados é hardcoded quando o servidor é compilado. Para determinar quais são as configurações de caminho padrão, inicie o **mysqld** com as opções `--verbose` e `--help`. Se o diretório de dados estiver localizado em outro lugar do seu sistema, especifique essa localização com a opção `--datadir` para o **mysqld** ou **mysqld\_safe**, na linha de comando ou em um arquivo de opção. Caso contrário, o servidor não funcionará corretamente. Como alternativa à opção `--datadir`, você pode especificar ao **mysqld** a localização do diretório base sob o qual o MySQL está instalado com a opção `--basedir`, e o **mysqld** procurará o diretório `data` ali.
+  A localização padrão do diretório de dados é hardcoded quando o servidor é compilado. Para determinar quais são as configurações de caminho padrão, inicie o **mysqld** com as opções `--verbose` e `--help`. Se o diretório de dados estiver localizado em outro lugar do seu sistema, especifique essa localização com a opção `--datadir` para o **mysqld** ou **mysqld_safe**, na linha de comando ou em um arquivo de opção. Caso contrário, o servidor não funcionará corretamente. Como alternativa à opção `--datadir`, você pode especificar ao **mysqld** a localização do diretório base sob o qual o MySQL está instalado com a opção `--basedir`, e o **mysqld** procurará o diretório `data` ali.
 
   Para verificar o efeito de especificar opções de caminho, inicie o **mysqld** com essas opções, seguidas das opções `--verbose` e `--help`. Por exemplo, se você alterar a localização para o diretório onde o **mysqld** está instalado e executar o seguinte comando, ele mostrará o efeito de iniciar o servidor com um diretório base de `/usr/local`:
 
-  ```sql
+  ```sh
   $> ./mysqld --basedir=/usr/local --verbose --help
   ```
 
@@ -31,13 +31,13 @@ Se você tiver problemas para iniciar o servidor, aqui estão algumas coisas que
 
   Se o **mysqld** estiver rodando atualmente, você pode descobrir quais configurações de caminho ele está usando executando este comando:
 
-  ```sql
+  ```sh
   $> mysqladmin variables
   ```
 
   Ou:
 
-  ```sql
+  ```sh
   $> mysqladmin -h host_name variables
   ```
 
@@ -49,13 +49,13 @@ Se você tiver problemas para iniciar o servidor, aqui estão algumas coisas que
 
   Altere a localização para o diretório de dados e verifique a propriedade do diretório de dados e seu conteúdo para garantir que o servidor tenha acesso. Por exemplo, se o diretório de dados for `/usr/local/mysql/var`, use este comando:
 
-  ```sql
+  ```sh
   $> ls -la /usr/local/mysql/var
   ```
 
   Se o diretório de dados ou seus arquivos ou subdiretórios não estiverem de propriedade da conta de login que você usa para executar o servidor, mude a propriedade para essa conta. Se a conta for chamada de `mysql`, use esses comandos:
 
-  ```sql
+  ```sh
   $> chown -R mysql /usr/local/mysql/var
   $> chgrp -R mysql /usr/local/mysql/var
   ```
@@ -66,7 +66,7 @@ Se você tiver problemas para iniciar o servidor, aqui estão algumas coisas que
 
   Se ocorrer algum dos seguintes erros, isso significa que outro programa (talvez outro servidor **mysqld**) está usando a porta TCP/IP ou o arquivo de soquete Unix que o **mysqld** está tentando usar:
 
-  ```sql
+  ```
   Can't start server: Bind on TCP/IP port: Address already in use
   Can't start server: Bind on unix socket...
   ```
@@ -79,7 +79,7 @@ Se você tiver problemas para iniciar o servidor, aqui estão algumas coisas que
 
   Se o servidor começar a funcionar, mas você não conseguir se conectar a ele, certifique-se de que você tem uma entrada no `/etc/hosts` que seja semelhante a esta:
 
-  ```sql
+  ```
   127.0.0.1       localhost
   ```
 

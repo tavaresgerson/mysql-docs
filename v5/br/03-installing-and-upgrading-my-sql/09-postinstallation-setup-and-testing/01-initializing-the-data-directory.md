@@ -19,7 +19,7 @@ Nos exemplos mostrados aqui, o servidor deve ser executado sob o ID de usuário 
 
 1. Altere a localização para o diretório de nível superior da instalação do MySQL, que normalmente é `/usr/local/mysql` (ajuste o nome do caminho conforme necessário para o seu sistema):
 
-   ```sql
+   ```shell
    cd /usr/local/mysql
    ```
 
@@ -27,7 +27,7 @@ Nos exemplos mostrados aqui, o servidor deve ser executado sob o ID de usuário 
 
 2. A variável de sistema `secure_file_priv` limita as operações de importação e exportação para um diretório específico. Crie um diretório cuja localização pode ser especificada como o valor dessa variável:
 
-   ```sql
+   ```shell
    mkdir mysql-files
    ```
 
@@ -40,7 +40,7 @@ Nos exemplos mostrados aqui, o servidor deve ser executado sob o ID de usuário 
 
 3. Use o servidor para inicializar o diretório de dados, incluindo o banco de dados `mysql` que contém as tabelas iniciais de concessão do MySQL que determinam como os usuários são autorizados a se conectar ao servidor. Por exemplo:
 
-   ```sql
+   ```shell
    bin/mysqld --initialize --user=mysql
    ```
 
@@ -52,7 +52,7 @@ Nos exemplos mostrados aqui, o servidor deve ser executado sob o ID de usuário 
 
    A inicialização do diretório de dados pode falhar se as bibliotecas do sistema necessárias estiverem ausentes. Por exemplo, você pode ver um erro como este:
 
-   ```sql
+   ```sh
    bin/mysqld: error while loading shared libraries:
    libnuma.so.1: cannot open shared object file:
    No such file or directory
@@ -60,13 +60,13 @@ Nos exemplos mostrados aqui, o servidor deve ser executado sob o ID de usuário 
 
    Se isso acontecer, você deve instalar as bibliotecas ausentes manualmente ou com o gerenciador de pacotes do seu sistema. Em seguida, tente novamente o comando de inicialização do diretório de dados.
 
-4. Se você deseja implementar o servidor com suporte automático para conexões seguras, use o utilitário **mysql\_ssl\_rsa\_setup** para criar arquivos SSL e RSA padrão:
+4. Se você deseja implementar o servidor com suporte automático para conexões seguras, use o utilitário **mysql_ssl_rsa_setup** para criar arquivos SSL e RSA padrão:
 
-   ```sql
+   ```sh
    bin/mysql_ssl_rsa_setup
    ```
 
-   Para obter mais informações, consulte a Seção 4.4.5, “mysql\_ssl\_rsa\_setup — Criar arquivos SSL/RSA”.
+   Para obter mais informações, consulte a Seção 4.4.5, “mysql_ssl_rsa_setup — Criar arquivos SSL/RSA”.
 
 5. Na ausência de arquivos de opções, o servidor inicia com suas configurações padrão. (Veja a Seção 5.1.2, “Configurações Padrão do Servidor”.) Para especificar explicitamente as opções que o servidor MySQL deve usar ao iniciar, coloque-as em um arquivo de opções, como `/etc/my.cnf` ou `/etc/mysql/my.cnf`. (Veja a Seção 4.2.2.2, “Uso de Arquivos de Opções”.) Por exemplo, você pode usar um arquivo de opções para definir a variável de sistema `secure_file_priv`.
 
@@ -78,7 +78,7 @@ Nos exemplos mostrados aqui, o servidor deve ser executado sob o ID de usuário 
 
 Altere a localização para o diretório de nível superior da instalação do MySQL, que normalmente é `/usr/local/mysql` (ajuste o nome do caminho conforme necessário para o seu sistema):
 
-```sql
+```sh
 cd /usr/local/mysql
 ```
 
@@ -90,15 +90,15 @@ Para inicializar o diretório de dados, invocando o **mysqld** com a opção `--
 
 Para obter instruções sobre como atribuir uma nova senha para o `'root'@'localhost'`, consulte Atribuição de senha do root após a inicialização.
 
-Nota
-
+::: info Nota
 O servidor escreve quaisquer mensagens (incluindo qualquer senha inicial) na saída padrão de erro. Isso pode ser redirecionado para o log de erro, então, procure lá se você não vir as mensagens na tela. Para obter informações sobre o log de erro, incluindo onde ele está localizado, consulte a Seção 5.4.2, “O Log de Erro”.
+:::
 
 No Windows, use a opção `--console` para direcionar as mensagens para o console.
 
 Em sistemas Unix e similares, é importante que os diretórios e arquivos do banco de dados sejam de propriedade da conta de login `mysql` para que o servidor tenha acesso de leitura e escrita a eles quando você executá-lo mais tarde. Para garantir isso, inicie o **mysqld** a partir da conta `root` do sistema e inclua a opção `--user`, conforme mostrado aqui:
 
-```sql
+```sh
 bin/mysqld --initialize --user=mysql
 bin/mysqld --initialize-insecure --user=mysql
 ```
@@ -107,26 +107,26 @@ Alternativamente, execute **mysqld** enquanto estiver logado como `mysql`, nesse
 
 No Windows, use um desses comandos:
 
-```sql
+```sh
 bin\mysqld --initialize --console
 bin\mysqld --initialize-insecure --console
 ```
 
-Nota
-
+::: info Nota
 A inicialização do diretório de dados pode falhar se as bibliotecas do sistema necessárias estiverem ausentes. Por exemplo, você pode ver um erro como este:
 
-```sql
+```sh
 bin/mysqld: error while loading shared libraries:
 libnuma.so.1: cannot open shared object file:
 No such file or directory
 ```
 
 Se isso acontecer, você deve instalar as bibliotecas ausentes manualmente ou com o gerenciador de pacotes do seu sistema. Em seguida, tente novamente o comando de inicialização do diretório de dados.
+:::
 
 Pode ser necessário especificar outras opções, como `--basedir` ou `--datadir`, se o **mysqld** não conseguir identificar os locais corretos para o diretório de instalação ou o diretório de dados. Por exemplo (insira o comando em uma única linha):
 
-```sql
+```sh
 bin/mysqld --initialize --user=mysql
   --basedir=/opt/mysql/mysql
   --datadir=/opt/mysql/mysql/data
@@ -134,7 +134,7 @@ bin/mysqld --initialize --user=mysql
 
 Alternativamente, coloque as configurações de opção relevantes em um arquivo de opção e passe o nome desse arquivo para o **mysqld**. Para sistemas Unix e similares, suponha que o nome do arquivo de opção seja `/opt/mysql/mysql/etc/my.cnf`. Coloque essas linhas no arquivo:
 
-```sql
+```
 [mysqld]
 basedir=/opt/mysql/mysql
 datadir=/opt/mysql/mysql/data
@@ -142,14 +142,14 @@ datadir=/opt/mysql/mysql/data
 
 Em seguida, invoque o **mysqld** da seguinte forma (insira o comando em uma única linha, com a opção `--defaults-file` primeiro):
 
-```sql
+```sh
 bin/mysqld --defaults-file=/opt/mysql/mysql/etc/my.cnf
   --initialize --user=mysql
 ```
 
 No Windows, suponha que `C:\my.ini` contenha essas linhas:
 
-```sql
+```
 [mysqld]
 basedir=C:\\Program Files\\MySQL\\MySQL Server 5.7
 datadir=D:\\MySQLdata
@@ -157,20 +157,20 @@ datadir=D:\\MySQLdata
 
 Em seguida, invoque o **mysqld** da seguinte forma (novamente, você deve digitar o comando em uma única linha, com a opção `--defaults-file` primeiro):
 
-```sql
+```sh
 bin\mysqld --defaults-file=C:\my.ini
    --initialize --console
 ```
 
-Importante
-
+::: info Importante
 Ao inicializar o diretório de dados, você não deve especificar nenhuma opção além das usadas para definir as localizações do diretório, como `--basedir` ou `--datadir`, e a opção `--user`, se necessário. As opções que o servidor MySQL deve usar durante o uso normal podem ser definidas ao reiniciá-lo após a inicialização. Consulte a descrição da opção `--initialize` para obter mais informações.
+:::
 
 #### Ações do servidor durante a inicialização do diretório de dados
 
-Nota
-
-A sequência de inicialização do diretório de dados realizada pelo servidor não substitui as ações realizadas por **mysql\_secure\_installation** e **mysql\_ssl\_rsa\_setup**. Veja a Seção 4.4.4, “mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL”, e a Seção 4.4.5, “mysql\_ssl\_rsa\_setup — Criar Arquivos SSL/RSA”.
+::: info Nota
+A sequência de inicialização do diretório de dados realizada pelo servidor não substitui as ações realizadas por **mysql_secure_installation** e **mysql_ssl_rsa_setup**. Veja a Seção 4.4.4, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”, e a Seção 4.4.5, “mysql_ssl_rsa_setup — Criar Arquivos SSL/RSA”.
+:::
 
 Quando invocado com a opção `--initialize` ou `--initialize-insecure`, o **mysqld** executa as seguintes ações durante a sequência de inicialização do diretório de dados:
 
@@ -179,7 +179,7 @@ Quando invocado com a opção `--initialize` ou `--initialize-insecure`, o **mys
    - Se o diretório de dados não existir, o servidor cria-o.
    - Se o diretório de dados existir, mas não estiver vazio (ou seja, se contiver arquivos ou subdiretórios), o servidor será encerrado após exibir uma mensagem de erro:
 
-     ```sql
+     ```sh
      [ERROR] --initialize specified but the data directory exists. Aborting.
      ```
 
@@ -187,17 +187,17 @@ Quando invocado com a opção `--initialize` ou `--initialize-insecure`, o **mys
 
      A partir do MySQL 5.7.11, um diretório de dados existente pode ser permitido que não esteja vazio se cada entrada tiver um nome que comece com um ponto (`.`) ou se o nome for definido usando a opção `--ignore-db-dir`.
 
-     Nota
-
+     ::: info Nota
      Evite o uso da opção `--ignore-db-dir`, que foi descontinuada desde o MySQL 5.7.16.
+     :::
 
 2. Dentro do diretório de dados, o servidor cria o banco de dados do sistema `mysql` e suas tabelas, incluindo as tabelas de concessão, tabelas de fuso horário e tabelas de ajuda do lado do servidor. Veja a Seção 5.3, “O Banco de Dados do Sistema mysql”.
 
 3. O servidor inicializa o espaço de tabela do sistema e as estruturas de dados relacionadas necessárias para gerenciar as tabelas `InnoDB`.
 
-   Nota
-
+   ::: info Nota
    Após o **mysqld** configurar o espaço de tabelas `InnoDB`, certas alterações nas características do espaço de tabelas exigem a criação de uma nova instância. As alterações qualificadas incluem o nome do arquivo do primeiro arquivo no espaço de tabelas do sistema e o número de logs de desfazer. Se você não quiser usar os valores padrão, certifique-se de que as configurações dos parâmetros de configuração `innodb_data_file_path` e `innodb_log_file_size` estejam no arquivo de configuração do MySQL *antes* de executar o **mysqld**. Além disso, certifique-se de especificar outros parâmetros necessários que afetam a criação e a localização dos arquivos `InnoDB`, como `innodb_data_home_dir` e `innodb_log_group_home_dir`.
+   :::
 
    Se essas opções estiverem no seu arquivo de configuração, mas esse arquivo não estiver em um local que o MySQL lê por padrão, especifique a localização do arquivo usando a opção `--defaults-extra-file` quando você executar o **mysqld**.
 
@@ -207,14 +207,14 @@ Quando invocado com a opção `--initialize` ou `--initialize-insecure`, o **mys
 
    - Com `--initialize` (mas não `--initialize-insecure`), o servidor gera uma senha aleatória, marca-a como expirada e escreve uma mensagem exibindo a senha:
 
-     ```sql
+     ```
      [Warning] A temporary password is generated for root@localhost:
      iTag*AfrH5ej
      ```
 
    - Com `--initialize-insecure`, (com ou sem `--initialize`, pois `--initialize-insecure` implica em `--initialize`), o servidor não gera uma senha ou marca-a como expirada e escreve uma mensagem de aviso:
 
-     ```sql
+     ```
      [Warning] root@localhost is created with an empty password ! Please
      consider switching off the --initialize-insecure option.
      ```
@@ -239,13 +239,13 @@ Depois de inicializar o diretório de dados iniciando o servidor com `--initiali
 
    - Se você usou `--initialize` mas não `--initialize-insecure` para inicializar o diretório de dados, conecte-se ao servidor como `root`:
 
-     ```sql
+     ```sh
      mysql -u root -p
      ```
 
      Em seguida, na tela de senha, insira a senha aleatória que o servidor gerou durante a sequência de inicialização:
 
-     ```sql
+     ```sh
      Enter password: (enter the random root password here)
      ```
 
@@ -253,7 +253,7 @@ Depois de inicializar o diretório de dados iniciando o servidor com `--initiali
 
    - Se você usou `--initialize-insecure` para inicializar o diretório de dados, conecte-se ao servidor como `root` sem senha:
 
-     ```sql
+     ```sh
      mysql -u root --skip-password
      ```
 
@@ -265,8 +265,7 @@ Depois de inicializar o diretório de dados iniciando o servidor com `--initiali
 
 Veja também a Seção 2.9.4, “Segurança da Conta Inicial do MySQL”.
 
-Nota
-
+::: info Nota
 As tentativas de conexão com o host `127.0.0.1` normalmente resolvem para a conta `localhost`. No entanto, isso falha se o servidor for executado com `skip_name_resolve` habilitado. Se você planeja fazer isso, certifique-se de que exista uma conta que possa aceitar uma conexão. Por exemplo, para poder se conectar como `root` usando `--host=127.0.0.1` ou `--host=::1`, crie essas contas:
 
 ```sql
@@ -275,3 +274,4 @@ CREATE USER 'root'@'::1' IDENTIFIED BY 'root-password';
 ```
 
 É possível colocar essas declarações em um arquivo para ser executado usando a variável de sistema `init_file`, conforme discutido em Ações do servidor durante a inicialização do diretório de dados.
+:::

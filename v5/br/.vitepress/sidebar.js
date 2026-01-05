@@ -379,6 +379,40 @@ export default [
 						link: '/03-installing-and-upgrading-my-sql/08-installing-mysql-from-source/09-my-s-q-l-configuration-and-third-party-tools.md'
 					}
 				]
+			},
+			{
+				text: 'Configuração e teste pós-instalação',
+				link: '/03-installing-and-upgrading-my-sql/09-postinstallation-setup-and-testing/index.md',
+				collapsed: true,
+				items: [
+					{
+						text: 'Inicializando o Diretório de Dados',
+						link: '/03-installing-and-upgrading-my-sql/09-postinstallation-setup-and-testing/01-initializing-the-data-directory.md'
+					},
+					{
+						text: 'Começando o servidor',
+						link: '/03-installing-and-upgrading-my-sql/09-postinstallation-setup-and-testing/02-starting-the-server/index.md',
+						collapsed: true,
+						items: [
+							{
+								text: 'Solução de problemas para iniciar o servidor MySQL',
+								link: '/03-installing-and-upgrading-my-sql/09-postinstallation-setup-and-testing/02-starting-the-server/01-troubleshooting-problems-starting-the-my-s-q-l-server.md'
+							}
+						]
+					},
+					{
+						text: 'Testando o servidor',
+						link: '/03-installing-and-upgrading-my-sql/09-postinstallation-setup-and-testing/03-testing-the-server.md'
+					},
+					{
+						text: 'Segurança da conta inicial do MySQL',
+						link: '/03-installing-and-upgrading-my-sql/09-postinstallation-setup-and-testing/04-securing-the-initial-my-s-q-l-account.md'
+					},
+					{
+						text: 'Iniciar e parar o MySQL automaticamente',
+						link: '/03-installing-and-upgrading-my-sql/09-postinstallation-setup-and-testing/05-starting-and-stopping-my-s-q-l-automatically.md'
+					}
+				]
 			}
 		]
 	}
