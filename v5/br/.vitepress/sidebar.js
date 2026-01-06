@@ -499,6 +499,25 @@ export default [
 						link: '/03-installing-and-upgrading-my-sql/11-downgrading-my-sql/05-downgrade-troubleshooting.md'
 					}
 				]
+			},
+			{
+				text: 'Notas de instalação do Perl',
+				link: '/03-installing-and-upgrading-my-sql/12-perl-installation-notes/index.md',
+				collapsed: true,
+				items: [
+					{
+						text: 'Instalar o Perl no Unix',
+						link: '/03-installing-and-upgrading-my-sql/12-perl-installation-notes/01-installing-perl-on-unix.md'
+					},
+					{
+						text: 'Instalação do ActiveState Perl no Windows',
+						link: '/03-installing-and-upgrading-my-sql/12-perl-installation-notes/02-installing-active-state-perl-on-windows.md'
+					},
+					{
+						text: 'Problemas ao usar a interface Perl DBI/DBD',
+						link: '/03-installing-and-upgrading-my-sql/12-perl-installation-notes/03-problems-using-the-perl-d-b-i-d-b-d-interface.md'
+					}
+				]
 			}
 		]
 	}

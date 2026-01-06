@@ -6,7 +6,7 @@ Os arquivos necessários para o suporte ao Perl podem ser obtidos do CPAN (Compr
 
 A maneira mais fácil de instalar módulos Perl no Unix é usar o módulo `CPAN`. Por exemplo:
 
-```sql
+```sh
 $> perl -MCPAN -e shell
 cpan> install DBI
 cpan> install DBD::mysql
@@ -20,7 +20,7 @@ Também é possível baixar as distribuições do módulo na forma de arquivos *
 
 1. Descompacte a distribuição no diretório atual:
 
-   ```sql
+   ```sh
    $> gunzip < DBI-VERSION.tar.gz | tar xvf -
    ```
 
@@ -28,13 +28,13 @@ Também é possível baixar as distribuições do módulo na forma de arquivos *
 
 2. Altere a localização para o diretório de nível superior da distribuição desempacotada:
 
-   ```sql
+   ```sh
    $> cd DBI-VERSION
    ```
 
 3. Construa a distribuição e compile tudo:
 
-   ```sql
+   ```sh
    $> perl Makefile.PL
    $> make
    $> make test

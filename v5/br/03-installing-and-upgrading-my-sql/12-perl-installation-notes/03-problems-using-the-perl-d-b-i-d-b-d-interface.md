@@ -14,7 +14,7 @@ Observe que você também pode precisar modificar as opções `-L` se houver out
 
 Se você receber os seguintes erros do `DBD::mysql`, provavelmente está usando o **gcc** (ou está usando um binário antigo compilado com o **gcc**):
 
-```sql
+```sh
 /usr/bin/perl: can't resolve symbol '__moddi3'
 /usr/bin/perl: can't resolve symbol '__divdi3'
 ```
