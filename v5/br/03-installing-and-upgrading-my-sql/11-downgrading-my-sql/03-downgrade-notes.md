@@ -79,7 +79,7 @@ Antes de fazer a atualização para uma versão anterior do MySQL 5.7, revise as
   DROP DATABASE sys;
   ```
 
-  Se você estiver fazendo uma atualização para uma versão que inclui o esquema `sys`, o **mysql\_upgrade** recria o esquema `sys` em uma forma compatível. O esquema `sys` não está incluído no MySQL 5.6.
+  Se você estiver fazendo uma atualização para uma versão que inclui o esquema `sys`, o **mysql_upgrade** recria o esquema `sys` em uma forma compatível. O esquema `sys` não está incluído no MySQL 5.6.
 
 #### Alterações no InnoDB
 
@@ -87,19 +87,19 @@ Antes de fazer a atualização para uma versão anterior do MySQL 5.7, revise as
 
 - Para simplificar a descoberta do espaço de tabela `InnoDB` durante a recuperação após falhas, novos tipos de registro de log de redo foram introduzidos no MySQL 5.7.5. Essa melhoria altera o formato do log de redo. Antes de realizar uma desativação local a partir do MySQL 5.7.5 ou posterior, execute um desligamento limpo usando uma configuração `innodb_fast_shutdown` de `0` ou `1`. Um desligamento lento usando `innodb_fast_shutdown=0` é uma etapa recomendada no Desativação Local.
 
-- Os registros de desfazer dos MySQL 5.7.8 e 5.7.9 podem conter informações insuficientes sobre as colunas espaciais (Bug #21508582). Antes de realizar uma desativação local do MySQL 5.7.10 ou superior para o MySQL 5.7.9 ou versões anteriores, execute um desligamento lento usando `innodb_fast_shutdown=0` para limpar os registros de desfazer. Um desligamento lento usando `innodb_fast_shutdown=0` é uma etapa recomendada no Desativação Local.
+- Os registros de desfazer dos MySQL 5.7.8 e 5.7.9 podem conter informações insuficientes sobre as colunas espaciais (Bug `#21508582`). Antes de realizar uma desativação local do MySQL 5.7.10 ou superior para o MySQL 5.7.9 ou versões anteriores, execute um desligamento lento usando `innodb_fast_shutdown=0` para limpar os registros de desfazer. Um desligamento lento usando `innodb_fast_shutdown=0` é uma etapa recomendada no Desativação Local.
 
 - Os registros de desfazer do MySQL 5.7.8 podem conter informações insuficientes sobre colunas virtuais e índices de colunas virtuais (Bug #21869656). Antes de realizar uma desativação local do MySQL 5.7.9 ou posterior para o MySQL 5.7.8 ou anterior, execute um desligamento lento usando `innodb_fast_shutdown=0` para limpar os registros de desfazer. Um desligamento lento usando `innodb_fast_shutdown=0` é uma etapa recomendada na Desativação Local.
 
-- A partir do MySQL 5.7.9, o cabeçalho do log de refazer do primeiro arquivo de log de refazer (`ib_logfile0`) inclui um identificador de versão do formato e uma string de texto que identifica a versão do MySQL que criou os arquivos de log de refazer. Essa melhoria altera o formato do log de refazer. Para evitar que versões mais antigas do MySQL iniciem em arquivos de log de refazer criados no MySQL 5.7.9 ou posterior, o checksum (cópia de segurança) das páginas de verificação de ponto de controle do log de refazer foi alterado. Como resultado, você deve realizar um desligamento lento do MySQL (usando innodb\_fast\_shutdown=0) e remover os arquivos de log de refazer (os arquivos `ib_logfile*`) antes de realizar uma desativação local. Um desligamento lento usando `innodb_fast_shutdown=0` e a remoção dos arquivos de log de refazer são etapas recomendadas na Desativação Local.
+- A partir do MySQL 5.7.9, o cabeçalho do log de refazer do primeiro arquivo de log de refazer (`ib_logfile0`) inclui um identificador de versão do formato e uma string de texto que identifica a versão do MySQL que criou os arquivos de log de refazer. Essa melhoria altera o formato do log de refazer. Para evitar que versões mais antigas do MySQL iniciem em arquivos de log de refazer criados no MySQL 5.7.9 ou posterior, o checksum (cópia de segurança) das páginas de verificação de ponto de controle do log de refazer foi alterado. Como resultado, você deve realizar um desligamento lento do MySQL (usando `innodb_fast_shutdown=0`) e remover os arquivos de log de refazer (os arquivos `ib_logfile*`) antes de realizar uma desativação local. Um desligamento lento usando `innodb_fast_shutdown=0` e a remoção dos arquivos de log de refazer são etapas recomendadas na Desativação Local.
 
 - Uma nova versão de compressão usada pelo recurso de compressão de páginas do `InnoDB` foi adicionada no MySQL 5.7.32. A nova versão de compressão não é compatível com versões anteriores do MySQL. Criar uma tabela compactada em MySQL 5.7.32 ou superior e acessar a tabela após a atualização para uma versão anterior ao MySQL 5.7.32 causa um erro. Como solução alternativa, descomprima essas tabelas antes da atualização. Para descomprimir uma tabela, execute `ALTER TABLE tbl_name COMPRESSION='None'` e `OPTIMIZE TABLE`. Para obter informações sobre o recurso de compressão de páginas do `InnoDB`, consulte a Seção 14.9.2, “Compressão de Páginas do InnoDB”.
 
 #### Registro de alterações
 
-- O suporte para enviar o log de erros do servidor para o `syslog` no MySQL 5.7.5 e versões posteriores difere das versões mais antigas. Se você usar `syslog` e fazer uma atualização para uma versão mais antiga que 5.7.5, você deve parar de usar as variáveis de sistema **mysqld** relevantes e usar as opções de comando **mysqld\_safe** correspondentes. Suponha que você use `syslog` configurando essas variáveis de sistema no grupo `[mysqld]` de um arquivo de opções:
+- O suporte para enviar o log de erros do servidor para o `syslog` no MySQL 5.7.5 e versões posteriores difere das versões mais antigas. Se você usar `syslog` e fazer uma atualização para uma versão mais antiga que 5.7.5, você deve parar de usar as variáveis de sistema **mysqld** relevantes e usar as opções de comando **mysqld_safe** correspondentes. Suponha que você use `syslog` configurando essas variáveis de sistema no grupo `[mysqld]` de um arquivo de opções:
 
-  ```sql
+  ```
   [mysqld]
   log_syslog=ON
   log_syslog_tag=mytag
@@ -107,13 +107,13 @@ Antes de fazer a atualização para uma versão anterior do MySQL 5.7, revise as
 
   Para fazer o downgrade, remova essas configurações e adicione configurações de opções no grupo de opções `[mysqld_safe]`:
 
-  ```sql
+  ```
   [mysqld_safe]
   syslog
   syslog-tag=mytag
   ```
 
-  As variáveis de sistema relacionadas ao `syslog` que não têm a opção correspondente ao **mysqld\_safe** não podem ser usadas após uma redução de versão.
+  As variáveis de sistema relacionadas ao `syslog` que não têm a opção correspondente ao **mysqld_safe** não podem ser usadas após uma redução de versão.
 
 #### Alterações no SQL
 

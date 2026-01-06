@@ -472,6 +472,33 @@ export default [
 						link: '/03-installing-and-upgrading-my-sql/10-upgrading-my-sql/13-copying-my-s-q-l-databases-to-another-machine.md'
 					}
 				]
+			},
+			{
+				text: 'Desatualização do MySQL',
+				link: '/03-installing-and-upgrading-my-sql/11-downgrading-my-sql/index.md',
+				collapsed: true,
+				items: [
+					{
+						text: 'Antes de começar',
+						link: '/03-installing-and-upgrading-my-sql/11-downgrading-my-sql/01-before-you-begin.md'
+					},
+					{
+						text: 'Caminhos de Downgrade',
+						link: '/03-installing-and-upgrading-my-sql/11-downgrading-my-sql/02-downgrade-paths.md'
+					},
+					{
+						text: 'Notas de Downgrade',
+						link: '/03-installing-and-upgrading-my-sql/11-downgrading-my-sql/03-downgrade-notes.md'
+					},
+					{
+						text: 'Desatualização de Instalações Binárias e Baseadas em Pacotes no Unix/Linux',
+						link: '/03-installing-and-upgrading-my-sql/11-downgrading-my-sql/04-downgrading-binary-and-package-based-installations-on-unix-linux.md'
+					},
+					{
+						text: 'Solução de problemas de downgrade',
+						link: '/03-installing-and-upgrading-my-sql/11-downgrading-my-sql/05-downgrade-troubleshooting.md'
+					}
+				]
 			}
 		]
 	}
