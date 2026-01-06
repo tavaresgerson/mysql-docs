@@ -520,5 +520,90 @@ export default [
 				]
 			}
 		]
+	},
+	{
+		text: 'Tutorial',
+		link: '/04-tutorial/index.md',
+		collapsed: true,
+		items: [
+			{
+				text: 'Conectar e desconectar do servidor',
+				link: '/04-tutorial/01-connecting-to-and-disconnecting-from-the-server.md'
+			},
+			{
+				text: 'Inserindo Consultas',
+				link: '/04-tutorial/02-entering-queries.md'
+			},
+			{
+				text: 'Criando e usando um banco de dados',
+				link: '/04-tutorial/03-creating-and-using-a-database/index.md',
+				collapsed: true,
+				items: [
+					{
+						text: 'Criando e selecionando um banco de dados',
+						link: '/04-tutorial/03-creating-and-using-a-database/01-creating-and-selecting-a-database.md'
+					},
+					{
+						text: 'Criando uma Tabela',
+						link: '/04-tutorial/03-creating-and-using-a-database/02-creating-a-table.md'
+					},
+					{
+						text: 'Carregando dados em uma tabela',
+						link: '/04-tutorial/03-creating-and-using-a-database/03-loading-data-into-a-table.md'
+					},
+					{
+						text: 'Recuperação de informações de uma tabela',
+						link: '/04-tutorial/03-creating-and-using-a-database/04-retrieving-information-from-a-table/index.md',
+						collapsed: true,
+						items: [
+							{
+								text: 'Selecionando todos os dados',
+								link: '/04-tutorial/03-creating-and-using-a-database/04-retrieving-information-from-a-table/01-selecting-all-data.md',
+							},
+							{
+								text: 'Selecionando Linhas Específicas',
+								link: '/04-tutorial/03-creating-and-using-a-database/04-retrieving-information-from-a-table/02-selecting-particular-rows.md'
+							},
+							{
+								text: 'Selecionando Colunas Específicas',
+								link: '/04-tutorial/03-creating-and-using-a-database/04-retrieving-information-from-a-table/03-selecting-particular-columns.md'
+							},
+							{
+								text: 'Cálculos de data',
+								link: '/04-tutorial/03-creating-and-using-a-database/04-retrieving-information-from-a-table/05-date-calculations.md'
+							},
+							{
+								text: 'Trabalhando com Valores NULL',
+								link: '/04-tutorial/03-creating-and-using-a-database/04-retrieving-information-from-a-table/06-working-with-n-u-l-l-values.md'
+							},
+							{
+								text: 'Correspondência de Padrões',
+								link: '/04-tutorial/03-creating-and-using-a-database/04-retrieving-information-from-a-table/07-pattern-matching.md'
+							},
+							{
+								text: 'Contagem de Linhas',
+								link: '/04-tutorial/03-creating-and-using-a-database/04-retrieving-information-from-a-table/08-counting-rows.md'
+							},
+							{
+								text: 'Usar mais de uma tabela',
+								link: '/04-tutorial/03-creating-and-using-a-database/04-retrieving-information-from-a-table/09-using-more-than-one-table.md'
+							}
+						]
+					},
+				]	
+			},
+			{
+				text: 'Obtendo Informações sobre Bancos de Dados e Tabelas',
+				link: '/04-tutorial/04-getting-information-about-databases-and-tables.md'
+			},
+			{
+				text: 'Usando o mysql no Modo de Batch',
+				link: '/04-tutorial/05-using-mysql-in-batch-mode.md'
+			},
+			{
+				text: 'Exemplos de Perguntas Comuns',
+				link: '/04-tutorial/06-examples-of-common-queries/index.md'
+			}
+		]
 	}
 ]

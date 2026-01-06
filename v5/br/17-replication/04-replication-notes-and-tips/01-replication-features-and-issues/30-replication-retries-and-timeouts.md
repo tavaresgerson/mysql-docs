@@ -1,0 +1,3 @@
+#### 16.4.1.30 Tentativas de replicação e tempos de espera
+
+A variável de sistema global `slave_transaction_retries` afeta a replicação da seguinte forma: Se o thread de SQL de replicação não conseguir executar uma transação devido a um deadlock do `InnoDB` ou porque superou o valor da variável `InnoDB` `innodb_lock_wait_timeout`, ou o valor da variável `NDB` (`TransactionDeadlockDetectionTimeout` ou `TransactionInactiveTimeout`) do `mysql-cluster.html`, a replica tenta automaticamente a transação novamente `slave_transaction_retries` vezes antes de parar com um erro. O valor padrão é 10. O número total de tentativas pode ser visto na saída de `SHOW STATUS`; veja Seção 5.1.9, “Variáveis de Status do Servidor”.

@@ -7,7 +7,7 @@ Para instalar o MySQL a partir de uma distribuição de fonte padrão:
 3. Configure, compile e instale a distribuição usando as instruções nesta seção.
 4. Realize os procedimentos pós-instalação usando as instruções na Seção 2.9, “Configuração e teste pós-instalação”.
 
-O MySQL usa o `CMake` como framework de compilação em todas as plataformas. As instruções aqui fornecidas devem permitir que você produza uma instalação funcional. Para obter informações adicionais sobre como usar o `CMake` para compilar o MySQL, consulte [Como construir o servidor MySQL com CMake](/doc/internals/pt-BR/cmake.html).
+O MySQL usa o `CMake` como framework de compilação em todas as plataformas. As instruções aqui fornecidas devem permitir que você produza uma instalação funcional. Para obter informações adicionais sobre como usar o `CMake` para compilar o MySQL, consulte Como construir o servidor MySQL com CMake.
 
 Se você começar a partir de uma distribuição RPM padrão, use o seguinte comando para criar um pacote RPM binário que você pode instalar. Se você não tiver `rpmbuild`, use `rpm` em vez disso.
 

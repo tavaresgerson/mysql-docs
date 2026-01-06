@@ -1,6 +1,6 @@
 #### 7.1.13.5 Obter uma Endereço IPv6 de um Broker
 
-Se você não tiver um endereço IPv6 público que permita que seu sistema se comunique via IPv6 fora de sua rede local, você pode obtê-lo de um broker IPv6. A página [Wikipedia IPv6 Tunnel Broker](http://pt.wikipedia.org/wiki/Lista_de_brokers_de_túneis_IPv6) lista vários brokers e suas características, como se eles fornecem endereços estáticos e os protocolos de roteamento suportados.
+Se você não tiver um endereço IPv6 público que permita que seu sistema se comunique via IPv6 fora de sua rede local, você pode obtê-lo de um broker IPv6. A página Wikipedia IPv6 Tunnel Broker lista vários brokers e suas características, como se eles fornecem endereços estáticos e os protocolos de roteamento suportados.
 
 Após configurar seu host do servidor para usar um endereço IPv6 fornecido pelo broker, inicie o servidor MySQL com um ajuste apropriado para `bind_address` para permitir que o servidor aceite conexões IPv6. Você pode especificar `\*` (ou `::`) como o valor de `bind_address`, ou vincular o servidor ao endereço IPv6 específico fornecido pelo broker. Para mais informações, consulte a descrição de `bind_address` na Seção 7.1.8, “Variáveis do Sistema do Servidor”.
 

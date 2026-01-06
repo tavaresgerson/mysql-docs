@@ -22,7 +22,7 @@ Em sistemas semelhantes ao Unix, incluindo Linux, você pode verificar a versão
 * A construção do MySQL no Windows requer a versão 10 ou posterior do Windows. (Os binários do MySQL construídos em versões recentes do Windows geralmente podem ser executados em versões mais antigas.) Você pode determinar a versão do Windows executando **`WMIC.exe os` get version` no Prompt de Comando do Windows.
 * A API C do MySQL requer um compilador C++ ou C99 para a compilação.
 * Uma biblioteca SSL é necessária para o suporte de conexões criptografadas, entropia para a geração de números aleatórios e outras operações relacionadas à criptografia. Por padrão, a construção usa a biblioteca OpenSSL instalada no sistema hospedeiro. Para especificar explicitamente a biblioteca, use a opção `WITH_SSL` ao invocar o `CMake`. Para obter informações adicionais, consulte a Seção 2.8.6, “Configurando o Suporte à Biblioteca SSL”.
-As bibliotecas C++ da [Boost](http://www.boost.org/) são necessárias para a construção do MySQL (mas não para usá-lo). No MySQL 8.3 e versões posteriores, essas bibliotecas são sempre incluídas com o código-fonte do MySQL.
+As bibliotecas C++ da Boost são necessárias para a construção do MySQL (mas não para usá-lo). No MySQL 8.3 e versões posteriores, essas bibliotecas são sempre incluídas com o código-fonte do MySQL.
 * A biblioteca ncurses.
 * Memória livre suficiente. Se você encontrar erros de construção, como erro interno do compilador ao compilar arquivos de código-fonte grandes, pode ser que você tenha memória insuficiente. Se estiver compilando em uma máquina virtual, tente aumentar a alocação de memória.
 [ActiveState Perl](https://www.activestate.com/products/perl/). ou

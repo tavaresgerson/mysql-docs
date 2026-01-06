@@ -1,0 +1,39 @@
+### 12.9.3 Pesquisas de texto completo com expansão de consulta
+
+A pesquisa de texto completo suporta a expansão de consultas (e, em particular, sua variante “expansão de consulta cega”). Isso geralmente é útil quando uma frase de busca é muito curta, o que muitas vezes significa que o usuário está confiando em conhecimento implícito que o mecanismo de busca de texto completo carece. Por exemplo, um usuário que busca por “banco de dados” pode realmente querer dizer que “MySQL”, “Oracle”, “DB2” e “RDBMS” são todas frases que devem corresponder a “bancos de dados” e também devem ser retornadas. Esse é um conhecimento implícito.
+
+A expansão de consultas cegas (também conhecida como feedback automático de relevância) é ativada adicionando `WITH QUERY EXPANSION` ou `IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION` após a frase de busca. Ela funciona realizando a busca duas vezes, onde a frase de busca para a segunda busca é a frase de busca original concatenada com os poucos documentos mais relevantes da primeira busca. Assim, se um desses documentos contiver a palavra “databases” e a palavra “MySQL”, a segunda busca encontrará os documentos que contêm a palavra “MySQL”, mesmo que não contenham a palavra “database”. O exemplo a seguir mostra essa diferença:
+
+```sql
+mysql> SELECT * FROM articles
+    WHERE MATCH (title,body)
+    AGAINST ('database' IN NATURAL LANGUAGE MODE);
++----+-------------------+------------------------------------------+
+| id | title             | body                                     |
++----+-------------------+------------------------------------------+
+|  1 | MySQL Tutorial    | DBMS stands for DataBase ...             |
+|  5 | MySQL vs. YourSQL | In the following database comparison ... |
++----+-------------------+------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM articles
+    WHERE MATCH (title,body)
+    AGAINST ('database' WITH QUERY EXPANSION);
++----+-----------------------+------------------------------------------+
+| id | title                 | body                                     |
++----+-----------------------+------------------------------------------+
+|  5 | MySQL vs. YourSQL     | In the following database comparison ... |
+|  1 | MySQL Tutorial        | DBMS stands for DataBase ...             |
+|  3 | Optimizing MySQL      | In this tutorial we show ...             |
+|  6 | MySQL Security        | When configured properly, MySQL ...      |
+|  2 | How To Use MySQL Well | After you went through a ...             |
+|  4 | 1001 MySQL Tricks     | 1. Never run mysqld as root. 2. ...      |
++----+-----------------------+------------------------------------------+
+6 rows in set (0.00 sec)
+```
+
+Outro exemplo poderia ser a busca por livros de Georges Simenon sobre Maigret, quando um usuário não tem certeza de como escrever “Maigret”. Uma busca por “Megre e os testemunhas relutantes” encontra apenas “Maigret e os Testemunhas Relutantes” sem expansão da consulta. Uma busca com expansão da consulta encontra todos os livros com a palavra “Maigret” na segunda passagem.
+
+Nota
+
+Como a expansão de consultas cegas tende a aumentar significativamente o ruído ao retornar documentos irrelevantes, use-a apenas quando a frase de busca for curta.

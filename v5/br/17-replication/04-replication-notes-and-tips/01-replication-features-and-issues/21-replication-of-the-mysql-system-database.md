@@ -1,0 +1,3 @@
+#### 16.4.1.21 Replicação do banco de dados do sistema mysql
+
+As declarações de modificação de dados feitas em tabelas no banco de dados `mysql` são replicadas de acordo com o valor de [`binlog_format`](https://pt.wikipedia.org/wiki/Replicação_de_binário#sysvar_binlog_format); se esse valor for `MIXED`, essas declarações são replicadas usando o formato baseado em linha. No entanto, declarações que normalmente atualizariam essa informação indiretamente — como [`GRANT`](https://pt.wikipedia.org/wiki/Permissão_\(banco_de_dados\)), [`REVOKE`](https://pt.wikipedia.org/wiki/Rejeitar_permissão_\(banco_de_dados\)), e declarações que manipulam gatilhos, rotinas armazenadas e visualizações — são replicadas para réplicas usando a replicação baseada em declarações.

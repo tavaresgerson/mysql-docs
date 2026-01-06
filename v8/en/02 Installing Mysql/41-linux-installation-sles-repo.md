@@ -105,7 +105,7 @@ If the operating system is systemd enabled, standard `systemctl` (or alternative
 *MySQL Server Initialization:* When the server is started for the first time, the server is initialized, and the following happens (if the data directory of the server is empty when the initialization process begins):
 
 * The SSL certificate and key files are generated in the data directory.
-* The [validate_password_plugin](validate-password.html "8.4.3 The Password Validation Component") is installed and enabled.
+* The validate_password_plugin is installed and enabled.
 * A superuser account `'root'@'localhost'` is created. A password for the superuser is set and stored in the error log file. To reveal it, use the following command:
 
   ```

@@ -1,0 +1,3 @@
+### 8.15.5 Rastreamento do uso da memória
+
+Cada registro armazenado é uma string, que é estendida (usando `realloc()`) à medida que a otimização avança, adicionando mais dados a ela. A variável de sistema `optimizer_trace_max_mem_size` define um limite para a quantidade total de memória usada por todos os registros atualmente armazenados. Se esse limite for atingido, o registro atual não é estendido, o que significa que o registro está incompleto; nesse caso, a coluna `MISSING_BYTES_BEYOND_MAX_MEM_SIZE` mostra o número de bytes faltantes do registro.

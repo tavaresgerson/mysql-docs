@@ -213,7 +213,7 @@ Use the MySQL APT repository to perform an in-place upgrade for your MySQL insta
    ```
    $> sudo apt-get update
    ```
-3. Note that, by default, the MySQL APT repository will update MySQL to the release series you have selected when you were [adding the MySQL APT repository to your system](linux-installation-apt-repo.html#apt-repo-setup "Adding the MySQL Apt Repository"). If you want to upgrade to another release series, select it by following the steps given in Selecting a Major Release Version.
+3. Note that, by default, the MySQL APT repository will update MySQL to the release series you have selected when you were adding the MySQL APT repository to your system. If you want to upgrade to another release series, select it by following the steps given in Selecting a Major Release Version.
 
    As a general rule, to upgrade from one release series to another, go to the next series rather than skipping a series. For example, if you are currently running MySQL 5.7 and wish to upgrade to a newer series, upgrade to MySQL 8.0 first before upgrading to 8.4.
 

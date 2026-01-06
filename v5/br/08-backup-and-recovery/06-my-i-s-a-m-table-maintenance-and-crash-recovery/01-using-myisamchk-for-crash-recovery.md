@@ -1,0 +1,19 @@
+### 7.6.1 Usando o myisamchk para recuperação de falhas
+
+Esta seção descreve como verificar e lidar com a corrupção de dados em bancos de dados MySQL. Se suas tabelas forem corrompidas com frequência, você deve tentar descobrir a razão disso. Veja a Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar”.
+
+Para uma explicação de como as tabelas `MyISAM` podem ficar corrompidas, consulte a Seção 15.2.4, “Problemas com tabelas MyISAM”.
+
+Se você executar o **mysqld** com o bloqueio externo desativado (o que é o padrão), não poderá usar com confiança o **myisamchk** para verificar uma tabela quando o **mysqld** estiver usando a mesma tabela. Se você tiver certeza de que ninguém pode acessar as tabelas através do **mysqld** enquanto você estiver executando o **myisamchk**, basta executar o **mysqladmin flush-tables** antes de começar a verificar as tabelas. Se você não puder garantir isso, deve parar o **mysqld** enquanto estiver verificando as tabelas. Se você executar o **myisamchk** para verificar tabelas que o **mysqld** está atualizando ao mesmo tempo, poderá receber uma mensagem de alerta de que uma tabela está corrompida, mesmo quando não estiver.
+
+Se o servidor for executado com o bloqueio externo habilitado, você pode usar o **myisamchk** para verificar as tabelas a qualquer momento. Nesse caso, se o servidor tentar atualizar uma tabela que o **myisamchk** esteja usando, o servidor aguarda o término do **myisamchk** antes de continuar.
+
+Se você usar **myisamchk** para reparar ou otimizar tabelas, *você* *deve* sempre garantir que o servidor **mysqld** não esteja usando a tabela (isso também se aplica se o bloqueio externo estiver desativado). Se você não parar o **mysqld**, você deve, pelo menos, executar **mysqladmin flush-tables** antes de executar **myisamchk**. Se o servidor e **myisamchk** acessarem as tabelas simultaneamente, *as tabelas podem ficar corrompidas*.
+
+Ao realizar a recuperação de falhas, é importante entender que cada tabela `MyISAM` *`tbl_name`* em um banco de dados corresponde aos três arquivos no diretório do banco de dados mostrados na tabela a seguir.
+
+<table summary="Os três arquivos no diretório do banco de dados que correspondem a cada tabela MyISAM."><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>Arquivo</th> <th>Objetivo</th> </tr></thead><tbody><tr> <td>[[<code class="filename"><em class="replaceable"><code>tbl_name</code>]]</em>.frm</code></td> <td>Arquivo de definição (formato)</td> </tr><tr> <td>[[<code class="filename"><em class="replaceable"><code>tbl_name</code>]]</em>.MYD</code></td> <td>Arquivo de dados</td> </tr><tr> <td>[[<code class="filename"><em class="replaceable"><code>tbl_name</code>]]</em>.MYI</code></td> <td>Arquivo de índice</td> </tr></tbody></table>
+
+Cada um desses três tipos de arquivos está sujeito à corrupção de várias maneiras, mas os problemas ocorrem com mais frequência em arquivos de dados e arquivos de índice.
+
+O **myisamchk** funciona criando uma cópia do arquivo de dados `.MYD` linha por linha. Ele termina a etapa de reparo removendo o antigo arquivo `.MYD` e renomeando o novo arquivo para o nome original do arquivo. Se você usar a opção `--quick`, o **myisamchk** não cria um arquivo temporário `.MYD`, mas assume que o arquivo `.MYD` está correto e gera apenas um novo arquivo de índice sem tocar no arquivo `.MYD`. Isso é seguro, porque o **myisamchk** detecta automaticamente se o arquivo `.MYD` está corrompido e interrompe o reparo se estiver. Você também pode especificar a opção `--quick` duas vezes para o **myisamchk**. Nesse caso, o **myisamchk** não interrompe alguns erros (como erros de chave duplicada), mas tenta resolvê-los modificando o arquivo `.MYD`. Normalmente, o uso de duas opções `--quick` é útil apenas se você tiver muito pouco espaço livre no disco para realizar uma reparação normal. Nesse caso, você deve, pelo menos, fazer um backup da tabela antes de executar o **myisamchk**.

@@ -1,0 +1,9 @@
+### 17.1.2 Casos de uso de replicação em grupo
+
+17.1.2.1 Exemplos de cenários de casos de uso
+
+A Replicação em Grupo permite que você crie sistemas resistentes a falhas com redundância, replicando o estado do sistema para um conjunto de servidores. Mesmo que alguns dos servidores falharem posteriormente, desde que não seja todos ou a maioria, o sistema ainda estará disponível. Dependendo do número de servidores que falham, o grupo pode ter desempenho ou escalabilidade degradados, mas ainda estará disponível. As falhas dos servidores são isoladas e independentes. Elas são rastreadas por um serviço de associação de grupo que depende de um detector de falha distribuído que é capaz de sinalizar quando algum servidor sair do grupo, seja voluntariamente ou devido a uma parada inesperada. Existe um procedimento de recuperação distribuído para garantir que, quando os servidores se juntarem ao grupo, eles sejam atualizados automaticamente. Não há necessidade de failover de servidor, e a natureza de atualização de múltiplas fontes em todas as direções garante que até mesmo as atualizações não sejam bloqueadas em caso de falha de um único servidor. Para resumir, a Replicação em Grupo do MySQL garante que o serviço de banco de dados esteja continuamente disponível.
+
+É importante entender que, embora o serviço de banco de dados esteja disponível, em caso de uma saída inesperada do servidor, esses clientes conectados a ele devem ser redirecionados ou transferidos para um servidor diferente. Isso não é algo que a Replicação em Grupo tente resolver. Um conector, um equilibrador de carga, um roteador ou alguma forma de middleware são mais adequados para lidar com esse problema. Por exemplo, veja MySQL Router 8.0.
+
+Para resumir, o MySQL Group Replication oferece um serviço MySQL altamente disponível, altamente elástico e confiável.

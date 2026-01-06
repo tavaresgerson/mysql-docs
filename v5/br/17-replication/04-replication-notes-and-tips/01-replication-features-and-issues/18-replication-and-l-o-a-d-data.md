@@ -1,0 +1,5 @@
+#### 16.4.1.18 Replicação e LOAD DATA
+
+`LOAD DATA` é considerado inseguro para o registro baseado em instruções (veja Seção 16.2.1.3, “Determinação de instruções seguras e inseguras no registro binário”). Quando o `binlog_format=MIXED` é definido, a instrução é registrada no formato baseado em linhas. Quando o `binlog_format=STATEMENT` é definido, observe que `LOAD DATA` não gera uma mensagem de aviso, ao contrário de outras instruções inseguras.
+
+Quando o **mysqlbinlog** lê os eventos de log para as instruções de `LOAD DATA` registradas no formato baseado em instruções, um arquivo local gerado é criado em um diretório temporário. Esses arquivos temporários não são removidos automaticamente pelo **mysqlbinlog** ou qualquer outro programa do MySQL. Se você usar as instruções de `LOAD DATA` com o registro binário baseado em instruções, você deve excluir os arquivos temporários você mesmo depois de não precisar mais do log da instrução. Para mais informações, consulte Seção 4.6.7, “mysqlbinlog — Ferramenta para Processamento de Arquivos de Log Binário”.

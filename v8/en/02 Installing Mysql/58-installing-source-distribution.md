@@ -7,7 +7,7 @@ To install MySQL from a standard source distribution:
 3. Configure, build, and install the distribution using the instructions in this section.
 4. Perform postinstallation procedures using the instructions in Section 2.9, “Postinstallation Setup and Testing”.
 
-MySQL uses `CMake` as the build framework on all platforms. The instructions given here should enable you to produce a working installation. For additional information on using `CMake` to build MySQL, see [How to Build MySQL Server with CMake](/doc/internals/en/cmake.html).
+MySQL uses `CMake` as the build framework on all platforms. The instructions given here should enable you to produce a working installation. For additional information on using `CMake` to build MySQL, see How to Build MySQL Server with CMake.
 
 If you start from a source RPM, use the following command to make a binary RPM that you can install. If you do not have `rpmbuild`, use `rpm` instead.
 

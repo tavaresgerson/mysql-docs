@@ -1,0 +1,61 @@
+## 24.4 INFORMATION\_SCHEMA Tabelas InnoDB
+
+24.4.1 Referência da Tabela INFORMATION\_SCHEMA InnoDB
+
+Tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE
+
+Tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU
+
+Tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS
+
+Tabelas INFORMATION\_SCHEMA INNODB\_CMP e INNODB\_CMP\_RESET
+
+Tabelas INFORMATION\_SCHEMA INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET
+
+Tabelas INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET
+
+Tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED
+
+24.4.9 A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG
+
+Tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD
+
+24.4.11 A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED
+
+Tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE
+
+24.4.13 A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE
+
+24.4.14 A tabela INFORMATION\_SCHEMA INNODB\_LOCKS
+
+24.4.15 A tabela INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS
+
+24.4.16 A tabela INFORMATION\_SCHEMA INNODB\_METRICS
+
+24.4.17 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_COLUMNS
+
+24.4.18 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_DATAFILES
+
+24.4.19 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FIELDS
+
+24.4.20 Tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN
+
+Tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN\_COLS
+
+Tabela INFORMATION\_SCHEMA INNODB\_SYS\_INDEXES
+
+24.4.23 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES
+
+Tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLESPACES
+
+24.4.25 A visão INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS
+
+Tabela INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL
+
+Tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO
+
+24.4.28 A tabela INFORMATION\_SCHEMA INNODB\_TRX
+
+Esta seção fornece definições de tabelas para as tabelas do `INFORMATION_SCHEMA` `InnoDB`. Para informações relacionadas e exemplos, consulte Seção 14.16, “Tabelas do INFORMATION\_SCHEMA do InnoDB”.
+
+As tabelas do esquema de informações `InnoDB` podem ser usadas para monitorar a atividade contínua do `InnoDB`, para detectar ineficiências antes que se tornem problemas ou para solucionar problemas de desempenho e capacidade. À medida que seu banco de dados se torna maior e mais movimentado, enfrentando os limites da capacidade do hardware, você monitora e ajusta esses aspectos para manter o banco de dados funcionando sem problemas.

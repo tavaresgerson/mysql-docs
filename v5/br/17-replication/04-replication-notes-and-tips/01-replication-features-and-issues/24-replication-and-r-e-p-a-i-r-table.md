@@ -1,0 +1,3 @@
+#### 16.4.1.24 Replicação e REPARAR TÁBLIA
+
+Quando usado em uma tabela corrompida ou danificada, é possível que a instrução `REPAIR TABLE` exclua linhas que não podem ser recuperadas. No entanto, quaisquer modificações realizadas nesse tipo de dados da tabela por meio dessa instrução não são replicadas, o que pode causar a perda da sincronização entre a fonte e a réplica. Por essa razão, caso uma tabela na fonte seja danificada e você use `REPAIR TABLE` para repará-la, você deve primeiro parar a replicação (se ainda estiver em execução) antes de usar `REPAIR TABLE`, depois comparar as cópias da fonte e da réplica da tabela e estar preparado para corrigir quaisquer discrepâncias manualmente antes de reiniciar a replicação.

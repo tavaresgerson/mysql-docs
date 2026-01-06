@@ -79,8 +79,8 @@ Para obter informações adicionais sobre `keyring_okv_conf_dir`, consulte a Se�
 
 A discussão aqui assume que você está familiarizado com o Oracle Key Vault. Algumas fontes de informações pertinentes:
 
-[Site do Oracle Key Vault](http://www.oracle.com/technetwork/database/options/key-management/overview/index.html)
-[Documentação do Oracle Key Vault](http://www.oracle.com/technetwork/database/options/key-management/documentation/index.html)
+Site do Oracle Key Vault
+Documentação do Oracle Key Vault
 
 Na terminologia do Oracle Key Vault, os clientes que usam o Oracle Key Vault para armazenar e recuperar objetos de segurança são chamados de endpoints. Para se comunicar com o Oracle Key Vault, é necessário se registrar como um endpoint e se inscrever baixando e instalando os arquivos de suporte do endpoint. Note que você deve registrar um endpoint separado para cada instância do servidor MySQL. Se duas ou mais instâncias do servidor MySQL usarem o mesmo endpoint, elas podem interferir no funcionamento umas das outras.
 
@@ -91,7 +91,7 @@ O seguinte procedimento resume brevemente o processo de configuração do `keyri
 3. Use o token de inscrição para obter o download do software cliente `okvclient.jar`.
 4. Instale o software cliente para preencher o diretório de configuração `keyring_okv` que contém os arquivos de suporte do Oracle Key Vault.
 
-Use o seguinte procedimento para configurar o `keyring_okv` e o Oracle Key Vault para trabalhar juntos. Esta descrição resume apenas como interagir com o Oracle Key Vault. Para detalhes, visite o site [Oracle Key Vault](http://www.oracle.com/technetwork/database/options/key-management/overview/index.html) e consulte o *Oracle Key Vault Administrator's Guide*.
+Use o seguinte procedimento para configurar o `keyring_okv` e o Oracle Key Vault para trabalhar juntos. Esta descrição resume apenas como interagir com o Oracle Key Vault. Para detalhes, visite o site Oracle Key Vault e consulte o *Oracle Key Vault Administrator's Guide*.
 
 1. Crie o diretório de configuração que contém os arquivos de suporte do Oracle Key Vault e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida para o nome desse diretório (para detalhes, consulte  Configuração geral do keyring\_okv).
 2. Faça login na console de gerenciamento do Oracle Key Vault como um usuário que tenha o papel de Administrador do Sistema.

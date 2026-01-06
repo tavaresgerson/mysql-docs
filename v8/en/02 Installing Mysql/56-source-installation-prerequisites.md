@@ -22,7 +22,7 @@ To install MySQL from source, the following system requirements must be satisfie
 * Building MySQL on Windows requires Windows version 10 or later. (MySQL binaries built on recent versions of Windows can generally be run on older versions.) You can determine the Windows version by executing **`WMIC.exe os` get version** in the Windows Command Prompt.
 * The MySQL C API requires a C++ or C99 compiler to compile.
 * An SSL library is required for support of encrypted connections, entropy for random number generation, and other encryption-related operations. By default, the build uses the OpenSSL library installed on the host system. To specify the library explicitly, use the `WITH_SSL` option when you invoke `CMake`. For additional information, see Section 2.8.6, “Configuring SSL Library Support”.
-* The [Boost C++ libraries](http://www.boost.org/) are required to build MySQL (but not to use it). In MySQL 8.3 and later, these libraries are always bundled with the MySQL source.
+* The Boost C++ libraries are required to build MySQL (but not to use it). In MySQL 8.3 and later, these libraries are always bundled with the MySQL source.
 * The ncurses library.
 * Sufficient free memory. If you encounter build errors such as internal compiler error when compiling large source files, it may be that you have too little memory. If compiling on a virtual machine, try increasing the memory allocation.
 * Perl is needed if you intend to run test scripts. Most Unix-like systems include Perl. For Windows, you can use [ActiveState Perl](https://www.activestate.com/products/perl/). or [Strawberry Perl](https://strawberryperl.com/).

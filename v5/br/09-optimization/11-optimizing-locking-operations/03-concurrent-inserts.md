@@ -1,0 +1,13 @@
+### 8.11.3 Inserções Concorrentes
+
+O mecanismo de armazenamento `MyISAM` suporta inserções concorrentes para reduzir a concorrência entre leitores e escritores para uma determinada tabela: se uma tabela `MyISAM` não tiver buracos no arquivo de dados (linhas excluídas no meio), uma instrução `INSERT` pode ser executada para adicionar linhas ao final da tabela ao mesmo tempo em que as instruções `SELECT` estão lendo linhas da tabela. Se houver várias instruções `INSERT`, elas são colocadas em fila e executadas em sequência, concorrentemente com as instruções `SELECT`. Os resultados de uma inserção concorrente podem não ser visíveis imediatamente.
+
+A variável de sistema `concurrent_insert` pode ser definida para modificar o processamento de inserção concorrente. Por padrão, a variável é definida como `AUTO` (ou 1) e as inserções concorrentes são tratadas conforme descrito acima. Se `concurrent_insert` for definido como `NEVER` (ou 0), as inserções concorrentes são desativadas. Se a variável for definida como `ALWAYS` (ou 2), as inserções concorrentes no final da tabela são permitidas, mesmo para tabelas que possuem linhas excluídas. Veja também a descrição da variável de sistema `concurrent_insert`.
+
+Se você estiver usando o log binário, as inserções concorrentes são convertidas em inserções normais para as instruções `CREATE ... SELECT` ou `INSERT ... SELECT`. Isso é feito para garantir que você possa recriar uma cópia exata de suas tabelas aplicando o log durante uma operação de backup. Veja a Seção 5.4.4, “O Log Binário”. Além disso, para essas instruções, uma restrição de leitura é colocada na tabela selecionada, de modo que as inserções nessa tabela sejam bloqueadas. O efeito é que as inserções concorrentes para essa tabela também devem esperar.
+
+Com `LOAD DATA`, se você especificar `CONCURRENT` para uma tabela `MyISAM` que atende à condição para inserções concorrentes (ou seja, não contém blocos livres no meio), outras sessões podem recuperar dados da tabela enquanto o `LOAD DATA` estiver sendo executado. O uso da opção `CONCURRENT` afeta um pouco o desempenho do `LOAD DATA`, mesmo que nenhuma outra sessão esteja usando a tabela ao mesmo tempo.
+
+Se você especificar `HIGH_PRIORITY`, ele substitui o efeito da opção `--low-priority-updates` se o servidor foi iniciado com essa opção. Além disso, ele faz com que as inserções concorrentes não sejam usadas.
+
+Para `LOCK TABLE`, a diferença entre `READ LOCAL` e `READ` é que `READ LOCAL` permite que instruções `INSERT` não conflitantes (inserções concorrentes) sejam executadas enquanto o bloqueio estiver sendo mantido. No entanto, isso não pode ser usado se você estiver manipulando o banco de dados usando processos externos ao servidor enquanto estiver mantendo o bloqueio.

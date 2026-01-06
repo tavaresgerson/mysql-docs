@@ -16,7 +16,7 @@ Se o seu host não suportar IPv6, consulte a documentação do seu sistema para 
 Esses links podem ser úteis para configurar o IPv6 em várias plataformas:
 
 * Windows
-[Gentoo Linux](http://www.gentoo.org/doc/en/ipv6.xml)
+Gentoo Linux
 [Ubuntu Linux](https://wiki.ubuntu.com/IPv6)
-[Linux (Generic)](http://www.tldp.org/HOWTO/Linux+IPv6-HOWTO/)
+Linux (Generic)
 * macOS

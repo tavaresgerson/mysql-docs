@@ -1,0 +1,104 @@
+#### 26.4.5.17 A função ps\_thread\_trx\_info()
+
+Retorna um objeto JSON contendo informações sobre um determinado thread. As informações incluem a transação atual e as declarações que já foram executadas, derivadas das tabelas `events_transactions_current` e `events_statements_history` do Schema de Desempenho. (Os consumidores dessas tabelas devem estar habilitados para obter dados completos no objeto JSON.)
+
+Se a saída exceder o comprimento de truncação (padrão de 65535), um objeto de erro JSON é retornado, como:
+
+```sql
+{ "error": "Trx info truncated: Row 6 was cut by GROUP_CONCAT()" }
+```
+
+Objetos de erro semelhantes são retornados para outros avisos e exceções gerados durante a execução da função.
+
+##### Parâmetros
+
+- `in_thread_id BIGINT UNSIGNED`: O ID de thread para o qual você deseja retornar informações sobre a transação. O valor deve corresponder à coluna `THREAD_ID` de alguma linha da tabela `threads` do Gerenciador de Desempenho.
+
+##### Opções de configuração
+
+A operação `ps_thread_trx_info()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, “A Tabela sys\_config”):
+
+- `ps_thread_trx_info.max_length`, `@sys.ps_thread_trx_info.max_length`
+
+  O comprimento máximo do resultado. O padrão é 65535.
+
+##### Valor de retorno
+
+Um valor `LONGTEXT`.
+
+##### Exemplo
+
+```sql
+mysql> SELECT sys.ps_thread_trx_info(48)\G
+*************************** 1. row ***************************
+sys.ps_thread_trx_info(48): [
+  {
+    "time": "790.70 us",
+    "state": "COMMITTED",
+    "mode": "READ WRITE",
+    "autocommitted": "NO",
+    "gtid": "AUTOMATIC",
+    "isolation": "REPEATABLE READ",
+    "statements_executed": [
+      {
+        "sql_text": "INSERT INTO info VALUES (1, \'foo\')",
+        "time": "471.02 us",
+        "schema": "trx",
+        "rows_examined": 0,
+        "rows_affected": 1,
+        "rows_sent": 0,
+        "tmp_tables": 0,
+        "tmp_disk_tables": 0,
+        "sort_rows": 0,
+        "sort_merge_passes": 0
+      },
+      {
+        "sql_text": "COMMIT",
+        "time": "254.42 us",
+        "schema": "trx",
+        "rows_examined": 0,
+        "rows_affected": 0,
+        "rows_sent": 0,
+        "tmp_tables": 0,
+        "tmp_disk_tables": 0,
+        "sort_rows": 0,
+        "sort_merge_passes": 0
+      }
+    ]
+  },
+  {
+    "time": "426.20 us",
+    "state": "COMMITTED",
+    "mode": "READ WRITE",
+    "autocommitted": "NO",
+    "gtid": "AUTOMATIC",
+    "isolation": "REPEATABLE READ",
+    "statements_executed": [
+      {
+        "sql_text": "INSERT INTO info VALUES (2, \'bar\')",
+        "time": "107.33 us",
+        "schema": "trx",
+        "rows_examined": 0,
+        "rows_affected": 1,
+        "rows_sent": 0,
+        "tmp_tables": 0,
+        "tmp_disk_tables": 0,
+        "sort_rows": 0,
+        "sort_merge_passes": 0
+      },
+      {
+        "sql_text": "COMMIT",
+        "time": "213.23 us",
+        "schema": "trx",
+        "rows_examined": 0,
+        "rows_affected": 0,
+        "rows_sent": 0,
+        "tmp_tables": 0,
+        "tmp_disk_tables": 0,
+        "sort_rows": 0,
+        "sort_merge_passes": 0
+      }
+    ]
+  }
+]
+```

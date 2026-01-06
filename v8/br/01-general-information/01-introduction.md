@@ -7,7 +7,7 @@ O software MySQL é licenciado sob dupla autorização. Os usuários podem optar
 A lista a seguir descreve algumas seções de particular interesse neste manual:
 
 * Para uma discussão sobre as capacidades do MySQL Database Server, consulte a Seção 1.2.2, “Os principais recursos do MySQL”.
-[Notas de lançamento](/doc/relnotes/mysql/8.4/pt_BR/).
+Notas de lançamento.
 * Para instruções de instalação, consulte o Capítulo 2, *Instalando o MySQL*. Para informações sobre a atualização do MySQL, consulte o Capítulo 3, *Atualizando o MySQL*.
 * Para uma introdução ao tutorial do MySQL Database Server, consulte o Capítulo 5, *Tutorial*.
 * Para informações sobre a configuração e administração do MySQL Server, consulte o Capítulo 7, *Administração do MySQL Server*.
@@ -15,6 +15,6 @@ A lista a seguir descreve algumas seções de particular interesse neste manual:
 * Para informações sobre a configuração de servidores de replicação, consulte o Capítulo 19, *Replicação*.
 * Para informações sobre o MySQL Enterprise, a versão comercial do MySQL com recursos avançados e ferramentas de gerenciamento, consulte o Capítulo 32, *MySQL Enterprise Edition*.
 * Para respostas a várias perguntas frequentemente feitas sobre o MySQL Database Server e suas capacidades, consulte o Apêndice A, *Perguntas frequentes do MySQL 8.4*.
-[Notas de lançamento](/doc/relnotes/mysql/8.4/pt_BR/). Importante
+Notas de lançamento. Importante
 
 Para relatar problemas ou bugs, use as instruções na Seção 1.6, “Como relatar bugs ou problemas”. Se você encontrar um bug de segurança no MySQL Server, informe-nos imediatamente enviando uma mensagem de e-mail para `<secalert_us@oracle.com>`. *Exceção*: Os clientes de suporte devem relatar todos os problemas, incluindo bugs de segurança, ao Suporte da Oracle.
