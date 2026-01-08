@@ -130,7 +130,7 @@ A sequência é composta pelos componentes mostrados na tabela a seguir.
 
 **Tabela 11.2 Exemplo de Componentes WKB**
 
-<table summary="Exemplo mostrando o componente nos valores WKB."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th scope="col">Componente</th> <th scope="col">Tamanho</th> <th scope="col">Valor</th> </tr></thead><tbody><tr> <th scope="row">Ordem dos bytes</th> <td>1 byte</td> <td>[[<code class="literal">01</code>]]</td> </tr><tr> <th scope="row">Tipo WKB</th> <td>4 bytes</td> <td>[[<code class="literal">01000000</code>]]</td> </tr><tr> <th scope="row">Coordenada X</th> <td>8 bytes</td> <td>[[<code class="literal">000000000000F03F</code>]]</td> </tr><tr> <th scope="row">Coordenada Y</th> <td>8 bytes</td> <td>[[<code class="literal">000000000000F0BF</code>]]</td> </tr></tbody></table>
+<table summary="Exemplo mostrando o componente nos valores WKB."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th scope="col">Componente</th> <th scope="col">Tamanho</th> <th scope="col">Valor</th> </tr></thead><tbody><tr> <th scope="row">Ordem dos bytes</th> <td>1 byte</td> <td>[[<code>01</code>]]</td> </tr><tr> <th scope="row">Tipo WKB</th> <td>4 bytes</td> <td>[[<code>01000000</code>]]</td> </tr><tr> <th scope="row">Coordenada X</th> <td>8 bytes</td> <td>[[<code>000000000000F03F</code>]]</td> </tr><tr> <th scope="row">Coordenada Y</th> <td>8 bytes</td> <td>[[<code>000000000000F0BF</code>]]</td> </tr></tbody></table>
 
 A representação dos componentes é a seguinte:
 

@@ -1,17 +1,5 @@
 ### 4.2.2 Especificação das Opções do Programa
 
-4.2.2.1 Usar opções na linha de comando
-
-4.2.2.2 Uso de arquivos de opção
-
-4.2.2.3 Opções de linha de comando que afetam o tratamento de arquivos com Option
-
-4.2.2.4 Modificadores de Opção do Programa
-
-4.2.2.5 Usar Opções para Definir Variáveis do Programa
-
-4.2.2.6 Opções Padrão, Valores Esperados das Opções e o Sinal de Igual (=)
-
 Existem várias maneiras de especificar opções para programas MySQL:
 
 - Liste as opções na linha de comando após o nome do programa. Isso é comum para opções que se aplicam a uma invocação específica do programa.
@@ -22,7 +10,7 @@ Existem várias maneiras de especificar opções para programas MySQL:
 
 As opções são processadas em ordem, então, se uma opção for especificada várias vezes, a última ocorrência terá precedência. O comando a seguir faz com que o **mysql** se conecte ao servidor que está rodando em `localhost`:
 
-```sql
+```sh
 mysql -h example.com -h localhost
 ```
 
@@ -30,7 +18,7 @@ Há uma exceção: para o **mysqld**, a *primeira* instância da opção `--user
 
 Se forem fornecidas opções conflitantes ou relacionadas, as opções posteriores têm precedência sobre as opções anteriores. O seguinte comando executa o **mysql** no modo "sem nomes de colunas":
 
-```sql
+```sh
 mysql --column-names --skip-column-names
 ```
 

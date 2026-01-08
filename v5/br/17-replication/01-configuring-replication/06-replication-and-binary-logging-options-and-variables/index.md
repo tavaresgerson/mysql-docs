@@ -14,7 +14,7 @@ As seções a seguir contêm informações sobre as opções do **mysqld** e as 
 
 De particular importância é a variável de sistema `server_id`.
 
-<table frame="box" rules="all" summary="Propriedades para server_id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--server-id=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="replication-options.html#sysvar_server_id">server_id</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">4294967295</code>]]</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para server_id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--server-id=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="replication-options.html#sysvar_server_id">server_id</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>4294967295</code>]]</td> </tr></tbody></table>
 
 Esta variável especifica o ID do servidor. No MySQL 5.7, `server_id` deve ser especificado se o registro binário estiver habilitado, caso contrário, o servidor não poderá ser iniciado.
 
@@ -32,7 +32,7 @@ Nota
 
 A presença da variável de sistema `server_uuid` no MySQL 5.7 não altera a exigência de definir um valor único para o `server_id` para cada servidor MySQL como parte da preparação e execução da replicação do MySQL, conforme descrito anteriormente nesta seção.
 
-<table frame="box" rules="all" summary="Propriedades para server_uuid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="replication-options.html#sysvar_server_uuid">server_uuid</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para server_uuid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="replication-options.html#sysvar_server_uuid">server_uuid</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Ao iniciar, o servidor MySQL obtém automaticamente um UUID da seguinte forma:
 

@@ -12,7 +12,7 @@ As opções do programa especificadas na linha de comando seguem estas regras:
 
 - Para uma opção longa que recebe um valor, separe o nome da opção e o valor com um sinal `=`. Para uma opção curta que recebe um valor, o valor da opção pode seguir imediatamente a letra da opção, ou pode haver um espaço entre: `-hlocalhost` e `-h localhost` são equivalentes. Uma exceção a essa regra é a opção para especificar sua senha do MySQL. Essa opção pode ser dada em formato longo como `--password=pass_val` ou como `--password`. No último caso (sem valor de senha dado), o programa solicita interativamente a senha. A opção de senha também pode ser dada em formato curto como `-ppass_val` ou como `-p`. No entanto, para o formato curto, se o valor da senha for dado, ele deve seguir a letra da opção com *sem espaço intermediário*: Se um espaço seguir a letra da opção, o programa não tem como saber se um argumento seguinte é o valor da senha ou algum outro tipo de argumento. Consequentemente, os dois comandos seguintes têm dois significados completamente diferentes:
 
-  ```sql
+  ```sh
   mysql -ptest
   mysql -p test
   ```
@@ -36,7 +36,7 @@ As opções do programa especificadas na linha de comando seguem estas regras:
 
   10243. Por exemplo, o seguinte comando informa ao **mysqladmin** para pingar o servidor 1024 vezes, dormindo 10 segundos entre cada ping:
 
-  ```sql
+  ```sh
   mysqladmin --count=1K --sleep=10 ping
   ```
 
@@ -60,8 +60,8 @@ Enter password: ******
 $>
 ```
 
-Nota
-
+::: info Nota
 A forma longa (`--execute`) é seguida por um sinal de igual (`=`).
+:::
 
 Para usar valores citados dentro de uma declaração, você deve escapar as aspas internas ou usar um tipo diferente de aspas dentro da declaração das usadas para citar a própria declaração. As capacidades do seu processador de comandos ditam suas escolhas sobre se você pode usar aspas simples ou duplas e a sintaxe para escapar caracteres de aspas. Por exemplo, se o seu processador de comandos suportar a citação com aspas simples ou duplas, você pode usar aspas duplas ao redor da declaração e aspas simples para quaisquer valores citados dentro da declaração.

@@ -95,31 +95,31 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--add-drop-database`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>
 
   Escreva uma instrução `DROP DATABASE` antes de cada instrução `CREATE DATABASE`.
 
 - `--add-drop-table`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>
 
   Escreva uma declaração `DROP TABLE` antes de cada declaração `CREATE TABLE`.
 
 - `--add-drop-user`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>
 
   Escreva uma declaração `DROP USER` antes de cada declaração `CREATE USER`.
 
 - `--add-locks`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>
 
   Cerque cada dump de tabela com as instruções `LOCK TABLES` e `UNLOCK TABLES`. Isso resulta em inserções mais rápidas quando o arquivo de dump é recarregado. Veja a Seção 8.2.4.1, “Otimizando instruções INSERT”.
 
@@ -129,7 +129,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--all-databases`, `-A`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   Exclua todas as bases de dados (com certas exceções mencionadas nas restrições do mysqlpump). Esse é o comportamento padrão, a menos que outro seja especificado explicitamente.
 
@@ -137,31 +137,31 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--bind-address=ip_address</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   Em um computador com várias interfaces de rede, use esta opção para selecionar qual interface usar para se conectar ao servidor MySQL.
 
 - `--character-sets-dir=caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Consulte a Seção 10.15, “Configuração de Conjunto de Caracteres”.
 
 - `--complete-insert`
 
-  <table frame="box" rules="all" summary="Propriedades para inserção completa"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--complete-insert</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para inserção completa"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--complete-insert</code>]]</td> </tr></tbody></table>
 
   Escreva declarações `INSERT` completas que incluam os nomes das colunas.
 
 - `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>0
 
   Compressa todas as informações enviadas entre o cliente e o servidor, se possível. Consulte a Seção 4.2.6, “Controle de Compressão de Conexão”.
 
 - `--compress-output=algorithm`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>1
 
   Por padrão, o **mysqlpump** não comprime a saída. Esta opção especifica a compressão da saída usando o algoritmo especificado. Os algoritmos permitidos são `LZ4` e `ZLIB`.
 
@@ -181,7 +181,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--databases`, `-B`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>2
 
   Normalmente, o **mysqlpump** trata o argumento de nome no comando da linha como um nome de banco de dados e quaisquer nomes subsequentes como nomes de tabelas. Com esta opção, ele trata todos os argumentos de nome como nomes de banco de dados. As instruções `CREATE DATABASE` são incluídas na saída antes de cada novo banco de dados.
 
@@ -189,7 +189,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--debug[=opções_de_depuração]`, `-# [opções_de_depuração]`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>3
 
   Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O padrão é `d:t:O,/tmp/mysqlpump.trace`.
 
@@ -197,7 +197,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--debug-check`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>4
 
   Imprima algumas informações de depuração quando o programa sair.
 
@@ -205,7 +205,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>5
 
   Imprima informações de depuração, estatísticas de uso de memória e CPU quando o programa sair.
 
@@ -213,19 +213,19 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>6
 
   Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>7
 
   Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 10.15, “Configuração do Conjunto de Caracteres”. Se nenhum conjunto de caracteres for especificado, o **mysqlpump** usa `utf8`.
 
 - `--default-parallelism=N`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>8
 
   O número padrão de threads para cada fila de processamento paralelo. O padrão é 2.
 
@@ -245,7 +245,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--defaults-extra-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>9
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -253,7 +253,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--defaults-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>0
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -263,7 +263,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>1
 
   Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlpump** normalmente lê os grupos `[client]` e `[mysqlpump]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysqlpump** também lê os grupos `[client_other]` e `[mysqlpump_other]`.
 
@@ -271,7 +271,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--defer-table-indexes`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>2
 
   Na saída de dump, adiar a criação do índice para cada tabela até que suas linhas tenham sido carregadas. Isso funciona para todos os motores de armazenamento, mas para o `InnoDB`, aplica-se apenas para índices secundários.
 
@@ -279,7 +279,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--eventos`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>3
 
   Inclua os eventos do Agendamento de Eventos para as bases de dados descartadas na saída. O descarte de eventos requer os privilégios `EVENT` para essas bases de dados.
 
@@ -291,43 +291,43 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--exclude-databases=db_list`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>4
 
   Não descarte os bancos de dados em *`db_list`*, que é uma lista de um ou mais nomes de bancos de dados separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objetos do mysqlpump.
 
 - `--exclude-events=lista_eventos`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>5
 
   Não descarte os bancos de dados em *`event_list`*, que é uma lista de um ou mais nomes de eventos separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objetos do mysqlpump.
 
 - `--exclude-routines=routine_list`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>6
 
   Não descarte os eventos na *`routine_list`*, que é uma lista de um ou mais nomes de rotinas separados por vírgula (procedimento armazenado ou função). Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objeto mysqlpump.
 
 - `--exclude-tables=lista_de_tabelas`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>7
 
   Não descarte as tabelas em *`table_list`*, que é uma lista de um ou mais nomes de tabelas separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objetos do mysqlpump.
 
 - `--exclude-triggers=trigger_list`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>8
 
   Não descarte os gatilhos na lista de gatilhos *`trigger_list`*, que é uma lista de um ou mais nomes de gatilho separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objeto mysqlpump.
 
 - `--exclude-users=user_list`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-database</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-database</code>]]</td> </tr></tbody></table>9
 
   Não descarte as contas de usuário no *`user_list`*, que é uma lista de um ou mais nomes de contas separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objetos do mysqlpump.
 
 - `--extended-insert=N`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>0
 
   Escreva instruções `INSERT` usando a sintaxe de múltiplas linhas que inclui várias listas `VALUES`. Isso resulta em um arquivo de dump menor e acelera as inserções quando o arquivo é carregado novamente.
 
@@ -335,7 +335,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>1
 
   Peça à rede o par de chaves públicas necessário para a troca de senhas com base em pares de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `caching_sha2_password`. Para esse plugin, o servidor não envia a chave pública a menos que seja solicitado. Esta opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de senha com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -347,67 +347,67 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--hex-blob`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>2
 
   Arrume colunas binárias usando notação hexadecimal (por exemplo, `'abc'` se torna `0x616263`). Os tipos de dados afetados são os tipos `BINARY`, `VARBINARY`, `BLOB`, `BIT`, todos os tipos de dados espaciais e outros tipos de dados não binários quando usados com o conjunto de caracteres `binary`.
 
 - `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>3
 
   Arraste os dados do servidor MySQL para o host fornecido.
 
 - `--include-databases=db_list`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>4
 
   Arrume os bancos de dados em *`db_list`*, que é uma lista de um ou mais nomes de bancos de dados separados por vírgula. O dump inclui todos os objetos nos bancos de dados nomeados. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objetos do mysqlpump.
 
 - `--include-events=event_list`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>5
 
   Exclua os eventos em *`event_list`*, que é uma lista de um ou mais nomes de eventos separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objetos do mysqlpump.
 
 - `--include-routines=lista_rotinas`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>6
 
   Exclua as rotinas na lista de rotinas, que é uma lista de um ou mais nomes de rotinas (procedimentos armazenados ou funções) separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para obter mais informações, consulte Seleção de Objetos do mysqlpump.
 
 - `--include-tables=lista_de_tabelas`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>7
 
   Exclua as tabelas em `table_list`, que é uma lista de um ou mais nomes de tabelas separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objetos do mysqlpump.
 
 - `--include-triggers=lista_de_triggers`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>8
 
   Descarte os gatilhos na lista *`trigger_list`*, que é uma lista de um ou mais nomes de gatilho separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objeto mysqlpump.
 
 - `--include-users=user_list`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-table</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover tabela"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-table</code>]]</td> </tr></tbody></table>9
 
   Exclua as contas de usuário em *`user_list`*, que é uma lista de um ou mais nomes de usuário separados por vírgula. Instâncias múltiplas desta opção são aditivas. Para mais informações, consulte Seleção de Objetos do mysqlpump.
 
 - `--insert-ignore`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>0
 
   Escreva instruções `INSERT IGNORE` em vez de instruções `INSERT`.
 
 - `--log-error-file=nome_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>1
 
   Registre avisos e erros anexando-os ao arquivo nomeado. Se esta opção não for fornecida, o **mysqlpump** escreve avisos e erros na saída padrão de erro.
 
 - `--login-path=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>2
 
   Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
@@ -415,31 +415,31 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--max-allowed-packet=N`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>3
 
   O tamanho máximo do buffer para a comunicação cliente/servidor. O padrão é de 24 MB, e o máximo é de 1 GB.
 
 - `--net-buffer-length=N`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>4
 
   O tamanho inicial do buffer para a comunicação cliente/servidor. Ao criar instruções `INSERT` de várias linhas (como com a opção `--extended-insert`), o **mysqlpump** cria linhas com até *`N`* bytes de comprimento. Se você usar essa opção para aumentar o valor, certifique-se de que a variável de sistema `net_buffer_length` do servidor MySQL tenha um valor pelo menos desse tamanho.
 
 - `--no-create-db`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>5
 
   Suprima quaisquer declarações `CREATE DATABASE` que possam estar incluídas na saída.
 
 - `--no-create-info`, `-t`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>6
 
   Não escreva declarações `CREATE TABLE` que criem cada tabela descarregada.
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>7
 
   Não leia nenhum arquivo de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas.
 
@@ -449,7 +449,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--parallel-schemas=[N:]db_list`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>8
 
   Crie uma fila para processar os bancos de dados em *`db_list`*, que é uma lista de um ou mais nomes de bancos de dados separados por vírgula. Se *`N`* for fornecido, a fila usa *`N`* threads. Se *`N`* não for fornecido, a opção `--default-parallelism` determina o número de threads da fila.
 
@@ -457,7 +457,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-drop-user</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para adicionar ou remover usuários"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-drop-user</code>]]</td> </tr></tbody></table>9
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlpump** solicitará uma senha. Se for fornecida, não deve haver **espaço** entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar a senha.
 
@@ -467,19 +467,19 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>0
 
   O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysqlpump** não encontrá-lo. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>1
 
   Para conexões TCP/IP, o número de porta a ser usado.
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>2
 
   Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
@@ -487,19 +487,19 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>3
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para obter detalhes sobre os valores permitidos, consulte a Seção 4.2.5, “Protocolos de Transporte de Conexão”.
 
 - `--replace`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>4
 
   Escreva declarações `REPLACE` em vez de declarações `INSERT`.
 
 - `--result-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>5
 
   Saída direta para o arquivo nomeado. O arquivo de resultado é criado e seus conteúdos anteriores são sobrescritos, mesmo que um erro ocorra durante a geração do dump.
 
@@ -507,7 +507,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--routines`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>6
 
   Inclua rotinas armazenadas (procedimentos e funções) para os bancos de dados descartados na saída. Esta opção requer o privilégio `SELECT` para a tabela `mysql.proc`.
 
@@ -519,7 +519,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--secure-auth`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>7
 
   Não envie senhas para o servidor no formato antigo (pré-4.1). Isso impede conexões, exceto para servidores que usam o formato de senha mais recente.
 
@@ -527,7 +527,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--server-public-key-path=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>8
 
   O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas com par de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de senha com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -541,7 +541,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--set-charset`
 
-  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-locks</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para bloqueios adicionais"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--add-locks</code>]]</td> </tr></tbody></table>9
 
   Escreva `SET NAMES default_character_set` na saída.
 
@@ -549,13 +549,13 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--set-gtid-purged=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>0
 
   Essa opção permite o controle sobre as informações de ID de transação global (GTID) escritas no arquivo de depuração, indicando se deve adicionar uma declaração `SET @@GLOBAL.gtid_purged` à saída. Essa opção também pode causar a escrita de uma declaração na saída que desabilita o registro binário enquanto o arquivo de depuração está sendo recarregado.
 
   A tabela a seguir mostra os valores de opção permitidos. O valor padrão é `AUTO`.
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>1
 
   A opção `--set-gtid-purged` tem o seguinte efeito no registro binário quando o arquivo de dump é recarregado:
 
@@ -569,7 +569,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--single-transaction`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>2
 
   Essa opção define o modo de isolamento de transação como `REPEATABLE READ` e envia uma instrução SQL `START TRANSACTION` para o servidor antes de drenar os dados. Ela é útil apenas com tabelas transacionais, como `InnoDB`, porque, nesse caso, ela drenará o estado consistente do banco de dados no momento em que a instrução `START TRANSACTION` foi emitida, sem bloquear nenhuma aplicação.
 
@@ -589,19 +589,19 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--skip-definer`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>3
 
   Omitam as cláusulas `DEFINER` e `SQL SECURITY` das instruções `CREATE` para visualizações e programas armazenados. O arquivo de dump, ao ser carregado novamente, cria objetos que usam os valores padrão de `DEFINER` e `SQL SECURITY`. Veja a Seção 23.6, “Controle de Acesso a Objetos Armazenados”.
 
 - `--skip-dump-rows`, `-d`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>4
 
   Não descarte linhas de tabela.
 
 - `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>5
 
   Para conexões ao `localhost`, o arquivo de socket Unix a ser usado ou, no Windows, o nome do tubo nomeado a ser usado.
 
@@ -613,7 +613,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--tls-version=lista_protocolos`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>6
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para obter detalhes, consulte a Seção 6.3.2, “Protocolos e cifra TLS de conexão criptografada”.
 
@@ -621,7 +621,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--triggers`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>7
 
   Inclua os gatilhos para cada tabela descarregada na saída.
 
@@ -629,7 +629,7 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--tz-utc`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>8
 
   Essa opção permite que as colunas `TIMESTAMP` sejam descarregadas e recarregadas entre servidores em diferentes fusos horários. O **mysqlpump** define seu fuso horário de conexão como UTC e adiciona `SET TIME_ZONE='+00:00'` ao arquivo de dump. Sem essa opção, as colunas `TIMESTAMP` são descarregadas e recarregadas nos fusos horários locais dos servidores de origem e destino, o que pode causar alterações nos valores se os servidores estiverem em fusos horários diferentes. A opção `--tz-utc` também protege contra alterações devido ao horário de verão.
 
@@ -637,13 +637,13 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--all-databases</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>9
 
   O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.
 
 - `--users`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--bind-address=ip_address</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>0
 
   Descarte as contas de usuários como definições lógicas na forma de declarações `CREATE USER` e `GRANT`.
 
@@ -655,13 +655,13 @@ O **mysqlpump** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--bind-address=ip_address</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>1
 
   Exibir informações da versão e sair.
 
 - `--watch-progress`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--bind-address=ip_address</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>2
 
   Exiba periodicamente um indicador de progresso que forneça informações sobre o número total de tabelas, linhas e outros objetos concluídos.
 

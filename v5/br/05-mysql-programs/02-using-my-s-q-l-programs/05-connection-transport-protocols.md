@@ -14,7 +14,37 @@ Para uma conexão específica, se o protocolo de transporte não for especificad
 
 Para especificar o protocolo explicitamente, use a opção de comando `--protocol`. A tabela a seguir mostra os valores permitidos para `--protocol` e indica as plataformas aplicáveis para cada valor. Os valores não são sensíveis ao maiúsculas e minúsculas.
 
-<table summary="Valores do protocolo de transporte permitidos, o protocolo de transporte utilizado como resultado e as plataformas aplicáveis para cada valor."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th scope="col"><a class="link" href="connection-options.html#option_general_protocol">[[<code class="option">--protocol</code>]]</a>Valor</th> <th scope="col">Protocolo de transporte utilizado</th> <th scope="col">Plataformas aplicáveis</th> </tr></thead><tbody><tr> <th scope="row">[[<code class="literal">TCP</code>]]</th> <td>TCP/IP</td> <td>Tudo</td> </tr><tr> <th scope="row">[[<code class="literal">SOCKET</code>]]</th> <td>Arquivo de soquete Unix</td> <td>Unix e sistemas semelhantes ao Unix</td> </tr><tr> <th scope="row">[[<code class="literal">PIPE</code>]]</th> <td>Canais nomeados</td> <td>Windows</td> </tr><tr> <th scope="row">[[<code class="literal">MEMORY</code>]]</th> <td>Memória compartilhada</td> <td>Windows</td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>[[<code>--protocol</code>]]Valor</th>
+         <th>Protocolo de transporte utilizado</th>
+         <th>Plataformas aplicáveis</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>[[<code>TCP</code>]]</th>
+         <td>TCP/IP</td>
+         <td>Tudo</td>
+      </tr>
+      <tr>
+         <th>[[<code>SOCKET</code>]]</th>
+         <td>Arquivo de soquete Unix</td>
+         <td>Unix e sistemas semelhantes ao Unix</td>
+      </tr>
+      <tr>
+         <th>[[<code>PIPE</code>]]</th>
+         <td>Canais nomeados</td>
+         <td>Windows</td>
+      </tr>
+      <tr>
+         <th>[[<code>MEMORY</code>]]</th>
+         <td>Memória compartilhada</td>
+         <td>Windows</td>
+      </tr>
+   </tbody>
+</table>
 
 #### Suporte de transporte para conexões locais e remotas
 

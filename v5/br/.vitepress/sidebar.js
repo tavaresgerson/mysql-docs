@@ -648,5 +648,131 @@ export default [
         link: '/04-tutorial/07-using-my-s-q-l-with-apache.md'
       }
 		]
-	}
+	},
+  {
+    text: 'Programas MySQL',
+    link: '/05-mysql-programs',
+    collapsed: true,
+    items: [
+      {
+        text: 'Visão geral dos programas do MySQL',
+        link: '/05-mysql-programs/01-overview-of-my-s-q-l-programs.md'
+      },
+      {
+        text: 'Visão geral dos programas do MySQL',
+        link: '/05-mysql-programs/01-overview-of-my-s-q-l-programs.md'
+      },
+      {
+        text: 'Usando programas MySQL',
+        collapsed: true,
+        items: [
+          {
+            text: 'Chamando programas MySQL',
+            link: '/05-mysql-programs/02-using-my-s-q-l-programs/01-invoking-my-s-q-l-programs.md'
+          },
+          {
+            text: 'Especificação das Opções do Programa',
+            link: '/05-mysql-programs/02-using-my-s-q-l-programs/02-specifying-program-options/index.md',
+            collapsed: true,
+            items: [
+              {
+                text: 'Arquivos de Opções',
+                link: '/05-mysql-programs/02-using-my-s-q-l-programs/02-specifying-program-options/01-option-files.md'
+              },
+              {
+                text: 'Usar opções na linha de comando',
+                link: '/05-mysql-programs/02-using-my-s-q-l-programs/02-specifying-program-options/01-using-options-on-the-command-line.md'
+              },
+              {
+                text: 'Uso de arquivos de opção',
+                link: '/05-mysql-programs/02-using-my-s-q-l-programs/02-specifying-program-options/02-using-option-files.md'
+              },
+              {
+                text: 'Opções de linha de comando que afetam o tratamento de arquivos com Option',
+                link: '/05-mysql-programs/02-using-my-s-q-l-programs/02-specifying-program-options/03-command-line-options-that-affect-option-file-handling.md'
+              },
+              {
+                text: 'Modificadores de Opção do Programa',
+                link: '/05-mysql-programs/02-using-my-s-q-l-programs/02-specifying-program-options/04-program-option-modifiers.md'
+              },
+              {
+                text: 'Usar Opções para Definir Variáveis do Programa',
+                link: '/05-mysql-programs/02-using-my-s-q-l-programs/02-specifying-program-options/05-using-options-to-set-program-variables.md'
+              },
+              {
+                text: 'Opções Padrão, Valores Esperados de Opções e o Sinal de Igual (=)',
+                link: '/05-mysql-programs/02-using-my-s-q-l-programs/02-specifying-program-options/06-option-defaults-options-expecting-values-and-the-sign.md'
+              }
+            ]
+          },
+          {
+            text: 'Opções de comando para conectar ao servidor',
+            link: '/05-mysql-programs/02-using-my-s-q-l-programs/03-command-options-for-connecting-to-the-server.md'
+          },
+          {
+            text: 'Conectando ao servidor MySQL usando opções de comando',
+            link: '/05-mysql-programs/02-using-my-s-q-l-programs/04-connecting-to-the-my-s-q-l-server-using-command-options.md'
+          },
+          {
+            text: 'Protocolos de transporte de conexão',
+            link: '/05-mysql-programs/02-using-my-s-q-l-programs/05-connection-transport-protocols.md'
+          },
+          {
+            text: 'Controle de compressão da conexão',
+            link: '/05-mysql-programs/02-using-my-s-q-l-programs/06-connection-compression-control.md'
+          },
+          {
+            text: 'Definindo variáveis de ambiente',
+            link: '/05-mysql-programs/02-using-my-s-q-l-programs/07-setting-environment-variables.md'
+          }
+        ]
+      },
+      {
+        text: 'Servidores e programas de inicialização do servidor',
+        link: '/05-mysql-programs/03-server-and-server-startup-programs/index.md',
+        collapsed: true,
+        items: [
+          {
+            text: 'mysqld: o servidor MySQL',
+            link: '/05-mysql-programs/03-server-and-server-startup-programs/01-mysqld-the-my-s-q-l-server.md'
+          },
+          {
+            text: 'mysqld_safe — Script de inicialização do servidor MySQL',
+            link: '/05-mysql-programs/03-server-and-server-startup-programs/02-mysqld-safe-my-s-q-l-server-startup-script.md'
+          },
+          {
+            text: 'mysql.server — Script de inicialização do servidor MySQL',
+            link: '/05-mysql-programs/03-server-and-server-startup-programs/03-mysql-server-my-s-q-l-server-startup-script.md'
+          },
+          {
+            text: 'mysqld_multi — Gerenciar múltiplos servidores MySQL',
+            link: '/05-mysql-programs/03-server-and-server-startup-programs/04-mysqld-multi-manage-multiple-my-s-q-l-servers.md'
+          }
+        ]
+      },
+      {
+        text: 'Programas relacionados à instalação',
+        link: '/05-mysql-programs/04-installation-related-programs/index.md',
+        collapsed: true,
+        items: [
+          {
+            text: 'comp_err — Arquivo de Mensagem de Erro de Compilação do MySQL',
+            link: '/05-mysql-programs/04-installation-related-programs/01-comp-err-compile-my-s-q-l-error-message-file.md'
+          },
+          {
+            text: 'mysql_install_db — Inicializar o diretório de dados do MySQL',
+            link: '/05-mysql-programs/04-installation-related-programs/02-mysql-install-db-initialize-my-s-q-l-data-directory.md'
+          }
+        ]
+      },
+      {
+        text: '',
+        link: '',
+        collapsed: true,
+        items: [
+          {}
+        ]
+      }
+    ]
+  }
 ]

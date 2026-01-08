@@ -110,7 +110,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--connect`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>
 
   Alias para `--ndb-connectstring`.
 
@@ -128,7 +128,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--connect-string`
 
-  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-string=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-string=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   O mesmo que `--ndb-connectstring`.
 
@@ -598,7 +598,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--restore-privilege-tables`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>0
 
   **ndb\_restore** não restaura, por padrão, as tabelas de privilégios distribuídas do MySQL. Esta opção faz com que **ndb\_restore** restaure as tabelas de privilégios.
 
@@ -606,7 +606,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--rewrite-database=*`olddb,newdb\`\*
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>1
 
   Essa opção permite restaurar um banco de dados com um nome diferente do usado no backup. Por exemplo, se um backup for feito de um banco de dados chamado `produtos`, você pode restaurar os dados que ele contém para um banco de dados chamado `inventário`, usando essa opção conforme mostrado aqui (omitiendo quaisquer outras opções que possam ser necessárias):
 
@@ -624,13 +624,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--skip-broken-objects`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>2
 
   Essa opção faz com que **ndb\_restore** ignore tabelas corrompidas ao ler um backup nativo do `NDB` e continue restaurando quaisquer tabelas restantes (que não estejam também corrompidas). Atualmente, a opção `--skip-broken-objects` funciona apenas no caso de tabelas de partes de blob ausentes.
 
 - `--skip-table-check`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>3
 
   É possível restaurar dados sem restaurar os metadados da tabela. Por padrão, ao fazer isso, o **ndb\_restore** falha com um erro se uma incompatibilidade for encontrada entre os dados da tabela e o esquema da tabela; essa opção substitui esse comportamento.
 
@@ -646,13 +646,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--skip-unknown-objects`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>4
 
   Essa opção faz com que **ndb\_restore** ignore quaisquer objetos de esquema que não reconheça ao ler um backup nativo do `NDB`. Isso pode ser usado para restaurar um backup feito de um cluster que está rodando, por exemplo, NDB 7.6, para um cluster que está rodando o NDB Cluster 7.5.
 
 - `--slice-id`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>5
 
   Ao restaurar por fatias, este é o ID da fatia a ser restaurada. Esta opção é sempre usada juntamente com `--num-slices`, e seu valor deve ser sempre menor que o de `--num-slices`.
 
@@ -660,13 +660,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--tab=*`nome\_pasta\`\`, `-T` *`nome_pasta`*
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>6
 
   A opção `--print-data` cria arquivos de dump, um por tabela, cada um com o nome `tbl_name.txt`. Ela requer como argumento o caminho para o diretório onde os arquivos devem ser salvos; use `.` para o diretório atual.
 
 - `--timestamp-printouts`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>7
 
   As mensagens de informações, erros e logs de depuração são prefixadas com timestamps.
 
@@ -674,13 +674,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>8
 
   Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 - `--verbose=*`#\*
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>9
 
   Define o nível de detalhamento da saída. O valor mínimo é 0; o máximo é 255. O valor padrão é 1.
 

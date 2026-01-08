@@ -44,30 +44,30 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
   Exibir o texto de ajuda do programa e sair.
 
 - `--ndb`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ndb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ndb</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
   Para compatibilidade com aplicativos que dependem de versões antigas do **perror** que utilizam a opção `--ndb` desse programa. A opção, quando usada com **ndb\_perror**, não faz nada e é ignorada por ele.
 
 - `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para silencioso"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--silent</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para silencioso"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--silent</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
   Mostrar apenas a mensagem de erro.
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para a versão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--version</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a versão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
   Imprima as informações da versão do programa e saia.
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--verbose</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--verbose</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
   Saída verbose; desative com `--silent`.

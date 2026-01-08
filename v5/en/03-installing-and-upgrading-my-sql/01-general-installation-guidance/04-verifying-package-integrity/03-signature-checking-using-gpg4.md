@@ -26,7 +26,7 @@ Next, verify the downloaded MySQL package file. This requires files for both the
 
 **Table 2.2 MySQL Package and Signature Files for MySQL Installer for Microsoft Windows**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>File Type</th> <th>File Name</th> </tr></thead><tbody><tr> <td>Distribution file</td> <td><code class="literal">mysql-installer-community-5.7.44.msi</code></td> </tr><tr> <td>Signature file</td> <td><code class="literal">mysql-installer-community-5.7.44.msi.asc</code></td> </tr></tbody></table>
+<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>File Type</th> <th>File Name</th> </tr></thead><tbody><tr> <td>Distribution file</td> <td><code>mysql-installer-community-5.7.44.msi</code></td> </tr><tr> <td>Signature file</td> <td><code>mysql-installer-community-5.7.44.msi.asc</code></td> </tr></tbody></table>
 
 Make sure that both files are stored in the same directory and then run the following command to verify the signature for the distribution file. Either drag and drop the signature (`.asc`) file into Kleopatra, or load the dialog from File, Decrypt/Verify Files..., and then choose either the `.msi` or `.asc` file.
 

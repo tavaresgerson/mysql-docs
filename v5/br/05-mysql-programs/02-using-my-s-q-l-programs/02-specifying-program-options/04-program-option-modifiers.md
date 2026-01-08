@@ -4,7 +4,7 @@ Algumas opções são "booleanas" e controlam o comportamento que pode ser ativa
 
 Para desabilitar os nomes das colunas, você pode especificar a opção usando qualquer um desses formatos:
 
-```sql
+```sh
 --disable-column-names
 --skip-column-names
 --column-names=0
@@ -14,7 +14,7 @@ Os prefixos `--disable` e `--skip` e o sufixo `=0` têm o mesmo efeito: desativa
 
 A forma "ativada" da opção pode ser especificada de qualquer uma dessas maneiras:
 
-```sql
+```sh
 --column-names
 --enable-column-names
 --column-names=1
@@ -24,7 +24,7 @@ Os valores `ON`, `TRUE`, `OFF` e `FALSE` também são reconhecidos para opções
 
 Se uma opção for precedida por `--loose`, um programa não sai com um erro se não reconhecer a opção, mas em vez disso emite apenas um aviso:
 
-```sql
+```sh
 $> mysql --loose-no-such-option
 mysql: WARNING: unknown option '--loose-no-such-option'
 ```
@@ -35,6 +35,6 @@ O prefixo `--maximum` está disponível apenas para o **mysqld** e permite defin
 
 O prefixo `--maximum` é destinado ao uso com variáveis de sistema que têm um valor de sessão. Se aplicado a uma variável de sistema que tem apenas um valor global, ocorre um erro. Por exemplo, com `--maximum-back_log=200`, o servidor produz este erro:
 
-```sql
+```sh
 Maximum value of 'back_log' cannot be set
 ```

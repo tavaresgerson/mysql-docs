@@ -833,7 +833,7 @@ The items in the following list appear at the top level of JSON-format audit rec
 
   **Table 6.25 Audit Log Class and Event Combinations**
 
-  <table summary="Permitted combinations of audit log class and event values."><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Class Value</th> <th>Permitted Event Values</th> </tr></thead><tbody><tr> <td><code class="literal">audit</code></td> <td><code class="literal">startup</code>, <code class="literal">shutdown</code></td> </tr><tr> <td><code class="literal">connection</code></td> <td><code class="literal">connect</code>, <code class="literal">change_user</code>, <code class="literal">disconnect</code></td> </tr><tr> <td><code class="literal">general</code></td> <td><code class="literal">status</code></td> </tr><tr> <td><code class="literal">table_access_data</code></td> <td><code class="literal">read</code>, <code class="literal">delete</code>, <code class="literal">insert</code>, <code class="literal">update</code></td> </tr></tbody></table>
+  <table summary="Permitted combinations of audit log class and event values."><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Class Value</th> <th>Permitted Event Values</th> </tr></thead><tbody><tr> <td><code>audit</code></td> <td><code>startup</code>, <code>shutdown</code></td> </tr><tr> <td><code>connection</code></td> <td><code>connect</code>, <code>change_user</code>, <code>disconnect</code></td> </tr><tr> <td><code>general</code></td> <td><code>status</code></td> </tr><tr> <td><code>table_access_data</code></td> <td><code>read</code>, <code>delete</code>, <code>insert</code>, <code>update</code></td> </tr></tbody></table>
 
 * `connection_data`
 

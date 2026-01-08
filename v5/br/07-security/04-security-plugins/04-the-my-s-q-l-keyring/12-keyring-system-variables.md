@@ -4,7 +4,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `keyring_aws_cmk_id`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_aws_cmk_id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--keyring-aws-cmk-id=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_cmk_id">keyring_aws_cmk_id</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_aws_cmk_id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--keyring-aws-cmk-id=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_cmk_id">keyring_aws_cmk_id</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O ID da chave mestre do cliente (CMK) obtido do servidor AWS KMS e usado pelo plugin `keyring_aws`. Essa variável não está disponível, a menos que o plugin esteja instalado.
 
@@ -72,7 +72,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `senha do arquivo criptografado do carteiro de dados`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_encrypted_file_password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--keyring-encrypted-file-password=password</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="keyring-system-variables.html#sysvar_keyring_encrypted_file_password">keyring_encrypted_file_password</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_encrypted_file_password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--keyring-encrypted-file-password=password</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="keyring-system-variables.html#sysvar_keyring_encrypted_file_password">keyring_encrypted_file_password</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   A senha usada pelo plugin `keyring_encrypted_file`. Essa variável não está disponível, a menos que o plugin esteja instalado.
 

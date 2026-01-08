@@ -22,7 +22,7 @@
 
 - `--innodb[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>
 
   Controla o carregamento do mecanismo de armazenamento `InnoDB`, se o servidor foi compilado com suporte ao `InnoDB`. Esta opção tem um formato triestado, com valores possíveis de `OFF`, `ON` ou `FORCE`. Consulte a Seção 5.5.1, “Instalando e Desinstalando Plugins”.
 
@@ -32,7 +32,7 @@
 
 - `--innodb-status-file`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   A opção de inicialização `--innodb-status-file` controla se o `InnoDB` cria um arquivo chamado `innodb_status.pid` no diretório de dados e escreve a saída `SHOW ENGINE INNODB STATUS` nele a cada 15 segundos, aproximadamente.
 
@@ -50,7 +50,7 @@
 
 - `daemon_memcached_enable_binlog`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Ative essa opção no servidor de origem para usar o plugin `InnoDB **memcached` (`daemon_memcached`) com o log binário do MySQL. Essa opção só pode ser definida durante o início do servidor. Você também deve habilitar o log binário do MySQL no servidor de origem usando a opção `--log-bin`.
 
@@ -58,7 +58,7 @@
 
 - `daemon_memcached_engine_lib_name`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>
 
   Especifica a biblioteca compartilhada que implementa o plugin **memcached** do InnoDB.
 
@@ -66,7 +66,7 @@
 
 - `daemon_memcached_engine_lib_path`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
 
   O caminho do diretório que contém a biblioteca compartilhada que implementa o plugin `memcached` do `InnoDB`. O valor padrão é NULL, representando o diretório do plugin MySQL. Você não deve precisar modificar este parâmetro, a menos que especifique um plugin `memcached` para um motor de armazenamento diferente que esteja localizado fora do diretório do plugin MySQL.
 
@@ -74,7 +74,7 @@
 
 - `daemon_memcached_option`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>
 
   Usado para passar opções separadas por espaços ao daemon de cache de memória subjacente **memcached** durante o início. Por exemplo, você pode alterar a porta em que o **memcached** escuta, reduzir o número máximo de conexões simultâneas, alterar o tamanho máximo de memória para um par chave-valor ou habilitar mensagens de depuração para o log de erros.
 
@@ -82,7 +82,7 @@
 
 - `daemon_memcached_r_batch_size`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>
 
   Especifica quantos **memcached** operações de leitura (`get` operações) devem ser realizadas antes de realizar um `COMMIT` para iniciar uma nova transação. É o equivalente a `daemon_memcached_w_batch_size`.
 
@@ -92,7 +92,7 @@
 
 - `daemon_memcached_w_batch_size`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>
 
   Especifica quantos **memcached** operações de escrita, como `add`, `set` e `incr`, devem ser realizadas antes de realizar um `COMMIT` para iniciar uma nova transação. É o equivalente a `daemon_memcached_r_batch_size`.
 
@@ -102,25 +102,25 @@
 
 - `ignore_builtin_innodb`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Em versões anteriores do MySQL, a ativação dessa variável fazia com que o servidor se comportasse como se o `InnoDB` embutido não estivesse presente, o que permitia que o `Plugin InnoDB` fosse usado. No MySQL 5.7, o `InnoDB` é o mecanismo de armazenamento padrão e o `Plugin InnoDB` não é usado, então essa variável é ignorada.
 
 - `innodb_adaptive_flushing`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>0
 
   Especifica se a taxa de limpeza de páginas sujas no pool de buffers do `InnoDB` deve ser ajustada dinamicamente com base na carga de trabalho. Ajuste dinâmico da taxa de limpeza visa evitar picos de atividade de E/S. Esta configuração está habilitada por padrão. Consulte a Seção 14.8.3.5, “Configurando a Limpeza do Pool de Buffers”, para obter mais informações. Para obter conselhos gerais sobre o ajuste de E/S, consulte a Seção 8.5.8, “Otimizando o E/S de Disco do InnoDB”.
 
 - `innodb_adaptive_flushing_lwm`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>1
 
   Define a marca de água baixa que representa a porcentagem da capacidade do log de refazer para a qual o esvaziamento adaptativo é habilitado. Para mais informações, consulte a Seção 14.8.3.5, “Configurando o esvaziamento do Pool de Buffer”.
 
 - `innodb_adaptive_hash_index`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>2
 
   Se o índice de hash adaptável do InnoDB está habilitado ou desabilitado. Pode ser desejável, dependendo da sua carga de trabalho, habilitar ou desabilitar dinamicamente o índice de hash adaptável para melhorar o desempenho das consultas. Como o índice de hash adaptável pode não ser útil para todas as cargas de trabalho, realize benchmarks com ele habilitado e desabilitado, usando cargas de trabalho realistas. Consulte a Seção 14.5.3, “Índice de Hash Adaptável”, para obter detalhes.
 
@@ -130,7 +130,7 @@
 
 - `innodb_adaptive_hash_index_parts`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>3
 
   Divide o sistema de busca de índice de hash adaptativo. Cada índice está vinculado a uma partição específica, com cada partição protegida por um gatilho separado.
 
@@ -140,7 +140,7 @@
 
 - `innodb_adaptive_max_sleep_delay`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>4
 
   Permite que o `InnoDB` ajuste automaticamente o valor de `innodb_thread_sleep_delay` para cima ou para baixo de acordo com a carga de trabalho atual. Qualquer valor diferente de zero habilita o ajuste dinâmico e automático do valor de `innodb_thread_sleep_delay`, até o valor máximo especificado na opção `innodb_adaptive_max_sleep_delay`. O valor representa o número de microsegundos. Esta opção pode ser útil em sistemas ocupados, com mais de 16 threads `InnoDB`. (Na prática, é mais valiosa para sistemas MySQL com centenas ou milhares de conexões simultâneas.)
 
@@ -148,13 +148,13 @@
 
 - `innodb_api_bk_commit_interval`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>5
 
   Com que frequência você deseja comprometer automaticamente as conexões ociosas que utilizam a interface \`InnoDB **memcached**, em segundos. Para obter mais informações, consulte a Seção 14.21.5.4, “Controlar o comportamento transacional do plugin InnoDB memcached”.
 
 - `innodb_api_disable_rowlock`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>6
 
   Use esta opção para desabilitar bloqueios de linha quando o **memcached** do **InnoDB** executa operações DML. Por padrão, o **innodb\_api\_disable\_rowlock** está desativado, o que significa que o **memcached** solicita bloqueios de linha para operações `get` e `set`. Quando o **innodb\_api\_disable\_rowlock** está ativado, o **memcached** solicita um bloqueio de tabela em vez de bloqueios de linha.
 
@@ -164,19 +164,19 @@
 
 - `innodb_api_enable_binlog`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>7
 
   Permite que você use o plugin `InnoDB **memcached**` com o log binário do MySQL. Para obter mais informações, consulte Habilitar o log binário do InnoDB memcached.
 
 - `innodb_api_enable_mdl`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>8
 
   Bloqueia a tabela usada pelo plugin **memcached** do **InnoDB**, para que não possa ser excluída ou alterada por DDL através da interface SQL. Para mais informações, consulte a Seção 14.21.5.4, “Controlar o comportamento transacional do plugin memcached do InnoDB”.
 
 - `innodb_api_trx_level`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>9
 
   Controla o nível de isolamento de transação em consultas processadas pela interface **memcached**. As constantes correspondentes aos nomes familiares são:
 
@@ -189,7 +189,7 @@
 
 - `innodb_autoextend_increment`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>0
 
   O tamanho do incremento (em megabytes) para ampliar o tamanho de um arquivo de espaço de tabela do sistema `InnoDB` que se autoexpande quando ele fica cheio. O valor padrão é 64. Para informações relacionadas, consulte Configuração do arquivo de dados do espaço de tabela do sistema e Redimensionamento do espaço de tabela do sistema.
 
@@ -197,19 +197,19 @@
 
 - `innodb_autoinc_lock_mode`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>1
 
   O modo de bloqueio a ser usado para gerar valores de autoincremento. Os valores permitidos são 0, 1 ou 2, para tradicional, consecutivo ou entrelaçado, respectivamente. O ajuste padrão é 1 (consecutivo). Para as características de cada modo de bloqueio de autoincremento, consulte Modos de Bloqueio de Autoincremento do InnoDB.
 
 - `innodb_background_drop_list_empty`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>2
 
   Ativação da opção de depuração `innodb_background_drop_list_empty` ajuda a evitar falhas nos casos de teste, atrasando a criação da tabela até que a lista de eliminação em segundo plano esteja vazia. Por exemplo, se o caso de teste A colocar a tabela `t1` na lista de eliminação em segundo plano, o caso de teste B aguarda até que a lista de eliminação em segundo plano esteja vazia antes de criar a tabela `t1`.
 
 - `innodb_buffer_pool_chunk_size`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>3
 
   `innodb_buffer_pool_chunk_size` define o tamanho do bloco para as operações de redimensionamento do pool de buffer do `InnoDB`.
 
@@ -233,7 +233,7 @@
 
 - `innodb_buffer_pool_dump_at_shutdown`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>4
 
   Especifica se as páginas armazenadas no pool de buffer do `InnoDB` devem ser gravadas quando o servidor MySQL é desligado, para encurtar o processo de aquecimento na próxima reinicialização. Tipicamente, é usado em combinação com `innodb_buffer_pool_load_at_startup`. A opção `innodb_buffer_pool_dump_pct` define a porcentagem das páginas do pool de buffer mais recentemente usadas para serem descartadas.
 
@@ -243,7 +243,7 @@
 
 - `innodb_buffer_pool_dump_now`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>5
 
   Faz imediatamente um registro das páginas armazenadas em cache no pool de buffer do `InnoDB`. Tipicamente usado em combinação com `innodb_buffer_pool_load_now`.
 
@@ -253,7 +253,7 @@
 
 - `innodb_buffer_pool_dump_pct`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>6
 
   Especifica a porcentagem das páginas mais recentemente usadas para cada pool de buffers para leitura e descarte. O intervalo é de 1 a 100. O valor padrão é 25. Por exemplo, se houver 4 pools de buffers com 100 páginas cada, e `innodb_buffer_pool_dump_pct` estiver definido para 25, as 25 páginas mais recentemente usadas de cada pool de buffers serão descartadas.
 
@@ -261,7 +261,7 @@
 
 - `innodb_buffer_pool_filename`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>7
 
   Especifica o nome do arquivo que contém a lista de IDs de tablespace e IDs de página produzidos por `innodb_buffer_pool_dump_at_shutdown` ou `innodb_buffer_pool_dump_now`. Os IDs de tablespace e IDs de página são salvos no seguinte formato: `space, page_id`. Por padrão, o arquivo é chamado `ib_buffer_pool` e está localizado no diretório de dados `InnoDB`. Uma localização não padrão deve ser especificada em relação ao diretório de dados.
 
@@ -277,7 +277,7 @@
 
 - `innodb_buffer_pool_instances`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>8
 
   O número de regiões em que o pool de buffer do `InnoDB` é dividido. Para sistemas com pools de buffer na faixa de vários gigabytes, dividir o pool de buffer em instâncias separadas pode melhorar a concorrência, reduzindo a concorrência à medida que diferentes threads leem e escrevem em páginas armazenadas em cache. Cada página que é armazenada ou lida no pool de buffer é atribuída aleatoriamente a uma das instâncias do pool de buffer, usando uma função de hash. Cada instância do pool de buffer gerencia suas próprias listas de livre, listas de esvaziamento, LRUs e todas as outras estruturas de dados conectadas a um pool de buffer, e é protegida por seu próprio mutex do pool de buffer.
 
@@ -295,7 +295,7 @@
 
 - `innodb_buffer_pool_load_abort`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de status innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb-status-file[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>9
 
   Interrompe o processo de restauração do conteúdo do pool de buffers do `InnoDB`, acionado pelo `innodb_buffer_pool_load_at_startup` ou `innodb_buffer_pool_load_now`.
 
@@ -305,7 +305,7 @@
 
 - `innodb_buffer_pool_load_at_startup`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>0
 
   Especifica que, ao inicializar o servidor MySQL, o pool de buffers `InnoDB` é aquecido automaticamente ao carregar as mesmas páginas que ele estava armazenando em um momento anterior. Tipicamente, é usado em combinação com `innodb_buffer_pool_dump_at_shutdown`.
 
@@ -315,7 +315,7 @@
 
 - `innodb_buffer_pool_load_now`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>1
 
   Acelera imediatamente o pool de buffers do `InnoDB` carregando páginas de dados sem esperar por uma reinicialização do servidor. Pode ser útil para restaurar a memória cache a um estado conhecido durante o benchmarking ou para preparar o servidor MySQL para retomar sua carga de trabalho normal após executar consultas para relatórios ou manutenção.
 
@@ -325,7 +325,7 @@
 
 - `innodb_buffer_pool_size`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>2
 
   O tamanho em bytes do pool de buffers, a área de memória onde o `InnoDB` armazena os dados de tabelas e índices. O valor padrão é de 134217728 bytes (128 MB). O valor máximo depende da arquitetura da CPU; o máximo é de 4294967295 (232-1) em sistemas de 32 bits e 18446744073709551615 (264-1) em sistemas de 64 bits. Em sistemas de 32 bits, a arquitetura da CPU e o sistema operacional podem impor um tamanho máximo prático menor do que o máximo declarado. Quando o tamanho do pool de buffers é maior que 1 GB, definir `innodb_buffer_pool_instances` para um valor maior que 1 pode melhorar a escalabilidade em um servidor ocupado.
 
@@ -347,31 +347,31 @@
 
 - `innodb_change_buffer_max_size`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>3
 
   Tamanho máximo do buffer de alterações do `InnoDB`, como porcentagem do tamanho total do pool de buffers. Você pode aumentar esse valor para um servidor MySQL com alta atividade de inserção, atualização e exclusão, ou diminuí-lo para um servidor MySQL com dados inalterados usados para relatórios. Para mais informações, consulte a Seção 14.5.2, “Buffer de Alterações”. Para conselhos gerais sobre o ajuste de E/S, consulte a Seção 8.5.8, “Otimização do E/S de Disco do InnoDB”.
 
 - `innodb_change_buffering`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>4
 
   Se o `InnoDB` realiza o bufferamento de alterações, uma otimização que adiatra as operações de escrita para índices secundários para que as operações de E/S possam ser realizadas sequencialmente. Os valores permitidos estão descritos na tabela a seguir.
 
   **Tabela 14.19 Valores permitidos para innodb\_change\_buffering**
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>5
 
   Para obter mais informações, consulte a Seção 14.5.2, “Alterar o buffer”. Para obter conselhos gerais sobre o ajuste de E/S, consulte a Seção 8.5.8, “Otimizando o E/S de disco do InnoDB”.
 
 - `innodb_change_buffering_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>6
 
   Define uma bandeira de depuração para o buffer de alterações do `InnoDB`. Um valor de 1 força todas as alterações no buffer de alterações. Um valor de 2 causa uma saída inesperada durante a fusão. Um valor padrão de 0 indica que a bandeira de depuração do buffer de alterações não está definida. Esta opção só está disponível quando o suporte de depuração está compilado com a opção **CMake** `WITH_DEBUG`.
 
 - `innodb_checksum_algorithm`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>7
 
   Especifica como gerar e verificar o checksum armazenado nos blocos de disco dos espaços de tabelas do `InnoDB`. `crc32` é o valor padrão a partir do MySQL 5.7.7.
 
@@ -397,13 +397,13 @@
 
   **Tabela 14.20 Valores permitidos para innodb\_checksum\_algorithm**
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>8
 
   As versões do MySQL Enterprise Backup até 3.8.0 não suportam a realização de backups de espaços de tabela que utilizam verificações de checksum CRC32. O MySQL Enterprise Backup adiciona suporte para verificações de checksum CRC32 na versão 3.8.1, com algumas limitações. Consulte o Histórico de Alterações do MySQL Enterprise Backup 3.8.1 para obter mais informações.
 
 - `innodb_checksums`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_enable_binlog"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-enable-binlog[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_enable_binlog">daemon_memcached_enable_binlog</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>9
 
   O `InnoDB` pode usar a validação de checksum em todas as páginas do espaço de tabela lidas do disco para garantir uma maior tolerância a falhas de hardware ou arquivos de dados corrompidos. Essa validação é ativada por padrão. Em circunstâncias especiais (como quando executa benchmarks), essa funcionalidade de segurança pode ser desativada com `--skip-innodb-checksums`. Você pode especificar o método de cálculo do checksum usando a opção `innodb_checksum_algorithm`.
 
@@ -415,7 +415,7 @@
 
 - `innodb_cmp_per_index_enabled`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>0
 
   Habilita estatísticas relacionadas à compressão por índice na tabela do esquema de informações `INNODB_CMP_PER_INDEX`. Como essas estatísticas podem ser caras de coletar, habilite essa opção apenas em instâncias de desenvolvimento, teste ou replica durante o ajuste de desempenho relacionado às tabelas compactadas do `InnoDB`.
 
@@ -423,7 +423,7 @@
 
 - `innodb_commit_concurrency`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>1
 
   O número de threads que podem ser comprometidos ao mesmo tempo. Um valor de 0 (padrão) permite que qualquer número de transações seja comprometido simultaneamente.
 
@@ -431,7 +431,7 @@
 
 - `innodb_compress_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>2
 
   Compreende todas as tabelas usando um algoritmo de compressão especificado, sem precisar definir um atributo `COMPRESSION` para cada tabela. Esta opção só está disponível se o suporte de depuração estiver compilado usando a opção `WITH_DEBUG` do **CMake**.
 
@@ -439,7 +439,7 @@
 
 - `innodb_compression_failure_threshold_pct`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>3
 
   Define o limiar de taxa de falha de compressão para uma tabela, como uma porcentagem, no ponto em que o MySQL começa a adicionar espaços de preenchimento dentro das páginas compactadas para evitar falhas de compactação caras. Quando esse limiar é ultrapassado, o MySQL começa a deixar espaço livre adicional dentro de cada nova página compactada, ajustando dinamicamente a quantidade de espaço livre até a porcentagem do tamanho da página especificada por `innodb_compression_pad_pct_max`. Um valor de zero desativa o mecanismo que monitora a eficiência da compactação e ajusta dinamicamente a quantidade de preenchimento.
 
@@ -447,7 +447,7 @@
 
 - `innodb_compression_level`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>4
 
   Especifica o nível de compressão zlib a ser usado para tabelas e índices compactados do `InnoDB`. Um valor maior permite que você coloque mais dados em um dispositivo de armazenamento, às custas de mais overhead de CPU durante a compressão. Um valor menor permite reduzir o overhead de CPU quando o espaço de armazenamento não é crítico ou você espera que os dados não sejam especialmente compressivos.
 
@@ -455,7 +455,7 @@
 
 - `innodb_compression_pad_pct_max`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>5
 
   Especifica a porcentagem máxima que pode ser reservada como espaço livre dentro de cada página compactada, permitindo espaço para reorganizar o log de modificações e os dados dentro da página quando uma tabela ou índice compactado é atualizado e os dados podem ser recompactados. Aplica-se apenas quando `innodb_compression_failure_threshold_pct` é definido para um valor diferente de zero e a taxa de falhas de compactação ultrapassa o ponto de corte.
 
@@ -463,7 +463,7 @@
 
 - `innodb_concurrency_tickets`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>6
 
   Determina o número de threads que podem entrar no `InnoDB` simultaneamente. Uma thread é colocada em uma fila quando tenta entrar no `InnoDB` se o número de threads já tiver atingido o limite de concorrência. Quando uma thread é permitida a entrar no `InnoDB`, ela recebe um número de "ingressos" igual ao valor de `innodb_concurrency_tickets`, e a thread pode entrar e sair livremente do `InnoDB` até que tenha usado seus ingressos. Após esse ponto, a thread novamente fica sujeita à verificação de concorrência (e possível fila) da próxima vez que tentar entrar no `InnoDB`. O valor padrão é 5000.
 
@@ -477,7 +477,7 @@
 
 - `innodb_data_file_path`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>7
 
   Define o nome, o tamanho e os atributos dos arquivos de dados dos espaços de tabela do sistema `InnoDB`. Se você não especificar um valor para `innodb_data_file_path`, o comportamento padrão é criar um único arquivo de dados auto-extensível, ligeiramente maior que 12 MB, com o nome `ibdata1`.
 
@@ -493,7 +493,7 @@
 
 - `innodb_data_home_dir`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>8
 
   A parte comum do caminho do diretório para os arquivos de dados do espaço de tabela do sistema `InnoDB`. O valor padrão é o diretório `data` do MySQL. O ajuste é concatenado com o ajuste `innodb_data_file_path`. Se você especificar o valor como uma string vazia, pode especificar um caminho absoluto para `innodb_data_file_path`.
 
@@ -510,7 +510,7 @@
 
 - `innodb_deadlock_detect`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">innodb_engine.so</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_name"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-name=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_name">daemon_memcached_engine_lib_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>innodb_engine.so</code>]]</td> </tr></tbody></table>9
 
   Esta opção é usada para desabilitar a detecção de impasses. Em sistemas de alta concorrência, a detecção de impasses pode causar um atraso quando vários threads aguardam o mesmo bloqueio. Às vezes, pode ser mais eficiente desabilitar a detecção de impasses e confiar no ajuste `innodb_lock_wait_timeout` para o rollback de transações quando um impasse ocorre.
 
@@ -518,7 +518,7 @@
 
 - `innodb_default_row_format`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>0
 
   A opção `innodb_default_row_format` define o formato de linha padrão para as tabelas `InnoDB` e tabelas temporárias criadas pelo usuário. O ajuste padrão é `DYNAMIC`. Outros valores permitidos são `COMPACT` e `REDUNDANT`. O formato de linha `COMPRESSED`, que não é suportado para uso no espaço de tabela do sistema, não pode ser definido como padrão.
 
@@ -530,19 +530,19 @@
 
 - `innodb_disable_sort_file_cache`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>1
 
   Desabilita o cache do sistema de arquivos do sistema operacional para arquivos temporários de ordenação por junção. O efeito é abrir esses arquivos com o equivalente a `O_DIRECT`.
 
 - `innodb_disable_resize_buffer_pool_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>2
 
   Desabilita o redimensionamento do pool de buffer do `InnoDB`. Esta opção só está disponível se o suporte de depuração estiver compilado com a opção `WITH_DEBUG` do **CMake**.
 
 - `innodb_doublewrite`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>3
 
   Quando ativada (padrão), a `InnoDB` armazena todos os dados duas vezes, primeiro no buffer de dupla escrita e depois nos arquivos de dados reais. Essa variável pode ser desativada com `--skip-innodb-doublewrite` para benchmarks ou casos em que é necessário o melhor desempenho, em vez de se preocupar com a integridade dos dados ou possíveis falhas.
 
@@ -552,7 +552,7 @@
 
 - `innodb_fast_shutdown`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>4
 
   O modo de desligamento do `InnoDB`. Se o valor for 0, o `InnoDB` realiza um desligamento lento, uma purga completa e uma fusão do buffer de alterações antes de desligar. Se o valor for 1 (o padrão), o `InnoDB` ignora essas operações ao desligar, um processo conhecido como desligamento rápido. Se o valor for 2, o `InnoDB` esvazia seus logs e desliga-se completamente, como se o MySQL tivesse falhado; nenhuma transação confirmada é perdida, mas a operação de recuperação após o crash faz com que a próxima inicialização demore mais tempo.
 
@@ -562,13 +562,13 @@
 
 - `innodb_fil_make_page_dirty_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>5
 
   Por padrão, ao definir `innodb_fil_make_page_dirty_debug` para o ID de um espaço de tabelas, a primeira página do espaço de tabelas é imediatamente marcada como suja. Se `innodb_saved_page_number_debug` estiver definido para um valor não padrão, definir `innodb_fil_make_page_dirty_debug` marca a página especificada como suja. A opção `innodb_fil_make_page_dirty_debug` só está disponível se o suporte de depuração estiver compilado com a opção `WITH_DEBUG` do **CMake**.
 
 - `innodb_file_format`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>6
 
   Habilita um formato de arquivo `InnoDB` para espaços de tabelas por arquivo. Os formatos de arquivo suportados são `Antelope` e `Barracuda`. `Antelope` é o formato de arquivo original do `InnoDB`, que suporta os formatos de linha `REDUNDANT` e `COMPACT`. `Barracuda` é o formato de arquivo mais recente, que suporta os formatos de linha `COMPRESSED` e `DYNAMIC`.
 
@@ -588,7 +588,7 @@
 
 - `innodb_file_format_check`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>7
 
   Essa variável pode ser definida como 1 ou 0 ao iniciar o servidor para habilitar ou desabilitar se o `InnoDB` verifica a tag de formato de arquivo nos espaços de tabela do sistema (por exemplo, `Antelope` ou `Barracuda`). Se a tag for verificada e for maior que a suportada pela versão atual do `InnoDB`, um erro ocorre e o `InnoDB` não inicia. Se a tag não for maior, o `InnoDB` define o valor de `innodb_file_format_max` como a tag de formato de arquivo.
 
@@ -602,7 +602,7 @@
 
 - `innodb_file_format_max`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>8
 
   Ao iniciar o servidor, o `InnoDB` define o valor desta variável para a tag de formato de arquivo nos espaços de tabela do sistema (por exemplo, `Antelope` ou `Barracuda`). Se o servidor criar ou abrir uma tabela com um formato de arquivo "superior", ele define o valor de `innodb_file_format_max` para esse formato.
 
@@ -612,7 +612,7 @@
 
 - `innodb_file_per_table`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_engine_lib_path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-engine-lib-path=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_engine_lib_path">daemon_memcached_engine_lib_path</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>9
 
   Quando `innodb_file_per_table` está habilitado, as tabelas são criadas em espaços de tabelas por arquivo por padrão. Quando desabilitado, as tabelas são criadas no espaço de tabelas do sistema por padrão. Para informações sobre espaços de tabelas por arquivo, consulte a Seção 14.6.3.2, “Espaços de tabelas por arquivo”. Para informações sobre o espaço de tabelas do sistema `InnoDB`, consulte a Seção 14.6.3.1, “O espaço de tabelas do sistema”.
 
@@ -626,7 +626,7 @@
 
 - `innodb_fill_factor`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>0
 
   O `InnoDB` realiza uma carga em massa ao criar ou reconstruir índices. Esse método de criação de índices é conhecido como "construção de índice ordenado".
 
@@ -640,13 +640,13 @@
 
 - `innodb_flush_log_at_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>1
 
   Escreva e limpe os logs a cada `N` segundos. O `innodb_flush_log_at_timeout` permite que o período de tempo de espera entre os limpos seja aumentado para reduzir o processo de limpeza e evitar o impacto no desempenho do commit do grupo de log binário. O ajuste padrão para `innodb_flush_log_at_timeout` é uma vez por segundo.
 
 - `innodb_flush_log_at_trx_commit`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>2
 
   Controla o equilíbrio entre a estrita conformidade ACID para operações de commit e o melhor desempenho que é possível quando as operações de E/S relacionadas ao commit são reorganizadas e realizadas em lotes. Você pode obter um melhor desempenho ao alterar o valor padrão, mas, nesse caso, você pode perder transações em caso de falha.
 
@@ -678,7 +678,7 @@
 
 - `innodb_flush_method`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>3
 
   Define o método usado para limpar os arquivos de dados e os arquivos de log do InnoDB, o que pode afetar o desempenho de E/S.
 
@@ -718,7 +718,7 @@
 
 - `innodb_flush_neighbors`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>4
 
   Especifica se o esvaziamento de uma página do pool de buffer do `InnoDB` também esvazia outras páginas sujas da mesma extensão.
 
@@ -732,7 +732,7 @@
 
 - `innodb_flush_sync`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>5
 
   A variável `innodb_flush_sync`, que está habilitada por padrão, faz com que o ajuste `innodb_io_capacity` seja ignorado durante os picos de atividade de E/S que ocorrem nos pontos de verificação. Para aderir à taxa de E/S definida pelo ajuste `innodb_io_capacity`, desabilite `innodb_flush_sync`.
 
@@ -740,7 +740,7 @@
 
 - `innodb_flushing_avg_loops`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>6
 
   Número de iterações para as quais o `InnoDB` mantém o instantâneo anteriormente calculado do estado de esvaziamento, controlando a rapidez com que o esvaziamento adaptativo responde às mudanças nas cargas de trabalho. Aumentar o valor faz com que a taxa de operações de esvaziamento mude de forma suave e gradual à medida que a carga de trabalho muda. Diminuir o valor faz com que o esvaziamento adaptativo ajuste-se rapidamente às mudanças na carga de trabalho, o que pode causar picos na atividade de esvaziamento se a carga de trabalho aumentar e diminuir de repente.
 
@@ -748,13 +748,13 @@
 
 - `innodb_force_load_corrupted`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>7
 
   Permite que o `InnoDB` carregue tabelas marcadas como corrompidas durante o início da inicialização. Use apenas durante a solução de problemas, para recuperar dados que, de outra forma, seriam inacessíveis. Quando a solução de problemas estiver concluída, desative essa configuração e reinicie o servidor.
 
 - `innodb_force_recovery`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>8
 
   O modo de recuperação de falhas, normalmente alterado apenas em situações graves de solução de problemas. Os valores possíveis variam de 0 a 6. Para saber os significados desses valores e informações importantes sobre `innodb_force_recovery`, consulte a Seção 14.22.2, “Forçando a Recuperação do InnoDB”.
 
@@ -766,7 +766,7 @@
 
 - `innodb_ft_aux_table`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_option"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-option=options</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_option">daemon_memcached_option</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>9
 
   Especifica o nome qualificado de uma tabela `InnoDB` que contém um índice `FULLTEXT`. Esta variável é destinada a fins de diagnóstico e só pode ser definida em tempo de execução. Por exemplo:
 
@@ -780,7 +780,7 @@
 
 - `innodb_ft_cache_size`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>0
 
   A memória alocada, em bytes, para o cache do índice de pesquisa `FULLTEXT` do `InnoDB`, que armazena um documento analisado na memória durante a criação de um índice `FULLTEXT` do `InnoDB`. As inserções e atualizações do índice são comprometidas no disco apenas quando o limite de tamanho `innodb_ft_cache_size` é atingido. `innodb_ft_cache_size` define o tamanho do cache por tabela. Para definir um limite global para todas as tabelas, consulte `innodb_ft_total_cache_size`.
 
@@ -788,7 +788,7 @@
 
 - `innodb_ft_enable_diag_print`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>1
 
   Se habilitar ou não a saída de diagnóstico de pesquisa de texto completo (FTS) adicional. Esta opção é destinada principalmente ao depuração avançada do FTS e não é de interesse para a maioria dos usuários. A saída é impressa no log de erros e inclui informações como:
 
@@ -822,7 +822,7 @@
 
 - `innodb_ft_enable_stopword`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>2
 
   Especifica que um conjunto de palavras-chave é associado a um índice `FULLTEXT` de `InnoDB` no momento em que o índice é criado. Se a opção `innodb_ft_user_stopword_table` for definida, as palavras-chave são retiradas dessa tabela. Caso contrário, se a opção `innodb_ft_server_stopword_table` for definida, as palavras-chave são retiradas dessa tabela. Caso contrário, é usado um conjunto padrão de palavras-chave embutido.
 
@@ -830,7 +830,7 @@
 
 - `innodb_ft_max_token_size`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>3
 
   Comprimento máximo de caracteres das palavras armazenadas em um índice `FULLTEXT` do `InnoDB`. Definir um limite para esse valor reduz o tamanho do índice, acelerando assim as consultas, ao omitir palavras longas ou coleções arbitrárias de letras que não são palavras reais e provavelmente não serão termos de pesquisa.
 
@@ -838,7 +838,7 @@
 
 - `innodb_ft_min_token_size`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>4
 
   Comprimento mínimo das palavras armazenadas em um índice `FULLTEXT` do `InnoDB`. Aumentar esse valor reduz o tamanho do índice, acelerando assim as consultas, ao omitir palavras comuns que provavelmente não serão significativas em um contexto de pesquisa, como as palavras em inglês “a” e “to”. Para conteúdo que utiliza um conjunto de caracteres CJK (Chinês, Japonês, Coreano), especifique um valor de 1.
 
@@ -846,7 +846,7 @@
 
 - `innodb_ft_num_word_optimize`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>5
 
   Número de palavras a serem processadas durante cada operação `OPTIMIZE TABLE` em um índice `FULLTEXT` de `InnoDB`. Como uma operação de inserção ou atualização em massa em uma tabela que contém um índice de pesquisa full-text pode exigir uma manutenção substancial do índice para incorporar todas as alterações, você pode executar uma série de declarações `OPTIMIZE TABLE`, cada uma retomando o ponto onde a última deixou.
 
@@ -854,7 +854,7 @@
 
 - `innodb_ft_result_cache_limit`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>6
 
   O limite de cache de resultados de consulta de pesquisa full-text `InnoDB` (definido em bytes) por consulta de pesquisa full-text ou por thread. Os resultados intermediários e finais de consulta de pesquisa full-text `InnoDB` são mantidos na memória. Use `innodb_ft_result_cache_limit` para definir um limite de tamanho para o cache de resultados de consulta de pesquisa full-text para evitar o consumo excessivo de memória em caso de resultados muito grandes de consulta de pesquisa full-text `InnoDB` (milhões ou centenas de milhões de linhas, por exemplo). A memória é alocada conforme necessário quando uma consulta de pesquisa full-text é processada. Se o limite de tamanho do cache de resultados for atingido, um erro é retornado indicando que a consulta excede a memória máxima permitida.
 
@@ -862,7 +862,7 @@
 
 - `innodb_ft_server_stopword_table`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>7
 
   Esta opção é usada para especificar sua própria lista de palavras-chave `FULLTEXT` do `InnoDB` para todas as tabelas `InnoDB`. Para configurar sua própria lista de palavras-chave para uma tabela `InnoDB` específica, use `innodb_ft_user_stopword_table`.
 
@@ -876,7 +876,7 @@
 
 - `innodb_ft_sort_pll_degree`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>8
 
   Número de threads usados em paralelo para indexar e tokenizar texto em um índice `FULLTEXT` de `InnoDB` ao criar um índice de pesquisa.
 
@@ -884,7 +884,7 @@
 
 - `innodb_ft_total_cache_size`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1073741824</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_r_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-r-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_r_batch_size">daemon_memcached_r_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1073741824</code>]]</td> </tr></tbody></table>9
 
   A memória total alocada, em bytes, para o cache do índice de pesquisa full-text `InnoDB` para todas as tabelas. Criar várias tabelas, cada uma com um índice de pesquisa `FULLTEXT`, pode consumir uma parte significativa da memória disponível. `innodb_ft_total_cache_size` define um limite de memória global para todos os índices de pesquisa full-text para ajudar a evitar o consumo excessivo de memória. Se o limite global for atingido por uma operação de índice, uma sincronização forçada é acionada.
 
@@ -892,7 +892,7 @@
 
 - `innodb_ft_user_stopword_table`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>0
 
   Esta opção é usada para especificar sua própria lista de palavras-chave `FULLTEXT` do `InnoDB` em uma tabela específica. Para configurar sua própria lista de palavras-chave para todas as tabelas `InnoDB`, use `innodb_ft_server_stopword_table`.
 
@@ -906,7 +906,7 @@
 
 - `innodb_io_capacity`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>1
 
   A variável `innodb_io_capacity` define o número de operações de E/S por segundo (IOPS) disponíveis para as tarefas em segundo plano do `InnoDB`, como o esvaziamento de páginas do pool de buffer e a fusão de dados do buffer de alterações.
 
@@ -914,7 +914,7 @@
 
 - `innodb_io_capacity_max`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>2
 
   Se a atividade de limpeza ficar para trás, o `InnoDB` pode realizar a limpeza de forma mais agressiva, com uma taxa maior de operações de E/S por segundo (IOPS) do que a definida pela variável `innodb_io_capacity`. A variável `innodb_io_capacity_max` define um número máximo de IOPS realizados pelas tarefas de segundo plano do `InnoDB` nessas situações.
 
@@ -922,7 +922,7 @@
 
 - `innodb_large_prefix`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>3
 
   Quando essa opção estiver habilitada, prefixos de chave de índice mais longos que 767 bytes (até 3072 bytes) serão permitidos para tabelas `InnoDB` que utilizam o formato de linha `DINÂMICO` ou `COMPRESSADO`. Consulte a Seção 14.23, “Limites do InnoDB”, para os máximos associados aos prefixos de chave de índice em diferentes configurações.
 
@@ -934,13 +934,13 @@
 
 - `innodb_limit_optimistic_insert_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>4
 
   Limita o número de registros por página de árvore B. Um valor padrão de 0 significa que nenhum limite é imposto. Esta opção só está disponível se o suporte de depuração estiver compilado com a opção `WITH_DEBUG` do **CMake**.
 
 - `innodb_lock_wait_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>5
 
   O tempo em segundos que uma transação do `InnoDB` espera por um bloqueio de linha antes de desistir. O valor padrão é de 50 segundos. Uma transação que tenta acessar uma linha bloqueada por outra transação do `InnoDB` aguarda, no máximo, esse número de segundos para obter acesso de escrita à linha antes de emitir o seguinte erro:
 
@@ -960,7 +960,7 @@
 
 - `innodb_locks_unsafe_for_binlog`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>6
 
   Essa variável afeta a forma como o `InnoDB` usa o bloqueio de lacuna para pesquisas e varreduras de índices. `innodb_locks_unsafe_for_binlog` está desatualizado; espere que ele seja removido em uma futura versão do MySQL.
 
@@ -1056,19 +1056,19 @@
 
 - `innodb_log_buffer_size`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>7
 
   O tamanho em bytes do buffer que o `InnoDB` usa para gravar nos arquivos de log no disco. O valor padrão mudou de 8 MB para 16 MB com a introdução dos valores `innodb_page_size` de 32 KB e 64 KB. Um buffer de log grande permite que transações grandes sejam executadas sem a necessidade de gravar o log no disco antes do commit das transações. Portanto, se você tiver transações que atualizam, inserem ou excluem muitas linhas, aumentar o tamanho do buffer de log economiza o I/O do disco. Para informações relacionadas, consulte Configuração de Memória e Seção 8.5.4, “Otimizando o Registro de Redo do InnoDB”. Para conselhos gerais sobre o ajuste de I/O, consulte Seção 8.5.8, “Otimizando o I/O do Disco do InnoDB”.
 
 - `innodb_log_checkpoint_now`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>8
 
   Ative esta opção de depuração para forçar o `InnoDB` a escrever um ponto de verificação. Esta opção só está disponível se o suporte de depuração estiver compilado com a opção `WITH_DEBUG` do **CMake**.
 
 - `innodb_log_checksums`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1048576</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para daemon_memcached_w_batch_size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemon-memcached-w-batch-size=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_daemon_memcached_w_batch_size">daemon_memcached_w_batch_size</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1048576</code>]]</td> </tr></tbody></table>9
 
   Habilita ou desabilita verificações de checksums para páginas do log de reverso.
 
@@ -1078,7 +1078,7 @@
 
 - `innodb_log_compressed_pages`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>0
 
   Especifica se as imagens das páginas recompressas são escritas no log de refazer. A recompressão pode ocorrer quando alterações são feitas nos dados comprimidos.
 
@@ -1090,7 +1090,7 @@
 
 - `innodb_log_file_size`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>1
 
   O tamanho em bytes de cada arquivo de registro em um grupo de registros. O tamanho combinado dos arquivos de registro (`innodb_log_file_size` \* `innodb_log_files_in_group`) não pode exceder um valor máximo ligeiramente inferior a 512 GB. Um par de arquivos de registro de 255 GB, por exemplo, se aproxima do limite, mas não o ultrapassa. O valor padrão é de 48 MB.
 
@@ -1102,7 +1102,7 @@
 
 - `innodb_log_files_in_group`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>2
 
   O número de arquivos de registro na grupo de registro. O `InnoDB` escreve nos arquivos de forma circular. O valor padrão (e recomendado) é 2. A localização dos arquivos é especificada por `innodb_log_group_home_dir`. O tamanho combinado dos arquivos de registro (`innodb_log_file_size` \* `innodb_log_files_in_group`) pode chegar a 512 GB.
 
@@ -1110,7 +1110,7 @@
 
 - `innodb_log_group_home_dir`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>3
 
   O caminho do diretório para os arquivos de log de reverso do `InnoDB`, cujo número é especificado por `innodb_log_files_in_group`. Se você não especificar nenhuma variável de log do `InnoDB`, o padrão é criar dois arquivos chamados `ib_logfile0` e `ib_logfile1` no diretório de dados do MySQL. O tamanho do arquivo de log é fornecido pela variável de sistema `innodb_log_file_size`.
 
@@ -1118,7 +1118,7 @@
 
 - `innodb_log_write_ahead_size`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>4
 
   Define o tamanho do bloco de pré-gravação para o log de refazer, em bytes. Para evitar o "leitura durante a gravação", defina `innodb_log_write_ahead_size` para corresponder ao tamanho do bloco de cache do sistema operacional ou do sistema de arquivos. O ajuste padrão é de 8192 bytes. A leitura durante a gravação ocorre quando os blocos do log de refazer não são completamente armazenados no cache do sistema operacional ou do sistema de arquivos devido a uma incompatibilidade entre o tamanho do bloco de pré-gravação do log de refazer e o tamanho do bloco de cache do sistema operacional ou do sistema de arquivos.
 
@@ -1130,7 +1130,7 @@
 
 - `innodb_lru_scan_depth`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>5
 
   Um parâmetro que influencia os algoritmos e heurísticas para a operação de limpeza do pool de buffers do `InnoDB`. Principalmente de interesse para especialistas em desempenho que ajustam cargas de trabalho intensivas em I/O. Ele especifica, por instância do pool de buffers, até que ponto o thread de limpeza de páginas do pool de buffers examina a lista de páginas LRU em busca de páginas sujas para serem limpas. Esta é uma operação em segundo plano realizada uma vez por segundo.
 
@@ -1142,7 +1142,7 @@
 
 - `innodb_max_dirty_pages_pct`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>6
 
   O `InnoDB` tenta esvaziar os dados do pool de buffer para que a porcentagem de páginas sujas não exceda esse valor. O valor padrão é 75.
 
@@ -1152,13 +1152,13 @@
 
 - `innodb_max_dirty_pages_pct_lwm`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>7
 
   Define uma marca de água baixa que representa a porcentagem de páginas sujas para a qual o pré-lavagem é habilitado para controlar a proporção de páginas sujas. O valor padrão de 0 desabilita o comportamento de pré-lavagem completamente. O valor configurado deve sempre ser menor que o valor de `innodb_max_dirty_pages_pct`. Para mais informações, consulte a Seção 14.8.3.5, “Configurando a Lavagem do Pool de Buffer”.
 
 - `innodb_max_purge_lag`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>8
 
   Define o atraso máximo desejado para a purga. Se esse valor for excedido, uma demora é imposta nas operações `INSERT`, `UPDATE` e `DELETE` para permitir que a purga alcance o ritmo desejado. O valor padrão é 0, o que significa que não há atraso máximo para a purga e nenhuma demora.
 
@@ -1166,7 +1166,7 @@
 
 - `innodb_max_purge_lag_delay`
 
-  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para ignore_builtin_innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ignore-builtin-innodb[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="innodb-parameters.html#sysvar_ignore_builtin_innodb">ignore_builtin_innodb</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>9
 
   Especifica o atraso máximo em microsegundos para o atraso imposto quando o limite `innodb_max_purge_lag` é excedido. O valor especificado `innodb_max_purge_lag_delay` é um limite superior para o período de atraso calculado pela fórmula `innodb_max_purge_lag`.
 
@@ -1174,7 +1174,7 @@
 
 - `innodb_max_undo_log_size`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>00
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>00
 
   Define um tamanho limite para os espaços de tabelas de reversão. Se um espaço de tabelas de reversão exceder esse limite, ele pode ser marcado para truncação quando o `innodb_undo_log_truncate` estiver habilitado. O valor padrão é de 1073741824 bytes (1024 MiB).
 
@@ -1182,13 +1182,13 @@
 
 - `innodb_merge_threshold_set_all_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>01
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>01
 
   Define um valor percentual para páginas inteiras de páginas de índice que substitui o ajuste atual de `MERGE_THRESHOLD` para todos os índices que estão atualmente no cache do dicionário. Esta opção só está disponível se o suporte de depuração estiver compilado com a opção `WITH_DEBUG` do **CMake**. Para informações relacionadas, consulte a Seção 14.8.12, “Configurando o Limite de Fusão para Páginas de Índice”.
 
 - `innodb_monitor_disable`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>02
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>02
 
   Essa variável atua como um interruptor, desabilitando os contadores de métricas do `InnoDB`. Os dados dos contadores podem ser consultados usando a tabela do esquema de informações `INNODB_METRICS`. Para informações de uso, consulte a Seção 14.16.6, “Tabela de Métricas do esquema de informações InnoDB”.
 
@@ -1196,7 +1196,7 @@
 
 - `innodb_monitor_enable`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>03
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>03
 
   Essa variável atua como um interruptor, permitindo que os contadores de métricas do `InnoDB` sejam ativados. Os dados dos contadores podem ser consultados usando a tabela do esquema de informações `INNODB_METRICS`. Para informações sobre o uso, consulte a Seção 14.16.6, “Tabela de Métricas do esquema de informações InnoDB”.
 
@@ -1204,7 +1204,7 @@
 
 - `innodb_monitor_reset`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>04
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>04
 
   Essa variável atua como um interruptor, redefinindo o valor de contagem dos contadores de métricas do `InnoDB` para zero. Os dados dos contadores podem ser consultados usando a tabela do esquema de informações `INNODB_METRICS`. Para informações de uso, consulte a Seção 14.16.6, “Tabela de Métricas do InnoDB INFORMATION\_SCHEMA”.
 
@@ -1212,13 +1212,13 @@
 
 - `innodb_monitor_reset_all`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>05
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>05
 
   Essa variável atua como um interruptor, redefinindo todos os valores (mínimo, máximo, etc.) dos contadores de métricas do `InnoDB`. Os dados dos contadores podem ser consultados usando a tabela do esquema de informações `INNODB_METRICS`. Para informações de uso, consulte a Seção 14.16.6, “Tabela de Métricas do InnoDB INFORMATION\_SCHEMA”.
 
 - `innodb_numa_interleave`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>06
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>06
 
   Habilita a política de interligação de memória NUMA para a alocação do pool de buffers do **InnoDB**. Quando o `innodb_numa_interleave` é habilitado, a política de memória NUMA é definida como `MPOL_INTERLEAVE` para o processo **mysqld**. Após a alocação do pool de buffers do **InnoDB**, a política de memória NUMA é definida de volta para `MPOL_DEFAULT`. Para que a opção `innodb_numa_interleave` esteja disponível, o MySQL deve ser compilado em um sistema Linux habilitado para NUMA.
 
@@ -1226,7 +1226,7 @@
 
 - `innodb_old_blocks_pct`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>07
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>07
 
   Especifica a porcentagem aproximada do pool de buffers do `InnoDB` usado para a sublista de blocos antigos. A faixa de valores é de 5 a 95. O valor padrão é 37 (ou seja, 3/8 do pool). Frequentemente usado em combinação com `innodb_old_blocks_time`.
 
@@ -1234,7 +1234,7 @@
 
 - `innodb_old_blocks_time`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>08
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>08
 
   Valores não nulos protegem o pool de buffers de serem preenchidos com dados que são referenciados apenas por um curto período, como durante uma varredura completa da tabela. Aumentar esse valor oferece mais proteção contra varreduras completas da tabela que interfiram com os dados armazenados no pool de buffers.
 
@@ -1246,19 +1246,19 @@
 
 - `innodb_online_alter_log_max_size`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>09
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>09
 
   Especifica um limite superior em bytes para o tamanho dos arquivos de registro temporários usados durante operações DDL online para tabelas `InnoDB`. Há um arquivo de registro para cada índice sendo criado ou tabela sendo alterada. Esse arquivo de registro armazena os dados inseridos, atualizados ou excluídos na tabela durante a operação DDL. O arquivo de registro temporário é estendido conforme necessário pelo valor de `innodb_sort_buffer_size`, até o máximo especificado por `innodb_online_alter_log_max_size`. Se um arquivo de registro temporário exceder o limite de tamanho superior, a operação `ALTER TABLE` falha e todas as operações DML concorrentes não confirmadas são revertidas. Assim, um valor grande para essa opção permite que mais DML ocorram durante uma operação DDL online, mas também estende o período de tempo no final da operação DDL quando a tabela é bloqueada para aplicar os dados do log.
 
 - `innodb_open_files`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>10
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>10
 
   Especifica o número máximo de arquivos que o `InnoDB` pode ter abertos de uma só vez. O valor mínimo é 10. Se `innodb_file_per_table` estiver desativado, o valor padrão é 300; caso contrário, o valor padrão é 300 ou o ajuste `table_open_cache`, dependendo do que for maior.
 
 - `innodb_optimize_fulltext_only`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>11
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>11
 
   Altera a forma como o comando `OPTIMIZE TABLE` opera em tabelas `InnoDB`. É destinado a ser ativado temporariamente durante operações de manutenção para tabelas `InnoDB` com índices `FULLTEXT`.
 
@@ -1266,7 +1266,7 @@
 
 - `innodb_page_cleaners`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>12
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>12
 
   O número de threads de limpeza de páginas que limpam páginas sujas das instâncias do pool de buffers. Os threads de limpeza de páginas realizam a listagem de limpeza e a limpeza LRU. Um único thread de limpeza de páginas foi introduzido no MySQL 5.6 para desviar o trabalho de limpeza do pool de buffers do fio mestre do `InnoDB`. No MySQL 5.7, o `InnoDB` oferece suporte para múltiplos threads de limpeza de páginas. Um valor de 1 mantém a configuração anterior ao MySQL 5.7, na qual há um único thread de limpeza de páginas. Quando há múltiplos threads de limpeza de páginas, as tarefas de limpeza do pool de buffers para cada instância do pool de buffers são enviadas para threads de limpeza de páginas ociosos. O valor padrão `innodb_page_cleaners` foi alterado de 1 para 4 no MySQL 5.7. Se o número de threads de limpeza de páginas exceder o número de instâncias do pool de buffers, o `innodb_page_cleaners` é automaticamente definido para o mesmo valor que o `innodb_buffer_pool_instances`.
 
@@ -1314,7 +1314,7 @@
 
 - `innodb_page_size`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>13
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>13
 
   Especifica o tamanho da página para os espaços de tabelas `InnoDB`. Os valores podem ser especificados em bytes ou kilobytes. Por exemplo, um valor de tamanho de página de 16 kilobytes pode ser especificado como 16384, 16KB ou 16k.
 
@@ -1332,7 +1332,7 @@
 
 - `innodb_print_all_deadlocks`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>14
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>14
 
   Quando essa opção está habilitada, as informações sobre todos os bloqueios em transações de usuários do `InnoDB` são registradas no log de erro do `mysqld`. Caso contrário, você verá informações apenas sobre o último bloqueio, usando o comando `SHOW ENGINE INNODB STATUS`. Um bloqueio ocasional no `InnoDB` não é necessariamente um problema, porque o `InnoDB` detecta a condição imediatamente e desfaz uma das transações automaticamente. Você pode usar essa opção para solucionar o motivo pelo qual os bloqueios estão ocorrendo se uma aplicação não tiver a lógica apropriada de tratamento de erros para detectar o desfazimento e tentar novamente sua operação. Um grande número de bloqueios pode indicar a necessidade de reestruturar transações que emitem declarações DML ou `SELECT ... FOR UPDATE` para múltiplas tabelas, para que cada transação acesse as tabelas na mesma ordem, evitando assim a condição de bloqueio.
 
@@ -1340,7 +1340,7 @@
 
 - `innodb_purge_batch_size`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>15
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>15
 
   Define o número de páginas do log de desfazer que são limpas e processadas em um único lote da lista de histórico. Em uma configuração de limpeza multissulíngula, o fio de limpeza do coordenador divide `innodb_purge_batch_size` por `innodb_purge_threads` e atribui esse número de páginas a cada fio de limpeza. A variável `innodb_purge_batch_size` também define o número de páginas do log de desfazer que são liberadas após cada 128 iterações pelos logs de desfazer.
 
@@ -1350,7 +1350,7 @@
 
 - `innodb_purge_threads`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>16
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>16
 
   O número de threads de plano de fundo dedicados à operação de purga do `InnoDB`. Aumentar o valor cria threads de purga adicionais, o que pode melhorar a eficiência em sistemas onde operações de DML são realizadas em várias tabelas.
 
@@ -1358,7 +1358,7 @@
 
 - `innodb_purge_rseg_truncate_frequency`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>17
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>17
 
   Define a frequência com que o sistema de purga libera segmentos de rollback em termos do número de vezes que a purga é invocada. Um espaço de tabela de desfazer não pode ser truncado até que seus segmentos de rollback sejam liberados. Normalmente, o sistema de purga libera segmentos de rollback uma vez a cada 128 vezes que a purga é invocada. O valor padrão é 128. Reduzir esse valor aumenta a frequência com que o thread de purga libera segmentos de rollback.
 
@@ -1366,7 +1366,7 @@
 
 - `innodb_random_read_ahead`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>18
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>18
 
   Habilita a técnica de leitura antecipada aleatória para otimizar o I/O do `InnoDB`.
 
@@ -1374,7 +1374,7 @@
 
 - `innodb_read_ahead_threshold`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>19
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>19
 
   Controla a sensibilidade do pré-visualização linear que o `InnoDB` usa para pré-carregar páginas no pool de buffer. Se o `InnoDB` ler pelo menos `innodb_read_ahead_threshold` páginas sequencialmente de um intervalo (64 páginas), ele inicia uma leitura assíncrona para todo o intervalo seguinte. O intervalo de valores permitido é de 0 a 64. Um valor de 0 desabilita a pré-visualização. Para o valor padrão de 56, o `InnoDB` deve ler pelo menos 56 páginas sequencialmente de um intervalo para iniciar uma leitura assíncrona para o intervalo seguinte.
 
@@ -1386,7 +1386,7 @@
 
 - `innodb_read_io_threads`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>20
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>20
 
   O número de threads de E/S para operações de leitura no `InnoDB`. Sua contraparte para threads de escrita é `innodb_write_io_threads`. Para mais informações, consulte a Seção 14.8.6, “Configurando o Número de Threads de E/S InnoDB em Segundo Plano”. Para conselhos gerais sobre o ajuste de E/S, consulte a Seção 8.5.8, “Otimizando o E/S de Disco InnoDB”.
 
@@ -1396,19 +1396,19 @@
 
 - `innodb_read_only`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>21
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>21
 
   Inicia o `InnoDB` no modo de leitura somente. Para distribuir aplicações de banco de dados ou conjuntos de dados em mídia de leitura somente. Também pode ser usado em data warehouses para compartilhar o mesmo diretório de dados entre múltiplas instâncias. Para mais informações, consulte a Seção 14.8.2, “Configurando o InnoDB para Operação de Leitura Somente”.
 
 - `innodb_replication_delay`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>22
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>22
 
   O atraso do fio de replicação em milissegundos em um servidor de replicação quando o `innodb_thread_concurrency` é atingido.
 
 - `innodb_rollback_on_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>23
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>23
 
   O `InnoDB` desfaz apenas a última instrução de uma transação no limite de tempo por padrão. Se `--innodb-rollback-on-timeout` for especificado, um limite de tempo de transação faz com que o `InnoDB` interrompa e desfaça toda a transação.
 
@@ -1416,7 +1416,7 @@
 
 - `innodb_rollback_segments`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>24
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>24
 
   Define o número de segmentos de rollback usados pelo `InnoDB` para transações que geram registros de desfazer. O número de transações que cada segmento de rollback suporta depende do tamanho da página do `InnoDB` e do número de logs de desfazer atribuídos a cada transação. Para mais informações, consulte a Seção 14.6.7, “Logs de Desfazer”.
 
@@ -1432,13 +1432,13 @@
 
 - `innodb_saved_page_number_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>25
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>25
 
   Salva um número de página. Ao definir a opção `innodb_fil_make_page_dirty_debug`, a página definida por `innodb_saved_page_number_debug` é marcada como suja. A opção `innodb_saved_page_number_debug` só está disponível se o suporte de depuração estiver compilado com a opção **CMake** `WITH_DEBUG`.
 
 - `innodb_sort_buffer_size`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>26
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>26
 
   Esta variável define:
 
@@ -1450,13 +1450,13 @@
 
 - `innodb_spin_wait_delay`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>27
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>27
 
   O atraso máximo entre as pesquisas para um bloqueio de rotação. A implementação de nível baixo deste mecanismo varia dependendo da combinação de hardware e sistema operacional, portanto, o atraso não corresponde a um intervalo de tempo fixo. Para mais informações, consulte a Seção 14.8.9, “Configurando a Pesquisa de Bloqueio de Rotação”.
 
 - `innodb_stats_auto_recalc`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>28
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>28
 
   Faz com que o `InnoDB` recalcule automaticamente as estatísticas persistentes após as alterações substanciais nos dados de uma tabela. O valor limite é de 10% das linhas da tabela. Esta configuração aplica-se a tabelas criadas quando a opção `innodb_stats_persistent` está habilitada. A recálculo automático das estatísticas também pode ser configurado especificando `STATS_AUTO_RECALC=1` em uma instrução `CREATE TABLE` ou `ALTER TABLE`. A quantidade de dados amostrados para produzir as estatísticas é controlada pela variável `innodb_stats_persistent_sample_pages`.
 
@@ -1464,7 +1464,7 @@
 
 - `innodb_stats_include_delete_marked`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>29
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>29
 
   Por padrão, o `InnoDB` lê dados não confirmados ao calcular estatísticas. No caso de uma transação não confirmada que exclui linhas de uma tabela, o `InnoDB` exclui registros marcados para exclusão ao calcular estimativas de linhas e estatísticas de índices, o que pode levar a planos de execução não ótimos para outras transações que operam na tabela simultaneamente usando um nível de isolamento de transação diferente de `READ UNCOMMITTED`. Para evitar esse cenário, o `innodb_stats_include_delete_marked` pode ser habilitado para garantir que o `InnoDB` inclua registros marcados para exclusão ao calcular estatísticas do otimizador persistentes.
 
@@ -1476,7 +1476,7 @@
 
 - `innodb_stats_method`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>30
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>30
 
   Como o servidor trata os valores `NULL` ao coletar estatísticas sobre a distribuição dos valores de índice para tabelas `InnoDB`. Os valores permitidos são `nulls_equal`, `nulls_unequal` e `nulls_ignored`. Para `nulls_equal`, todos os valores `NULL` de índice são considerados iguais e formam um único grupo de valor com um tamanho igual ao número de valores `NULL`. Para `nulls_unequal`, os valores `NULL` são considerados desiguais, e cada `NULL` forma um grupo de valor distinto de tamanho igual ao número de `NULL`s.
 
@@ -1486,7 +1486,7 @@
 
 - `innodb_stats_on_metadata`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>31
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>31
 
   Esta opção só se aplica quando as estatísticas do otimizador estão configuradas para não serem persistentes. As estatísticas do otimizador não são armazenadas em disco quando o `innodb_stats_persistent` está desativado ou quando tabelas individuais são criadas ou alteradas com `STATS_PERSISTENT=0`. Para mais informações, consulte a Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistentes”.
 
@@ -1496,7 +1496,7 @@
 
 - `innodb_stats_persistent`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>32
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>32
 
   Especifica se as estatísticas de índice do InnoDB são persistidas no disco. Caso contrário, as estatísticas podem ser recalculadas frequentemente, o que pode levar a variações nos planos de execução das consultas. Esta configuração é armazenada com cada tabela quando a tabela é criada. Você pode definir `innodb_stats_persistent` a nível global antes de criar uma tabela ou usar a cláusula `STATS_PERSISTENT` das instruções `CREATE TABLE` e `ALTER TABLE` para substituir a configuração de nível global e configurar estatísticas persistentes para tabelas individuais.
 
@@ -1504,7 +1504,7 @@
 
 - `innodb_stats_persistent_sample_pages`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>33
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>33
 
   O número de páginas de índice a serem amostradas ao estimar a cardinalidade e outras estatísticas para uma coluna indexada, como as calculadas pelo `ANALYSE TABELA`. Aumentar o valor melhora a precisão das estatísticas do índice, o que pode melhorar o plano de execução da consulta, em detrimento do aumento do I/O durante a execução do `ANALYSE TABELA` para uma tabela `InnoDB`. Para mais informações, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas do Otimizador Persistente”.
 
@@ -1516,13 +1516,13 @@
 
 - `innodb_stats_sample_pages`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>34
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>34
 
   Desatualizado. Use `innodb_stats_transient_sample_pages` em vez disso.
 
 - `innodb_stats_transient_sample_pages`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>35
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>35
 
   O número de páginas de índice a serem amostradas ao estimar a cardinalidade e outras estatísticas para uma coluna indexada, como as calculadas pelo `ANALYZE TABLE`. O valor padrão é 8. Aumentar o valor melhora a precisão das estatísticas do índice, o que pode melhorar o plano de execução da consulta, em detrimento do aumento do I/O ao abrir uma tabela `InnoDB` ou recalcular as estatísticas. Para mais informações, consulte a Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas do Otimizador Não Persistente”.
 
@@ -1534,19 +1534,19 @@
 
 - `innodb_status_output`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>36
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>36
 
   Habilita ou desabilita a saída periódica para o monitor padrão `InnoDB`. Também é usado em combinação com `innodb_status_output_locks` para habilitar ou desabilitar a saída periódica para o monitor de bloqueio `InnoDB`. Para mais informações, consulte a Seção 14.18.2, “Habilitar monitores InnoDB”.
 
 - `innodb_status_output_locks`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>37
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>37
 
   Habilita ou desabilita o Monitor de Bloqueio do `InnoDB`. Quando habilitado, o Monitor de Bloqueio do `InnoDB` imprime informações adicionais sobre os bloqueios na saída `SHOW ENGINE INNODB STATUS` e na saída periódica impressa no log de erros do MySQL. A saída periódica para o Monitor de Bloqueio do `InnoDB` é impressa como parte da saída padrão do Monitor `InnoDB`. Portanto, o Monitor `InnoDB` padrão deve ser habilitado para que o Monitor de Bloqueio do `InnoDB` imprima dados no log de erros do MySQL periodicamente. Para mais informações, consulte a Seção 14.18.2, “Habilitando Monitores InnoDB”.
 
 - `innodb_strict_mode`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>38
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>38
 
   Quando o `innodb_strict_mode` está ativado, o `InnoDB` retorna erros em vez de avisos ao verificar opções de tabela inválidas ou incompatíveis.
 
@@ -1558,7 +1558,7 @@
 
 - `innodb_support_xa`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>39
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>39
 
   Habilita o suporte `InnoDB` para o commit de duas fases em transações XA, causando um esvaziamento adicional do disco para a preparação da transação. O mecanismo XA é usado internamente e é essencial para qualquer servidor que tenha seu log binário ativado e esteja aceitando alterações em seus dados de mais de um fio. Se você desabilitar `innodb_support_xa`, as transações podem ser escritas no log binário em uma ordem diferente da ordem em que o banco de dados ao vivo as está commitando, o que pode produzir dados diferentes quando o log binário é reexibido na recuperação de desastres ou em uma replica. Não desabilite `innodb_support_xa` em um servidor de origem de replicação, a menos que você tenha uma configuração incomum em que apenas um fio seja capaz de alterar dados.
 
@@ -1566,19 +1566,19 @@
 
 - `innodb_sync_array_size`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>40
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>40
 
   Define o tamanho da matriz de espera do mutex/bloqueio. O aumento do valor divide a estrutura de dados interna usada para coordenar os threads, proporcionando maior concorrência em cargas de trabalho com um grande número de threads em espera. Esta configuração deve ser configurada quando a instância do MySQL está sendo iniciada e não pode ser alterada posteriormente. O aumento do valor é recomendado para cargas de trabalho que frequentemente produzem um grande número de threads em espera, geralmente maior que 768.
 
 - `innodb_sync_spin_loops`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>41
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>41
 
   O número de vezes que um fio aguarda por um mutex do InnoDB ser liberado antes de o fio ser suspenso.
 
 - `innodb_sync_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>42
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>42
 
   Habilita a verificação de depuração da sincronização para o mecanismo de armazenamento `InnoDB`. Esta opção está disponível apenas se o suporte de depuração estiver compilado usando a opção `WITH_DEBUG` do **CMake**.
 
@@ -1586,7 +1586,7 @@
 
 - `innodb_table_locks`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>43
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>43
 
   Se `autocommit = 0`, o `InnoDB` respeita `LOCK TABLES`; o MySQL não retorna do `LOCK TABLES ... WRITE` até que todos os outros threads tenham liberado todos os seus bloqueios da tabela. O valor padrão de `innodb_table_locks` é 1, o que significa que `LOCK TABLES` faz com que o `InnoDB` bloqueie uma tabela internamente se `autocommit = 0`.
 
@@ -1596,7 +1596,7 @@
 
 - `innodb_temp_data_file_path`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>44
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>44
 
   Define o caminho relativo, nome, tamanho e atributos dos arquivos de dados do espaço de dados temporários `InnoDB`. Se você não especificar um valor para `innodb_temp_data_file_path`, o comportamento padrão é criar um único arquivo de dados auto-extensível chamado `ibtmp1` no diretório de dados do MySQL. O tamanho inicial do arquivo é ligeiramente maior que 12 MB.
 
@@ -1637,7 +1637,7 @@
 
 - `innodb_thread_concurrency`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>45
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>45
 
   Define o número máximo de threads permitidas dentro do `InnoDB`. Um valor de 0 (o padrão) é interpretado como concorrência infinita (sem limite). Esta variável é destinada ao ajuste de desempenho em sistemas de alta concorrência.
 
@@ -1669,7 +1669,7 @@
 
 - `innodb_thread_sleep_delay`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>46
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>46
 
   Define o tempo que os threads do `InnoDB` dormem antes de se juntarem à fila do `InnoDB`, em microsegundos. O valor padrão é 10000. Um valor de 0 desativa o sono. Você pode definir `innodb_adaptive_max_sleep_delay` para o maior valor que você permitiria para `innodb_thread_sleep_delay`, e o `InnoDB` ajusta automaticamente `innodb_thread_sleep_delay` para cima ou para baixo, dependendo da atividade atual de agendamento de threads. Esse ajuste dinâmico ajuda o mecanismo de agendamento de threads a funcionar de forma suave em momentos em que o sistema está levemente carregado ou quando está operando próximo à capacidade máxima.
 
@@ -1677,7 +1677,7 @@
 
 - `innodb_tmpdir`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>47
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>47
 
   Usado para definir um diretório alternativo para arquivos temporários de classificação criados durante operações de `ALTER TABLE` online que reconstruem a tabela.
 
@@ -1695,19 +1695,19 @@
 
 - `innodb_trx_purge_view_update_only_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>48
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>48
 
   Pausa a limpeza de registros marcados para exclusão enquanto permite que a visualização de limpeza seja atualizada. Esta opção cria artificialmente uma situação em que a visualização de limpeza é atualizada, mas as purges ainda não foram realizadas. Esta opção só está disponível se o suporte de depuração estiver compilado usando a opção `WITH_DEBUG` do **CMake**.
 
 - `innodb_trx_rseg_n_slots_debug`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>49
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>49
 
   Define uma bandeira de depuração que limita `TRX_RSEG_N_SLOTS` para um valor específico para a função `trx_rsegf_undo_find_free`, que procura por slots livres para segmentos do log de desfazer. Esta opção só está disponível se o suporte de depuração estiver compilado com a opção **CMake** `WITH_DEBUG`.
 
 - `innodb_undo_directory`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>50
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>50
 
   O caminho onde o `InnoDB` cria espaços de tabelas de desfazer. Tipicamente usado para colocar logs de desfazer em um dispositivo de armazenamento diferente. Usado em conjunto com `innodb_rollback_segments` e `innodb_undo_tablespaces`.
 
@@ -1717,7 +1717,7 @@
 
 - `innodb_undo_log_truncate`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>51
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>51
 
   Quando ativado, os espaços de tabela que excederem o valor limite definido por `innodb_max_undo_log_size` são marcados para serem truncados. Apenas os espaços de tabela de desfazer podem ser truncados. Não é suportado o truncamento de logs de desfazer que residem no espaço de tabela do sistema. Para que o truncamento ocorra, deve haver pelo menos dois espaços de tabela de desfazer e dois logs de desfazer habilitados para uso de espaços de tabela de desfazer. Isso significa que `innodb_undo_tablespaces` deve ser definido para um valor igual ou maior que 2, e `innodb_rollback_segments` deve ser definido para um valor igual ou maior que 35.
 
@@ -1727,7 +1727,7 @@
 
 - `innodb_undo_logs`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>52
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>52
 
   Nota
 
@@ -1737,7 +1737,7 @@
 
 - `innodb_undo_tablespaces`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>53
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>53
 
   O número de espaços de tabela de desfazer usados pelo `InnoDB`. O valor padrão é 0.
 
@@ -1761,7 +1761,7 @@
 
 - `innodb_use_native_aio`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>54
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>54
 
   Especifica se o subsistema de E/S assíncrona do Linux deve ser usado. Esta variável só se aplica a sistemas Linux e não pode ser alterada enquanto o servidor estiver em execução. Normalmente, você não precisa configurar esta opção, pois ela está habilitada por padrão.
 
@@ -1785,7 +1785,7 @@
 
 - `innodb_write_io_threads`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--innodb[=valu<code class="literal">ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code class="literal">OFF</code>]]</p><p class="valid-value">[[<code class="literal">ON</code>]]</p><p class="valid-value">[[<code class="literal">FORCE</code>]]</p></td> </tr></tbody></table>55
+  <table frame="box" rules="all" summary="Propriedades para innodb"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--innodb[=valu<code>ON</code></code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>OFF</code>]]</p><p class="valid-value">[[<code>ON</code>]]</p><p class="valid-value">[[<code>FORCE</code>]]</p></td> </tr></tbody></table>55
 
   O número de threads de E/S para operações de escrita no `InnoDB`. O valor padrão é 4. Sua contraparte para threads de leitura é `innodb_read_io_threads`. Para mais informações, consulte a Seção 14.8.6, “Configurando o Número de Threads de E/S InnoDB em Segundo Plano”. Para conselhos gerais sobre o ajuste do E/S, consulte a Seção 8.5.8, “Otimizando o E/S de Disco InnoDB”.
 

@@ -8,7 +8,7 @@ Os exemplos aqui usam o programa cliente **mysql**, mas os princípios se aplica
 
 Este comando invoca o **mysql** sem especificar nenhum parâmetro de conexão explícito:
 
-```sql
+```sh
 mysql
 ```
 
@@ -24,7 +24,7 @@ Como não há opções de parâmetros, os valores padrão são aplicados:
 
 Para especificar o nome do host e o nome do usuário explicitamente, além de uma senha, forneça as opções apropriadas na linha de comando. Para selecionar um banco de dados padrão, adicione um argumento de nome do banco de dados. Exemplos:
 
-```sql
+```sh
 mysql --host=localhost --user=myname --password=password mydb
 mysql -h localhost -u myname -ppassword mydb
 ```
@@ -39,7 +39,7 @@ Para as opções de senha, o valor da senha é opcional:
 
 Como mencionado, incluir o valor da senha na linha de comando é um risco à segurança. Para evitar esse risco, especifique a opção `--password` ou `-p` sem nenhum valor de senha subsequente:
 
-```sql
+```sh
 mysql --host=localhost --user=myname --password mydb
 mysql -h localhost -u myname -p mydb
 ```
@@ -51,13 +51,9 @@ Em alguns sistemas, a rotina da biblioteca que o MySQL usa para solicitar uma se
 Os programas do cliente determinam o tipo de conexão a ser feita da seguinte forma:
 
 - Se o host não for especificado ou for `localhost`, ocorrerá uma conexão com o host local:
-
   - No Windows, o cliente se conecta usando memória compartilhada, se o servidor foi iniciado com a variável de sistema `shared_memory` habilitada para suportar conexões de memória compartilhada.
-
   - No Unix, os programas do MySQL tratam o nome do host `localhost` de maneira especial, de uma forma que provavelmente é diferente do que você espera em comparação com outros programas baseados em rede: o cliente se conecta usando um arquivo de socket Unix. A opção `--socket` ou a variável de ambiente `MYSQL_UNIX_PORT` podem ser usadas para especificar o nome do socket.
-
 - No Windows, se `host` for `.` (ponto) ou se o TCP/IP não estiver habilitado e `--socket` não for especificado ou se o host estiver vazio, o cliente se conecta usando um tubo nomeado, se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Se as conexões por tubo nomeado não forem suportadas ou se o usuário que está fazendo a conexão não for membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`, ocorrerá um erro.
-
 - Caso contrário, a conexão usa TCP/IP.
 
 A opção `--protocol` permite que você use um protocolo de transporte específico mesmo quando outras opções normalmente resultam no uso de um protocolo diferente. Isso significa que `--protocol` especifica explicitamente o protocolo de transporte e substitui as regras anteriores, mesmo para `localhost`.
@@ -66,7 +62,7 @@ Apenas as opções de conexão relevantes para o protocolo de transporte selecio
 
 Para garantir que o cliente estabeleça uma conexão TCP/IP com o servidor local, use `--host` ou `-h` para especificar um valor de nome de host de `127.0.0.1` (em vez de `localhost`) ou o endereço IP ou o nome do servidor local. Você também pode especificar explicitamente o protocolo de transporte, mesmo para `localhost`, usando a opção `--protocol=TCP`. Exemplos:
 
-```sql
+```sh
 mysql --host=127.0.0.1
 mysql --protocol=TCP
 ```
@@ -77,13 +73,13 @@ No Windows, para forçar um cliente MySQL a usar uma conexão de canal nomeado, 
 
 As conexões com servidores remotos utilizam TCP/IP. Este comando conecta-se ao servidor que está em execução em `remote.example.com` usando o número de porta padrão (3306):
 
-```sql
+```sh
 mysql --host=remote.example.com
 ```
 
 Para especificar um número de porta explicitamente, use a opção `--port` ou `-P`:
 
-```sql
+```sh
 mysql --host=remote.example.com --port=13306
 ```
 
@@ -91,13 +87,13 @@ Você também pode especificar um número de porta para conexões a um servidor 
 
 Para este comando, o programa usa um arquivo de soquete no Unix e a opção `--port` é ignorada:
 
-```sql
+```sh
 mysql --port=13306 --host=localhost
 ```
 
 Para que o número de porta seja usado, force uma conexão TCP/IP. Por exemplo, invocando o programa de uma das seguintes maneiras:
 
-```sql
+```sh
 mysql --port=13306 --host=127.0.0.1
 mysql --port=13306 --protocol=TCP
 ```
@@ -108,7 +104,7 @@ Para obter informações adicionais sobre as opções que controlam a forma como
 
 - Especifique os parâmetros de conexão na seção `[client]` de um arquivo de opção. A seção relevante do arquivo pode parecer assim:
 
-  ```sql
+  ```
   [client]
   host=host_name
   user=user_name
@@ -118,11 +114,8 @@ Para obter informações adicionais sobre as opções que controlam a forma como
   Para obter mais informações, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
 
 - Alguns parâmetros de conexão podem ser especificados usando variáveis de ambiente. Exemplos:
-
   - Para especificar o host para **mysql**, use `MYSQL_HOST`.
-
   - Em Windows, para especificar o nome do usuário do MySQL, use `USER`.
-
   - Para especificar a senha, use `MYSQL_PWD`. No entanto, isso é inseguro; veja a Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”.
 
   Para uma lista de variáveis de ambiente suportadas, consulte a Seção 4.9, “Variáveis de Ambiente”.

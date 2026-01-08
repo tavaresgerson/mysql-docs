@@ -2,7 +2,7 @@
 
 **Table 12.7 Flow Control Operators**
 
-<table frame="box" rules="all" summary="A reference that lists flow control operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="flow-control-functions.html#operator_case"><code class="literal">CASE</code></a></td> <td> Case operator </td> </tr><tr><td><a class="link" href="flow-control-functions.html#function_if"><code class="literal">IF()</code></a></td> <td> If/else construct </td> </tr><tr><td><a class="link" href="flow-control-functions.html#function_ifnull"><code class="literal">IFNULL()</code></a></td> <td> Null if/else construct </td> </tr><tr><td><a class="link" href="flow-control-functions.html#function_nullif"><code class="literal">NULLIF()</code></a></td> <td> Return NULL if expr1 = expr2 </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists flow control operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="flow-control-functions.html#operator_case"><code>CASE</code></a></td> <td> Case operator </td> </tr><tr><td><a class="link" href="flow-control-functions.html#function_if"><code>IF()</code></a></td> <td> If/else construct </td> </tr><tr><td><a class="link" href="flow-control-functions.html#function_ifnull"><code>IFNULL()</code></a></td> <td> Null if/else construct </td> </tr><tr><td><a class="link" href="flow-control-functions.html#function_nullif"><code>NULLIF()</code></a></td> <td> Return NULL if expr1 = expr2 </td> </tr></tbody></table>
 
 * `CASE value WHEN compare_value THEN result [WHEN compare_value THEN result ...] [ELSE result] END`
 

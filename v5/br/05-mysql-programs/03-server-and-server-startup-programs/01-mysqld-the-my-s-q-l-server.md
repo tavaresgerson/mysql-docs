@@ -10,7 +10,7 @@ Quando o servidor MySQL é iniciado, ele escuta as conexões de rede dos program
 
 O programa **mysqld** tem muitas opções que podem ser especificadas durante o início. Para obter uma lista completa das opções, execute este comando:
 
-```sql
+```sh
 mysqld --verbose --help
 ```
 

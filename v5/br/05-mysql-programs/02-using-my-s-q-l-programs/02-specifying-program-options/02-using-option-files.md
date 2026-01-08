@@ -8,9 +8,9 @@ Nota
 
 Um programa do MySQL que começa com a opção `--no-defaults` não lê outros arquivos de opções além do `.mylogin.cnf`.
 
-Muitos arquivos de opções são arquivos de texto simples, criados usando qualquer editor de texto. A exceção é o arquivo `.mylogin.cnf`, que contém opções de caminho de login. Este é um arquivo criptografado criado pelo utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração do MySQL”. Um “caminho de login” é um grupo de opções que permite apenas certas opções: `host`, `user`, `password`, `port` e `socket`. Os programas cliente especificam qual caminho de login deve ser lido do `.mylogin.cnf` usando a opção `--login-path`.
+Muitos arquivos de opções são arquivos de texto simples, criados usando qualquer editor de texto. A exceção é o arquivo `.mylogin.cnf`, que contém opções de caminho de login. Este é um arquivo criptografado criado pelo utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração do MySQL”. Um “caminho de login” é um grupo de opções que permite apenas certas opções: `host`, `user`, `password`, `port` e `socket`. Os programas cliente especificam qual caminho de login deve ser lido do `.mylogin.cnf` usando a opção `--login-path`.
 
-Para especificar um nome alternativo de arquivo de caminho de login, defina a variável de ambiente `MYSQL_TEST_LOGIN_FILE`. Esta variável é usada pelo utilitário de teste **mysql-test-run.pl**, mas também é reconhecida pelo **mysql\_config\_editor** e pelos clientes MySQL, como **mysql**, **mysqladmin** e outros.
+Para especificar um nome alternativo de arquivo de caminho de login, defina a variável de ambiente `MYSQL_TEST_LOGIN_FILE`. Esta variável é usada pelo utilitário de teste **mysql-test-run.pl**, mas também é reconhecida pelo **mysql_config_editor** e pelos clientes MySQL, como **mysql**, **mysqladmin** e outros.
 
 O MySQL procura por arquivos de opção na ordem descrita na discussão a seguir e lê quaisquer que existam. Se um arquivo de opção que você deseja usar não existir, crie-o usando o método apropriado, como foi discutido.
 
@@ -28,11 +28,40 @@ No Windows, os programas do MySQL leem as opções de inicialização dos arquiv
 
 **Tabela 4.1 Arquivos de Opções Lidos em Sistemas Windows**
 
-<table summary="Arquivos de opção lidos por programas MySQL em sistemas Windows."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Nome do arquivo</th> <th>Objetivo</th> </tr></thead><tbody><tr> <td>[[<code class="filename"><code class="literal">%WINDIR%</code>]]\my.ini</code>, [[<code class="filename"><code class="literal">%WINDIR%</code>]]\my.cnf</code></td> <td>Opções globais</td> </tr><tr> <td>[[<code class="filename">C:\my.ini</code>]], [[<code class="filename">C:\my.cnf</code>]]</td> <td>Opções globais</td> </tr><tr> <td>[[<code class="filename"><em class="replaceable"><code>BASEDIR</code>]]</em>\my.ini</code>, [[<code class="filename"><em class="replaceable"><code>BASEDIR</code>]]</em>\my.cnf</code></td> <td>Opções globais</td> </tr><tr> <td>[[<code class="literal">defaults-extra-file</code>]]</td> <td>O arquivo especificado com<a class="link" href="option-file-options.html#option_general_defaults-extra-file">[[<code class="option">--defaults-extra-file</code>]]</a>, se houver</td> </tr><tr> <td>[[<code class="filename"><code class="literal">%APPDATA%</code>]]\MySQL\.mylogin.cnf</code></td> <td>Opções de caminho de login (apenas para clientes)</td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>Nome do arquivo</th>
+         <th>Objetivo</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>[[<code><code>%WINDIR%</code>]]\my.ini</code>, [[<code><code>%WINDIR%</code>]]\my.cnf</code></td>
+         <td>Opções globais</td>
+      </tr>
+      <tr>
+         <td>[[<code>C:\my.ini</code>]], [[<code>C:\my.cnf</code>]]</td>
+         <td>Opções globais</td>
+      </tr>
+      <tr>
+         <td>[[<code><em><code>BASEDIR</code>]]</em>\my.ini</code>, [[<code><em><code>BASEDIR</code>]]</em>\my.cnf</code></td>
+         <td>Opções globais</td>
+      </tr>
+      <tr>
+         <td>[[<code>defaults-extra-file</code>]]</td>
+         <td>O arquivo especificado com [[<code class="option">--defaults-extra-file</code>]], se houver</td>
+      </tr>
+      <tr>
+         <td>[[<code><code>%APPDATA%</code>]]\MySQL\.mylogin.cnf</code></td>
+         <td>Opções de caminho de login (apenas para clientes)</td>
+      </tr>
+   </tbody>
+</table>
 
 Na tabela anterior, `%WINDIR%` representa o local do diretório do Windows. Isso geralmente é `C:\WINDOWS`. Use o seguinte comando para determinar sua localização exata a partir do valor da variável de ambiente `WINDIR`:
 
-```sql
+```sh
 C:\> echo %WINDIR%
 ```
 
@@ -50,19 +79,56 @@ Embora o Instalador do MySQL coloque a maioria dos arquivos em *`PROGRAMDIR`*, e
 
 Nos sistemas Unix e similares, os programas do MySQL leem as opções de inicialização dos arquivos mostrados na tabela a seguir, na ordem especificada (os arquivos listados primeiro são lidos primeiro, os arquivos lidos posteriormente têm precedência).
 
-Nota
-
+::: info Nota
 Em plataformas Unix, o MySQL ignora arquivos de configuração que são acessíveis para todos. Isso é feito intencionalmente como uma medida de segurança.
+:::
 
 **Tabela 4.2 Arquivos de Opções Lidos em Sistemas Unix e Unix-Like**
 
-<table summary="Arquivos de opção lidos por programas MySQL em sistemas Unix e semelhantes ao Unix."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Nome do arquivo</th> <th>Objetivo</th> </tr></thead><tbody><tr> <td>[[<code class="filename">/etc/my.cnf</code>]]</td> <td>Opções globais</td> </tr><tr> <td>[[<code class="filename">/etc/mysql/my.cnf</code>]]</td> <td>Opções globais</td> </tr><tr> <td>[[<code class="filename"><em class="replaceable"><code>SYSCONFDIR</code>]]</em>/my.cnf</code></td> <td>Opções globais</td> </tr><tr> <td>[[<code class="filename">$MYSQL_HOME/my.cnf</code>]]</td> <td>Opções específicas do servidor (apenas para o servidor)</td> </tr><tr> <td>[[<code class="literal">defaults-extra-file</code>]]</td> <td>O arquivo especificado com<a class="link" href="option-file-options.html#option_general_defaults-extra-file">[[<code class="option">--defaults-extra-file</code>]]</a>, se houver</td> </tr><tr> <td>[[<code class="filename">~/.my.cnf</code>]]</td> <td>Opções específicas para o usuário</td> </tr><tr> <td>[[<code class="filename">~/.mylogin.cnf</code>]]</td> <td>Opções de caminho de login específicas para o usuário (apenas para clientes)</td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>Nome do arquivo</th>
+         <th>Objetivo</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>[[<code>/etc/my.cnf</code>]]</td>
+         <td>Opções globais</td>
+      </tr>
+      <tr>
+         <td>[[<code>/etc/mysql/my.cnf</code>]]</td>
+         <td>Opções globais</td>
+      </tr>
+      <tr>
+         <td>[[<code><em><code>SYSCONFDIR</code>]]</em>/my.cnf</code></td>
+         <td>Opções globais</td>
+      </tr>
+      <tr>
+         <td>[[<code>$MYSQL_HOME/my.cnf</code>]]</td>
+         <td>Opções específicas do servidor (apenas para o servidor)</td>
+      </tr>
+      <tr>
+         <td>[[<code>defaults-extra-file</code>]]</td>
+         <td>O arquivo especificado com [[<code class="option">--defaults-extra-file</code>]], se houver</td>
+      </tr>
+      <tr>
+         <td>[[<code>~/.my.cnf</code>]]</td>
+         <td>Opções específicas para o usuário</td>
+      </tr>
+      <tr>
+         <td>[[<code>~/.mylogin.cnf</code>]]</td>
+         <td>Opções de caminho de login específicas para o usuário (apenas para clientes)</td>
+      </tr>
+   </tbody>
+</table>
 
 Na tabela anterior, `~` representa o diretório de casa do usuário atual (o valor de `$HOME`).
 
 *`SYSCONFDIR`* representa o diretório especificado com a opção `SYSCONFDIR` para o **CMake** quando o MySQL foi compilado. Por padrão, este é o diretório `etc` localizado sob o diretório de instalação integrado.
 
-`MYSQL_HOME` é uma variável de ambiente que contém o caminho para o diretório onde o arquivo `my.cnf` específico do servidor reside. Se `MYSQL_HOME` não estiver definido e você iniciar o servidor usando o programa **mysqld\_safe**, **mysqld\_safe** define-o como *`BASEDIR`*, o diretório de instalação base do MySQL.
+`MYSQL_HOME` é uma variável de ambiente que contém o caminho para o diretório onde o arquivo `my.cnf` específico do servidor reside. Se `MYSQL_HOME` não estiver definido e você iniciar o servidor usando o programa **mysqld_safe**, **mysqld_safe** define-o como *`BASEDIR`*, o diretório de instalação base do MySQL.
 
 *`DATADIR`* é geralmente `/usr/local/mysql/data`, embora isso possa variar de acordo com a plataforma ou o método de instalação. O valor é a localização do diretório de dados construído quando o MySQL foi compilado, e não a localização especificada com a opção `--datadir` quando o **mysqld** é iniciado. O uso de `--datadir` em tempo de execução não afeta o local onde o servidor procura por arquivos de opção que ele lê antes de processar quaisquer opções.
 
@@ -70,7 +136,7 @@ Se forem encontradas várias instâncias de uma opção específica, a última i
 
 ##### Sintaxe do arquivo de opção
 
-A descrição a seguir sobre a sintaxe do arquivo de opções se aplica a arquivos que você edita manualmente. Isso exclui o `.mylogin.cnf`, que é criado usando o **mysql\_config\_editor** e é criptografado.
+A descrição a seguir sobre a sintaxe do arquivo de opções se aplica a arquivos que você edita manualmente. Isso exclui o `.mylogin.cnf`, que é criado usando o **mysql_config_editor** e é criptografado.
 
 Qualquer opção longa que possa ser fornecida na linha de comando ao executar um programa MySQL também pode ser fornecida em um arquivo de opções. Para obter a lista de opções disponíveis para um programa, execute-o com a opção `--help`. (Para o **mysqld**, use `--verbose` e `--help`.)
 
@@ -82,9 +148,9 @@ Linhas vazias em arquivos de opções são ignoradas. Linhas não vazias podem t
 
   As linhas de comentário começam com `#` ou `;`. Um comentário `#` pode começar no meio de uma linha também.
 
-- `[grupo]`
+- `[group]`
 
-  *`grupo`* é o nome do programa ou grupo para o qual você deseja definir opções. Após uma linha de grupo, quaisquer linhas de definição de opções se aplicam ao grupo nomeado até o final do arquivo de opções ou até que outra linha de grupo seja fornecida. Os nomes dos grupos de opções não são sensíveis ao maiúsculas e minúsculas.
+  *`group`* é o nome do programa ou grupo para o qual você deseja definir opções. Após uma linha de grupo, quaisquer linhas de definição de opções se aplicam ao grupo nomeado até o final do arquivo de opções ou até que outra linha de grupo seja fornecida. Os nomes dos grupos de opções não são sensíveis ao maiúsculas e minúsculas.
 
 - `opt_name`
 
@@ -117,7 +183,7 @@ basedir=C:\\Program\sFiles\\MySQL\\MySQL\sServer\s5.7
 
 Se o nome de um grupo de opções for o mesmo que o nome de um programa, as opções do grupo se aplicam especificamente a esse programa. Por exemplo, os grupos `[mysqld]` e `[mysql]` se aplicam ao servidor **mysqld** e ao programa cliente **mysql**, respectivamente.
 
-O grupo de opções `[client]` é lido por todos os programas cliente fornecidos nas distribuições do MySQL (mas *não* pelo **mysqld**). Para entender como programas cliente de terceiros que usam a API C podem usar arquivos de opções, consulte a documentação da API C em mysql\_options().
+O grupo de opções `[client]` é lido por todos os programas cliente fornecidos nas distribuições do MySQL (mas *não* pelo **mysqld**). Para entender como programas cliente de terceiros que usam a API C podem usar arquivos de opções, consulte a documentação da API C em mysql_options().
 
 O grupo `[client]` permite que você especifique opções que se aplicam a todos os clientes. Por exemplo, `[client]` é o grupo apropriado para usar para especificar a senha para se conectar ao servidor. (Mas certifique-se de que o arquivo de opção seja acessível apenas por você, para que outras pessoas não descubram sua senha.) Certifique-se de não colocar uma opção no grupo `[client]` a menos que seja reconhecida por *todos* os programas de cliente que você usa. Programas que não entendem a opção saem após exibir uma mensagem de erro se você tentar executá-los.
 
@@ -125,7 +191,7 @@ Liste os grupos de opções mais gerais primeiro e os grupos mais específicos d
 
 Aqui está um arquivo de opção global típico:
 
-```sql
+```
 [client]
 port=3306
 socket=/tmp/mysql.sock
@@ -142,7 +208,7 @@ quick
 
 Aqui está um arquivo de opção de usuário típico:
 
-```sql
+```
 [client]
 # The following password is sent to all standard MySQL clients
 password="my password"
@@ -154,7 +220,7 @@ connect_timeout=2
 
 Para criar grupos de opções que só possam ser lidos pelos servidores **mysqld** de séries específicas de versões do MySQL, use grupos com nomes como `[mysqld-5.6]`, `[mysqld-5.7]` e assim por diante. O seguinte grupo indica que o ajuste `sql_mode` deve ser usado apenas pelos servidores MySQL com números de versão 5.7.x:
 
-```sql
+```
 [mysqld-5.7]
 sql_mode=TRADITIONAL
 ```
@@ -163,19 +229,19 @@ sql_mode=TRADITIONAL
 
 É possível usar diretivas `!include` em arquivos de opções para incluir outros arquivos de opções e `!includedir` para procurar diretórios específicos por arquivos de opções. Por exemplo, para incluir o arquivo `/home/mydir/myopt.cnf`, use a seguinte diretiva:
 
-```sql
+```
 !include /home/mydir/myopt.cnf
 ```
 
 Para pesquisar o diretório `/home/mydir` e ler os arquivos de opção encontrados lá, use esta diretiva:
 
-```sql
+```
 !includedir /home/mydir
 ```
 
 O MySQL não garante a ordem em que os arquivos de opção no diretório são lidos.
 
-Nota
+**Nota**
 
 Quaisquer arquivos que devem ser encontrados e incluídos usando a diretiva `!includedir` em sistemas operacionais Unix *devem* ter nomes de arquivos terminando em `.cnf`. No Windows, essa diretiva verifica arquivos com a extensão `.ini` ou `.cnf`.
 
@@ -183,13 +249,13 @@ Escreva o conteúdo de um arquivo de opção incluído como qualquer outro arqui
 
 Enquanto um arquivo incluído está sendo processado, apenas as opções dos grupos que o programa atual está procurando são usadas. Outros grupos são ignorados. Suponha que um arquivo `my.cnf` contenha esta linha:
 
-```sql
+```
 !include /home/mydir/myopt.cnf
 ```
 
 E suponha que `/home/mydir/myopt.cnf` pareça assim:
 
-```sql
+```
 [mysqladmin]
 force
 
@@ -205,7 +271,7 @@ Se um arquivo de opção contiver diretivas `!include` ou `!includedir`, os arqu
 
 Para que as diretivas de inclusão funcionem, o caminho do arquivo não deve ser especificado entre aspas e não deve conter sequências de escape. Por exemplo, as seguintes declarações fornecidas em `my.ini` leem o arquivo de opções `myopts.ini`:
 
-```sql
+```
 !include C:/ProgramData/MySQL/MySQL Server/myopts.ini
 !include C:\ProgramData\MySQL\MySQL Server\myopts.ini
 !include C:\\ProgramData\\MySQL\\MySQL Server\\myopts.ini

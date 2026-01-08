@@ -10,7 +10,7 @@ MySQL collation names follow these conventions:
 
   **Table 10.1 Collation Suffix Meanings**
 
-  <table summary="Collation suffixes that indicate lettercase sensitivity, accent sensitivity, binary."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Suffix</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code class="literal">_ai</code></td> <td>Accent-insensitive</td> </tr><tr> <td><code class="literal">_as</code></td> <td>Accent-sensitive</td> </tr><tr> <td><code class="literal">_ci</code></td> <td>Case-insensitive</td> </tr><tr> <td><code class="literal">_cs</code></td> <td>Case-sensitive</td> </tr><tr> <td><code class="literal">_bin</code></td> <td>Binary</td> </tr></tbody></table>
+  <table summary="Collation suffixes that indicate lettercase sensitivity, accent sensitivity, binary."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Suffix</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>_ai</code></td> <td>Accent-insensitive</td> </tr><tr> <td><code>_as</code></td> <td>Accent-sensitive</td> </tr><tr> <td><code>_ci</code></td> <td>Case-insensitive</td> </tr><tr> <td><code>_cs</code></td> <td>Case-sensitive</td> </tr><tr> <td><code>_bin</code></td> <td>Binary</td> </tr></tbody></table>
 
   For nonbinary collation names that do not specify accent sensitivity, it is determined by case sensitivity. If a collation name does not contain `_ai` or `_as`, `_ci` in the name implies `_ai` and `_cs` in the name implies `_as`. For example, `latin1_general_ci` is explicitly case-insensitive and implicitly accent-insensitive, and `latin1_general_cs` is explicitly case-sensitive and implicitly accent-sensitive.
 

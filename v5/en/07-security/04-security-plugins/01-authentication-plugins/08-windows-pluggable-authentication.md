@@ -18,7 +18,7 @@ The following table shows the plugin and library file names. The file must be lo
 
 **Table 6.14 Plugin and Library Names for Windows Authentication**
 
-<table summary="Names for the plugins and library file used for Windows password authentication."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_windows</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">authentication_windows_client</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">authentication_windows.dll</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for Windows password authentication."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>authentication_windows</code></td> </tr><tr> <td>Client-side plugin</td> <td><code>authentication_windows_client</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">authentication_windows.dll</code></td> </tr></tbody></table>
 
 The library file includes only the server-side plugin. The client-side plugin is built into the `libmysqlclient` client library.
 

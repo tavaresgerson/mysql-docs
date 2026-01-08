@@ -4,19 +4,19 @@ As opções descritas nesta seção podem ser usadas para qualquer tipo de opera
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia. As opções são agrupadas por tipo de operação.
 
 - `--HELP`, `-H`
 
-  <table frame="box" rules="all" summary="Propriedades para AJUDA"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--HELP</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para AJUDA"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia. As opções são apresentadas em uma única lista.
 
 - `--debug=opções_de_depuração`, `-# opções_de_depuração`
 
-  <table frame="box" rules="all" summary="Propriedades para depuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--debug[=debug_option<code class="literal">d:t:o,/tmp/myisamchk.trace</code></code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">d:t:o,/tmp/myisamchk.trace</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para depuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--debug[=debug_option<code>d:t:o,/tmp/myisamchk.trace</code></code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>d:t:o,/tmp/myisamchk.trace</code>]]</td> </tr></tbody></table>
 
   Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O padrão é `d:t:o,/tmp/myisamchk.trace`.
 
@@ -24,7 +24,7 @@ As opções descritas nesta seção podem ser usadas para qualquer tipo de opera
 
 - `--defaults-extra-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-extra-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -32,7 +32,7 @@ As opções descritas nesta seção podem ser usadas para qualquer tipo de opera
 
 - `--defaults-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de falhas"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para arquivo de falhas"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -40,7 +40,7 @@ As opções descritas nesta seção podem ser usadas para qualquer tipo de opera
 
 - `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-group-suffix=str</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-group-suffix=str</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Leia não apenas os grupos de opções habituais, mas também grupos com os nomes habituais e um sufixo de *`str`*. Por exemplo, **myisamchk** normalmente lê o grupo `[myisamchk]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **myisamchk** também lê o grupo `[myisamchk_other]`.
 
@@ -48,7 +48,7 @@ As opções descritas nesta seção podem ser usadas para qualquer tipo de opera
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades sem penalidades"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--no-defaults</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades sem penalidades"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--no-defaults</code>]]</td> </tr></tbody></table>
 
   Não leia nenhum arquivo de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas.
 
@@ -58,7 +58,7 @@ As opções descritas nesta seção podem ser usadas para qualquer tipo de opera
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para padrões de impressão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--print-defaults</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para padrões de impressão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--print-defaults</code>]]</td> </tr></tbody></table>
 
   Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
@@ -66,31 +66,31 @@ As opções descritas nesta seção podem ser usadas para qualquer tipo de opera
 
 - `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para silencioso"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--silent</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para silencioso"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--silent</code>]]</td> </tr></tbody></table>
 
   Modo silencioso. Escreva a saída apenas quando ocorrerem erros. Você pode usar `-s` duas vezes (`-ss`) para tornar o **myisamchk** muito silencioso.
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--verbose</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--verbose</code>]]</td> </tr></tbody></table>
 
   Modo verbose. Imprima mais informações sobre o que o programa faz. Isso pode ser usado com `-d` e `-e`. Use `-v` várias vezes (`-vv`, `-vvv`) para obter ainda mais saída.
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para AJUDA"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--HELP</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para AJUDA"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>0
 
   Exibir informações da versão e sair.
 
 - `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Propriedades para AJUDA"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--HELP</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para AJUDA"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>1
 
   Em vez de encerrar com um erro se a tabela estiver bloqueada, espere até que a tabela seja desbloqueada antes de continuar. Se você estiver executando o **mysqld** com o bloqueio externo desativado, a tabela só pode ser bloqueada por outro comando **myisamchk**.
 
 Você também pode definir as seguintes variáveis usando a sintaxe `--var_name=value`:
 
-<table frame="box" rules="all" summary="Propriedades para AJUDA"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--HELP</code>]]</td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para AJUDA"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>2
 
 As possíveis variáveis **myisamchk** e seus valores padrão podem ser examinadas com **myisamchk --help**:
 

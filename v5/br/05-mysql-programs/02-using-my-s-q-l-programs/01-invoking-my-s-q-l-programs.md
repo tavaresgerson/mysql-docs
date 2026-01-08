@@ -1,8 +1,8 @@
-### 4.2.1 Invocação de programas MySQL
+### 4.2.1 Chamando programas MySQL
 
 Para invocar um programa MySQL a partir da linha de comando (ou seja, do seu shell ou prompt de comando), insira o nome do programa seguido de quaisquer opções ou outros argumentos necessários para instruir o programa o que você deseja que ele faça. Os seguintes comandos mostram algumas invocações de programas de exemplo. `$>` representa o prompt do seu interpretador de comandos; ele não faz parte do que você digita. O prompt específico que você vê depende do seu interpretador de comandos. Os prompts típicos são `$` para **sh**, **ksh** ou **bash**, `%` para **csh** ou **tcsh** e `C:\>` para os interpretadores de comandos **command.com** ou **cmd.exe** do Windows.
 
-```sql
+```sh
 $> mysql --user=root test
 $> mysqladmin extended-status variables
 $> mysqlshow --help

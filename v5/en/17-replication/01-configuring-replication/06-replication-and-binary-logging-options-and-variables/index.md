@@ -14,7 +14,7 @@ The following sections contain information about [**mysqld**](mysqld.html "4.3.1
 
 Of particular importance is the [`server_id`](replication-options.html#sysvar_server_id) system variable.
 
-<table frame="box" rules="all" summary="Properties for server_id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--server-id=#</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options.html#sysvar_server_id">server_id</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Properties for server_id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--server-id=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="replication-options.html#sysvar_server_id">server_id</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
 This variable specifies the server ID. In MySQL 5.7, [`server_id`](replication-options.html#sysvar_server_id) must be specified if binary logging is enabled, otherwise the server is not allowed to start.
 
@@ -32,7 +32,7 @@ Note
 
 The presence of the [`server_uuid`](replication-options.html#sysvar_server_uuid) system variable in MySQL 5.7 does not change the requirement for setting a unique [`server_id`](replication-options.html#sysvar_server_id) value for each MySQL server as part of preparing and running MySQL replication, as described earlier in this section.
 
-<table frame="box" rules="all" summary="Properties for server_uuid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options.html#sysvar_server_uuid">server_uuid</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Properties for server_uuid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>System Variable</th> <td><code><a class="link" href="replication-options.html#sysvar_server_uuid">server_uuid</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
 When starting, the MySQL server automatically obtains a UUID as follows:
 

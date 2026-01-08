@@ -402,7 +402,7 @@ Você pode definir qualquer uma dessas variáveis no início do servidor e algum
 
 - `audit_log_exclude_accounts`
 
-  <table frame="box" rules="all" summary="Propriedades para audit_log_exclude_accounts"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--audit-log-exclude-accounts=value</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="audit-log-reference.html#sysvar_audit_log_exclude_accounts">audit_log_exclude_accounts</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_exclude_accounts"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--audit-log-exclude-accounts=value</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="audit-log-reference.html#sysvar_audit_log_exclude_accounts">audit_log_exclude_accounts</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">NULL</code>]]</td> </tr></tbody></table>
 
   Nota
 

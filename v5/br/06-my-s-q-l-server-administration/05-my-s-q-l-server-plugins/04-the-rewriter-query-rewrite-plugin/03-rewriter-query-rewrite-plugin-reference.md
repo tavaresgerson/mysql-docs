@@ -82,13 +82,13 @@ O plugin de reescrita de consultas `Rewriter` suporta as seguintes variáveis de
 
 - [`rewriter_enabled`](https://pt-br.github.io/query-rewrite-plugin-reference/sysvar_rewriter_enabled/)
 
-  <table frame="box" rules="all" summary="Propriedades para rewriter_enabled"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled">rewriter_enabled</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code class="literal">OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rewriter_enabled"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled">rewriter_enabled</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Se o plugin de reescrita de consultas `Rewriter` está habilitado.
 
 - `rewriter_verbose`
 
-  <table frame="box" rules="all" summary="Propriedades para rewriter_verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do sistema</th> <td>[[<code class="literal"><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_verbose">rewriter_verbose</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rewriter_verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_verbose">rewriter_verbose</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr></tbody></table>
 
   Para uso interno.
 

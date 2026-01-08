@@ -87,7 +87,7 @@ The output from [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Stat
 
   The server's level of support for the storage engine, as shown in the following table.
 
-  <table summary="Values for the Support column in the output of the SHOW ENGINES statement."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Value</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code class="literal">YES</code></td> <td>The engine is supported and is active</td> </tr><tr> <td><code class="literal">DEFAULT</code></td> <td>Like <code class="literal">YES</code>, plus this is the default engine</td> </tr><tr> <td><code class="literal">NO</code></td> <td>The engine is not supported</td> </tr><tr> <td><code class="literal">DISABLED</code></td> <td>The engine is supported but has been disabled</td> </tr></tbody></table>
+  <table summary="Values for the Support column in the output of the SHOW ENGINES statement."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Value</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>YES</code></td> <td>The engine is supported and is active</td> </tr><tr> <td><code>DEFAULT</code></td> <td>Like <code>YES</code>, plus this is the default engine</td> </tr><tr> <td><code>NO</code></td> <td>The engine is not supported</td> </tr><tr> <td><code>DISABLED</code></td> <td>The engine is supported but has been disabled</td> </tr></tbody></table>
 
   A value of `NO` means that the server was compiled without support for the engine, so it cannot be enabled at runtime.
 

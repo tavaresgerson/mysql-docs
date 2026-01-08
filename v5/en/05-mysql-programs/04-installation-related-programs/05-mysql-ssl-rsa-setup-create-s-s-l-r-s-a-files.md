@@ -87,36 +87,36 @@ If the SSL files used for a MySQL installation have expired, you can use **mysql
 
 * `--help`, `?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--datadir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for datadir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--datadir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for datadir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The path to the directory that **mysql\_ssl\_rsa\_setup** should check for default SSL and RSA files and in which it should create files if they are missing. The default is the compiled-in data directory.
 
 * `--suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The suffix for the Common Name attribute in X.509 certificates. The suffix value is limited to 17 characters. The default is based on the MySQL version number.
 
 * `--uid=name`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for uid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--uid=name</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for uid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--uid=name</code></td> </tr></tbody></table>
 
   The name of the user who should be the owner of any created files. The value is a user name, not a numeric user ID. In the absence of this option, files created by **mysql\_ssl\_rsa\_setup** are owned by the user who executes it. This option is valid only if you execute the program as `root` on a system that supports the `chown()` system call.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Verbose mode. Produce more output about what the program does. For example, the program shows the **openssl** commands it runs, and produces output to indicate whether it skips SSL or RSA file creation because some default file already exists.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--version</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr></tbody></table>
 
   Display version information and exit.

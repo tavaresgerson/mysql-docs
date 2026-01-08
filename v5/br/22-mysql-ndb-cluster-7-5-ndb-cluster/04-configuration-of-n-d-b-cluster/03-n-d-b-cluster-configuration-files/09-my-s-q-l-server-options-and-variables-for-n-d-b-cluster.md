@@ -80,7 +80,7 @@ Para obter informações sobre as opções de linha de comando usadas com outros
 
 - `--ndb-connectstring=connection_string`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Ao usar o mecanismo de armazenamento `NDBCLUSTER`, esta opção especifica o servidor de gerenciamento que distribui os dados de configuração do cluster. Consulte Seção 21.4.3.3, “Strings de Conexão do NDB Cluster” para a sintaxe.
 
@@ -708,7 +708,7 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
 
 - `slave_allow_batching`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>0
 
   Se as atualizações em lote estão habilitadas ou não nas réplicas do NDB Cluster.
 
@@ -718,7 +718,7 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
 
 - `transaction_allow_batching`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
 
   Quando definido como `1` ou `ON`, essa variável habilita o agrupamento de instruções dentro da mesma transação. Para usar essa variável, `autocommit` deve ser desativado primeiro, definindo-o como `0` ou `OFF`; caso contrário, definir `transaction_allow_batching` não terá efeito.
 
@@ -734,31 +734,31 @@ As variáveis de sistema na lista a seguir estão todas relacionadas ao banco de
 
 - `ndbinfo_database`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
 
   Mostra o nome usado para o banco de dados de informações `NDB`; o padrão é `ndbinfo`. Esta é uma variável de leitura somente, cujo valor é determinado no momento da compilação.
 
 - `ndbinfo_max_bytes`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
 
   Usado apenas para testes e depuração.
 
 - `ndbinfo_max_rows`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
 
   Usado apenas para testes e depuração.
 
 - `ndbinfo_offline`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
 
   Coloque o banco de dados `ndbinfo` no modo offline, no qual as tabelas e visualizações podem ser abertas mesmo quando não existem na verdade, ou quando existem, mas têm definições diferentes no `NDB`. Não serão retornadas linhas dessas tabelas (ou visualizações).
 
 - `ndbinfo_show_hidden`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
 
   Se as tabelas internas subjacentes do banco de dados `ndbinfo` são ou não exibidas no cliente **mysql**. O padrão é `OFF`.
 
@@ -768,13 +768,13 @@ As variáveis de sistema na lista a seguir estão todas relacionadas ao banco de
 
 - `ndbinfo_table_prefix`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
 
   O prefixo usado para nomear as tabelas de base do banco de dados ndbinfo (normalmente oculto, a menos que seja exibido ao definir `ndbinfo_show_hidden`). Esta é uma variável de leitura somente, cujo valor padrão é `ndb$`; o próprio prefixo é determinado no momento da compilação.
 
 - `ndbinfo_version`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>Ferramenta de cordas</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--ndb-connectstring</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
 
   Mostra a versão do motor `ndbinfo` em uso; apenas leitura.
 

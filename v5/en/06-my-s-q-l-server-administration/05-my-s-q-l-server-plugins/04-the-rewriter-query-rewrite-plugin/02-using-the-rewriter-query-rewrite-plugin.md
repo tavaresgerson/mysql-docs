@@ -199,7 +199,7 @@ SELECT ?, 3
 
 The following table shows several prepared [`SELECT`](select.html "13.2.9 SELECT Statement") statements and whether the rule pattern matches them.
 
-<table summary="How the Rewriter plugin matches prepared statements against the pattern SELECT ?,3."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Prepared Statement</th> <th>Whether Pattern Matches Statement</th> </tr></thead><tbody><tr> <td><code class="literal">PREPARE s AS 'SELECT 3, 3'</code></td> <td>Yes</td> </tr><tr> <td><code class="literal">PREPARE s AS 'SELECT ?, 3'</code></td> <td>Yes</td> </tr><tr> <td><code class="literal">PREPARE s AS 'SELECT 3, ?'</code></td> <td>No</td> </tr><tr> <td><code class="literal">PREPARE s AS 'SELECT ?, ?'</code></td> <td>No</td> </tr></tbody></table>
+<table summary="How the Rewriter plugin matches prepared statements against the pattern SELECT ?,3."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Prepared Statement</th> <th>Whether Pattern Matches Statement</th> </tr></thead><tbody><tr> <td><code>PREPARE s AS 'SELECT 3, 3'</code></td> <td>Yes</td> </tr><tr> <td><code>PREPARE s AS 'SELECT ?, 3'</code></td> <td>Yes</td> </tr><tr> <td><code>PREPARE s AS 'SELECT 3, ?'</code></td> <td>No</td> </tr><tr> <td><code>PREPARE s AS 'SELECT ?, ?'</code></td> <td>No</td> </tr></tbody></table>
 
 ##### Rewriter Plugin Operational Information
 

@@ -27,7 +27,7 @@ By default, the server writes [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 AN
 
 [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") returns a result set with the columns shown in the following table.
 
-<table summary="Columns of the ANALYZE TABLE result set."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Column</th> <th>Value</th> </tr></thead><tbody><tr> <td><code class="literal">Table</code></td> <td>The table name</td> </tr><tr> <td><code class="literal">Op</code></td> <td>Always <code class="literal">analyze</code></td> </tr><tr> <td><code class="literal">Msg_type</code></td> <td><code class="literal">status</code>, <code class="literal">error</code>, <code class="literal">info</code>, <code class="literal">note</code>, or <code class="literal">warning</code></td> </tr><tr> <td><code class="literal">Msg_text</code></td> <td>An informational message</td> </tr></tbody></table>
+<table summary="Columns of the ANALYZE TABLE result set."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Column</th> <th>Value</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>The table name</td> </tr><tr> <td><code>Op</code></td> <td>Always <code>analyze</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code>, or <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>An informational message</td> </tr></tbody></table>
 
 ##### Key Distribution Analysis
 

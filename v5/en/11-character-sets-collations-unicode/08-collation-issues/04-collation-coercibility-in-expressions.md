@@ -54,7 +54,7 @@ Although automatic conversion is not in the SQL standard, the standard does say 
 
 The following table illustrates some applications of the preceding rules.
 
-<table summary="Comparisons and the collation used for each comparison."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Comparison</th> <th>Collation Used</th> </tr></thead><tbody><tr> <td><code class="literal">column1 = 'A'</code></td> <td>Use collation of <code class="literal">column1</code></td> </tr><tr> <td><code class="literal">column1 = 'A' COLLATE x</code></td> <td>Use collation of <code class="literal">'A' COLLATE x</code></td> </tr><tr> <td><code class="literal">column1 COLLATE x = 'A' COLLATE y</code></td> <td>Error</td> </tr></tbody></table>
+<table summary="Comparisons and the collation used for each comparison."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Comparison</th> <th>Collation Used</th> </tr></thead><tbody><tr> <td><code>column1 = 'A'</code></td> <td>Use collation of <code>column1</code></td> </tr><tr> <td><code>column1 = 'A' COLLATE x</code></td> <td>Use collation of <code>'A' COLLATE x</code></td> </tr><tr> <td><code>column1 COLLATE x = 'A' COLLATE y</code></td> <td>Error</td> </tr></tbody></table>
 
 To determine the coercibility of a string expression, use the `COERCIBILITY()` function (see Section 12.15, “Information Functions”):
 

@@ -15,21 +15,21 @@ O primeiro comando especifica o valor em bytes. O segundo especifica o valor em 
 
 Em um arquivo de opção, as configurações variáveis são fornecidas sem as barras iniciais:
 
-```sql
+```
 [mysql]
 max_allowed_packet=16777216
 ```
 
 Ou:
 
-```sql
+```
 [mysql]
 max_allowed_packet=16M
 ```
 
 Se desejar, os sublinhados em um nome de opção podem ser especificados como travessões. Os seguintes grupos de opções são equivalentes. Ambos definem o tamanho do buffer de chave do servidor para 512 MB:
 
-```sql
+```
 [mysqld]
 key_buffer_size=512M
 
@@ -45,7 +45,7 @@ Em versões mais antigas do MySQL, as opções do programa podiam ser especifica
 
 Sufixos para especificar um multiplicador de valor podem ser usados ao definir uma variável no momento da invocação do programa, mas não para definir o valor com `SET` no tempo de execução. Por outro lado, com `SET`, você pode atribuir o valor de uma variável usando uma expressão, o que não é verdade quando você define uma variável no início do servidor. Por exemplo, a primeira das linhas a seguir é válida no momento da invocação do programa, mas a segunda não é:
 
-```sql
+```sh
 $> mysql --max_allowed_packet=16M
 $> mysql --max_allowed_packet=16*1024*1024
 ```

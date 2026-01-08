@@ -87,7 +87,7 @@ A saída `SHOW ENGINES` tem essas colunas:
 
   O nível de suporte do servidor para o motor de armazenamento, conforme mostrado na tabela a seguir.
 
-  <table summary="Valores para a coluna Support na saída da declaração SHOW ENGINES."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Valor</th> <th>Significado</th> </tr></thead><tbody><tr> <td>[[<code class="literal">YES</code>]]</td> <td>O motor é suportado e está ativo</td> </tr><tr> <td>[[<code class="literal">DEFAULT</code>]]</td> <td>Como [[<code class="literal">YES</code>]], além disso, este é o motor padrão</td> </tr><tr> <td>[[<code class="literal">NO</code>]]</td> <td>O motor não é suportado</td> </tr><tr> <td>[[<code class="literal">DISABLED</code>]]</td> <td>O motor é suportado, mas foi desativado</td> </tr></tbody></table>
+  <table summary="Valores para a coluna Support na saída da declaração SHOW ENGINES."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Valor</th> <th>Significado</th> </tr></thead><tbody><tr> <td>[[<code>YES</code>]]</td> <td>O motor é suportado e está ativo</td> </tr><tr> <td>[[<code>DEFAULT</code>]]</td> <td>Como [[<code>YES</code>]], além disso, este é o motor padrão</td> </tr><tr> <td>[[<code>NO</code>]]</td> <td>O motor não é suportado</td> </tr><tr> <td>[[<code>DISABLED</code>]]</td> <td>O motor é suportado, mas foi desativado</td> </tr></tbody></table>
 
   Um valor de `NO` significa que o servidor foi compilado sem suporte para o motor, portanto, ele não pode ser habilitado em tempo de execução.
 

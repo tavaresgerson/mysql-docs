@@ -2,7 +2,7 @@
 
 **Table 12.16 XML Functions**
 
-<table frame="box" rules="all" summary="A reference that lists XML functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="xml-functions.html#function_extractvalue"><code class="literal">ExtractValue()</code></a></td> <td> Extract a value from an XML string using XPath notation </td> </tr><tr><td><a class="link" href="xml-functions.html#function_updatexml"><code class="literal">UpdateXML()</code></a></td> <td> Return replaced XML fragment </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists XML functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="xml-functions.html#function_extractvalue"><code>ExtractValue()</code></a></td> <td> Extract a value from an XML string using XPath notation </td> </tr><tr><td><a class="link" href="xml-functions.html#function_updatexml"><code>UpdateXML()</code></a></td> <td> Return replaced XML fragment </td> </tr></tbody></table>
 
 This section discusses XML and related functionality in MySQL.
 

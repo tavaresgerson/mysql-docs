@@ -64,7 +64,7 @@ Each enumeration value has an index:
 
 For example, a column specified as `ENUM('Mercury', 'Venus', 'Earth')` can have any of the values shown here. The index of each value is also shown.
 
-<table summary="Possible values for a column specified as ENUM('Mercury', 'Venus', 'Earth'). The table also shows the index of each value."><col style="width: 15%"/><col style="width: 15%"/><thead><tr> <th>Value</th> <th>Index</th> </tr></thead><tbody><tr> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> </tr><tr> <td><code class="literal">''</code></td> <td>0</td> </tr><tr> <td><code class="literal">'Mercury'</code></td> <td>1</td> </tr><tr> <td><code class="literal">'Venus'</code></td> <td>2</td> </tr><tr> <td><code class="literal">'Earth'</code></td> <td>3</td> </tr></tbody></table>
+<table summary="Possible values for a column specified as ENUM('Mercury', 'Venus', 'Earth'). The table also shows the index of each value."><col style="width: 15%"/><col style="width: 15%"/><thead><tr> <th>Value</th> <th>Index</th> </tr></thead><tbody><tr> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <td><code>''</code></td> <td>0</td> </tr><tr> <td><code>'Mercury'</code></td> <td>1</td> </tr><tr> <td><code>'Venus'</code></td> <td>2</td> </tr><tr> <td><code>'Earth'</code></td> <td>3</td> </tr></tbody></table>
 
 An `ENUM` column can have a maximum of 65,535 distinct elements. (The practical limit is less than 3000.) A table can have no more than 255 unique element list definitions among its `ENUM` and `SET` columns considered as a group. For more information on these limits, see Limits Imposed by .frm File Structure.
 
