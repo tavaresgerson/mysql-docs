@@ -22,7 +22,7 @@ ORDER BY article;
 +---------+--------+-------+
 ```
 
-O exemplo anterior usa uma subconsulta correlacionada, o que pode ser ineficiente (veja [Seção 13.2.10.7, “Subconsultas Correlacionadas”](correlated-subqueries.html)). Outras possibilidades para resolver o problema são usar uma subconsulta não correlacionada na cláusula `FROM` ou uma `JOINes LEFT`.
+O exemplo anterior usa uma subconsulta correlacionada, o que pode ser ineficiente (veja Seção 13.2.10.7, “Subconsultas Correlacionadas”). Outras possibilidades para resolver o problema são usar uma subconsulta não correlacionada na cláusula `FROM` ou uma `LEFT JOIN`.
 
 Subconsulta não correlacionada:
 
@@ -37,7 +37,7 @@ JOIN (
 ORDER BY article;
 ```
 
-`JOIN LEFT`:
+`LEFT JOIN`:
 
 ```sql
 SELECT s1.article, s1.dealer, s1.price
@@ -47,4 +47,4 @@ WHERE s2.article IS NULL
 ORDER BY s1.article;
 ```
 
-A `JOIN LEFT` funciona com base no princípio de que, quando `s1.price` está no seu valor máximo, não há `s2.price` com um valor maior e, portanto, o valor correspondente de `s2.article` é `NULL`. Veja [Seção 13.2.9.2, “Cláusula JOIN”](join.html).
+A `LEFT JOIN` funciona com base no princípio de que, quando `s1.price` está no seu valor máximo, não há `s2.price` com um valor maior e, portanto, o valor correspondente de `s2.article` é `NULL`. Veja Seção 13.2.9.2, “Cláusula JOIN”.

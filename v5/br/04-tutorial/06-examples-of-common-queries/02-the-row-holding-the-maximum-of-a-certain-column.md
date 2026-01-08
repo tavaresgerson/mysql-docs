@@ -16,7 +16,7 @@ WHERE  price=(SELECT MAX(price) FROM shop);
 +---------+--------+-------+
 ```
 
-Outra solução é usar uma `JOINes LEFT`, como mostrado aqui:
+Outra solução é usar uma `LEFT JOIN`, como mostrado aqui:
 
 ```sql
 SELECT s1.article, s1.dealer, s1.price
@@ -34,6 +34,6 @@ ORDER BY price DESC
 LIMIT 1;
 ```
 
-Nota
-
+::: info Nota
 Se houvesse vários artigos mais caros, cada um com um preço de R$ 19,95, a solução `LIMIT` mostraria apenas um deles.
+:::

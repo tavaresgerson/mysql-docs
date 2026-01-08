@@ -1,90 +1,28 @@
-export default [
-	{ text: 'Prefácio e Avisos Legais', link: '/01-preface-and-legal-notices.md' },
-	{
-		text: 'Geral',
-		collapsed: true,
-		items: [
-			{
-				text: 'Informações gerais',
-				link: '/02-general-information/index.md'
-			},
-			{
-				text: 'Sobre este manual',
-				link: '/02-general-information/01-about-this-manual.md'
-			},
-			{
-				text: 'Visão geral do sistema de gerenciamento de banco de dados MySQL',
-				link: '/02-general-information/02-overview-of-the-mysql-database-management-system/index.md',
-				collapsed: true,
-				items: [
-					{
-						text: 'O que é o MySQL?',
-						link: '/02-general-information/02-overview-of-the-mysql-database-management-system/01-whats-is-my-sql.md'
-					},
-					{
-						text: 'Principais características do MySQL',
-						link: '/02-general-information/02-overview-of-the-mysql-database-management-system/02-the-main-features-of-my-sql.md'
-					},
-					{
-						text: 'História do MySQL',
-						link: '/02-general-information/02-overview-of-the-mysql-database-management-system/03-history-of-my-sql.md'
-					}
-				]
-			},
-			{
-				text: 'O que há de novo no MySQL 5.7',
-				link: '/02-general-information/03-what-is-new-in-mysql-57.md'
-			},
-			{
-				text: 'Variáveis e opções de servidor e status adicionadas, descontinuadas ou removidas no MySQL 5.7',
-				link: '/02-general-information/04-server-and-status-variables.md'
-			},
-			{
-				text: 'Como relatar bugs ou problemas',
-				link: '/02-general-information/05-how-to-report-bugs-or-problems.md'
-			},
-			{
-				text: 'Conformidade com os Padrões MySQL',
-				link: '/02-general-information/06-mysql-standards-compliance/index.md',
-				collapsed: true,
-				items: [
-					{
-						text: 'Extensões do MySQL para SQL Padrão',
-						link: '/02-general-information/06-mysql-standards-compliance/01-mysql-extensions-to-standard-sql.md'
-					},
-					{
-						text: 'Diferenças do MySQL em relação ao SQL Padrão',
-						link: '/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/index.md',
-						items: [
-							{
-								text: 'Diferenças do MySQL em relação ao SQL Padrão',
-								link: '/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/index.md'
-							},
-							{
-								text: 'Selecionar para tabela Diferenças',
-								link: '/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/01-selectintotable-differences.md'
-							},
-							{
-								text: 'Diferenças do UPDATE',
-								link: '/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/02-update-differences.md'
-							},
-							{
-								text: 'Diferenças entre a restrição de chave estrangeira',
-								link: '/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/03-foreignkey-constraint-differences.md'
-							},
-							{
-								text: '\'--\' como início de um comentário',
-								link: '/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/04-as-the-start-of-a-comment.md'
-							}
-						]
-					}
-				]
-			}
-		]
-	},
-	{
-		text: 'Instalação e Atualização do MySQL',
-		link: '/03-installing-and-upgrading-my-sql/index.md',
+# MySQL 5.x
+
+## Sumário
+
+* [Prefácio e Avisos Legais](/01-preface-and-legal-notices.md)
+* [Geral](v5/br/02-general-information/index.md)
+	* [Informações gerais](/02-general-information/index.md)
+	* [Sobre este manual](/02-general-information/01-about-this-manual.md)	
+		* [Visão geral do sistema de gerenciamento de banco de dados MySQL](/02-general-information/02-overview-of-the-mysql-database-management-system/index.md),
+      * [O que é o MySQL?](/02-general-information/02-overview-of-the-mysql-database-management-system/01-whats-is-my-sql.md)
+      * [Principais características do MySQL](/02-general-information/02-overview-of-the-mysql-database-management-system/02-the-main-features-of-my-sql.md)
+      * [História do MySQL](/02-general-information/02-overview-of-the-mysql-database-management-system/03-history-of-my-sql.md)
+    * [O que há de novo no MySQL 5.7](/02-general-information/03-what-is-new-in-mysql-57.md)
+  	* [Variáveis e opções de servidor e status adicionadas, descontinuadas ou removidas no MySQL 5.7](/02-general-information/04-server-and-status-variables.md)
+    * [Como relatar bugs ou problemas](/02-general-information/05-how-to-report-bugs-or-problems.md)
+    * [Conformidade com os Padrões MySQL](/02-general-information/06-mysql-standards-compliance/index.md)
+        * [Extensões do MySQL para SQL Padrão](/02-general-information/06-mysql-standards-compliance/01-mysql-extensions-to-standard-sql.md)
+				* [Diferenças do MySQL em relação ao SQL Padrão](/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/index.md)
+					* [Diferenças do MySQL em relação ao SQL Padrão](/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/index.md)
+					* [Selecionar para tabela Diferenças](/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/01-selectintotable-differences.md)
+					* [Diferenças do UPDATE](/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/02-update-differences.md)
+					* [Diferenças entre a restrição de chave estrangeira](/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/03-foreignkey-constraint-differences.md)
+					* [\'--\' como início de um comentário'](/02-general-information/06-mysql-standards-compliance/02-mysql-differences-from-standard-sql/04-as-the-start-of-a-comment.md)
+							
+  * [Instalação e Atualização do MySQL](/03-installing-and-upgrading-my-sql/index.md)
 		collapsed: true,
 		items: [
 			{
@@ -602,51 +540,8 @@ export default [
 			},
 			{
 				text: 'Exemplos de Perguntas Comuns',
-				link: '/04-tutorial/06-examples-of-common-queries/index.md',
-        collapsed: true,
-        items: [
-          {
-            text: 'O Valor Máximo para uma Coluna',
-            link: '/04-tutorial/06-examples-of-common-queries/01-the-maximum-value-for-a-column.md'
-          },
-          {
-            text: ' linha que contém o valor máximo de uma determinada coluna',
-            link: '/04-tutorial/06-examples-of-common-queries/02-the-row-holding-the-maximum-of-a-certain-column.md'
-          },
-          {
-            text: 'Máximo de Colunas por Grupo',
-            link: '/04-tutorial/06-examples-of-common-queries/03-maximum-of-column-per-group.md'
-          },
-          {
-            text: 'As Linhas que Armazenam o Máximo por Grupo de uma Cálculo Específica',
-            link: '/04-tutorial/06-examples-of-common-queries/04-the-rows-holding-the-group-wise-maximum-of-a-certain-column.md'
-          },
-          {
-            text: 'Uso de variáveis definidas pelo usuário',
-            link: '/04-tutorial/06-examples-of-common-queries/05-using-user-defined-variables.md'
-          },
-          {
-            text: 'Uso de Chaves Estrangeiras',
-            link: '/04-tutorial/06-examples-of-common-queries/06-using-foreign-keys.md'
-          },
-          {
-            text: 'Pesquisar em duas chaves',
-            link: '/04-tutorial/06-examples-of-common-queries/07-searching-on-two-keys.md'
-          },
-          {
-            text: 'Cálculo de visitas por dia',
-            link: '/04-tutorial/06-examples-of-common-queries/08-calculating-visits-per-day.md'
-          },
-          {
-            text: 'Usando AUTO_INCREMENT',
-            link: '/04-tutorial/06-examples-of-common-queries/09-using-a-u-t-o-increment.md'
-          }
-        ]
-			},
-      {
-        text: 'Usando o MySQL com o Apache',
-        link: '/04-tutorial/07-using-my-s-q-l-with-apache.md'
-      }
+				link: '/04-tutorial/06-examples-of-common-queries/index.md'
+			}
 		]
 	}
 ]
