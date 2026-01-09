@@ -153,31 +153,31 @@ O **mysqld_multi** suporta as seguintes opções.
 
 - `--silent`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>0
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
 
   Modo silencioso; desative as advertências.
 
 - `--tcp-ip`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>1
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
 
   Conecte-se a cada servidor MySQL através da porta TCP/IP em vez do arquivo de soquete Unix. (Se um arquivo de soquete estiver ausente, o servidor ainda pode estar em execução, mas será acessível apenas através da porta TCP/IP.) Por padrão, as conexões são feitas usando o arquivo de soquete Unix. Esta opção afeta as operações `stop` e `report`.
 
 - `--user=nome_do_usuário`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>2
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
 
   O nome de usuário da conta MySQL a ser usado ao invocar o **mysqladmin**.
 
 - `--verbose`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>3
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
 
   Seja mais verbose.
 
 - `--version`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>4
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
 
   Exibir informações da versão e sair.
 

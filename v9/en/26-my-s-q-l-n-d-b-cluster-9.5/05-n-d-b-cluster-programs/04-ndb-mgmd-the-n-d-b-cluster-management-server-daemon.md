@@ -6,25 +6,25 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--bind-address=host`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=host</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=host</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Causes the management server to bind to a specific network interface (host name or IP address). This option has no default value.
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Directory containing character sets.
 
 * `cluster-config-suffix`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Override defaults group suffix when reading cluster configuration sections in `my.cnf`; used in testing.
 
 * `--config-cache`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   This option, whose default value is `1` (or `TRUE`, or `ON`), can be used to disable the management server's configuration cache, so that it reads its configuration from `config.ini` every time it starts (see Section 25.4.3, “NDB Cluster Configuration Files”). You can do this by starting the **ndb\_mgmd** process with any one of the following options:
 
@@ -51,7 +51,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--config-file=filename`, `-f filename`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-config-file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-config-file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Instructs the management server as to which file it should use for its configuration file. By default, the management server looks for a file named `config.ini` in the same directory as the **ndb\_mgmd** executable; otherwise the file name and location must be specified explicitly.
 
@@ -61,7 +61,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--configdir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for configdir"><tbody><tr><th>Command-Line Format</th> <td><p class="valid-value"><code class="literal">--configdir=directory</code></p><p class="valid-value"><code class="literal">--config-dir=directory</code></p></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal">$INSTALLDIR/mysql-cluster</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for configdir"><tbody><tr><th>Command-Line Format</th> <td><p class="valid-value"><code>--configdir=directory</code></p><p class="valid-value"><code>--config-dir=directory</code></p></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>$INSTALLDIR/mysql-cluster</code></td> </tr></tbody></table>
 
   Specifies the cluster management server's configuration cache directory. This must be an absolute path. Otherwise, the management server refuses to start.
 
@@ -69,31 +69,31 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
   Number of times to retry connection before giving up.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
 
   Number of seconds to wait between attempts to contact management server.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Same as --ndb-connectstring.
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
 * `--daemon`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Instructs **ndb\_mgmd** to start as a daemon process. This is the default behavior.
 
@@ -101,31 +101,31 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Also read groups with concat(group, suffix).
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Display help text and exit.
 
 * `--initial`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Configuration data is cached internally, rather than being read from the cluster global configuration file each time the management server is started (see Section 25.4.3, “NDB Cluster Configuration Files”). Using the `--initial` option overrides this behavior, by forcing the management server to delete any existing cache files, and then to re-read the configuration data from the cluster configuration file and to build a new cache.
 
@@ -139,7 +139,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--install[=name]`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Causes **ndb\_mgmd** to be installed as a Windows service. Optionally, you can specify a name for the service; if not set, the service name defaults to `ndb_mgmd`. Although it is preferable to specify other **ndb\_mgmd** program options in a `my.ini` or `my.cnf` configuration file, it is possible to use them together with `--install`. However, in such cases, the `--install` option must be specified first, before any other options are given, for the Windows service installation to succeed.
 
@@ -149,43 +149,43 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--interactive`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Starts **ndb\_mgmd** in interactive mode; that is, an **ndb\_mgm** client session is started as soon as the management server is running. This option does not start any other NDB Cluster nodes.
 
 * `--log-name=name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Provides a name to be used for this node in the cluster log.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Read given path from login file.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Skips reading options from the login path file.
 
 * `--mycnf`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read configuration data from the `my.cnf` file.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Set connection string. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`. Ignored if `--config-file` is specified; a warning is issued if both options are used concurrently.
 
 * `--ndb-log-timestamps`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Sets the format used for timestamps in node logs. This is one of the following values:
 
@@ -199,31 +199,31 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--ndb-mgm-tls`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Sets the level of TLS support required to connect to the management server; one of `relaxed` or `strict`. `relaxed` (the default) means that a TLS connection is attempted, but success is not required; `strict` means that TLS is required to connect.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Same as --ndb-connectstring.
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Set node ID for this node, overriding any ID set by --ndb-connectstring.
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
 * `--ndb-tls-search-path`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Specify a list of directories to search for a CA file. On Unix platforms, the directory names are separated by colons (`:`); on Windows systems, the semicolon character (`;`) is used as the separator. A directory reference may be relative or absolute; it may contain one or more environment variables, each denoted by a prefixed dollar sign (`$`), and expanded prior to use.
 
@@ -233,13 +233,13 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--no-nodeid-checks`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Do not perform any checks of node IDs.
 
 * `--nodaemon`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Instructs **ndb\_mgmd** not to start as a daemon process.
 
@@ -247,13 +247,13 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Do not read default options from any option file other than login file.
 
 * `--nowait-nodes`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   When starting an NDB Cluster is configured with two management nodes, each management server normally checks to see whether the other **ndb\_mgmd** is also operational and whether the other management server's configuration is identical to its own. However, it is sometimes desirable to start the cluster with only one management node (and perhaps to allow the other **ndb\_mgmd** to be started later). This option causes the management node to bypass any checks for any other management nodes whose node IDs are passed to this option, permitting the cluster to start as though configured to use only the management node that was started.
 
@@ -319,19 +319,19 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Print program argument list and exit.
 
 * `--print-full-config`, `-P`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Shows extended information regarding the configuration of the cluster. With this option on the command line the **ndb\_mgmd** process prints information about the cluster setup including an extensive list of the cluster configuration sections as well as parameters and their values. Normally used together with the `--config-file` (`-f`) option.
 
 * `--reload`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   NDB Cluster configuration data is stored internally rather than being read from the cluster global configuration file each time the management server is started (see Section 25.4.3, “NDB Cluster Configuration Files”). Using this option forces the management server to check its internal data store against the cluster configuration file and to reload the configuration if it finds that the configuration file does not match the cache. Existing configuration cache files are preserved, but not used.
 
@@ -343,31 +343,31 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--remove[=name]`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Remove a management server process that has been installed as a Windows service, optionally specifying the name of the service to be removed. Applies only to Windows platforms.
 
 * `--skip-config-file`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Do not read cluster configuration file; ignore `--initial` and `--reload` options if specified.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Display help text and exit; same as --help.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Remove a management server process that has been installed as a Windows service, optionally specifying the name of the service to be removed. Applies only to Windows platforms.
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-config-file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-config-file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Display version information and exit.
 

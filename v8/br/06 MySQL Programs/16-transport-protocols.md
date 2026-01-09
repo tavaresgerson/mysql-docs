@@ -14,7 +14,7 @@ Para uma conexão dada, se o protocolo de transporte não for especificado expli
 
 Para especificar o protocolo explicitamente, use a opção de comando `--protocol`. A tabela a seguir mostra os valores permitidos para `--protocol` e indica as plataformas aplicáveis para cada valor. Os valores não são case-sensitive.
 
-<table><thead><tr> <th><code class="option">--protocol</code> Value</th> <th>Protocolo de Transporte Usado</th> <th>Plataformas Aplicaveis</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP</td> <td>Todas</td> </tr><tr> <th><code>SOCKET</code></th> <td>Socket de arquivo Unix</td> <td>Unix e sistemas Unix-like</td> </tr><tr> <th><code>PIPE</code></th> <td>Canal nomeado</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Memória compartilhada</td> <td>Windows</td> </tr></tbody></table>
+<table><thead><tr> <th><code>--protocol</code> Value</th> <th>Protocolo de Transporte Usado</th> <th>Plataformas Aplicaveis</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP</td> <td>Todas</td> </tr><tr> <th><code>SOCKET</code></th> <td>Socket de arquivo Unix</td> <td>Unix e sistemas Unix-like</td> </tr><tr> <th><code>PIPE</code></th> <td>Canal nomeado</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Memória compartilhada</td> <td>Windows</td> </tr></tbody></table>
 
 #### Suporte ao Transporte para Conexões Locais e Remotas
 

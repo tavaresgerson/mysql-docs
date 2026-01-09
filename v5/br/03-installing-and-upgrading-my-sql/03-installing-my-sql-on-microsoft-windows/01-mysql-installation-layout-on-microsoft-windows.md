@@ -9,15 +9,15 @@ Todos os arquivos estão localizados dentro deste diretório pai, usando a estru
 <table>
    <thead>
       <tr>
-         <th scope="col">Diretório</th>
-         <th scope="col">Conteúdo do diretório</th>
-         <th scope="col">Notas</th>
+         <th>Diretório</th>
+         <th>Conteúdo do diretório</th>
+         <th>Notas</th>
       </tr>
    </thead>
    <tbody>
       <tr>
          <th>[[<code>bin</code>]]</th>
-         <td><span class="command"><strong>mysqld</strong></span> programas de servidor, cliente e utilitário</td>
+         <td><span><strong>mysqld</strong></span> programas de servidor, cliente e utilitário</td>
          <td></td>
       </tr>
       <tr>

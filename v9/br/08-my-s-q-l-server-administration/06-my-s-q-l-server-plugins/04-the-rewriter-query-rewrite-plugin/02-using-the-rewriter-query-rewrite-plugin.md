@@ -217,19 +217,19 @@ A tabela a seguir mostra várias declarações `SELECT` preparadas e se o padrã
 </tr></thead>
 <tbody>
 <tr>
-<td><code class="literal">PREPARE s AS 'SELECT 3, 3'</code></td>
+<td><code>PREPARE s AS 'SELECT 3, 3'</code></td>
 <td>Sim</td>
 </tr>
 <tr>
-<td><code class="literal">PREPARE s AS 'SELECT ?, 3'</code></td>
+<td><code>PREPARE s AS 'SELECT ?, 3'</code></td>
 <td>Sim</td>
 </tr>
 <tr>
-<td><code class="literal">PREPARE s AS 'SELECT 3, ?'</code></td>
+<td><code>PREPARE s AS 'SELECT 3, ?'</code></td>
 <td>Não</td>
 </tr>
 <tr>
-<td><code class="literal">PREPARE s AS 'SELECT ?, ?'</code></td>
+<td><code>PREPARE s AS 'SELECT ?, ?'</code></td>
 <td>Não</td>
 </tr>
 </tbody></table>

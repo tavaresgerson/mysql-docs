@@ -101,7 +101,7 @@ Depois de baixar e importar a chave de construção pública, baixe o pacote MyS
 
 **Tabela 2.1 Arquivos de pacote e assinatura MySQL para arquivos de fonte**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Tipo de arquivo</th> <th>Nome do arquivo</th> </tr></thead><tbody><tr> <td>Arquivo de distribuição</td> <td><code class="literal">mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz</code></td> </tr><tr> <td>Arquivo de assinatura</td> <td><code class="literal">mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz.asc</code></td> </tr></tbody></table>
+<table><thead><tr> <th>Tipo de arquivo</th> <th>Nome do arquivo</th> </tr></thead><tbody><tr> <td>Arquivo de distribuição</td> <td><code>mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz</code></td> </tr><tr> <td>Arquivo de assinatura</td> <td><code>mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz.asc</code></td> </tr></tbody></table>
 
 Certifique-se de que ambos os arquivos estejam armazenados no mesmo diretório e, em seguida, execute o seguinte comando para verificar a assinatura do arquivo de distribuição:
 

@@ -82,6 +82,6 @@ comp_err [options]
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for charset"><tbody><tr><th>Command-Line Format</th> <td><code>--charset</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>../share/charsets</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for charset"><tbody><tr><th>Command-Line Format</th> <td><code>--charset</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>../share/charsets</code></td> </tr></tbody></table>
 
   Display version information and exit.

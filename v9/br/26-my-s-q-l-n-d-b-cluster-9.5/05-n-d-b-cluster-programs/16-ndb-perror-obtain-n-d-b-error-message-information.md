@@ -40,38 +40,38 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
 Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Leia as opções padrão do arquivo fornecido apenas.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Leia também os grupos com concatenação de (grupo, sufixo).
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exibir o texto de ajuda do programa e sair.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para login-path"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--login-path=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para login-path"><tbody><tr><th>Formato de linha de comando</th> <td><code>--login-path=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Leia o caminho fornecido no arquivo de login.
 
 * `--no-login-paths`
 
 <table frame="box" rules="all" summary="Propriedades para caminhos sem login">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--no-login-paths</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--no-login-paths</code></td> </tr>
 </table>
 
   Ignora a leitura de opções do arquivo de caminho de login.
@@ -79,7 +79,7 @@ Leia o arquivo fornecido após a leitura dos arquivos globais.
 * `--ndb`
 
   <table frame="box" rules="all" summary="Propriedades para ndb">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--ndb</code></td> </tr>
   </table>
 
   Para compatibilidade com aplicativos que dependem de versões antigas do **perror** que usam a opção `--ndb` desse programa. A opção, quando usada com **ndb\_perror**, não faz nada e é ignorada por ele.
@@ -87,7 +87,7 @@ Leia o arquivo fornecido após a leitura dos arquivos globais.
 * `--no-defaults`
 
   <table frame="box" rules="all" summary="Propriedades para no-defaults">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--no-defaults</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--no-defaults</code></td> </tr>
   </table>
 
   Não leia opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
@@ -95,7 +95,7 @@ Leia o arquivo fornecido após a leitura dos arquivos globais.
 * `--print-defaults`
 
   <table frame="box" rules="all" summary="Propriedades para print-defaults">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--print-defaults</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--print-defaults</code></td> </tr>
   </table>
 
   Imprima a lista de argumentos do programa e saia.
@@ -103,19 +103,19 @@ Leia o arquivo fornecido após a leitura dos arquivos globais.
 * `--silent`, `-s`
 
   <table frame="box" rules="all" summary="Propriedades para silent">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--silent</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--silent</code></td> </tr>
   </table>
 
   Mostre apenas a mensagem de erro.
 
 * `--version`, `-V`
 
-<table frame="box" rules="all" summary="Propriedades para defaults-file"><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></table>0
+<table frame="box" rules="all" summary="Propriedades para defaults-file"><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></table>
 
   Imprime informações da versão do programa e encerra.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></table>1
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></table>
 
   Saída verbose; desative com `--silent`.

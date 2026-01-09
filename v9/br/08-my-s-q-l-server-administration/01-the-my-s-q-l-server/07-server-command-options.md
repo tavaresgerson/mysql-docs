@@ -47,16 +47,16 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exibir uma mensagem de ajuda curta e sair. Use as opções `--verbose` e `--help` para ver a mensagem completa.
 
 * `--allow-suspicious-udfs`
 
 <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr>
   </tbody></table>
 
   Esta opção controla se funções carregáveis que têm apenas um símbolo `xxx` para a função principal podem ser carregadas. Por padrão, a opção está desativada e apenas funções carregáveis que têm pelo menos um símbolo auxiliar podem ser carregadas; isso previne tentativas de carregar funções de arquivos de objeto compartilhado que não contenham funções legítimas. Veja Precauções de segurança para funções carregáveis.
@@ -64,7 +64,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
 * `--ansi`
 
   <table frame="box" rules="all" summary="Propriedades para ansi">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--ansi</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr>
   </tbody></table>
 
   Use a sintaxe SQL padrão (ANSI) em vez da sintaxe MySQL. Para um controle mais preciso sobre o modo SQL do servidor, use a opção `--sql-mode` em vez disso. Veja Seção 1.7, “Conformidade com os Padrões MySQL”, e Seção 7.1.11, “Modos SQL do servidor”.
@@ -74,11 +74,11 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
 <table frame="box" rules="all" summary="Propriedades para basedir">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--basedir=dir_name</code></td>
+    <td><code>--basedir=dir_name</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -89,7 +89,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -98,7 +98,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">parent of mysqld installation directory</code></td>
+    <td><code>parent of mysqld installation directory</code></td>
   </tr>
 </table>
 
@@ -109,10 +109,10 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
 * `--check-table-functions=value`
 
 <table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--check-table-functions=valor</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--check-table-functions=valor</code></td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">ABORT</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>ABORT</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr>
 </table>
 
   Ao realizar uma atualização do servidor, fazemos uma varredura do dicionário de dados para funções usadas em restrições de tabela e outras expressões, incluindo expressões `DEFAULT`, expressões de particionamento e colunas virtuais. É possível que uma mudança no comportamento da função cause um erro na nova versão do servidor, onde nenhum erro ocorreu antes, caso em que a tabela não pode ser aberta. Esta opção oferece uma escolha sobre como lidar com tais problemas, de acordo com o qual dos dois valores mostrados aqui é usado:
@@ -128,7 +128,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
 <table frame="box" rules="all" summary="Propriedades para chroot">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--chroot=nome_diretorio</code></td>
+    <td><code>--chroot=nome_diretorio</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -144,7 +144,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
   <table frame="box" rules="all" summary="Propriedades para console">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--console</code></td>
+      <td><code>--console</code></td>
     </tr>
     <tr>
       <th>Plataforma Específica</th>
@@ -162,7 +162,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
   <table frame="box" rules="all" summary="Propriedades para core-file">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--core-file</code></td>
+      <td><code>--core-file</code></td>
     </tr>
   </tbody>
   </table>
@@ -175,7 +175,7 @@ A variável `innodb_buffer_pool_in_core_file` pode ser usada para reduzir o tama
 
 * `--daemonize`, `-D`
 
-  <table frame="box" rules="all" summary="Propriedades para daemonize"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--daemonize[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemonize"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--daemonize[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Essa opção faz com que o servidor seja executado como um daemon tradicional, permitindo que ele trabalhe com sistemas operacionais que usam o systemd para controle de processos. Para mais informações, consulte a Seção 2.5.9, “Gerenciamento do Servidor MySQL com o systemd”.
 
@@ -187,7 +187,7 @@ Se o servidor for iniciado usando a opção `--daemonize` e não estiver conecta
 
 * `--datadir=dir_name`, `-h dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para datadir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--datadir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_datadir">datadir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code class="literal">SET_VAR</code></a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para datadir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_datadir">datadir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O caminho para o diretório de dados do servidor MySQL. Esta opção define a variável de sistema `datadir`. Veja a descrição dessa variável.
 
@@ -196,7 +196,7 @@ Se o servidor for iniciado usando a opção `--daemonize` e não estiver conecta
 <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
+    <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -204,10 +204,10 @@ Se o servidor for iniciado usando a opção `--daemonize` e não estiver conecta
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
   </tbody>
-</table>0
+</table>
 
 Se o MySQL estiver configurado com a opção **CMake** `-DWITH_DEBUG=1`, você pode usar essa opção para obter um arquivo de registro do que o **mysqld** está fazendo. Uma string típica de *`debug_options`* é `d:t:o,file_name`. O padrão é `d:t:i:o,/tmp/mysqld.trace` no Unix e `d:t:i:O,\mysqld.trace` no Windows.
 
@@ -225,7 +225,7 @@ Para uma descrição da funcionalidade Debug Sync e de como usar pontos de sincr
 
 * `--default-time-zone=timezone`
 
-  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Defina a zona horária padrão do servidor. Esta opção define a variável de sistema `time_zone`. Se esta opção não for fornecida, a zona horária padrão é a mesma da zona horária do sistema (dados pelo valor da variável de sistema `system_time_zone`.
 
@@ -260,7 +260,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivo de o
 <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
+    <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -268,10 +268,10 @@ Para obter informações adicionais sobre isso e outras opções de arquivo de o
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
   </tbody>
-</table>3
+</table>
 
   Nota
 
@@ -305,13 +305,13 @@ Para o Keychain do MySQL, essa opção é usada apenas quando o keystore é gere
 
 * `--exit-info[=flags]`, `-T [flags]`
 
-  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   É uma máscara de bits de diferentes flags que você pode usar para depurar o servidor **mysqld**. Não use essa opção a menos que você saiba *exatamente* o que ela faz!
 
 * `--external-locking`
 
-  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Ative o bloqueio externo (bloqueio do sistema), que está desativado por padrão. Se você usar essa opção em um sistema em que o `lockd` não funciona totalmente (como no Linux), é fácil para o **mysqld** entrar em um deadlock.
 
@@ -321,7 +321,7 @@ Para o Keychain do MySQL, essa opção é usada apenas quando o keystore é gere
 
 * `--flush`
 
-<table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tr><th>Formato de linha de comando</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></table>6
+<table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
 
 Limpe (sincronize) todas as alterações no disco após cada instrução SQL. Normalmente, o MySQL escreve todas as alterações no disco apenas após cada instrução SQL e deixa o sistema operacional lidar com a sincronização no disco. Veja a Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar”.
 
@@ -331,7 +331,7 @@ Se `--flush` for especificado, o valor de `flush_time` não importa e as altera�
 
 * `--gdb`
 
-<table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tr><th>Formato de linha de comando</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></table>7
+<table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
 
 Instale um manipulador de interrupção para `SIGINT` (necessário para parar o **mysqld** com `^C` para definir pontos de interrupção) e desative o rastreamento de pilha e o gerenciamento de arquivos de núcleo. Veja a Seção 7.9.1.4, “Depuração do mysqld no gdb”.
 
@@ -341,7 +341,7 @@ Em configurações não de depuração, `--no-monitor` pode ser usado para supri
 
 * `--initialize`, `-I`
 
-  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Essa opção é usada para inicializar uma instalação do MySQL criando o diretório de dados e preenchendo as tabelas no esquema do sistema `mysql`. Para mais informações, consulte a Seção 2.9.1, “Inicializando o Diretório de Dados”.
 
@@ -359,7 +359,7 @@ Os itens na lista anterior também se aplicam ao inicializar o servidor usando a
 
 * `--initialize-insecure`
 
-  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para allow-suspicious-udfs"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Esta opção é usada para inicializar uma instalação do MySQL criando o diretório de dados e preenchendo as tabelas no esquema do sistema `mysql`. Esta opção implica em `--initialize`, e as mesmas restrições e limitações se aplicam; para mais informações, consulte a descrição dessa opção e a Seção 2.9.1, “Inicializando o Diretório de Dados”.
 
@@ -373,7 +373,7 @@ Esta opção cria um usuário `root` do MySQL com uma senha vazia, o que é inse
 
 * `--install [nome_do_serviço]`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   (Apenas para Windows) Instale o servidor como um serviço do Windows que inicia automaticamente durante o início do Windows. O nome padrão do serviço é `MySQL` se nenhum valor de *`nome_do_serviço`* for fornecido. Para mais informações, consulte a Seção 2.3.3.8, “Inicializando o MySQL como um Serviço do Windows”.
 
@@ -383,7 +383,7 @@ Se o servidor for iniciado com as opções `--defaults-file` e `--install`, `--i
 
 * `--install-manual [nome_do_serviço]`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
 (Apenas para Windows) Instale o servidor como um serviço do Windows que deve ser iniciado manualmente. Ele não é iniciado automaticamente durante o início do Windows. O nome do serviço padrão é `MySQL` se não for fornecido o valor *`service_name`*. Para mais informações, consulte a Seção 2.3.3.8, “Iniciar o MySQL como um Serviço do Windows”.
 
@@ -393,7 +393,7 @@ Se o servidor for iniciado com as opções `--defaults-file` e `--install-manual
 
 * `--large-pages`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Algumas arquiteturas de hardware/sistema operacional suportam páginas de memória maiores que o padrão (geralmente 4KB). A implementação real deste suporte depende do hardware e do sistema operacional subjacentes. Aplicações que realizam muitos acessos de memória podem obter melhorias de desempenho ao usar páginas grandes devido à redução de erros no Buffer de Busca de Tradução (TLB).
 
@@ -403,25 +403,25 @@ Se o servidor for iniciado com as opções `--defaults-file` e `--install-manual
 
 * `--lc-messages=locale_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
 O local a ser usado para mensagens de erro. O padrão é `en_US`. O servidor converte o argumento em um nome de idioma e o combina com o valor de `--lc-messages-dir` para produzir a localização do arquivo de mensagem de erro. Veja a Seção 12.12, “Definindo o Idioma da Mensagem de Erro”.
 
 * `--lc-messages-dir=nome_do_diretório`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   O diretório onde as mensagens de erro estão localizadas. O servidor usa o valor junto com o valor de `--lc-messages` para produzir a localização do arquivo de mensagem de erro. Veja a Seção 12.12, “Definindo o Idioma da Mensagem de Erro”.
 
 * `--local-service`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   (Apenas no Windows) Uma opção `--local-service` após o nome do serviço faz com que o servidor seja executado usando a conta `LocalService` do Windows que tem privilégios de sistema limitados. Se `--defaults-file` e `--local-service` forem fornecidos após o nome do serviço, eles podem estar em qualquer ordem. Veja a Seção 2.3.3.8, “Iniciando o MySQL como um Serviço do Windows”.
 
 * `--log-diagnostic[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
 Defina o nome do arquivo de log de diagnóstico para este valor com o sufixo `.diag` se o servidor for iniciado com `--log-diagnostic-enable`; caso contrário, não terá efeito. O nome padrão do arquivo de log de diagnóstico é `nome_do_host.diag`.
 
@@ -429,7 +429,7 @@ Defina o nome do arquivo de log de diagnóstico para este valor com o sufixo `.d
 
 * `--log-diagnostic-enable[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Ative o registro de diagnóstico.
 
@@ -437,7 +437,7 @@ Defina o nome do arquivo de log de diagnóstico para este valor com o sufixo `.d
 
 * `--log-error[=nome_do_arquivo]`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Defina o destino padrão do log de erro para o arquivo nomeado. Isso afeta os sinks de log que baseiam seu próprio destino de saída no destino padrão. Veja a Seção 7.4.2, “O Log de Erro”.
 
@@ -451,13 +451,13 @@ No Windows, `--console` tem precedência sobre `--log-error` se ambos forem forn
 
 * `--log-isam[=file_name]`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tr><th>Formato de linha de comando</th> <td><code class="literal">--ansi</code></td> </tr></table>9
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></table>
 
   Registre todas as alterações no `MyISAM` neste arquivo (usado apenas durante a depuração do `MyISAM`).
 
 * `--log-raw`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de linha de comando</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></table>0
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></table>
 
 As senhas em determinadas declarações escritas no log de consulta geral, no log de consultas lentas e no log binário são reescritas pelo servidor para não ocorrerem literalmente em texto simples. A reescrita de senhas pode ser suprimida para o log de consulta geral iniciando o servidor com a opção `--log-raw`. Esta opção pode ser útil para fins de diagnóstico, para ver o texto exato das declarações recebidas pelo servidor, mas, por razões de segurança, não é recomendada para uso em produção.
 
@@ -471,7 +471,7 @@ Para mais informações, consulte a Seção 8.1.2.3, “Senhas e Registro”.
 
 * `--log-short-format`
 
-<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
 
 Registre menos informações no log de consultas lentas, se ele tiver sido ativado.
 
@@ -480,11 +480,11 @@ Registre menos informações no log de consultas lentas, se ele tiver sido ativa
 <table frame="box" rules="all" summary="Propriedades para basedir">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--basedir=dir_name</code></td>
+    <td><code>--basedir=dir_name</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -495,7 +495,7 @@ Registre menos informações no log de consultas lentas, se ele tiver sido ativa
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -504,7 +504,7 @@ Registre menos informações no log de consultas lentas, se ele tiver sido ativa
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">parent of mysqld installation directory</code></td>
+    <td><code>parent of mysqld installation directory</code></td>
   </tr>
 </table>
 2
@@ -516,11 +516,11 @@ O nome do arquivo de log do coordenador de transações mapeado à memória (par
 <table frame="box" rules="all" summary="Propriedades para basedir">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--basedir=dir_name</code></td>
+    <td><code>--basedir=dir_name</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -531,7 +531,7 @@ O nome do arquivo de log do coordenador de transações mapeado à memória (par
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -540,14 +540,14 @@ O nome do arquivo de log do coordenador de transações mapeado à memória (par
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">parent of mysqld installation directory</code></td>
+    <td><code>parent of mysqld installation directory</code></td>
   </tr>
 </table>
 3. O tamanho em bytes do log do coordenador de transações mapeado à memória. Os valores padrão e mínimos são 6 vezes o tamanho da página, e o valor deve ser um múltiplo do tamanho da página.
 
 * `--memlock`
 
-<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
 
   Bloquear o processo **mysqld** na memória. Esta opção pode ajudar se você tiver um problema em que o sistema operacional está fazendo o **mysqld** trocar para o disco.
 
@@ -573,7 +573,7 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
 
 * `--myisam-block-size=N`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
 
   O tamanho de bloco a ser usado para páginas de índice `MyISAM`.
 
@@ -588,11 +588,11 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
 <table frame="box" rules="all" summary="Propriedades para basedir">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--basedir=dir_name</code></td>
+    <td><code>--basedir=dir_name</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -603,7 +603,7 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -612,9 +612,9 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">parent of mysqld installation directory</code></td>
+    <td><code>parent of mysqld installation directory</code></td>
   </tr>
-</table>6
+</table>
 (Apenas para Windows). Esta opção suprime o forking que é usado para implementar a instrução `RESTART`: o forking permite que um processo atue como monitor do outro, que atua como o servidor. Para um servidor iniciado com esta opção, `RESTART` simplesmente sai e não reinicia.
 
 * `--performance-schema-xxx`
@@ -626,11 +626,11 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
 <table frame="box" rules="all" summary="Propriedades para basedir">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--basedir=dir_name</code></td>
+    <td><code>--basedir=dir_name</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -641,7 +641,7 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -650,7 +650,7 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">parent of mysqld installation directory</code></td>
+    <td><code>parent of mysqld installation directory</code></td>
   </tr>
 </table>
 
@@ -678,9 +678,9 @@ Para informações adicionais sobre o carregamento de plugins, consulte a Seçã
 
 <table frame="box" rules="all" summary="Propriedades para basedir">
   <tr>
-    <th>Formato de Linha de Comando</th> <td><code class="literal">--basedir=dir_name</code></td> </tr>
+    <th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr>
     <tr>
-      <th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr>
+      <th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -689,13 +689,13 @@ Para informações adicionais sobre o carregamento de plugins, consulte a Seçã
       <th>Dinâmico</th> <td>Não</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr>
+      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Nome do diretório</td> </tr>
     </tr>
     <tr>
-      <th>Valor Padrão</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr>
+      <th>Valor Padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr>
   </table>
 
   Esta opção complementa a opção `--plugin-load`. `--plugin-load-add` adiciona um plugin ou plugins ao conjunto de plugins a serem carregados no início. O formato do argumento é o mesmo que para `--plugin-load`. `--plugin-load-add` pode ser usado para evitar especificar um grande conjunto de plugins como um único argumento longo e complicado `--plugin-load`.
@@ -741,11 +741,11 @@ A razão para o prefixo `--plugin` é que ele permite que as opções do plugin 
 <table frame="box" rules="all" summary="Propriedades para basedir">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--basedir=nome_do_diretório</code></td>
+    <td><code>--basedir=nome_do_diretório</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -756,7 +756,7 @@ A razão para o prefixo `--plugin` é que ele permite que as opções do plugin 
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -765,7 +765,7 @@ A razão para o prefixo `--plugin` é que ele permite que as opções do plugin 
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">parent of mysqld installation directory</code></td>
+    <td><code>parent of mysqld installation directory</code></td>
   </tr>
 </table>
 
@@ -776,7 +776,7 @@ A razão para o prefixo `--plugin` é que ele permite que as opções do plugin 
   <table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--check-table-functions=valor</code></td>
+      <td><code>--check-table-functions=valor</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -784,13 +784,13 @@ A razão para o prefixo `--plugin` é que ele permite que as opções do plugin 
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">ABORT</code></td>
+      <td><code>ABORT</code></td>
     </tr>
     <tr>
       <th>Valores Válidos</th>
-      <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
+      <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td>
     </tr>
-  </table>0
+  </table>
 
 Em alguns sistemas, quando o servidor é parado, a porta TCP/IP pode não ficar disponível imediatamente. Se o servidor for reiniciado rapidamente depois disso, sua tentativa de reabrir a porta pode falhar. Esta opção indica quantos segundos o servidor deve esperar para que a porta TCP/IP fique livre se não puder ser aberta. O padrão é não esperar.
 
@@ -802,13 +802,13 @@ Em alguns sistemas, quando o servidor é parado, a porta TCP/IP pode não ficar 
 
 * `--remove [nome_do_serviço]`
 
-  <table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></tbody></table>
 
   (Apenas no Windows) Remova um serviço MySQL no Windows. O nome do serviço padrão é `MySQL` se nenhum valor de *`service_name`* for fornecido. Para mais informações, consulte a Seção 2.3.3.8, “Iniciar o MySQL como um serviço do Windows”.
 
 * `--safe-user-create`
 
-<table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tr><th>Formato de linha de comando</th> <td><code class="literal">--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></table>2
+<table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></table>
 
   Se esta opção estiver habilitada, um usuário não poderá criar novos usuários do MySQL usando a instrução `GRANT`, a menos que o usuário tenha o privilégio `INSERT` para a tabela de sistema `mysql.user` ou qualquer coluna na tabela. Se você quiser que um usuário tenha a capacidade de criar novos usuários que tenham esses privilégios, o usuário deve conceder o seguinte privilégio:
 
@@ -820,7 +820,7 @@ Em alguns sistemas, quando o servidor é parado, a porta TCP/IP pode não ficar 
 
 * `--skip-grant-tables`
 
-  <table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tr><th>Formato de linha de comando</th> <td><code class="literal">--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></table>3
+  <table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></table>
 
   Esta opção afeta a sequência de inicialização do servidor:
 
@@ -854,7 +854,7 @@ Para fazer com que os plugins sejam carregados mesmo quando usando `--skip-grant
 
 * `--skip-new`
 
-<table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=value</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></tbody></table>
 
 Esta opção desabilita (o que costumava ser considerado) novos comportamentos, possivelmente inseguros. Isso resulta nestas configurações: `delay_key_write=OFF`, `concurrent_insert=NEVER`, `automatic_sp_privileges=OFF`. Também faz com que `OPTIMIZE TABLE` seja mapeado para `ALTER TABLE` para motores de armazenamento para os quais `OPTIMIZE TABLE` não é suportado.
 
@@ -865,7 +865,7 @@ Esta opção é desatualizada e está sujeita à remoção em uma futura versão
 <table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--check-table-functions=valor</code></td>
+    <td><code>--check-table-functions=valor</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -873,13 +873,13 @@ Esta opção é desatualizada e está sujeita à remoção em uma futura versão
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">ABORT</code></td>
+    <td><code>ABORT</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
+    <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td>
   </tr>
-</table>5
+</table>
 
   Esta opção define a variável de sistema `skip_show_database` que controla quem tem permissão para usar a instrução `SHOW DATABASES`. Consulte a Seção 7.1.8, “Variáveis de Sistema do Servidor”.
 
@@ -888,7 +888,7 @@ Esta opção é desatualizada e está sujeita à remoção em uma futura versão
   <table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--check-table-functions=valor</code></td>
+      <td><code>--check-table-functions=valor</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -896,30 +896,30 @@ Esta opção é desatualizada e está sujeita à remoção em uma futura versão
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">ABORT</code></td>
+      <td><code>ABORT</code></td>
     </tr>
     <tr>
       <th>Valores Válidos</th>
-      <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
+      <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td>
     </tr>
-  </table>6
+  </table>
 
   Não escreva traços de pilha. Esta opção é útil quando você está executando o **mysqld** sob um depurador. Em alguns sistemas, você também deve usar esta opção para obter um arquivo de núcleo. Consulte a Seção 7.9, “Depuração do MySQL”.
 
 * `--slow-start-timeout=timeout`
 
 <table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--check-table-functions=valor</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--check-table-functions=valor</code></td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">ABORT</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr>
-</table>8
+  <tr><th>Valor Padrão</th> <td><code>ABORT</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr>
+</table>
 
 No Unix, essa opção especifica o arquivo de socket Unix a ser usado ao ouvir conexões locais. O valor padrão é `/tmp/mysql.sock`. Se essa opção for fornecida, o servidor cria o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar um diretório diferente. No Windows, a opção especifica o nome de pipe a ser usado ao ouvir conexões locais que usam um pipe nomeado. O valor padrão é `MySQL` (não case-sensitive).
 
 [`--sql-mode=value[,value[,value...]]`](server-options.html#option_mysqld_sql-mode)
 
-  <table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--check-table-functions=value</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></tbody></table>
 
   Defina o modo SQL. Veja a Seção 7.1.11, “Modos SQL do Servidor”.
 
@@ -931,19 +931,19 @@ No Unix, essa opção especifica o arquivo de socket Unix a ser usado ao ouvir c
 
 * `--standalone`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr></tbody></table>
 
   Disponível apenas no Windows; instrui o servidor MySQL a não ser executado como serviço.
 
 * `--super-large-pages`
 
-<table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O uso padrão de páginas grandes no MySQL tenta usar o maior tamanho suportado, até 4 MB. Sob o Solaris, uma funcionalidade de "páginas super grandes" permite o uso de páginas de até 256 MB. Esta funcionalidade está disponível para plataformas SPARC recentes. Pode ser habilitada ou desabilitada usando a opção `--super-large-pages` ou `--skip-super-large-pages`.
 
 * `--symbolic-links`, `--skip-symbolic-links`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Habilitar ou desabilitar o suporte a links simbólicos. No Unix, habilitar links simbólicos significa que você pode vincular um arquivo de índice ou arquivo de dados `MyISAM` a outro diretório com a opção `INDEX DIRECTORY` ou `DATA DIRECTORY` da instrução `CREATE TABLE`. Se você excluir ou renomear a tabela, os arquivos a que seus links simbólicos apontam também são excluídos ou renomeados. Veja a Seção 10.12.2.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix”.
 
@@ -955,13 +955,13 @@ No Unix, essa opção especifica o arquivo de socket Unix a ser usado ao ouvir c
 
 * `--sysdate-is-now`
 
-<table frame="box" rules="all" summary="Propriedades para chroot"><tr><th>Formato de linha de comando</th> <td><code class="literal">--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></table>3
+<table frame="box" rules="all" summary="Propriedades para chroot"><tr><th>Formato de linha de comando</th> <td><code>--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></table>
 
 `SYSDATE()` por padrão retorna a hora em que ele é executado, e não a hora em que a instrução em que ele ocorre começa a ser executada. Isso difere do comportamento de `NOW()`. Esta opção faz com que `SYSDATE()` seja um sinônimo de `NOW()`. Para informações sobre as implicações para o registro binário e a replicação, consulte a descrição para `SYSDATE()` na Seção 14.7, “Funções de Data e Hora” e para `SET TIMESTAMP` na Seção 7.1.8, “Variáveis do Sistema do Servidor”.
 
 * `--tc-heuristic-recover={COMMIT|ROLLBACK}`
 
-<table frame="box" rules="all" summary="Propriedades para chroot"><tr><th>Formato de linha de comando</th> <td><code class="literal">--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></table>4
+<table frame="box" rules="all" summary="Propriedades para chroot"><tr><th>Formato de linha de comando</th> <td><code>--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></table>
 
 A decisão de usar em uma recuperação heurística manual.
 
@@ -977,7 +977,7 @@ Em sistemas com mais de um mecanismo de armazenamento capaz de commit de duas fa
 
 * `--transaction-isolation=level`
 
-<table frame="box" rules="all" summary="Propriedades para chroot"><tr><th>Formato de linha de comando</th> <td><code class="literal">--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></table>5
+<table frame="box" rules="all" summary="Propriedades para chroot"><tr><th>Formato de linha de comando</th> <td><code>--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></table>
 
 Define o nível padrão de isolamento de transação. O valor `level` pode ser `READ-UNCOMMITTED`, `READ-COMMITTED`, `REPEATABLE-READ` ou `SERIALIZABLE`. Consulte a Seção 15.3.7, “Instrução SET TRANSACTION”.
 
@@ -985,7 +985,7 @@ O nível padrão de isolamento de transação também pode ser definido em tempo
 
 * `--transaction-read-only`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Define o modo padrão de acesso de transação. Por padrão, o modo de leitura-only está desativado, então o modo é leitura/escrita.
 
@@ -993,7 +993,7 @@ O nível padrão de isolamento de transação também pode ser definido em tempo
 
 * `--tmpdir=dir_name`, `-t dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O caminho do diretório a ser usado para criar arquivos temporários. Isso pode ser útil se o diretório padrão `/tmp` estiver em uma partição que é muito pequena para conter tabelas temporárias. Esta opção aceita vários caminhos que são usados de forma rotativa. Os caminhos devem ser separados por caracteres colchetes (`) no Unix e por pontos e vírgulas (`;`) no Windows.
 
@@ -1003,7 +1003,7 @@ Para mais informações sobre o local de armazenamento dos arquivos temporários
 
 * `--upgrade=value`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Esta opção controla se e como o servidor realiza uma atualização automática no início. A atualização automática envolve dois passos:
 
@@ -1055,11 +1055,11 @@ O servidor atualiza o dicionário de dados, o Schema de Desempenho e o `INFORMAT
 
 A tabela a seguir resume as ações realizadas pelo servidor para cada valor de opção.
 
-<table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=nome_diretorio</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
 * `--user={nome_usuario|ID_usuario}`, `-u {nome_usuario|ID_usuario}`
 
-  <table frame="box" rules="all" summary="Propriedades para console"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--console</code></td> </tr><tr><th>Especifica plataforma</th> <td>Windows</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para console"><tbody><tr><th>Formato de linha de comando</th> <td><code>--console</code></td> </tr><tr><th>Especifica plataforma</th> <td>Windows</td> </tr></tbody></table>
 
   Execute o servidor **mysqld** como o usuário com o nome *`nome_usuario`* ou o ID de usuário numérico *`ID_usuario`*. (“Usuário” neste contexto se refere a uma conta de login do sistema, não a um usuário MySQL listado nas tabelas de concessão.)
 
@@ -1069,13 +1069,13 @@ A tabela a seguir resume as ações realizadas pelo servidor para cada valor de 
 
 * `--validate-config`
 
-<table frame="box" rules="all" summary="Propriedades para console"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--console</code></td> </tr><tr><th>Específico da plataforma</th> <td>Windows</td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para console"><tbody><tr><th>Formato de linha de comando</th> <td><code>--console</code></td> </tr><tr><th>Específico da plataforma</th> <td>Windows</td> </tr></tbody></table>
 
   Valide a configuração de inicialização do servidor. Se não forem encontrados erros, o servidor termina com um código de saída de 0. Se um erro for encontrado, o servidor exibe uma mensagem de diagnóstico e termina com um código de saída de 1. Mensagens de aviso e informações também podem ser exibidas, dependendo do valor de `log_error_verbosity`, mas não produzem a interrupção imediata da validação ou um código de saída de 1. Para mais informações, consulte a Seção 7.1.3, “Validação da Configuração do Servidor”.
 
 * `--validate-user-plugins[={OFF|ON}]`
 
-  <table frame="box" rules="all" summary="Propriedades para console"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--console</code></td> </tr><tr><th>Específico da plataforma</th> <td>Windows</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para console"><tbody><tr><th>Formato de linha de comando</th> <td><code>--console</code></td> </tr><tr><th>Específico da plataforma</th> <td>Windows</td> </tr></tbody></table>
 
   Se esta opção estiver habilitada (padrão), o servidor verifica cada conta de usuário e produz um aviso se forem encontradas condições que tornariam a conta inutilizável:
 

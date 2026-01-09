@@ -2,7 +2,7 @@
 
 **Table 14.15 Cast Functions and Operators**
 
-<table frame="box" rules="all" summary="A reference that lists cast functions and operators."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="cast-functions.html#operator_binary"><code class="literal">BINARY</code></a></th> <td> Cast a string to a binary string </td> <td>Yes</td> </tr><tr><th scope="row"><a class="link" href="cast-functions.html#function_cast"><code class="literal">CAST()</code></a></th> <td> Cast a value as a certain type </td> <td></td> </tr><tr><th scope="row"><a class="link" href="cast-functions.html#function_convert"><code class="literal">CONVERT()</code></a></th> <td> Cast a value as a certain type </td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists cast functions and operators."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><a class="link" href="cast-functions.html#operator_binary"><code class="literal">BINARY</code></a></th> <td> Cast a string to a binary string </td> <td>Yes</td> </tr><tr><th><a class="link" href="cast-functions.html#function_cast"><code class="literal">CAST()</code></a></th> <td> Cast a value as a certain type </td> <td></td> </tr><tr><th><a class="link" href="cast-functions.html#function_convert"><code class="literal">CONVERT()</code></a></th> <td> Cast a value as a certain type </td> <td></td> </tr></tbody></table>
 
 Cast functions and operators enable conversion of values from one data type to another.
 

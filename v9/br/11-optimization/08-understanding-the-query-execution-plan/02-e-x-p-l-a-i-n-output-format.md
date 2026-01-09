@@ -24,67 +24,67 @@ Cada linha de saída do `EXPLAIN` fornece informações sobre uma tabela. Cada l
 <table summary="Colunas de saída produzidas pelo comando EXPLAIN.">
 <col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/>
 <thead><tr>
-<th scope="col">Coluna</th>
-<th scope="col">Nome JSON</th>
-<th scope="col">Significado</th>
+<th>Coluna</th>
+<th>Nome JSON</th>
+<th>Significado</th>
 </tr></thead><tbody>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_id"><code class="literal">id</code></a></th>
-<td><code class="literal">select_id</code></td>
-<td>O identificador <code class="literal">SELECT</code></td>
+<th><a class="link" href="explain-output.html#explain_id"><code>id</code></a></th>
+<td><code>select_id</code></td>
+<td>O identificador <code>SELECT</code></td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_select_type"><code class="literal">select_type</code></a></th>
+<th><a class="link" href="explain-output.html#explain_select_type"><code>select_type</code></a></th>
 <td>Nenhum</td>
-<td>O tipo de <code class="literal">SELECT</code></td>
+<td>O tipo de <code>SELECT</code></td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_table"><code class="literal">table</code></a></th>
-<td><code class="literal">table_name</code></td>
+<th><a class="link" href="explain-output.html#explain_table"><code>table</code></a></th>
+<td><code>table_name</code></td>
 <td>A tabela para a linha de saída</td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_partitions"><code class="literal">partitions</code></a></th>
-<td><code class="literal">partitions</code></td>
+<th><a class="link" href="explain-output.html#explain_partitions"><code>partitions</code></a></th>
+<td><code>partitions</code></td>
 <td>As partições correspondentes</td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_type"><code class="literal">type</code></a></th>
-<td><code class="literal">access_type</code></td>
+<th><a class="link" href="explain-output.html#explain_type"><code>type</code></a></th>
+<td><code>access_type</code></td>
 <td>O tipo de junção</td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_possible_keys"><code class="literal">possible_keys</code></a></th>
-<td><code class="literal">possible_keys</code></td>
+<th><a class="link" href="explain-output.html#explain_possible_keys"><code>possible_keys</code></a></th>
+<td><code>possible_keys</code></td>
 <td>Os índices possíveis para escolha</td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_key"><code class="literal">key</code></a></th>
-<td><code class="literal">key</code></td>
+<th><a class="link" href="explain-output.html#explain_key"><code>key</code></a></th>
+<td><code>key</code></td>
 <td>O índice realmente escolhido</td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_key_len"><code class="literal">key_len</code></a></th>
-<td><code class="literal">key_length</code></td>
+<th><a class="link" href="explain-output.html#explain_key_len"><code>key_len</code></a></th>
+<td><code>key_length</code></td>
 <td>O comprimento do índice escolhido</td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_ref"><code class="literal">ref</code></a></th>
-<td><code class="literal">ref</code></td>
+<th><a class="link" href="explain-output.html#explain_ref"><code>ref</code></a></th>
+<td><code>ref</code></td>
 <td>As colunas comparadas ao índice</td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_rows"><code class="literal">rows</code></a></th>
-<td><code class="literal">rows</code></td>
+<th><a class="link" href="explain-output.html#explain_rows"><code>rows</code></a></th>
+<td><code>rows</code></td>
 <td>Estimativa de linhas a serem examinadas</td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_filtered"><code class="literal">filtered</code></a></th>
-<td><code class="literal">filtered</code></td>
+<th><a class="link" href="explain-output.html#explain_filtered"><code>filtered</code></a></th>
+<td><code>filtered</code></td>
 <td>Porcentagem de linhas filtradas pela condição da tabela</td>
 </tr>
 <tr>
-<th scope="row"><a class="link" href="explain-output.html#explain_extra"><code class="literal">Extra</code></a></th>
+<th><a class="link" href="explain-output.html#explain_extra"><code>Extra</code></a></th>
 <td>Nenhum</td>
 <td>Informações adicionais</td>
 </tr>
@@ -102,7 +102,7 @@ Propriedades JSON que são `NULL` não são exibidas na saída `EXPLAIN` formata
 
   O tipo de `SELECT`, que pode ser qualquer um dos mostrados na tabela a seguir. Uma saída `EXPLAIN` formatada em JSON expõe o tipo de `SELECT` como uma propriedade de um `query_block`, a menos que seja `SIMPLE` ou `PRIMARY`. Os nomes JSON (quando aplicável) também são mostrados na tabela.
 
-<table summary="valores de `select_type` e o significado de cada valor."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th scope="col"><code class="literal">select_type</code> Valor</th> <th scope="col">Nome JSON</th> <th scope="col">Significado</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">SIMPLE</code></th> <td>Nenhum</td> <td>Simples <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code class="literal">SELECT</code></a> (sem usar <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code class="literal">UNION</code></a> ou subconsultas)</td> </tr><tr> <th scope="row"><code class="literal">PRIMARY</code></th> <td>Nenhum</td> <td>Consulta externa <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code class="literal">SELECT</code></a></td> </tr><tr> <th scope="row"><a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code class="literal">UNION</code></a></th> <td>Nenhum</td> <td>Segunda ou subsequente <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code class="literal">SELECT</code></a> em uma <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code class="literal">UNION</code></a></td> </tr><tr> <th scope="row"><code class="literal">DEPENDENT UNION</code></th> <td><code class="literal">dependente</code> (<code class="literal">true</code>)</td> <td>Segunda ou subsequente <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code class="literal">SELECT</code></a> em uma <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code class="literal">UNION</code></a>, dependente da consulta externa</td> </tr><tr> <th scope="row"><code class="literal">UNION RESULT</code></th> <td><code class="literal">union_result</code></td> <td>Resultado de uma <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code class="literal">UNION</code></a>.</td> </tr><tr> <th scope="row"><a class="link" href="optimizer-hints.html#optimizer-hints-subquery" title="Dicas de otimização de subconsultas"><code class="literal">SUBQUERY</code></a></th> <td>Nenhum</td> <td>Primeira <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code class="literal">SELECT</code></a> em subconsulta</td> </tr><tr> <th scope="row"><code class="literal">DEPENDENT SUBQUERY</code></th> <td><code class="literal">dependente</code> (<code class="literal">true</code>)</td> <td>Primeira <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code class="literal">SELECT</code></a> em subconsulta, dependente da consulta externa</td> </tr><tr> <th scope="row"><code class="literal">DERIVED</code></th> <td>Nenhum</td> <td>Tabela derivada</td> </tr><tr> <th scope="row"><code class="literal">DEPENDENT DERIVED</code></th> <td><code class="literal">dependente</code> (<code class="literal">true</code>)</td> <td>Tabela derivada dependente de outra tabela</td> </tr><tr> <th scope="row"><code class="literal">MATERIALIZED</code></th> <td><code class="literal">materialized_from_subquery</code></td> <td>Tabela materializada a partir de subconsulta</td> </tr><tr> <th scope="row"><code class="literal">UNCACHEABLE SUBQUERY</code></th> <td><code class="literal">cacheable</code> (<code class="literal">false</code>)</td> <td>Subconsulta que não pode ser cacheada e deve ser reavaliada para cada linha da consulta externa</td> </tr><tr> <th scope="row"><code class="literal">UNCACHEABLE UNION</code></th> <td><code class="literal">cacheable</code> (<code class="literal">false</code>)</td> <td>A segunda
+<table summary="valores de `select_type` e o significado de cada valor."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th><code>select_type</code> Valor</th> <th>Nome JSON</th> <th>Significado</th> </tr></thead><tbody><tr> <th><code>SIMPLE</code></th> <td>Nenhum</td> <td>Simples <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> (sem usar <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a> ou subconsultas)</td> </tr><tr> <th><code>PRIMARY</code></th> <td>Nenhum</td> <td>Consulta externa <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a></td> </tr><tr> <th><a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a></th> <td>Nenhum</td> <td>Segunda ou subsequente <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> em uma <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a></td> </tr><tr> <th><code>DEPENDENT UNION</code></th> <td><code>dependente</code> (<code>true</code>)</td> <td>Segunda ou subsequente <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> em uma <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a>, dependente da consulta externa</td> </tr><tr> <th><code>UNION RESULT</code></th> <td><code>union_result</code></td> <td>Resultado de uma <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a>.</td> </tr><tr> <th><a class="link" href="optimizer-hints.html#optimizer-hints-subquery" title="Dicas de otimização de subconsultas"><code>SUBQUERY</code></a></th> <td>Nenhum</td> <td>Primeira <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> em subconsulta</td> </tr><tr> <th><code>DEPENDENT SUBQUERY</code></th> <td><code>dependente</code> (<code>true</code>)</td> <td>Primeira <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> em subconsulta, dependente da consulta externa</td> </tr><tr> <th><code>DERIVED</code></th> <td>Nenhum</td> <td>Tabela derivada</td> </tr><tr> <th><code>DEPENDENT DERIVED</code></th> <td><code>dependente</code> (<code>true</code>)</td> <td>Tabela derivada dependente de outra tabela</td> </tr><tr> <th><code>MATERIALIZED</code></th> <td><code>materialized_from_subquery</code></td> <td>Tabela materializada a partir de subconsulta</td> </tr><tr> <th><code>UNCACHEABLE SUBQUERY</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>Subconsulta que não pode ser cacheada e deve ser reavaliada para cada linha da consulta externa</td> </tr><tr> <th><code>UNCACHEABLE UNION</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>A segunda
 
 `DEPENDENT` geralmente indica o uso de uma subconsulta correlacionada. Veja a Seção 15.2.15.7, “Subconsultas Correlacionadas”.
 
@@ -549,11 +549,11 @@ Para este exemplo, faça as seguintes suposições:
 
 * As colunas sendo comparadas foram declaradas da seguinte forma.
 
-  <table summary="Nomes das tabelas, nomes das colunas e tipos de dados das colunas sendo comparadas no exemplo EXPLAIN descrito no texto anterior."><col style="width: 10%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Tabela</th> <th scope="col">Coluna</th> <th scope="col">Tipo de Dados</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">tt</code></th> <td><code class="literal">ActualPC</code></td> <td><code class="literal">CHAR(10)</code></td> </tr><tr> <th scope="row"><code class="literal">tt</code></th> <td><code class="literal">AssignedPC</code></td> <td><code class="literal">CHAR(10)</code></td> </tr><tr> <th scope="row"><code class="literal">tt</code></th> <td><code class="literal">ClientID</code></td> <td><code class="literal">CHAR(10)</code></td> </tr><tr> <th scope="row"><code class="literal">et</code></th> <td><code class="literal">EMPLOYID</code></td> <td><code class="literal">CHAR(15)</code></td> </tr><tr> <th scope="row"><code class="literal">do</code></th> <td><code class="literal">CUSTNMBR</code></td> <td><code class="literal">CHAR(15)</code></td> </tr></tbody></table>
+  <table summary="Nomes das tabelas, nomes das colunas e tipos de dados das colunas sendo comparadas no exemplo EXPLAIN descrito no texto anterior."><col style="width: 10%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Tabela</th> <th>Coluna</th> <th>Tipo de Dados</th> </tr></thead><tbody><tr> <th><code>tt</code></th> <td><code>ActualPC</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>tt</code></th> <td><code>AssignedPC</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>tt</code></th> <td><code>ClientID</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>et</code></th> <td><code>EMPLOYID</code></td> <td><code>CHAR(15)</code></td> </tr><tr> <th><code>do</code></th> <td><code>CUSTNMBR</code></td> <td><code>CHAR(15)</code></td> </tr></tbody></table>
 
 * As tabelas têm os seguintes índices.
 
-<table summary="Índices para cada uma das tabelas que fazem parte do exemplo EXPLAIN descrito no texto anterior."><col style="width: 10%"/><col style="width: 40%"/><thead><tr> <th>Tabela</th> <th>Índice</th> </tr></thead><tbody><tr> <td><code class="literal">tt</code></td> <td><code class="literal">ActualPC</code></td> </tr><tr> <td><code class="literal">tt</code></td> <td><code class="literal">AssignedPC</code></td> </tr><tr> <td><code class="literal">tt</code></td> <td><code class="literal">ClientID</code></td> </tr><tr> <td><code class="literal">et</code></td> <td><code class="literal">EMPLOYID</code> (chave primária)</td> </tr><tr> <td><code class="literal">do</code></td> <td><code class="literal">CUSTNMBR</code> (chave primária)</td> </tr></tbody></table>
+<table summary="Índices para cada uma das tabelas que fazem parte do exemplo EXPLAIN descrito no texto anterior."><col style="width: 10%"/><col style="width: 40%"/><thead><tr> <th>Tabela</th> <th>Índice</th> </tr></thead><tbody><tr> <td><code>tt</code></td> <td><code>ActualPC</code></td> </tr><tr> <td><code>tt</code></td> <td><code>AssignedPC</code></td> </tr><tr> <td><code>tt</code></td> <td><code>ClientID</code></td> </tr><tr> <td><code>et</code></td> <td><code>EMPLOYID</code> (chave primária)</td> </tr><tr> <td><code>do</code></td> <td><code>CUSTNMBR</code> (chave primária)</td> </tr></tbody></table>
 
 * Os valores de `tt.ActualPC` não estão distribuídos uniformemente.
 

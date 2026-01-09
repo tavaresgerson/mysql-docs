@@ -320,7 +320,7 @@ Para compatibilidade com versões anteriores, o **mysqld_safe** também lê seç
 
 - `--mysqld=nome_do_programa`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>6
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   O nome do programa do servidor (no diretório `ledir`) que você deseja iniciar. Esta opção é necessária se você usar a distribuição binária do MySQL, mas tiver o diretório de dados fora da distribuição binária. Se o **mysqld_safe** não conseguir encontrar o servidor, use a opção `--ledir` para indicar o nome do caminho para o diretório onde o servidor está localizado.
 
@@ -328,7 +328,7 @@ Para compatibilidade com versões anteriores, o **mysqld_safe** também lê seç
 
 - `--mysqld-version=sufixo`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>7
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Esta opção é semelhante à opção `--mysqld`, mas você especifica apenas o sufixo para o nome do programa do servidor. O nome base é assumido como **mysqld**. Por exemplo, se você usar `--mysqld-version=debug`, **mysqld_safe** inicia o programa **mysqld-debug** no diretório `ledir`. Se o argumento para `--mysqld-version` estiver vazio, **mysqld_safe** usa **mysqld** no diretório `ledir`.
 
@@ -336,13 +336,13 @@ Para compatibilidade com versões anteriores, o **mysqld_safe** também lê seç
 
 - `--nice=prioridade`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>8
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Use o programa `nice` para definir a prioridade de agendamento do servidor para o valor fornecido.
 
 - `--no-defaults`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>9
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas. Isso deve ser a primeira opção na linha de comando se for usado.
 

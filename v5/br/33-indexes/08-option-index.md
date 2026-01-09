@@ -334,7 +334,7 @@
 
 [Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
 
-### --analisar
+### --analyze
 
 [Seção 7.6.4, “Otimização de Tabelas MyISAM”](myisam-optimization.html)
 
@@ -424,7 +424,7 @@
 
 [Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistente”](innodb-statistics-estimation.html)
 
-### --auto-reparação
+### --auto-repair
 
 [Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
 
@@ -814,7 +814,7 @@
 
 [Seção 10.3.2, "Conjunto de caracteres do servidor e cotação"](charset-server.html)
 
-### --sets-de-caracteres-dir
+### --character-sets-dir
 
 [Seção B.3.2.15, “Não é possível inicializar o conjunto de caracteres”](cannot-initialize-character-set.html)
 
@@ -1004,7 +1004,7 @@
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### --comentários
+### --comments
 
 [Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
 
@@ -1024,11 +1024,11 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### --compacto
+### --compact
 
 [Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
 
-### --compatível
+### --compatible
 
 [Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
 
@@ -2478,7 +2478,7 @@
 
 [Seção 23.4.2, “Configuração do Agendador de Eventos”](events-configuration.html)
 
-### --eventos
+### --events
 
 [Seção 7.4.5.3, “Exportação de programas armazenados”](mysqldump-stored-programs.html)
 
@@ -2578,7 +2578,7 @@
 
 [Seção 4.6.3.3, “Opções de reparo do myisamchk”](myisamchk-repair-options.html)
 
-### --extendido
+### --extended
 
 [Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
 
@@ -2684,7 +2684,7 @@
 
 [Seção 5.8.1.5, “Usando uma Traça de Pilha”](using-stack-trace.html)
 
-### --rápido
+### --fast
 
 [Seção 4.6.3.2, “Opções de verificação do myisamchk”](myisamchk-check-options.html)
 
@@ -2698,7 +2698,7 @@
 
 [Seção 21.5.7, “ndb\_config — Extrair informações de configuração do NDB Cluster”](mysql-cluster-programs-ndb-config.html)
 
-### --campos-cercados-por
+### --fields-enclosed-by
 
 [Seção 7.4.3, “Exportação de dados no formato de texto delimitado com mysqldump”](mysqldump-delimited-text.html)
 
@@ -2710,7 +2710,7 @@
 
 [Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
-### --campos-escavados-por
+### --fields-escaped-by
 
 [Seção 7.4.3, “Exportação de dados no formato de texto delimitado com mysqldump”](mysqldump-delimited-text.html)
 
@@ -2720,7 +2720,7 @@
 
 [Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
-### --campos opcionalmente delimitados por
+### --fields-optionally-enclosed-by
 
 [Seção 7.4.3, “Exportação de dados no formato de texto delimitado com mysqldump”](mysqldump-delimited-text.html)
 
@@ -2732,7 +2732,7 @@
 
 [Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
-### --campos-terminados-por
+### --fields-terminated-by
 
 [Seção 7.4.3, “Exportação de dados no formato de texto delimitado com mysqldump”](mysqldump-delimited-text.html)
 
@@ -3588,7 +3588,7 @@
 
 [Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
-### --inserir-ignorar
+### --insert-ignore
 
 [Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
 
@@ -5268,7 +5268,7 @@
 
 [Seção 4.2.2.2, “Usando arquivos de opção”](option-files.html)
 
-### -- otimizar
+### --optimize
 
 [Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
 
@@ -5496,7 +5496,7 @@
 
 [Seção 21.5.29, “ndb\_top — Visualizar informações de uso da CPU para threads NDB”](mysql-cluster-programs-ndb-top.html)
 
-### --senha
+### --password
 
 [Seção 6.2.1, “Nomes de Usuários e Senhas de Conta”](user-names.html)
 
@@ -6036,7 +6036,7 @@
 
 [Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
 
-### --protocolo
+### --protocol
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -6116,7 +6116,7 @@
 
 [Seção 8.11.5, “Bloqueio Externo”](external-locking.html)
 
-### --rápido
+### --fast
 
 [Seção 4.6.3.6, “Uso de memória do myisamchk”](myisamchk-memory.html)
 
@@ -6618,7 +6618,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### --rotinas
+### --routines
 
 [Seção 7.4.5.3, “Exportação de programas armazenados”](mysqldump-stored-programs.html)
 
@@ -6956,7 +6956,7 @@
 
 [Seção 4.10, "Tratamento de Sinais Unix no MySQL"](unix-signal-response.html)
 
-### --silencioso
+### --silent
 
 [Seção 4.6.3.1, “Opções Gerais do myisamchk”](myisamchk-general-options.html)
 
@@ -8184,7 +8184,7 @@
 
 [Seção 21.5.10, “ndb\_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
 
-### --mesas
+### --tables
 
 [Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
 
@@ -9092,7 +9092,7 @@
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
-### --onde
+### --where
 
 [Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
 

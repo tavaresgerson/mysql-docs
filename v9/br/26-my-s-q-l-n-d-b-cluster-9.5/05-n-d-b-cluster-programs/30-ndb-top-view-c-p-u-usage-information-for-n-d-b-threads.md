@@ -37,9 +37,9 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
 * `--color`, `-c`
 
 <table frame="box" rules="all" summary="Propriedades para formatação de linha de comando">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--color</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--color</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr>
 </table>
 
   Mostrar gráficos ASCII em cores; desative com `--skip-colors`.
@@ -47,9 +47,9 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
 * `--defaults-extra-file`
 
   <table frame="box" rules="all" summary="Propriedades para defaults-extra-file">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr>
+    <tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr>
   </table>
 
   Ler o arquivo fornecido após a leitura dos arquivos globais.
@@ -57,9 +57,9 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
 * `--defaults-file`
 
   <table frame="box" rules="all" summary="Propriedades para defaults-file">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--defaults-file=caminho</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr>
+    <tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr>
   </table>
 
   Ler as opções padrão do arquivo fornecido apenas.
@@ -67,9 +67,9 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
 * `--defaults-group-suffix`
 
   <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr>
+    <tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr>
   </table>
 
   Também ler grupos com concatenação(grupo, sufixo).
@@ -79,7 +79,7 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
 <table frame="box" rules="all" summary="Propriedades para gráfico">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--graph</code></td>
+    <td><code>--graph</code></td>
   </tr>
 </table>
 
@@ -90,7 +90,7 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
   <table frame="box" rules="all" summary="Propriedades para ajuda">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--help</code></td>
+      <td><code>--help</code></td>
     </tr>
   </table>
 
@@ -101,7 +101,7 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
   <table frame="box" rules="all" summary="Propriedades para host">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--host=string</code></td>
+      <td><code>--host=string</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -109,7 +109,7 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">localhost</code></td>
+      <td><code>localhost</code></td>
     </tr>
   </table>
 
@@ -120,7 +120,7 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
   <table frame="box" rules="all" summary="Propriedades para login-path">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--login-path=caminho</code></td>
+      <td><code>--login-path=caminho</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -128,7 +128,7 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">[nenhum]</code></td>
+      <td><code>[nenhum]</code></td>
     </tr>
   </table>
 
@@ -139,7 +139,7 @@ A tabela a seguir inclui todas as opções específicas do programa do NDB Clust
   <table frame="box" rules="all" summary="Propriedades para no-login-paths">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--no-login-paths</code></td>
+      <td><code>--no-login-paths</code></td>
     </tr>
   </table>
 
@@ -150,31 +150,31 @@ Este é o texto traduzido para o português brasileiro. Se precisar de mais ajud
 
 * `--load-medido`, `-m`
 
-  <table frame="box" rules="all" summary="Propriedades para load-medido"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--load-medido</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para load-medido"><tr><th>Formato de Linha de Comando</th> <td><code>--load-medido</code></td> </tr></table>
 
   Mostrar o carregamento medido por thread. Esta opção ou `--load-medido` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></table>0
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de Linha de Comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr></table>
 
   Não ler opções padrão de nenhum arquivo de opção além do arquivo de login.
 
 * [`--node-id`=*`#`]*`, `-n`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></table>1
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de Linha de Comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr></table>
 
   Monitorar o nó de dados que tem este ID de nó.
 
 * `--load-medido`, `-o`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></table>2
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de Linha de Comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr></table>
 
   Mostrar o carregamento medido pelo sistema operacional. Esta opção ou `--load-medido` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
 * [`--password`=*`senha`]*`, `-p`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Conecte-se a um servidor MySQL usando esta senha e o usuário MySQL especificado por `--user`.
 
@@ -182,7 +182,7 @@ Este é o texto traduzido para o português brasileiro. Se precisar de mais ajud
 
 * [`--port`=*`#`]*`, `-P`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Número de porta a ser usado ao se conectar ao servidor MySQL.
 
@@ -190,7 +190,7 @@ Este é o texto traduzido para o português brasileiro. Se precisar de mais ajud
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Imprimir a lista de argumentos do programa e sair.
 
@@ -200,19 +200,19 @@ Tempo de espera entre os refrescos da exibição, em segundos.
 
 * `--socket=caminho/para/arquivo`, `-S`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Use o arquivo de socket especificado para a conexão.
 
 * `--sort`, `-r`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Ordenar os tópicos por uso; desative com `--skip-sort`.
 
 * `--text`, `-t`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
 Exiba dados usando texto. Esta opção ou `--graph` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
@@ -220,13 +220,13 @@ Exiba dados usando texto. Esta opção ou `--graph` deve ser verdadeira; ambas a
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 * [`--user`=*`nome`]*`, `-u`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Conecte-se como este usuário do MySQL. Normalmente, requer uma senha fornecida pela opção `--password`.
 

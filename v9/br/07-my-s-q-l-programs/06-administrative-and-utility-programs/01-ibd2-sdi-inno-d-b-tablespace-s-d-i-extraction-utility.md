@@ -30,7 +30,7 @@ Os arquivos de um espaço de tabela de vários arquivos devem ser especificados 
 
 * `--help`, `-h`
 
-<table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
   Exibir uma mensagem de ajuda e sair. Por exemplo:
 
@@ -72,7 +72,7 @@ Os arquivos de um espaço de tabela de vários arquivos devem ser especificados 
 
 * `--version`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para versão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--version</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para versão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--version</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
   Exibir informações de versão e sair. Por exemplo:
 
@@ -82,7 +82,7 @@ Os arquivos de um espaço de tabela de vários arquivos devem ser especificados 
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Propriedades para depuração"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--debug=options</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para depuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--debug=options</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Imprime um log de depuração. Para opções de depuração, consulte a Seção 7.9.4, “O Pacote DBUG”.
 
@@ -95,9 +95,9 @@ Os arquivos de um espaço de tabela de vários arquivos devem ser especificados 
 * `--dump-file=`, `-d`
 
 <table frame="box" rules="all" summary="Propriedades para arquivo de depuração">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--dump-file=arquivo</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--dump-file=arquivo</code></td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr>
 </table>
 
   Depura informações de dicionário serializado (SDI) no arquivo de depuração especificado. Se um arquivo de depuração não for especificado, o SDI do espaço de tabelas é depurado no `stdout`.
@@ -109,9 +109,9 @@ Os arquivos de um espaço de tabela de vários arquivos devem ser especificados 
 * `--skip-data`, `-s`
 
   <table frame="box" rules="all" summary="Propriedades para skip-data">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--skip-data</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--skip-data</code></td> </tr>
     <tr><th>Tipo</th> <td>Booleano</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>false</code></td> </tr>
   </table>
 
   Ignora a recuperação dos valores do campo `data` das informações de dicionário serializado (SDI) e recupera apenas os valores dos campos `id` e `type`, que são chaves primárias para os registros de SDI.
@@ -135,9 +135,9 @@ Os arquivos de um espaço de tabela de vários arquivos devem ser especificados 
 * `--id=#`, `-i #`
 
   <table frame="box" rules="all" summary="Propriedades para id">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--id=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--id=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">0</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>0</code></td> </tr>
   </table>
 
 Retorna informações serializadas do dicionário (SDI) que correspondem ao ID especificado do objeto de tabela ou espaço de tabelas. Um ID de objeto é único para o tipo de objeto. Os IDs de tabelas e espaços de tabelas também são encontrados na coluna `id` das tabelas de dicionário de dados `mysql.tables` e `mysql.tablespace`. Para obter informações sobre as tabelas de dicionário de dados, consulte a Seção 16.1, “Esquema do Dicionário de Dados”.
@@ -176,7 +176,7 @@ Retorna informações serializadas do dicionário (SDI) que correspondem ao ID e
 
 * `--type=#`, `-t #`
 
-  <table frame="box" rules="all" summary="Propriedades para o formato de linha de comando"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--type=#</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">1</code></p><p class="valid-value"><code class="literal">2</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o formato de linha de comando"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--type=#</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
 
   Retorna informações serializadas do dicionário (SDI) que correspondem ao tipo de objeto especificado. A SDI é fornecida para objetos de tabela (tipo=1) e espaço de tabelas (tipo=2).
 
@@ -246,7 +246,7 @@ Para obter mais informações, consulte a documentação sobre os recursos inter
 
 * `--strict-check`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para strict-check"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--strict-check=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">crc32</code></p><p class="valid-value"><code class="literal">innodb</code></p><p class="valid-value"><code class="literal">none</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para strict-check"><tbody><tr><th>Formato de linha de comando</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>crc32</code></p><p class="valid-value"><code>innodb</code></p><p class="valid-value"><code>none</code></p></td> </tr></tbody></table>
 
   Especifica um algoritmo de verificação de checksum rigoroso para validar o checksum das páginas que são lidas. As opções incluem `innodb`, `crc32` e `none`.
 
@@ -266,7 +266,7 @@ Para obter mais informações, consulte a documentação sobre os recursos inter
 
 * `--no-check`, `-n`
 
-  <table frame="box" rules="all" summary="Propriedades para no-check"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-check</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para no-check"><tbody><tr><th>Formato de linha de comando</th> <td><code>--no-check</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
   Ignora a validação de checksum para páginas que são lidas.
 
@@ -279,7 +279,7 @@ Para obter mais informações, consulte a documentação sobre os recursos inter
 <table frame="box" rules="all" summary="Propriedades para formatação bonita">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--pretty</code></td>
+    <td><code>--pretty</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -287,7 +287,7 @@ Para obter mais informações, consulte a documentação sobre os recursos inter
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">false</code></td>
+    <td><code>false</code></td>
   </tr>
 </table>
 

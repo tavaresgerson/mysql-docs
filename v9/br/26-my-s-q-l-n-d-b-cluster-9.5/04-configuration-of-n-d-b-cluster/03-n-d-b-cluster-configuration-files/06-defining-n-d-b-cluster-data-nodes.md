@@ -106,7 +106,7 @@ O número de nós de dados no cluster deve ser divisível pelo valor desse parâ
 
 * `DataDir`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"> <tr> <th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr> <tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr> <tr> <th>Padrão</th> <td>.</td> </tr> <tr> <th>Intervalo</th> <td>...</td> </tr> <tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0)</p></td> </tr> </tbody></table>
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"> <tr> <th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr> <tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr> <tr> <th>Padrão</th> <td>.</td> </tr> <tr> <th>Intervalo</th> <td>...</td> </tr> <tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0)</p></td> </tr> </tbody></table>
 
 Este parâmetro especifica o diretório onde os arquivos de registro, arquivos de log, arquivos de PID e logs de erro são armazenados.
 
@@ -114,7 +114,7 @@ O padrão é o diretório de trabalho do processo do nó de dados.
 
 * `FileSystemPath`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados FileSystemPath, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados FileSystemPath, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Este parâmetro especifica o diretório onde todos os arquivos criados para metadados, logs REDO, logs UNDO (para tabelas de Dados em Disco) e arquivos de dados são colocados. O padrão é o diretório especificado por `DataDir`.
 
@@ -126,7 +126,7 @@ A hierarquia de diretórios recomendada para o NDB Cluster inclui `/var/lib/mysq
 
 * `BackupDataDir`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Este parâmetro especifica o diretório onde os backups são armazenados.
 
@@ -144,7 +144,7 @@ Nota
 
 * `DataMemory`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"> <tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr> <tr> <th>Tipo ou unidades</th> <td>nome</td> </tr> <tr> <th>Padrão</th> <td>[...]</td> </tr> <tr> <th>Intervalo</th> <td>...</td> </tr> <tr> <th>Desatualizado</th> <td>Sim (na NDB 7.5)</td> </tr> <tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do cluster. (NDB 9.5.0)</p></td> </tr> </table>0
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"> <tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr> <tr> <th>Tipo ou unidades</th> <td>nome</td> </tr> <tr> <th>Padrão</th> <td>[...]</td> </tr> <tr> <th>Intervalo</th> <td>...</td> </tr> <tr> <th>Desatualizado</th> <td>Sim (na NDB 7.5)</td> </tr> <tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do cluster. (NDB 9.5.0)</p></td> </tr> </table>
 
   Este parâmetro define a quantidade de espaço (em bytes) disponível para armazenar registros de banco de dados. Toda a quantidade especificada por este valor é alocada na memória, portanto, é extremamente importante que a máquina tenha memória física suficiente para acomodá-la.
 
@@ -171,7 +171,7 @@ O valor padrão para `DataMemory` é de 98 MB. O valor mínimo é de 1 MB. Não 
 
 * `IndexMemory`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer tipo e informações de valor" width="35%"> <tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr> <tr> <th>Tipo ou unidades</th> <td>nome</td> </tr> <tr> <th>Padrão</th> <td>[...]</td> </tr> <tr> <th>Intervalo</th> <td>...</td> </tr> <tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr> <tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento completo e um reinício do clúster. (NDB 9.5.0) </p></td> </tr> </table>1
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer tipo e informações de valor" width="35%"> <tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr> <tr> <th>Tipo ou unidades</th> <td>nome</td> </tr> <tr> <th>Padrão</th> <td>[...]</td> </tr> <tr> <th>Intervalo</th> <td>...</td> </tr> <tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr> <tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento completo e um reinício do clúster. (NDB 9.5.0) </p></td> </tr> </table>
 
   O parâmetro `IndexMemory` está descontinuado (e sujeito à remoção futura); qualquer memória atribuída a `IndexMemory` é alocada, em vez disso, para o mesmo pool que `DataMemory`, que é exclusivamente responsável por todos os recursos necessários para armazenar dados e índices na memória. No NDB 9.5, o uso de `IndexMemory` no arquivo de configuração do clúster aciona uma mensagem de aviso do servidor de gerenciamento.
 
@@ -300,7 +300,7 @@ Ambos esses parâmetros (especialmente `MaxNoOfConcurrentOperations`) são prova
 
 * `MaxNoOfConcurrentTransactions`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados [ndbd] ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados [ndbd] ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Cada nó de dados do cluster requer um registro de transação para cada transação ativa no cluster. A tarefa de coordenação das transações é distribuída entre todos os nós de dados. O número total de registros de transação no cluster é o número de transações em qualquer nó dado multiplicado pelo número de nós no cluster.
 
@@ -318,7 +318,7 @@ O valor padrão é 4096.
 
 * `MaxNoOfConcurrentOperations`
 
-  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de Reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de Reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   É uma boa ideia ajustar o valor deste parâmetro de acordo com o tamanho e o número de transações. Ao realizar transações que envolvem apenas algumas operações e registros, o valor padrão deste parâmetro geralmente é suficiente. Realizar transações grandes que envolvem muitos registros geralmente exige que você aumente seu valor.
 
@@ -342,7 +342,7 @@ Também é importante ter uma ideia dos requisitos de memória para os registros
 
 * `MaxNoOfLocalOperations`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></tbody></table>6
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></tbody></table>
 
 Por padrão, este parâmetro é calculado como 1,1 × `MaxNoOfConcurrentOperations`. Isso é adequado para sistemas com muitas operações simultâneas, nenhuma delas sendo muito grande. Se houver a necessidade de lidar com uma transação muito grande de cada vez e houver muitos nós, é uma boa ideia sobrescrever o valor padrão, especificando explicitamente este parâmetro.
 
@@ -350,7 +350,7 @@ Este parâmetro está desatualizado e sujeito à remoção em uma futura versão
 
 * `MaxDMLOperationsPerTransaction`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro limita o tamanho de uma transação. A transação é abortada se exigir mais do que este número de operações DML.
 
@@ -362,7 +362,7 @@ Os valores padrão para esses parâmetros são adequados para a maioria das situ
 
 * `MaxNoOfConcurrentIndexOperations`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Para consultas que usam um índice de hash único, outro conjunto temporário de registros de operação é usado durante a fase de execução da consulta. Esse parâmetro define o tamanho desse conjunto de registros. Assim, esse registro é alocado apenas enquanto uma parte da consulta está sendo executada. Assim que essa parte for concluída, o registro é liberado. O estado necessário para lidar com abortos e commits é tratado pelos registros de operação normais, onde o tamanho do conjunto é definido pelo parâmetro `MaxNoOfConcurrentOperations`.
 
@@ -372,7 +372,7 @@ Este parâmetro está desatualizado e está sujeito à remoção em uma futura v
 
 * `MaxNoOfFiredTriggers`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   O valor padrão de `MaxNoOfFiredTriggers` é 4000, o que é suficiente para a maioria das situações. Em alguns casos, ele pode até ser reduzido se o DBA estiver certo de que a necessidade de paralelismo no clúster não é alta.
 
@@ -382,7 +382,7 @@ Este parâmetro está desatualizado e sujeito à remoção em uma futura versão
 
 * `TransactionBufferMemory`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados do hospedeiro" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>0
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados do hospedeiro" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 A memória afetada por este parâmetro é usada para rastrear operações realizadas ao atualizar tabelas de índice e ler índices únicos. Esta memória é usada para armazenar as informações da chave e da coluna para essas operações. É muito raro que o valor deste parâmetro precise ser alterado do valor padrão.
 
@@ -394,43 +394,43 @@ As operações de leitura e escrita normais usam um buffer semelhante, cujo uso 
 
 * `ReservedConcurrentIndexOperations`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>1
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Número de operações de índice simultâneas com recursos dedicados em um nó de dados.
 
 * `ReservedConcurrentOperations`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>2
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Número de operações simultâneas com recursos dedicados em coordenadores de transações em um nó de dados.
 
 * `ReservedConcurrentScans`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do HostName, tipo e informações do valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>4
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do HostName, tipo e informações do valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Número de transações simultâneas com recursos dedicados em um nó de dados.
 
 * `ReservedFiredTriggers`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do host e tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício em rolagem de um NDB Cluster" target="_blank">reinício em rolagem</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>5
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do host e tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício em rolagem de um NDB Cluster" target="_blank">reinício em rolagem</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Número de gatilhos que têm recursos dedicados em um nó ndbd(DB).
 
 * `ReservedLocalScans`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do host e tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício em rolagem de um NDB Cluster" target="_blank">reinício em rolagem</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>6
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do host e tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício em rolagem de um NDB Cluster" target="_blank">reinício em rolagem</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Número de varreduras de fragmentos simultâneas com recursos dedicados em um nó de dados.
 
 * `ReservedTransactionBufferMemory`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr><th>Padrão</th> <td>localhost</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr><th>Padrão</th> <td>localhost</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Espaço de buffer dinâmico (em bytes) para dados de chave e atributo alocados a cada nó de dados.
 
 * `TransactionMemory`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr><th>Padrão</th> <td>localhost</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>10
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr><th>Padrão</th> <td>localhost</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Importante
 
@@ -457,7 +457,7 @@ Para obter mais informações sobre a alocação de recursos nos nós de dados d
 
 * `BatchSizePerLocalScan`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>9
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados HostName, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome ou endereço IP</td></tr><tr><th>Padrão</th><td>localhost</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Este parâmetro é usado para calcular o número de registros de bloqueio usados para lidar com operações de varredura concorrentes.
 
@@ -467,7 +467,7 @@ Descontinuado.
 
 * `LongMessageBuffer`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó ServerPort, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 64K</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>0
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó ServerPort, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 64K</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Este é um buffer interno usado para passar mensagens dentro de nós individuais e entre nós. O padrão é 64MB.
 
@@ -496,7 +496,7 @@ Este parâmetro raramente precisa ser alterado do padrão.
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>1
+</table>
 
   Tamanho máximo do lote de varredura usado para a construção de chaves estrangeiras. Aumentar o valor definido para este parâmetro pode acelerar a construção de chaves estrangeiras, mas com um impacto maior no tráfego em andamento.
 
@@ -523,7 +523,7 @@ Este parâmetro raramente precisa ser alterado do padrão.
       <th>Tipo de reinício</th>
       <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td>
     </tr>
-  </table>2
+  </table>
 
 Este parâmetro é usado para controlar o número de varreduras paralelas que podem ser realizadas no clúster. Cada coordenador de transação pode lidar com o número de varreduras paralelas definido para este parâmetro. Cada consulta de varredura é realizada realizando uma varredura completa de todas as partições em paralelo. Cada varredura de partição usa um registro de varredura no nó onde a partição está localizada, com o número de registros sendo o valor deste parâmetro multiplicado pelo número de nós. O clúster deve ser capaz de sustentar `MaxNoOfConcurrentScans` varreduras simultâneas de todos os nós no clúster.
 
@@ -533,7 +533,7 @@ O valor padrão de `MaxNoOfConcurrentScans` é 256. O valor máximo é 500.
 
 * `MaxNoOfLocalScans`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do servidorPort tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 64K</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></tbody></table>3
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do servidorPort tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 64K</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></tbody></table>
 
 Especifica o número de registros de varredura local, caso muitas varreduras não sejam totalmente paralelizadas. Quando o número de registros de varredura local não é fornecido, ele é calculado conforme mostrado aqui:
 
@@ -547,7 +547,7 @@ Especifica o número de registros de varredura local, caso muitas varreduras nã
 
 * `MaxParallelCopyInstances`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados (data node) do ServerPort" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 64K</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</td></tr></tbody></table>4
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados (data node) do ServerPort" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 64K</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</td></tr></tbody></table>
 
   Este parâmetro define a paralelização usada na fase de cópia de um reinício de nó ou reinício do sistema, quando um nó que está começando agora é sincronizado com um nó que já tem os dados atuais, copiando quaisquer registros alterados do nó que está atualizado. Como a paralelização completa nessas situações pode levar a situações de sobrecarga, `MaxParallelCopyInstances` fornece uma maneira de diminuí-la. O valor padrão deste parâmetro é 0. Esse valor significa que a paralelização efetiva é igual ao número de instâncias do LDM no nó que está começando agora, bem como no nó que está atualizando.
 
@@ -574,7 +574,7 @@ Especifica o número de registros de varredura local, caso muitas varreduras nã
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>5
+</table>
 
   É possível configurar o número máximo de varreduras paralelas (`TUP` e `TUX`) permitidas antes de elas começarem a ficar na fila para tratamento em série. Você pode aumentar esse valor para aproveitar qualquer CPU não utilizada ao realizar um grande número de varreduras em paralelo e melhorar seu desempenho.
 
@@ -601,13 +601,13 @@ Especifica o número de registros de varredura local, caso muitas varreduras nã
       <th>Tipo de reinício</th>
       <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td>
     </tr>
-  </table>6
+  </table>
 
   Tamanho máximo de lote de varredura usado para reorganização de partições de tabela. Aumentar o valor definido para este parâmetro pode acelerar a reorganização em detrimento do maior impacto no tráfego em andamento.
 
 * `MaxUIBuildBatchSize`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do ServerPort, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>1 - 64K</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados do ServerPort, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>1 - 64K</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Tamanho máximo do lote de varredura usado para a construção de chaves únicas. Aumentar o valor definido para este parâmetro pode acelerar essas construções às custas de um maior impacto no tráfego em andamento.
 
@@ -615,7 +615,7 @@ Tamanho máximo do lote de varredura usado para a construção de chaves únicas
 
 `MaxAllocate`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do ServerPort, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Parâmetros de configuração do ServerPort, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro era usado em versões mais antigas do NDB Cluster, mas não tem efeito no NDB 9.5. Ele é desatualizado e sujeito à remoção em uma futura versão.
 
@@ -625,7 +625,7 @@ Este parâmetro era usado em versões mais antigas do NDB Cluster, mas não tem 
 
 `NodeGroupTransporters`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do tipo e valor do nó da porta do servidor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>1 - 64K</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Parâmetro de configuração do tipo e valor do nó da porta do servidor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>1 - 64K</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro determina o número de transportadores usados entre nós no mesmo grupo de nós. O valor padrão (0) significa que o número de transportadores usados é o mesmo que o número de LDM no nó. Isso deve ser suficiente para a maioria dos casos de uso; portanto, raramente será necessário alterar este valor do seu padrão.
 
@@ -658,7 +658,7 @@ Definir `NodeGroupTransporters` para um número maior que o número de threads L
 <th>Tipo de reinício</th>
 <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do NDB Cluster 25.6.8">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td>
 </tr>
-</tbody></table>0
+</tbody></table>
 
 O uso original deste parâmetro era facilitar as atualizações e, especialmente, as desatualizações para e a partir de versões muito antigas com tamanhos de mapa de hash padrão diferentes. Isso não é um problema ao atualizar do NDB Cluster 7.3 (ou posterior) para versões posteriores.
 
@@ -668,13 +668,13 @@ Atualizar este parâmetro online após a criação ou modificação de tabelas c
 
 * `FragmentLogFileSize`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó do grupo de nós: tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>0 - 65536</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó do grupo de nós: tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>0 - 65536</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Definir este parâmetro permite que você controle diretamente o tamanho dos arquivos de log de redo. Isso pode ser útil em situações em que o NDB Cluster está operando com alta carga e não consegue fechar os arquivos de log de fragmentação rapidamente o suficiente antes de tentar abrir novos (apenas 2 arquivos de log de fragmentação podem estar abertos de cada vez); aumentar o tamanho dos arquivos de log de fragmentação dá ao clúster mais tempo antes de ter que abrir cada novo arquivo de log de fragmentação. O valor padrão para este parâmetro é 16M.
 
   Para mais informações sobre arquivos de log de fragmentação, consulte a descrição para `NoOfFragmentLogFiles`.
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do NodeGroup, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>0 - 65536</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício inicial do sistema: </strong></span></p>Requer o desligamento completo do clúster, apagamento e restauração do sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup online do NDB Cluster">backup</a>, e depois reiniciar o clúster. (NDB 9.5.0)</a></td></tr></tbody></table>3
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do NodeGroup, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>0 - 65536</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício inicial do sistema: </strong></span></p>Requer o desligamento completo do clúster, apagamento e restauração do sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup online do NDB Cluster">backup</a>, e depois reiniciar o clúster. (NDB 9.5.0)</a></td></tr></tbody></table>
 
 Por padrão, os arquivos de log de fragmentos são criados de forma esparsa ao realizar o início inicial de um nó de dados—ou seja, dependendo do sistema operacional e do sistema de arquivos em uso, nem todos os bytes são necessariamente escritos no disco. No entanto, é possível sobrescrever esse comportamento e forçar que todos os bytes sejam escritos, independentemente da plataforma e do tipo de sistema de arquivos em uso, por meio deste parâmetro. `InitFragmentLogFiles` aceita um dos dois valores:
 
@@ -686,7 +686,7 @@ Dependendo do seu sistema operacional e sistema de arquivos, definir `InitFragme
 
 * `EnablePartialLcp`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do nó de grupo de nós (NodeGroup) do tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do nó de grupo de nós (NodeGroup) do tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Quando `true`, habilite checkpoints locais parciais: Isso significa que cada LCP registra apenas parte do banco de dados completo, além de quaisquer registros que contenham linhas alteradas desde o último LCP; se nenhuma linha foi alterada, o LCP atualiza apenas o arquivo de controle do LCP e não atualiza nenhum arquivo de dados.
 
@@ -698,7 +698,7 @@ Definir este parâmetro para `false` também desabilita o cálculo da velocidade
 
 * `LcpScanProgressTimeout`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do grupo de nós do NDB Cluster, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do grupo de nós do NDB Cluster, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Um monitor de progresso de varredura de pontos de controle locais verifica periodicamente se há progresso em cada varredura de pontos de controle realizada como parte de um ponto de controle local e desativa o nó se não houver progresso após um determinado tempo ter se passado. Esse intervalo pode ser definido usando o parâmetro de configuração do nó de dados `LcpScanProgressTimeout`, que define o tempo máximo em que o ponto de controle de varredura de fragmentos LCP pode ficar parado antes de o monitor de progresso de varredura de pontos de controle LCP desativar o nó.
 
@@ -706,7 +706,7 @@ O valor padrão é de 60 segundos (garantindo compatibilidade com versões anter
 
 * `MaxNoOfOpenFiles`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do NodeGroup tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>0 - 65536</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span></p><p>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster.</a> (NDB 9.5.0)</p></td></tr></tbody></table>6
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do NodeGroup tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>0 - 65536</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span></p><p>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster.</a> (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Este parâmetro define um teto sobre quantos threads internos devem ser alocados para arquivos abertos. *Qualquer situação que exija uma mudança neste parâmetro deve ser relatada como um bug*.
 
@@ -714,7 +714,7 @@ O valor padrão é 0. No entanto, o valor mínimo para o qual este parâmetro po
 
 * `MaxNoOfSavedMessages`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó do NodeGroup: tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>0 - 65536</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó do NodeGroup: tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>0 - 65536</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro define o número máximo de erros escritos no log de erros, bem como o número máximo de arquivos de registro que são mantidos antes de sobrescrever os existentes. Arquivos de registro são gerados quando, por qualquer motivo, o nó falha.
 
@@ -765,7 +765,7 @@ Este parâmetro não pode ser alterado "on the fly"; você deve reiniciar o nó 
 
 * `RecoveryWork`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados LocationDomainId, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados LocationDomainId, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Porcentagem de sobrecarga de armazenamento para arquivos LCP. Este parâmetro tem efeito apenas quando `EnablePartialLcp` é verdadeiro, ou seja, apenas quando os pontos de verificação locais parciais são habilitados. Um valor maior significa:
 
@@ -793,7 +793,7 @@ Este programa não tem dependências além de `stdio.h` e não requer uma conex�
 
 * `InsertRecoveryWork`
 
-  <table frame="box" rules="all" summary="Informações sobre o parâmetro de tipo e valor do nó de dados LocationDomainId" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Informações sobre o parâmetro de tipo e valor do nó de dados LocationDomainId" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Porcentagem de `RecoveryWork` usada para linhas inseridas. Um valor maior aumenta o número de escritas durante um ponto de verificação local e diminui o tamanho total do LCP. Um valor menor diminui o número de escritas durante um LCP, mas resulta em mais espaço sendo usado para o LCP, o que significa que a recuperação leva mais tempo. Este parâmetro tem efeito apenas quando `EnablePartialLcp` é verdadeiro, ou seja, apenas quando os pontos de verificação locais parciais estão habilitados.
 
@@ -820,7 +820,7 @@ Este programa não tem dependências além de `stdio.h` e não requer uma conex�
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>2
+</table>
 
   Ative o controle adaptativo de ponto de verificação para controlar o uso do log de revisão.
 
@@ -836,7 +836,7 @@ Esses atuam meramente como “sugestões” para o clúster, e quaisquer que nã
 
 * `MaxNoOfAttributes`
 
-  <table frame="box" rules="all" summary="Informações do parâmetro de tipo e valor de configuração do nó de dados LocationDomainId" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Intervalo</th> <td>0 - 16</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Informações do parâmetro de tipo e valor de configuração do nó de dados LocationDomainId" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Intervalo</th> <td>0 - 16</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Este parâmetro define um número máximo sugerido de atributos que podem ser definidos no cluster; como `MaxNoOfTables`, ele não é destinado a funcionar como um limite superior rígido.
 
@@ -852,7 +852,7 @@ Supondo que você possa criar todas as tabelas desejadas sem problemas, você ta
 
 * `MaxNoOfTables`
 
-  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados LocationDomainId" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados LocationDomainId" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Um objeto de tabela é alocado para cada tabela e para cada índice hash único no clúster. Este parâmetro define um número máximo sugerido de objetos de tabela para o clúster como um todo; como `MaxNoOfAttributes`, ele não é destinado a funcionar como um limite superior rígido.
 
@@ -868,7 +868,7 @@ A soma de `MaxNoOfTables`, `MaxNoOfOrderedIndexes` e `MaxNoOfUniqueHashIndexes` 
 
 * `MaxNoOfOrderedIndexes`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `LocationDomainId`"><tbody><tr> <th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Intervalo</th> <td>0 - 16</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `LocationDomainId`"><tbody><tr> <th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Intervalo</th> <td>0 - 16</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Para cada índice ordenado no clúster, um objeto é alocado descrevendo o que está sendo indexado e seus segmentos de armazenamento. Por padrão, cada índice assim definido também define um índice ordenado. Cada índice único e chave primária tem tanto um índice ordenado quanto um índice hash. `MaxNoOfOrderedIndexes` define o número total de índices ordenados que podem estar em uso no sistema a qualquer momento.
 
@@ -923,7 +923,7 @@ O valor padrão é 768.
 
 * `MaxNoOfSubscriptions`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Cada tabela `NDB` em um clúster NDB requer uma assinatura no kernel NDB. Para algumas aplicações da API NDB, pode ser necessário ou desejável alterar este parâmetro. No entanto, para o uso normal com servidores MySQL atuando como nós SQL, não há necessidade de fazer isso.
 
@@ -931,7 +931,7 @@ O valor padrão para `MaxNoOfSubscriptions` é 0, que é tratado como igual a `M
 
 * `MaxNoOfSubscribers`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados LocationDomainId, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados LocationDomainId, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 16</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro é de interesse apenas quando se usa a Replicação de Clúster NDB. O valor padrão é 0. Ele é tratado como `2 * MaxNoOfTables + 2 * [número de nós de API]`. Há uma assinatura por `NDB` tabela para cada um dos dois servidores MySQL (um atuando como a fonte de replicação e o outro como a replica). Cada assinante usa 16 bytes de memória.
 
@@ -939,7 +939,7 @@ Ao usar replicação circular, replicação de múltiplas fontes e outras config
 
 Para mais informações, consulte a Seção 25.7, “Replicação de Clúster NDB”.
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>2</td> </tr><tr><th>Intervalo</th> <td>1 - 4</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB 25.6.8">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>2</td> </tr><tr><th>Intervalo</th> <td>1 - 4</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB 25.6.8">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro define um teto para o número de operações que podem ser realizadas por todos os nós da API no clúster de uma só vez. O valor padrão (256) é suficiente para operações normais e pode precisar ser ajustado apenas em cenários em que há muitos nós da API executando um grande volume de operações simultaneamente.
 
@@ -947,7 +947,7 @@ Este parâmetro define um teto para o número de operações que podem ser reali
 
 * `CompressedLCP`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>2</td> </tr><tr><th>Intervalo</th> <td>1 - 4</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB 25.6.8">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>2</td> </tr><tr><th>Intervalo</th> <td>1 - 4</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB 25.6.8">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Definir este parâmetro para `1` faz com que os arquivos de ponto de verificação locais sejam comprimidos. A compressão usada é equivalente a **gzip --fast** e pode economizar 50% ou mais do espaço necessário no nó de dados para armazenar arquivos de ponto de verificação não comprimidos. Os LCPs comprimidos podem ser habilitados para nós de dados individuais ou para todos os nós de dados (definindo este parâmetro na seção `[ndbd default]` do arquivo `config.ini`).
 
@@ -957,7 +957,7 @@ Este parâmetro define um teto para o número de operações que podem ser reali
 
   O valor padrão é `0` (desativado).* `CrashOnCorruptedTuple`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>2</td> </tr><tr><th>Intervalo</th> <td>1 - 4</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr><th>Padrão</th> <td>2</td> </tr><tr><th>Intervalo</th> <td>1 - 4</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do NDB Cluster 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 É possível especificar tabelas do NDB Cluster como sem disco, o que significa que as tabelas não são checkpointeadas no disco e que não ocorre nenhum registro de log. Tais tabelas existem apenas na memória principal. Uma consequência do uso de tabelas sem disco é que nem as tabelas nem os registros nessas tabelas sobrevivem a um crash. No entanto, ao operar no modo sem disco, é possível executar o **ndbd** em um computador sem disco.
 
@@ -971,7 +971,7 @@ Quando esta funcionalidade é habilitada, o backup online do NDB Cluster é desa
 
 * `EncryptedFileSystem`
 
-<table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados do tipo e valor `NoOfReplicas` (Número de réplicas)" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>inteiro</td></tr><tr><th>Padrão</th><td>2</td></tr><tr><th>Intervalo</th><td>1 - 4</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span></p><p>Requer o desligamento completo do cluster, apagando e restaurando o sistema de arquivos do cluster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster" target="_blank">backup</a>, e depois reiniciando o cluster. (NDB 9.5.0)</p></td></tr></tbody></table>4
+<table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados do tipo e valor `NoOfReplicas` (Número de réplicas)" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>inteiro</td></tr><tr><th>Padrão</th><td>2</td></tr><tr><th>Intervalo</th><td>1 - 4</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span></p><p>Requer o desligamento completo do cluster, apagando e restaurando o sistema de arquivos do cluster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster" target="_blank">backup</a>, e depois reiniciando o cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
   Criptografar arquivos do sistema de arquivos, incluindo logs de desfazer e logs de refazer. Desabilitado por padrão (`0`); definido para `1` para habilitar.
 
@@ -983,13 +983,13 @@ Para obter mais informações, consulte a Seção 25.6.19.4, “Criptografia do 
 
 * `LateAlloc`
 
-  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados `NoOfReplicas` e tipo e valor de unidade" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>inteiro</td></tr><tr><th>Padrão</th><td>2</td></tr><tr><th>Intervalo</th><td>1 - 4</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do cluster, apagamento e restauração do sistema de arquivos do cluster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup Online do NDB Cluster">backup</a>, e, em seguida, reiniciar o cluster. (NDB 9.5.0)</p></td></tr></tbody></table>5
+  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados `NoOfReplicas` e tipo e valor de unidade" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>inteiro</td></tr><tr><th>Padrão</th><td>2</td></tr><tr><th>Intervalo</th><td>1 - 4</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do cluster, apagamento e restauração do sistema de arquivos do cluster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup Online do NDB Cluster">backup</a>, e, em seguida, reiniciar o cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
   Alocar memória para este nó de dados após a conexão com o servidor de gerenciamento ter sido estabelecida. Ativado por padrão.
 
 * `LockPagesInMainMemory`
 
-  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados `NoOfReplicas` e tipo e valor de unidade" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>inteiro</td></tr><tr><th>Padrão</th><td>2</td></tr><tr><th>Intervalo</th><td>1 - 4</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do cluster, apagamento e restauração do sistema de arquivos do cluster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup Online do NDB Cluster">backup</a>, e, em seguida, reiniciar o cluster. (NDB 9.5.0)</p></td></tr></tbody></table>6
+  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados `NoOfReplicas` e tipo e valor de unidade" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>inteiro</td></tr><tr><th>Padrão</th><td>2</td></tr><tr><th>Intervalo</th><td>1 - 4</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do cluster, apagamento e restauração do sistema de arquivos do cluster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup Online do NDB Cluster">backup</a>, e, em seguida, reiniciar o cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Para vários sistemas operacionais, incluindo Solaris e Linux, é possível bloquear um processo na memória e, assim, evitar qualquer troca para o disco. Isso pode ser usado para ajudar a garantir as características em tempo real do clúster.
 
@@ -1017,7 +1017,7 @@ Uma solução possível para este problema é usar a variável de ambiente `LD_P
 
 * `ODirect`
 
-  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados `NoOfReplicas` (número de réplicas) do NDB 9.5.0" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Intervalo</th> <td>1 - 4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados `NoOfReplicas` (número de réplicas) do NDB 9.5.0" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Intervalo</th> <td>1 - 4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Ativação deste parâmetro faz com que o `NDB` tente usar escritas `O_DIRECT` para LCP, backups e logs de refazer, muitas vezes reduzindo o uso de **kswapd** e CPU. Ao usar o NDB Cluster no Linux, ative `ODirect` se você estiver usando um kernel 2.6 ou posterior.
 
@@ -1058,7 +1058,7 @@ Uma solução possível para este problema é usar a variável de ambiente `LD_P
 
 * `RequireCertificate`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados `dataDir` do tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>caminho</td></tr><tr><th>Padrão</th><td>.</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</a></p></td></tr></tbody></table>9
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados `dataDir` do tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>caminho</td></tr><tr><th>Padrão</th><td>.</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</a></p></td></tr></tbody></table>
 
 Se este parâmetro for definido como `true`, o nó de dados procura por uma chave e um certificado válido e atual no caminho de busca TLS e não pode ser iniciado se não os encontrar.
 
@@ -1068,7 +1068,7 @@ Se este parâmetro for definido como `true`, as conexões a este nó de dados de
 
 * `RestartOnErrorInsert`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p><span class="bold"><strong>Reinício Inicial do Nó de Dados: </strong></span></p><p><a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um NDB Cluster" class="link">Reinício Rotativo do NDB Cluster</a></p><p>(NDB 9.5.0)</p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p><span class="bold"><strong>Reinício Inicial do Nó de Dados: </strong></span></p><p><a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um NDB Cluster" class="link">Reinício Rotativo do NDB Cluster</a></p><p>(NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Esta funcionalidade só é acessível ao construir a versão de depuração, onde é possível inserir erros na execução de blocos individuais de código como parte do teste.
 
@@ -1076,7 +1076,7 @@ Se este parâmetro for definido como `true`, as conexões a este nó de dados de
 
 * `StopOnError`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Este parâmetro especifica se o processo de um nó de dados deve sair ou realizar um reinício automático quando uma condição de erro for encontrada.
 
@@ -1088,7 +1088,7 @@ Os usuários do MySQL Cluster Manager devem notar que, quando `StopOnError` é i
 
 * `UseShm`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício contínuo de um clúster NDB" target="_blank">reinício contínuo</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício contínuo de um clúster NDB" target="_blank">reinício contínuo</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Ative uma conexão de memória compartilhada entre este nó de dados e o nó de API que também está sendo executado neste host. Defina para 1 para ativar.
 
@@ -1098,7 +1098,7 @@ Existem vários parâmetros `[ndbd]` que especificam temporizadores e intervalos
 
 * `TimeBetweenWatchDogCheck`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó de Dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um Clúster NDB" target="_blank">reinício rotativo</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó de Dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um Clúster NDB" target="_blank">reinício rotativo</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Para evitar que o fio principal fique preso em um loop infinito em algum momento, um fio "guarda-costas" verifica o fio principal. Este parâmetro especifica o número de milissegundos entre as verificações. Se o processo permanecer no mesmo estado após três verificações, o fio guarda-costas o termina.
 
@@ -1106,13 +1106,13 @@ Este parâmetro pode ser facilmente alterado para fins de experimentação ou pa
 
 O tempo padrão é de 6000 milissegundos (6 segundos).* `TimeBetweenWatchDogCheckInitial`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Isso é semelhante ao parâmetro `TimeBetweenWatchDogCheck`, exceto que `TimeBetweenWatchDogCheckInitial` controla o tempo que passa entre os verificações de execução dentro de um nó de armazenamento nas fases iniciais de execução, durante as quais a memória é alocada.
 
 O tempo limite padrão é de 6000 milissegundos (6 segundos).* `StartPartialTimeout`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó do cluster: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício contínuo de um cluster NDB" class="link">reinício contínuo</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó do cluster: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício contínuo de um cluster NDB" class="link">reinício contínuo</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Este parâmetro especifica quanto tempo o Cluster espera que todos os nós de dados estejam disponíveis antes que a rotina de inicialização do cluster seja invocada. Esse tempo de espera é usado para evitar um início parcial do Cluster sempre que possível.
 
@@ -1122,7 +1122,7 @@ O valor padrão é de 30000 milissegundos (30 segundos). 0 desabilita o tempo de
 
 * `StartPartitionedTimeout`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó de Dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um Clúster NDB" target="_blank">reinício rotativo</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó de Dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um Clúster NDB" target="_blank">reinício rotativo</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Se o clúster estiver pronto para começar após esperar `StartPartialTimeout` milissegundos, mas ainda possivelmente estiver em um estado particionado, o clúster aguarda até que esse tempo limite também tenha passado. Se `StartPartitionedTimeout` for definido como 0, o clúster aguarda indefinidamente (232−1 ms, ou aproximadamente 49,71 dias).
 
@@ -1130,7 +1130,7 @@ O valor padrão é de 30000 milissegundos (30 segundos). 0 desabilita o tempo de
 
 * `StartFailureTimeout`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Se um nó de dados não completar sua sequência de inicialização dentro do tempo especificado por este parâmetro, o início da inicialização do nó falha. Definir este parâmetro para 0 (o valor padrão) significa que nenhum timeout de nó de dados é aplicado.
 
@@ -1138,7 +1138,7 @@ O valor padrão é de 30000 milissegundos (30 segundos). 0 desabilita o tempo de
 
 * `StartNoNodeGroupTimeout`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó do cluster: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um cluster NDB" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados DataDir" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>.</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó do cluster: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um cluster NDB" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Quando um nó de dados é configurado com `Nodegroup = 65536`, ele é considerado não atribuído a nenhum grupo de nós. Quando isso é feito, o cluster aguarda `StartNoNodegroupTimeout` milissegundos, depois trata esses nós como se tivessem sido adicionados à lista passada para a opção `--nowait-nodes` e começa. O valor padrão é `15000` (ou seja, o servidor de gerenciamento aguarda 15 segundos). Definir esse parâmetro igual a `0` significa que o cluster aguarda indefinidamente.
 
@@ -1148,7 +1148,7 @@ O valor padrão é de 30000 milissegundos (30 segundos). 0 desabilita o tempo de
 
 * `HeartbeatIntervalDbDb`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados FileSystemPath, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados FileSystemPath, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Um dos métodos principais de descoberta de nós falhos é o uso de batidas cardíacas. Este parâmetro indica com que frequência os sinais de batida cardíaca são enviados e com que frequência se espera recebê-los. As batidas cardíacas não podem ser desativadas.
 
@@ -1160,7 +1160,7 @@ Veja também Comunicação de rede e latência, bem como a descrição do parâm
 
 * `HeartbeatIntervalDbApi`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do caminho do sistema (FileSystemPath) do tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó de Dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um Clúster NDB" target="_blank">reinício rotativo</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do caminho do sistema (FileSystemPath) do tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó de Dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um Clúster NDB" target="_blank">reinício rotativo</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Cada nó de dados envia sinais de batida de coração para cada servidor MySQL (nó SQL) para garantir que ele permaneça em contato. Se um servidor MySQL não enviar um sinal de batida de coração a tempo, ele é declarado “morto”, caso em que todas as transações em andamento são concluídas e todos os recursos são liberados. O nó SQL não pode se reconectar até que todas as atividades iniciadas pela instância MySQL anterior tenham sido concluídas. Os critérios de três batidas de coração para essa determinação são os mesmos descritos para `HeartbeatIntervalDbDb`.
 
@@ -1170,7 +1170,7 @@ Veja também Comunicação de rede e latência, bem como a descrição do parâm
 
 * `HeartbeatOrder`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados FileSystemPath, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados FileSystemPath, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Os nós de dados enviam batidas de coração uns aos outros de forma circular, de modo que cada nó de dados monitora o anterior. Se uma batida de coração não for detectada por um dado nó de dados, este nó declara o nó de dados anterior no círculo como "morto" (ou seja, não mais acessível pelo cluster). A determinação de que um nó de dados está morto é feita globalmente; em outras palavras, uma vez que um nó de dados é declarado morto, ele é considerado como tal por todos os nós do cluster.
 
@@ -1182,7 +1182,7 @@ Considere uma configuração onde existem 4 nós de dados A, B, C e D em execuç
 
 **Tabela 25.9 Quatro nós de dados A, B, C, D em execução em dois computadores hospedeiros host1, host2; cada nó de dados pertence a um dos dois grupos de nós.**
 
-<table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados FileSystemPath e tipo e valor de unidade" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>caminho</td></tr><tr><th>Padrão</th><td>DataDir</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rolling de um Clúster NDB" target="_blank">reinício rolling</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0)</p></td></tr></tbody></table>3
+<table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados FileSystemPath e tipo e valor de unidade" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>caminho</td></tr><tr><th>Padrão</th><td>DataDir</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rolling de um Clúster NDB" target="_blank">reinício rolling</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Suponha que os batimentos cardíacos sejam transmitidos na ordem A->B->C->D->A. Nesse caso, a perda do batimento cardíaco entre os hosts faz com que o nó B declare o nó A como morto e o nó C declare o nó B como morto. Isso resulta na perda do Grupo de Nodos 0, e assim o clúster falha. Por outro lado, se a ordem de transmissão for A->B->D->C->A (e todas as outras condições permanecerem como anteriormente declaradas), a perda do batimento cardíaco faz com que os nós A e D sejam declarados como mortos; nesse caso, cada grupo de nós tem um nó sobrevivente, e o clúster sobrevive.
 
@@ -1190,7 +1190,7 @@ O parâmetro de configuração `HeartbeatOrder` permite que a ordem de transmiss
 
 **Tabela 25.10 Valores de `HeartbeatOrder` para forçar uma ordem de transição do batimento cardíaco de A->B->D->C->A.**
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados FileSystemPath, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício em rolagem de um cluster NDB" target="_blank">reinício em rolagem</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados FileSystemPath, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício em rolagem de um cluster NDB" target="_blank">reinício em rolagem</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Para usar este parâmetro para alterar a ordem de transmissão do batimento cardíaco em um cluster NDB em execução, você deve primeiro definir `HeartbeatOrder` para cada nó de dados no cluster no arquivo de configuração global (`config.ini`) (ou arquivos). Para fazer a mudança entrar em vigor, você deve realizar uma das seguintes ações:
 
@@ -1201,7 +1201,7 @@ O parâmetro de configuração `HeartbeatOrder` permite que a ordem de transmiss
 
 * `ConnectCheckIntervalDelay`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados FileSystemPath, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados FileSystemPath, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Este parâmetro permite a verificação de conexão entre nós de dados após um deles ter falhado nas verificações de batida de coração por 5 intervalos de até `HeartbeatIntervalDbDb` milissegundos.
 
@@ -1209,7 +1209,7 @@ Um nó de dados que, além disso, não responder dentro de um intervalo de `Conn
 
 O valor padrão para este parâmetro é 0 (desativado).* `TimeBetweenLocalCheckpoints`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados FileSystemPath, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados FileSystemPath, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro é uma exceção, pois não especifica um tempo para esperar antes de iniciar um novo ponto de verificação local; em vez disso, é usado para garantir que os pontos de verificação locais não sejam realizados em um cluster onde ocorrem relativamente poucas atualizações. Na maioria dos clusters com taxas de atualização altas, é provável que um novo ponto de verificação local seja iniciado imediatamente após o anterior ter sido concluído.
 
@@ -1219,7 +1219,7 @@ Todas as operações de escrita no clúster são somadas. Definir `TimeBetweenLo
 
 * `TimeBetweenGlobalCheckpoints`
 
-  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados FileSystemPath" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rolling de um Clúster NDB" target="_blank">reinício rolling</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados FileSystemPath" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rolling de um Clúster NDB" target="_blank">reinício rolling</a> do clúster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Quando uma transação é confirmada, ela é confirmada na memória principal em todos os nós nos quais os dados são espelhados. No entanto, os registros do log de transação não são descarregados no disco como parte da confirmação. O raciocínio por trás desse comportamento é que ter a transação confirmada com segurança em pelo menos duas máquinas hospedeiras autônomas deve atender a padrões razoáveis de durabilidade.
 
@@ -1231,13 +1231,13 @@ Este parâmetro define o intervalo entre os pontos de verificação global. O pa
 
 * `TimeBetweenGlobalCheckpointsTimeout`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados de caminho do sistema de arquivos e informações sobre tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>caminho</td></tr><tr><th>Padrão</th><td>DataDir</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Nó: </strong></span></p><p><a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rolling de um Clúster NDB" class="link">Reinício Rolling do Clúster</a></p><p>(NDB 9.5.0)</p></td></tr></tbody></table>8
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados de caminho do sistema de arquivos e informações sobre tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>caminho</td></tr><tr><th>Padrão</th><td>DataDir</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Nó: </strong></span></p><p><a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rolling de um Clúster NDB" class="link">Reinício Rolling do Clúster</a></p><p>(NDB 9.5.0)</p></td></tr></tbody></table>
 
 Este parâmetro define o tempo máximo entre os pontos de verificação globais. O valor padrão é de 120000 milissegundos.
 
 * `TimeBetweenEpochs`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um NDB Cluster">reinício rotativo</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>DataDir</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um NDB Cluster">reinício rotativo</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Este parâmetro define o intervalo entre as épocas de sincronização para a Replicação do NDB Cluster. O valor padrão é de 100 milissegundos.
 
@@ -1245,7 +1245,7 @@ Este parâmetro define o tempo máximo entre os pontos de verificação globais.
 
 * `TimeBetweenEpochsTimeout`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados BackupDataDir do tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados BackupDataDir do tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Este parâmetro define um tempo limite para as épocas de sincronização para a Replicação do NDB Cluster. Se um nó não conseguir participar de um ponto de verificação global dentro do tempo determinado por este parâmetro, o nó é desligado. O valor padrão é 0; em outras palavras, o tempo limite é desativado.
 
@@ -1257,7 +1257,7 @@ Definir este parâmetro para zero tem o efeito de desativar as paradas de GCP ca
 
 * `MaxBufferedEpochs`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   O número de épocas não processadas pelas quais um nó assinante pode ficar para trás. Exceder esse número faz com que um assinante que fica para trás seja desconectado.
 
@@ -1267,19 +1267,19 @@ Definir este parâmetro para zero tem o efeito de desativar as paradas de GCP ca
 
 * `MaxBufferedEpochBytes`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir do tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir do tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 O número total de bytes alocados para épocas de bufferização por este nó.
 
 * `TimeBetweenInactiveTransactionAbortCheck`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 O gerenciamento de timeout é realizado verificando um temporizador em cada transação uma vez para cada intervalo especificado por este parâmetro. Assim, se este parâmetro for definido para 1000 milissegundos, cada transação é verificada para o timeout uma vez por segundo.
 
 O valor padrão é 1000 milissegundos (1 segundo).* `TransactionInactiveTimeout`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro define o tempo máximo permitido para o intervalo entre operações na mesma transação antes que a transação seja abortada.
 
@@ -1287,7 +1287,7 @@ O padrão deste parâmetro é `4G` (também o máximo). Para uma base de dados e
 
 * `TransactionDeadlockDetectionTimeout`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir, tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Quando um nó executa uma consulta que envolve uma transação, o nó aguarda a resposta dos outros nós no cluster antes de continuar. Este parâmetro define o tempo que a transação pode gastar executando dentro de um nó de dados, ou seja, o tempo que o coordenador da transação espera que cada nó de dados que participa da transação execute uma solicitação.
 
@@ -1305,7 +1305,7 @@ O padrão deste parâmetro é `4G` (também o máximo). Para uma base de dados e
 
 * `DiskSyncSize`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Este é o número máximo de bytes para armazenar antes de descartar os dados para um arquivo de ponto de verificação local. Isso é feito para evitar o buffer de escrita, o que pode impedir o desempenho de forma significativa. Este parâmetro *não* é destinado a substituir `TimeBetweenLocalCheckpoints`.
 
@@ -1316,7 +1316,7 @@ O padrão deste parâmetro é `4G` (também o máximo). Para uma base de dados e
   O valor padrão é de 4M (4 megabytes).
 * `MaxDiskWriteSpeed`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir do tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir do tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Defina a taxa máxima para a gravação em disco, em bytes por segundo, por pontos de verificação locais e operações de backup quando nenhum reinício (por este nó de dados ou qualquer outro nó de dados) está ocorrendo neste NDB Cluster.
 
@@ -1324,7 +1324,7 @@ O padrão deste parâmetro é `4G` (também o máximo). Para uma base de dados e
 
 * `MaxDiskWriteSpeedOtherNodeRestart`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados BackupDataDir do tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados BackupDataDir do tipo e valor da versão" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Defina a taxa máxima para a gravação em disco, em bytes por segundo, por pontos de verificação locais e operações de backup quando um ou mais nós de dados neste NDB Cluster estiverem reiniciando, exceto este nó.
 
@@ -1332,7 +1332,7 @@ O padrão deste parâmetro é `4G` (também o máximo). Para uma base de dados e
 
 * `MaxDiskWriteSpeedOwnRestart`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code class="option">--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados BackupDataDir, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>caminho</td> </tr><tr><th>Padrão</th> <td>FileSystemPath</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do nó de dados: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster; cada nó de dados deve ser reiniciado com <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_initial"><code>--initial</code></a>. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Defina a taxa máxima para a gravação em disco, em bytes por segundo, por pontos de verificação locais e operações de backup enquanto este nó de dados estiver reiniciando.
 
@@ -1340,7 +1340,7 @@ O padrão deste parâmetro é `4G` (também o máximo). Para uma base de dados e
 
 * `MinDiskWriteSpeed`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>00
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Defina a taxa mínima para a gravação no disco, em bytes por segundo, por meio de pontos de verificação locais e operações de backup.
 
@@ -1352,7 +1352,7 @@ Especifica o tempo máximo (em segundos) que o nó de dados espera para que o tr
 
 * `ArbitrationTimeout`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>02
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro especifica quanto tempo os nós de dados esperam por uma resposta do árbitro a uma mensagem de arbitragem. Se isso for excedido, presume-se que a rede foi dividida.
 
@@ -1360,7 +1360,7 @@ O valor padrão é de 7500 milissegundos (7,5 segundos).
 
 * `Arbitration`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>03
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 O parâmetro `Arbitração` permite a escolha de esquemas de arbitragem, correspondendo a um dos 3 valores possíveis para este parâmetro:
 
@@ -1399,7 +1399,7 @@ Este parâmetro deve ser usado apenas na seção `[ndbd default]` do arquivo de 
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>04
+</table>
 
   Este parâmetro determina o tempo que um nó de dados aguarda para que os nós de API que estão se subscritindo se conectem. Quando esse tempo de espera expira, quaisquer nós de API "faltantes" são desconectados do clúster. Para desabilitar esse tempo de espera, defina `RestartSubscriberConnectTimeout` para 0.
 
@@ -1419,7 +1419,7 @@ Esses buffers são usados como interfaces para o sistema de arquivos ao gravar r
 
 * `UndoIndexBuffer`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `ExecuteOnComputer`" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>06
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `ExecuteOnComputer`" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Este parâmetro anteriormente definia o tamanho do buffer de índice de desfazer, mas não tem efeito nas versões atuais do NDB Cluster.
 
@@ -1427,7 +1427,7 @@ O uso deste parâmetro no arquivo de configuração do cluster gera uma advertê
 
 * `UndoDataBuffer`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer no cluster" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Deprecativo</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>07
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer no cluster" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Deprecativo</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro anteriormente definia o tamanho do buffer de dados de desfazer, mas não tem efeito nas versões atuais do NDB Cluster.
 
@@ -1472,7 +1472,7 @@ O uso deste parâmetro no arquivo de configuração do cluster gera uma advertê
 
 * `EventLogBufferSize`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>09
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Controla o tamanho do buffer circular usado para eventos de log do NDB nos nós de dados.
 
@@ -1484,7 +1484,7 @@ Um conjunto análogo de níveis pode ser definido para o cliente de gerenciament
 
 * `LogLevelStartup`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>10
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>
 
 O nível de relatório para eventos gerados durante o início do processo.
 
@@ -1492,7 +1492,7 @@ O nível padrão é 1.
 
 * `LogLevelShutdown`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>11
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>
 
 O nível de relatório para eventos gerados como parte do desligamento suave de um nó.
 
@@ -1500,7 +1500,7 @@ O nível padrão é 0.
 
 * `LogLevelStatistic`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>12
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 O nível de relatório para eventos estatísticos, como número de leituras de chave primária, número de atualizações, número de inserções, informações relacionadas ao uso do buffer, e assim por diante.
 
@@ -1508,7 +1508,7 @@ O nível padrão é 0.
 
 * `LogLevelCheckpoint`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>13
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 O nível de relatório para eventos gerados por pontos de verificação locais e globais.
 
@@ -1516,14 +1516,14 @@ O nível padrão é 0.
 
 * `LogLevelNodeRestart`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>14
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 O nível de relatório para eventos gerados durante o reinício do nó.
 
 O nível padrão é 0.
 * `LogLevelConnection`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>15
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 O nível de relatório para eventos gerados por conexões entre nós do clúster.
 
@@ -1555,7 +1555,7 @@ O nível padrão é 0.
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>16
+</table>
 
   O nível de relatórios para eventos gerados por erros e avisos pelo clúster como um todo. Esses erros não causam falha em nenhum nó, mas ainda são considerados dignos de serem relatados.
 
@@ -1588,7 +1588,7 @@ O nível padrão é 0.
       <th>Tipo de reinício</th>
       <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td>
     </tr>
-  </table>17
+  </table>
 
   O nível de relatórios para eventos gerados por congestionamento. Esses erros não causam falha no nó, mas ainda são considerados dignos de serem relatados.
 
@@ -1596,14 +1596,14 @@ O nível padrão é 0.
 
 * `LogLevelInfo`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>20
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>
 
 O nível de relatórios para eventos gerados para informações sobre o estado geral do clúster.
 
 O nível padrão é 0.
 * `MemReportFrequency`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>21
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>
 
 Este parâmetro controla com que frequência os relatórios de uso de memória do nó de dados são registrados no log do clúster; é um valor inteiro que representa o número de segundos entre os relatórios.
 
@@ -1618,7 +1618,7 @@ O uso da memória de dados e da memória de índice de cada nó de dados é regi
 
 * `StartupStatusReportFrequency`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados executeOnComputer tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>20
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados executeOnComputer tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Quando um nó de dados é iniciado com a opção `--initial`, ele inicializa o arquivo de log de refazer durante a Fase de Início 4 (veja a Seção 25.6.4, “Resumo das Fases de Início do NDB Cluster”). Quando valores muito grandes são definidos para `NoOfFragmentLogFiles`, `FragmentLogFileSize` ou ambos, essa inicialização pode levar muito tempo. Você pode forçar que os relatórios sobre o progresso desse processo sejam registrados periodicamente, por meio do parâmetro de configuração `StartupStatusReportFrequency`. Nesse caso, o progresso é relatado no log do cluster, em termos de número de arquivos e quantidade de espaço que foram inicializados, conforme mostrado aqui:
 
@@ -1634,7 +1634,7 @@ Os seguintes parâmetros são destinados ao uso durante o teste ou depuração d
 
 * `DictTrace`
 
-<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `ExecuteOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>name</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de Reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0) </p></td> </tr></tbody></table>21
+<table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `ExecuteOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>name</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de Reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 É possível registrar traços para eventos gerados ao criar e excluir tabelas usando `DictTrace`. Esse parâmetro é útil apenas no depuração do código do kernel NDB. `DictTrace` aceita um valor inteiro. 0 é o padrão e significa que não há registro; 1 habilita o registro de traços e 2 habilita o registro de saída de depuração adicional do `DBDICT`.
 
@@ -1718,7 +1718,7 @@ O valor padrão para esse parâmetro é 50 (interpretado como 50%).
 
 * `BackupLogBufferSize`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>25
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   O buffer de log de backup desempenha um papel semelhante ao desempenhado pelo buffer de dados de backup, exceto que é usado para gerar um log de todas as escritas de tabela feitas durante a execução do backup. Os mesmos princípios se aplicam à escrita dessas páginas como com o buffer de dados de backup, exceto que, quando não há mais espaço no buffer de log de backup, o backup falha. Por essa razão, o tamanho do buffer de log de backup deve ser grande o suficiente para lidar com a carga causada pelas atividades de escrita enquanto o backup está sendo feito. Veja a Seção 25.6.8.3, “Configuração para backups de clúster NDB”.
 
@@ -1730,13 +1730,13 @@ O valor padrão para este parâmetro é de 16 MB.
 
 * `BackupMemory`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados do data node do NDB Cluster" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (no NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>26
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados do data node do NDB Cluster" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (no NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro está descontinuado e sujeito à remoção em uma versão futura do NDB Cluster. Qualquer configuração feita para ele é ignorada.
 
 * `BackupReportFrequency`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>27
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro controla com que frequência os relatórios de status de backup são emitidos no cliente de gerenciamento durante um backup, bem como com que frequência esses relatórios são escritos no log do clúster (desde que a log de eventos do clúster esteja configurada para permitir isso—veja Log e checkpointing). `BackupReportFrequency` representa o tempo em segundos entre os relatórios de status de backup.
 
@@ -1748,7 +1748,7 @@ O valor padrão para este parâmetro é de 256 KB.
 
 * `BackupMaxWriteSize`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>29
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro especifica o tamanho máximo das mensagens escritas no disco pelo log de backup e pelos buffers de dados de backup.
 
@@ -1756,7 +1756,7 @@ O valor padrão para este parâmetro é de 1 MB.
 
 * `BackupCompressed`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>30
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Ativação deste parâmetro faz com que os arquivos de backup sejam comprimidos. A compressão utilizada é equivalente a **gzip --fast** e pode economizar 50% ou mais do espaço necessário no nó de dados para armazenar arquivos de backup não comprimidos. Os backups comprimidos podem ser habilitados para nós de dados individuais ou para todos os nós de dados (definindo este parâmetro na seção `[ndbd default]` do arquivo `config.ini`).
 
@@ -1768,7 +1768,7 @@ O valor padrão é `0` (desativado).
 
 * `RequireEncryptedBackup`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `ExecuteOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></tbody></table>31
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `ExecuteOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></tbody></table>
 
   Se definido para 1, os backups devem ser criptografados. Embora seja possível definir este parâmetro para cada nó de dados individualmente, recomenda-se que você o defina na seção `[ndbd default]` do arquivo de configuração global `config.ini`. Para obter mais informações sobre a realização de backups criptografados, consulte a Seção 25.6.8.2, “Usando o cliente de gerenciamento de clúster NDB para criar um backup”.
 
@@ -1794,7 +1794,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
 * `BuildIndexThreads`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `executeoncomputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>32
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `executeoncomputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro determina o número de threads a serem criados ao reconstruir índices ordenados durante o início de um sistema ou de um nó, bem como ao executar **ndb_restore** `--rebuild-indexes`. É suportado apenas quando há mais de um fragmento para a tabela por nó de dados (por exemplo, quando `COMMENT="NDB_TABLE=PARTITION_BALANCE=FOR_RA_BY_LDM_X_2"` é usado com `CREATE TABLE`).
 
@@ -1806,7 +1806,7 @@ Você pode habilitar a construção multithread durante os reinicializações in
 
 * `LockExecuteThreadToCPU`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinicialização</th> <td><p> <span class="bold"><strong>Reinicialização do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>33
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinicialização</th> <td><p> <span class="bold"><strong>Reinicialização do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Quando usado com **ndbd**, este parâmetro (agora uma string) especifica o ID da CPU atribuído para lidar com o thread de execução do `NDBCLUSTER`. Quando usado com **ndbmtd"), o valor deste parâmetro é uma lista de IDs de CPU separados por vírgula, atribuídos para lidar com os threads de execução. Cada ID de CPU na lista deve ser um inteiro no intervalo de 0 a 65535 (inclusivo).
 
@@ -1841,7 +1841,7 @@ Você pode habilitar a construção multithread durante os reinicializações in
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento completo e um reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>34
+</table>
 
 Este parâmetro especifica o ID da CPU atribuído para lidar com os threads de manutenção do `NDBCLUSTER`.
 
@@ -1859,14 +1859,14 @@ O parâmetro de configuração `Numa` é suportado apenas em sistemas Linux onde
 
 * `RealtimeScheduler`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e valor"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>36
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e valor"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>
 
 Definir este parâmetro para 1 habilita a agendamento em tempo real das threads do nó de dados.
 
 O padrão é 0 (agendamento desativado).
 * `SchedulerExecutionTimer`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e valor"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>37
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e valor"><tr><th style="width: 50%">Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th style="width: 50%">Tipo ou unidades</th><td>nome</td></tr><tr><th style="width: 50%">Padrão</th><td>[...]</td></tr><tr><th style="width: 50%">Intervalo</th><td>...</td></tr><tr><th style="width: 50%">Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th style="width: 50%">Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></table>
 
 Este parâmetro especifica o tempo em microsegundos para que as threads sejam executadas no agendamento antes de serem enviadas. Definir para 0 minimiza o tempo de resposta; para obter um maior desempenho, você pode aumentar o valor em detrimento de tempos de resposta mais longos.
 
@@ -1874,13 +1874,13 @@ O valor padrão é de 50 μs, o que, conforme demonstrado em nossos testes, aume
 
 * `SchedulerResponsiveness`
 
-  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e valor"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>38
+  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e valor"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Defina o equilíbrio no planejador `NDB` entre velocidade e desempenho. Este parâmetro aceita um número inteiro cujo valor está no intervalo de 0 a 10, incluindo 5 como padrão. Valores mais altos proporcionam tempos de resposta melhores em relação ao desempenho. Valores mais baixos proporcionam um aumento no desempenho à custa de tempos de resposta mais longos.
 
 * `SchedulerSpinTimer`
 
-  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e valor"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>39
+  <table frame="box" rules="all" summary="Informações sobre o parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e valor"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro especifica o tempo em microsegundos para que os threads sejam executados no agendador antes de entrarem em estado de espera.
 
@@ -1914,7 +1914,7 @@ Os parâmetros de giro modificados por `SpinMethod` são descritos na lista a se
 
 * `TwoPassInitialNodeRestartCopy`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>41
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 A construção multithreading de índices ordenados pode ser habilitada para reinícios iniciais de nós de dados configurando este parâmetro de configuração para `true` (o valor padrão), o que permite a cópia de dados em duas passagens durante os reinícios iniciais dos nós.
 
@@ -1928,7 +1928,7 @@ Um backup usando paralelismo nos nós de dados exige que múltiplos LDMs estejam
 
 * `AutomaticThreadConfig`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `executeOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>42
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `executeOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento e o reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Quando definido para 1, habilita a configuração automática de threads, empregando o número de CPUs disponíveis para um nó de dados, levando em conta quaisquer limites definidos por `taskset`, `numactl`, máquinas virtuais, Docker e outros meios de controle de quais CPUs estão disponíveis para um aplicativo específico (em plataformas Windows, a configuração automática de threads usa todas as CPUs que estão online); como alternativa, você pode definir `NumCPUs` para o número desejado de CPUs (até 1024, o número máximo de CPUs que podem ser gerenciadas pela configuração automática de threads). Quaisquer configurações para `ThreadConfig` e `MaxNoOfExecutionThreads` são ignoradas. Além disso, habilitar este parâmetro desabilita automaticamente `ClassicFragmentation`.
 
@@ -1942,7 +1942,7 @@ Para novos clústeres, é preferível definir `ClassicFragmentation` para `false
 
 Este parâmetro e `AutomaticThreadConfig` são mutuamente exclusivos; habilitar `AutomaticThreadConfig` desabilita automaticamente `ClassicFragmentation`. * `EnableMultithreadedBackup`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>44
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Habilita o backup multisserial. Se cada nó de dados tiver pelo menos 2 LDMs, todos os threads do LDM participam do backup, que é criado usando um subdiretório por thread do LDM, e cada subdiretório contendo os arquivos de backup `.ctl`, `.Data` e `.log`.
 
@@ -2072,7 +2072,7 @@ Mudar o número de threads LDM normalmente requer um reinício do sistema, seja 
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>47
+</table>
 
 Este parâmetro pode ser usado para fazer com que os nós de dados esperem momentaneamente antes de enviar dados para os nós de API; em algumas circunstâncias, descritas nos parágrafos seguintes, isso pode resultar em uma transmissão mais eficiente de volumes maiores de dados e um desempenho geral maior.
 
@@ -2082,7 +2082,7 @@ Para lidar com esse tipo de cenário, você pode definir `MaxSendDelay` para um 
 
 * `NoOfFragmentLogParts`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>48
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Defina o número de grupos de arquivos de log para logs de revisão pertencentes a este **ndbmtd"). O valor deste parâmetro deve ser definido igual ao número de threads LDM usadas por **ndbmtd")</span> como determinado pelo ajuste para `MaxNoOfExecutionThreads`. Uma configuração que use mais de 4 partes de log de revisão por LDM é desaconselhada.
 
@@ -2115,7 +2115,7 @@ Para lidar com esse tipo de cenário, você pode definir `MaxSendDelay` para um 
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>49
+</table>
 
   Configure a configuração automática de threads para usar apenas esse número de CPUs. Não tem efeito se `AutomaticThreadConfig` não estiver habilitado.
 
@@ -2146,7 +2146,7 @@ Para lidar com esse tipo de cenário, você pode definir `MaxSendDelay` para um 
       <th>Tipo de reinício</th>
       <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td>
     </tr>
-  </table>50
+  </table>
 
   Define o número de partições usadas em cada nó ao criar uma nova tabela `NDB`. Isso permite evitar a divisão de tabelas em um número excessivo de partições quando o número de gestores de dados locais (LDMs) aumenta.
 
@@ -2156,7 +2156,7 @@ Se `ClassicFragmentation` estiver habilitado, qualquer configuração desse par�
 
 * `ThreadConfig`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `ExecuteOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></tbody></table>51
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados `ExecuteOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>nome</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Descontinuado</th><td>Sim (em NDB 7.5)</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do sistema: </strong></span></p>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</td></tr></tbody></table>
 
 Este parâmetro é usado com **ndbmtd") para atribuir threads de diferentes tipos a diferentes CPUs. Seu valor é uma string cujo formato tem a seguinte sintaxe:
 
@@ -2205,7 +2205,7 @@ O nível de prioridade de thread não pode ser definido para threads de constru�
 
 **Tabela 25.12 Mapeamento de `thread\_prio` para valores de nice em Linux e FreeBSD**
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer tipo e informação de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></table>52
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer tipo e informação de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></table>
 
     Alguns sistemas operacionais podem permitir um nível máximo de niceness de processo de 20, mas isso não é suportado por todas as versões visadas; por essa razão, escolhemos 19 como o valor máximo de `nice` que pode ser definido.
 
@@ -2213,7 +2213,7 @@ O nível de prioridade de thread não pode ser definido para threads de constru�
 
     **Tabela 25.13 Mapa de thread\_prio para prioridade FX em Solaris**
 
-    <table frame="box" rules="all" summary="Parâmetro de tipo e valor de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>53
+    <table frame="box" rules="all" summary="Parâmetro de tipo e valor de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
     A configuração de `thread_prio` de 9 é mapeada em Solaris para o valor especial de prioridade de thread FX 59, o que significa que o sistema operacional também tenta forçar o thread a rodar sozinho em seu próprio núcleo de CPU.
 
@@ -2221,7 +2221,7 @@ O nível de prioridade de thread não pode ser definido para threads de constru�
 
     **Tabela 25.14 Mapa de thread\_prio para prioridade de thread do Windows**
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados ExecuteOnComputer"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>54
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de dados ExecuteOnComputer"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 O atributo *`type`* representa um tipo de thread do NDB. Os tipos de thread suportados e o intervalo de valores de `count` permitidos para cada um estão fornecidos na seguinte lista:
 
@@ -2438,7 +2438,7 @@ Para aproveitar a estabilidade aprimorada que o uso de `ThreadConfig` oferece, �
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>55
+</table>
 
 Este é o número de entradas de página (referências de página) a serem alocadas. É especificado como um número de 32K páginas em `DiskPageBufferMemory`. O padrão é suficiente para a maioria dos casos, mas você pode precisar aumentar o valor deste parâmetro se encontrar problemas com transações muito grandes nas tabelas de Dados do disco. Cada entrada de página requer aproximadamente 100 bytes.
 
@@ -2487,7 +2487,7 @@ O valor padrão é `128M`.
 
 * `DiskIOThreadPool`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do NDB: Versão (ou posterior) e tipo ou unidades" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>58
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados do NDB: Versão (ou posterior) e tipo ou unidades" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro determina o número de threads não ligadas usadas para o acesso ao arquivo de dados do disco. Antes da introdução do `DiskIOThreadPool`, exatamente um thread era gerado para cada arquivo de dados do disco, o que poderia levar a problemas de desempenho, especialmente ao usar arquivos de dados muito grandes. Com o `DiskIOThreadPool`, você pode, por exemplo, acessar um único grande arquivo de dados usando vários threads trabalhando em paralelo.
 
@@ -2509,13 +2509,13 @@ Você também deve desabilitar `DiskDataUsingSameDisk` ao usar um ou mais discos
 
   + `FileSystemPathDD`
 
-    <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados do computador ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>59
+    <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados do computador ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Se este parâmetro for especificado, então os arquivos de dados do NDB Cluster Disk e os arquivos de log de desfazer são colocados no diretório indicado. Isso pode ser sobrescrito para arquivos de dados, arquivos de log de desfazer ou ambos, especificando valores para `FileSystemPathDataFiles`, `FileSystemPathUndoFiles` ou ambos, conforme explicado para esses parâmetros. Também pode ser sobrescrito para arquivos de dados especificando um caminho na cláusula `ADD DATAFILE` de uma declaração `CREATE TABLESPACE` ou `ALTER TABLESPACE`, e para arquivos de log de desfazer especificando um caminho na cláusula `ADD UNDOFILE` de uma declaração `CREATE LOGFILE GROUP` ou `ALTER LOGFILE GROUP`. Se `FileSystemPathDD` não for especificado, então `FileSystemPath` é usado.
 
   + `FileSystemPathDataFiles`
 
-    <table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>60
+    <table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Se este parâmetro for especificado, então os arquivos de dados do disco do NDB Cluster são colocados no diretório indicado. Isso substitui qualquer valor definido para `FileSystemPathDD`. Este parâmetro pode ser substituído para um arquivo de dados específico, especificando um caminho na cláusula `ADD DATAFILE` de uma declaração `CREATE TABLESPACE` ou `ALTER TABLESPACE` usada para criar esse arquivo de dados. Se `FileSystemPathDataFiles` não for especificado, então `FileSystemPathDD` é usado (ou `FileSystemPath`, se `FileSystemPathDD` também não tiver sido definido).
 
@@ -2523,7 +2523,7 @@ Se um diretório `FileSystemPathDataFiles` for especificado para um dado nó de 
 
 + `FileSystemPathUndoFiles`
 
-<table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados ExecuteOnComputer tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>61
+<table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados ExecuteOnComputer tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Se este parâmetro for especificado, os arquivos de log de undo do disco do NDB Cluster são colocados no diretório indicado. Isso substitui qualquer valor definido para `FileSystemPathDD`. Este parâmetro pode ser substituído para um arquivo de dados específico, especificando um caminho na cláusula `ADD UNDO` de uma declaração `CREATE LOGFILE GROUP` ou `ALTER LOGFILE GROUP` usada para criar esse arquivo de dados. Se `FileSystemPathUndoFiles` não for especificado, então `FileSystemPathDD` é usado (ou `FileSystemPath`, se `FileSystemPathDD` também não tiver sido definido).
 
@@ -2535,7 +2535,7 @@ Para mais informações, consulte a Seção 25.6.11.1, “Objetos de Dados do Di
 
   + `InitialLogFileGroup`
 
-    <table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados `ExecuteOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0) </p></td> </tr></tbody></table>62
+    <table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados `ExecuteOnComputer`"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
 Este parâmetro pode ser usado para especificar um grupo de arquivo de log que é criado ao realizar o início inicial do clúster. `InitialLogFileGroup` é especificado conforme mostrado aqui:
 
@@ -2635,7 +2635,7 @@ Por exemplo, considere a seguinte linha que especifica `InitialTablespace` na se
 
   + `MaxDiskDataLatency`
 
-    <table frame="box" rules="all" summary="Execução no parâmetro de configuração do nó de dados `data` da versão (ou posterior) da tabela" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0) </p></td> </tr></tbody></table>64
+    <table frame="box" rules="all" summary="Execução no parâmetro de configuração do nó de dados `data` da versão (ou posterior) da tabela" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do cluster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
     Este parâmetro controla a latência média máxima permitida para o acesso ao disco (máximo de 8000 milissegundos). Quando esse limite é atingido, o `NDB` começa a abortar transações para diminuir a pressão sobre o subsistema de E/S de Dados de Disco. Use `0` para desabilitar a verificação de latência.
 
@@ -2700,7 +2700,7 @@ Veja também a Seção 25.6.7, “Adicionando Nodos de Dados do NDB Cluster Onli
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>66
+</table>
 
   Quando o limite de recomeçar após o limite de commit (RedoOverCommitLimit) é excedido ao tentar escrever um log de recomeçar (redo) dado no disco, tantas vezes ou mais, quaisquer transações que não foram confirmadas como resultado são abortadas, e um nó da API onde qualquer uma dessas transações foi originada processa as operações que compõem essas transações de acordo com seu valor para `DefaultOperationRedoProblemAction` (enquanto enfileira as operações para serem re-providas ou as aborta).
 
@@ -2731,7 +2731,7 @@ Veja também a Seção 25.6.7, “Adicionando Nodos de Dados do NDB Cluster Onli
       <th>Tipo de reinício</th>
       <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
     </tr>
-  </table>67
+  </table>
 
 Este parâmetro define um limite superior em segundos para tentar escrever um log de refazer dado no disco antes de expirar o tempo. O número de vezes que o nó de dados tenta descartar este log de refazer, mas leva mais tempo do que `RedoOverCommitLimit`, é mantido e comparado com `RedoOverCommitCounter`, e quando o descarte leva muito tempo, mais vezes do que o valor desse parâmetro, quaisquer transações que não foram comprometidas como resultado do tempo de espera para o descarte são abortadas. Quando isso ocorre, o nó da API onde qualquer uma dessas transações se originou lida com as operações que compõem essas transações de acordo com a configuração `DefaultOperationRedoProblemAction` (ele ou enfileira as operações para serem re-providas, ou as aborta).
 
@@ -2741,7 +2741,7 @@ Este parâmetro define um limite superior em segundos para tentar escrever um lo
 
 * `StartFailRetryDelay`
 
-  <table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados ExecuteOnComputer tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento completo e reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>68
+  <table frame="box" rules="all" summary="Informações do parâmetro de configuração do nó de dados ExecuteOnComputer tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento completo e reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Use este parâmetro para definir o número de segundos entre as tentativas de reinício do nó de dados no evento de falha na inicialização. O padrão é 0 (sem atraso).
 
@@ -2749,7 +2749,7 @@ Tanto este parâmetro quanto `MaxStartFailRetries` são ignorados, a menos que `
 
 * `MaxStartFailRetries`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de Reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>69
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr> <th>Tipo de Reinício</th> <td><p> <span class="bold"><strong>Reinício do Sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Use este parâmetro para limitar o número de tentativas de reinício feitas pelo nó de dados no evento de falha na inicialização. O padrão é 3 tentativas.
 
@@ -2786,7 +2786,7 @@ Os parâmetros na lista a seguir estão relacionados à geração de estatístic
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>70
+</table>
 
   Ative (defina igual a 1) ou desative (defina igual a 0) a coleta automática de estatísticas ao criar índices.
 
@@ -2817,13 +2817,13 @@ Os parâmetros na lista a seguir estão relacionados à geração de estatístic
       <th>Tipo de reinício</th>
       <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
     </tr>
-  </table>71
+  </table>
 
   Ative (defina igual a 1) ou desative (defina igual a 0) o monitoramento de índices para alterações e inicie atualizações automáticas de estatísticas quando essas alterações forem detectadas. O grau de alteração necessário para ativar as atualizações é determinado pelas configurações das opções `IndexStatTriggerPct` e `IndexStatTriggerScale`.
 
 * `IndexStatSaveSize`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>72
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Desatualizado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Espaço máximo em bytes permitido para as estatísticas salvas de qualquer índice dado nas tabelas de sistema `NDB` e no cache de memória **mysqld**.
 
@@ -2858,7 +2858,7 @@ O tamanho especificado por `IndexStatSaveSize` é escalado pelo valor de `IndexS
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento completo e um reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>73
+</table>
 
 O tamanho especificado por `IndexStatSaveSize` é escalado pelo valor de `IndexStatTriggerPct` para um grande índice, vezes 0,01. Isso é multiplicado ainda mais pelo logaritmo na base 2 do tamanho do índice. Definir `IndexStatTriggerPct` igual a 0 desativa o efeito de escalonamento.
 
@@ -2889,7 +2889,7 @@ O tamanho especificado por `IndexStatSaveSize` é escalado pelo valor de `IndexS
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento completo e um reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>74
+</table>
 
 Mudança percentual nas atualizações que aciona uma atualização de estatísticas de índice. O valor é escalado por `IndexStatTriggerScale`. Você pode desativar esse gatilho completamente definindo `IndexStatTriggerPct` para 0.
 
@@ -2920,7 +2920,7 @@ Mudança percentual nas atualizações que aciona uma atualização de estatíst
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>75
+</table>
 
   Aumente `IndexStatTriggerPct` por este valor vezes 0,01 para um grande índice. Um valor de 0 desativa a escala.
 
@@ -2951,7 +2951,7 @@ Mudança percentual nas atualizações que aciona uma atualização de estatíst
       <th>Tipo de reinício</th>
       <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
     </tr>
-  </table>76
+  </table>
 
   Atraso mínimo em segundos entre as atualizações automáticas das estatísticas do índice para um determinado índice. Definir essa variável para 0 desativa qualquer atraso. O padrão é 60 segundos.
 
@@ -2959,4 +2959,4 @@ Mudança percentual nas atualizações que aciona uma atualização de estatíst
 
 **Tabela 25.15 Tipos de reinício do clúster NDB**
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>77
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de dados ExecuteOnComputer: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>nome</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Descontinuado</th> <td>Sim (em NDB 7.5)</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer um desligamento e reinício completos do clúster. (NDB 9.5.0)</p></td> </tr></tbody></table>

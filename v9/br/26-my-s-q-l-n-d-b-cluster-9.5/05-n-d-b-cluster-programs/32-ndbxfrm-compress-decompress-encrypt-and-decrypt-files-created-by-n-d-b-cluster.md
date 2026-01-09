@@ -20,13 +20,13 @@ ndbxfrm [--encrypt-ldf-iter-count=#] --encrypt-password=password input_file outp
 
 * `--compress`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para compress"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--compress</code></td></tr></table>
+  <table frame="box" rules="all" summary="Propriedades para compress"><tr><th>Formato de Linha de Comando</th> <td><code>--compress</code></td></tr></table>
 
   Compacta o arquivo de entrada, usando o mesmo método de compactação usado para compactuar backups do NDB Cluster, e escreve o resultado em um arquivo de saída. Para descriptografar um arquivo de backup `NDB` compactado que não está criptografado, é necessário apenas invocar **ndbxfrm** usando os nomes do arquivo compactado e um arquivo de saída (sem opções necessárias).
 
 * `--decrypt-key=key`, `-K` *`key`*
 
-  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--decrypt-key=key</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de Linha de Comando</th> <td><code>--decrypt-key=key</code></td> </tr></table>
 
   Descriptografa um arquivo criptografado pelo `NDB` usando a chave fornecida.
 
@@ -36,13 +36,13 @@ ndbxfrm [--encrypt-ldf-iter-count=#] --encrypt-password=password input_file outp
 
 * `--decrypt-key-from-stdin`
 
-  <table frame="box" rules="all" summary="Propriedades para decrypt-key-from-stdin"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--decrypt-key-from-stdin</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para decrypt-key-from-stdin"><tr><th>Formato de Linha de Comando</th> <td><code>--decrypt-key-from-stdin</code></td> </tr></table>
 
   Descriptografa um arquivo criptografado pelo `NDB` usando a chave fornecida a partir de `stdin`.
 
 * `--decrypt-password=senha`
 
-  <table frame="box" rules="all" summary="Propriedades para decrypt-password"><tr><th>Formato de linha de comando</th> <td><code class="literal">--decrypt-password=senha</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para decrypt-password"><tr><th>Formato de linha de comando</th> <td><code>--decrypt-password=senha</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhuma]</code></td> </tr></table>
 
   Descripta um arquivo criptografado pelo `NDB` usando a senha fornecida.
 
@@ -52,13 +52,13 @@ ndbxfrm [--encrypt-ldf-iter-count=#] --encrypt-password=password input_file outp
 
 * `--decrypt-password-from-stdin[=TRUE|FALSE]`
 
-  <table frame="box" rules="all" summary="Propriedades para decrypt-password-from-stdin"><tr><th>Formato de linha de comando</th> <td><code class="literal">--decrypt-password-from-stdin</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para decrypt-password-from-stdin"><tr><th>Formato de linha de comando</th> <td><code>--decrypt-password-from-stdin</code></td> </tr></table>
 
   Descripta um arquivo criptografado pelo `NDB`, usando uma senha fornecida pelo padrão de entrada. Isso é semelhante a inserir uma senha após invocar o **mysql** `--password` sem senha após a opção.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhuma]</code></td> </tr></table>
 
   Leia o arquivo dado após os arquivos globais serem lidos.
 
@@ -68,19 +68,19 @@ Leia opções padrão de um arquivo específico.
 
 * `--defaults-file=caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia opções padrão apenas do arquivo especificado.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia também grupos com `CONCAT(grupo, sufixo)`.
 
 * `--detailed-info`
 
-  <table frame="box" rules="all" summary="Propriedades para detailed-info"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--encrypt-block-size=#</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para detailed-info"><tbody><tr><th>Formato de linha de comando</th> <td><code>--encrypt-block-size=#</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Imprima informações do arquivo como `--info`, mas inclua o cabeçalho e o trailer do arquivo.
 
@@ -157,11 +157,11 @@ Leia opções padrão de um arquivo específico.
 * `--encrypt-block-size=#`
 
 <table frame="box" rules="all" summary="Propriedades para encrypt-block-size">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--encrypt-block-size=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--encrypt-block-size=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">2147483647</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>2147483647</code></td> </tr>
 </table>
 
   Tamanho dos blocos de dados de entrada que são criptografados como uma unidade. Usado com XTS; definido como `0` (o padrão) para o modo CBC.
@@ -169,24 +169,24 @@ Leia opções padrão de um arquivo específico.
 * `--encrypt-cipher=#`
 
   <table frame="box" rules="all" summary="Propriedades para decrypt-key">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--decrypt-key=key</code></td> </tr>
-  </table>0
+    <tr><th>Formato de linha de comando</th> <td><code>--decrypt-key=key</code></td> </tr>
+  </table>
 
   Criptografia usada para criptografia. Definido como `1` para o modo CBC (o padrão), ou `2` para XTS.
 
 * `--encrypt-kdf-iter-count=#`, `-k #`
 
   <table frame="box" rules="all" summary="Propriedades para decrypt-key">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--decrypt-key=key</code></td> </tr>
-  </table>1
+    <tr><th>Formato de linha de comando</th> <td><code>--decrypt-key=key</code></td> </tr>
+  </table>
 
   Ao criptografar um arquivo, especifica o número de iterações a serem usadas para a chave de criptografia. Requer a opção `--encrypt-password`.
 
 * `--encrypt-key=key`
 
   <table frame="box" rules="all" summary="Propriedades para decrypt-key">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--decrypt-key=key</code></td> </tr>
-  </table>2
+    <tr><th>Formato de linha de comando</th> <td><code>--decrypt-key=key</code></td> </tr>
+  </table>
 
   Criptografa um arquivo usando a chave fornecida.
 
@@ -196,13 +196,13 @@ Leia opções padrão de um arquivo específico.
 
 * `--encrypt-key-from-stdin`
 
-  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de linha de comando</th> <td><code class="literal">--decrypt-key=chave</code></td> </tr></table>4
+  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de linha de comando</th> <td><code>--decrypt-key=chave</code></td> </tr></table>
 
   Criptografar um arquivo usando a chave fornecida pelo `stdin`.
 
 * `--encrypt-password=senha`
 
-  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de linha de comando</th> <td><code class="literal">--decrypt-key=chave</code></td> </tr></table>5
+  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de linha de comando</th> <td><code>--decrypt-key=chave</code></td> </tr></table>
 
   Criptografa o arquivo de backup usando a senha fornecida pela opção. A senha deve atender aos requisitos listados aqui:
 
@@ -217,13 +217,13 @@ Leia opções padrão de um arquivo específico.
 
 * `--encrypt-password-from-stdin[=TRUE|FALSE]`
 
-  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de linha de comando</th> <td><code class="literal">--decrypt-key=chave</code></td> </tr></table>6
+  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de linha de comando</th> <td><code>--decrypt-key=chave</code></td> </tr></table>
 
   Criptografa um arquivo usando uma senha fornecida pelo padrão de entrada. Isso é semelhante a inserir uma senha quando o **mysql** é invocado com `--password` sem senha após a opção.
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de linha de comando</th> <td><code class="literal">--decrypt-key=chave</code></td> </tr></table>7
+  <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr><th>Formato de linha de comando</th> <td><code>--decrypt-key=chave</code></td> </tr></table>
 
   Imprime informações de uso para o programa.
 
@@ -232,9 +232,9 @@ Leia opções padrão de um arquivo específico.
 <table frame="box" rules="all" summary="Propriedades para decrypt-key">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--decrypt-key=chave</code></td>
+    <td><code>--decrypt-key=chave</code></td>
   </tr>
-</table>7
+</table>
 
 Imprime as seguintes informações sobre um ou mais arquivos de entrada:
 
@@ -258,8 +258,8 @@ Você também pode ver o cabeçalho e o trailer do arquivo usando a opção `--i
 
 <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr>
   <th>Formato de linha de comando</th>
-  <td><code class="literal">--decrypt-key=chave</code></td>
-</tr></table>8
+  <td><code>--decrypt-key=chave</code></td>
+</tr></table>
 
 Leia o caminho fornecido a partir do arquivo de login.
 
@@ -267,8 +267,8 @@ Leia o caminho fornecido a partir do arquivo de login.
 
 <table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr>
   <th>Formato de linha de comando</th>
-  <td><code class="literal">--decrypt-key=chave</code></td>
-</tr></table>9
+  <td><code>--decrypt-key=chave</code></td>
+</tr></table>
 
 Ignora a leitura das opções do caminho de login.
 
@@ -276,32 +276,32 @@ Ignora a leitura das opções do caminho de login.
 
 <table frame="box" rules="all" summary="Propriedades para decrypt-key-de-stdin"><tr>
   <th>Formato de linha de comando</th>
-  <td><code class="literal">--decrypt-key-de-stdin</code></td>
-</tr></table>0
+  <td><code>--decrypt-key-de-stdin</code></td>
+</tr></table>
 
 Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo de login.
 
 * `--imprimir-padrões`
 
 <table frame="box" rules="all" summary="Propriedades para decrypt-key-from-stdin">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--decrypt-key-from-stdin</code></td> </tr>
-</table>1
+  <tr><th>Formato de Linha de Comando</th> <td><code>--decrypt-key-from-stdin</code></td> </tr>
+</table>
 
   Imprime a lista de argumentos do programa e encerra.
 
 * `--usage`, `-?`
 
   <table frame="box" rules="all" summary="Propriedades para decrypt-from-stdin">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--decrypt-key-from-stdin</code></td> </tr>
-  </table>2
+    <tr><th>Formato de Linha de Comando</th> <td><code>--decrypt-key-from-stdin</code></td> </tr>
+  </table>
 
   Símbolo para `--help`.
 
 * `--version`, `-V`
 
   <table frame="box" rules="all" summary="Propriedades para decrypt-key-from-stdin">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--decrypt-key-from-stdin</code></td> </tr>
-  </table>3
+    <tr><th>Formato de Linha de Comando</th> <td><code>--decrypt-key-from-stdin</code></td> </tr>
+  </table>
 
   Imprime informações sobre a versão.
 

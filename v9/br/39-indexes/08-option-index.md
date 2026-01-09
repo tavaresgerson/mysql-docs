@@ -420,7 +420,7 @@ Seção 25.5.23, “ndb\_restore — Restaurar um Backup de NDB Cluster”
 
 Seção 25.6.8.2, “Usando o Cliente de Gerenciamento de NDB Cluster para Criar um Backup”
 
-### --senha-de-backup-de-stdin
+### --password-de-backup-de-stdin
 
 Seção 25.5.5, “ndb\_mgm — O Cliente de Gerenciamento de NDB Cluster”
 
@@ -2568,11 +2568,11 @@ Seção 6.6.4.1, “Opções Gerais de myisamchk”
 
 Seção 6.6.4.3, “Opções de reparo de myisamchk”
 
-### --extendido
+### --extended
 
 Seção 6.5.3, “mysqlcheck — Um programa de manutenção de tabelas”
 
-### --extendido-inserir
+### --extended-inserir
 
 Seção 6.5.4, “mysqldump — Um programa de backup de banco de dados”
 
@@ -2710,7 +2710,7 @@ Seção 25.5.13, “ndb\_import — Importar Dados CSV no NDB”
 
 Seção 25.5.23, “ndb\_restore — Restaurar um Backup do NDB Cluster”
 
-### --campos-terminados-por
+### --fields-terminated-by
 
 Seção 9.4.3, “Armazenamento de Dados no Formato de Texto Com Delimitadores com mysqldump”
 
@@ -3682,7 +3682,7 @@ Seção 8.4.5.18, “Opções de Comando do Keychain”
 
 Seção 8.4.5.14, “Migrar Chaves entre Bancos de Chaves do Keychain”
 
-### --senha-de-migração-chaveiro
+### --password-de-migração-chaveiro
 
 Seção 8.4.5.18, “Opções de Comando do Keychain”
 

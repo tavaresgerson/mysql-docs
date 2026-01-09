@@ -29,14 +29,14 @@ Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para recons
 * `--help`, `-?`
 
 <table frame="box" rules="all" summary="Propriedades de ajuda">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr>
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup</code></td> </tr>
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--backup</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr>
   <tr><th>Tipo</th> <td>Nome do diretório</td> </tr>
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--debug[=debug_options]</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--debug[=debug_options]</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">d:t:o</code></td> </tr>
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--force`, -f</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>d:t:o</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--force`, -f</code></td> </tr>
 </table>
 
   Exibir uma mensagem de ajuda e sair.
@@ -44,24 +44,24 @@ Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para recons
 * `--backup`, `-b`
 
   <table frame="box" rules="all" summary="Propriedades de backup">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--backup</code></td> </tr>
     <tr><th>Tipo</th> <td>Nome do arquivo de dados da tabela</td> </tr>
   </table>
 
 * `--character-sets-dir=dir_name`
 
   <table frame="box" rules="all" summary="Propriedades de character-sets-dir">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr>
     <tr><th>Tipo</th> <td>Nome do diretório onde os conjuntos de caracteres estão instalados. Consulte a Seção 12.15, “Configuração de conjuntos de caracteres”.</td> </tr>
   </table>
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
   <table frame="box" rules="all" summary="Propriedades de debug">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--debug[=debug_options]</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--debug[=debug_options]</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">d:t:o</code></td> </tr>
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--debug`, -d</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>d:t:o</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--debug`, -d</code></td> </tr>
   </table>
 
   Escrever um log de depuração. Uma string típica de `debug_options` é `d:t:o,nome_do_arquivo`. O valor padrão é `d:t:o`.
@@ -73,7 +73,7 @@ Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para recons
 <table frame="box" rules="all" summary="Propriedades para força">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--force</code></td>
+    <td><code>--force</code></td>
   </tr>
 </table>
 
@@ -84,7 +84,7 @@ Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para recons
   <table frame="box" rules="all" summary="Propriedades para join">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--join=big_tbl_name</code></td>
+      <td><code>--join=big_tbl_name</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -101,7 +101,7 @@ Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para recons
   <table frame="box" rules="all" summary="Propriedades para silencioso">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--silent</code></td>
+      <td><code>--silent</code></td>
     </tr>
   </table>
 
@@ -110,7 +110,7 @@ Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para recons
 * `--test`, `-t`
 
 <table frame="box" rules="all" summary="Propriedades para teste">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--test</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--test</code></td> </tr>
 </table>
 
   Não embale a tabela, apenas teste o processo de embaixo.
@@ -118,7 +118,7 @@ Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para recons
 * `--tmpdir=dir_name`, `-T dir_name`
 
   <table frame="box" rules="all" summary="Propriedades para tmpdir">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--tmpdir=dir_name</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--tmpdir=dir_name</code></td> </tr>
     <tr><th>Tipo</th> <td>Nome do diretório</td> </tr>
   </table>
 
@@ -127,7 +127,7 @@ Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para recons
 * `--verbose`, `-v`
 
   <table frame="box" rules="all" summary="Propriedades para verbose">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--verbose</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--verbose</code></td> </tr>
   </table>
 
   Modo verbose. Escreva informações sobre o progresso da operação de embaixo e seu resultado.
@@ -135,16 +135,16 @@ Após compactar uma tabela com **myisampack**, use **myisamchk -rq** para recons
 * `--version`, `-V`
 
   <table frame="box" rules="all" summary="Propriedades para backup">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup</code></td> </tr>
-  </table>0
+    <tr><th>Formato de linha de comando</th> <td><code>--backup</code></td> </tr>
+  </table>
 
   Exibir informações de versão e sair.
 
 * `--wait`, `-w`
 
   <table frame="box" rules="all" summary="Propriedades para backup">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup</code></td> </tr>
-  </table>1
+    <tr><th>Formato de linha de comando</th> <td><code>--backup</code></td> </tr>
+  </table>
 
   Aguarde e tente novamente se a tabela estiver em uso. Se o servidor **mysqld** foi invocado com o bloqueio externo desativado, não é uma boa ideia invocar o **myisampack** se a tabela pode ser atualizada pelo servidor durante o processo de embaixo.
 

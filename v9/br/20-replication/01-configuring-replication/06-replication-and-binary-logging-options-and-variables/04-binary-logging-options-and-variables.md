@@ -12,16 +12,16 @@ A lista a seguir descreve as opções de inicialização para habilitar e config
 * `--binlog-row-event-max-size=N`
 
 <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_row_event_max_size">binlog_row_event_max_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_binlog_row_event_max_size">binlog_row_event_max_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">8192</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">256</code></td> </tr>
-  <tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code class="literal">18446744073709551615</code></td> </tr>
-  <tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>8192</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>256</code></td> </tr>
+  <tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code>18446744073709551615</code></td> </tr>
+  <tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
 </table>
 
@@ -30,7 +30,7 @@ A lista a seguir descreve as opções de inicialização para habilitar e config
 * `--log-bin[=base_name]`
 
 <table frame="box" rules="all" summary="Propriedades para log-bin">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin=nome_arquivo</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--log-bin=nome_arquivo</code></td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
 </table>
 
@@ -57,11 +57,11 @@ Para informações sobre o formato e a gestão do log binário, consulte a Seç�
 <table frame="box" rules="all" summary="Propriedades para log-bin-index">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--log-bin-index=nome_arquivo</code></td>
+    <td><code>--log-bin-index=nome_arquivo</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="opções-de-replicação-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td>
+    <td><code><a class="link" href="opções-de-replicação-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -72,7 +72,7 @@ Para informações sobre o formato e a gestão do log binário, consulte a Seç�
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="sugestões-de-otimização.html#sugestão-de-var-set" title="Sintaxe de hint de configuração de variável"><code class="literal">SET_VAR</a></th></a> Aplica-se</th>
+    <th>Hinta de <a class="link" href="sugestões-de-otimização.html#sugestão-de-var-set" title="Sintaxe de hint de configuração de variável"><code>SET_VAR</a></th></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -89,7 +89,7 @@ Para informações sobre o formato e a gestão do log binário, consulte a Seç�
 
 * `--binlog-do-db=nome_do_banco_de_dados`
 
-<table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Esta opção afeta o registro binário de maneira semelhante à forma como a opção `--replicate-do-db` afeta a replicação.
 
@@ -153,7 +153,7 @@ Neste caso, a declaração `UPDATE` não é escrita no log binário ao usar o re
 
 * `--binlog-ignore-db=db_name`
 
-<table frame="box" rules="all" summary="Propriedades para binlog-ignore-db"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-ignore-db=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para binlog-ignore-db"><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-ignore-db=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Esta opção afeta o registro binário de maneira semelhante à forma como `--replicate-ignore-db` afeta a replicação.
 
@@ -183,7 +183,7 @@ Você não deve usar essa opção se estiver usando atualizações entre bancos 
 
 * `--binlog-checksum={NONE|CRC32}`
 
-<table frame="box" rules="all" summary="Propriedades para binlog-checksum"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-checksum=type</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">CRC32</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">NONE</code></p><p class="valid-value"><code class="literal">CRC32</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para binlog-checksum"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-checksum=type</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>CRC32</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>NONE</code></p><p class="valid-value"><code>CRC32</code></p></td> </tr></tbody></table>
 
 Ativação desta opção faz com que a fonte escreva verificações de integridade para eventos escritos no log binário. Defina para `NONE` para desativar ou o nome do algoritmo a ser usado para gerar verificações de integridade; atualmente, apenas verificações de integridade CRC32 são suportadas, e CRC32 é o padrão. Não é possível alterar a configuração desta opção durante uma transação.
 
@@ -193,13 +193,13 @@ Para controlar a leitura de verificações de integridade pela replica (do log d
 
 * `--max-binlog-dump-events=N`
 
-  <table frame="box" rules="all" summary="Propriedades para max-binlog-dump-events"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--max-binlog-dump-events=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para max-binlog-dump-events"><tbody><tr><th>Formato de linha de comando</th> <td><code>--max-binlog-dump-events=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr></tbody></table>
 
   Esta opção é usada internamente pela suíte de teste MySQL para teste e depuração de replicação.
 
 * `--sporadic-binlog-dump-fail`
 
-  <table frame="box" rules="all" summary="Propriedades para sporadic-binlog-dump-fail"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--sporadic-binlog-dump-fail[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para sporadic-binlog-dump-fail"><tbody><tr><th>Formato de linha de comando</th> <td><code>--sporadic-binlog-dump-fail[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Esta opção é usada internamente pela suíte de teste MySQL para teste e depuração de replicação.
 
@@ -209,7 +209,7 @@ A lista a seguir descreve as variáveis de sistema para controlar o registro bin
 
 * `binlog_cache_size`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog_cache_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-cache-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_cache_size">binlog_cache_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">4096</code></td> </tr><tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code class="literal">18446744073709547520</code></td> </tr><tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code class="literal">4294963200</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Tamanho do Bloco</a></th> <td><code class="literal">4096</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binlog_cache_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-cache-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_binlog_cache_size">binlog_cache_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code>4294963200</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Tamanho do Bloco</a></th> <td><code>4096</code></td> </tr></tbody></table>
 
   O tamanho do buffer de memória para armazenar as alterações no log binário durante uma transação.
 
@@ -221,7 +221,7 @@ Se você usa frequentemente transações grandes, pode aumentar esse tamanho de 
 
 * `binlog_checksum`
 
-<table frame="box" rules="all" summary="Propriedades para binlog_checksum"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-checksum=type</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_checksum">binlog_checksum</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Dicas de Configuração de Variáveis</a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">CRC32</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">NONE</code></p><p class="valid-value"><code class="literal">CRC32</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para binlog_checksum"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-checksum=type</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_binlog_checksum">binlog_checksum</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</a></code> Dicas de Configuração de Variáveis</a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>CRC32</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>NONE</code></p><p class="valid-value"><code>CRC32</code></p></td> </tr></tbody></table>
 
   Quando habilitado, essa variável faz com que a fonte escreva um checksum para cada evento no log binário. `binlog_checksum` suporta os valores `NONE` (que desabilita os checksums) e `CRC32`. O valor padrão é `CRC32`. Quando `binlog_checksum` é desabilitado (valor `NONE`), o servidor verifica se está escrevendo apenas eventos completos no log binário, escrevendo e verificando o comprimento do evento (em vez de um checksum) para cada evento.
 
@@ -235,7 +235,7 @@ Quando a compressão de transações de log binário é habilitada usando a vari
 
 * `binlog_direct_non_transactional_updates`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code>--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Devido a problemas de concorrência, uma replica pode se tornar inconsistente quando uma transação contém atualizações tanto em tabelas transacionais quanto não transacionais. O MySQL tenta preservar a causalidade entre essas declarações escrevendo declarações não transacionais no cache de transação, que é descartado após o commit. No entanto, problemas surgem quando as modificações feitas em tabelas não transacionais em nome de uma transação tornam-se imediatamente visíveis para outras conexões porque essas mudanças podem não ser escritas imediatamente no log binário.
 
@@ -253,7 +253,7 @@ Definir o valor da variável de sessão desta variável do sistema é uma opera�
 
 * `binlog_encryption`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para log-bin"><tr><th>Formato de Linha de Comando</th> <td><code>--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
 Habilita a criptografia para arquivos de log binários e arquivos de log de retransmissão neste servidor. `OFF` é o padrão. `ON` habilita a criptografia para arquivos de log binários e arquivos de log de retransmissão. O registro binário não precisa ser habilitado no servidor para habilitar a criptografia, então você pode criptografar os arquivos de log de retransmissão em uma replica que não tenha arquivos de log binários. Para usar a criptografia, um plugin de chaveira deve ser instalado e configurado para fornecer o serviço de chaveira do MySQL Server. Para obter instruções sobre como fazer isso, consulte a Seção 8.4.5, “A Chaveira MySQL”. Qualquer plugin de chaveira suportado pode ser usado para armazenar as chaves de criptografia dos arquivos de log binários.
 
@@ -275,7 +275,7 @@ Quando `binlog_error_action` é definido como `IGNORE_ERROR`, se o servidor enco
 
 * `binlog_expire_logs_seconds`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Define o período de expiração do log binário em segundos. Após o término do período de expiração, os arquivos do log binário podem ser removidos automaticamente. As remoções podem ocorrer automaticamente ao iniciar e quando o log binário é esvaziado. O esvaziamento do log ocorre conforme indicado na Seção 7.4, “Logs do Servidor MySQL”.
 
@@ -287,7 +287,7 @@ Para remover arquivos de log binários manualmente, use a instrução `PURGE BIN
 
 * `binlog_expire_logs_auto_purge`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code>--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Habilita ou desabilita a purga automática de arquivos de log binários. Definir essa variável para `ON` (o padrão) habilita a purga automática; definí-la para `OFF` desabilita a purga automática. O intervalo de espera antes da purga é controlado por `binlog_expire_logs_seconds`.
 
@@ -299,7 +299,7 @@ Para remover arquivos de log binários manualmente, use a instrução `PURGE BIN
 
 * `binlog_format`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code>--log-bin=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Esta variável de sistema define o formato de log binário e pode ser qualquer um dos formatos `STATEMENT`, `ROW` ou `MIXED`. (Veja a Seção 19.2.1, “Formatos de replicação”.) A configuração entra em vigor quando o registro binário é habilitado no servidor, o que é o caso quando a variável de sistema `log_bin` é definida como `ON`. No MySQL 9.5, o registro binário é habilitado por padrão e, por padrão, usa o formato baseado em linha.
 
@@ -347,10 +347,10 @@ O formato do log binário afeta o comportamento das seguintes opções do servid
   <table frame="box" rules="all" summary="Propriedades para log-bin">
     
     <tbody>
-      <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin=file_name</code></td> </tr>
+      <tr><th>Formato de Linha de Comando</th> <td><code>--log-bin=file_name</code></td> </tr>
       <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
     </tbody>
-  </table>6
+  </table>
 
   Controla quantos microsegundos o log binário de commit espera antes de sincronizar o arquivo do log binário com o disco. Por padrão, `binlog_group_commit_sync_delay` é definido para 0, o que significa que não há atraso. Definir `binlog_group_commit_sync_delay` com um atraso em microsegundos permite que mais transações sejam sincronizadas juntas com o disco de uma vez, reduzindo o tempo total para confirmar um grupo de transações, pois os grupos maiores requerem menos unidades de tempo por grupo.
 
@@ -364,13 +364,13 @@ Lembre-se de que definir `binlog_group_commit_sync_delay` aumenta a latência da
 
 * `binlog_group_commit_sync_no_delay_count`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--log-bin=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code>--log-bin=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   O número máximo de transações a serem esperadas antes de abortar o atraso atual, conforme especificado por `binlog_group_commit_sync_delay`. Se `binlog_group_commit_sync_delay` for definido como 0, então essa opção não tem efeito.
 
 * `binlog_max_flush_queue_time`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--log-bin=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para log-bin"><tbody><tr><th>Formato de linha de comando</th> <td><code>--log-bin=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   `binlog_max_flush_queue_time` está desatualizado e está marcado para eventual remoção em uma futura versão do MySQL. Anteriormente, essa variável de sistema controlava o tempo em microsegundos para continuar lendo transações da fila de esvaziamento antes de prosseguir com o commit do grupo. Ela não tem mais efeito.
 
@@ -379,7 +379,7 @@ Lembre-se de que definir `binlog_group_commit_sync_delay` aumenta a latência da
 <table frame="box" rules="all" summary="Propriedades para log-bin">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--log-bin=nome_arquivo</code></td>
+    <td><code>--log-bin=nome_arquivo</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -398,7 +398,7 @@ Lembre-se de que definir `binlog_group_commit_sync_delay` aumenta a latência da
 
 * `binlog_rotate_encryption_master_key_at_startup`
 
-<table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de linha de comando</th> <td><code class="literal">--log-bin-index=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>0
+<table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de linha de comando</th> <td><code>--log-bin-index=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
 
 Especifica se a chave mestre do log binário deve ser rotacionada ao iniciar o servidor. A chave mestre do log binário é a chave de criptografia do log binário que é usada para criptografar senhas de arquivo dos arquivos de log binário e de log de retransmissão no servidor. Quando um servidor é iniciado pela primeira vez com a criptografia do log binário habilitada (`binlog_encryption=ON`), uma nova chave de criptografia do log binário é gerada e usada como a chave mestre do log binário. Se a variável de sistema `binlog_rotate_encryption_master_key_at_startup` também for definida como `ON`, sempre que o servidor for reiniciado, uma nova chave de criptografia do log binário é gerada e usada como a chave mestre do log binário para todos os arquivos de log binário e arquivos de log de retransmissão subsequentes. Se a variável de sistema `binlog_rotate_encryption_master_key_at_startup` for definida como `OFF`, que é o padrão, a chave mestre do log binário existente é usada novamente após o servidor ser reiniciado. Para obter mais informações sobre as chaves de criptografia do log binário e a chave mestre do log binário, consulte a Seção 19.3.2, “Criptografando Arquivos de Log Binário e Arquivos de Log de Retransmissão”.
 
@@ -410,7 +410,7 @@ Esta variável de sistema global é de leitura somente e pode ser definida apena
 
 * `binlog_row_image`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin-index=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code>--log-bin-index=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Para a replicação baseada em linhas do MySQL, essa variável determina como as imagens das linhas são escritas no log binário.
 
@@ -458,7 +458,7 @@ Definir `binlog_row_image` no nível global ou de sessão não causa um commit i
 
 * `binlog_row_metadata`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin-index=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code>--log-bin-index=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Configura a quantidade de metadados da tabela adicionados ao log binário ao usar o registro baseado em linhas. Quando definido como `MINIMAL`, o padrão, apenas metadados relacionados aos flags `SIGNED`, conjunto de caracteres da coluna e tipos de geometria são registrados. Quando definido como `FULL`, metadados completos para tabelas são registrados, como o nome da coluna, valores de string `ENUM` ou `SET`, informações de `PRIMARY KEY`, e assim por diante.
 
@@ -468,7 +468,7 @@ Os metadados estendidos servem aos seguintes propósitos:
 
 * `binlog_row_value_options`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de linha de comando</th> <td><code class="literal">--log-bin-index=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis">SET_VAR</a> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>4
+  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de linha de comando</th> <td><code>--log-bin-index=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis">SET_VAR</a> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
 
   Quando definido como `PARTIAL_JSON`, permite o uso de um formato de log binário eficiente em termos de espaço para atualizações que modificam apenas uma pequena parte de um documento JSON, o que faz com que a replicação baseada em linhas escreva apenas as partes modificadas do documento JSON na imagem posterior para a atualização no log binário, em vez de escrever o documento completo (veja Atualizações Parciais de Valores JSON). Isso funciona para uma declaração `UPDATE` que modifica uma coluna JSON usando qualquer sequência de `JSON_SET()`, `JSON_REPLACE()` e `JSON_REMOVE()`. Se o servidor não conseguir gerar uma atualização parcial, o documento completo é usado.
 
@@ -485,13 +485,13 @@ A replicação MySQL gera um erro se uma modificação não puder ser aplicada a
 * `binlog_rows_query_log_events`
 
 <table frame="box" rules="all" summary="Propriedades para log-bin-index">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin-index=nome_arquivo</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--log-bin-index=nome_arquivo</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
-</table>5
+</table>
 
   Esta variável do sistema afeta apenas o registro baseado em linhas. Quando habilitada, faz com que o servidor escreva eventos de log informativos, como eventos de log de consultas de linha, em seu log binário. Essas informações podem ser usadas para depuração e fins relacionados, como obter a consulta original emitida na fonte quando não puder ser reconstruída a partir das atualizações de linha.
 
@@ -501,7 +501,7 @@ A replicação MySQL gera um erro se uma modificação não puder ser aplicada a
 
 * `binlog_stmt_cache_size`
 
-<table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin-index=nome_arquivo</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>6
+<table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code>--log-bin-index=nome_arquivo</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
 
   O tamanho do buffer de memória para o log binário armazenar declarações não transacionais emitidas durante uma transação.
 
@@ -513,7 +513,7 @@ A variável de sistema `binlog_cache_size` define o tamanho do cache de transaç
 
 * `binlog_transaction_compression`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin-index=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--log-bin-index=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Habilita a compressão para transações que são escritas em arquivos de log binário neste servidor. `OFF` é o padrão. Use a variável de sistema `binlog_transaction_compression_level_zstd` para definir o nível do algoritmo `zstd` usado para compressão.
 
@@ -531,7 +531,7 @@ Você pode usar a variável de sistema `ndb_log_transaction_compression` para ha
 
 * `binlog_transaction_compression_level_zstd`
 
-  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin-index=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe de Configuração</th> <td><code class="literal">SET_VAR</code></a> Aplica-se</td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code>--log-bin-index=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe de Configuração</th> <td><code>SET_VAR</code></a> Aplica-se</td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   Define o nível de compressão para a compressão de transações de log binário neste servidor, que é habilitado pela variável de sistema `binlog_transaction_compression`. O valor é um inteiro que determina o esforço de compressão, de 1 (o menor esforço) a 22 (o maior esforço). Se você não especificar essa variável de sistema, o nível de compressão é definido para 3.
 
@@ -545,13 +545,13 @@ Esta variável não tem efeito na logagem de transações em tabelas `NDB`; use 
 
 * `binlog_transaction_dependency_history_size`
 
-<table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--log-bin-index=nome_do_arquivo</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Propriedades para log-bin-index"><tr><th>Formato de Linha de Comando</th> <td><code>--log-bin-index=nome_do_arquivo</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="replication-options-binary-log.html#sysvar_log_bin_index">log_bin_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
 Define um limite superior para o número de hashes de linha que são mantidos na memória e usados para procurar a transação que modificou a última vez uma linha específica. Quando esse número de hashes é atingido, o histórico é apagado.
 
 * `log_bin`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tbody><tr><th>Formato de linha de comando</th> <td><code>--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Mostra o status do registro binário no servidor, habilitado (`ON`) ou desabilitado (`OFF`). Com o registro binário habilitado, o servidor registra todas as instruções que alteram dados no log binário, que é usado para backup e replicação. `ON` significa que o log binário está disponível, `OFF` significa que ele não está em uso. A opção `--log-bin` pode ser usada para especificar um nome de base e localização para o log binário.
 
@@ -563,25 +563,25 @@ Para obter informações sobre o formato e a gestão do log binário, consulte a
 
 * `log_bin_basename`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>1
+  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code>--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   Contém o nome base e o caminho para os arquivos de log binário, que podem ser definidos com a opção de servidor `--log-bin`. O comprimento máximo da variável é de 256 caracteres. No MySQL 9.5, se a opção `--log-bin` não for fornecida, o nome base padrão é `binlog`. Para compatibilidade com o MySQL 5.7, se a opção `--log-bin` for fornecida sem uma string ou com uma string vazia, o nome base padrão é `host_name-bin`, usando o nome da máquina do host. A localização padrão é o diretório de dados.
 
 * `log_bin_index`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>2
+  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code>--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   Contém o nome base e o caminho para o arquivo de índice do log binário, que pode ser definido com a opção de servidor `--log-bin-index`. O comprimento máximo da variável é de 256 caracteres.
 
 * `log_bin_trust_function_creators`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>3
+  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code>--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
 Esta variável é aplicada quando o registro binário está habilitado. Ela controla se os criadores de funções armazenadas podem ser confiáveis para não criar funções armazenadas que possam causar eventos inseguros serem registrados no log binário. Se definida como 0 (o padrão), os usuários não têm permissão para criar ou alterar funções armazenadas, a menos que tenham o privilégio `SUPER`, além do privilégio `CREATE ROUTINE` ou `ALTER ROUTINE`. Uma configuração de 0 também impõe a restrição de que uma função deve ser declarada com a característica `DETERMINISTIC`, ou com a característica `READS SQL DATA` ou `NO SQL`. Se a variável for definida como 1, o MySQL não aplica essas restrições à criação de funções armazenadas. Esta variável também se aplica à criação de gatilhos. Veja a Seção 27.9, “Registro Binário de Programas Armazenados”.
 
 * `log_replica_updates`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   `log_replica_updates` especifica se as atualizações recebidas por um servidor replica de um servidor de origem de replicação devem ser registradas no log binário da própria replica.
 
@@ -597,25 +597,25 @@ Aqui, `A` serve como a fonte para a replica `B`, e `B` serve como a fonte para a
 
 * `log_slave_updates`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-do-db=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-do-db=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Alias desatualizado para `log_replica_updates`.
 
 * `log_statements_unsafe_for_binlog`
 
-<table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>6
+<table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code>--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   Se o erro 1592 for encontrado, controla se as mensagens de aviso geradas são adicionadas ao log de erros ou não.
 
 * `master_verify_checksum`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>7
+  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code>--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   Alias desatualizado para `source_verify_checksum`.
 
 * `max_binlog_cache_size`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>8
+  <table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code>--binlog-do-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   Se uma transação exigir mais do que esse número de bytes, o servidor gera um erro de transação de múltiplas instruções que requer mais 'max_binlog_cache_size' bytes de armazenamento. Quando `gtid_mode` não está `ON`, o valor máximo recomendado é de 4GB, devido ao fato de que, neste caso, o MySQL não pode trabalhar com posições de log binário maiores que 4GB; quando `gtid_mode` está `ON`, essa limitação não se aplica e o servidor pode trabalhar com posições de log binário de tamanho arbitrário.
 
@@ -640,7 +640,7 @@ A visibilidade para sessões de `max_binlog_cache_size` corresponde à da variá
 
 * `max_binlog_size`
 
-<table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-do-db=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>9
+<table frame="box" rules="all" summary="Propriedades para binlog-do-db"><tr><th>Formato de linha de comando</th> <td><code>--binlog-do-db=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
 Se uma escrita no log binário faz com que o tamanho do arquivo de log atual exceda o valor desta variável, o servidor roda os logs binários (fecha o arquivo atual e abre o próximo). O valor mínimo é de 4096 bytes. O valor máximo e o valor padrão é de 1GB. Arquivos de log binário criptografados têm um cabeçalho adicional de 512 bytes, que é incluído em `max_binlog_size`.
 
@@ -652,7 +652,7 @@ Com GTIDs em uso no servidor, quando `max_binlog_size` for atingido, se a tabela
 
 * `max_binlog_stmt_cache_size`
 
-<table frame="box" rules="all" summary="Propriedades para binlog-ignore-db"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-ignore-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Propriedades para binlog-ignore-db"><tbody><tr><th>Formato de linha de comando</th> <td><code>--binlog-ignore-db=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Se declarações não transacionais dentro de uma transação exigirem mais desses bytes de memória, o servidor gera um erro. O valor mínimo é 4096. Os valores máximo e padrão são 4GB em plataformas de 32 bits e 16EB (exabytes) em plataformas de 64 bits.
 
@@ -663,14 +663,14 @@ Com GTIDs em uso no servidor, quando `max_binlog_size` for atingido, se a tabela
 <table frame="box" rules="all" summary="Propriedades para binlog-ignore-db">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--binlog-ignore-db=nome</code></td>
+    <td><code>--binlog-ignore-db=nome</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
     <td>String</td>
   </tr>
   </tbody>
-</table>1
+</table>
 
   Para uso interno pela replicação. Ao executar novamente uma transação em uma replica, este valor é definido para o momento em que a transação foi comprometida na fonte original, medido em microsegundos desde a época. Isso permite que o timestamp de comprometimento original seja propagado por toda a topologia de replicação.
 
@@ -681,14 +681,14 @@ Com GTIDs em uso no servidor, quando `max_binlog_size` for atingido, se a tabela
   <table frame="box" rules="all" summary="Propriedades para binlog-ignore-db">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--binlog-ignore-db=nome</code></td>
+      <td><code>--binlog-ignore-db=nome</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
       <td>String</td>
     </tr>
   </tbody>
-  </table>2
+  </table>
 
   Ativação de `source_verify_checksum` faz com que a fonte verifique eventos lidos do log binário examinando checksums e pare com um erro no caso de um desajuste. `source_verify_checksum` está desativado por padrão; nesse caso, a fonte usa o comprimento do evento do log binário para verificar eventos, de modo que apenas eventos completos são lidos do log binário.
 
@@ -697,14 +697,14 @@ Com GTIDs em uso no servidor, quando `max_binlog_size` for atingido, se a tabela
 <table frame="box" rules="all" summary="Propriedades para binlog-ignore-db">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--binlog-ignore-db=nome</code></td>
+    <td><code>--binlog-ignore-db=nome</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
     <td>String</td>
   </tr>
   </tbody>
-</table>3
+</table>
 
   Esta variável controla se o registro no log binário está habilitado para a sessão atual (assumindo que o próprio log binário está habilitado). O valor padrão é `ON`. Para desabilitar ou habilitar o registro binário para a sessão atual, defina a variável `sql_log_bin` da sessão para `OFF` ou `ON`.
 
@@ -721,14 +721,14 @@ Com GTIDs em uso no servidor, quando `max_binlog_size` for atingido, se a tabela
   <table frame="box" rules="all" summary="Propriedades para binlog-ignore-db">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--binlog-ignore-db=nome</code></td>
+      <td><code>--binlog-ignore-db=nome</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
       <td>String</td>
     </tr>
   </tbody>
-  </table>4
+  </table>
 
 Controla a frequência com que o servidor MySQL sincroniza o log binário com o disco.
 

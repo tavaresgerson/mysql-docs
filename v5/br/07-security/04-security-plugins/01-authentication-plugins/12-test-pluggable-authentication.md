@@ -12,7 +12,7 @@ A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O sufixo 
 
 **Tabela 6.19 Nomes de plugins e bibliotecas para autenticação de teste**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha de teste."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code class="literal">test_plugin_server</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code class="literal">auth_test_plugin</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">auth_test_plugin.so</code>]]</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha de teste."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>test_plugin_server</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code>auth_test_plugin</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">auth_test_plugin.so</code>]]</td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para a autenticação plugável de teste:
 

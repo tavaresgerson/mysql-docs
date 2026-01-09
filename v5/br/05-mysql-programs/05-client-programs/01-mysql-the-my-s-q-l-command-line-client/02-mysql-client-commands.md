@@ -2,7 +2,7 @@
 
 O **mysql** envia cada instrução SQL que você emite para o servidor a ser executada. Há também um conjunto de comandos que o próprio **mysql** interpreta. Para obter uma lista desses comandos, digite `help` ou `\h` no prompt do **mysql**:
 
-```sql
+```sh
 mysql> help
 
 List of all MySQL commands:
@@ -112,7 +112,7 @@ O uso de comandos de formato curto dentro de comentários de várias linhas `/* 
 
   A exibição de resultados de saída funciona apenas no Unix porque usa a função `popen()`, que não existe no Windows. Para o Windows, a opção `tee` pode ser usada para salvar a saída da consulta, embora não seja tão conveniente quanto o `pager` para navegar pela saída em algumas situações.
 
-- `imprimir`, `\p`
+- `print`, `\p`
 
   Imprima a declaração de entrada atual sem executá-la.
 
@@ -122,7 +122,7 @@ O uso de comandos de formato curto dentro de comentários de várias linhas `/* 
 
   Se você especificar o comando `prompt` sem argumento, o **mysql** redefini o prompt para o padrão `mysql>`.
 
-- `sair`, `\q`
+- `exit`, `\q`
 
   Saia do **mysql**.
 
@@ -163,7 +163,7 @@ O uso de comandos de formato curto dentro de comentários de várias linhas `/* 
   +------------------+
   ```
 
-- `nome_do_arquivo_fonte`, `\. nome_do_arquivo`
+- `source file_name`, `\. file_name`
 
   Leia o arquivo nomeado e execute as instruções contidas nele. No Windows, especifique os separadores de caminho como `/` ou `\\`.
 
@@ -173,7 +173,7 @@ O uso de comandos de formato curto dentro de comentários de várias linhas `/* 
 
   Forneça informações de status sobre a conexão e o servidor que você está usando. Se você estiver executando com o `--safe-updates` habilitado, o `status` também imprimirá os valores das variáveis **mysql** que afetam suas consultas.
 
-- `comando do sistema`, `comando `!\`
+- `system command`, `\! command`
 
   Execute o comando fornecido usando o interpretador de comandos padrão.
 
@@ -189,7 +189,7 @@ O uso de comandos de formato curto dentro de comentários de várias linhas `/* 
 
   Use *`db_name`* como o banco de dados padrão.
 
-- `avaliações de risco`, `\W`
+- `warnings`, `\W`
 
   Ative a exibição de avisos após cada declaração (se houver alguma).
 
@@ -197,31 +197,31 @@ Aqui estão algumas dicas sobre o comando `pager`:
 
 - Você pode usá-lo para escrever em um arquivo e os resultados vão apenas para o arquivo:
 
-  ```sql
+  ```sh
   mysql> pager cat > /tmp/log.txt
   ```
 
   Você também pode passar quaisquer opções para o programa que você deseja usar como seu pager:
 
-  ```sql
+  ```sh
   mysql> pager less -n -i -S
   ```
 
 - No exemplo anterior, observe a opção `-S`. Você pode achar que ela é muito útil para navegar por resultados de consultas amplos. Às vezes, um conjunto de resultados muito amplo é difícil de ler na tela. A opção `-S` para **less** pode tornar o conjunto de resultados muito mais legível, pois você pode rolar horizontalmente usando as teclas seta para a esquerda e seta para a direita. Você também pode usar `-S` interativamente dentro de **less** para ativar e desativar o modo de navegação horizontal. Para mais informações, leia a página do manual do **less**:
 
-  ```sql
+  ```sh
   man less
   ```
 
 - As opções `-F` e `-X` podem ser usadas com **menos** para fazê-lo sair se a saída cabe em um único ecrã, o que é conveniente quando não é necessário rolar:
 
-  ```sql
+  ```sh
   mysql> pager less -n -i -S -F -X
   ```
 
 - Você pode especificar comandos de paginador muito complexos para lidar com o resultado da consulta:
 
-  ```sql
+  ```sh
   mysql> pager cat | tee /dr1/tmp/res.txt \
             | tee /dr2/tmp/res2.txt | less -n -i -S
   ```
@@ -232,33 +232,162 @@ Você também pode combinar as funções `tee` e `pager`. Ative o arquivo `tee` 
 
 O comando `prompt` reconfigura o prompt padrão `mysql>`. A string para definir o prompt pode conter as seguintes sequências especiais.
 
-<table summary="opções de comando de prompt que são usadas para configurar o prompt mysql&gt;"><col style="width: 15%"/><col style="width: 75%"/><thead><tr> <th>Opção</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>\P</code>]</td> <td>O identificador de conexão atual</td> </tr><tr> <td>[[PH_HTML_CODE_<code>\P</code>]</td> <td>Um contador que aumenta para cada declaração que você emite</td> </tr><tr> <td>[[PH_HTML_CODE_<code>\R</code>]</td> <td>A data atual completa</td> </tr><tr> <td>[[PH_HTML_CODE_<code>\r</code>]</td> <td>O banco de dados padrão</td> </tr><tr> <td>[[PH_HTML_CODE_<code>\S</code>]</td> <td>O anfitrião do servidor</td> </tr><tr> <td>[[PH_HTML_CODE_<code>\s</code>]</td> <td>O delimitador atual</td> </tr><tr> <td>[[PH_HTML_CODE_<code>\t</code>]</td> <td>Minutos da hora atual</td> </tr><tr> <td>[[PH_HTML_CODE_<code>\U</code>]</td> <td>Um caractere de nova linha</td> </tr><tr> <td>[[PH_HTML_CODE_<code><em class="replaceable"><code>user_name</code>]</td> <td>O mês atual no formato de três letras (Jan, Feb, …)</td> </tr><tr> <td>[[PH_HTML_CODE_<code>host_name</code>]</td> <td>O mês atual no formato numérico</td> </tr><tr> <td>[[<code>\P</code>]]</td> <td>am/pm</td> </tr><tr> <td>[[<code>\c</code><code>\P</code>]</td> <td>A porta TCP/IP atual ou o arquivo de soquete</td> </tr><tr> <td>[[<code>\R</code>]]</td> <td>A hora atual, em hora militar de 24 horas (0–23)</td> </tr><tr> <td>[[<code>\r</code>]]</td> <td>A hora atual, horário padrão de 12 horas (1–12)</td> </tr><tr> <td>[[<code>\S</code>]]</td> <td>Ponto e vírgula</td> </tr><tr> <td>[[<code>\s</code>]]</td> <td>Segundos do horário atual</td> </tr><tr> <td>[[<code>\t</code>]]</td> <td>Um caractere de tabulação</td> </tr><tr> <td>[[<code>\U</code>]]</td> <td><p>Seu código completo [[<code><em class="replaceable"><code>user_name</code>]]</em>@<em class="replaceable">[[<code>host_name</code>]]</em></code>nome da conta</p></td> </tr><tr> <td>[[<code>\D</code><code>\P</code>]</td> <td>Seu nome de usuário</td> </tr><tr> <td>[[<code>\D</code><code>\P</code>]</td> <td>A versão do servidor</td> </tr><tr> <td>[[<code>\D</code><code>\R</code>]</td> <td>O dia atual da semana no formato de três letras (Seg, Ter, …)</td> </tr><tr> <td>[[<code>\D</code><code>\r</code>]</td> <td>O ano atual, quatro dígitos</td> </tr><tr> <td>[[<code>\D</code><code>\S</code>]</td> <td>O ano atual, com dois dígitos</td> </tr><tr> <td>[[<code>\D</code><code>\s</code>]</td> <td>Um espaço</td> </tr><tr> <td>[[<code>\D</code><code>\t</code>]</td> <td>Um espaço (um espaço segue o backslash)</td> </tr><tr> <td>[[<code>\D</code><code>\U</code>]</td> <td>Citação única</td> </tr><tr> <td>[[<code>\D</code><code><em class="replaceable"><code>user_name</code>]</td> <td>"Dois aspas"</td> </tr><tr> <td>[[<code>\D</code><code>host_name</code>]</td> <td>Um caractere literal de barra invertida [[<code>\d</code><code>\P</code>]</td> </tr><tr> <td>[[<code>\d</code><code>\P</code>]</em></code></td> <td><p> <em class="replaceable">[[<code>\d</code><code>\R</code>]</em>, para qualquer<span class="quote">“<span class="quote"><em class="replaceable">[[<code>\d</code><code>\r</code>]</em></span>”</span>não listado acima</p></td> </tr></tbody></table>
+<table>
+   <thead>
+      <tr>
+         <th>Opção</th>
+         <th>Descrição</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td><code>\C</code></td>
+         <td>O identificador da conexão atual</td>
+      </tr>
+      <tr>
+         <td><code>\c</code></td>
+         <td>Um contador que incrementa para cada instrução emitida</td>
+      </tr>
+      <tr>
+         <td><code>\D</code></td>
+         <td>A data atual completa</td>
+      </tr>
+      <tr>
+         <td><code>\d</code></td>
+         <td>O banco de dados padrão</td>
+      </tr>
+      <tr>
+         <td><code>\h</code></td>
+         <td>O host do servidor</td>
+      </tr>
+      <tr>
+         <td><code>\l</code></td>
+         <td>O delimitador atual</td>
+      </tr>
+      <tr>
+         <td><code>\m</code></td>
+         <td>Minutos da hora atual</td>
+      </tr>
+      <tr>
+         <td><code>\n</code></td>
+         <td>Um caractere de nova linha</td>
+      </tr>
+      <tr>
+         <td><code>\O</code></td>
+         <td>O mês atual em formato de três letras (Jan, Fev, …)</td>
+      </tr>
+      <tr>
+         <td><code>\o</code></td>
+         <td>O mês atual em formato numérico</td>
+      </tr>
+      <tr>
+         <td><code>\P</code></td>
+         <td>am/pm</td>
+      </tr>
+      <tr>
+         <td><code>\p</code></td>
+         <td>A porta TCP/IP ou arquivo de socket atual</td>
+      </tr>
+      <tr>
+         <td><code>\R</code></td>
+         <td>A hora atual, em formato militar de 24 horas (0–23)</td>
+      </tr>
+      <tr>
+         <td><code>\r</code></td>
+         <td>Hora atual, formato padrão de 12 horas (1–12)</td>
+      </tr>
+      <tr>
+         <td><code>\S</code></td>
+         <td>Ponto e vírgula</td>
+      </tr>
+      <tr>
+         <td><code>\s</code></td>
+         <td>Segundos da hora atual</td>
+      </tr>
+      <tr>
+         <td><code>\t</code></td>
+         <td>Um caractere de tabulação</td>
+      </tr>
+      <tr>
+         <td><code>\U</code></td>
+         <td>
+            <p>Seu nome de usuário completo</code><em><code>user_name</code></em>@<em><code>host_name</code></em></code> </p>
+         </td>
+      </tr>
+      <tr>
+         <td><code>\u</code></td>
+         <td>Seu nome de usuário</td>
+      </tr>
+      <tr>
+         <td><code>\v</code></td>
+         <td>A versão do servidor</td>
+      </tr>
+      <tr>
+         <td><code>\w</code></td>
+         <td>O dia da semana atual em formato de três letras (seg, ter, …)</td>
+      </tr>
+      <tr>
+         <td><code>\Y</code></td>
+         <td>O ano atual, com quatro dígitos</td>
+      </tr>
+      <tr>
+         <td><code>\y</code></td>
+         <td>O ano atual, com dois dígitos</td>
+      </tr>
+      <tr>
+         <td><code>\_</code></td>
+         <td>Um espaço</td>
+      </tr>
+      <tr>
+         <td><code>\ </code></td>
+         <td>Um espaço (um espaço segue a barra invertida)</td>
+      </tr>
+      <tr>
+         <td><code>\'</code></td>
+         <td>Aspas simples</td>
+      </tr>
+      <tr>
+         <td><code>\"</code></td>
+         <td>Aspas duplas</td>
+      </tr>
+      <tr>
+         <td><code>\\</code></td>
+         <td>Um caractere literal de barra invertida <code>\</code></td>
+      </tr>
+      <tr>
+         <td><code>\<em><code>x</code></em></code></td>
+         <td>
+            <p> <em><code>x</code></em>, para qualquer <span class="quote">“<span class="quote"><em><code>x</code></em></span>”</span> não listado acima </p>
+         </td>
+      </tr>
+   </tbody>
+</table>
 
 Você pode definir o prompt de várias maneiras:
 
 - *Use uma variável de ambiente.* Você pode definir a variável de ambiente `MYSQL_PS1` com uma string de prompt. Por exemplo:
 
-  ```sql
+  ```
   export MYSQL_PS1="(\u@\h) [\d]> "
   ```
 
 - *Use uma opção de linha de comando.* Você pode definir a opção `--prompt` na linha de comando para **mysql**. Por exemplo:
 
-  ```sql
+  ```
   $> mysql --prompt="(\u@\h) [\d]> "
   (user@host) [database]>
   ```
 
 - *Use um arquivo de opções.* Você pode definir a opção `prompt` no grupo `[mysql]` de qualquer arquivo de opções MySQL, como `/etc/my.cnf` ou o arquivo `.my.cnf` no seu diretório de casa. Por exemplo:
 
-  ```sql
+  ```
   [mysql]
   prompt=(\\u@\\h) [\\d]>\\_
   ```
 
   Neste exemplo, observe que os backslashes são duplicados. Se você definir o prompt usando a opção `prompt` em um arquivo de opção, é aconselhável duplicar os backslashes ao usar as opções de prompt especiais. Há alguma sobreposição no conjunto de opções de prompt permitidas e no conjunto de sequências de escape especiais reconhecidas em arquivos de opção. (As regras para sequências de escape em arquivos de opção estão listadas na Seção 4.2.2.2, “Usando Arquivos de Opção”). A sobreposição pode causar problemas se você usar backslashes simples. Por exemplo, `\s` é interpretado como um espaço em vez do valor atual dos segundos. O exemplo a seguir mostra como definir um prompt dentro de um arquivo de opção para incluir a hora atual no formato `hh:mm:ss>`:
 
-  ```sql
+  ```
   [mysql]
   prompt="\\r:\\m:\\s> "
   ```

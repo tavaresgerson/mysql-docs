@@ -48,25 +48,25 @@ O **mysqlshow** suporta as seguintes opções, que podem ser especificadas na li
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></table>
 
   Exibir uma mensagem de ajuda e sair.
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></table>
 
   Em um computador com múltiplas interfaces de rede, use esta opção para selecionar qual interface usar para se conectar ao servidor MySQL.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr></table>
 
   O diretório onde os conjuntos de caracteres estão instalados. Veja a Seção 12.15, “Configuração de Conjunto de Caracteres”.
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Propriedades para compress"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para compress"><tr><th>Formato de Linha de Comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></table>
 
   Compressar todas as informações enviadas entre o cliente e o servidor, se possível. Veja a Seção 6.2.8, “Controle de Compressão da Conexão”.
 
@@ -74,7 +74,7 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
 
 * `--compression-algorithms=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para compressão-algoritmos"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definível</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">não comprimido</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">não comprimido</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para compressão-algoritmos"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definível</td> </tr><tr><th>Valor Padrão</th> <td><code>não comprimido</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não comprimido</code></p></td> </tr></tbody></table>
 
   Os algoritmos de compressão permitidos para conexões com o servidor. Os algoritmos disponíveis são os mesmos da variável de sistema `protocol_compression_algorithms`. O valor padrão é `não comprimido`.
 
@@ -82,13 +82,13 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
 
 * `--count`
 
-  <table frame="box" rules="all" summary="Propriedades para count"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--count</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para count"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--count</code></td> </tr></tbody></table>
 
   Mostrar o número de linhas por tabela. Isso pode ser lento para tabelas que não são `MyISAM`.
 
 * `--debug[=opções_de_debug]`, `-# [opções_de_debug]`
 
-  <table frame="box" rules="all" summary="Propriedades para debug"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--debug[=opções_de_debug]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">d:t:o</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para debug"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--debug[=opções_de_debug]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>d:t:o</code></td> </tr></tbody></table>
 
 Escreva um log de depuração. Uma string típica de `*debug_options*` é `d:t:o,nome_do_arquivo`. O padrão é `d:t:o`.
 
@@ -96,7 +96,7 @@ Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`.
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Propriedades para debug-check"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--debug-check</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para debug-check"><tbody><tr><th>Formato de linha de comando</th> <td><code>--debug-check</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Imprima algumas informações de depuração quando o programa sair.
 
@@ -104,7 +104,7 @@ Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`.
 
 * `--debug-info`
 
-  <table frame="box" rules="all" summary="Propriedades para debug-info"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--debug-info</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para debug-info"><tbody><tr><th>Formato de linha de comando</th> <td><code>--debug-info</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Imprima informações de depuração e estatísticas de uso de memória e CPU quando o programa sair.
 
@@ -112,19 +112,19 @@ Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`.
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
 Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 12.15, “Configuração do Conjunto de Caracteres”.
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. Veja a Seção 8.2.17, “Autenticação Extensível”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -132,7 +132,7 @@ Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 12.15
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -142,7 +142,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo, con
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Leia não apenas os grupos de opções habituais, mas também grupos com os nomes habituais e um sufixo de `str`. Por exemplo, o **mysqlshow** normalmente lê os grupos `[client]` e `[mysqlshow]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, o **mysqlshow** também lê os grupos `[client_other]` e `[mysqlshow_other]`.
 
@@ -150,13 +150,13 @@ Para obter informações adicionais sobre esta e outras opções de arquivo, con
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Ative o plugin de autenticação de texto claro `mysql_clear_password` (consulte a Seção 8.4.1.3, “Autenticação de texto claro plugável do lado do cliente”).
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
 Solicitar a chave pública RSA que o servidor usa para a troca de senhas baseada em pares de chaves. Esta opção se aplica a clientes que se conectam ao servidor usando uma conta que autentica com o plugin de autenticação `caching_sha2_password`. Para conexões por tais contas, o servidor não envia a chave pública ao cliente a menos que seja solicitado. A opção é ignorada para contas que não autenticam com esse plugin. Também é ignorada se a troca de senha baseada em RSA não for necessária, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -166,19 +166,19 @@ Para informações sobre o plugin `caching_sha2_password`, consulte a Seção 8.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Conectar-se ao servidor MySQL no host fornecido.
 
 * `--keys`, `-k`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Mostrar índices de tabela.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
 Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um "caminho de login" é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
 
@@ -186,7 +186,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Ignora a leitura de opções do arquivo de caminho de login.
 
@@ -196,7 +196,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opção, `--no-defaults` pode ser usado para impedir que sejam lidas.
 
@@ -206,7 +206,7 @@ Para obter informações adicionais sobre essa e outras opções de arquivo, con
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de Linha de Comando</th><td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de Linha de Comando</th><td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlshow** solicitará uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar a senha.
 
@@ -232,25 +232,25 @@ Para especificar explicitamente que não há senha e que o **mysqlshow** não de
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
 Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor tiver sido iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysqlshow** não o encontrar. Veja a Seção 8.2.17, “Autenticação Conectada”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Para conexões TCP/IP, o número de porta a ser usado.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Imprima o nome do programa e todas as opções que ele obtém de arquivos de opção.
 
@@ -258,13 +258,13 @@ Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se a
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-<table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para detalhes sobre os valores permitidos, consulte a Seção 6.2.7, “Protocolos de Transporte de Conexão”.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   O nome do caminho para um arquivo em formato PEM contendo uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas baseada em par de chaves RSA. Esta opção se aplica a clientes que se autenticam com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -279,9 +279,9 @@ Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se a
 <table frame="box" rules="all" summary="Propriedades para bind-address">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--bind-address=ip_address</code></td>
+    <td><code>--bind-address=ip_address</code></td>
   </tr>
-</table>9
+</table>
 
   Em Windows, o nome de memória compartilhada a ser usado para conexões feitas usando memória compartilhada a um servidor local. O valor padrão é `MYSQL`. O nome de memória compartilhada é sensível a maiúsculas e minúsculas.
 
@@ -292,7 +292,7 @@ Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se a
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--character-sets-dir=path</code></td>
+      <td><code>--character-sets-dir=path</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -300,9 +300,9 @@ Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se a
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">[none]</code></td>
+      <td><code>[none]</code></td>
     </tr>
-  </tbody></table>0
+  </tbody></table>
 
   Mostre uma coluna indicando o tipo de tabela, como em `SHOW FULL TABLES`. O tipo é `BASE TABLE` ou `VIEW`.
 
@@ -311,7 +311,7 @@ Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se a
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--character-sets-dir=path</code></td>
+      <td><code>--character-sets-dir=path</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -319,9 +319,9 @@ Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se a
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">[none]</code></td>
+      <td><code>[none]</code></td>
     </tr>
-  </tbody></table>1
+  </tbody></table>
 
   Para conexões a `localhost`, o arquivo de socket Unix a ser usado, ou, em Windows, o nome do pipe nomeado a ser usado.
 
@@ -333,7 +333,7 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Controla se o modo FIPS deve ser habilitado no lado do cliente. A opção `--ssl-fips-mode` difere de outras opções `--ssl-xxx` porque não é usada para estabelecer conexões criptografadas, mas sim para afetar quais operações criptográficas devem ser permitidas. Veja Seção 8.8, “Suporte FIPS”.
 
@@ -354,7 +354,7 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
 <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--character-sets-dir=caminho</code></td>
+    <td><code>--character-sets-dir=caminho</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -362,10 +362,10 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">[nenhum]</code></td>
+    <td><code>[nenhum]</code></td>
   </tr>
   </tbody>
-</table>3
+</table>
 
   Exibir informações extras sobre cada tabela.
 
@@ -374,7 +374,7 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--character-sets-dir=caminho</code></td>
+      <td><code>--character-sets-dir=caminho</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -382,10 +382,10 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">[nenhum]</code></td>
+      <td><code>[nenhum]</code></td>
     </tr>
   </tbody>
-  </table>4
+  </table>
 
   As suitas de cifra permitidas para conexões criptografadas que usam TLSv1.3. O valor é uma lista de um ou mais nomes de suitas de cifra separados por vírgula. As suitas de cifra que podem ser nomeadas para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e suitas de cifra TLS de Conexão Criptografada”.
 
@@ -394,7 +394,7 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--character-sets-dir=caminho</code></td>
+      <td><code>--character-sets-dir=caminho</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -402,10 +402,10 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">[nenhum]</code></td>
+      <td><code>[nenhum]</code></td>
     </tr>
   </tbody>
-  </table>5
+  </table>
 
 Quando especificado, o nome é passado para a biblioteca de API C `libmysqlclient` usando a opção `MYSQL_OPT_TLS_SNI_SERVERNAME` de `mysql_options()`. O nome do servidor não é case-sensitive. Para mostrar qual nome do servidor o cliente especificou para a sessão atual, se houver, verifique a variável `Tls_sni_server_name`.
 
@@ -413,13 +413,13 @@ A Indicação de Nome do Servidor (SNI) é uma extensão do protocolo TLS (o Ope
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para essa opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e Cifras TLS de Conexão Criptografada”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   O nome do usuário da conta MySQL a ser usado para se conectar ao servidor.
 
@@ -428,7 +428,7 @@ A Indicação de Nome do Servidor (SNI) é uma extensão do protocolo TLS (o Ope
 <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--character-sets-dir=caminho</code></td>
+    <td><code>--character-sets-dir=caminho</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -436,9 +436,9 @@ A Indicação de Nome do Servidor (SNI) é uma extensão do protocolo TLS (o Ope
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">[nenhum]</code></td>
+    <td><code>[nenhum]</code></td>
   </tr>
-</table>8
+</table>
 
   Modo detalhado. Imprima mais informações sobre o que o programa faz. Esta opção pode ser usada várias vezes para aumentar a quantidade de informações.
 
@@ -447,7 +447,7 @@ A Indicação de Nome do Servidor (SNI) é uma extensão do protocolo TLS (o Ope
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--character-sets-dir=caminho</code></td>
+      <td><code>--character-sets-dir=caminho</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -455,9 +455,9 @@ A Indicação de Nome do Servidor (SNI) é uma extensão do protocolo TLS (o Ope
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">[nenhum]</code></td>
+      <td><code>[nenhum]</code></td>
     </tr>
-  </table>9
+  </table>
 
   Exibir informações da versão e sair.
 
@@ -466,7 +466,7 @@ A Indicação de Nome do Servidor (SNI) é uma extensão do protocolo TLS (o Ope
   <table frame="box" rules="all" summary="Propriedades para compress">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--compress[={OFF|ON}]</code></td>
+      <td><code>--compress[={OFF|ON}]</code></td>
     </tr>
     <tr>
       <th>Desatualizado</th>
@@ -478,9 +478,9 @@ A Indicação de Nome do Servidor (SNI) é uma extensão do protocolo TLS (o Ope
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">OFF</code></td>
+      <td><code>OFF</code></td>
     </tr>
-  </table>0
+  </table>
 
   O nível de compressão a ser usado para conexões com o servidor que utilizam o algoritmo de compressão `zstd`. Os níveis permitidos são de 1 a 22, com valores maiores indicando níveis crescentes de compressão. O nível de compressão padrão `zstd` é 3. O ajuste do nível de compressão não tem efeito em conexões que não utilizam compressão `zstd`.
 

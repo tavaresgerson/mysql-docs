@@ -264,7 +264,7 @@ The `log_filter_dragnet` grammar at Grammar for log\_filter\_dragnet Rule Langua
 
   The following table shows the permitted priority levels.
 
-  <table summary="Error event priority levels."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Event Type</th> <th scope="col">Priority Symbol</th> <th scope="col">Numeric Priority</th> </tr></thead><tbody><tr> <th align="left" scope="row">Error event</th> <td><code class="literal">ERROR</code></td> <td>1</td> </tr><tr> <th align="left" scope="row">Warning event</th> <td><code class="literal">WARNING</code></td> <td>2</td> </tr><tr> <th align="left" scope="row">Note/information event</th> <td><code class="literal">INFORMATION</code></td> <td>3</td> </tr></tbody></table>
+  <table summary="Error event priority levels."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Event Type</th> <th>Priority Symbol</th> <th>Numeric Priority</th> </tr></thead><tbody><tr> <th align="left">Error event</th> <td><code class="literal">ERROR</code></td> <td>1</td> </tr><tr> <th align="left">Warning event</th> <td><code class="literal">WARNING</code></td> <td>2</td> </tr><tr> <th align="left">Note/information event</th> <td><code class="literal">INFORMATION</code></td> <td>3</td> </tr></tbody></table>
 
   There is also a message priority of `SYSTEM`, but system messages cannot be filtered and are always written to the error log.
 

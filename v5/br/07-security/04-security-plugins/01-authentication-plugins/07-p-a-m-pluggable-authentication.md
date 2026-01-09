@@ -18,7 +18,7 @@ A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O sufixo 
 
 **Tabela 6.13 Nomes de plugins e bibliotecas para autenticação PAM**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha do PAM."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code class="literal">authentication_pam</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code class="literal">mysql_clear_password</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">authentication_pam.so</code>]]</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha do PAM."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>authentication_pam</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code>mysql_clear_password</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">authentication_pam.so</code>]]</td> </tr></tbody></table>
 
 O plugin de criptografia `mysql_clear_password` do lado do cliente que se comunica com o plugin PAM do lado do servidor está integrado à biblioteca de clientes `libmysqlclient` e está incluído em todas as distribuições, incluindo as distribuições comunitárias. A inclusão do plugin de criptografia do lado do cliente em todas as distribuições do MySQL permite que clientes de qualquer distribuição se conectem a um servidor que tenha o plugin PAM do lado do servidor carregado.
 

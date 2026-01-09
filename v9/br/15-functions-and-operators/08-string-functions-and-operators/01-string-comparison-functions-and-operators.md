@@ -4,7 +4,7 @@
 
 <table frame="box" rules="all" summary="Uma referência que lista as funções e operadores de comparação de strings.">
 <col style="width: 28%"/><col style="width: 71%"/>
-<thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="string-comparison-functions.html#operator_like"><code class="literal">LIKE</code></a></td> <th>Comparação simples de padrões</th> </tr><tr><td><a class="link" href="string-comparison-functions.html#operator_not-like"><code class="literal">NOT LIKE</code></a></td> <th>Negação da comparação simples de padrões</th> </tr><tr><td><a class="link" href="string-comparison-functions.html#function_strcmp"><code class="literal">STRCMP()</code></a></td> <th>Compara duas strings</th> </tr></tbody></table>
+<thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="string-comparison-functions.html#operator_like"><code>LIKE</code></a></td> <th>Comparação simples de padrões</th> </tr><tr><td><a class="link" href="string-comparison-functions.html#operator_not-like"><code>NOT LIKE</code></a></td> <th>Negação da comparação simples de padrões</th> </tr><tr><td><a class="link" href="string-comparison-functions.html#function_strcmp"><code>STRCMP()</code></a></td> <th>Compara duas strings</th> </tr></tbody></table>
 
 Se uma função de string receber uma string binária como argumento, a string resultante também será uma string binária. Um número convertido em string é tratado como uma string binária. Isso afeta apenas as comparações.
 

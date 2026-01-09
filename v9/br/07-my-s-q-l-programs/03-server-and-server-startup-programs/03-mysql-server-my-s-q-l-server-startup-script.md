@@ -73,28 +73,28 @@ O script **mysql.server** suporta as opções mostradas na tabela a seguir. Se e
 
 <table frame="box" rules="all" summary="Opções de arquivo disponíveis para mysql.server">
   <tr>
-    <th scope="col">Nome da Opção</th>
-    <th scope="col">Descrição</th>
-    <th scope="col">Tipo</th>
+    <th>Nome da Opção</th>
+    <th>Descrição</th>
+    <th>Tipo</th>
   </tr>
   <tbody>
     <tr>
-      <th scope="row"><a class="link" href="mysql-server.html#option_mysql_server_basedir"><code class="literal">basedir</code></a></th>
+      <th><a class="link" href="mysql-server.html#option_mysql_server_basedir"><code>basedir</code></a></th>
       <td>Caminho para o diretório de instalação do MySQL</td>
       <td>Nome do diretório</td>
     </tr>
     <tr>
-      <th scope="row"><a class="link" href="mysql-server.html#option_mysql_server_datadir"><code class="literal">datadir</code></a></th>
+      <th><a class="link" href="mysql-server.html#option_mysql_server_datadir"><code>datadir</code></a></th>
       <td>Caminho para o diretório de dados do MySQL</td>
       <td>Nome do diretório</td>
     </tr>
     <tr>
-      <th scope="row"><a class="link" href="mysql-server.html#option_mysql_server_pid-file"><code class="literal">pid-file</code></a></th>
+      <th><a class="link" href="mysql-server.html#option_mysql_server_pid-file"><code>pid-file</code></a></th>
       <td>Nome do arquivo no qual o servidor deve gravar seu ID de processo</td>
       <td>Nome do arquivo</td>
     </tr>
     <tr>
-      <th scope="row"><a class="link" href="mysql-server.html#option_mysql_server_service-startup-timeout"><code class="literal">service-startup-timeout</code></a></th>
+      <th><a class="link" href="mysql-server.html#option_mysql_server_service-startup-timeout"><code>service-startup-timeout</code></a></th>
       <td>Tempo de espera para o início do servidor</td>
       <td>Inteiro</td>
     </tr>

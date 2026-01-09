@@ -12,7 +12,7 @@ O componente de filtro de log `log_filter_internal` implementa uma forma simples
 
 Eventos destinados ao log de erro têm uma prioridade de `ERROR`, `WARNING` ou `INFORMATION`. A variável de sistema `log_error_verbosity` controla a verbosidade com base nas prioridades permitidas para mensagens escritas no log, conforme mostrado na tabela a seguir.
 
-<table summary="Valores de log_error_verbosity permitidos e prioridades de mensagens permitidas."><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>log_error_verbosity Value</th> <th>Permitted Message Priorities</th> </tr></thead><tbody><tr> <td>1</td> <td><code class="literal">ERROR</code></td> </tr><tr> <td>2</td> <td><code class="literal">ERROR</code>, <code class="literal">WARNING</code></td> </tr><tr> <td>3</td> <td><code class="literal">ERROR</code>, <code class="literal">WARNING</code>, <code class="literal">INFORMATION</code></td> </tr></tbody></table>
+<table summary="Valores de log_error_verbosity permitidos e prioridades de mensagens permitidas."><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>log_error_verbosity Value</th> <th>Permitted Message Priorities</th> </tr></thead><tbody><tr> <td>1</td> <td><code>ERROR</code></td> </tr><tr> <td>2</td> <td><code>ERROR</code>, <code>WARNING</code></td> </tr><tr> <td>3</td> <td><code>ERROR</code>, <code>WARNING</code>, <code>INFORMATION</code></td> </tr></tbody></table>
 
 Se `log_error_verbosity` for 2 ou maior, o servidor registra mensagens sobre declarações que são inseguras para o registro baseado em declarações. Se o valor for 3, o servidor registra conexões abortadas e erros de negação de acesso para novas tentativas de conexão. Veja a Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”.
 

@@ -14,7 +14,7 @@ As seguintes variáveis de sistema de configuração da telemetria de logs do se
 
 * `telemetry.log_enabled`
 
-<table frame="box" rules="all" summary="Propriedades para telemetry.log_enabled"><tr><th>Sistema</th> <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.log_enabled">telemetry.log_enabled</a></code></td></tr><tr><th>Alcance</th> <td>Global</td></tr><tr><th>Dinâmico</th> <td>Sim</td></tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a></code> Dicas de sintaxe de configuração da variável</th> <td>Não</td></tr><tr><th>Tipo</th> <td>Booleano</td></tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td></tr></table>
+<table frame="box" rules="all" summary="Propriedades para telemetry.log_enabled"><tr><th>Sistema</th> <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.log_enabled">telemetry.log_enabled</a></code></td></tr><tr><th>Alcance</th> <td>Global</td></tr><tr><th>Dinâmico</th> <td>Sim</td></tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a></code> Dicas de sintaxe de configuração da variável</th> <td>Não</td></tr><tr><th>Tipo</th> <td>Booleano</td></tr><tr><th>Valor padrão</th> <td><code>OFF</code></td></tr></table>
 
 Controla se os logs de telemetria são exportados ou não.
 
@@ -23,7 +23,7 @@ Controla se os logs de telemetria são exportados ou não.
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_protocol">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
+    <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -34,7 +34,7 @@ Controla se os logs de telemetria são exportados ou não.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -43,11 +43,11 @@ Controla se os logs de telemetria são exportados ou não.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">http/protobuf</code></td>
+    <td><code>http/protobuf</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">http/protobuf</code></p><p class="valid-value"><code class="literal">http/json</code></p></td>
+    <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td>
   </tr>
 </table>
 
@@ -55,37 +55,37 @@ Controla se os logs de telemetria são exportados ou não.
 
 * `telemetry.otel_exporter_otlp_logs_endpoint`
 
-<table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_endpoint"><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_endpoint">telemetry.otel_exporter_otlp_logs_endpoint</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">vazio</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_endpoint"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_endpoint">telemetry.otel_exporter_otlp_logs_endpoint</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>vazio</code></td> </tr></tbody></table>
 
   URL de destino para onde o exportador envia logs.
 
 * `telemetry.otel_exporter_otlp_logs_network_namespace`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_network_namespace"><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_network_namespace">telemetry.otel_exporter_otlp_logs_network_namespace</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_network_namespace"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_network_namespace">telemetry.otel_exporter_otlp_logs_network_namespace</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   (Apenas para Linux) Namespace de rede a ser usado ao enviar dados para o endpoint de logs.
 
 * `telemetry.otel_exporter_otlp_logs_certificates`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_logs_certificates"><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_certificates">telemetry.otel_exporter_otlp_logs_certificates</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_logs_certificates"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_certificates">telemetry.otel_exporter_otlp_logs_certificates</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
   O certificado confiável a ser usado ao verificar as credenciais TLS de um servidor.
 
 * `telemetry.otel_exporter_otlp_logs_client_key`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_logs_client_key"><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_client_key">telemetry.otel_exporter_otlp_logs_client_key</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_logs_client_key"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_client_key">telemetry.otel_exporter_otlp_logs_client_key</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
   A chave privada do cliente no formato PEM.
 
 * `telemetry.otel_exporter_otlp_logs_client_certificates`
 
   <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_logs_client_certificates">
-    <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_client_certificates">telemetry.otel_exporter_otlp_logs_client_certificates</a></code></td> </tr>
+    <tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_client_certificates">telemetry.otel_exporter_otlp_logs_client_certificates</a></code></td> </tr>
     <tr><th>Alcance</th> <td>Global</td> </tr>
     <tr><th>Dinâmico</th> <td>Não</td> </tr>
-    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr>
+    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr>
+    <tr><th>Valor Padrão</th> <td><code></code></td> </tr>
   </table>
 
   Certificado/cadeia de confiança do certificado do cliente no formato PEM.
@@ -93,19 +93,19 @@ Controla se os logs de telemetria são exportados ou não.
 * `telemetry.otel_exporter_otlp_logs_headers`
 
   <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_logs_headers">
-    <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_headers">telemetry.otel_exporter_otlp_logs_headers</a></code></td> </tr>
+    <tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_headers">telemetry.otel_exporter_otlp_logs_headers</a></code></td> </tr>
     <tr><th>Alcance</th> <td>Global</td> </tr>
     <tr><th>Dinâmico</th> <td>Não</td> </tr>
-    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr>
+    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr>
+    <tr><th>Valor Padrão</th> <td><code></code></td> </tr>
   </table>
 
 Uma lista de cabeçalhos a serem aplicados a todos os logs de saída
 
 * `telemetry.otel_exporter_otlp_logs_secret_headers`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_logs_secret_headers"><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_secret_headers">telemetry.otel_exporter_otlp_logs_secret_headers</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_logs_secret_headers"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_secret_headers">telemetry.otel_exporter_otlp_logs_secret_headers</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Nome de um segredo, que contém os dados sensíveis para os cabeçalhos dos logs. O conteúdo e o formato dos dados dependem da implementação do provedor de segredos fornecida com a variável do sistema `telemetry.secret_provider`.
 
@@ -114,7 +114,7 @@ Uma lista de cabeçalhos a serem aplicados a todos os logs de saída
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_compression">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_compression">telemetry.otel_exporter_otlp_logs_compression</a></code></td>
+    <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_compression">telemetry.otel_exporter_otlp_logs_compression</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -125,7 +125,7 @@ Uma lista de cabeçalhos a serem aplicados a todos os logs de saída
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -134,11 +134,11 @@ Uma lista de cabeçalhos a serem aplicados a todos os logs de saída
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">none (sem compressão)</code></td>
+    <td><code>none (sem compressão)</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">none (sem compressão)</code></p><p class="valid-value"><code class="literal">gzip</code></p></td>
+    <td><p class="valid-value"><code>none (sem compressão)</code></p><p class="valid-value"><code>gzip</code></p></td>
   </tr>
 </table>
 
@@ -149,7 +149,7 @@ Uma lista de cabeçalhos a serem aplicados a todos os logs de saída
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_protocol">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
+    <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -160,7 +160,7 @@ Uma lista de cabeçalhos a serem aplicados a todos os logs de saída
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -169,20 +169,20 @@ Uma lista de cabeçalhos a serem aplicados a todos os logs de saída
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">http/protobuf</code></td>
+    <td><code>http/protobuf</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">http/protobuf</code></p><p class="valid-value"><code class="literal">http/json</code></p></td>
+    <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td>
   </tr>
-</table>0
+</table>
 
 Tempo em milissegundos que o exportador OTLP espera por cada exportação em lote.
 
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_protocol">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
+    <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -193,7 +193,7 @@ Tempo em milissegundos que o exportador OTLP espera por cada exportação em lot
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -202,13 +202,13 @@ Tempo em milissegundos que o exportador OTLP espera por cada exportação em lot
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">http/protobuf</code></td>
+    <td><code>http/protobuf</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">http/protobuf</code></p><p class="valid-value"><code class="literal">http/json</code></p></td>
+    <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td>
   </tr>
-</table>1
+</table>
 
 Intervalo de atraso entre duas exportações consecutivas em milissegundos.
 
@@ -217,7 +217,7 @@ Intervalo de atraso entre duas exportações consecutivas em milissegundos.
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_protocol">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
+    <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -228,7 +228,7 @@ Intervalo de atraso entre duas exportações consecutivas em milissegundos.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -237,13 +237,13 @@ Intervalo de atraso entre duas exportações consecutivas em milissegundos.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">http/protobuf</code></td>
+    <td><code>http/protobuf</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">http/protobuf</code></p><p class="valid-value"><code class="literal">http/json</code></p></td>
+    <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td>
   </tr>
-</table>2
+</table>
 
 Tamanho máximo da fila.
 
@@ -252,7 +252,7 @@ Tamanho máximo da fila.
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_protocol">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
+    <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -263,7 +263,7 @@ Tamanho máximo da fila.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -272,11 +272,11 @@ Tamanho máximo da fila.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">http/protobuf</code></td>
+    <td><code>http/protobuf</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">http/protobuf</code></p><p class="valid-value"><code class="literal">http/json</code></p></td>
+    <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td>
   </tr>
 </table>
 3. Tamanho máximo do lote.
@@ -284,7 +284,7 @@ Tamanho máximo da fila.
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_protocol">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
+    <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -295,7 +295,7 @@ Tamanho máximo da fila.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -304,11 +304,11 @@ Tamanho máximo da fila.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">http/protobuf</code></td>
+    <td><code>http/protobuf</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">http/protobuf</code></p><p class="valid-value"><code class="literal">http/json</code></p></td>
+    <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td>
   </tr>
 </table>
 4
@@ -317,7 +317,7 @@ Tamanho máximo da fila.
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_protocol">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
+    <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -328,7 +328,7 @@ Tamanho máximo da fila.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -337,11 +337,11 @@ Tamanho máximo da fila.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">http/protobuf</code></td>
+    <td><code>http/protobuf</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">http/protobuf</code></p><p class="valid-value"><code class="literal">http/json</code></p></td>
+    <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td>
   </tr>
 </table>
 5. A versão TLS máxima aceita. Se deixar em branco, não há versão TLS máxima.
@@ -351,7 +351,7 @@ Tamanho máximo da fila.
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_logs_protocol">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
+    <td><code><a class="link" href="telemetry-logs-configuration.html#sysvar_telemetry.otel_exporter_otlp_logs_protocol">telemetry.otel_exporter_otlp_logs_protocol</a></code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -362,7 +362,7 @@ Tamanho máximo da fila.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -371,11 +371,11 @@ Tamanho máximo da fila.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">http/protobuf</code></td>
+    <td><code>http/protobuf</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">http/protobuf</code></p><p class="valid-value"><code class="literal">http/json</code></p></td>
+    <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td>
   </tr>
 </table>
 

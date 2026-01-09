@@ -1337,13 +1337,13 @@ O plugin do firewall do MySQL Enterprise suporta as seguintes variáveis de sist
 
 * `mysql_firewall_database`
 
-  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_database"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--mysql-firewall-database[=value]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_database">mysql_firewall_database</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code class="literal">SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">mysql</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_database"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysql-firewall-database[=value]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_database">mysql_firewall_database</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>mysql</code></td> </tr></tbody></table>
 
 Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do MySQL lê os dados. Tipicamente, o plugin do lado do servidor `MYSQL_FIREWALL` armazena seus dados internos (tabelas, procedimentos armazenados e funções) no banco de dados do sistema `mysql`, mas você pode criar e usar um esquema personalizado (veja Instalar o Plugin do Firewall Empresarial do MySQL). Esta variável permite especificar um nome de banco de dados alternativo no momento do início.
 
 * `mysql_firewall_mode`
 
-  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_mode"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_mode">mysql_firewall_mode</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code class="literal">SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_mode"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_mode">mysql_firewall_mode</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Se o plugin do Firewall Empresarial do MySQL está habilitado (o padrão) ou desabilitado.
 
@@ -1352,7 +1352,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
 <table frame="box" rules="all" summary="Propriedades para mysql_firewall_reload_interval_seconds">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--mysql-firewall-reload-interval-seconds[=value]</code></td>
+    <td><code>--mysql-firewall-reload-interval-seconds[=value]</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -1360,7 +1360,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_reload_interval_seconds">mysql_firewall_reload_interval_seconds</a></code></td>
+    <td><code><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_reload_interval_seconds">mysql_firewall_reload_interval_seconds</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1371,7 +1371,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1380,15 +1380,15 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">60 (a menos que 0: OFF)</code></td>
+    <td><code>60 (a menos que 0: OFF)</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">INT_MAX</code></td>
+    <td><code>INT_MAX</code></td>
   </tr>
   <tr>
     <th>Unidade</th>
@@ -1405,7 +1405,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
 <table frame="box" rules="all" summary="Propriedades para mysql_firewall_trace">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--mysql-firewall-trace[={OFF|ON}]</code></td>
+    <td><code>--mysql-firewall-trace[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -1413,7 +1413,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_trace">mysql_firewall_trace</a></code></td>
+    <td><code><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_trace">mysql_firewall_trace</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1424,7 +1424,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1433,7 +1433,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
 </table>
 

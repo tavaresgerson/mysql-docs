@@ -10,7 +10,7 @@ O **mysqlcheck** utiliza as instruções SQL `CHECK TABLE`, `REPAIR TABLE`, `ANA
 
 Nem todas as engines de armazenamento suportam todas as quatro operações de manutenção. Nesse caso, uma mensagem de erro é exibida. Por exemplo, se `test.t` for uma tabela `MEMORY`, uma tentativa de verificá-la produz este resultado:
 
-```sql
+```sh
 $> mysqlcheck test t
 test.t
 note     : The storage engine for the table doesn't support check
@@ -36,13 +36,402 @@ O **mysqlcheck** possui uma característica especial em comparação com outros 
 
 Os nomes mostrados na tabela a seguir podem ser usados para alterar o comportamento padrão do **mysqlcheck**.
 
-<table summary="Nomes de comandos que podem ser usados para alterar o comportamento padrão do mysqlcheck."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Comando</th> <th>Significado</th> </tr></thead><tbody><tr> <td><span class="command"><strong>mysqlrepair</strong></span></td> <td>A opção padrão é<a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">[[<code class="option">--repair</code>]]</a></td> </tr><tr> <td><span class="command"><strong>mysqlanalyze</strong></span></td> <td>A opção padrão é<a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">[[<code class="option">--analyze</code>]]</a></td> </tr><tr> <td><span class="command"><strong>mysqloptimize</strong></span></td> <td>A opção padrão é<a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">[[<code class="option">--optimize</code>]]</a></td> </tr></tbody></table>
+<table summary="Nomes de comandos que podem ser usados para alterar o comportamento padrão do mysqlcheck."><thead><tr> <th>Comando</th> <th>Significado</th> </tr></thead><tbody><tr> <td><span><strong>mysqlrepair</strong></span></td> <td>A opção padrão é[[<code>--repair</code>]]</td> </tr><tr> <td><span><strong>mysqlanalyze</strong></span></td> <td>A opção padrão é[[<code>--analyze</code>]]</td> </tr><tr> <td><span><strong>mysqloptimize</strong></span></td> <td>A opção padrão é[[<code>--optimize</code>]]</td> </tr></tbody></table>
 
 O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlcheck]` e `[client]` de um arquivo de opções. Para obter informações sobre os arquivos de opções usados pelos programas MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.15 Opções do mysqlcheck**
 
-<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck.">
+   <thead>
+      <tr>
+         <th>Nome da Opção</th>
+         <th>Descrição</th>
+         <th>Introduzido</th>
+         <th>Desatualizado</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>--all-databases</th>
+         <td>Verifique todas as tabelas em todos os bancos de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--all-in-1</th>
+         <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--analyze</th>
+         <td>Analise as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--auto-repair</th>
+         <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--bind-address</th>
+         <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--character-sets-dir</th>
+         <td>Diretório onde os conjuntos de caracteres são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check</th>
+         <td>Verifique as tabelas em busca de erros</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-only-changed</th>
+         <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-upgrade</th>
+         <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--compress</th>
+         <td>Compressar todas as informações enviadas entre o cliente e o servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--databases</th>
+         <td>Interprete todos os argumentos como nomes de banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug</th>
+         <td>Escreva o log de depuração</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-check</th>
+         <td>Imprimir informações de depuração quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-info</th>
+         <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-auth</th>
+         <td>Plugin de autenticação a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-character-set</th>
+         <td>Especifique o conjunto de caracteres padrão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-extra-file</th>
+         <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-file</th>
+         <td>Arquivo de opção de leitura apenas nomeado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-group-suffix</th>
+         <td>Valor do sufixo do grupo de opções</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--enable-cleartext-plugin</th>
+         <td>Habilitar o plugin de autenticação em texto claro</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--extended</th>
+         <td>Verifique e conserte as mesas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>Verifique apenas as tabelas que não foram fechadas corretamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fix-db-names</th>
+         <td>Converta os nomes dos bancos de dados para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--fix-table-names</th>
+         <td>Converta os nomes das tabelas para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--force</th>
+         <td>Continue mesmo que ocorra um erro SQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--get-server-public-key</th>
+         <td>Solicitar chave pública RSA do servidor</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--help</th>
+         <td>Exibir mensagem de ajuda e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--host</th>
+         <td>Anfitrião no qual o servidor MySQL está localizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--login-path</th>
+         <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--medium-check</th>
+         <td>Faça uma verificação mais rápida do que uma operação --extended</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-defaults</th>
+         <td>Não ler arquivos de opção</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--optimize</th>
+         <td>Otimize as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--password</th>
+         <td>Senha para usar ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--pipe</th>
+         <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--plugin-dir</th>
+         <td>Diretório onde os plugins são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--port</th>
+         <td>Número de porta TCP/IP para a conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--print-defaults</th>
+         <td>Opções padrão de impressão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--protocol</th>
+         <td>Protocolo de transporte a ser utilizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--quick</th>
+         <td>O método mais rápido de verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--repair</th>
+         <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--secure-auth</th>
+         <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--server-public-key-path</th>
+         <td>Nome do caminho para o arquivo que contém a chave pública RSA</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--shared-memory-base-name</th>
+         <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--silent</th>
+         <td>Modo silencioso</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-database</th>
+         <td>Omitar essa base de dados das operações realizadas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--socket</th>
+         <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl</th>
+         <td>Ative a criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-ca</th>
+         <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-capath</th>
+         <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cert</th>
+         <td>Arquivo que contém o certificado X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cipher</th>
+         <td>Cifras permitidas para criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crl</th>
+         <td>Arquivo que contém listas de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crlpath</th>
+         <td>Diretório que contém arquivos de lista de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-chave</th>
+         <td>Arquivo que contém a chave X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-mode</th>
+         <td>Estado de segurança desejado da conexão com o servidor</td>
+         <td>5.7.11</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-verify-server-cert</th>
+         <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tables</th>
+         <td>Suprapor a opção --databases ou -B</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tls-version</th>
+         <td>Protocolos TLS permitidos para conexões criptografadas</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--use-frm</th>
+         <td>Para operações de reparo em tabelas MyISAM</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--user</th>
+         <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--verbose</th>
+         <td>Modo verbosos</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--version</th>
+         <td>Exibir informações da versão e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--write-binlog</th>
+         <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td>
+         <td></td>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
 
 - `--help`, `-?`
 
@@ -94,31 +483,1587 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--check-only-changed`, `-C`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck.">
+   <thead>
+      <tr>
+        <th>Nome da Opção</th>
+        <th>Descrição</th>
+        <th>Introduzido</th>
+        <th>Desatualizado</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>--all-databases</th>
+         <td>Verifique todas as tabelas em todos os bancos de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--all-in-1</th>
+         <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--analyze</th>
+         <td>Analise as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--auto-repair</th>
+         <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--bind-address</th>
+         <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--character-sets-dir</th>
+         <td>Diretório onde os conjuntos de caracteres são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check</th>
+         <td>Verifique as tabelas em busca de erros</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-only-changed</th>
+         <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-upgrade</th>
+         <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--compress</th>
+         <td>Compressar todas as informações enviadas entre o cliente e o servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--databases</th>
+         <td>Interprete todos os argumentos como nomes de banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug</th>
+         <td>Escreva o log de depuração</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-check</th>
+         <td>Imprimir informações de depuração quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-info</th>
+         <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-auth</th>
+         <td>Plugin de autenticação a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-character-set</th>
+         <td>Especifique o conjunto de caracteres padrão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-extra-file</th>
+         <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-file</th>
+         <td>Arquivo de opção de leitura apenas nomeado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-group-suffix</th>
+         <td>Valor do sufixo do grupo de opções</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--enable-cleartext-plugin</th>
+         <td>Habilitar o plugin de autenticação em texto claro</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--extended</th>
+         <td>Verifique e conserte as mesas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>Verifique apenas as tabelas que não foram fechadas corretamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fix-db-names</th>
+         <td>Converta os nomes dos bancos de dados para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--fix-table-names</th>
+         <td>Converta os nomes das tabelas para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--force</th>
+         <td>Continue mesmo que ocorra um erro SQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--get-server-public-key</th>
+         <td>Solicitar chave pública RSA do servidor</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--help</th>
+         <td>Exibir mensagem de ajuda e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--host</th>
+         <td>Anfitrião no qual o servidor MySQL está localizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--login-path</th>
+         <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--medium-check</th>
+         <td>Faça uma verificação mais rápida do que uma operação --extended</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-defaults</th>
+         <td>Não ler arquivos de opção</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--optimize</th>
+         <td>Otimize as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--password</th>
+         <td>Senha para usar ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--pipe</th>
+         <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--plugin-dir</th>
+         <td>Diretório onde os plugins são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--port</th>
+         <td>Número de porta TCP/IP para a conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--print-defaults</th>
+         <td>Opções padrão de impressão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--protocol</th>
+         <td>Protocolo de transporte a ser utilizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>O método mais rápido de verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--reparar</th>
+         <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--secure-auth</th>
+         <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--server-public-key-path</th>
+         <td>Nome do caminho para o arquivo que contém a chave pública RSA</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--shared-memory-base-name</th>
+         <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--silent</th>
+         <td>Modo silencioso</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-database</th>
+         <td>Omitar essa base de dados das operações realizadas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--socket</th>
+         <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl</th>
+         <td>Ative a criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-ca</th>
+         <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-capath</th>
+         <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cert</th>
+         <td>Arquivo que contém o certificado X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cipher</th>
+         <td>Cifras permitidas para criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crl</th>
+         <td>Arquivo que contém listas de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crlpath</th>
+         <td>Diretório que contém arquivos de lista de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-chave</th>
+         <td>Arquivo que contém a chave X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-mode</th>
+         <td>Estado de segurança desejado da conexão com o servidor</td>
+         <td>5.7.11</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-verify-server-cert</th>
+         <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tables</th>
+         <td>Suprapor a opção --databases ou -B</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tls-version</th>
+         <td>Protocolos TLS permitidos para conexões criptografadas</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--use-frm</th>
+         <td>Para operações de reparo em tabelas MyISAM</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--user</th>
+         <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--verbose</th>
+         <td>Modo verbosos</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--version</th>
+         <td>Exibir informações da versão e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--write-binlog</th>
+         <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td>
+         <td></td>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
 
   Verifique apenas as tabelas que foram alteradas desde a última verificação ou que não foram fechadas corretamente.
 
 - `--check-upgrade`, `-g`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck.">
+   <thead>
+      <tr>
+         <th>Nome da Opção</th>
+         <th>Descrição</th>
+         <th>Introduzido</th>
+         <th>Desatualizado</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>--all-databases</th>
+         <td>Verifique todas as tabelas em todos os bancos de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--all-in-1</th>
+         <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--analyze</th>
+         <td>Analise as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--auto-repair</th>
+         <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--bind-address</th>
+         <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--character-sets-dir</th>
+         <td>Diretório onde os conjuntos de caracteres são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check</th>
+         <td>Verifique as tabelas em busca de erros</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-only-changed</th>
+         <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-upgrade</th>
+         <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--compress</th>
+         <td>Compressar todas as informações enviadas entre o cliente e o servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--databases</th>
+         <td>Interprete todos os argumentos como nomes de banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug</th>
+         <td>Escreva o log de depuração</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-check</th>
+         <td>Imprimir informações de depuração quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-info</th>
+         <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-auth</th>
+         <td>Plugin de autenticação a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-character-set</th>
+         <td>Especifique o conjunto de caracteres padrão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-extra-file</th>
+         <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-file</th>
+         <td>Arquivo de opção de leitura apenas nomeado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-group-suffix</th>
+         <td>Valor do sufixo do grupo de opções</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--enable-cleartext-plugin</th>
+         <td>Habilitar o plugin de autenticação em texto claro</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--extended</th>
+         <td>Verifique e conserte as mesas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>Verifique apenas as tabelas que não foram fechadas corretamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fix-db-names</th>
+         <td>Converta os nomes dos bancos de dados para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--fix-table-names</th>
+         <td>Converta os nomes das tabelas para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--force</th>
+         <td>Continue mesmo que ocorra um erro SQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--get-server-public-key</th>
+         <td>Solicitar chave pública RSA do servidor</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--help</th>
+         <td>Exibir mensagem de ajuda e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--host</th>
+         <td>Anfitrião no qual o servidor MySQL está localizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--login-path</th>
+         <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--medium-check</th>
+         <td>Faça uma verificação mais rápida do que uma operação --extended</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-defaults</th>
+         <td>Não ler arquivos de opção</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--optimize</th>
+         <td>Otimize as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--password</th>
+         <td>Senha para usar ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--pipe</th>
+         <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--plugin-dir</th>
+         <td>Diretório onde os plugins são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--port</th>
+         <td>Número de porta TCP/IP para a conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--print-defaults</th>
+         <td>Opções padrão de impressão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--protocol</th>
+         <td>Protocolo de transporte a ser utilizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>O método mais rápido de verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--reparar</th>
+         <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--secure-auth</th>
+         <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--server-public-key-path</th>
+         <td>Nome do caminho para o arquivo que contém a chave pública RSA</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--shared-memory-base-name</th>
+         <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--silent</th>
+         <td>Modo silencioso</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-database</th>
+         <td>Omitar essa base de dados das operações realizadas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--socket</th>
+         <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl</th>
+         <td>Ative a criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-ca</th>
+         <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-capath</th>
+         <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cert</th>
+         <td>Arquivo que contém o certificado X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cipher</th>
+         <td>Cifras permitidas para criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crl</th>
+         <td>Arquivo que contém listas de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crlpath</th>
+         <td>Diretório que contém arquivos de lista de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-chave</th>
+         <td>Arquivo que contém a chave X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-mode</th>
+         <td>Estado de segurança desejado da conexão com o servidor</td>
+         <td>5.7.11</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-verify-server-cert</th>
+         <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tables</th>
+         <td>Suprapor a opção --databases ou -B</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tls-version</th>
+         <td>Protocolos TLS permitidos para conexões criptografadas</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--use-frm</th>
+         <td>Para operações de reparo em tabelas MyISAM</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--user</th>
+         <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--verbose</th>
+         <td>Modo verbosos</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--version</th>
+         <td>Exibir informações da versão e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--write-binlog</th>
+         <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td>
+         <td></td>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
 
   Invoque `CHECK TABLE` com a opção `FOR UPGRADE` para verificar as tabelas quanto à incompatibilidade com a versão atual do servidor. Esta opção habilita automaticamente as opções `--fix-db-names` e `--fix-table-names`.
 
 - `--compress`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck.">
+   <thead>
+      <tr>
+         <th>Nome da Opção</th>
+         <th>Descrição</th>
+         <th>Introduzido</th>
+         <th>Desatualizado</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>--all-databases</th>
+         <td>Verifique todas as tabelas em todos os bancos de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--all-in-1</th>
+         <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--analyze</th>
+         <td>Analise as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--auto-repair</th>
+         <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--bind-address</th>
+         <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--character-sets-dir</th>
+         <td>Diretório onde os conjuntos de caracteres são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check</th>
+         <td>Verifique as tabelas em busca de erros</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-only-changed</th>
+         <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-upgrade</th>
+         <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--compress</th>
+         <td>Compressar todas as informações enviadas entre o cliente e o servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--databases</th>
+         <td>Interprete todos os argumentos como nomes de banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug</th>
+         <td>Escreva o log de depuração</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-check</th>
+         <td>Imprimir informações de depuração quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-info</th>
+         <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-auth</th>
+         <td>Plugin de autenticação a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-character-set</th>
+         <td>Especifique o conjunto de caracteres padrão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-extra-file</th>
+         <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-file</th>
+         <td>Arquivo de opção de leitura apenas nomeado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-group-suffix</th>
+         <td>Valor do sufixo do grupo de opções</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--enable-cleartext-plugin</th>
+         <td>Habilitar o plugin de autenticação em texto claro</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--extended</th>
+         <td>Verifique e conserte as mesas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>Verifique apenas as tabelas que não foram fechadas corretamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fix-db-names</th>
+         <td>Converta os nomes dos bancos de dados para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--fix-table-names</th>
+         <td>Converta os nomes das tabelas para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--force</th>
+         <td>Continue mesmo que ocorra um erro SQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--get-server-public-key</th>
+         <td>Solicitar chave pública RSA do servidor</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--help</th>
+         <td>Exibir mensagem de ajuda e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--host</th>
+         <td>Anfitrião no qual o servidor MySQL está localizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--login-path</th>
+         <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--medium-check</th>
+         <td>Faça uma verificação mais rápida do que uma operação --extended</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-defaults</th>
+         <td>Não ler arquivos de opção</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--optimize</th>
+         <td>Otimize as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--password</th>
+         <td>Senha para usar ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--pipe</th>
+         <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--plugin-dir</th>
+         <td>Diretório onde os plugins são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--port</th>
+         <td>Número de porta TCP/IP para a conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--print-defaults</th>
+         <td>Opções padrão de impressão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--protocol</th>
+         <td>Protocolo de transporte a ser utilizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>O método mais rápido de verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--reparar</th>
+         <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--secure-auth</th>
+         <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--server-public-key-path</th>
+         <td>Nome do caminho para o arquivo que contém a chave pública RSA</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--shared-memory-base-name</th>
+         <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--silent</th>
+         <td>Modo silencioso</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-database</th>
+         <td>Omitar essa base de dados das operações realizadas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--socket</th>
+         <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl</th>
+         <td>Ative a criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-ca</th>
+         <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-capath</th>
+         <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cert</th>
+         <td>Arquivo que contém o certificado X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cipher</th>
+         <td>Cifras permitidas para criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crl</th>
+         <td>Arquivo que contém listas de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crlpath</th>
+         <td>Diretório que contém arquivos de lista de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-chave</th>
+         <td>Arquivo que contém a chave X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-mode</th>
+         <td>Estado de segurança desejado da conexão com o servidor</td>
+         <td>5.7.11</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-verify-server-cert</th>
+         <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tables</th>
+         <td>Suprapor a opção --databases ou -B</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tls-version</th>
+         <td>Protocolos TLS permitidos para conexões criptografadas</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--use-frm</th>
+         <td>Para operações de reparo em tabelas MyISAM</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--user</th>
+         <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--verbose</th>
+         <td>Modo verbosos</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--version</th>
+         <td>Exibir informações da versão e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--write-binlog</th>
+         <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td>
+         <td></td>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
 
   Compressa todas as informações enviadas entre o cliente e o servidor, se possível. Consulte a Seção 4.2.6, “Controle de Compressão de Conexão”.
 
 - `--databases`, `-B`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck.">
+   <thead>
+      <tr>
+         <th>Nome da Opção</th>
+         <th>Descrição</th>
+         <th>Introduzido</th>
+         <th>Desatualizado</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>--all-databases</th>
+         <td>Verifique todas as tabelas em todos os bancos de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--all-in-1</th>
+         <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--analyze</th>
+         <td>Analise as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--auto-repair</th>
+         <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--bind-address</th>
+         <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--character-sets-dir</th>
+         <td>Diretório onde os conjuntos de caracteres são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check</th>
+         <td>Verifique as tabelas em busca de erros</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-only-changed</th>
+         <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--check-upgrade</th>
+         <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--compress</th>
+         <td>Compressar todas as informações enviadas entre o cliente e o servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--databases</th>
+         <td>Interprete todos os argumentos como nomes de banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug</th>
+         <td>Escreva o log de depuração</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-check</th>
+         <td>Imprimir informações de depuração quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-info</th>
+         <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-auth</th>
+         <td>Plugin de autenticação a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-character-set</th>
+         <td>Especifique o conjunto de caracteres padrão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-extra-file</th>
+         <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-file</th>
+         <td>Arquivo de opção de leitura apenas nomeado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-group-suffix</th>
+         <td>Valor do sufixo do grupo de opções</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--enable-cleartext-plugin</th>
+         <td>Habilitar o plugin de autenticação em texto claro</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--extended</th>
+         <td>Verifique e conserte as mesas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>Verifique apenas as tabelas que não foram fechadas corretamente</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fix-db-names</th>
+         <td>Converta os nomes dos bancos de dados para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--fix-table-names</th>
+         <td>Converta os nomes das tabelas para o formato 5.1</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--force</th>
+         <td>Continue mesmo que ocorra um erro SQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--get-server-public-key</th>
+         <td>Solicitar chave pública RSA do servidor</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--help</th>
+         <td>Exibir mensagem de ajuda e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--host</th>
+         <td>Anfitrião no qual o servidor MySQL está localizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--login-path</th>
+         <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--medium-check</th>
+         <td>Faça uma verificação mais rápida do que uma operação --extended</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-defaults</th>
+         <td>Não ler arquivos de opção</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--optimize</th>
+         <td>Otimize as tabelas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--password</th>
+         <td>Senha para usar ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--pipe</th>
+         <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--plugin-dir</th>
+         <td>Diretório onde os plugins são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--port</th>
+         <td>Número de porta TCP/IP para a conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--print-defaults</th>
+         <td>Opções padrão de impressão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--protocol</th>
+         <td>Protocolo de transporte a ser utilizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>O método mais rápido de verificação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--reparar</th>
+         <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--secure-auth</th>
+         <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--server-public-key-path</th>
+         <td>Nome do caminho para o arquivo que contém a chave pública RSA</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--shared-memory-base-name</th>
+         <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--silent</th>
+         <td>Modo silencioso</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-database</th>
+         <td>Omitar essa base de dados das operações realizadas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--socket</th>
+         <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl</th>
+         <td>Ative a criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-ca</th>
+         <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-capath</th>
+         <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cert</th>
+         <td>Arquivo que contém o certificado X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cipher</th>
+         <td>Cifras permitidas para criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crl</th>
+         <td>Arquivo que contém listas de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crlpath</th>
+         <td>Diretório que contém arquivos de lista de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-chave</th>
+         <td>Arquivo que contém a chave X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-mode</th>
+         <td>Estado de segurança desejado da conexão com o servidor</td>
+         <td>5.7.11</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-verify-server-cert</th>
+         <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tables</th>
+         <td>Suprapor a opção --databases ou -B</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tls-version</th>
+         <td>Protocolos TLS permitidos para conexões criptografadas</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--use-frm</th>
+         <td>Para operações de reparo em tabelas MyISAM</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--user</th>
+         <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--verbose</th>
+         <td>Modo verbosos</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--version</th>
+         <td>Exibir informações da versão e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--write-binlog</th>
+         <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td>
+         <td></td>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
 
   Processar todas as tabelas nos bancos de dados nomeados. Normalmente, o **mysqlcheck** trata o argumento de nome do banco de dados na linha de comando como um nome de banco de dados e quaisquer nomes subsequentes como nomes de tabelas. Com esta opção, ele trata todos os argumentos de nome como nomes de bancos de dados.
 
 - `--debug[=opções_de_depuração]`, `-# [opções_de_depuração]`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> <th>Introduzido</th> <th>Desatualizado</th> </tr></thead><tbody><tr><th>--all-databases</th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th>--all-in-1</th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th>--analyze</th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th>--auto-repair</th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th>--bind-address</th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th>--check</th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th>--check-only-changed</th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th>--check-upgrade</th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th>--databases</th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th>--extended</th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th>--fix-db-names</th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--fix-table-names</th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--force</th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--medium-check</th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th>--optimize</th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th>--reparar</th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th>--server-public-key-path</th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th>--skip-database</th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-chave</th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th>--tables</th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th>--use-frm</th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th>--write-binlog</th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>
 
   Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O padrão é `d:t:o`.
 
@@ -126,7 +2071,7 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--debug-check`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> <th>Introduzido</th> <th>Desatualizado</th> </tr></thead><tbody><tr><th>--all-databases</th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th>--all-in-1</th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th>--analyze</th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th>--auto-repair</th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th>--bind-address</th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th>--check</th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th>--check-only-changed</th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th>--check-upgrade</th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th>--databases</th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th>--extended</th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th>--fix-db-names</th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--fix-table-names</th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--force</th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--medium-check</th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th>--optimize</th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th>--reparar</th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th>--server-public-key-path</th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th>--skip-database</th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-chave</th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th>--tables</th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th>--use-frm</th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th>--write-binlog</th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>
 
   Imprima algumas informações de depuração quando o programa sair.
 
@@ -134,7 +2079,7 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--debug-info`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> <th>Introduzido</th> <th>Desatualizado</th> </tr></thead><tbody><tr><th>--all-databases</th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th>--all-in-1</th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th>--analyze</th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th>--auto-repair</th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th>--bind-address</th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th>--check</th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th>--check-only-changed</th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th>--check-upgrade</th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th>--databases</th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th>--extended</th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th>--fix-db-names</th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--fix-table-names</th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--force</th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--medium-check</th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th>--optimize</th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th>--reparar</th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th>--server-public-key-path</th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th>--skip-database</th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-chave</th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th>--tables</th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th>--use-frm</th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th>--write-binlog</th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>
 
   Imprima informações de depuração, estatísticas de uso de memória e CPU quando o programa sair.
 
@@ -142,13 +2087,13 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> <th>Introduzido</th> <th>Desatualizado</th> </tr></thead><tbody><tr><th>--all-databases</th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th>--all-in-1</th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th>--analyze</th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th>--auto-repair</th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th>--bind-address</th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th>--check</th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th>--check-only-changed</th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th>--check-upgrade</th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th>--databases</th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th>--extended</th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th>--fix-db-names</th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--fix-table-names</th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--force</th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--medium-check</th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th>--optimize</th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th>--reparar</th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th>--server-public-key-path</th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th>--skip-database</th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-chave</th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th>--tables</th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th>--use-frm</th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th>--write-binlog</th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>
 
   Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 10.15, “Configuração do Conjunto de Caracteres”.
 
 - `--defaults-extra-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> <th>Introduzido</th> <th>Desatualizado</th> </tr></thead><tbody><tr><th>--all-databases</th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th>--all-in-1</th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th>--analyze</th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th>--auto-repair</th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th>--bind-address</th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th>--check</th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th>--check-only-changed</th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th>--check-upgrade</th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th>--databases</th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th>--extended</th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th>--fix-db-names</th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--fix-table-names</th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--force</th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--medium-check</th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th>--optimize</th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th>--reparar</th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th>--server-public-key-path</th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th>--skip-database</th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-chave</th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th>--tables</th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th>--use-frm</th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th>--write-binlog</th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -156,7 +2101,7 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--defaults-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analisar</a></th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-reparação</a></th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extendido</a></th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--rápido</a></th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-db-names">--fix-db-names</a></th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_fix-table-names">--fix-table-names</a></th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">-- otimizar</a></th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--rápido</a></th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--reparar</a></th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silencioso</a></th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--mesas</a></th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> <th>Introduzido</th> <th>Desatualizado</th> </tr></thead><tbody><tr><th>--all-databases</th> <td>Verifique todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th>--all-in-1</th> <td>Execute uma única declaração para cada banco de dados que nomeia todas as tabelas desse banco de dados</td> <td></td> <td></td> </tr><tr><th>--analyze</th> <td>Analise as tabelas</td> <td></td> <td></td> </tr><tr><th>--auto-repair</th> <td>Se uma tabela verificada estiver corrompida, corrija-a automaticamente</td> <td></td> <td></td> </tr><tr><th>--bind-address</th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th>--character-sets-dir</th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th>--check</th> <td>Verifique as tabelas em busca de erros</td> <td></td> <td></td> </tr><tr><th>--check-only-changed</th> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td> <td></td> <td></td> </tr><tr><th>--check-upgrade</th> <td>Invoque a consulta CHECK TABLE com a opção FOR UPGRADE</td> <td></td> <td></td> </tr><tr><th>--compress</th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th>--databases</th> <td>Interprete todos os argumentos como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th>--debug</th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th>--debug-check</th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--debug-info</th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th>--default-auth</th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th>--default-character-set</th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th>--defaults-extra-file</th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th>--defaults-file</th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th>--defaults-group-suffix</th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th>--enable-cleartext-plugin</th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th>--extended</th> <td>Verifique e conserte as mesas</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td> <td></td> <td></td> </tr><tr><th>--fix-db-names</th> <td>Converta os nomes dos bancos de dados para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--fix-table-names</th> <td>Converta os nomes das tabelas para o formato 5.1</td> <td></td> <td>Sim</td> </tr><tr><th>--force</th> <td>Continue mesmo que ocorra um erro SQL</td> <td></td> <td></td> </tr><tr><th>--get-server-public-key</th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th>--help</th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th>--host</th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th>--login-path</th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th>--medium-check</th> <td>Faça uma verificação mais rápida do que uma operação --extended</td> <td></td> <td></td> </tr><tr><th>--no-defaults</th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th>--optimize</th> <td>Otimize as tabelas</td> <td></td> <td></td> </tr><tr><th>--password</th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--pipe</th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th>--port</th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th>--print-defaults</th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th>--protocol</th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th>--fast</th> <td>O método mais rápido de verificação</td> <td></td> <td></td> </tr><tr><th>--reparar</th> <td>Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas</td> <td></td> <td></td> </tr><tr><th>--secure-auth</th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th>--server-public-key-path</th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th>--shared-memory-base-name</th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th>--silent</th> <td>Modo silencioso</td> <td></td> <td></td> </tr><tr><th>--skip-database</th> <td>Omitar essa base de dados das operações realizadas</td> <td></td> <td></td> </tr><tr><th>--socket</th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th>--ssl</th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-ca</th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-capath</th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th>--ssl-cert</th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-cipher</th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th>--ssl-crl</th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-crlpath</th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th>--ssl-chave</th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th>--ssl-mode</th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th>--ssl-verify-server-cert</th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th>--tables</th> <td>Suprapor a opção --databases ou -B</td> <td></td> <td></td> </tr><tr><th>--tls-version</th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th>--use-frm</th> <td>Para operações de reparo em tabelas MyISAM</td> <td></td> <td></td> </tr><tr><th>--user</th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th>--verbose</th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th>--version</th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th>--write-binlog</th> <td>As instruções ANALYZE, OPTIMIZE e REPAIR para o log binário. A opção --skip-write-binlog adiciona NO_WRITE_TO_BINLOG a essas instruções.</td> <td></td> <td></td> </tr></tbody></table>
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -166,7 +2111,7 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlcheck** normalmente lê os grupos `[client]` e `[mysqlcheck]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysqlcheck** também lê os grupos `[client_other]` e `[mysqlcheck_other]`.
 
@@ -174,7 +2119,7 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--extended`, `-e`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Se você estiver usando essa opção para verificar tabelas, isso garante que elas sejam 100% consistentes, mas leva muito tempo.
 
@@ -182,13 +2127,13 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Ative o plugin de autenticação de texto claro `mysql_clear_password`. (Consulte a Seção 6.4.1.6, “Autenticação Pluggable de Texto Claro no Cliente”.)
 
@@ -196,13 +2141,13 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--fast`, `-F`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Verifique apenas as tabelas que não foram fechadas corretamente.
 
 - `--fix-db-names`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Converta os nomes dos bancos de dados para o formato 5.1. Apenas os nomes dos bancos de dados que contêm caracteres especiais serão afetados.
 
@@ -210,7 +2155,7 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--fix-table-names`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Converta os nomes das tabelas para o formato 5.1. Apenas os nomes das tabelas que contêm caracteres especiais serão afetados. Esta opção também se aplica a visualizações.
 
@@ -218,13 +2163,13 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Continue mesmo que ocorra um erro SQL.
 
 - `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Peça à rede o par de chaves públicas necessário para a troca de senhas com base em pares de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `caching_sha2_password`. Para esse plugin, o servidor não envia a chave pública a menos que seja solicitado. Esta opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de senha com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -236,43 +2181,43 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Conecte-se ao servidor MySQL no host fornecido.
 
 - `--login-path=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
-  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
 
 - `--medium-check`, `-m`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   Faça uma verificação mais rápida do que uma operação `--extended`. Isso encontra apenas 99,99% de todos os erros, o que deve ser suficiente na maioria dos casos.
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   Não leia nenhum arquivo de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas.
 
-  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se ele existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se ele existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
 
 - `--optimize`, `-o`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   Otimize as tabelas.
 
 - `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlcheck** solicitará uma senha. Se for fornecida, não deve haver **espaço** entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar a senha.
 
@@ -282,25 +2227,25 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   No Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 - `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysqlcheck** não encontrá-lo. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   Para conexões TCP/IP, o número de porta a ser usado.
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
@@ -308,13 +2253,13 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-databases</code>]]</td> </tr></tbody></table>
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para obter detalhes sobre os valores permitidos, consulte a Seção 4.2.5, “Protocolos de Transporte de Conexão”.
 
 - `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   Se você estiver usando essa opção para verificar tabelas, isso impedirá que a verificação escaneie as linhas para verificar se há links incorretos. Esse é o método de verificação mais rápido.
 
@@ -322,13 +2267,13 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--repair`, `-r`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   Realize uma reparação que pode consertar quase tudo, exceto chaves únicas que não são únicas.
 
 - `--secure-auth`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   Não envie senhas para o servidor no formato antigo (pré-4.1). Isso impede conexões, exceto para servidores que usam o formato de senha mais recente.
 
@@ -336,11 +2281,11 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
   Nota
 
-  Senhas que usam o método de hashing pré-4.1 são menos seguras do que senhas que usam o método de hashing de senha nativo e devem ser evitadas. Senhas pré-4.1 são desaconselhadas e o suporte para elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
+  Senhas que usam o método de hashing pré-4.1 são menos seguras do que senhas que usam o método de hashing de senha nativo e devem ser evitadas. Senhas pré-4.1 são desaconselhadas e o suporte para elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql_old_password”.
 
 - `--server-public-key-path=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas com par de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de senha com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -354,7 +2299,7 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--shared-memory-base-name=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   Em Windows, o nome de memória compartilhada a ser usado para conexões feitas usando memória compartilhada com um servidor local. O valor padrão é `MYSQL`. O nome de memória compartilhada é case-sensitive.
 
@@ -362,19 +2307,19 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   Modo silencioso. Imprima apenas as mensagens de erro.
 
 - `--skip-database=db_name`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   Não inclua o banco de dados nomeado (sensível a maiúsculas e minúsculas) nas operações realizadas pelo **mysqlcheck**.
 
 - `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   Para conexões ao `localhost`, o arquivo de socket Unix a ser usado ou, no Windows, o nome do tubo nomeado a ser usado.
 
@@ -386,13 +2331,13 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--tables`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   Supere a opção `--databases` ou `-B`. Todos os argumentos de nome que seguem a opção são considerados nomes de tabelas.
 
 - `--tls-version=lista_protocolos`
 
-  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para tudo em um"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--all-in-1</code>]]</td> </tr></tbody></table>
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para obter detalhes, consulte a Seção 6.3.2, “Protocolos e cifra TLS de conexão criptografada”.
 
@@ -400,30 +2345,30 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 - `--use-frm`
 
-  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>
 
   Para operações de reparo em tabelas `MyISAM`, obtenha a estrutura da tabela a partir do arquivo `.frm` para que a tabela possa ser reparada mesmo que o cabeçalho `.MYI` esteja corrompido.
 
 - `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>
 
   O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>
 
   Modo verbose. Imprima informações sobre as várias etapas da operação do programa.
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>
 
   Exibir informações da versão e sair.
 
 - `--write-binlog`
 
-  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para análise"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--analyze</code>]]</td> </tr></tbody></table>
 
   Esta opção está habilitada por padrão, para que as instruções `ANALYSE TABLE`, `OPTIMIZE TABLE` e `REPAIR TABLE` geradas pelo **mysqlcheck** sejam escritas no log binário. Use `--skip-write-binlog` para adicionar `NO_WRITE_TO_BINLOG` às instruções para que elas não sejam registradas. Use `--skip-write-binlog` quando essas instruções não devem ser enviadas para réplicas ou executadas ao usar os logs binários para recuperação a partir de backups.

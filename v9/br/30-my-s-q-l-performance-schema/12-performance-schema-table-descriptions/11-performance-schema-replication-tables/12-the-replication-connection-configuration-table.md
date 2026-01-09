@@ -111,30 +111,30 @@ O `TRUNCATE TABLE` não é permitido para a tabela `replication_connection_confi
 A tabela a seguir mostra a correspondência entre as colunas `replication_connection_configuration` e as colunas `SHOW REPLICA STATUS`.
 
 <table summary="Correspondência entre as colunas `replication_connection_configuration` e `SHOW REPLICA STATUS`">
-<tr><th><code class="literal">replication_connection_configuration</code></th><th><code class="literal">SHOW REPLICA STATUS</code></th></tr>
-<tr><th><code class="literal">CHANNEL_NAME</code></th><th><code class="literal">Channel_name</code></th></tr>
-<tr><th><code class="literal">HOST</code></th><th><code class="literal">Source_Host</code></th></tr>
-<tr><th><code class="literal">PORT</code></th><th><code class="literal">Source_Port</code></th></tr>
-<tr><th><code class="literal">USER</code></th><th><code class="literal">Source_User</code></th></tr>
-<tr><th><code class="literal">NETWORK_INTERFACE</code></th><th><code class="literal">Source_Bind</code></th></tr>
-<tr><th><code class="literal">AUTO_POSITION</code></th><th><code class="literal">Auto_Position</code></th></tr>
-<tr><th><code class="literal">SSL_ALLOWED</code></th><th><code class="literal">Source_SSL_Allowed</code></th></tr>
-<tr><th><code class="literal">SSL_CA_FILE</code></th><th><code class="literal">Source_SSL_CA_File</code></th></tr>
-<tr><th><code class="literal">SSL_CA_PATH</code></th><th><code class="literal">Source_SSL_CA_Path</code></th></tr>
-<tr><th><code class="literal">SSL_CERTIFICATE</code></th><th><code class="literal">Source_SSL_Cert</code></th></tr>
-<tr><th><code class="literal">SSL_CIPHER</code></th><th><code class="literal">Source_SSL_Cipher</code></th></tr>
-<tr><th><code class="literal">SSL_KEY</code></th><th><code class="literal">Source_SSL_Key</code></th></tr>
-<tr><th><code class="literal">SSL_VERIFY_SERVER_CERTIFICATE</code></th><th><code class="literal">Source_SSL_Verify_Server_Cert</code></th></tr>
-<tr><th><code class="literal">SSL_CRL_FILE</code></th><th><code class="literal">Source_SSL_Crl</code></th></tr>
-<tr><th><code class="literal">SSL_CRL_PATH</code></th><th><code class="literal">Source_SSL_Crlpath</code></th></tr>
-<tr><th><code class="literal">CONNECTION_RETRY_INTERVAL</code></th><th><code class="literal">Source_Connect_Retry</code></th></tr>
-<tr><th><code class="literal">CONNECTION_RETRY_COUNT</code></th><th><code class="literal">Source_Retry_Count</code></th></tr>
-<tr><th><code class="literal">HEARTBEAT_INTERVAL</code></th><th>Nenhum</th></tr>
-<tr><th><code class="literal">TLS_VERSION</code></th><th><code class="literal">Source_TLS_Version</code></th></tr>
-<tr><th><code class="literal">PUBLIC_KEY_PATH</code></th><th><code class="literal">Source_public_key_path</code></th></tr>
-<tr><th><code class="literal">GET_PUBLIC_KEY</code></th><th><code class="literal">Get_source_public_key</code></th></tr>
-<tr><th><code class="literal">NETWORK_NAMESPACE</code></th><th><code class="literal">Network_Namespace</code></th></tr>
-<tr><th><code class="literal">COMPRESSION_ALGORITHM</code></th><th>[Nenhum]</th></tr>
-<tr><th><code class="literal">ZSTD_COMPRESSION_LEVEL</code></th><th>[Nenhum]</th></tr>
-<tr><th><code class="literal">GTID_ONLY</code></th><th>[Nenhum]</th></tr>
+<tr><th><code>replication_connection_configuration</code></th><th><code>SHOW REPLICA STATUS</code></th></tr>
+<tr><th><code>CHANNEL_NAME</code></th><th><code>Channel_name</code></th></tr>
+<tr><th><code>HOST</code></th><th><code>Source_Host</code></th></tr>
+<tr><th><code>PORT</code></th><th><code>Source_Port</code></th></tr>
+<tr><th><code>USER</code></th><th><code>Source_User</code></th></tr>
+<tr><th><code>NETWORK_INTERFACE</code></th><th><code>Source_Bind</code></th></tr>
+<tr><th><code>AUTO_POSITION</code></th><th><code>Auto_Position</code></th></tr>
+<tr><th><code>SSL_ALLOWED</code></th><th><code>Source_SSL_Allowed</code></th></tr>
+<tr><th><code>SSL_CA_FILE</code></th><th><code>Source_SSL_CA_File</code></th></tr>
+<tr><th><code>SSL_CA_PATH</code></th><th><code>Source_SSL_CA_Path</code></th></tr>
+<tr><th><code>SSL_CERTIFICATE</code></th><th><code>Source_SSL_Cert</code></th></tr>
+<tr><th><code>SSL_CIPHER</code></th><th><code>Source_SSL_Cipher</code></th></tr>
+<tr><th><code>SSL_KEY</code></th><th><code>Source_SSL_Key</code></th></tr>
+<tr><th><code>SSL_VERIFY_SERVER_CERTIFICATE</code></th><th><code>Source_SSL_Verify_Server_Cert</code></th></tr>
+<tr><th><code>SSL_CRL_FILE</code></th><th><code>Source_SSL_Crl</code></th></tr>
+<tr><th><code>SSL_CRL_PATH</code></th><th><code>Source_SSL_Crlpath</code></th></tr>
+<tr><th><code>CONNECTION_RETRY_INTERVAL</code></th><th><code>Source_Connect_Retry</code></th></tr>
+<tr><th><code>CONNECTION_RETRY_COUNT</code></th><th><code>Source_Retry_Count</code></th></tr>
+<tr><th><code>HEARTBEAT_INTERVAL</code></th><th>Nenhum</th></tr>
+<tr><th><code>TLS_VERSION</code></th><th><code>Source_TLS_Version</code></th></tr>
+<tr><th><code>PUBLIC_KEY_PATH</code></th><th><code>Source_public_key_path</code></th></tr>
+<tr><th><code>GET_PUBLIC_KEY</code></th><th><code>Get_source_public_key</code></th></tr>
+<tr><th><code>NETWORK_NAMESPACE</code></th><th><code>Network_Namespace</code></th></tr>
+<tr><th><code>COMPRESSION_ALGORITHM</code></th><th>[Nenhum]</th></tr>
+<tr><th><code>ZSTD_COMPRESSION_LEVEL</code></th><th>[Nenhum]</th></tr>
+<tr><th><code>GTID_ONLY</code></th><th>[Nenhum]</th></tr>
 </table>

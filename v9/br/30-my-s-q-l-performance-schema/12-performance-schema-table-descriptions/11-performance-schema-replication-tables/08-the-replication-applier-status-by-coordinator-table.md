@@ -77,30 +77,30 @@ A tabela a seguir mostra a correspondência entre as colunas de `replication_app
 <col style="width: 60%"/><col style="width: 40%"/>
 <thead>
 <tr>
-<th><code class="literal">replication_applier_status_by_coordinator</code> Coluna</th>
-<th><code class="literal">SHOW REPLICA STATUS</code> Coluna</th>
+<th><code>replication_applier_status_by_coordinator</code> Coluna</th>
+<th><code>SHOW REPLICA STATUS</code> Coluna</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code class="literal">THREAD_ID</code></td>
+<td><code>THREAD_ID</code></td>
 <td>Nenhum</td>
 </tr>
 <tr>
-<td><code class="literal">SERVICE_STATE</code></td>
-<td><code class="literal">Replica_SQL_Running</code></td>
+<td><code>SERVICE_STATE</code></td>
+<td><code>Replica_SQL_Running</code></td>
 </tr>
 <tr>
-<td><code class="literal">LAST_ERROR_NUMBER</code></td>
-<td><code class="literal">Last_SQL_Errno</code></td>
+<td><code>LAST_ERROR_NUMBER</code></td>
+<td><code>Last_SQL_Errno</code></td>
 </tr>
 <tr>
-<td><code class="literal">LAST_ERROR_MESSAGE</code></td>
-<td><code class="literal">Last_SQL_Error</code></td>
+<td><code>LAST_ERROR_MESSAGE</code></td>
+<td><code>Last_SQL_Error</code></td>
 </tr>
 <tr>
-<td><code class="literal">LAST_ERROR_TIMESTAMP</code></td>
-<td><code class="literal">Last_SQL_Error_Timestamp</code></td>
+<td><code>LAST_ERROR_TIMESTAMP</code></td>
+<td><code>Last_SQL_Error_Timestamp</code></td>
 </tr>
 </tbody>
 </table>

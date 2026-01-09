@@ -13,11 +13,11 @@ As variáveis de clonagem são configuradas na instância do servidor MySQL do d
 <table frame="box" rules="all" summary="Propriedades para clone_autotune_concurrency">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--clone-autotune-concurrency</code></td>
+    <td><code>--clone-autotune-concurrency</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_autotune_concurrency">clone_autotune_concurrency</a></code></td>
+    <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_autotune_concurrency">clone_autotune_concurrency</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -28,7 +28,7 @@ As variáveis de clonagem são configuradas na instância do servidor MySQL do d
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -37,7 +37,7 @@ As variáveis de clonagem são configuradas na instância do servidor MySQL do d
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">ON</code></td>
+    <td><code>ON</code></td>
   </tr>
 </table>
 
@@ -61,13 +61,13 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
 
 * `clone_buffer_size`
 
-  <table frame="box" rules="all" summary="Propriedades para clone_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--clone-buffer-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">4194304</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">1048576</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">268435456</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para clone_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--clone-buffer-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>4194304</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1048576</code></td> </tr><tr><th>Valor Máximo</th> <td><code>268435456</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   Define o tamanho do buffer intermediário usado ao transferir dados durante uma operação de clonagem local. O valor padrão é de 4 MiB. Um tamanho de buffer maior pode permitir que os drivers de dispositivos de E/S obtenham dados em paralelo, o que pode melhorar o desempenho da clonagem.
 
 * `clone_block_ddl`
 
-  <table frame="box" rules="all" summary="Propriedades para clone_block_ddl"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--clone-block-ddl</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_block_ddl">clone_block_ddl</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para clone_block_ddl"><tbody><tr><th>Formato de linha de comando</th> <td><code>--clone-block-ddl</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_block_ddl">clone_block_ddl</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Habilita um bloqueio de backup exclusivo na instância do servidor MySQL do doador durante uma operação de clonagem, o que bloqueia operações DDL concorrentes no doador. Veja a Seção 7.6.6.4, “Clonagem e DDL Concorrente”.
 
@@ -76,11 +76,11 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
 <table frame="box" rules="all" summary="Propriedades para clone_delay_after_data_drop">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--clone-delay-after-data-drop</code></td>
+    <td><code>--clone-delay-after-data-drop</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_delay_after_data_drop">clone_delay_after_data_drop</a></code></td>
+    <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_delay_after_data_drop">clone_delay_after_data_drop</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -91,7 +91,7 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hint de Configuração do <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code class="literal">SET_VAR</a></th></th>
+    <th>Hint de Configuração do <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></th></th>
     <td>Não</td>
   </tr>
   <tr>
@@ -100,15 +100,15 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">3600</code></td>
+    <td><code>3600</code></td>
   </tr>
   <tr>
     <th>Unidade</th>
@@ -125,11 +125,11 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
 <table frame="box" rules="all" summary="Propriedades para clone_ddl_timeout">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--clone-ddl-timeout</code></td>
+    <td><code>--clone-ddl-timeout</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_ddl_timeout">clone_ddl_timeout</a></code></td>
+    <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_ddl_timeout">clone_ddl_timeout</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -140,7 +140,7 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th></a> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -149,15 +149,15 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">300</code></td>
+    <td><code>300</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">2592000</code></td>
+    <td><code>2592000</code></td>
   </tr>
   <tr>
     <th>Unidade</th>
@@ -174,15 +174,15 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
 * `clone_donor_timeout_after_network_failure`
 
 <table frame="box" rules="all" summary="Propriedades para clone_donor_timeout_after_network_failure">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--clone-donor-timeout-after-network-failure</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_donor_timeout_after_network_failure">clone_donor_timeout_after_network_failure</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--clone-donor-timeout-after-network-failure</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_donor_timeout_after_network_failure">clone_donor_timeout_after_network_failure</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">30</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>5</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>30</code></td> </tr>
   <tr><th>Unidade</th> <td>minutos</td> </tr>
 </table>
 
@@ -193,13 +193,13 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
 * `clone_enable_compression`
 
 <table frame="box" rules="all" summary="Propriedades para clone_enable_compression">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--clone-enable-compression</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_enable_compression">clone_enable_compression</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--clone-enable-compression</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_enable_compression">clone_enable_compression</a></code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr>
 </table>
 
   Habilita a compressão de dados na camada de rede durante uma operação de clonagem remota. A compressão economiza largura de banda da rede em detrimento do uso da CPU. A ativação da compressão pode melhorar a taxa de transferência de dados. Esta configuração é aplicada apenas na instância do servidor MySQL do destinatário.
@@ -207,15 +207,15 @@ Se `clone_autotune_concurrency` estiver desativado, `clone_max_concurrency` defi
 * `clone_max_concurrency`
 
 <table frame="box" rules="all" summary="Propriedades para clone_max_concurrency">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--clone-max-concurrency</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_max_concurrency">clone_max_concurrency</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--clone-max-concurrency</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_max_concurrency">clone_max_concurrency</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">16</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">128</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>16</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>128</code></td> </tr>
   <tr><th>Unidade</th> <td>threads</td> </tr>
 </table>
 
@@ -227,7 +227,7 @@ Uma taxa mínima de transferência de dados de 1 megabit (MiB) por fio é recome
 
 * `clone_max_data_bandwidth`
 
-  <table frame="box" rules="all" summary="Propriedades para clone_max_data_bandwidth"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--clone-max-data-bandwidth</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_max_data_bandwidth">clone_max_data_bandwidth</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr><tr><th>Unidade</th> <td>MiB/segundo</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para clone_max_data_bandwidth"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--clone-max-data-bandwidth</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_max_data_bandwidth">clone_max_data_bandwidth</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr><tr><th>Unidade</th> <td>MiB/segundo</td> </tr></tbody></table>
 
   Define a taxa máxima de transferência de dados em megabit (MiB) por segundo para uma operação de clonagem remota. Esta variável ajuda a gerenciar o impacto no desempenho de uma operação de clonagem. Um limite deve ser definido apenas quando a largura de banda de I/O do disco do doador estiver saturada, afetando o desempenho. Um valor de 0 significa “sem limite”, o que permite que as operações de clonagem sejam executadas na taxa de transferência de dados mais alta possível. Esta configuração é aplicável apenas à instância do servidor MySQL do destinatário.
 
@@ -237,25 +237,25 @@ A taxa de transferência de dados solicitada especificada por `clone_max_data_ba
 
 * `clone_max_network_bandwidth`
 
-  <table frame="box" rules="all" summary="Propriedades para clone_max_network_bandwidth"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--clone-max-network-bandwidth</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_max_network_bandwidth">clone_max_network_bandwidth</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr><tr><th>Unidade</th> <td>MiB/segundo</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para clone_max_network_bandwidth"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--clone-max-network-bandwidth</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_max_network_bandwidth">clone_max_network_bandwidth</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr><tr><th>Unidade</th> <td>MiB/segundo</td> </tr></tbody></table>
 
 Especifica a taxa máxima de transferência de rede aproximada em mibibytes (MiB) por segundo para uma operação de clonagem remota. Esta variável pode ser usada para gerenciar o impacto no desempenho de uma operação de clonagem na largura de banda da rede. Deve ser definida apenas quando a largura de banda da rede estiver saturada, afetando o desempenho da instância do servidor MySQL destinatário. Um valor de 0 significa "sem limite", o que permite a clonagem na taxa de transferência de dados mais alta possível pela rede, proporcionando o melhor desempenho. Esta configuração é aplicável apenas à instância do servidor MySQL destinatário.
 
 * `clone_ssl_ca`
 
-  <table frame="box" rules="all" summary="Propriedades para clone_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--clone-buffer-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">4194304</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">1048576</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">268435456</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para clone_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--clone-buffer-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>4194304</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1048576</code></td> </tr><tr><th>Valor Máximo</th> <td><code>268435456</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   Especifica o caminho para o arquivo da autoridade de certificação (CA). Usado para configurar uma conexão criptografada para uma operação de clonagem remota. Esta configuração configurada no destinatário e usada ao se conectar ao doador.
 
 * `clone_ssl_cert`
 
-  <table frame="box" rules="all" summary="Propriedades para clone_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--clone-buffer-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">4194304</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">1048576</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">268435456</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para clone_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--clone-buffer-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>4194304</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1048576</code></td> </tr><tr><th>Valor Máximo</th> <td><code>268435456</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   Especifica o caminho do certificado da chave pública. Usado para configurar uma conexão criptografada para uma operação de clonagem remota. Esta configuração é configurada no destinatário e usada ao se conectar ao doador.
 
 * `clone_ssl_key`
 
-<table frame="box" rules="all" summary="Propriedades para clone_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--clone-buffer-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">4194304</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">1048576</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">268435456</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para clone_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--clone-buffer-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>4194304</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1048576</code></td> </tr><tr><th>Valor Máximo</th> <td><code>268435456</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   Especifica o caminho do arquivo de chave privada. Usado para configurar uma conexão criptografada para uma operação de clonagem remota. Esta configuração é configurada no destinatário e usada ao se conectar ao doador.
 
@@ -264,11 +264,11 @@ Especifica a taxa máxima de transferência de rede aproximada em mibibytes (MiB
 <table frame="box" rules="all" summary="Propriedades para clone_buffer_size">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--clone-buffer-size</code></td>
+    <td><code>--clone-buffer-size</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td>
+    <td><code><a class="link" href="clone-plugin-options-variables.html#sysvar_clone_buffer_size">clone_buffer_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -279,7 +279,7 @@ Especifica a taxa máxima de transferência de rede aproximada em mibibytes (MiB
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -288,15 +288,15 @@ Especifica a taxa máxima de transferência de rede aproximada em mibibytes (MiB
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">4194304</code></td>
+    <td><code>4194304</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">268435456</code></td>
+    <td><code>268435456</code></td>
   </tr>
   <tr>
     <th>Unidade</th>

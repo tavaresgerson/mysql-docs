@@ -54,7 +54,7 @@ Para especificar padrões adicionais, use a opção `--histignore` ou defina a v
 
 Os padrões especificados na linha de comando podem precisar ser entre aspas ou escapar para evitar que o interpretador do comando os trate de forma especial. Por exemplo, para suprimir o registro de declarações `UPDATE` e `DELETE`, além de declarações que se referem a senhas, invoque **mysql** da seguinte maneira:
 
-```sql
+```sh
 mysql --histignore="*UPDATE*:*DELETE*"
 ```
 
@@ -68,7 +68,7 @@ Se você não quiser manter um arquivo de histórico, primeiro remova `.mysql_hi
 
 - Crie `.mysql_history` como um link simbólico para `/dev/null`; isso precisa ser feito apenas uma vez:
 
-  ```sql
+  ```sh
   ln -s /dev/null $HOME/.mysql_history
   ```
 
@@ -82,7 +82,7 @@ O tamanho da mensagem é limitado a 1024 bytes.
 
 As mensagens consistem no identificador `MysqlClient`, seguido desses valores:
 
-- `SISTEMA_USUARIO`
+- `SYSTEM_USER`
 
   O nome do usuário do sistema operacional (nome de login) ou `--` se o usuário for desconhecido.
 
@@ -90,7 +90,7 @@ As mensagens consistem no identificador `MysqlClient`, seguido desses valores:
 
   O nome do usuário do MySQL (especificado com a opção `--user`) ou `--` se o usuário for desconhecido.
 
-- `ID_CONEXÃO`:
+- `CONNECTION_ID`:
 
   O identificador de conexão do cliente. Isso é o mesmo que o valor da função `CONNECTION_ID()` dentro da sessão.
 
@@ -108,7 +108,7 @@ As mensagens consistem no identificador `MysqlClient`, seguido desses valores:
 
 Aqui está uma amostra de saída gerada no Linux usando `--syslog`. Essa saída é formatada para melhor legibilidade; cada mensagem registrada na verdade ocupa uma única linha.
 
-```sql
+```
 Mar  7 12:39:25 myhost MysqlClient[20824]:
   SYSTEM_USER:'oscar', MYSQL_USER:'my_oscar', CONNECTION_ID:23,
   DB_SERVER:'127.0.0.1', DB:'--', QUERY:'USE test;'

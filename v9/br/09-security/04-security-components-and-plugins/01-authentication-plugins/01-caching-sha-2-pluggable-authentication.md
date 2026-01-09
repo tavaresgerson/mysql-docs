@@ -32,7 +32,7 @@ A tabela a seguir mostra os nomes dos plugins no lado do servidor e do cliente.
 
 **Tabela 8.14 Nomes de Plugins e Arquivos de Biblioteca para Autenticação SHA-2**
 
-<table summary="Nomes dos plugins e do arquivo de biblioteca usado para autenticação de senha SHA-2."><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td><code class="literal">caching_sha2_password</code></td> </tr><tr> <td>Plugin no lado do cliente</td> <td><code class="literal">caching_sha2_password</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td>Nenhum (os plugins são construídos internamente)</td> </tr></tbody></table>
+<table summary="Nomes dos plugins e do arquivo de biblioteca usado para autenticação de senha SHA-2."><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Plugin no lado do cliente</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td>Nenhum (os plugins são construídos internamente)</td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para a autenticação plugável SHA-2:
 

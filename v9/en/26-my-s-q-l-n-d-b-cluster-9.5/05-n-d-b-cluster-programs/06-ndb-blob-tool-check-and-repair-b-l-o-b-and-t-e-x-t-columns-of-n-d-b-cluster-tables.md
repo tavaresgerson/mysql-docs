@@ -18,139 +18,139 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--add-missing`
 
-  <table frame="box" rules="all" summary="Properties for add-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--add-missing</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for add-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--add-missing</code></td> </tr></tbody></table>
 
   For each inline part in NDB Cluster tables which has no corresponding BLOB part, write a dummy BLOB part of the required length, consisting of spaces.
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Directory containing character sets.
 
 * `--check-missing`
 
-  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Check for inline parts in NDB Cluster tables which have no corresponding BLOB parts.
 
 * `--check-orphans`
 
-  <table frame="box" rules="all" summary="Properties for check-orphans"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-orphans</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for check-orphans"><tbody><tr><th>Command-Line Format</th> <td><code>--check-orphans</code></td> </tr></tbody></table>
 
   Check for BLOB parts in NDB Cluster tables which have no corresponding inline parts.
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
   Number of times to retry connection before giving up.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
 
   Number of seconds to wait between attempts to contact management server.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Same as `--ndb-connectstring`.
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
 * `--database=db_name`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for database"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--database=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for database"><tbody><tr><th>Command-Line Format</th> <td><code>--database=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Specify the database to find the table in.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Also read groups with concat(group, suffix).
 
 * `--delete-orphans`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Remove BLOB parts from NDB Cluster tables which have no corresponding inline parts.
 
 * `--dump-file=file`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Writes a list of orphaned BLOB column parts to *`file`*. The information written to the file includes the table key and BLOB part number for each orphaned BLOB part.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Display help text and exit.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Read given path from login file.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Skips reading options from the login path file.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Sets the level of TLS support required to connect to the management server; one of `relaxed` or `strict`. `relaxed` (the default) means that a TLS connection is attempted, but success is not required; `strict` means that TLS is required to connect.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Same as `--ndb-connectstring`.
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Set node ID for this node, overriding any ID set by --ndb-connectstring.
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
 * `--ndb-tls-search-path`
 
-  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Specify a list of directories to search for a CA file. On Unix platforms, the directory names are separated by colons (`:`); on Windows systems, the semicolon character (`;`) is used as the separator. A directory reference may be relative or absolute; it may contain one or more environment variables, each denoted by a prefixed dollar sign (`$`), and expanded prior to use.
 
@@ -160,31 +160,31 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Do not read default options from any option file other than login file.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Print program argument list and exit.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Display help text and exit; same as --help.
 
 * `--verbose`
 
-  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Provide extra information in the tool's output regarding its progress.
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for check-missing"><tbody><tr><th>Command-Line Format</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Display version information and exit.
 

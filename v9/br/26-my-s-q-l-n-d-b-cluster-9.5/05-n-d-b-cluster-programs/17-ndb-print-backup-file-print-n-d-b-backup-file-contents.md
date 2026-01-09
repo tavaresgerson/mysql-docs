@@ -20,7 +20,7 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
 
 * `--backup-key`, `-K`
 
-  <table frame="box" rules="all" summary="Propriedades para chave de backup"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key=key</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chave de backup"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-key=key</code></td> </tr></tbody></table>
 
   Especifique a chave necessária para descriptografar um backup criptografado.
 
@@ -29,7 +29,7 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
 <table frame="box" rules="all" summary="Propriedades para backup-chave-de-entrada-padrão">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--backup-chave-de-entrada-padrão</code></td>
+    <td><code>--backup-chave-de-entrada-padrão</code></td>
   </tr>
 </table>
 
@@ -40,7 +40,7 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
   <table frame="box" rules="all" summary="Propriedades para backup-senha">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--backup-senha=senha</code></td>
+      <td><code>--backup-senha=senha</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -48,7 +48,7 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">[nenhuma]</code></td>
+      <td><code>[nenhuma]</code></td>
     </tr>
   </table>
 
@@ -59,7 +59,7 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
   <table frame="box" rules="all" summary="Propriedades para backup-senha-de-entrada-padrão">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--backup-senha-de-entrada-padrão</code></td>
+      <td><code>--backup-senha-de-entrada-padrão</code></td>
     </tr>
   </table>
 
@@ -70,7 +70,7 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
   <table frame="box" rules="all" summary="Propriedades para número-diretório-de-controle">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--número-diretório-de-controle=#</code></td>
+      <td><code>--número-diretório-de-controle=#</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -78,7 +78,7 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">0</code></td>
+      <td><code>0</code></td>
     </tr>
   </table>
 
@@ -86,81 +86,81 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Ler o arquivo dado após os arquivos globais serem lidos.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Ler as opções padrão do arquivo dado apenas.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Ler também os grupos com concatenação(grupo, sufixo).
 
 * `--fragment-id`
 
-  <table frame="box" rules="all" summary="Propriedades para fragment-id"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--fragment-id=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para fragment-id"><tbody><tr><th>Formato de linha de comando</th> <td><code>--fragment-id=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr></tbody></table>
 
   ID do fragmento. Usado junto com `--print-restored-rows`.
 
 * `--help`
 
 <table frame="box" rules="all" summary="Propriedades para ajuda">
-  <tr><th>Formato de linha de comando</th> <td><p class="valor_válido"><code class="literal">--help</code></p><p class="valor_válido"><code class="literal">--usage</code></p></td></tr>
+  <tr><th>Formato de linha de comando</th> <td><p class="valor_válido"><code>--help</code></p><p class="valor_válido"><code>--usage</code></p></td></tr>
 </table>
 
   Imprima informações de uso do programa.
 
 * `--caminho_de_login`
 
-  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-key-from-stdin</code></td> </tr></tbody></table>
 
   Leia o caminho fornecido a partir do arquivo de login.
 
 * `--sem_caminhos_de_login`
 
-  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-key-from-stdin</code></td> </tr></tbody></table>
 
   Ignora a leitura de opções a partir do arquivo de caminho de login.
 
 * `--sem_configurações_padrão`
 
-  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-key-from-stdin</code></td> </tr></tbody></table>
 
   Não leia opções padrão a partir de qualquer arquivo de opções, exceto o arquivo de login.
 
 * `--sem_exibir_linhas`
 
-  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-key-from-stdin</code></td> </tr></tbody></table>
 
   Não inclua linhas na saída.
 
 * `--exibir_configurações_padrão`
 
 <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr>
-</table>4
+  <tr><th>Formato de Linha de Comando</th> <td><code>--backup-key-from-stdin</code></td> </tr>
+</table>
 
   Imprimir a lista de argumentos do programa e sair.
 
 * `--print-header-words`
 
   <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr>
-  </table>5
+    <tr><th>Formato de Linha de Comando</th> <td><code>--backup-key-from-stdin</code></td> </tr>
+  </table>
 
   Incluir palavras de cabeçalho no resultado.
 
 * `--print-restored-rows`
 
   <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr>
-  </table>6
+    <tr><th>Formato de Linha de Comando</th> <td><code>--backup-key-from-stdin</code></td> </tr>
+  </table>
 
   Incluir as linhas restauradas no resultado, usando o arquivo `LCP/c/TtFf.ctl`, para o qual os valores são definidos da seguinte forma:
 
@@ -173,73 +173,73 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
 * `--print-rows`
 
   <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr>
-  </table>7
+    <tr><th>Formato de Linha de Comando</th> <td><code>--backup-key-from-stdin</code></td> </tr>
+  </table>
 
   Imprimir as linhas. Esta opção está habilitada por padrão; para desabilitá-la, use `--no-print-rows`.
 
 * `--print-rows-per-page`
 
 <table frame="box" rules="all" summary="Propriedades para backup-chave-de-entrada-de-stdin">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr>
-</table>8
+  <tr><th>Formato de linha de comando</th> <td><code>--backup-key-from-stdin</code></td> </tr>
+</table>
 
 Imprimir linhas por página.
 
 * `--rowid-file`
 
 <table frame="box" rules="all" summary="Propriedades para backup-chave-de-stdin">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr>
-</table>9
+  <tr><th>Formato de linha de comando</th> <td><code>--backup-key-from-stdin</code></td> </tr>
+</table>
 
 Arquivo para verificar o ID da linha.
 
 * `--show-rows-ignores`
 
 <table frame="box" rules="all" summary="Propriedades para backup-senha">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-password=senha</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--backup-password=senha</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr>
-</table>0
+  <tr><th>Valor padrão</th> <td><code>[nenhuma]</code></td> </tr>
+</table>
 
 Mostrar linhas ignoradas.
 
 * `--id-tabela`
 
 <table frame="box" rules="all" summary="Propriedades para backup-senha">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-password=senha</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--backup-password=senha</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr>
-</table>1
+  <tr><th>Valor padrão</th> <td><code>[nenhuma]</code></td> </tr>
+</table>
 
 ID da tabela. Usado junto com `--print-rows-restauradas`.
 
 * `--uso`
 
 <table frame="box" rules="all" summary="Propriedades para senha de backup">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-password=senha</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--backup-password=senha</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr>
-</table>2
+  <tr><th>Valor padrão</th> <td><code>[nenhuma]</code></td> </tr>
+</table>
 
   Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 * `--verbose`
 
   <table frame="box" rules="all" summary="Propriedades para senha de backup">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-password=senha</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--backup-password=senha</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr>
-  </table>3
+    <tr><th>Valor padrão</th> <td><code>[nenhuma]</code></td> </tr>
+  </table>
 
   Nível de verbosidade da saída. Um valor maior indica um nível de verbosidade maior.
 
 * `--version`
 
   <table frame="box" rules="all" summary="Propriedades para senha de backup">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-password=senha</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--backup-password=senha</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr>
-  </table>4
+    <tr><th>Valor padrão</th> <td><code>[nenhuma]</code></td> </tr>
+  </table>
 
   Exibir informações da versão e sair.

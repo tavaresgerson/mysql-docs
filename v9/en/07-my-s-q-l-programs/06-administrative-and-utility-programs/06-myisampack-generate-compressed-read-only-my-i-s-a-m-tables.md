@@ -92,13 +92,13 @@ After you compress a table with **myisampack**, use **myisamchk -rq** to rebuild
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for backup"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for backup"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>
 
   Display version information and exit.
 
 * `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Properties for backup"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for backup"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>
 
   Wait and retry if the table is in use. If the **mysqld** server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process.
 

@@ -56,7 +56,7 @@ A.4.27. As limitações anteriores afetam a capacidade do MySQL de realizar a re
 
 A.4.28. O que está sendo feito para corrigir as limitações mencionadas anteriormente?
 
-" valign="top"><a name="faq-mysql-can-procedure-return-data"></a><a name="id468797"></a><p><b>A.4.20.</b></p></td><td align="left" valign="top"><p> Can a stored procedure return data? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> Yes. A stored procedure can return data using the <a class="link" href="return.html" title="15.2.15 RETURN Statement"><code class="literal">RETURN</code></a> statement. See <a class="xref" href="return.html" title="15.2.15 RETURN Statement">Section 15.2.15, “RETURN Statement”</a>. </p></td></tr></tbody></table>python
+" valign="top"><a name="faq-mysql-can-procedure-return-data"></a><a name="id468797"></a><p><b>A.4.20.</b></p></td><td align="left" valign="top"><p> Can a stored procedure return data? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> Yes. A stored procedure can return data using the <a class="link" href="return.html" title="15.2.15 RETURN Statement"><code>RETURN</code></a> statement. See <a class="xref" href="return.html" title="15.2.15 RETURN Statement">Section 15.2.15, “RETURN Statement”</a>. </p></td></tr></tbody></table>python
 sql
 sql
 sql

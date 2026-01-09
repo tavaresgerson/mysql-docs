@@ -13,7 +13,7 @@ Na seção a seguir, fornecemos respostas às perguntas mais frequentes sobre a 
 <div class="question-answer">
 <p><b>A.14.6.</b></p>
 <p> Como posso usar a replicação para melhorar o desempenho do meu sistema?</p>
-<p> Configure um servidor como fonte e direcione todos os escritos para ele. Em seguida, configure tantas réplicas quanto o orçamento e o espaço disponível permitirem, e distribua as leituras entre a fonte e as réplicas. Você também pode iniciar as réplicas com a opção <code class="option">--skip-innodb</code>, habilitar a variável de sistema <code>low_priority_updates</code> e definir a variável de sistema <code>delay_key_write</code> para <code>ALL</code> para obter melhorias de velocidade no lado da replica. Neste caso, a replica usa tabelas <code>MyISAM</code> não transacionais em vez de tabelas <code>InnoDB</code> para obter mais velocidade, eliminando o overhead transacional. </p>
+<p> Configure um servidor como fonte e direcione todos os escritos para ele. Em seguida, configure tantas réplicas quanto o orçamento e o espaço disponível permitirem, e distribua as leituras entre a fonte e as réplicas. Você também pode iniciar as réplicas com a opção <code>--skip-innodb</code>, habilitar a variável de sistema <code>low_priority_updates</code> e definir a variável de sistema <code>delay_key_write</code> para <code>ALL</code> para obter melhorias de velocidade no lado da replica. Neste caso, a replica usa tabelas <code>MyISAM</code> não transacionais em vez de tabelas <code>InnoDB</code> para obter mais velocidade, eliminando o overhead transacional. </p>
 </div>
 <div class="question-answer">
 <p><b>A.14.7.</b></p>

@@ -41,99 +41,99 @@ Para o repositório de metadados de conexão, a tabela a seguir mostra a corresp
 <table summary="A correspondência entre as colunas da tabela mysql.slave_master_info, as colunas exibidas pelo comando SHOW REPLICA STATUS e as linhas do arquivo master.info desatualizado.">
 <col style="width: 31%"/><col style="width: 40%"/><col style="width: 16%"/><col style="width: 18%"/>
 <thead><tr>
-<th scope="col"><code class="literal">slave_master_info</code> Coluna da Tabela</th>
-<th scope="col"><code class="literal">SHOW REPLICA STATUS</code> Coluna</th>
-<th scope="col"><code class="filename">master.info</code> Linha do Arquivo</th>
-<th scope="col">Descrição</th>
+<th><code>slave_master_info</code> Coluna da Tabela</th>
+<th><code>SHOW REPLICA STATUS</code> Coluna</th>
+<th><code class="filename">master.info</code> Linha do Arquivo</th>
+<th>Descrição</th>
 </tr></thead><tbody>
 <tr>
-<th scope="row"><code class="literal">Número de linhas</code></th>
+<th><code>Número de linhas</code></th>
 <td>[Nenhuma]</td>
 <td>1</td>
 <td>Número de colunas na tabela (ou linhas no arquivo)</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Nome do log mestre</code></th>
-<td><code class="literal">Source_Log_File</code></td>
+<th><code>Nome do log mestre</code></th>
+<td><code>Source_Log_File</code></td>
 <td>2</td>
 <td>O nome do arquivo de log binário atualmente sendo lido da fonte</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Posição do log mestre</code></th>
-<td><code class="literal">Read_Source_Log_Pos</code></td>
+<th><code>Posição do log mestre</code></th>
+<td><code>Read_Source_Log_Pos</code></td>
 <td>3</td>
 <td>A posição atual dentro do log binário que foi lida da fonte</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Host</code></th>
-<td><code class="literal">Source_Host</code></td>
+<th><code>Host</code></th>
+<td><code>Source_Host</code></td>
 <td>4</td>
 <td>O nome do servidor do destino da replicação</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Nome do usuário</code></th>
-<td><code class="literal">Source_User</code></td>
+<th><code>Nome do usuário</code></th>
+<td><code>Source_User</code></td>
 <td>5</td>
 <td>O nome da conta de usuário de replicação usada para se conectar à fonte</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Senha do usuário</code></th>
-<td><code class="literal">Password</code> (não exibida em <a class="link" href="show-replica-status.html" title="15.7.7.36 SHOW REPLICA STATUS Statement"><code class="literal">SHOW REPLICA STATUS</code></a>)</td>
+<th><code>Senha do usuário</code></th>
+<td><code>Password</code> (não exibida em <a class="link" href="show-replica-status.html" title="15.7.7.36 SHOW REPLICA STATUS Statement"><code>SHOW REPLICA STATUS</code></a>)</td>
 <td>6</td>
 <td>A senha da conta de usuário usada para se conectar à fonte</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Porta</code></th>
-<td><code class="literal">Source_Port</code></td>
+<th><code>Porta</code></th>
+<td><code>Source_Port</code></td>
 <td>7</td>
 <td>A porta de rede usada para se conectar ao servidor de destino da replicação</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Tentativa de reconexão</code></th>
-<td><code class="literal">Connect_Retry</code></td>
+<th><code>Tentativa de reconexão</code></th>
+<td><code>Connect_Retry</code></td>
 <td>8</td>
 <td>O período (em segundos) que a replica espera antes de tentar se reconectar à fonte</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Habilitado SSL</code></th>
-<td><code class="literal">Source_SSL_Allowed</code></td>
+<th><code>Habilitado SSL</code></th>
+<td><code>Source_SSL_Allowed</code></td>
 <td>9</td>
 <td>Se a replica suporta conexões SSL</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">CA</code></th>
-<td><code class="literal">Source_SSL_CA_File</code></td>
+<th><code>CA</code></th>
+<td><code>Source_SSL_CA_File</code></td>
 <td>10</td>
 <td>O arquivo usado para o certificado da Autoridade de Certificação (CA)</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Caminho da CA</code></th>
-<td><code class="literal">Source_SSL_CA_Path</code></td>
+<th><code>Caminho da CA</code></th>
+<td><code>Source_SSL_CA_Path</code></td>
 <td>11</td>
 <td>O caminho para o arquivo de certificado da Autoridade de Certificação (CA)</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Certificado</code></th>
-<td><code class="literal">Source_SSL_Cert</code></td>
+<th><code>Certificado</code></th>
+<td><code>Source_SSL_Cert</code></td>
 <td>12</td>
 <td>O nome do arquivo de certificado SSL</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Cifrador</code></th>
-<td><code class="literal">Source_SSL_Cipher</code></td>
+<th><code>Cifrador</code></th>
+<td><code>Source_SSL_Cipher</code></td>
 <td>13</td>
 <td>A lista de possíveis cifradores usados no handshake para a conexão SSL</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Chave</code></th>
-<td><code class="literal">Source_SSL_Key</code></td>
+<th><code>Chave</code></th>
+<td><code>Source_SSL_Key</code></td>
 <td>14</td>
 <td>O nome do arquivo de chave SSL</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">Verificar certificado do servidor</code></th>
-<td><code class="literal">Source_
+<th><code>Verificar certificado do servidor</code></th>
+<td><code>Source_
 
 Para o repositório de metadados do aplicativo, a tabela a seguir mostra a correspondência entre as colunas da tabela `mysql.slave_relay_log_info`, as colunas exibidas pelo `SHOW REPLICA STATUS` e as linhas do arquivo desatualizado `relay-log.info`.
 
-<table summary="A correspondência entre as colunas da tabela mysql.slave_relay_log_info, as colunas exibidas pelo comando SHOW REPLICA STATUS e as linhas no arquivo obsoleto relay-log.info."><col style="width: 30%"/><col style="width: 40%"/><col style="width: 15%"/><col style="width: 20%"/><thead><tr> <th scope="col"><code class="literal">slave_relay_log_info</code> Coluna da Tabela</th> <th scope="col"><code class="literal">SHOW REPLICA STATUS</code> Coluna</th> <th scope="col">Linha no arquivo <code class="filename">relay-log.info</code></th> <th scope="col">Descrição</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">Número_de_linhas</code></th> <td>[Nenhum]</td> <td>1</td> <td>Número de colunas na tabela ou linhas no arquivo</td> </tr><tr> <th scope="row"><code class="literal">Nome_do_log_relay</code></th> <td><code class="literal">Relay_Log_File</code></td> <td>2</td> <td>O nome do arquivo binário de log da fonte do log relay</td> </tr><tr> <th scope="row"><code class="literal">Pos_do_log_relay</code></th> <td><code class="literal">Relay_Log_Pos</code></td> <td>3</td> <td>A posição atual dentro do arquivo binário de log relay; os eventos até essa posição foram executados no banco de dados da replica</td> </tr><tr> <th scope="row"><code class="literal">Nome_do_log_fonte</code></th> <td><code class="literal">Relay_Source_Log_File</code></td> <td>4</td> <td>O nome do arquivo binário de log da fonte do log relay a partir do qual os eventos no arquivo binário de log relay foram lidos</td> </tr><tr> <th scope="row"><code class="literal">Pos_do_log_fonte</code></th> <td><code class="literal">Exec_Source_Log_Pos</code></td> <td>5</td> <td>A posição equivalente dentro do arquivo binário de log da fonte dos eventos que foram executados na replica</td> </tr><tr> <th scope="row"><code class="literal">Atraso_SQL</code></th> <td><code class="literal">SQL_Delay</code></td> <td>6</td> <td>O número de segundos que a replica deve ficar atrasada em relação à fonte</td> </tr><tr> <th scope="row"><code class="literal">Número_de_trabalhadores</code></th> <td>[Nenhum]</td> <td>7</td> <td>O número de threads de trabalho para aplicar transações de replicação em paralelo</td> </tr><tr> <th scope="row"><code class="literal">ID</code></th> <td>[Nenhum]</td> <td>8</td> <td>ID usado para fins internos; atualmente, este é sempre 1</td> </tr><tr> <th scope="row"><code class="literal">Nome_do_canal</code></th> <td><code class="literal">Channel_name</code></td> <td>9</td> <td>O nome do canal de replicação</td> </tr><tr> <th scope="row"><code class="literal">Nome_do_usuário_de_verificação_de_privilégios</code></th> <td>[Nenhum]</td> <td>10</td> <td>O nome do usuário para a conta <code class="literal">PRIVILEGE_CHECKS_USER</code> do canal</td> </tr><tr> <th scope="row"><code class="literal">Nome_do_host_de_verificação_de_privilégios</code></th> <td>[Nenhum]</td> <td>11</td> <td>O nome do host para a conta <code class="literal">PRIVILEGE_CHECKS_USER</code> do canal</td> </tr><tr> <th scope="row"><code class="literal">Exigir_formato_de_linha</code></th> <td>[Nenhum]</td> <td>12</td> <td>Se o canal aceita apenas eventos baseados em linhas</td> </tr><tr> <th scope="row"><code class="literal">Exigir_verificação_de_chave_primaria_da_tabela</code></th> <td>[Nenhum]</td> <td>13</td> <td>A política do canal sobre se as tabelas devem ter chaves primárias para operações <code class="literal">CREATE TABLE</code> e <code class="literal">ALTER TABLE</code></td> </tr><tr> <th scope="row"><code class="literal">Tipo_de_gtid_para_transações_anônimas</code></th> <td>[Nenhum]</td> <td>14</td> <td>Se o canal atribui um GTID a trans
+<table summary="A correspondência entre as colunas da tabela mysql.slave_relay_log_info, as colunas exibidas pelo comando SHOW REPLICA STATUS e as linhas no arquivo obsoleto relay-log.info."><col style="width: 30%"/><col style="width: 40%"/><col style="width: 15%"/><col style="width: 20%"/><thead><tr> <th><code>slave_relay_log_info</code> Coluna da Tabela</th> <th><code>SHOW REPLICA STATUS</code> Coluna</th> <th>Linha no arquivo <code class="filename">relay-log.info</code></th> <th>Descrição</th> </tr></thead><tbody><tr> <th><code>Número_de_linhas</code></th> <td>[Nenhum]</td> <td>1</td> <td>Número de colunas na tabela ou linhas no arquivo</td> </tr><tr> <th><code>Nome_do_log_relay</code></th> <td><code>Relay_Log_File</code></td> <td>2</td> <td>O nome do arquivo binário de log da fonte do log relay</td> </tr><tr> <th><code>Pos_do_log_relay</code></th> <td><code>Relay_Log_Pos</code></td> <td>3</td> <td>A posição atual dentro do arquivo binário de log relay; os eventos até essa posição foram executados no banco de dados da replica</td> </tr><tr> <th><code>Nome_do_log_fonte</code></th> <td><code>Relay_Source_Log_File</code></td> <td>4</td> <td>O nome do arquivo binário de log da fonte do log relay a partir do qual os eventos no arquivo binário de log relay foram lidos</td> </tr><tr> <th><code>Pos_do_log_fonte</code></th> <td><code>Exec_Source_Log_Pos</code></td> <td>5</td> <td>A posição equivalente dentro do arquivo binário de log da fonte dos eventos que foram executados na replica</td> </tr><tr> <th><code>Atraso_SQL</code></th> <td><code>SQL_Delay</code></td> <td>6</td> <td>O número de segundos que a replica deve ficar atrasada em relação à fonte</td> </tr><tr> <th><code>Número_de_trabalhadores</code></th> <td>[Nenhum]</td> <td>7</td> <td>O número de threads de trabalho para aplicar transações de replicação em paralelo</td> </tr><tr> <th><code>ID</code></th> <td>[Nenhum]</td> <td>8</td> <td>ID usado para fins internos; atualmente, este é sempre 1</td> </tr><tr> <th><code>Nome_do_canal</code></th> <td><code>Channel_name</code></td> <td>9</td> <td>O nome do canal de replicação</td> </tr><tr> <th><code>Nome_do_usuário_de_verificação_de_privilégios</code></th> <td>[Nenhum]</td> <td>10</td> <td>O nome do usuário para a conta <code>PRIVILEGE_CHECKS_USER</code> do canal</td> </tr><tr> <th><code>Nome_do_host_de_verificação_de_privilégios</code></th> <td>[Nenhum]</td> <td>11</td> <td>O nome do host para a conta <code>PRIVILEGE_CHECKS_USER</code> do canal</td> </tr><tr> <th><code>Exigir_formato_de_linha</code></th> <td>[Nenhum]</td> <td>12</td> <td>Se o canal aceita apenas eventos baseados em linhas</td> </tr><tr> <th><code>Exigir_verificação_de_chave_primaria_da_tabela</code></th> <td>[Nenhum]</td> <td>13</td> <td>A política do canal sobre se as tabelas devem ter chaves primárias para operações <code>CREATE TABLE</code> e <code>ALTER TABLE</code></td> </tr><tr> <th><code>Tipo_de_gtid_para_transações_anônimas</code></th> <td>[Nenhum]</td> <td>14</td> <td>Se o canal atribui um GTID a trans

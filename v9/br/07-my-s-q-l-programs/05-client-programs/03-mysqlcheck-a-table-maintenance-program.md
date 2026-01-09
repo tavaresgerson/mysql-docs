@@ -36,7 +36,7 @@ O **mysqlcheck** tem uma característica especial em comparação com outros pro
 
 Os nomes mostrados na tabela a seguir podem ser usados para alterar o comportamento padrão do **mysqlcheck**.
 
-<table summary="Nomes de comandos que podem ser usados para alterar o comportamento padrão do mysqlcheck."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Comando</th> <th>Significado</th> </tr></thead><tbody><tr> <td><span class="command"><strong>mysqlrepair</strong></span></td> <td>A opção padrão é <a class="link" href="mysqlcheck.html#option_mysqlcheck_repair"><code class="option">--repair</code></a></td> </tr><tr> <td><span class="command"><strong>mysqlanalyze</strong></span></td> <td>A opção padrão é <a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze"><code class="option">--analyze</code></a></td> </tr><tr> <td><span class="command"><strong>mysqloptimize</strong></span></td> <td>A opção padrão é <a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize"><code class="option">--optimize</code></a></td> </tr></tbody></table>
+<table summary="Nomes de comandos que podem ser usados para alterar o comportamento padrão do mysqlcheck."><thead><tr> <th>Comando</th> <th>Significado</th> </tr></thead><tbody><tr> <td><span><strong>mysqlrepair</strong></span></td> <td>A opção padrão é <a class="link" href="mysqlcheck.html#option_mysqlcheck_repair"><code>--repair</code></a></td> </tr><tr> <td><span><strong>mysqlanalyze</strong></span></td> <td>A opção padrão é <a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze"><code>--analyze</code></a></td> </tr><tr> <td><span><strong>mysqloptimize</strong></span></td> <td>A opção padrão é <a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize"><code>--optimize</code></a></td> </tr></tbody></table>
 
 O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlcheck]` e `[client]` de um arquivo de opções. Para obter informações sobre as opções de arquivos usadas por programas MySQL, consulte a Seção 6.2.2.2, “Usando Arquivos de Opções”.
 
@@ -68,49 +68,49 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></table>
 
   Exibir uma mensagem de ajuda e sair.
 
 * `--all-databases`, `-A`
 
-  <table frame="box" rules="all" summary="Propriedades para all-databases"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--all-databases</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para all-databases"><tr><th>Formato de Linha de Comando</th> <td><code>--all-databases</code></td> </tr></table>
 
   Ver todas as tabelas em todas as bases de dados. Isso é o mesmo que usar a opção `--databases` e nomear todas as bases de dados na linha de comando, exceto que as bases de dados `INFORMATION_SCHEMA` e `performance_schema` não são verificadas. Elas podem ser verificadas explicitamente nomeando-as com a opção `--databases`.
 
 * `--all-in-1`, `-1`
 
-  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--all-in-1</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tr><th>Formato de Linha de Comando</th> <td><code>--all-in-1</code></td> </tr></table>
 
   Em vez de emitir uma declaração para cada tabela, execute uma única declaração para cada base de dados que nomeia todas as tabelas dessa base de dados a serem processadas.
 
 * `--analyze`, `-a`
 
-  <table frame="box" rules="all" summary="Propriedades para analyze"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--analyze</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para analyze"><tr><th>Formato de Linha de Comando</th> <td><code>--analyze</code></td> </tr></table>
 
   Analisar as tabelas.
 
 * `--auto-repair`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-repair"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-repair</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-repair"><tr><th>Formato de Linha de Comando</th> <td><code>--auto-repair</code></td> </tr></table>
 
 Se uma tabela verificada estiver corrompida, corrija-a automaticamente. Quaisquer reparos necessários são feitos após todas as tabelas terem sido verificadas.
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Em um computador com múltiplas interfaces de rede, use esta opção para selecionar qual interface usar para se conectar ao servidor MySQL.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Veja a Seção 12.15, “Configuração de Conjunto de Caracteres”.
 
 * `--check`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para check"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para check"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check</code></td> </tr></tbody></table>
 
   Verifique as tabelas em busca de erros. Esta é a operação padrão.
 
@@ -408,7 +408,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivo de o
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Use apenas o arquivo de opções fornecido. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -418,7 +418,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivo de o
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlcheck** normalmente lê os grupos `[client]` e `[mysqlcheck]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysqlcheck** também lê os grupos `[client_other]` e `[mysqlcheck_other]`.
 
@@ -426,7 +426,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--extended`, `-e`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Se você estiver usando esta opção para verificar tabelas, ela garante que elas sejam 100% consistentes, mas leva muito tempo.
 
@@ -434,19 +434,19 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. Consulte a Seção 8.2.17, “Autenticação Pluggable do Lado do Cliente”.
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Ative o plugin de autenticação `mysql_clear_password` de texto claro. (Consulte a Seção 8.4.1.3, “Autenticação Pluggable do Lado do Cliente de Texto Claro”.)
 
 * `--fast`, `-F`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Verifique apenas tabelas que não foram fechadas corretamente.
 
@@ -455,7 +455,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 <table frame="box" rules="all" summary="Propriedades de ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
 </table>
 6
@@ -467,7 +467,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
   <table frame="box" rules="all" summary="Propriedades de ajuda">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--help</code></td>
+      <td><code>--help</code></td>
     </tr>
   </table>
 7
@@ -483,7 +483,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
   <table frame="box" rules="all" summary="Propriedades de ajuda">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--help</code></td>
+      <td><code>--help</code></td>
     </tr>
   </table>
 8
@@ -495,7 +495,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 <table frame="box" rules="all" summary="Propriedades para ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
 </table>
 9
@@ -509,7 +509,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 <table frame="box" rules="all" summary="Propriedades para todas as bases de dados">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--all-databases</code></td>
+    <td><code>--all-databases</code></td>
   </tr>
 </table>
 0
@@ -525,7 +525,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 <table frame="box" rules="all" summary="Propriedades para todas as bases de dados">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--all-databases</code></td>
+    <td><code>--all-databases</code></td>
   </tr>
 </table>
 1
@@ -534,7 +534,7 @@ Realiza uma verificação mais rápida do que uma operação `--extended`. Isso 
 
 * `--no-defaults`
 
-<table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   Não leia arquivos de opções. Se o início do programa falhar ao ler opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para evitar que sejam lidas.
 
@@ -544,13 +544,13 @@ Realiza uma verificação mais rápida do que uma operação `--extended`. Isso 
 
 * `--optimize`, `-o`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   Otimizar as tabelas.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlcheck** solicitará uma senha. Se fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
 
@@ -578,25 +578,25 @@ Para especificar explicitamente que não há senha e que o **mysqlcheck** não d
 
 * `--pipe`, `-W`
 
-<table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   No Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysqlcheck** não o encontrar. Veja a Seção 8.2.17, “Autenticação Extensível”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   Para conexões TCP/IP, o número de porta a ser usado.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   Imprima o nome do programa e todas as opções que ele obtém de arquivos de opções.
 
@@ -604,13 +604,13 @@ Para obter informações adicionais sobre esta e outras opções de arquivo, con
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></table>9
+  <table frame="box" rules="all" summary="Propriedades para todos os bancos de dados"><tr><th>Formato de linha de comando</th> <td><code>--all-databases</code></td> </tr></table>
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para detalhes sobre os valores permitidos, consulte a Seção 6.2.7, “Protocolos de transporte de conexão”.
 
 * `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Propriedades para todos-em-um"><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-in-1</code></td> </tr></table>0
+  <table frame="box" rules="all" summary="Propriedades para todos-em-um"><tr><th>Formato de linha de comando</th> <td><code>--all-in-1</code></td> </tr></table>
 
   Se você estiver usando esta opção para verificar tabelas, ela impede que a verificação escaneie as linhas para verificar links incorretos. Este é o método de verificação mais rápido.
 
@@ -618,13 +618,13 @@ Para obter informações adicionais sobre esta e outras opções de arquivo, con
 
 * `--repair`, `-r`
 
-  <table frame="box" rules="all" summary="Propriedades para todos-em-um"><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-in-1</code></td> </tr></table>1
+  <table frame="box" rules="all" summary="Propriedades para todos-em-um"><tr><th>Formato de linha de comando</th> <td><code>--all-in-1</code></td> </tr></table>
 
   Realize uma reparação que pode corrigir quase tudo, exceto chaves únicas que não são únicas.
 
 * `--server-public-key-path=file_name`
 
-<table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de linha de comando</th> <td><code>--all-in-1</code></td> </tr></tbody></table>
 
   O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas baseada em pares de chaves RSA. Esta opção aplica-se a clientes que autenticam-se com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não autenticam-se com um desses plugins. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -636,7 +636,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo, con
 
 * `--shared-memory-base-name=name`
 
-<table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de linha de comando</th> <td><code>--all-in-1</code></td> </tr></tbody></table>
 
   Em Windows, o nome do compartilhamento de memória a ser usado para conexões feitas usando compartilhamento de memória para um servidor local. O valor padrão é `MYSQL`. O nome do compartilhamento de memória é case-sensitive.
 
@@ -644,19 +644,19 @@ Para obter informações adicionais sobre esta e outras opções de arquivo, con
 
 * `--silent`, `-s`
 
-<table frame="box" rules="all" summary="Propriedades para all-in-1"><tr><th>Formato de linha de comando</th><td><code class="literal">--all-in-1</code></td> </tr></table>4
+<table frame="box" rules="all" summary="Propriedades para all-in-1"><tr><th>Formato de linha de comando</th><td><code>--all-in-1</code></td> </tr></table>
 
   Modo silencioso. Imprima apenas mensagens de erro.
 
 * `--skip-database=db_name`
 
-  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tr><th>Formato de linha de comando</th><td><code class="literal">--all-in-1</code></td> </tr></table>5
+  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tr><th>Formato de linha de comando</th><td><code>--all-in-1</code></td> </tr></table>
 
   Não inclua a base de dados nomeada (sensível a maiúsculas e minúsculas) nas operações realizadas pelo **mysqlcheck**.
 
 * `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tr><th>Formato de linha de comando</th><td><code class="literal">--all-in-1</code></td> </tr></table>6
+  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tr><th>Formato de linha de comando</th><td><code>--all-in-1</code></td> </tr></table>
 
   Para conexões com `localhost`, o arquivo de socket Unix a ser usado ou, no Windows, o nome do tubo nomeado a ser usado.
 
@@ -684,13 +684,13 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
 
 * `--tables`
 
-  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--all-in-1</code></td> </tr></tbody></table>
 
   Sobrepor a opção `--databases` ou `-B`. Todos os argumentos de nome que seguem a opção são considerados nomes de tabelas.
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--all-in-1</code></td> </tr></tbody></table>
 
   Os ciphersuites permitidos para conexões criptografadas que usam TLSv1.3. O valor é uma lista de um ou mais nomes de ciphersuites separados por vírgula. Os ciphersuites que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e Criptografadores TLS de Conexão Criptografada”.
 
@@ -699,9 +699,9 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
 <table frame="box" rules="all" summary="Propriedades para análise">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--analyze</code></td>
+    <td><code>--analyze</code></td>
   </tr>
-</table>0
+</table>
 
   Quando especificado, o nome é passado para a biblioteca de API C `libmysqlclient` usando a opção `MYSQL_OPT_TLS_SNI_SERVERNAME` de `mysql_options()`. O nome do servidor não é case-sensitive. Para mostrar qual nome do servidor o cliente especificou para a sessão atual, se houver, verifique a variável `Tls_sni_server_name`.
 
@@ -712,9 +712,9 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
   <table frame="box" rules="all" summary="Propriedades para análise">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--analyze</code></td>
+      <td><code>--analyze</code></td>
     </tr>
-  </table>1
+  </table>
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para essa opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e cifra TLS de conexão criptografada”.
 
@@ -723,33 +723,33 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
   <table frame="box" rules="all" summary="Propriedades para análise">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--analyze</code></td>
+      <td><code>--analyze</code></td>
     </tr>
-  </table>2
+  </table>
 
   Para operações de reparo em tabelas `MyISAM`, obtenha a estrutura da tabela do dicionário de dados para que a tabela possa ser reparada mesmo se o cabeçalho `.MYI` estiver corrompido.
 
 * `--user=nome_do_usuário`, `-u nome_do_usuário`
 
 <table frame="box" rules="all" summary="Propriedades para análise">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--analyze</code></td> </tr>
-</table>4
+  <tr><th>Formato de linha de comando</th> <td><code>--analyze</code></td> </tr>
+</table>
 
   Modo verbose. Imprima informações sobre as várias etapas da operação do programa.
 
 * `--version`, `-V`
 
 <table frame="box" rules="all" summary="Propriedades para análise">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--analyze</code></td> </tr>
-</table>5
+  <tr><th>Formato de linha de comando</th> <td><code>--analyze</code></td> </tr>
+</table>
 
   Exibir informações da versão e sair.
 
 * `--write-binlog`
 
 <table frame="box" rules="all" summary="Propriedades para análise">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--analyze</code></td> </tr>
-</table>6
+  <tr><th>Formato de linha de comando</th> <td><code>--analyze</code></td> </tr>
+</table>
 
   Esta opção está habilitada por padrão, para que as instruções `ANALYZE TABLE`, `OPTIMIZE TABLE` e `REPAIR TABLE` geradas pelo **mysqlcheck** sejam escritas no log binário. Use `--skip-write-binlog` para adicionar `NO_WRITE_TO_BINLOG` às instruções para que elas não sejam registradas. Use `--skip-write-binlog` quando essas instruções não devem ser enviadas para réplicas ou executadas ao usar os logs binários para recuperação a partir de backups.
 
@@ -758,9 +758,9 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
 <table frame="box" rules="all" summary="Propriedades para análise">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--analyze</code></td>
+    <td><code>--analyze</code></td>
   </tr>
-</table>7
+</table>
 
   O nível de compressão a ser usado para conexões ao servidor que utilizam o algoritmo de compressão `zstd`. Os níveis permitidos variam de 1 a 22, com valores maiores indicando níveis de compressão crescentes. O nível de compressão padrão do `zstd` é 3. O ajuste do nível de compressão não afeta as conexões que não utilizam compressão `zstd`.
 

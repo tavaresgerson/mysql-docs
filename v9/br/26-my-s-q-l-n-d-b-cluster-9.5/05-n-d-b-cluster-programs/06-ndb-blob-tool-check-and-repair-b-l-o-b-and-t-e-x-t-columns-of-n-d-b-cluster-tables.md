@@ -18,42 +18,42 @@ Todas as opções que podem ser usadas com **ndb\_mgmd** são mostradas na tabel
 
 * `--add-missing`
 
-  <table frame="box" rules="all" summary="Propriedades para add-missing"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--add-missing</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para add-missing"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--add-missing</code></td> </tr></tbody></table>
 
 Para cada parte em linha nas tabelas do NDB Cluster que não tenha uma parte BLOB correspondente, escreva uma parte BLOB fictícia do comprimento necessário, composta por espaços.
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Diretório contendo conjuntos de caracteres.
 
 * `--check-missing`
 
-  <table frame="box" rules="all" summary="Propriedades para check-missing"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check-missing</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para check-missing"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check-missing</code></td> </tr></tbody></table>
 
   Verifique partes em linha nas tabelas do NDB Cluster que não tenham partes BLOB correspondentes.
 
 * `--check-orphans`
 
-  <table frame="box" rules="all" summary="Propriedades para check-orphans"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check-orphans</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para check-orphans"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check-orphans</code></td> </tr></tbody></table>
 
   Verifique partes BLOB nas tabelas do NDB Cluster que não tenham partes em linha correspondentes.
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
   Número de tentativas para reconectar antes de desistir.
 
 * `--connect-retry-delay`
 
 <table frame="box" rules="all" summary="Propriedades para connect-retry-delay">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">5</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>5</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>5</code></td> </tr>
 </table>
 
 Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
@@ -61,9 +61,9 @@ Número de segundos para esperar entre as tentativas de contato com o servidor d
 * `--connect-string`
 
 <table frame="box" rules="all" summary="Propriedades para connect-string">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr>
 </table>
 
 O mesmo que `--ndb-connectstring`.
@@ -71,7 +71,7 @@ O mesmo que `--ndb-connectstring`.
 * `--core-file`
 
 <table frame="box" rules="all" summary="Propriedades para core-file">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr>
 </table>
 
 Escrever o arquivo de código em caso de erro; usado em depuração.
@@ -79,7 +79,7 @@ Escrever o arquivo de código em caso de erro; usado em depuração.
 * `--database=db_name`, `-d`
 
 <table frame="box" rules="all" summary="Propriedades para database">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--database=name</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--database=name</code></td> </tr>
 </table>
 
 Especificar a base de dados para encontrar a tabela.
@@ -90,49 +90,49 @@ Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Leia as opções padrão do arquivo fornecido apenas.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Leia também os grupos com concatenação(grupo, sufixo).
 
 * `--delete-orphans`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Remova partes BLOB das tabelas do NDB Cluster que não têm partes correspondentes em linha.
 
 * `--dump-file=arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
 Escreve uma lista das partes de coluna BLOB órfãs em *`file`*. As informações escritas no arquivo incluem a chave da tabela e o número da parte BLOB para cada parte BLOB órfã.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Exibe texto de ajuda e sai.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Leia o caminho fornecido a partir do arquivo de login.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Ignora a leitura de opções a partir do arquivo de caminho de login.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrescreve entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
@@ -141,9 +141,9 @@ Escreve uma lista das partes de coluna BLOB órfãs em *`file`*. As informaçõe
 <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--character-sets-dir=caminho</code></td>
+    <td><code>--character-sets-dir=caminho</code></td>
   </tr>
-</table>8
+</table>
 
   Define o nível de suporte TLS necessário para se conectar ao servidor de gerenciamento; um dos valores `relaxado` ou `estricto`. `relaxado` (o padrão) significa que uma conexão TLS é tentada, mas o sucesso não é necessário; `estricto` significa que a conexão TLS é necessária para se conectar.
 
@@ -152,9 +152,9 @@ Escreve uma lista das partes de coluna BLOB órfãs em *`file`*. As informaçõe
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--character-sets-dir=caminho</code></td>
+      <td><code>--character-sets-dir=caminho</code></td>
     </tr>
-  </table>9
+  </table>
 
   O mesmo que `--ndb-connectstring`.
 
@@ -163,9 +163,9 @@ Escreve uma lista das partes de coluna BLOB órfãs em *`file`*. As informaçõe
   <table frame="box" rules="all" summary="Propriedades para check-missing">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--check-missing</code></td>
+      <td><code>--check-missing</code></td>
     </tr>
-  </table>0
+  </table>
 
   Defina o ID do nó para este nó, substituindo qualquer ID definido por `--ndb-connectstring`.
 
@@ -174,9 +174,9 @@ Escreve uma lista das partes de coluna BLOB órfãs em *`file`*. As informaçõe
   <table frame="box" rules="all" summary="Propriedades para check-missing">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--check-missing</code></td>
+      <td><code>--check-missing</code></td>
     </tr>
-  </table>1
+  </table>
 
   Ative otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
@@ -185,9 +185,9 @@ Escreve uma lista das partes de coluna BLOB órfãs em *`file`*. As informaçõe
 <table frame="box" rules="all" summary="Propriedades para check-missing">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--check-missing</code></td>
+    <td><code>--check-missing</code></td>
   </tr>
-</table>2
+</table>
 
   Especifique uma lista de diretórios para procurar um arquivo CA. Em plataformas Unix, os nomes dos diretórios são separados por colchetes (`:`); em sistemas Windows, o caractere ponto e vírgula (`;`) é usado como separador. Uma referência de diretório pode ser relativa ou absoluta; pode conter uma ou mais variáveis de ambiente, cada uma denotada por um sinal de dólar prefixado (`$`), e expandida antes de ser usada.
 
@@ -200,41 +200,41 @@ Escreve uma lista das partes de coluna BLOB órfãs em *`file`*. As informaçõe
   <table frame="box" rules="all" summary="Propriedades para check-missing">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--check-missing</code></td>
+      <td><code>--check-missing</code></td>
     </tr>
-  </table>3
+  </table>
 
   Não leia opções padrão de nenhum arquivo de opção diferente do arquivo de login.
 
 * `--print-defaults`
 
 <table frame="box" rules="all" summary="Propriedades para check-missing">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--check-missing</code></td> </tr>
-</table>4
+  <tr><th>Formato de Linha de Comando</th> <td><code>--check-missing</code></td> </tr>
+</table>
 
 Imprimir a lista de argumentos do programa e sair.
 
 * `--usage`
 
 <table frame="box" rules="all" summary="Propriedades para check-missing">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--check-missing</code></td> </tr>
-</table>5
+  <tr><th>Formato de Linha de Comando</th> <td><code>--check-missing</code></td> </tr>
+</table>
 
 Exibir o texto de ajuda e sair; o mesmo que `--help`.
 
 * `--verbose`
 
 <table frame="box" rules="all" summary="Propriedades para check-missing">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--check-missing</code></td> </tr>
-</table>6
+  <tr><th>Formato de Linha de Comando</th> <td><code>--check-missing</code></td> </tr>
+</table>
 
 Fornecer informações adicionais na saída da ferramenta sobre seu progresso.
 
 * `--version`
 
 <table frame="box" rules="all" summary="Propriedades para check-missing">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--check-missing</code></td> </tr>
-</table>7
+  <tr><th>Formato de Linha de Comando</th> <td><code>--check-missing</code></td> </tr>
+</table>
 
 Exibir informações sobre a versão e sair.
 

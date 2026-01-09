@@ -65,7 +65,7 @@ As variáveis de sistema do Schema de Desempenho têm os seguintes significados:
 
 * `performance_schema`
 
-  <table frame="box" rules="all" summary="Propriedades para performance_schema"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema">performance_schema</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para performance_schema"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema">performance_schema</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   O valor desta variável é `ON` ou `OFF` para indicar se o Schema de Desempenho está habilitado. Por padrão, o valor é `ON`. Na inicialização do servidor, você pode especificar esta variável sem valor ou com um valor de `ON` ou 1 para a habilitar, ou com um valor de `OFF` ou 0 para desabilitá-la.
 
@@ -73,13 +73,13 @@ Mesmo quando o Schema de Desempenho é desativado, ele continua a preencher as t
 
 * `performance_schema_accounts_size`
 
-  <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-accounts-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sugestão de Configuração</th> <td>Não</td> </tr><tr><th>Hinta de Sugestão de Configuração `SET_VAR`</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-accounts-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sugestão de Configuração</th> <td>Não</td> </tr><tr><th>Hinta de Sugestão de Configuração `SET_VAR`</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
   O número de linhas na tabela `accounts`. Se essa variável for 0, o Schema de Desempenho não mantém estatísticas de conexão na tabela `accounts` ou informações de variáveis de status na tabela `status_by_account`.
 
 * `performance_schema_error_size`
 
-  <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--performance-schema-error-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code class="literal">1048576</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-error-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
   O número máximo de linhas na tabela `events_statements_summary_by_digest`. Se esse máximo for excedido de forma que um digest não possa ser instrumentado, o Schema de Desempenho incrementa a variável de status `Performance_schema_digest_lost`.
 
@@ -90,11 +90,11 @@ Mesmo quando o Schema de Desempenho é desativado, ele continua a preencher as t
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-error-size=#</code></td>
+    <td><code>--performance-schema-error-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -105,7 +105,7 @@ Mesmo quando o Schema de Desempenho é desativado, ele continua a preencher as t
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -114,15 +114,15 @@ Mesmo quando o Schema de Desempenho é desativado, ele continua a preencher as t
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">número de códigos de erro do servidor</code></td>
+    <td><code>número de códigos de erro do servidor</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 
@@ -135,11 +135,11 @@ Mesmo quando o Schema de Desempenho é desativado, ele continua a preencher as t
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--performance-schema-events-stages-history-long-size=#</code></td>
+    <td><code>--performance-schema-events-stages-history-long-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -151,7 +151,7 @@ Mesmo quando o Schema de Desempenho é desativado, ele continua a preencher as t
   </tr>
   <tr>
     <th>Hinta de Sintaxe de Definição de Variável</th>
-    <td><code class="literal">SET_VAR</code></td>
+    <td><code>SET_VAR</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -159,30 +159,30 @@ Mesmo quando o Schema de Desempenho é desativado, ele continua a preencher as t
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 
 Número de linhas na tabela `events_stages_history_long`.
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-events-stages-history-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_size">performance_schema_events_stages_history_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-events-stages-history-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_size">performance_schema_events_stages_history_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1024</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1024</code></td> </tr>
 </table>
 
 Número de linhas por thread na tabela `events_stages_history`.
@@ -190,11 +190,11 @@ Número de linhas por thread na tabela `events_stages_history`.
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_statements_history_long_size">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--performance-schema-events-statements-history-long-size=#</code></td>
+    <td><code>--performance-schema-events-statements-history-long-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_statements_history_long_size">performance_schema_events_statements_history_long_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_statements_history_long_size">performance_schema_events_statements_history_long_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -206,7 +206,7 @@ Número de linhas por thread na tabela `events_stages_history`.
   </tr>
   <tr>
     <th>Hinta de Sintaxe de Definição de Variável</th>
-    <td><code class="literal">SET_VAR</code></td>
+    <td><code>SET_VAR</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -214,15 +214,15 @@ Número de linhas por thread na tabela `events_stages_history`.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 
@@ -231,11 +231,11 @@ Número de linhas na tabela `events_statements_history_long`.
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_statements_history_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-events-statements-history-size=#</code></td>
+    <td><code>--performance-schema-events-statements-history-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_statements_history_size">performance_schema_events_statements_history_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_statements_history_size">performance_schema_events_statements_history_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -246,7 +246,7 @@ Número de linhas na tabela `events_statements_history_long`.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -255,15 +255,15 @@ Número de linhas na tabela `events_statements_history_long`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1024</code></td>
+    <td><code>1024</code></td>
   </tr>
 </table>
 
@@ -272,11 +272,11 @@ Número de linhas por thread na tabela `events_statements_history`.
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_transactions_history_long_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-events-transactions-history-long-size=#</code></td>
+    <td><code>--performance-schema-events-transactions-history-long-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_transactions_history_long_size">performance_schema_events_transactions_history_long_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_transactions_history_long_size">performance_schema_events_transactions_history_long_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -288,7 +288,7 @@ Número de linhas por thread na tabela `events_statements_history`.
   </tr>
   <tr>
     <th>Hinta de sintaxe de definição de variável</th>
-    <td><code class="literal">SET_VAR</code></td>
+    <td><code>SET_VAR</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -296,15 +296,15 @@ Número de linhas por thread na tabela `events_statements_history`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 
@@ -313,11 +313,11 @@ Número de linhas na tabela `events_transactions_history_long`.
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_transactions_history_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-events-transactions-history-size=#</code></td>
+    <td><code>--performance-schema-events-transactions-history-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_transactions_history_size">performance_schema_events_transactions_history_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_transactions_history_size">performance_schema_events_transactions_history_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -328,7 +328,7 @@ Número de linhas na tabela `events_transactions_history_long`.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -337,38 +337,38 @@ Número de linhas na tabela `events_transactions_history_long`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1024</code></td>
+    <td><code>1024</code></td>
   </tr>
 </table>
 
   O número de linhas por thread na tabela `events_transactions_history`.
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_waits_history_size">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--performance-schema-events-waits-history-size=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_size">performance_schema_events_waits_history_size</a></code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--performance-schema-events-waits-history-size=#</code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_size">performance_schema_events_waits_history_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>0
+  <tr><th>Valor padrão</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 Número de linhas na tabela `events_waits_history_long`.
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-accounts-size=#</code></td>
+    <td><code>--performance-schema-accounts-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
@@ -383,7 +383,7 @@ Número de linhas na tabela `events_waits_history_long`.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -392,28 +392,28 @@ Número de linhas na tabela `events_waits_history_long`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
-</table>1
+</table>
 
   O número de linhas por thread na tabela `events_waits_history`.
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-accounts-size=#</code></td>
+    <td><code>--performance-schema-accounts-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -424,7 +424,7 @@ Número de linhas na tabela `events_waits_history_long`.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th></td>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -433,52 +433,52 @@ Número de linhas na tabela `events_waits_history_long`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 2. O número de linhas na tabela `hosts`. Se esta variável for 0, o Performance Schema não mantém estatísticas de conexão na tabela `hosts` ou informações de variáveis de status na tabela `status_by_host`.
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-max-cond-instances=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_cond_instances">performance_schema_max_cond_instances</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-max-cond-instances=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_max_cond_instances">performance_schema_max_cond_instances</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>3
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de instrumentos de condição. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
 * `performance_schema_max_cond_instances`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-accounts-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-accounts-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>4
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de objetos de condição instrumentados. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
 * `performance_schema_max_digest_length`
 
-<table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--performance-schema-accounts-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code class="literal">1048576</code></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-accounts-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
 O número máximo de bytes de memória reservado por declaração para a computação de valores de digestão de declarações normalizados no Schema de Desempenho. Esta variável está relacionada com `max_digest_length`; consulte a descrição dessa variável na Seção 7.1.8, “Variáveis do Sistema do Servidor”.
 
@@ -489,11 +489,11 @@ Para mais informações sobre a digestão de declarações, incluindo considera�
 <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--performance-schema-accounts-size=#</code></td>
+    <td><code>--performance-schema-accounts-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -504,7 +504,7 @@ Para mais informações sobre a digestão de declarações, incluindo considera�
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -513,15 +513,15 @@ Para mais informações sobre a digestão de declarações, incluindo considera�
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 
@@ -536,16 +536,16 @@ Para informações sobre a amostragem de declarações, consulte a Seção 29.10
 * `performance_schema_max_file_classes`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-accounts-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-accounts-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>7
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de instrumentos de arquivo. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
@@ -554,11 +554,11 @@ O número máximo de instrumentos de arquivo. Para obter informações sobre com
 <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-accounts-size=#</code></td>
+    <td><code>--performance-schema-accounts-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -569,7 +569,7 @@ O número máximo de instrumentos de arquivo. Para obter informações sobre com
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hint de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hint de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -578,15 +578,15 @@ O número máximo de instrumentos de arquivo. Para obter informações sobre com
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 
@@ -597,126 +597,126 @@ O número máximo de instrumentos de arquivo. Para obter informações sobre com
 * `performance_schema_max_file_instances`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-accounts-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-accounts-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_accounts_size">performance_schema_accounts_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>9
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoscaling; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de objetos de arquivo instrumentados. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
 * `performance_schema_max_index_stat`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-digests-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-digests-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>0
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de índices para os quais o Schema de Desempenho mantém estatísticas. Se esse máximo for excedido, de modo que as estatísticas dos índices sejam perdidas, o Schema de Desempenho incrementa a variável de status `Performance_schema_index_stat_lost`. O valor padrão é autodimensionado usando o valor de `performance_schema_max_table_instances`.
 
 * `performance_schema_max_memory_classes`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-digests-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-digests-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>1
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de instrumentos de memória. Para obter informações sobre como definir e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
 * `performance_schema_max_metadata_locks`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-digests-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-digests-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>2
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de instrumentos de bloqueio de metadados. Esse valor controla o tamanho da tabela `metadata_locks`. Se esse máximo for excedido de forma que um bloqueio de metadados não possa ser instrumentado, o Schema de Desempenho incrementa a variável de status `Performance_schema_metadata_lock_lost`.
 
 * `performance_schema_max_meter_classes`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--performance-schema-digests-size=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--performance-schema-digests-size=#</code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>3
+  <tr><th>Valor padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 Número máximo de instrumentos de medidor que podem ser criados
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-digests-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-digests-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>4
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 Número máximo de instrumentos de métricas que podem ser criados.
 
 * `performance_schema_max_mutex_classes`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-digests-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-digests-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>5
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de instrumentos de mutex. Para obter informações sobre como definir e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
 * `performance_schema_max_mutex_instances`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-digests-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-digests-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>6
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de objetos de mutex instrumentados. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
@@ -725,11 +725,11 @@ O número máximo de objetos de mutex instrumentados. Para obter informações s
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-digests-size=#</code></td>
+    <td><code>--performance-schema-digests-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -740,7 +740,7 @@ O número máximo de objetos de mutex instrumentados. Para obter informações s
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -749,97 +749,97 @@ O número máximo de objetos de mutex instrumentados. Para obter informações s
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
-</table>7
+</table>
 
   O número máximo de linhas na tabela `prepared_statements_instances`. Se esse máximo for excedido de forma que uma declaração preparada não possa ser instrumentada, o Schema de Desempenho incrementa a variável de status `Performance_schema_prepared_statements_lost`. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento de Status do Schema de Desempenho”.
 
   O valor padrão dessa variável é dimensionado automaticamente com base no valor da variável de sistema `max_prepared_stmt_count`.
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-digests-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-digests-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>8
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de instrumentos rwlock. Para obter informações sobre como definir e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
 * `performance_schema_max_program_instances`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_digests_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-digests-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-digests-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_digests_size">performance_schema_digests_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>9
+  <tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de programas armazenados para os quais o Schema de Desempenho mantém estatísticas. Se esse máximo for excedido, o Schema de Desempenho incrementa a variável de status `Performance_schema_program_lost`. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento de Status do Schema de Desempenho”.
 
 * `performance_schema_max_rwlock_instances`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-error-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-error-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">número de códigos de erros do servidor</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>0
+  <tr><th>Valor Padrão</th> <td><code>número de códigos de erros do servidor</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de objetos de rwlock instrumentados. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
 * `performance_schema_max_socket_classes`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-error-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-error-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">número de códigos de erros do servidor</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>1
+  <tr><th>Valor Padrão</th> <td><code>número de códigos de erros do servidor</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de instrumentos de soquete. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
 * `performance_schema_max_socket_instances`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-error-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-error-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">número de códigos de erro do servidor</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>2
+  <tr><th>Valor Padrão</th> <td><code>número de códigos de erro do servidor</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de objetos de soquete instrumentados. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
@@ -847,9 +847,9 @@ O número máximo de objetos de soquete instrumentados. Para obter informações
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
   <tr>
-    <th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-error-size=#</code></td> </tr>
+    <th>Formato de Linha de Comando</th> <td><code>--performance-schema-error-size=#</code></td> </tr>
     <tr>
-      <th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
+      <th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -858,19 +858,19 @@ O número máximo de objetos de soquete instrumentados. Para obter informações
       <th>Dinâmico</th> <td>Não</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Inteiro</td> </tr>
     </tr>
     <tr>
-      <th>Valor Padrão</th> <td><code class="literal">número de códigos de erro do servidor</code></td> </tr>
+      <th>Valor Padrão</th> <td><code>número de códigos de erro do servidor</code></td> </tr>
     </tr>
     <tr>
-      <th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
+      <th>Valor Mínimo</th> <td><code>0</code></td> </tr>
     </tr>
     <tr>
-      <th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
+      <th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
     </tr>
   </table>
 3. O número máximo de bytes usado para armazenar instruções SQL. O valor se aplica ao armazenamento necessário para essas colunas:
@@ -885,7 +885,7 @@ Reduzir o valor de `performance_schema_max_sql_text_length` diminui o uso de mem
 
 * `performance_schema_max_stage_classes`
 
-  <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--performance-schema-error-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">número de códigos de erro do servidor</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">1048576</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-error-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>número de códigos de erro do servidor</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
   O número máximo de instrumentos de estágio. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
@@ -894,11 +894,11 @@ Reduzir o valor de `performance_schema_max_sql_text_length` diminui o uso de mem
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-error-size=#</code></td>
+    <td><code>--performance-schema-error-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -909,7 +909,7 @@ Reduzir o valor de `performance_schema_max_sql_text_length` diminui o uso de mem
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -918,15 +918,15 @@ Reduzir o valor de `performance_schema_max_sql_text_length` diminui o uso de mem
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">número de códigos de erro do servidor</code></td>
+    <td><code>número de códigos de erro do servidor</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 
@@ -940,9 +940,9 @@ Reduzir o valor de `performance_schema_max_sql_text_length` diminui o uso de mem
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
   <tr>
-    <th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-error-size=#</code></td> </tr>
+    <th>Formato de Linha de Comando</th> <td><code>--performance-schema-error-size=#</code></td> </tr>
     <tr>
-      <th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
+      <th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -951,50 +951,50 @@ Reduzir o valor de `performance_schema_max_sql_text_length` diminui o uso de mem
       <th>Dinâmico</th> <td>Não</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Inteiro</td> </tr>
     </tr>
     <tr>
-      <th>Valor Padrão</th> <td><code class="literal">número de códigos de erro do servidor</code></td> </tr>
+      <th>Valor Padrão</th> <td><code>número de códigos de erro do servidor</code></td> </tr>
     </tr>
     <tr>
-      <th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
+      <th>Valor Mínimo</th> <td><code>0</code></td> </tr>
     </tr>
     <tr>
-      <th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
+      <th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
     </tr>
   </table>
 6. A profundidade máxima de chamadas de programas armazenados aninhados para as quais o Schema de Desempenho mantém estatísticas. Quando esse máximo é excedido, o Schema de Desempenho incrementa a variável de status `Performance_schema_nested_statement_lost` para cada instrução de programa armazenado executada.
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-error-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-error-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">número de códigos de erro do servidor</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>7
+  <tr><th>Valor Padrão</th> <td><code>número de códigos de erro do servidor</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de objetos de tabela abertos. Esse valor controla o tamanho da tabela `table_handles`. Se esse máximo for excedido, de modo que um handle de tabela não possa ser instrumentado, o Schema de Desempenho incrementa a variável de status `Performance_schema_table_handles_lost`. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento de Status do Schema de Desempenho”.
 
 * `performance_schema_max_table_instances`
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-error-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-error-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_error_size">performance_schema_error_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">número de códigos de erro do servidor</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
-</table>8
+  <tr><th>Valor Padrão</th> <td><code>número de códigos de erro do servidor</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
+</table>
 
 O número máximo de objetos de tabela instrumentados. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento do Status do Schema de Desempenho”.
 
@@ -1003,7 +1003,7 @@ O número máximo de objetos de tabela instrumentados. Para obter informações 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_error_size">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--performance-schema-error-size=#</code></td>
+    <td><code>--performance-schema-error-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
@@ -1018,7 +1018,7 @@ O número máximo de objetos de tabela instrumentados. Para obter informações 
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1027,23 +1027,23 @@ O número máximo de objetos de tabela instrumentados. Para obter informações 
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">número de códigos de erro do servidor</code></td>
+    <td><code>número de códigos de erro do servidor</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
-</table>9
+</table>
 
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size">
   <tr>
-    <th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-events-stages-history-long-size=#</code></td> </tr>
+    <th>Formato de Linha de Comando</th> <td><code>--performance-schema-events-stages-history-long-size=#</code></td> </tr>
     <tr>
-      <th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td> </tr>
+      <th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -1052,19 +1052,19 @@ O número máximo de objetos de tabela instrumentados. Para obter informações 
       <th>Dinâmico</th> <td>Não</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Inteiro</td> </tr>
     </tr>
     <tr>
-      <th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
+      <th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr>
     </tr>
     <tr>
-      <th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
+      <th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr>
     </tr>
     <tr>
-      <th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr>
+      <th>Valor Máximo</th> <td><code>1048576</code></td> </tr>
   </table>
 0
 
@@ -1075,11 +1075,11 @@ O número máximo de instrumentos de thread. Para obter informações sobre como
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-events-stages-history-long-size=#</code></td>
+    <td><code>--performance-schema-events-stages-history-long-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1090,7 +1090,7 @@ O número máximo de instrumentos de thread. Para obter informações sobre como
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1099,17 +1099,17 @@ O número máximo de instrumentos de thread. Para obter informações sobre como
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
-</table>1
+</table>
 
   O número máximo de objetos de thread instrumentados. O valor controla o tamanho da tabela `threads`. Se esse máximo for excedido de forma que um thread não possa ser instrumentado, o Performance Schema incrementa a variável de status `Performance_schema_thread_instances_lost`. Para obter informações sobre como configurar e usar essa variável, consulte a Seção 29.7, “Monitoramento de Status do Performance Schema”.
 
@@ -1119,7 +1119,7 @@ As tabelas `variables_by_thread` e `status_by_thread` contêm informações sobr
 
 * `performance_schema_session_connect_attrs_size`
 
-  <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-events-stages-history-long-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sinal de Hint para Configuração de Variáveis"><code class="literal">SET_VAR</code></a></code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-events-stages-history-long-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sinal de Hint para Configuração de Variáveis"><code>SET_VAR</code></a></code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
 A quantidade de memória pré-alocada por fio reservada para armazenar pares chave-valor de atributos de conexão. Se o tamanho agregado dos dados de atributos de conexão enviados por um cliente for maior que esse valor, o Gerenciamento de Desempenho truncá-losá os dados do atributo, incrementará a variável `Performance_schema_session_connect_attrs_lost` e escreverá uma mensagem no log de erro, indicando que a truncação ocorreu, se a variável de sistema `log_error_verbosity` for maior que 1. Um atributo `_truncated` também será adicionado aos atributos de sessão com um valor indicando quantos bytes foram perdidos, se o buffer do atributo tiver espaço suficiente. Isso permite que o Gerenciamento de Desempenho exiba informações de truncação por conexão nas tabelas de atributos de conexão. Essas informações podem ser examinadas sem precisar verificar o log de erro.
 
@@ -1132,11 +1132,11 @@ Embora o valor máximo permitido de `performance_schema_session_connect_attrs_si
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--performance-schema-events-stages-history-long-size=#</code></td>
+    <td><code>--performance-schema-events-stages-history-long-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1148,7 +1148,7 @@ Embora o valor máximo permitido de `performance_schema_session_connect_attrs_si
   </tr>
   <tr>
     <th>Hinta de sintaxe de definição de variável</th>
-    <td><code class="literal">SET_VAR</code></td>
+    <td><code>SET_VAR</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -1156,15 +1156,15 @@ Embora o valor máximo permitido de `performance_schema_session_connect_attrs_si
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 3. O número de linhas na tabela `setup_actors`.
@@ -1172,11 +1172,11 @@ Embora o valor máximo permitido de `performance_schema_session_connect_attrs_si
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--performance-schema-events-stages-history-long-size=#</code></td>
+    <td><code>--performance-schema-events-stages-history-long-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1187,7 +1187,7 @@ Embora o valor máximo permitido de `performance_schema_session_connect_attrs_si
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1196,15 +1196,15 @@ Embora o valor máximo permitido de `performance_schema_session_connect_attrs_si
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 4. Número de linhas na tabela `setup_objects`.
@@ -1212,11 +1212,11 @@ Embora o valor máximo permitido de `performance_schema_session_connect_attrs_si
 <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--performance-schema-events-stages-history-long-size=#</code></td>
+    <td><code>--performance-schema-events-stages-history-long-size=#</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
+    <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1228,7 +1228,7 @@ Embora o valor máximo permitido de `performance_schema_session_connect_attrs_si
   </tr>
   <tr>
     <th>Hinta de Sintaxe de Definição de Variável</th>
-    <td><code class="literal">SET_VAR</a></code></td>
+    <td><code>SET_VAR</a></code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -1236,15 +1236,15 @@ Embora o valor máximo permitido de `performance_schema_session_connect_attrs_si
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
+    <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">1048576</code></td>
+    <td><code>1048576</code></td>
   </tr>
 </table>
 
@@ -1258,12 +1258,12 @@ Para habilitar a implementação alternativa, habilite a variável de sistema `p
 
 * `performance_schema_users_size`
 
-  <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-events-stages-history-long-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Configuração <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoscalabilidade; não atribua este valor literal)</td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-events-stages-history-long-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Configuração <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoscalabilidade; não atribua este valor literal)</td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
 O número de linhas na tabela `users`. Se essa variável for 0, o Schema de Desempenho não mantém estatísticas de conexão na tabela `users` ou informações de variáveis de status na tabela `status_by_user`.
 
 * `performance_schema_max_logger_classes`
 
-  <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--performance-schema-events-stages-history-long-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Configuração de Hinta</th> <td><code class="literal">SET_VAR</code></a></td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">-1</code> (significa autodimensionamento; não atribua esse valor literal)</td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">-1</code> (significa autoescalonamento; não atribua esse valor literal)</td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">1048576</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--performance-schema-events-stages-history-long-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size">performance_schema_events_stages_history_long_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Configuração de Hinta</th> <td><code>SET_VAR</code></a></td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua esse valor literal)</td> </tr><tr><th>Valor Mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua esse valor literal)</td> </tr><tr><th>Valor Máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
   O valor indica o número máximo de instrumentos de clientes de registro que podem ser criados. A modificação desse ajuste requer o reinício do servidor.

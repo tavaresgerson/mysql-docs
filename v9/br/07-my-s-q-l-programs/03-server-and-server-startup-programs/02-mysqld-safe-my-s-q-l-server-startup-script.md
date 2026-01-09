@@ -33,19 +33,19 @@ Para compatibilidade com versões anteriores, **mysqld\_safe** também lê seç�
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></table>
 
   Exibir uma mensagem de ajuda e sair.
 
 * `--basedir=nome_dir`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de linha de comando</th> <td><code class="literal">--basedir=nome_dir</code></td> </tr><tr><th>Tipo</th> <td>Nome da pasta</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de linha de comando</th> <td><code>--basedir=nome_dir</code></td> </tr><tr><th>Tipo</th> <td>Nome da pasta</td> </tr></table>
 
   O caminho para o diretório de instalação do MySQL.
 
 * `--core-file-size=tamanho`
 
-  <table frame="box" rules="all" summary="Propriedades para core-file-size"><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file-size=tamanho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para core-file-size"><tr><th>Formato de linha de comando</th> <td><code>--core-file-size=tamanho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   O tamanho do arquivo de núcleo que o **mysqld** deve ser capaz de criar. O valor da opção é passado para **ulimit -c**.
 
@@ -55,7 +55,7 @@ Para compatibilidade com versões anteriores, **mysqld\_safe** também lê seç�
 
 * `--datadir=nome_dir`
 
-  <table frame="box" rules="all" summary="Propriedades para datadir"><tr><th>Formato de linha de comando</th> <td><code class="literal">--datadir=nome_dir</code></td> </tr><tr><th>Tipo</th> <td>Nome da pasta</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para datadir"><tr><th>Formato de linha de comando</th> <td><code>--datadir=nome_dir</code></td> </tr><tr><th>Tipo</th> <td>Nome da pasta</td> </tr></table>
 
   O caminho para o diretório de dados.
 
@@ -64,7 +64,7 @@ Para compatibilidade com versões anteriores, **mysqld\_safe** também lê seç�
 <table frame="box" rules="all" summary="Propriedades para defaults-extra-file">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--defaults-extra-file=nome_arquivo</code></td>
+    <td><code>--defaults-extra-file=nome_arquivo</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -82,7 +82,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 <table frame="box" rules="all" summary="Propriedades para defaults-file">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--defaults-file=nome_arquivo</code></td>
+    <td><code>--defaults-file=nome_arquivo</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -100,7 +100,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 <table frame="box" rules="all" summary="Propriedades para ledir">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--ledir=nome_do_diretório</code></td>
+    <td><code>--ledir=nome_do_diretório</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -118,7 +118,7 @@ Esta opção é aceita apenas na linha de comando, não em arquivos de opção. 
   <table frame="box" rules="all" summary="Propriedades para log-error">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--log-error=nome_do_arquivo</code></td>
+      <td><code>--log-error=nome_do_arquivo</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -134,7 +134,7 @@ Escreva o log de erro no arquivo especificado. Veja a Seção 7.4.2, “O Log de
   <table frame="box" rules="all" summary="Propriedades para mysqld-safe-log-timestamps">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--mysqld-safe-log-timestamps=tipo</code></td>
+      <td><code>--mysqld-safe-log-timestamps=tipo</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -142,11 +142,11 @@ Escreva o log de erro no arquivo especificado. Veja a Seção 7.4.2, “O Log de
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">utc</code></td>
+      <td><code>utc</code></td>
     </tr>
     <tr>
       <th>Valores válidos</th>
-      <td><p class="valid-value"><code class="literal">system</code></p><p class="valid-value"><code class="literal">hyphen</code></p><p class="valid-value"><code class="literal">legacy</code></p></td>
+      <td><p class="valid-value"><code>system</code></p><p class="valid-value"><code>hyphen</code></p><p class="valid-value"><code>legacy</code></p></td>
     </tr>
   </tbody>
   </table>
@@ -171,7 +171,7 @@ Esta opção controla o formato dos timestamps na saída de log gerada pelo **my
 
 * `--malloc-lib=[lib_name]`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O nome da biblioteca a ser usada para alocação de memória em vez da biblioteca `malloc()` do sistema. O valor da opção deve ser um dos diretórios `/usr/lib`, `/usr/lib64`, `/usr/lib/i386-linux-gnu` ou `/usr/lib/x86_64-linux-gnu`.
 
@@ -207,7 +207,7 @@ A partir do MySQL 8.0.21, `tcmalloc` não é um valor permitido para a opção `
 
 * `--mysqld=nome_do_programa`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O nome do programa do servidor (no diretório `ledir`) que você deseja iniciar. Esta opção é necessária se você usar a distribuição binária do MySQL, mas tiver o diretório de dados fora da distribuição binária. Se o **mysqld_safe** não conseguir encontrar o servidor, use a opção `--ledir` para indicar o nome do caminho do diretório onde o servidor está localizado.
 
@@ -215,7 +215,7 @@ A partir do MySQL 8.0.21, `tcmalloc` não é um valor permitido para a opção `
 
 * `--mysqld-version=sufixo`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Esta opção é semelhante à opção `--mysqld`, mas você especifica apenas o sufixo para o nome do programa do servidor. O nome base é assumido como **mysqld**. Por exemplo, se você usar `--mysqld-version=debug`, **mysqld\_safe** inicia o programa **mysqld-debug** no diretório `ledir`. Se o argumento para `--mysqld-version` estiver vazio, **mysqld\_safe** usa **mysqld** no diretório `ledir`.
 
@@ -223,13 +223,13 @@ A partir do MySQL 8.0.21, `tcmalloc` não é um valor permitido para a opção `
 
 * `--nice=prioridade`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Use o programa `nice` para definir a prioridade de agendamento do servidor para o valor fornecido.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Não leia nenhum arquivo de opção. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opção, `--no-defaults` pode ser usado para evitar que sejam lidas. Isso deve ser a primeira opção na linha de comando se for usado.
 
@@ -237,7 +237,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--open-files-limit=count`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O número de arquivos que o **mysqld** deve ser capaz de abrir. O valor da opção é passado para **ulimit -n**.
 
@@ -247,26 +247,26 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--pid-file=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O nome do caminho que o **mysqld** deve usar para seu arquivo de ID de processo.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O nome do caminho do diretório do plugin.
 
 * `--port=port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O número de porta que o servidor deve usar ao ouvir conexões TCP/IP. O número de porta deve ser 1024 ou maior, a menos que o servidor seja iniciado pelo usuário do sistema operacional `root`.
 
 * `--skip-kill-mysqld`
 
 <table frame="box" rules="all" summary="Propriedades de ajuda">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr>
 </table>
 9
 
@@ -275,7 +275,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 * `--socket=caminho`
 
   <table frame="box" rules="all" summary="Propriedades de base">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--basedir=nome_diretorio</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--basedir=nome_diretorio</code></td> </tr>
     <tr><th>Tipo</th> <td>Nome do diretório</td> </tr>
   </table>
 0
@@ -285,13 +285,13 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 * `--syslog`, `--skip-syslog`
 
   <table frame="box" rules="all" summary="Propriedades de base">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--basedir=nome_diretorio</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--basedir=nome_diretorio</code></td> </tr>
     <tr><th>Tipo</th> <td>Nome do diretório</td> </tr>
   </table>
 1
 
   <table frame="box" rules="all" summary="Propriedades de base">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--basedir=nome_diretorio</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--basedir=nome_diretorio</code></td> </tr>
     <tr><th>Tipo</th> <td>Nome do diretório</td> </tr>
   </table>
 2
@@ -304,7 +304,7 @@ O uso dessas opções para controlar o registro do **mysqld** está desatualizad
 
 * `--syslog-tag=tag`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Para registrar em `syslog`, as mensagens do **mysqld\_safe** e do **mysqld** são escritas com identificadores de `mysqld_safe` e `mysqld`, respectivamente. Para especificar um sufixo para os identificadores, use `--syslog-tag=tag`, que modifica os identificadores para `mysqld_safe-tag` e `mysqld-tag`.
 
@@ -312,13 +312,13 @@ O uso dessas opções para controlar o registro do **mysqld** está desatualizad
 
 * `--timezone=timezone`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Defina a variável de ambiente `TZ` para o valor da opção fornecida. Consulte a documentação do seu sistema operacional para os formatos de especificação de fuso horário legais.
 
 * `--user={user_name|user_id}`
 
-<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
 Execute o servidor **mysqld** como o usuário com o nome *`user_name`* ou o ID de usuário numérico *`user_id`*. (“Usuário” neste contexto se refere a uma conta de login do sistema, não a um usuário MySQL listado nas tabelas de concessão.)
 

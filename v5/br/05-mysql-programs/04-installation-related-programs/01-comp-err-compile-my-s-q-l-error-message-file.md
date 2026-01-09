@@ -82,6 +82,6 @@ comp_err [options]
 
 - `--version`, `-V`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--charset</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>../share/charsets</code>]]</td> </tr></tbody></table>0
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--charset</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>../share/charsets</code>]]</td> </tr></tbody></table>
 
   Exibir informações da versão e sair.

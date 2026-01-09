@@ -32,18 +32,18 @@ A tabela a seguir mostra a correspondência entre as colunas `replication_applie
 <col style="width: 60%"/><col style="width: 40%"/>
 <thead>
 <tr>
-<th><code class="literal">replication_applier_status</code> Coluna</th>
-<th><code class="literal">SHOW REPLICA STATUS</code> Coluna</th>
+<th><code>replication_applier_status</code> Coluna</th>
+<th><code>SHOW REPLICA STATUS</code> Coluna</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code class="literal">SERVICE_STATE</code></td>
+<td><code>SERVICE_STATE</code></td>
 <td>Nenhum</td>
 </tr>
 <tr>
-<td><code class="literal">REMAINING_DELAY</code></td>
-<td><code class="literal">SQL_Remaining_Delay</code></td>
+<td><code>REMAINING_DELAY</code></td>
+<td><code>SQL_Remaining_Delay</code></td>
 </tr>
 </tbody>
 </table>

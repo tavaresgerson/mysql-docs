@@ -20,7 +20,7 @@ Em seguida, verifique o arquivo do pacote MySQL baixado. Isso requer arquivos ta
 
 **Tabela 2.2 Arquivos de Pacote e Assinatura MySQL para MySQL Server MSI para Microsoft Windows**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Tipo de Arquivo</th> <th>Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Arquivo de Distribuição</td> <td><code class="literal">mysql-9.5.0-winx64.msi</code></td> </tr><tr> <td>Arquivo de Assinatura</td> <td><code class="literal">mysql-9.5.0-winx64.msi.asc</code></td> </tr></tbody></table>
+<table><thead><tr> <th>Tipo de Arquivo</th> <th>Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Arquivo de Distribuição</td> <td><code>mysql-9.5.0-winx64.msi</code></td> </tr><tr> <td>Arquivo de Assinatura</td> <td><code>mysql-9.5.0-winx64.msi.asc</code></td> </tr></tbody></table>
 
 Certifique-se de que ambos os arquivos estejam armazenados no mesmo diretório e, em seguida, execute o seguinte comando para verificar a assinatura do arquivo de distribuição. Carregue a janela a partir do Arquivo, Decrypta/Verifique Arquivos..., e então escolha o arquivo `.asc`.
 

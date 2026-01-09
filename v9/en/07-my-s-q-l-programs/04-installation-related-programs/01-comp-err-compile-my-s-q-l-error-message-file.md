@@ -78,12 +78,12 @@ comp_err [options]
 
 * `--out-file=file_name`, `-O file_name`
 
-  <table frame="box" rules="all" summary="Properties for charset"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--charset</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">../share/charsets</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for charset"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--charset</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">../share/charsets</code></td> </tr></tbody></table>
 
   The name of the output file. The default is `errmsg.sys`.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for charset"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--charset</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">../share/charsets</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for charset"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--charset</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">../share/charsets</code></td> </tr></tbody></table>
 
   Display version information and exit.

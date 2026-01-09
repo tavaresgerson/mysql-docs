@@ -78,19 +78,19 @@ The options described in this section can be used for any type of table maintena
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for HELP"><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for HELP"><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>
 
   Display version information and exit.
 
 * `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Properties for HELP"><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for HELP"><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>
 
   Instead of terminating with an error if the table is locked, wait until the table is unlocked before continuing. If you are running **mysqld** with external locking disabled, the table can be locked only by another **myisamchk** command.
 
 You can also set the following variables by using `--var_name=value` syntax:
 
-<table frame="box" rules="all" summary="Properties for HELP"><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Properties for HELP"><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>
 
 The possible **myisamchk** variables and their default values can be examined with **myisamchk --help**:
 

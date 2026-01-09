@@ -115,7 +115,7 @@ A instrução `SET` afeta o processamento das instruções da seguinte forma:
 
 Para especificar limites de conjunto de resultados diferentes de 1.000 e 1.000.000, você pode substituir os valores padrão usando as opções `--select-limit` e `--max-join-size` ao invocar o **mysql**:
 
-```sql
+```sh
 mysql --safe-updates --select-limit=500 --max-join-size=10000
 ```
 

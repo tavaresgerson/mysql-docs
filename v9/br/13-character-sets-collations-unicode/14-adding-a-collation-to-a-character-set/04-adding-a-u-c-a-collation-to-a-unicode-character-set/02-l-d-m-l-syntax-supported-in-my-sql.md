@@ -49,7 +49,7 @@ O LDML redefiniu as regras e as regras de deslocamento para especificar a ordem 
 
 **Tabela 12.5 Sintaxe de Deslocamento Abreviada**
 
-<table summary="Regras de sintaxe de expansão e contração abreviadas e correspondentes à sintaxe não abreviada."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Sintaxe Abreviada</th> <th>Sintaxe Não Abreviada</th> </tr></thead><tbody><tr> <td><code class="literal">&lt;pc&gt;xyz&lt;/pc&gt;</code></td> <td><code class="literal">&lt;p&gt;x&lt;/p&gt;&lt;p&gt;y&lt;/p&gt;&lt;p&gt;z&lt;/p&gt;</code></td> </tr><tr> <td><code class="literal">&lt;sc&gt;xyz&lt;/sc&gt;</code></td> <td><code class="literal">&lt;s&gt;x&lt;/s&gt;&lt;s&gt;y&lt;/s&gt;&lt;s&gt;z&lt;/s&gt;</code></td> </tr><tr> <td><code class="literal">&lt;tc&gt;xyz&lt;/tc&gt;</code></td> <td><code class="literal">&lt;t&gt;x&lt;/t&gt;&lt;t&gt;y&lt;/t&gt;&lt;t&gt;z&lt;/t&gt;</code></td> </tr><tr> <td><code class="literal">&lt;ic&gt;xyz&lt;/ic&gt;</code></td> <td><code class="literal">&lt;i&gt;x&lt;/i&gt;&lt;i&gt;y&lt;/i&gt;&lt;i&gt;z&lt;/i&gt;</code></td> </tr></tbody></table>
+<table summary="Regras de sintaxe de expansão e contração abreviadas e correspondentes à sintaxe não abreviada."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Sintaxe Abreviada</th> <th>Sintaxe Não Abreviada</th> </tr></thead><tbody><tr> <td><code>&lt;pc&gt;xyz&lt;/pc&gt;</code></td> <td><code>&lt;p&gt;x&lt;/p&gt;&lt;p&gt;y&lt;/p&gt;&lt;p&gt;z&lt;/p&gt;</code></td> </tr><tr> <td><code>&lt;sc&gt;xyz&lt;/sc&gt;</code></td> <td><code>&lt;s&gt;x&lt;/s&gt;&lt;s&gt;y&lt;/s&gt;&lt;s&gt;z&lt;/s&gt;</code></td> </tr><tr> <td><code>&lt;tc&gt;xyz&lt;/tc&gt;</code></td> <td><code>&lt;t&gt;x&lt;/t&gt;&lt;t&gt;y&lt;/t&gt;&lt;t&gt;z&lt;/t&gt;</code></td> </tr><tr> <td><code>&lt;ic&gt;xyz&lt;/ic&gt;</code></td> <td><code>&lt;i&gt;x&lt;/i&gt;&lt;i&gt;y&lt;/i&gt;&lt;i&gt;z&lt;/i&gt;</code></td> </tr></tbody></table>
 
 * Uma expansão é uma regra de reset que estabelece um ponto de ancoragem para uma sequência de vários caracteres. O MySQL suporta expansões de 2 a 6 caracteres. As seguintes regras colocam `'z'` maior no nível primário do que a sequência de três caracteres `'abc'`:
 
@@ -148,68 +148,68 @@ As posições lógicas têm os códigos de pontos mostrados na tabela a seguir.
 <table summary="Posições lógicas e pontos de código Unicode 4.0.0 e Unicode 5.2.0.">
 <col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/>
 <thead><tr>
-<th scope="col">Posição Lógica</th>
-<th scope="col">Ponto de Código Unicode 4.0.0</th>
-<th scope="col">Ponto de Código Unicode 5.2.0</th>
+<th>Posição Lógica</th>
+<th>Ponto de Código Unicode 4.0.0</th>
+<th>Ponto de Código Unicode 5.2.0</th>
 </tr></thead>
 <tbody>
 <tr>
-<th scope="row"><code class="literal">&lt;first_non_ignorable/&gt;</code></th>
+<th><code>&lt;first_non_ignorable/&gt;</code></th>
 <td>U+02D0</td>
 <td>U+02D0</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;last_non_ignorable/&gt;</code></th>
+<th><code>&lt;last_non_ignorable/&gt;</code></th>
 <td>U+A48C</td>
 <td>U+1342E</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;first_primary_ignorable/&gt;</code></th>
+<th><code>&lt;first_primary_ignorable/&gt;</code></th>
 <td>U+0332</td>
 <td>U+0332</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;last_primary_ignorable/&gt;</code></th>
+<th><code>&lt;last_primary_ignorable/&gt;</code></th>
 <td>U+20EA</td>
 <td>U+101FD</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;first_secondary_ignorable/&gt;</code></th>
+<th><code>&lt;first_secondary_ignorable/&gt;</code></th>
 <td>U+0000</td>
 <td>U+0000</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;last_secondary_ignorable/&gt;</code></th>
+<th><code>&lt;last_secondary_ignorable/&gt;</code></th>
 <td>U+FE73</td>
 <td>U+FE73</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;first_tertiary_ignorable/&gt;</code></th>
+<th><code>&lt;first_tertiary_ignorable/&gt;</code></th>
 <td>U+0000</td>
 <td>U+0000</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;last_tertiary_ignorable/&gt;</code></th>
+<th><code>&lt;last_tertiary_ignorable/&gt;</code></th>
 <td>U+FE73</td>
 <td>U+FE73</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;first_trailing/&gt;</code></th>
+<th><code>&lt;first_trailing/&gt;</code></th>
 <td>U+0000</td>
 <td>U+0000</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;last_trailing/&gt;</code></th>
+<th><code>&lt;last_trailing/&gt;</code></th>
 <td>U+0000</td>
 <td>U+0000</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;first_variable/&gt;</code></th>
+<th><code>&lt;first_variable/&gt;</code></th>
 <td>U+0009</td>
 <td>U+0009</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">&lt;last_variable/&gt;</code></th>
+<th><code>&lt;last_variable/&gt;</code></th>
 <td>U+2183</td>
 <td>U+1D371</td>
 </tr>

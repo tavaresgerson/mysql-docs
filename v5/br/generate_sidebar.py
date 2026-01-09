@@ -1,16 +1,17 @@
 import os
-import json
 
 def get_title(filepath):
+    # Default to filename if reading fails or file is empty
     title = os.path.basename(filepath)
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             for line in f:
                 line = line.strip()
-                if line.startswith('# '):
-                    title = line[2:].strip()
+                if line:
+                    # Use the first non-empty line, removing leading markdown headers (#)
+                    title = line.lstrip('#').strip()
                     break
-    except Exception as e:
+    except Exception:
         pass
     return title
 
@@ -81,11 +82,40 @@ def scan_directory(current_path, relative_path):
 
     return items
 
+def format_js_value(value, indent_level=0):
+    indent = "\t" * indent_level
+    if isinstance(value, list):
+        if not value:
+            return "[]"
+        lines = ["[\n"]
+        for item in value:
+            lines.append(f"{indent}\t{format_js_value(item, indent_level + 1)},\n")
+        lines.append(f"{indent}]")
+        return "".join(lines)
+    elif isinstance(value, dict):
+        if not value:
+            return "{}"
+        lines = ["{\n"]
+        for k, v in value.items():
+            # Keys are unquoted
+            lines.append(f"{indent}\t{k}: {format_js_value(v, indent_level + 1)},\n")
+        lines.append(f"{indent}}}")
+        return "".join(lines)
+    elif isinstance(value, str):
+        # Use single quotes and escape existing single quotes
+        safe_str = value.replace("'", "\\'")
+        return f"'{safe_str}'"
+    elif isinstance(value, bool):
+        return "true" if value else "false"
+    else:
+        return str(value)
+
 def generate_sidebar():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     sidebar_items = scan_directory(base_dir, "")
 
-    js_content = "export default " + json.dumps(sidebar_items, indent=4)
+    # Format as JS object export
+    js_content = "export default " + format_js_value(sidebar_items)
 
     output_path = os.path.join(base_dir, '.vitepress', 'sidebar.js')
     try:

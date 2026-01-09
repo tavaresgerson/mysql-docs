@@ -155,7 +155,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`bind_address`](server-system-variables.html#sysvar_bind_address)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>0
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The MySQL server listens on a single network socket for TCP/IP connections. This socket is bound to a single address, but it is possible for an address to map onto multiple network interfaces. To specify an address, set [`bind_address=addr`](server-system-variables.html#sysvar_bind_address) at server startup, where *`addr`* is an IPv4 or IPv6 address or a host name. If *`addr`* is a host name, the server resolves the name to an IP address and binds to that address. If a host name resolves to multiple IP addresses, the server uses the first IPv4 address if there are any, or the first IPv6 address otherwise.
 
@@ -179,7 +179,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`block_encryption_mode`](server-system-variables.html#sysvar_block_encryption_mode)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>1
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable controls the block encryption mode for block-based algorithms such as AES. It affects encryption for [`AES_ENCRYPT()`](encryption-functions.html#function_aes-encrypt) and [`AES_DECRYPT()`](encryption-functions.html#function_aes-decrypt).
 
@@ -201,13 +201,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`bulk_insert_buffer_size`](server-system-variables.html#sysvar_bulk_insert_buffer_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>2
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   `MyISAM` uses a special tree-like cache to make bulk inserts faster for [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement"), `INSERT ... VALUES (...), (...), ...`, and [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") when adding data to nonempty tables. This variable limits the size of the cache tree in bytes per thread. Setting it to 0 disables this optimization. The default value is 8MB.
 
 * [`character_set_client`](server-system-variables.html#sysvar_character_set_client)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>3
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The character set for statements that arrive from the client. The session value of this variable is set using the character set requested by the client when the client connects to the server. (Many clients support a `--default-character-set` option to enable this character set to be specified explicitly. See also [Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations").) The global value of the variable is used to set the session value in cases when the client-requested value is unknown or not available, or the server is configured to ignore client requests:
 
@@ -221,13 +221,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`character_set_connection`](server-system-variables.html#sysvar_character_set_connection)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>4
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The character set used for literals specified without a character set introducer and for number-to-string conversion. For information about introducers, see [Section 10.3.8, “Character Set Introducers”](charset-introducer.html "10.3.8 Character Set Introducers").
 
 * [`character_set_database`](server-system-variables.html#sysvar_character_set_database)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>5
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The character set used by the default database. The server sets this variable whenever the default database changes. If there is no default database, the variable has the same value as [`character_set_server`](server-system-variables.html#sysvar_character_set_server).
 
@@ -237,37 +237,37 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`character_set_filesystem`](server-system-variables.html#sysvar_character_set_filesystem)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>6
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The file system character set. This variable is used to interpret string literals that refer to file names, such as in the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") and [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") statements and the [`LOAD_FILE()`](string-functions.html#function_load-file) function. Such file names are converted from [`character_set_client`](server-system-variables.html#sysvar_character_set_client) to [`character_set_filesystem`](server-system-variables.html#sysvar_character_set_filesystem) before the file opening attempt occurs. The default value is `binary`, which means that no conversion occurs. For systems on which multibyte file names are permitted, a different value may be more appropriate. For example, if the system represents file names using UTF-8, set [`character_set_filesystem`](server-system-variables.html#sysvar_character_set_filesystem) to `'utf8mb4'`.
 
 * [`character_set_results`](server-system-variables.html#sysvar_character_set_results)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>7
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The character set used for returning query results to the client. This includes result data such as column values, result metadata such as column names, and error messages.
 
 * [`character_set_server`](server-system-variables.html#sysvar_character_set_server)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>8
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The servers default character set. See [Section 10.15, “Character Set Configuration”](charset-configuration.html "10.15 Character Set Configuration"). If you set this variable, you should also set [`collation_server`](server-system-variables.html#sysvar_collation_server) to specify the collation for the character set.
 
 * [`character_set_system`](server-system-variables.html#sysvar_character_set_system)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>9
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The character set used by the server for storing identifiers. The value is always `utf8`.
 
 * [`character_sets_dir`](server-system-variables.html#sysvar_character_sets_dir)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The directory where character sets are installed. See [Section 10.15, “Character Set Configuration”](charset-configuration.html "10.15 Character Set Configuration").
 
 * [`check_proxy_users`](server-system-variables.html#sysvar_check_proxy_users)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Some authentication plugins implement proxy user mapping for themselves (for example, the PAM and Windows authentication plugins). Other authentication plugins do not support proxy users by default. Of these, some can request that the MySQL server itself map proxy users according to granted proxy privileges: `mysql_native_password`, `sha256_password`.
 
@@ -281,13 +281,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`collation_connection`](server-system-variables.html#sysvar_collation_connection)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The collation of the connection character set. [`collation_connection`](server-system-variables.html#sysvar_collation_connection) is important for comparisons of literal strings. For comparisons of strings with column values, [`collation_connection`](server-system-variables.html#sysvar_collation_connection) does not matter because columns have their own collation, which has a higher collation precedence (see [Section 10.8.4, “Collation Coercibility in Expressions”](charset-collation-coercibility.html "10.8.4 Collation Coercibility in Expressions")).
 
 * [`collation_database`](server-system-variables.html#sysvar_collation_database)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The collation used by the default database. The server sets this variable whenever the default database changes. If there is no default database, the variable has the same value as [`collation_server`](server-system-variables.html#sysvar_collation_server).
 
@@ -297,29 +297,29 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`collation_server`](server-system-variables.html#sysvar_collation_server)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The server's default collation. See [Section 10.15, “Character Set Configuration”](charset-configuration.html "10.15 Character Set Configuration").
 
 * [`completion_type`](server-system-variables.html#sysvar_completion_type)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The transaction completion type. This variable can take the values shown in the following table. The variable can be assigned using either the name values or corresponding integer values.
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   [`completion_type`](server-system-variables.html#sysvar_completion_type) affects transactions that begin with [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") or [`BEGIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") and end with [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") or [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"). It does not apply to implicit commits resulting from execution of the statements listed in [Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit"). It also does not apply for [`XA COMMIT`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements"), [`XA ROLLBACK`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements"), or when [`autocommit=1`](server-system-variables.html#sysvar_autocommit).
 
 * [`concurrent_insert`](server-system-variables.html#sysvar_concurrent_insert)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If `AUTO` (the default), MySQL permits [`INSERT`](insert.html "13.2.5 INSERT Statement") and [`SELECT`](select.html "13.2.9 SELECT Statement") statements to run concurrently for `MyISAM` tables that have no free blocks in the middle of the data file.
 
   This variable can take the values shown in the following table. The variable can be assigned using either the name values or corresponding integer values.
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If you start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with [`--skip-new`](server-options.html#option_mysqld_skip-new), [`concurrent_insert`](server-system-variables.html#sysvar_concurrent_insert) is set to `NEVER`.
 
@@ -327,7 +327,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`connect_timeout`](server-system-variables.html#sysvar_connect_timeout)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The number of seconds that the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server waits for a connect packet before responding with `Bad handshake`. The default value is 10 seconds.
 
@@ -335,13 +335,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`core_file`](server-system-variables.html#sysvar_core_file)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Whether to write a core file if the server unexpectedly exits. This variable is set by the [`--core-file`](server-options.html#option_mysqld_core-file) option.
 
 * [`datadir`](server-system-variables.html#sysvar_datadir)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The path to the MySQL server data directory. Relative paths are resolved with respect to the current directory. If you expect the server to be started automatically (that is, in contexts for which you cannot assume what the current directory is), it is best to specify the [`datadir`](server-system-variables.html#sysvar_datadir) value as an absolute path.
 
@@ -355,7 +355,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`debug`](server-system-variables.html#sysvar_debug)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable indicates the current debugging settings. It is available only for servers built with debugging support. The initial value comes from the value of instances of the [`--debug`](server-options.html#option_mysqld_debug) option given at server startup. The global and session values may be set at runtime.
 
@@ -393,7 +393,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`debug_sync`](server-system-variables.html#sysvar_debug_sync)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable is the user interface to the Debug Sync facility. Use of Debug Sync requires that MySQL be configured with the [`-DWITH_DEBUG=ON`](source-configuration-options.html#option_cmake_with_debug) **CMake** option (see [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")); otherwise, this system variable is not available.
 
@@ -407,7 +407,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`default_authentication_plugin`](server-system-variables.html#sysvar_default_authentication_plugin)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The default authentication plugin. These values are permitted:
 
@@ -443,7 +443,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`default_password_lifetime`](server-system-variables.html#sysvar_default_password_lifetime)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable defines the global automatic password expiration policy. The default [`default_password_lifetime`](server-system-variables.html#sysvar_default_password_lifetime) value is 0, which disables automatic password expiration. If the value of [`default_password_lifetime`](server-system-variables.html#sysvar_default_password_lifetime) is a positive integer *`N`*, it indicates the permitted password lifetime; passwords must be changed every *`N`* days.
 
@@ -463,7 +463,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The default storage engine for tables. See [Chapter 15, *Alternative Storage Engines*](storage-engines.html "Chapter 15 Alternative Storage Engines"). This variable sets the storage engine for permanent tables only. To set the storage engine for `TEMPORARY` tables, set the [`default_tmp_storage_engine`](server-system-variables.html#sysvar_default_tmp_storage_engine) system variable.
 
@@ -473,7 +473,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`default_tmp_storage_engine`](server-system-variables.html#sysvar_default_tmp_storage_engine)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The default storage engine for `TEMPORARY` tables (created with [`CREATE TEMPORARY TABLE`](create-table.html "13.1.18 CREATE TABLE Statement")). To set the storage engine for permanent tables, set the [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) system variable. Also see the discussion of that variable regarding possible values.
 
@@ -481,19 +481,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`default_week_format`](server-system-variables.html#sysvar_default_week_format)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The default mode value to use for the [`WEEK()`](date-and-time-functions.html#function_week) function. See [Section 12.7, “Date and Time Functions”](date-and-time-functions.html "12.7 Date and Time Functions").
 
 * [`delay_key_write`](server-system-variables.html#sysvar_delay_key_write)
 
-  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for autocommit"><tbody><tr><th>Command-Line Format</th> <td><code>--autocommit[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable specifies how to use delayed key writes. It applies only to `MyISAM` tables. Delayed key writing causes key buffers not to be flushed between writes. See also [Section 15.2.1, “MyISAM Startup Options”](myisam-start.html "15.2.1 MyISAM Startup Options").
 
   This variable can have one of the following values to affect handling of the `DELAY_KEY_WRITE` table option that can be used in [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statements.
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Note
 
@@ -509,25 +509,25 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`delayed_insert_limit`](server-system-variables.html#sysvar_delayed_insert_limit)
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This system variable is deprecated (because `DELAYED` inserts are not supported); expect it to be removed in a future release.
 
 * [`delayed_insert_timeout`](server-system-variables.html#sysvar_delayed_insert_timeout)
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This system variable is deprecated (because `DELAYED` inserts are not supported); expect it to be removed in a future release.
 
 * [`delayed_queue_size`](server-system-variables.html#sysvar_delayed_queue_size)
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This system variable is deprecated (because `DELAYED` inserts are not supported); expect it to be removed in a future release.
 
 * [`disabled_storage_engines`](server-system-variables.html#sysvar_disabled_storage_engines)
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable indicates which storage engines cannot be used to create tables or tablespaces. For example, to prevent new `MyISAM` or `FEDERATED` tables from being created, start the server with these lines in the server option file:
 
@@ -550,7 +550,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`disconnect_on_expired_password`](server-system-variables.html#sysvar_disconnect_on_expired_password)
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable controls how the server handles clients with expired passwords:
 
@@ -566,7 +566,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`div_precision_increment`](server-system-variables.html#sysvar_div_precision_increment)
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable indicates the number of digits by which to increase the scale of the result of division operations performed with the [`/`](arithmetic-functions.html#operator_divide) operator. The default value is 4. The minimum and maximum values are 0 and 30, respectively. The following example illustrates the effect of increasing the default value.
 
@@ -588,13 +588,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`end_markers_in_json`](server-system-variables.html#sysvar_end_markers_in_json)
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Whether optimizer JSON output should add end markers. See [Section 8.15.9, “The end\_markers\_in\_json System Variable”](end-markers-in-json-system-variable.html "8.15.9 The end_markers_in_json System Variable").
 
 * [`eq_range_index_dive_limit`](server-system-variables.html#sysvar_eq_range_index_dive_limit)
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable indicates the number of equality ranges in an equality comparison condition when the optimizer should switch from using index dives to index statistics in estimating the number of qualifying rows. It applies to evaluation of expressions that have either of these equivalent forms, where the optimizer uses a nonunique index to look up *`col_name`* values:
 
@@ -615,13 +615,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`event_scheduler`](server-system-variables.html#sysvar_event_scheduler)
 
-  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for automatic_sp_privileges"><tbody><tr><th>Command-Line Format</th> <td><code>--automatic-sp-privileges[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable enables or disables, and starts or stops, the Event Scheduler. The possible status values are `ON`, `OFF`, and `DISABLED`. Turning the Event Scheduler `OFF` is not the same as disabling the Event Scheduler, which requires setting the status to `DISABLED`. This variable and its effects on the Event Scheduler's operation are discussed in greater detail in [Section 23.4.2, “Event Scheduler Configuration”](events-configuration.html "23.4.2 Event Scheduler Configuration")
 
 * [`explicit_defaults_for_timestamp`](server-system-variables.html#sysvar_explicit_defaults_for_timestamp)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This system variable determines whether the server enables certain nonstandard behaviors for default values and `NULL`-value handling in [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns. By default, [`explicit_defaults_for_timestamp`](server-system-variables.html#sysvar_explicit_defaults_for_timestamp) is disabled, which enables the nonstandard behaviors.
 
@@ -669,13 +669,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`external_user`](server-system-variables.html#sysvar_external_user)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The external user name used during the authentication process, as set by the plugin used to authenticate the client. With native (built-in) MySQL authentication, or if the plugin does not set the value, this variable is `NULL`. See [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
 * [`flush`](server-system-variables.html#sysvar_flush)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If `ON`, the server flushes (synchronizes) all changes to disk after each SQL statement. Normally, MySQL does a write of all changes to disk only after each SQL statement and lets the operating system handle the synchronizing to disk. See [Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing"). This variable is set to `ON` if you start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--flush`](server-options.html#option_mysqld_flush) option.
 
@@ -685,7 +685,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`flush_time`](server-system-variables.html#sysvar_flush_time)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If this is set to a nonzero value, all tables are closed every [`flush_time`](server-system-variables.html#sysvar_flush_time) seconds to free up resources and synchronize unflushed data to disk. This option is best used only on systems with minimal resources.
 
@@ -695,7 +695,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If set to 1 (the default), foreign key constraints are checked. If set to 0, foreign key constraints are ignored, with a couple of exceptions. When re-creating a table that was dropped, an error is returned if the table definition does not conform to the foreign key constraints referencing the table. Likewise, an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation returns an error if a foreign key definition is incorrectly formed. For more information, see [Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints").
 
@@ -712,7 +712,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`ft_boolean_syntax`](server-system-variables.html#sysvar_ft_boolean_syntax)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The list of operators supported by boolean full-text searches performed using `IN BOOLEAN MODE`. See [Section 12.9.2, “Boolean Full-Text Searches”](fulltext-boolean.html "12.9.2 Boolean Full-Text Searches").
 
@@ -729,7 +729,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`ft_max_word_len`](server-system-variables.html#sysvar_ft_max_word_len)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The maximum length of the word to be included in a `MyISAM` `FULLTEXT` index.
 
@@ -739,7 +739,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`ft_min_word_len`](server-system-variables.html#sysvar_ft_min_word_len)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The minimum length of the word to be included in a `MyISAM` `FULLTEXT` index.
 
@@ -749,13 +749,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`ft_query_expansion_limit`](server-system-variables.html#sysvar_ft_query_expansion_limit)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The number of top matches to use for full-text searches performed using `WITH QUERY EXPANSION`.
 
 * [`ft_stopword_file`](server-system-variables.html#sysvar_ft_stopword_file)
 
-  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for auto_generate_certs"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-certs[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The file from which to read the list of stopwords for full-text searches on `MyISAM` tables. The server looks for the file in the data directory unless an absolute path name is given to specify a different directory. All the words from the file are used; comments are *not* honored. By default, a built-in list of stopwords is used (as defined in the `storage/myisam/ft_static.c` file). Setting this variable to the empty string (`''`) disables stopword filtering. See also [Section 12.9.4, “Full-Text Stopwords”](fulltext-stopwords.html "12.9.4 Full-Text Stopwords").
 
@@ -765,19 +765,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`general_log`](server-system-variables.html#sysvar_general_log)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Whether the general query log is enabled. The value can be 0 (or `OFF`) to disable the log or 1 (or `ON`) to enable the log. The destination for log output is controlled by the [`log_output`](server-system-variables.html#sysvar_log_output) system variable; if that value is `NONE`, no log entries are written even if the log is enabled.
 
 * [`general_log_file`](server-system-variables.html#sysvar_general_log_file)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   The name of the general query log file. The default value is `host_name.log`, but the initial value can be changed with the [`--general_log_file`](server-system-variables.html#sysvar_general_log_file) option.
 
 * [`group_concat_max_len`](server-system-variables.html#sysvar_group_concat_max_len)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   The maximum permitted result length in bytes for the [`GROUP_CONCAT()`](aggregate-functions.html#function_group-concat) function. The default is 1024.
 
@@ -825,13 +825,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`have_ssl`](server-system-variables.html#sysvar_have_ssl)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   `YES` if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") supports SSL connections, `DISABLED` if the server was compiled with SSL support, but was not started with the appropriate connection-encryption options. For more information, see [Section 2.8.6, “Configuring SSL Library Support”](source-ssl-library-configuration.html "2.8.6 Configuring SSL Library Support").
 
 * [`have_statement_timeout`](server-system-variables.html#sysvar_have_statement_timeout)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Whether the statement execution timeout feature is available (see [Statement Execution Time Optimizer Hints](optimizer-hints.html#optimizer-hints-execution-time "Statement Execution Time Optimizer Hints")). The value can be `NO` if the background thread used by this feature could not be initialized.
 
@@ -843,7 +843,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`host_cache_size`](server-system-variables.html#sysvar_host_cache_size)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   The MySQL server maintains an in-memory host cache that contains client host name and IP address information and is used to avoid Domain Name System (DNS) lookups; see [Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache").
 
@@ -863,7 +863,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`hostname`](server-system-variables.html#sysvar_hostname)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   The server sets this variable to the server host name at startup.
 
@@ -873,7 +873,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`ignore_db_dirs`](server-system-variables.html#sysvar_ignore_db_dirs)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   A comma-separated list of names that are not considered as database directories in the data directory. The value is set from any instances of [`--ignore-db-dir`](server-options.html#option_mysqld_ignore-db-dir) given at server startup.
 
@@ -883,7 +883,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`init_connect`](server-system-variables.html#sysvar_init_connect)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   A string to be executed by the server for each client that connects. The string consists of one or more SQL statements, separated by semicolon characters.
 
@@ -895,7 +895,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`init_file`](server-system-variables.html#sysvar_init_file)
 
-  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for avoid_temporal_upgrade"><tbody><tr><th>Command-Line Format</th> <td><code>--avoid-temporal-upgrade[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   If specified, this variable names a file containing SQL statements to be read and executed during the startup process. Each statement must be on a single line and should not include comments.
 
@@ -911,13 +911,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`interactive_timeout`](server-system-variables.html#sysvar_interactive_timeout)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   The number of seconds the server waits for activity on an interactive connection before closing it. An interactive client is defined as a client that uses the `CLIENT_INTERACTIVE` option to [`mysql_real_connect()`](/doc/c-api/5.7/en/mysql-real-connect.html). See also [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout).
 
 * [`internal_tmp_disk_storage_engine`](server-system-variables.html#sysvar_internal_tmp_disk_storage_engine)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   The storage engine for on-disk internal temporary tables (see [Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")). Permitted values are `MYISAM` and `INNODB` (the default).
 
@@ -927,7 +927,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`join_buffer_size`](server-system-variables.html#sysvar_join_buffer_size)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   The minimum size of the buffer that is used for plain index scans, range index scans, and joins that do not use indexes and thus perform full table scans. Normally, the best way to get fast joins is to add indexes. Increase the value of [`join_buffer_size`](server-system-variables.html#sysvar_join_buffer_size) to get a faster full join when adding indexes is not possible. One join buffer is allocated for each full join between two tables. For a complex join between several tables for which indexes are not used, multiple join buffers might be necessary.
 
@@ -943,7 +943,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`keep_files_on_create`](server-system-variables.html#sysvar_keep_files_on_create)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   If a `MyISAM` table is created with no `DATA DIRECTORY` option, the `.MYD` file is created in the database directory. By default, if `MyISAM` finds an existing `.MYD` file in this case, it overwrites it. The same applies to `.MYI` files for tables created with no `INDEX DIRECTORY` option. To suppress this behavior, set the [`keep_files_on_create`](server-system-variables.html#sysvar_keep_files_on_create) variable to `ON` (1), in which case `MyISAM` does not overwrite existing files and returns an error instead. The default value is `OFF` (0).
 
@@ -951,7 +951,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Index blocks for `MyISAM` tables are buffered and are shared by all threads. [`key_buffer_size`](server-system-variables.html#sysvar_key_buffer_size) is the size of the buffer used for index blocks. The key buffer is also known as the key cache.
 
@@ -979,37 +979,37 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`key_cache_age_threshold`](server-system-variables.html#sysvar_key_cache_age_threshold)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   This value controls the demotion of buffers from the hot sublist of a key cache to the warm sublist. Lower values cause demotion to happen more quickly. The minimum value is 100. The default value is 300. See [Section 8.10.2, “The MyISAM Key Cache”](myisam-key-cache.html "8.10.2 The MyISAM Key Cache").
 
 * [`key_cache_block_size`](server-system-variables.html#sysvar_key_cache_block_size)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   The size in bytes of blocks in the key cache. The default value is 1024. See [Section 8.10.2, “The MyISAM Key Cache”](myisam-key-cache.html "8.10.2 The MyISAM Key Cache").
 
 * [`key_cache_division_limit`](server-system-variables.html#sysvar_key_cache_division_limit)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   The division point between the hot and warm sublists of the key cache buffer list. The value is the percentage of the buffer list to use for the warm sublist. Permissible values range from 1 to 100. The default value is 100. See [Section 8.10.2, “The MyISAM Key Cache”](myisam-key-cache.html "8.10.2 The MyISAM Key Cache").
 
 * [`large_files_support`](server-system-variables.html#sysvar_large_files_support)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Whether [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") was compiled with options for large file support.
 
 * [`large_pages`](server-system-variables.html#sysvar_large_pages)
 
-  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for back_log"><tbody><tr><th>Command-Line Format</th> <td><code>--back-log=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>-1</code> (signifies autosizing; do not assign this literal value)</td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Whether large page support is enabled (via the [`--large-pages`](server-options.html#option_mysqld_large-pages) option). See [Section 8.12.4.3, “Enabling Large Page Support”](large-page-support.html "8.12.4.3 Enabling Large Page Support").
 
 * [`large_page_size`](server-system-variables.html#sysvar_large_page_size)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   If large page support is enabled, this shows the size of memory pages. Large memory pages are supported only on Linux; on other platforms, the value of this variable is always 0. See [Section 8.12.4.3, “Enabling Large Page Support”](large-page-support.html "8.12.4.3 Enabling Large Page Support").
 
@@ -1019,31 +1019,31 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`lc_messages`](server-system-variables.html#sysvar_lc_messages)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The locale to use for error messages. The default is `en_US`. The server converts the argument to a language name and combines it with the value of [`lc_messages_dir`](server-system-variables.html#sysvar_lc_messages_dir) to produce the location for the error message file. See [Section 10.12, “Setting the Error Message Language”](error-message-language.html "10.12 Setting the Error Message Language").
 
 * [`lc_messages_dir`](server-system-variables.html#sysvar_lc_messages_dir)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The directory where error messages are located. The server uses the value together with the value of [`lc_messages`](server-system-variables.html#sysvar_lc_messages) to produce the location for the error message file. See [Section 10.12, “Setting the Error Message Language”](error-message-language.html "10.12 Setting the Error Message Language").
 
 * [`lc_time_names`](server-system-variables.html#sysvar_lc_time_names)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   This variable specifies the locale that controls the language used to display day and month names and abbreviations. This variable affects the output from the [`DATE_FORMAT()`](date-and-time-functions.html#function_date-format), [`DAYNAME()`](date-and-time-functions.html#function_dayname) and [`MONTHNAME()`](date-and-time-functions.html#function_monthname) functions. Locale names are POSIX-style values such as `'ja_JP'` or `'pt_BR'`. The default value is `'en_US'` regardless of your system's locale setting. For further information, see [Section 10.16, “MySQL Server Locale Support”](locale-support.html "10.16 MySQL Server Locale Support").
 
 * [`license`](server-system-variables.html#sysvar_license)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The type of license the server has.
 
 * [`local_infile`](server-system-variables.html#sysvar_local_infile)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   This variable controls server-side `LOCAL` capability for [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statements. Depending on the [`local_infile`](server-system-variables.html#sysvar_local_infile) setting, the server refuses or permits local data loading by clients that have `LOCAL` enabled on the client side.
 
@@ -1051,7 +1051,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`lock_wait_timeout`](server-system-variables.html#sysvar_lock_wait_timeout)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   This variable specifies the timeout in seconds for attempts to acquire metadata locks. The permissible values range from 1 to 31536000 (1 year). The default is 31536000.
 
@@ -1065,29 +1065,29 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`locked_in_memory`](server-system-variables.html#sysvar_locked_in_memory)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Whether [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") was locked in memory with [`--memlock`](server-options.html#option_mysqld_memlock).
 
 * [`log_error`](server-system-variables.html#sysvar_log_error)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The error log output destination. If the destination is the console, the value is `stderr`. Otherwise, the destination is a file and the [`log_error`](server-system-variables.html#sysvar_log_error) value is the file name. See [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log").
 
 * [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The verbosity of the server in writing error, warning, and note messages to the error log. The following table shows the permitted values. The default is 3.
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) was added in MySQL 5.7.2. It is preferred over, and should be used instead of, the older [`log_warnings`](server-system-variables.html#sysvar_log_warnings) system variable. See the description of [`log_warnings`](server-system-variables.html#sysvar_log_warnings) for information about how that variable relates to [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity). In particular, assigning a value to [`log_warnings`](server-system-variables.html#sysvar_log_warnings) assigns a value to [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) and vice versa.
 
 * [`log_output`](server-system-variables.html#sysvar_log_output)
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   The destination or destinations for general query log and slow query log output. The value is a list one or more comma-separated words chosen from `TABLE`, `FILE`, and `NONE`. `TABLE` selects logging to the [`general_log`](server-system-variables.html#sysvar_general_log) and `slow_log` tables in the `mysql` system database. `FILE` selects logging to log files. `NONE` disables logging. If `NONE` is present in the value, it takes precedence over any other words that are present. `TABLE` and `FILE` can both be given to select both log output destinations.
 
@@ -1095,19 +1095,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`log_queries_not_using_indexes`](server-system-variables.html#sysvar_log_queries_not_using_indexes)
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   If you enable this variable with the slow query log enabled, queries that are expected to retrieve all rows are logged. See [Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log"). This option does not necessarily mean that no index is used. For example, a query that uses a full index scan uses an index but would be logged because the index would not limit the number of rows.
 
 * [`log_slow_admin_statements`](server-system-variables.html#sysvar_log_slow_admin_statements)
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Include slow administrative statements in the statements written to the slow query log. Administrative statements include [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement"), [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"), [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement"), [`DROP INDEX`](drop-index.html "13.1.25 DROP INDEX Statement"), [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement"), and [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement").
 
 * [`log_syslog`](server-system-variables.html#sysvar_log_syslog)
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Whether to write error log output to the system log. This is the Event Log on Windows, and `syslog` on Unix and Unix-like systems. The default value is platform specific:
 
@@ -1120,7 +1120,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`log_syslog_facility`](server-system-variables.html#sysvar_log_syslog_facility)
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   The facility for error log output written to `syslog` (what type of program is sending the message). This variable has no effect unless the [`log_syslog`](server-system-variables.html#sysvar_log_syslog) system variable is enabled. See [Section 5.4.2.3, “Error Logging to the System Log”](error-log-syslog.html "5.4.2.3 Error Logging to the System Log").
 
@@ -1130,7 +1130,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`log_syslog_include_pid`](server-system-variables.html#sysvar_log_syslog_include_pid)
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Whether to include the server process ID in each line of error log output written to `syslog`. This variable has no effect unless the [`log_syslog`](server-system-variables.html#sysvar_log_syslog) system variable is enabled. See [Section 5.4.2.3, “Error Logging to the System Log”](error-log-syslog.html "5.4.2.3 Error Logging to the System Log").
 
@@ -1138,7 +1138,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`log_syslog_tag`](server-system-variables.html#sysvar_log_syslog_tag)
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   The tag to be added to the server identifier in error log output written to `syslog`. This variable has no effect unless the [`log_syslog`](server-system-variables.html#sysvar_log_syslog) system variable is enabled. See [Section 5.4.2.3, “Error Logging to the System Log”](error-log-syslog.html "5.4.2.3 Error Logging to the System Log").
 
@@ -1148,7 +1148,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`log_timestamps`](server-system-variables.html#sysvar_log_timestamps)
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   This variable controls the time zone of timestamps in messages written to the error log, and in general query log and slow query log messages written to files. It does not affect the time zone of general query log and slow query log messages written to tables (`mysql.general_log`, `mysql.slow_log`). Rows retrieved from those tables can be converted from the local system time zone to any desired time zone with [`CONVERT_TZ()`](date-and-time-functions.html#function_convert-tz) or by setting the session [`time_zone`](server-system-variables.html#sysvar_time_zone) system variable.
 
@@ -1158,13 +1158,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`log_throttle_queries_not_using_indexes`](server-system-variables.html#sysvar_log_throttle_queries_not_using_indexes)
 
-  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for big_tables"><tbody><tr><th>Command-Line Format</th> <td><code>--big-tables[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   If [`log_queries_not_using_indexes`](server-system-variables.html#sysvar_log_queries_not_using_indexes) is enabled, the [`log_throttle_queries_not_using_indexes`](server-system-variables.html#sysvar_log_throttle_queries_not_using_indexes) variable limits the number of such queries per minute that can be written to the slow query log. A value of 0 (the default) means “no limit”. For more information, see [Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log").
 
 * [`log_warnings`](server-system-variables.html#sysvar_log_warnings)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>00
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Whether to produce additional warning messages to the error log. As of MySQL 5.7.2, information items previously governed by [`log_warnings`](server-system-variables.html#sysvar_log_warnings) are governed by [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity), which is preferred over, and should be used instead of, the older [`log_warnings`](server-system-variables.html#sysvar_log_warnings) system variable. (The [`log_warnings`](server-system-variables.html#sysvar_log_warnings) system variable and [`--log-warnings`](server-options.html#option_mysqld_log-warnings) command-line option are deprecated; expect them to be removed in a future release of MySQL.)
 
@@ -1194,7 +1194,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`long_query_time`](server-system-variables.html#sysvar_long_query_time)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>01
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   If a query takes longer than this many seconds, the server increments the [`Slow_queries`](server-status-variables.html#statvar_Slow_queries) status variable. If the slow query log is enabled, the query is logged to the slow query log file. This value is measured in real time, not CPU time, so a query that is under the threshold on a lightly loaded system might be above the threshold on a heavily loaded one. The minimum and default values of [`long_query_time`](server-system-variables.html#sysvar_long_query_time) are 0 and 10, respectively. The maximum is 31536000, which is 365 days in seconds. The value can be specified to a resolution of microseconds. See [Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log").
 
@@ -1202,19 +1202,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`low_priority_updates`](server-system-variables.html#sysvar_low_priority_updates)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>02
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   If set to `1`, all [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement"), and `LOCK TABLE WRITE` statements wait until there is no pending [`SELECT`](select.html "13.2.9 SELECT Statement") or `LOCK TABLE READ` on the affected table. The same effect can be obtained using `{INSERT | REPLACE | DELETE | UPDATE} LOW_PRIORITY ...` to lower the priority of only one query. This variable affects only storage engines that use only table-level locking (such as `MyISAM`, `MEMORY`, and `MERGE`). See [Section 8.11.2, “Table Locking Issues”](table-locking.html "8.11.2 Table Locking Issues").
 
 * [`lower_case_file_system`](server-system-variables.html#sysvar_lower_case_file_system)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>03
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable describes the case sensitivity of file names on the file system where the data directory is located. `OFF` means file names are case-sensitive, `ON` means they are not case-sensitive. This variable is read only because it reflects a file system attribute and setting it would have no effect on the file system.
 
 * [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>04
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   If set to 0, table names are stored as specified and comparisons are case-sensitive. If set to 1, table names are stored in lowercase on disk and comparisons are not case-sensitive. If set to 2, table names are stored as given but compared in lowercase. This option also applies to database names and table aliases. For additional details, see [Section 9.2.3, “Identifier Case Sensitivity”](identifier-case-sensitivity.html "9.2.3 Identifier Case Sensitivity").
 
@@ -1228,7 +1228,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>05
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum size of one packet or any generated/intermediate string, or any parameter sent by the [`mysql_stmt_send_long_data()`](/doc/c-api/5.7/en/mysql-stmt-send-long-data.html) C API function. The default is 4MB.
 
@@ -1242,13 +1242,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>06
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   After [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors) successive connection requests from a host are interrupted without a successful connection, the server blocks that host from further connections. If a connection from a host is established successfully within fewer than [`max_connect_errors`](server-system-variables.html#sysvar_max_connect_errors) attempts after a previous connection was interrupted, the error count for the host is cleared to zero. To unblock blocked hosts, flush the host cache; see [Flushing the Host Cache](host-cache.html#host-cache-flushing "Flushing the Host Cache").
 
 * [`max_connections`](server-system-variables.html#sysvar_max_connections)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>07
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum permitted number of simultaneous client connections. The maximum effective value is the lesser of the effective value of [`open_files_limit`](server-system-variables.html#sysvar_open_files_limit) `- 810`, and the value actually set for `max_connections`.
 
@@ -1256,13 +1256,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_delayed_threads`](server-system-variables.html#sysvar_max_delayed_threads)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>08
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This system variable is deprecated (because `DELAYED` inserts are not supported); expect it to be removed in a future release.
 
 * [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>09
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum number of bytes of memory reserved per session for computation of normalized statement digests. Once that amount of space is used during digest computation, truncation occurs: no further tokens from a parsed statement are collected or figure into its digest value. Statements that differ only after that many bytes of parsed tokens produce the same normalized statement digest and are considered identical if compared or if aggregated for digest statistics.
 
@@ -1280,13 +1280,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_error_count`](server-system-variables.html#sysvar_max_error_count)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>10
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum number of error, warning, and information messages to be stored for display by the [`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") and [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") statements. This is the same as the number of condition areas in the diagnostics area, and thus the number of conditions that can be inspected by [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement").
 
 * [`max_execution_time`](server-system-variables.html#sysvar_max_execution_time)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>11
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The execution timeout for [`SELECT`](select.html "13.2.9 SELECT Statement") statements, in milliseconds. If the value is 0, timeouts are not enabled.
 
@@ -1300,7 +1300,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_heap_table_size`](server-system-variables.html#sysvar_max_heap_table_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>12
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable sets the maximum size to which user-created `MEMORY` tables are permitted to grow. The value of the variable is used to calculate `MEMORY` table `MAX_ROWS` values.
 
@@ -1312,7 +1312,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_insert_delayed_threads`](server-system-variables.html#sysvar_max_insert_delayed_threads)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>13
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable is a synonym for [`max_delayed_threads`](server-system-variables.html#sysvar_max_delayed_threads).
 
@@ -1320,7 +1320,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_join_size`](server-system-variables.html#sysvar_max_join_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>14
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Do not permit statements that probably need to examine more than [`max_join_size`](server-system-variables.html#sysvar_max_join_size) rows (for single-table statements) or row combinations (for multiple-table statements) or that are likely to do more than [`max_join_size`](server-system-variables.html#sysvar_max_join_size) disk seeks. By setting this value, you can catch statements where keys are not used properly and that would probably take a long time. Set it if your users tend to perform joins that lack a `WHERE` clause, that take a long time, or that return millions of rows. For more information, see [Using Safe-Updates Mode (--safe-updates)](mysql-tips.html#safe-updates "Using Safe-Updates Mode (--safe-updates)").
 
@@ -1330,31 +1330,31 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_length_for_sort_data`](server-system-variables.html#sysvar_max_length_for_sort_data)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>15
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The cutoff on the size of index values that determines which `filesort` algorithm to use. See [Section 8.2.1.14, “ORDER BY Optimization”](order-by-optimization.html "8.2.1.14 ORDER BY Optimization").
 
 * [`max_points_in_geometry`](server-system-variables.html#sysvar_max_points_in_geometry)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>16
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum value of the *`points_per_circle`* argument to the [`ST_Buffer_Strategy()`](spatial-operator-functions.html#function_st-buffer-strategy) function.
 
 * [`max_prepared_stmt_count`](server-system-variables.html#sysvar_max_prepared_stmt_count)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>17
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable limits the total number of prepared statements in the server. It can be used in environments where there is the potential for denial-of-service attacks based on running the server out of memory by preparing huge numbers of statements. If the value is set lower than the current number of prepared statements, existing statements are not affected and can be used, but no new statements can be prepared until the current number drops below the limit. Setting the value to 0 disables prepared statements.
 
 * [`max_seeks_for_key`](server-system-variables.html#sysvar_max_seeks_for_key)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>18
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Limit the assumed maximum number of seeks when looking up rows based on a key. The MySQL optimizer assumes that no more than this number of key seeks are required when searching for matching rows in a table by scanning an index, regardless of the actual cardinality of the index (see [Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement")). By setting this to a low value (say, 100), you can force MySQL to prefer indexes instead of table scans.
 
 * [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>19
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The number of bytes to use when sorting data values. The server uses only the first [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) bytes of each value and ignores the rest. Consequently, values that differ only after the first [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) bytes compare as equal for `GROUP BY`, `ORDER BY`, and `DISTINCT` operations.
 
@@ -1362,7 +1362,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_sp_recursion_depth`](server-system-variables.html#sysvar_max_sp_recursion_depth)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>20
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The number of times that any given stored procedure may be called recursively. The default value for this option is 0, which completely disables recursion in stored procedures. The maximum value is 255.
 
@@ -1374,7 +1374,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_user_connections`](server-system-variables.html#sysvar_max_user_connections)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>21
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum number of simultaneous connections permitted to any given MySQL user account. A value of 0 (the default) means “no limit.”
 
@@ -1388,13 +1388,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`max_write_lock_count`](server-system-variables.html#sysvar_max_write_lock_count)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>22
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   After this many write locks, permit some pending read lock requests to be processed in between. Write lock requests have higher priority than read lock requests. However, if [`max_write_lock_count`](server-system-variables.html#sysvar_max_write_lock_count) is set to some low value (say, 10), read lock requests may be preferred over pending write lock requests if the read lock requests have already been passed over in favor of 10 write lock requests. Normally this behavior does not occur because [`max_write_lock_count`](server-system-variables.html#sysvar_max_write_lock_count) by default has a very large value.
 
 * `mecab_rc_file`
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>23
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The `mecab_rc_file` option is used when setting up the MeCab full-text parser.
 
@@ -1406,7 +1406,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`metadata_locks_cache_size`](server-system-variables.html#sysvar_metadata_locks_cache_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>24
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The size of the metadata locks cache. The server uses this cache to avoid creation and destruction of synchronization objects. This is particularly helpful on systems where such operations are expensive, such as Windows XP.
 
@@ -1414,7 +1414,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`metadata_locks_hash_instances`](server-system-variables.html#sysvar_metadata_locks_hash_instances)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>25
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The set of metadata locks can be partitioned into separate hashes to permit connections accessing different objects to use different locking hashes and reduce contention. The [`metadata_locks_hash_instances`](server-system-variables.html#sysvar_metadata_locks_hash_instances) system variable specifies the number of hashes (default 8).
 
@@ -1422,26 +1422,26 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`min_examined_row_limit`](server-system-variables.html#sysvar_min_examined_row_limit)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>26
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Queries that examine fewer than this number of rows are not logged to the slow query log.
 
 * [`multi_range_count`](server-system-variables.html#sysvar_multi_range_count)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>27
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable has no effect. It is deprecated and is removed in MySQL 8.0.
 
 * [`myisam_data_pointer_size`](server-system-variables.html#sysvar_myisam_data_pointer_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>28
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The default pointer size in bytes, to be used by [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") for `MyISAM` tables when no `MAX_ROWS` option is specified. This variable cannot be less than 2 or larger than 7. The default value is
 
   6. See [Section B.3.2.10, “The table is full”](full-table.html "B.3.2.10 The table is full").
 * [`myisam_max_sort_file_size`](server-system-variables.html#sysvar_myisam_max_sort_file_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>29
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum size of the temporary file that MySQL is permitted to use while re-creating a `MyISAM` index (during [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement"), [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), or [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement")). If the file size would be larger than this value, the index is created using the key cache instead, which is slower. The value is given in bytes.
 
@@ -1449,19 +1449,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`myisam_mmap_size`](server-system-variables.html#sysvar_myisam_mmap_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>30
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum amount of memory to use for memory mapping compressed [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") files. If many compressed `MyISAM` tables are used, the value can be decreased to reduce the likelihood of memory-swapping problems.
 
 * [`myisam_recover_options`](server-system-variables.html#sysvar_myisam_recover_options)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>31
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Set the `MyISAM` storage engine recovery mode. The variable value is any combination of the values of `OFF`, `DEFAULT`, `BACKUP`, `FORCE`, or `QUICK`. If you specify multiple values, separate them by commas. Specifying the variable with no value at server startup is the same as specifying `DEFAULT`, and specifying with an explicit value of `""` disables recovery (same as a value of `OFF`). If recovery is enabled, each time [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") opens a `MyISAM` table, it checks whether the table is marked as crashed or was not closed properly. (The last option works only if you are running with external locking disabled.) If this is the case, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") runs a check on the table. If the table was corrupted, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") attempts to repair it.
 
   The following options affect how the repair works.
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>32
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Before the server automatically repairs a table, it writes a note about the repair to the error log. If you want to be able to recover from most problems without user intervention, you should use the options `BACKUP,FORCE`. This forces a repair of a table even if some rows would be deleted, but it keeps the old data file as a backup so that you can later examine what happened.
 
@@ -1469,7 +1469,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`myisam_repair_threads`](server-system-variables.html#sysvar_myisam_repair_threads)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>33
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Note
 
@@ -1485,13 +1485,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`myisam_sort_buffer_size`](server-system-variables.html#sysvar_myisam_sort_buffer_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>34
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The size of the buffer that is allocated when sorting `MyISAM` indexes during a [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") or when creating indexes with [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement").
 
 * [`myisam_stats_method`](server-system-variables.html#sysvar_myisam_stats_method)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>35
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   How the server treats `NULL` values when collecting statistics about the distribution of index values for `MyISAM` tables. This variable has three possible values, `nulls_equal`, `nulls_unequal`, and `nulls_ignored`. For `nulls_equal`, all `NULL` index values are considered equal and form a single value group that has a size equal to the number of `NULL` values. For `nulls_unequal`, `NULL` values are considered unequal, and each `NULL` forms a distinct value group of size
 
@@ -1501,25 +1501,25 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`myisam_use_mmap`](server-system-variables.html#sysvar_myisam_use_mmap)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>36
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Use memory mapping for reading and writing `MyISAM` tables.
 
 * [`mysql_native_password_proxy_users`](server-system-variables.html#sysvar_mysql_native_password_proxy_users)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>37
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable controls whether the `mysql_native_password` built-in authentication plugin supports proxy users. It has no effect unless the [`check_proxy_users`](server-system-variables.html#sysvar_check_proxy_users) system variable is enabled. For information about user proxying, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
 * [`named_pipe`](server-system-variables.html#sysvar_named_pipe)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>38
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   (Windows only.) Indicates whether the server supports connections over named pipes.
 
 * [`named_pipe_full_access_group`](server-system-variables.html#sysvar_named_pipe_full_access_group)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>39
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   (Windows only.) The access control granted to clients on the named pipe created by the MySQL server is set to the minimum necessary for successful communication when the [`named_pipe`](server-system-variables.html#sysvar_named_pipe) system variable is enabled to support named-pipe connections. Some MySQL client software can open named pipe connections without any additional configuration; however, other client software may still require full access to open a named pipe connection.
 
@@ -1531,7 +1531,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`net_buffer_length`](server-system-variables.html#sysvar_net_buffer_length)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>40
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Each client thread is associated with a connection buffer and result buffer. Both begin with a size given by [`net_buffer_length`](server-system-variables.html#sysvar_net_buffer_length) but are dynamically enlarged up to [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) bytes as needed. The result buffer shrinks to [`net_buffer_length`](server-system-variables.html#sysvar_net_buffer_length) after each SQL statement.
 
@@ -1541,25 +1541,25 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`net_read_timeout`](server-system-variables.html#sysvar_net_read_timeout)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>41
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The number of seconds to wait for more data from a connection before aborting the read. When the server is reading from the client, [`net_read_timeout`](server-system-variables.html#sysvar_net_read_timeout) is the timeout value controlling when to abort. When the server is writing to the client, [`net_write_timeout`](server-system-variables.html#sysvar_net_write_timeout) is the timeout value controlling when to abort. See also [`slave_net_timeout`](replication-options-replica.html#sysvar_slave_net_timeout).
 
 * [`net_retry_count`](server-system-variables.html#sysvar_net_retry_count)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>42
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   If a read or write on a communication port is interrupted, retry this many times before giving up. This value should be set quite high on FreeBSD because internal interrupts are sent to all threads.
 
 * [`net_write_timeout`](server-system-variables.html#sysvar_net_write_timeout)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>43
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The number of seconds to wait for a block to be written to a connection before aborting the write. See also [`net_read_timeout`](server-system-variables.html#sysvar_net_read_timeout).
 
 * [`new`](server-system-variables.html#sysvar_new)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>44
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable was used in MySQL 4.0 to turn on some 4.1 behaviors, and is retained for backward compatibility. Its value is always `OFF`.
 
@@ -1567,7 +1567,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * `ngram_token_size`
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>45
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Defines the n-gram token size for the n-gram full-text parser. The `ngram_token_size` option is read-only and can only be modified at startup. The default value is 2 (bigram). The maximum value is 10.
 
@@ -1575,7 +1575,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`offline_mode`](server-system-variables.html#sysvar_offline_mode)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>46
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Whether the server is in “offline mode”, which has these characteristics:
 
@@ -1589,7 +1589,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`old`](server-system-variables.html#sysvar_old)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>47
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   [`old`](server-system-variables.html#sysvar_old) is a compatibility variable. It is disabled by default, but can be enabled at startup to revert the server to behaviors present in older versions.
 
@@ -1597,13 +1597,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`old_alter_table`](server-system-variables.html#sysvar_old_alter_table)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>48
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   When this variable is enabled, the server does not use the optimized method of processing an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation. It reverts to using a temporary table, copying over the data, and then renaming the temporary table to the original, as used by MySQL 5.0 and earlier. For more information on the operation of [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), see [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement").
 
 * [`old_passwords`](server-system-variables.html#sysvar_old_passwords)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>49
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Note
 
@@ -1613,7 +1613,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   The following table shows, for each password hashing method, the permitted value of `old_passwords` and which authentication plugins use the hashing method.
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>50
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   If you set [`old_passwords=2`](server-system-variables.html#sysvar_old_passwords), follow the instructions for using the `sha256_password` plugin at [Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication").
 
@@ -1625,7 +1625,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`open_files_limit`](server-system-variables.html#sysvar_open_files_limit)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>51
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The number of file descriptors available to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") from the operating system:
 
@@ -1650,19 +1650,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`optimizer_prune_level`](server-system-variables.html#sysvar_optimizer_prune_level)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>52
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Controls the heuristics applied during query optimization to prune less-promising partial plans from the optimizer search space. A value of 0 disables heuristics so that the optimizer performs an exhaustive search. A value of 1 causes the optimizer to prune plans based on the number of rows retrieved by intermediate plans.
 
 * [`optimizer_search_depth`](server-system-variables.html#sysvar_optimizer_search_depth)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>53
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum depth of search performed by the query optimizer. Values larger than the number of relations in a query result in better query plans, but take longer to generate an execution plan for a query. Values smaller than the number of relations in a query return an execution plan quicker, but the resulting plan may be far from being optimal. If set to 0, the system automatically picks a reasonable value.
 
 * [`optimizer_switch`](server-system-variables.html#sysvar_optimizer_switch)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>54
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The [`optimizer_switch`](server-system-variables.html#sysvar_optimizer_switch) system variable enables control over optimizer behavior. The value of this variable is a set of flags, each of which has a value of `on` or `off` to indicate whether the corresponding optimizer behavior is enabled or disabled. This variable has global and session values and can be changed at runtime. The global default can be set at server startup.
 
@@ -1690,31 +1690,31 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`optimizer_trace`](server-system-variables.html#sysvar_optimizer_trace)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>55
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable controls optimizer tracing. For details, see [Section 8.15, “Tracing the Optimizer”](optimizer-tracing.html "8.15 Tracing the Optimizer").
 
 * [`optimizer_trace_features`](server-system-variables.html#sysvar_optimizer_trace_features)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>56
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable enables or disables selected optimizer tracing features. For details, see [Section 8.15, “Tracing the Optimizer”](optimizer-tracing.html "8.15 Tracing the Optimizer").
 
 * [`optimizer_trace_limit`](server-system-variables.html#sysvar_optimizer_trace_limit)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>57
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum number of optimizer traces to display. For details, see [Section 8.15, “Tracing the Optimizer”](optimizer-tracing.html "8.15 Tracing the Optimizer").
 
 * [`optimizer_trace_max_mem_size`](server-system-variables.html#sysvar_optimizer_trace_max_mem_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>58
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum cumulative size of stored optimizer traces. For details, see [Section 8.15, “Tracing the Optimizer”](optimizer-tracing.html "8.15 Tracing the Optimizer").
 
 * [`optimizer_trace_offset`](server-system-variables.html#sysvar_optimizer_trace_offset)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>59
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The offset of optimizer traces to display. For details, see [Section 8.15, “Tracing the Optimizer”](optimizer-tracing.html "8.15 Tracing the Optimizer").
 
@@ -1724,13 +1724,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`parser_max_mem_size`](server-system-variables.html#sysvar_parser_max_mem_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>60
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The maximum amount of memory available to the parser. The default value places no limit on memory available. The value can be reduced to protect against out-of-memory situations caused by parsing long or complex SQL statements.
 
 * [`pid_file`](server-system-variables.html#sysvar_pid_file)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>61
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The path name of the file in which the server writes its process ID. The server creates the file in the data directory unless an absolute path name is given to specify a different directory. If you specify this variable, you must specify a value. If you do not specify this variable, MySQL uses a default value of `host_name.pid`, where *`host_name`* is the name of the host machine.
 
@@ -1738,7 +1738,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>62
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The path name of the plugin directory.
 
@@ -1746,13 +1746,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`port`](server-system-variables.html#sysvar_port)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>63
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The number of the port on which the server listens for TCP/IP connections. This variable can be set with the [`--port`](server-options.html#option_mysqld_port) option.
 
 * [`preload_buffer_size`](server-system-variables.html#sysvar_preload_buffer_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>64
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The size of the buffer that is allocated when preloading indexes.
 
@@ -1770,19 +1770,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`protocol_version`](server-system-variables.html#sysvar_protocol_version)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>65
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The version of the client/server protocol used by the MySQL server.
 
 * [`proxy_user`](server-system-variables.html#sysvar_proxy_user)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>66
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   If the current client is a proxy for another user, this variable is the proxy user account name. Otherwise, this variable is `NULL`. See [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
 * [`pseudo_slave_mode`](server-system-variables.html#sysvar_pseudo_slave_mode)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>67
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This system variable is for internal server use. [`pseudo_slave_mode`](server-system-variables.html#sysvar_pseudo_slave_mode) assists with the correct handling of transactions that originated on older or newer servers than the server currently processing them. [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") sets the value of [`pseudo_slave_mode`](server-system-variables.html#sysvar_pseudo_slave_mode) to true before executing any SQL statements.
 
@@ -1794,7 +1794,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`pseudo_thread_id`](server-system-variables.html#sysvar_pseudo_thread_id)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>68
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable is for internal server use.
 
@@ -1804,7 +1804,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`query_alloc_block_size`](server-system-variables.html#sysvar_query_alloc_block_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>69
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The allocation size in bytes of memory blocks that are allocated for objects created during statement parsing and execution. If you have problems with memory fragmentation, it might help to increase this parameter.
 
@@ -1812,7 +1812,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`query_cache_limit`](server-system-variables.html#sysvar_query_cache_limit)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>70
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Do not cache results that are larger than this number of bytes. The default value is 1MB.
 
@@ -1822,7 +1822,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`query_cache_min_res_unit`](server-system-variables.html#sysvar_query_cache_min_res_unit)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>71
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The minimum size (in bytes) for blocks allocated by the query cache. The default value is 4096 (4KB). Tuning information for this variable is given in [Section 8.10.3.3, “Query Cache Configuration”](query-cache-configuration.html "8.10.3.3 Query Cache Configuration").
 
@@ -1832,7 +1832,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`query_cache_size`](server-system-variables.html#sysvar_query_cache_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>72
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The amount of memory allocated for caching query results. By default, the query cache is disabled. This is achieved using a default value of 1M, with a default for [`query_cache_type`](server-system-variables.html#sysvar_query_cache_type) of 0. (To reduce overhead significantly if you set the size to 0, you should also start the server with [`query_cache_type=0`](server-system-variables.html#sysvar_query_cache_type).
 
@@ -1846,11 +1846,11 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`query_cache_type`](server-system-variables.html#sysvar_query_cache_type)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>73
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Set the query cache type. Setting the `GLOBAL` value sets the type for all clients that connect thereafter. Individual clients can set the `SESSION` value to affect their own use of the query cache. Possible values are shown in the following table.
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>74
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable defaults to `OFF`.
 
@@ -1862,7 +1862,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`query_cache_wlock_invalidate`](server-system-variables.html#sysvar_query_cache_wlock_invalidate)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>75
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Normally, when one client acquires a `WRITE` lock on a table, other clients are not blocked from issuing statements that read from the table if the query results are present in the query cache. Setting this variable to 1 causes acquisition of a `WRITE` lock for a table to invalidate any queries in the query cache that refer to the table. This forces other clients that attempt to access the table to wait while the lock is in effect.
 
@@ -1872,13 +1872,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`query_prealloc_size`](server-system-variables.html#sysvar_query_prealloc_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>76
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The size in bytes of the persistent buffer used for statement parsing and execution. This buffer is not freed between statements. If you are running complex queries, a larger [`query_prealloc_size`](server-system-variables.html#sysvar_query_prealloc_size) value might be helpful in improving performance, because it can reduce the need for the server to perform memory allocation during query execution operations. You should be aware that doing this does not necessarily eliminate allocation completely; the server may still allocate memory in some situations, such as for operations relating to transactions, or to stored programs.
 
 * [`rand_seed1`](server-system-variables.html#sysvar_rand_seed1)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>77
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The [`rand_seed1`](server-system-variables.html#sysvar_rand_seed1) and [`rand_seed2`](server-system-variables.html#sysvar_rand_seed2) variables exist as session variables only, and can be set but not read. The variables—but not their values—are shown in the output of [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement").
 
@@ -1890,7 +1890,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`range_alloc_block_size`](server-system-variables.html#sysvar_range_alloc_block_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>78
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The size in bytes of blocks that are allocated when doing range optimization.
 
@@ -1898,13 +1898,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`range_optimizer_max_mem_size`](server-system-variables.html#sysvar_range_optimizer_max_mem_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>79
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The limit on memory consumption for the range optimizer. A value of 0 means “no limit.” If an execution plan considered by the optimizer uses the range access method but the optimizer estimates that the amount of memory needed for this method would exceed the limit, it abandons the plan and considers other plans. For more information, see [Limiting Memory Use for Range Optimization](range-optimization.html#range-optimization-memory-use "Limiting Memory Use for Range Optimization").
 
 * [`rbr_exec_mode`](server-system-variables.html#sysvar_rbr_exec_mode)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>80
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   For internal use by [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files"). This variable switches the server between `IDEMPOTENT` mode and `STRICT` mode. `IDEMPOTENT` mode causes suppression of duplicate-key and no-key-found errors in [`BINLOG`](binlog.html "13.7.6.1 BINLOG Statement") statements generated by [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files"). This mode is useful when replaying a row-based binary log on a server that causes conflicts with existing data. [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") sets this mode when you specify the [`--idempotent`](mysqlbinlog.html#option_mysqlbinlog_idempotent) option by writing the following to the output:
 
@@ -1914,7 +1914,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`read_buffer_size`](server-system-variables.html#sysvar_read_buffer_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>81
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Each thread that does a sequential scan for a `MyISAM` table allocates a buffer of this size (in bytes) for each table it scans. If you do many sequential scans, you might want to increase this value, which defaults to 131072. The value of this variable should be a multiple of 4KB. If it is set to a value that is not a multiple of 4KB, its value is rounded down to the nearest multiple of 4KB.
 
@@ -1931,7 +1931,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`read_only`](server-system-variables.html#sysvar_read_only)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>82
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   If the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, the server permits no client updates except from users who have the [`SUPER`](privileges-provided.html#priv_super) privilege. This variable is disabled by default.
 
@@ -1970,7 +1970,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`read_rnd_buffer_size`](server-system-variables.html#sysvar_read_rnd_buffer_size)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>83
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable is used for reads from `MyISAM` tables, and, for any storage engine, for Multi-Range Read optimization.
 
@@ -1980,7 +1980,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`require_secure_transport`](server-system-variables.html#sysvar_require_secure_transport)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>84
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Whether client connections to the server are required to use some form of secure transport. When this variable is enabled, the server permits only TCP/IP connections encrypted using TLS/SSL, or connections that use a socket file (on Unix) or shared memory (on Windows). The server rejects nonsecure connection attempts, which fail with an [`ER_SECURE_TRANSPORT_REQUIRED`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_secure_transport_required) error.
 
@@ -1992,7 +1992,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`secure_auth`](server-system-variables.html#sysvar_secure_auth)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>85
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   If this variable is enabled, the server blocks connections by clients that attempt to use accounts that have passwords stored in the old (pre-4.1) format. Enable this variable to prevent all use of passwords employing the old format (and hence insecure communication over the network).
 
@@ -2006,7 +2006,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>86
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable is used to limit the effect of data import and export operations, such as those performed by the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") and [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") statements and the [`LOAD_FILE()`](string-functions.html#function_load-file) function. These operations are permitted only to users who have the [`FILE`](privileges-provided.html#priv_file) privilege.
 
@@ -2020,7 +2020,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   The default value is platform specific and depends on the value of the [`INSTALL_LAYOUT`](source-configuration-options.html#option_cmake_install_layout) **CMake** option, as shown in the following table. To specify the default [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) value explicitly if you are building from source, use the [`INSTALL_SECURE_FILE_PRIVDIR`](source-configuration-options.html#option_cmake_install_secure_file_privdir) **CMake** option.
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>87
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   To set the default [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) value for the `libmysqld` embedded server, use the [`INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR`](source-configuration-options.html#option_cmake_install_secure_file_priv_embeddeddir) **CMake** option. The default value for this option is `NULL`.
 
@@ -2028,7 +2028,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`session_track_gtids`](server-system-variables.html#sysvar_session_track_gtids)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>88
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Controls whether the server returns GTIDs to the client, enabling the client to use them to track the server state. Depending on the variable value, at the end of executing each transaction, the server’s GTIDs are captured and returned to the client as part of the acknowledgement. The possible values for [`session_track_gtids`](server-system-variables.html#sysvar_session_track_gtids) are as follows:
 
@@ -2044,7 +2044,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`session_track_schema`](server-system-variables.html#sysvar_session_track_schema)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>89
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Controls whether the server tracks when the default schema (database) is set within the current session and notifies the client to make the schema name available.
 
@@ -2054,7 +2054,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`session_track_state_change`](server-system-variables.html#sysvar_session_track_state_change)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>90
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Controls whether the server tracks changes to the state of the current session and notifies the client when state changes occur. Changes can be reported for these attributes of client session state:
 
@@ -2076,7 +2076,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`session_track_system_variables`](server-system-variables.html#sysvar_session_track_system_variables)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>91
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Controls whether the server tracks assignments to session system variables and notifies the client of the name and value of each assigned variable. The variable value is a comma-separated list of variables for which to track assignments. By default, notification is enabled for [`time_zone`](server-system-variables.html#sysvar_time_zone), [`autocommit`](server-system-variables.html#sysvar_autocommit), [`character_set_client`](server-system-variables.html#sysvar_character_set_client), [`character_set_results`](server-system-variables.html#sysvar_character_set_results), and [`character_set_connection`](server-system-variables.html#sysvar_character_set_connection). (The latter three variables are those affected by [`SET NAMES`](set-names.html "13.7.4.3 SET NAMES Statement").)
 
@@ -2090,7 +2090,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`session_track_transaction_info`](server-system-variables.html#sysvar_session_track_transaction_info)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>92
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   Controls whether the server tracks the state and characteristics of transactions within the current session and notifies the client to make this information available. These [`session_track_transaction_info`](server-system-variables.html#sysvar_session_track_transaction_info) values are permitted:
 
@@ -2113,7 +2113,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sha256_password_auto_generate_rsa_keys`](server-system-variables.html#sysvar_sha256_password_auto_generate_rsa_keys)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>93
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable is available if the server was compiled using OpenSSL (see [Section 6.3.4, “SSL Library-Dependent Capabilities”](ssl-libraries.html "6.3.4 SSL Library-Dependent Capabilities")). It controls whether the server autogenerates RSA private/public key-pair files in the data directory, if they do not already exist.
 
@@ -2125,7 +2125,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sha256_password_private_key_path`](server-system-variables.html#sysvar_sha256_password_private_key_path)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>94
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable is available if MySQL was compiled using OpenSSL (see [Section 6.3.4, “SSL Library-Dependent Capabilities”](ssl-libraries.html "6.3.4 SSL Library-Dependent Capabilities")). Its value is the path name of the RSA private key file for the `sha256_password` authentication plugin. If the file is named as a relative path, it is interpreted relative to the server data directory. The file must be in PEM format.
 
@@ -2137,13 +2137,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sha256_password_proxy_users`](server-system-variables.html#sysvar_sha256_password_proxy_users)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>95
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable controls whether the `sha256_password` built-in authentication plugin supports proxy users. It has no effect unless the [`check_proxy_users`](server-system-variables.html#sysvar_check_proxy_users) system variable is enabled. For information about user proxying, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
 * [`sha256_password_public_key_path`](server-system-variables.html#sysvar_sha256_password_public_key_path)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>96
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   This variable is available if MySQL was compiled using OpenSSL (see [Section 6.3.4, “SSL Library-Dependent Capabilities”](ssl-libraries.html "6.3.4 SSL Library-Dependent Capabilities")). Its value is the path name of the RSA public key file for the `sha256_password` authentication plugin. If the file is named as a relative path, it is interpreted relative to the server data directory. The file must be in PEM format. Because this file stores a public key, copies can be freely distributed to client users. (Clients that explicitly specify a public key when connecting to the server using RSA password encryption must use the same public key as that used by the server.)
 
@@ -2151,13 +2151,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`shared_memory`](server-system-variables.html#sysvar_shared_memory)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>97
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   (Windows only.) Whether the server permits shared-memory connections.
 
 * [`shared_memory_base_name`](server-system-variables.html#sysvar_shared_memory_base_name)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>98
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   (Windows only.) The name of shared memory to use for shared-memory connections. This is useful when running multiple MySQL instances on a single physical machine. The default name is `MYSQL`. The name is case-sensitive.
 
@@ -2165,7 +2165,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56)
 
-  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>99
+  <table summary="Permitted values for the authentication_windows system variable."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>No logging</td> </tr><tr> <td>1</td> <td>Log only error messages</td> </tr><tr> <td>2</td> <td>Log level 1 messages and warning messages</td> </tr><tr> <td>3</td> <td>Log level 2 messages and information notes</td> </tr><tr> <td>4</td> <td>Log level 3 messages and debug messages</td> </tr></tbody></table>
 
   The `INFORMATION_SCHEMA` has tables that contain system and status variable information (see [Section 24.3.11, “The INFORMATION\_SCHEMA GLOBAL\_VARIABLES and SESSION\_VARIABLES Tables”](information-schema-variables-table.html "24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables"), and [Section 24.3.10, “The INFORMATION\_SCHEMA GLOBAL\_STATUS and SESSION\_STATUS Tables”](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables")). As of MySQL 5.7.6, the Performance Schema also contains system and status variable tables (see [Section 25.12.13, “Performance Schema System Variable Tables”](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"), and [Section 25.12.14, “Performance Schema Status Variable Tables”](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables")). The Performance Schema tables are intended to replace the `INFORMATION_SCHEMA` tables, which are deprecated as of MySQL 5.7.6 and are removed in MySQL 8.0.
 
@@ -2300,7 +2300,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
   + `OFF`: Some of those replica variables are not exposed to [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or the Performance Schema status variable tables. The information they provide is available in replication-related Performance Schema tables. The following table shows which `Slave_xxx` status variables become unavailable in [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") and their locations in Performance Schema replication tables.
 
-    <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>00
+    <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   #### Effect of show\_compatibility\_56 on FLUSH STATUS
 
@@ -2312,13 +2312,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`show_create_table_verbosity`](server-system-variables.html#sysvar_show_create_table_verbosity)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>01
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") normally does not show the `ROW_FORMAT` table option if the row format is the default format. Enabling this variable causes [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") to display `ROW_FORMAT` regardless of whether it is the default format.
 
 * [`show_old_temporals`](server-system-variables.html#sysvar_show_old_temporals)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>02
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Whether [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") output includes comments to flag temporal columns found to be in pre-5.6.4 format ([`TIME`](time.html "11.2.3 The TIME Type"), [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), and [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns without support for fractional seconds precision). This variable is disabled by default. If enabled, [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") output looks like this:
 
@@ -2336,7 +2336,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`skip_external_locking`](server-system-variables.html#sysvar_skip_external_locking)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>03
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This is `OFF` if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") uses external locking (system locking), `ON` if external locking is disabled. This affects only [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") table access.
 
@@ -2346,7 +2346,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`skip_name_resolve`](server-system-variables.html#sysvar_skip_name_resolve)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>04
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Whether to resolve host names when checking client connections. If this variable is `OFF`, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") resolves host names when checking client connections. If it is `ON`, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") uses only IP numbers; in this case, all `Host` column values in the grant tables must be IP addresses. See [Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache").
 
@@ -2361,13 +2361,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`skip_networking`](server-system-variables.html#sysvar_skip_networking)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>05
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable controls whether the server permits TCP/IP connections. By default, it is disabled (permit TCP connections). If enabled, the server permits only local (non-TCP/IP) connections and all interaction with [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") must be made using named pipes or shared memory (on Windows) or Unix socket files (on Unix). This option is highly recommended for systems where only local clients are permitted. See [Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache").
 
 * [`skip_show_database`](server-system-variables.html#sysvar_skip_show_database)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>06
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This prevents people from using the [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") statement if they do not have the [`SHOW DATABASES`](privileges-provided.html#priv_show-databases) privilege. This can improve security if you have concerns about users being able to see databases belonging to other users. Its effect depends on the [`SHOW DATABASES`](privileges-provided.html#priv_show-databases) privilege: If the variable value is `ON`, the [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") statement is permitted only to users who have the [`SHOW DATABASES`](privileges-provided.html#priv_show-databases) privilege, and the statement displays all database names. If the value is `OFF`, [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") is permitted to all users, but displays the names of only those databases for which the user has the [`SHOW DATABASES`](privileges-provided.html#priv_show-databases) or other privilege.
 
@@ -2377,13 +2377,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`slow_launch_time`](server-system-variables.html#sysvar_slow_launch_time)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>07
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If creating a thread takes longer than this many seconds, the server increments the [`Slow_launch_threads`](server-status-variables.html#statvar_Slow_launch_threads) status variable.
 
 * [`slow_query_log`](server-system-variables.html#sysvar_slow_query_log)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>08
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Whether the slow query log is enabled. The value can be 0 (or `OFF`) to disable the log or 1 (or `ON`) to enable the log. The destination for log output is controlled by the [`log_output`](server-system-variables.html#sysvar_log_output) system variable; if that value is `NONE`, no log entries are written even if the log is enabled.
 
@@ -2391,13 +2391,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`slow_query_log_file`](server-system-variables.html#sysvar_slow_query_log_file)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>09
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The name of the slow query log file. The default value is `host_name-slow.log`, but the initial value can be changed with the `--slow_query_log_file` option.
 
 * [`socket`](server-system-variables.html#sysvar_socket)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>10
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   On Unix platforms, this variable is the name of the socket file that is used for local client connections. The default is `/tmp/mysql.sock`. (For some distribution formats, the directory might be different, such as `/var/lib/mysql` for RPMs.)
 
@@ -2405,7 +2405,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sort_buffer_size`](server-system-variables.html#sysvar_sort_buffer_size)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>11
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Each session that must perform a sort allocates a buffer of this size. [`sort_buffer_size`](server-system-variables.html#sysvar_sort_buffer_size) is not specific to any storage engine and applies in a general manner for optimization. At minimum the [`sort_buffer_size`](server-system-variables.html#sysvar_sort_buffer_size) value must be large enough to accommodate fifteen tuples in the sort buffer. Also, increasing the value of [`max_sort_length`](server-system-variables.html#sysvar_max_sort_length) may require increasing the value of [`sort_buffer_size`](server-system-variables.html#sysvar_sort_buffer_size). For more information, see [Section 8.2.1.14, “ORDER BY Optimization”](order-by-optimization.html "8.2.1.14 ORDER BY Optimization")
 
@@ -2417,7 +2417,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sql_auto_is_null`](server-system-variables.html#sysvar_sql_auto_is_null)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>12
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If this variable is enabled, then after a statement that successfully inserts an automatically generated `AUTO_INCREMENT` value, you can find that value by issuing a statement of the following form:
 
@@ -2433,7 +2433,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sql_big_selects`](server-system-variables.html#sysvar_sql_big_selects)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>13
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If set to `OFF`, MySQL aborts [`SELECT`](select.html "13.2.9 SELECT Statement") statements that are likely to take a very long time to execute (that is, statements for which the optimizer estimates that the number of examined rows exceeds the value of [`max_join_size`](server-system-variables.html#sysvar_max_join_size)). This is useful when an inadvisable `WHERE` statement has been issued. The default value for a new connection is `ON`, which permits all [`SELECT`](select.html "13.2.9 SELECT Statement") statements.
 
@@ -2441,13 +2441,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sql_buffer_result`](server-system-variables.html#sysvar_sql_buffer_result)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>14
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If enabled, [`sql_buffer_result`](server-system-variables.html#sysvar_sql_buffer_result) forces results from [`SELECT`](select.html "13.2.9 SELECT Statement") statements to be put into temporary tables. This helps MySQL free the table locks early and can be beneficial in cases where it takes a long time to send results to the client. The default value is `OFF`.
 
 * [`sql_log_off`](server-system-variables.html#sysvar_sql_log_off)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>15
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable controls whether logging to the general query log is disabled for the current session (assuming that the general query log itself is enabled). The default value is `OFF` (that is, enable logging). To disable or enable general query logging for the current session, set the session [`sql_log_off`](server-system-variables.html#sysvar_sql_log_off) variable to `ON` or `OFF`.
 
@@ -2455,7 +2455,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sql_mode`](server-system-variables.html#sysvar_sql_mode)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>16
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The current server SQL mode, which can be set dynamically. For details, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
 
@@ -2465,19 +2465,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sql_notes`](server-system-variables.html#sysvar_sql_notes)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>17
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If enabled (the default), diagnostics of `Note` level increment `warning_count` and the server records them. If disabled, `Note` diagnostics do not increment [`warning_count`](server-system-variables.html#sysvar_warning_count) and the server does not record them. [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") includes output to disable this variable so that reloading the dump file does not produce warnings for events that do not affect the integrity of the reload operation.
 
 * [`sql_quote_show_create`](server-system-variables.html#sysvar_sql_quote_show_create)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>18
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If enabled (the default), the server quotes identifiers for [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") and [`SHOW CREATE DATABASE`](show-create-database.html "13.7.5.6 SHOW CREATE DATABASE Statement") statements. If disabled, quoting is disabled. This option is enabled by default so that replication works for identifiers that require quoting. See [Section 13.7.5.10, “SHOW CREATE TABLE Statement”](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"), and [Section 13.7.5.6, “SHOW CREATE DATABASE Statement”](show-create-database.html "13.7.5.6 SHOW CREATE DATABASE Statement").
 
 * [`sql_safe_updates`](server-system-variables.html#sysvar_sql_safe_updates)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>19
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If this variable is enabled, [`UPDATE`](update.html "13.2.11 UPDATE Statement") and [`DELETE`](delete.html "13.2.2 DELETE Statement") statements that do not use a key in the `WHERE` clause or a `LIMIT` clause produce an error. This makes it possible to catch [`UPDATE`](update.html "13.2.11 UPDATE Statement") and [`DELETE`](delete.html "13.2.2 DELETE Statement") statements where keys are not used properly and that would probably change or delete a large number of rows. The default value is `OFF`.
 
@@ -2485,7 +2485,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sql_select_limit`](server-system-variables.html#sysvar_sql_select_limit)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>20
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The maximum number of rows to return from [`SELECT`](select.html "13.2.9 SELECT Statement") statements. For more information, see [Using Safe-Updates Mode (--safe-updates)](mysql-tips.html#safe-updates "Using Safe-Updates Mode (--safe-updates)").
 
@@ -2495,19 +2495,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sql_warnings`](server-system-variables.html#sysvar_sql_warnings)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>21
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable controls whether single-row [`INSERT`](insert.html "13.2.5 INSERT Statement") statements produce an information string if warnings occur. The default is `OFF`. Set the value to `ON` to produce an information string.
 
 * [`ssl_ca`](server-system-variables.html#sysvar_ssl_ca)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>22
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The path name of the Certificate Authority (CA) certificate file in PEM format. The file contains a list of trusted SSL Certificate Authorities.
 
 * [`ssl_capath`](server-system-variables.html#sysvar_ssl_capath)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>23
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The path name of the directory that contains trusted SSL Certificate Authority (CA) certificate files in PEM format. You must run OpenSSL `rehash` on the directory specified by this option prior to using it. On Linux systems, you can invoke `rehash` like this:
 
@@ -2527,7 +2527,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`ssl_cert`](server-system-variables.html#sysvar_ssl_cert)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>24
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The path name of the server SSL public key certificate file in PEM format.
 
@@ -2535,7 +2535,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`ssl_cipher`](server-system-variables.html#sysvar_ssl_cipher)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>25
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The list of permissible ciphers for connection encryption. If no cipher in the list is supported, encrypted connections do not work.
 
@@ -2552,19 +2552,19 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`ssl_crl`](server-system-variables.html#sysvar_ssl_crl)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>26
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The path name of the file containing certificate revocation lists in PEM format. Support for revocation-list capability depends on the SSL library used to compile MySQL. See [Section 6.3.4, “SSL Library-Dependent Capabilities”](ssl-libraries.html "6.3.4 SSL Library-Dependent Capabilities").
 
 * [`ssl_crlpath`](server-system-variables.html#sysvar_ssl_crlpath)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>27
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The path of the directory that contains certificate revocation-list files in PEM format. Support for revocation-list capability depends on the SSL library used to compile MySQL. See [Section 6.3.4, “SSL Library-Dependent Capabilities”](ssl-libraries.html "6.3.4 SSL Library-Dependent Capabilities").
 
 * [`ssl_key`](server-system-variables.html#sysvar_ssl_key)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>28
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The path name of the server SSL private key file in PEM format. For better security, use a certificate with an RSA key size of at least 2048 bits.
 
@@ -2572,7 +2572,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`stored_program_cache`](server-system-variables.html#sysvar_stored_program_cache)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>29
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Sets a soft upper limit for the number of cached stored routines per connection. The value of this variable is specified in terms of the number of stored routines held in each of the two caches maintained by the MySQL Server for, respectively, stored procedures and stored functions.
 
@@ -2580,7 +2580,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`super_read_only`](server-system-variables.html#sysvar_super_read_only)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>30
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, the server permits no client updates except from users who have the [`SUPER`](privileges-provided.html#priv_super) privilege. If the [`super_read_only`](server-system-variables.html#sysvar_super_read_only) system variable is also enabled, the server prohibits client updates even from users who have [`SUPER`](privileges-provided.html#priv_super). See the description of the [`read_only`](server-system-variables.html#sysvar_read_only) system variable for a description of read-only mode and information about how [`read_only`](server-system-variables.html#sysvar_read_only) and [`super_read_only`](server-system-variables.html#sysvar_super_read_only) interact.
 
@@ -2590,7 +2590,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`sync_frm`](server-system-variables.html#sysvar_sync_frm)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>31
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If this variable is set to 1, when any nontemporary table is created its `.frm` file is synchronized to disk (using `fdatasync()`). This is slower but safer in case of a crash. The default is 1.
 
@@ -2598,7 +2598,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`system_time_zone`](server-system-variables.html#sysvar_system_time_zone)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>32
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The server system time zone. When the server begins executing, it inherits a time zone setting from the machine defaults, possibly modified by the environment of the account used for running the server or the startup script. The value is used to set [`system_time_zone`](server-system-variables.html#sysvar_system_time_zone). To explicitly specify the system time zone, set the `TZ` environment variable or use the [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) option of the [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") script.
 
@@ -2606,7 +2606,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`table_definition_cache`](server-system-variables.html#sysvar_table_definition_cache)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>33
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The number of table definitions (from `.frm` files) that can be stored in the table definition cache. If you use a large number of tables, you can create a large table definition cache to speed up opening of tables. The table definition cache takes less space and does not use file descriptors, unlike the normal table cache. The minimum value is 400. The default value is based on the following formula, capped to a limit of 2000:
 
@@ -2622,7 +2622,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`table_open_cache`](server-system-variables.html#sysvar_table_open_cache)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>34
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The number of open tables for all threads. Increasing this value increases the number of file descriptors that [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") requires. The effective value of this variable is the greater of the effective value of [`open_files_limit`](server-system-variables.html#sysvar_open_files_limit) `- 10 -` the effective value of [`max_connections`](server-system-variables.html#sysvar_max_connections) `/ 2`, and 400; that is
 
@@ -2637,7 +2637,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`table_open_cache_instances`](server-system-variables.html#sysvar_table_open_cache_instances)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>35
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The number of open tables cache instances. To improve scalability by reducing contention among sessions, the open tables cache can be partitioned into several smaller cache instances of size [`table_open_cache`](server-system-variables.html#sysvar_table_open_cache) / [`table_open_cache_instances`](server-system-variables.html#sysvar_table_open_cache_instances) . A session needs to lock only one instance to access it for DML statements. This segments cache access among instances, permitting higher performance for operations that use the cache when there are many sessions accessing tables. (DDL statements still require a lock on the entire cache, but such statements are much less frequent than DML statements.)
 
@@ -2645,7 +2645,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`thread_cache_size`](server-system-variables.html#sysvar_thread_cache_size)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>36
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   How many threads the server should cache for reuse. When a client disconnects, the client's threads are put in the cache if there are fewer than [`thread_cache_size`](server-system-variables.html#sysvar_thread_cache_size) threads there. Requests for threads are satisfied by reusing threads taken from the cache if possible, and only when the cache is empty is a new thread created. This variable can be increased to improve performance if you have a lot of new connections. Normally, this does not provide a notable performance improvement if you have a good thread implementation. However, if your server sees hundreds of connections per second you should normally set [`thread_cache_size`](server-system-variables.html#sysvar_thread_cache_size) high enough so that most new connections use cached threads. By examining the difference between the [`Connections`](server-status-variables.html#statvar_Connections) and [`Threads_created`](server-status-variables.html#statvar_Threads_created) status variables, you can see how efficient the thread cache is. For details, see [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables").
 
@@ -2659,7 +2659,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`thread_handling`](server-system-variables.html#sysvar_thread_handling)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>37
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The thread-handling model used by the server for connection threads. The permissible values are `no-threads` (the server uses a single thread to handle one connection), `one-thread-per-connection` (the server uses one thread to handle each client connection), and `loaded-dynamically` (set by the thread pool plugin when it initializes). `no-threads` is useful for debugging under Linux; see [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
 
@@ -2667,7 +2667,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`thread_pool_algorithm`](server-system-variables.html#sysvar_thread_pool_algorithm)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>38
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable controls which algorithm the thread pool plugin uses:
 
@@ -2679,7 +2679,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`thread_pool_high_priority_connection`](server-system-variables.html#sysvar_thread_pool_high_priority_connection)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>39
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable affects queuing of new statements prior to execution. If the value is 0 (false, the default), statement queuing uses both the low-priority and high-priority queues. If the value is 1 (true), queued statements always go to the high-priority queue.
 
@@ -2687,7 +2687,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`thread_pool_max_unused_threads`](server-system-variables.html#sysvar_thread_pool_max_unused_threads)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>40
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The maximum permitted number of unused threads in the thread pool. This variable makes it possible to limit the amount of memory used by sleeping threads.
 
@@ -2699,7 +2699,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`thread_pool_prio_kickup_timer`](server-system-variables.html#sysvar_thread_pool_prio_kickup_timer)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>41
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable affects statements waiting for execution in the low-priority queue. The value is the number of milliseconds before a waiting statement is moved to the high-priority queue. The default is 1000 (1 second).
 
@@ -2707,7 +2707,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`thread_pool_size`](server-system-variables.html#sysvar_thread_pool_size)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>42
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The number of thread groups in the thread pool. This is the most important parameter controlling thread pool performance. It affects how many statements can execute simultaneously. If a value outside the range of permissible values is specified, the thread pool plugin does not load and the server writes a message to the error log.
 
@@ -2715,7 +2715,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`thread_pool_stall_limit`](server-system-variables.html#sysvar_thread_pool_stall_limit)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>43
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable affects executing statements. The value is the amount of time a statement has to finish after starting to execute before it becomes defined as stalled, at which point the thread pool permits the thread group to begin executing another statement. The value is measured in 10 millisecond units, so the default of 6 means 60ms. Short wait values permit threads to start more quickly. Short values are also better for avoiding deadlock situations. Long wait values are useful for workloads that include long-running statements, to avoid starting too many new statements while the current ones execute.
 
@@ -2723,7 +2723,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`thread_stack`](server-system-variables.html#sysvar_thread_stack)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>44
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The stack size for each thread. The default is large enough for normal operation. If the thread stack size is too small, it limits the complexity of the SQL statements that the server can handle, the recursion depth of stored procedures, and other memory-consuming actions.
 
@@ -2733,7 +2733,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`time_zone`](server-system-variables.html#sysvar_time_zone)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>45
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The current time zone. This variable is used to initialize the time zone for each client that connects. By default, the initial value of this is `'SYSTEM'` (which means, “use the value of [`system_time_zone`](server-system-variables.html#sysvar_system_time_zone)”). The value can be specified explicitly at server startup with the [`--default-time-zone`](server-options.html#option_mysqld_default-time-zone) option. See [Section 5.1.13, “MySQL Server Time Zone Support”](time-zone-support.html "5.1.13 MySQL Server Time Zone Support").
 
@@ -2743,7 +2743,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`timestamp`](server-system-variables.html#sysvar_timestamp)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>46
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Set the time for this client. This is used to get the original timestamp if you use the binary log to restore rows. *`timestamp_value`* should be a Unix epoch timestamp (a value like that returned by [`UNIX_TIMESTAMP()`](date-and-time-functions.html#function_unix-timestamp), not a value in `'YYYY-MM-DD hh:mm:ss'` format) or `DEFAULT`.
 
@@ -2755,7 +2755,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`tls_version`](server-system-variables.html#sysvar_tls_version)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>47
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Which protocols the server permits for encrypted connections. The value is a comma-separated list containing one or more protocol versions. The protocols that can be named for this variable depend on the SSL library used to compile MySQL. Permitted protocols should be chosen such as not to leave “holes” in the list. For details, see [Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers").
 
@@ -2767,7 +2767,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`tmp_table_size`](server-system-variables.html#sysvar_tmp_table_size)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>48
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The maximum size of internal in-memory temporary tables. This variable does not apply to user-created `MEMORY` tables.
 
@@ -2781,7 +2781,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`tmpdir`](server-system-variables.html#sysvar_tmpdir)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>49
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The path of the directory to use for creating temporary files. It might be useful if your default `/tmp` directory resides on a partition that is too small to hold temporary tables. This variable can be set to a list of several paths that are used in round-robin fashion. Paths should be separated by colon characters (`:`) on Unix and semicolon characters (`;`) on Windows.
 
@@ -2791,13 +2791,13 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`transaction_alloc_block_size`](server-system-variables.html#sysvar_transaction_alloc_block_size)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>50
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The amount in bytes by which to increase a per-transaction memory pool which needs memory. See the description of [`transaction_prealloc_size`](server-system-variables.html#sysvar_transaction_prealloc_size).
 
 * [`transaction_isolation`](server-system-variables.html#sysvar_transaction_isolation)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>51
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The transaction isolation level. The default is [`REPEATABLE-READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read).
 
@@ -2865,7 +2865,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`transaction_prealloc_size`](server-system-variables.html#sysvar_transaction_prealloc_size)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>52
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   There is a per-transaction memory pool from which various transaction-related allocations take memory. The initial size of the pool in bytes is [`transaction_prealloc_size`](server-system-variables.html#sysvar_transaction_prealloc_size). For every allocation that cannot be satisfied from the pool because it has insufficient memory available, the pool is increased by [`transaction_alloc_block_size`](server-system-variables.html#sysvar_transaction_alloc_block_size) bytes. When the transaction ends, the pool is truncated to [`transaction_prealloc_size`](server-system-variables.html#sysvar_transaction_prealloc_size) bytes.
 
@@ -2873,7 +2873,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`transaction_read_only`](server-system-variables.html#sysvar_transaction_read_only)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>53
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The transaction access mode. The value can be `OFF` (read/write; the default) or `ON` (read only).
 
@@ -2941,7 +2941,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`tx_isolation`](server-system-variables.html#sysvar_tx_isolation)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>54
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The default transaction isolation level. Defaults to [`REPEATABLE-READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read).
 
@@ -2951,7 +2951,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`tx_read_only`](server-system-variables.html#sysvar_tx_read_only)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>55
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The default transaction access mode. The value can be `OFF` (read/write, the default) or `ON` (read only).
 
@@ -2961,7 +2961,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`unique_checks`](server-system-variables.html#sysvar_unique_checks)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>56
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   If set to 1 (the default), uniqueness checks for secondary indexes in `InnoDB` tables are performed. If set to 0, storage engines are permitted to assume that duplicate keys are not present in input data. If you know for certain that your data does not contain uniqueness violations, you can set this to 0 to speed up large table imports to `InnoDB`.
 
@@ -2969,7 +2969,7 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`updatable_views_with_limit`](server-system-variables.html#sysvar_updatable_views_with_limit)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>57
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   This variable controls whether updates to a view can be made when the view does not contain all columns of the primary key defined in the underlying table, if the update statement contains a `LIMIT` clause. (Such updates often are generated by GUI tools.) An update is an [`UPDATE`](update.html "13.2.11 UPDATE Statement") or [`DELETE`](delete.html "13.2.2 DELETE Statement") statement. Primary key here means a `PRIMARY KEY`, or a `UNIQUE` index in which no column can contain `NULL`.
 
@@ -2989,25 +2989,25 @@ Some system variables take file name values. Unless otherwise specified, the def
 
 * [`version_comment`](server-system-variables.html#sysvar_version_comment)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>58
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The **CMake** configuration program has a [`COMPILATION_COMMENT`](source-configuration-options.html#option_cmake_compilation_comment) option that permits a comment to be specified when building MySQL. This variable contains the value of that comment. See [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
 
 * [`version_compile_machine`](server-system-variables.html#sysvar_version_compile_machine)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>59
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The type of the server binary.
 
 * [`version_compile_os`](server-system-variables.html#sysvar_version_compile_os)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>60
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The type of operating system on which MySQL was built.
 
 * [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout)
 
-  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>61
+  <table frame="box" rules="all" summary="Properties for authentication_windows_use_principal_name"><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   The number of seconds the server waits for activity on a noninteractive connection before closing it.
 

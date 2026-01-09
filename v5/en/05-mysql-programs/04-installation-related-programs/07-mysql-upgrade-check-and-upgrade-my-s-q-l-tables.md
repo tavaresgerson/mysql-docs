@@ -112,7 +112,7 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 **Table 4.12 mysql\_upgrade Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysql_upgrade."><col style="width: 31%"/><col style="width: 56%"/><col style="width: 12%"/><thead><tr><th scope="col">Option Name</th> <th scope="col">Description</th> <th scope="col">Introduced</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_bind-address">--bind-address</a></th> <td>Use specified network interface to connect to MySQL Server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_character-sets-dir">--character-sets-dir</a></th> <td>Directory where character sets are installed</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_compress">--compress</a></th> <td>Compress all information sent between client and server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_debug">--debug</a></th> <td>Write debugging log</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_debug-check">--debug-check</a></th> <td>Print debugging information when program exits</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_debug-info">--debug-info</a></th> <td>Print debugging information, memory, and CPU statistics when program exits</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_default-auth">--default-auth</a></th> <td>Authentication plugin to use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_default-character-set">--default-character-set</a></th> <td>Specify default character set</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_defaults-extra-file">--defaults-extra-file</a></th> <td>Read named option file in addition to usual option files</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_defaults-file">--defaults-file</a></th> <td>Read only named option file</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Option group suffix value</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_force">--force</a></th> <td>Force execution even if mysql_upgrade has already been executed for current MySQL version</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_help">--help</a></th> <td>Display help message and exit</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_host">--host</a></th> <td>Host on which MySQL server is located</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_login-path">--login-path</a></th> <td>Read login path options from .mylogin.cnf</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_max-allowed-packet">--max-allowed-packet</a></th> <td>Maximum packet length to send to or receive from server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_net-buffer-length">--net-buffer-length</a></th> <td>Buffer size for TCP/IP and socket communication</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_no-defaults">--no-defaults</a></th> <td>Read no option files</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_password">--password</a></th> <td>Password to use when connecting to server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_pipe">--pipe</a></th> <td>Connect to server using named pipe (Windows only)</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_plugin-dir">--plugin-dir</a></th> <td>Directory where plugins are installed</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_port">--port</a></th> <td>TCP/IP port number for connection</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_print-defaults">--print-defaults</a></th> <td>Print default options</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_protocol">--protocol</a></th> <td>Transport protocol to use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_skip-sys-schema">--skip-sys-schema</a></th> <td>Do not install or upgrade sys schema</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_socket">--socket</a></th> <td>Unix socket file or Windows named pipe to use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl</a></th> <td>Enable connection encryption</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-ca</a></th> <td>File that contains list of trusted SSL Certificate Authorities</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-capath</a></th> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-cert</a></th> <td>File that contains X.509 certificate</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-cipher</a></th> <td>Permissible ciphers for connection encryption</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-crl</a></th> <td>File that contains certificate revocation lists</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-crlpath</a></th> <td>Directory that contains certificate revocation-list files</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-key</a></th> <td>File that contains X.509 key</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-mode</a></th> <td>Desired security state of connection to server</td> <td>5.7.11</td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-verify-server-cert</a></th> <td>Verify host name against server certificate Common Name identity</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_tls-version">--tls-version</a></th> <td>Permissible TLS protocols for encrypted connections</td> <td>5.7.10</td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_upgrade-system-tables">--upgrade-system-tables</a></th> <td>Update only system tables, not user schemas</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_user">--user</a></th> <td>MySQL user name to use when connecting to server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_verbose">--verbose</a></th> <td>Verbose mode</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_version-check">--version-check</a></th> <td>Check for proper server version</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_write-binlog">--write-binlog</a></th> <td>Write all statements to binary log</td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysql_upgrade."><col style="width: 31%"/><col style="width: 56%"/><col style="width: 12%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_bind-address">--bind-address</a></th> <td>Use specified network interface to connect to MySQL Server</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_character-sets-dir">--character-sets-dir</a></th> <td>Directory where character sets are installed</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_compress">--compress</a></th> <td>Compress all information sent between client and server</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_debug">--debug</a></th> <td>Write debugging log</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_debug-check">--debug-check</a></th> <td>Print debugging information when program exits</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_debug-info">--debug-info</a></th> <td>Print debugging information, memory, and CPU statistics when program exits</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_default-auth">--default-auth</a></th> <td>Authentication plugin to use</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_default-character-set">--default-character-set</a></th> <td>Specify default character set</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_defaults-extra-file">--defaults-extra-file</a></th> <td>Read named option file in addition to usual option files</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_defaults-file">--defaults-file</a></th> <td>Read only named option file</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Option group suffix value</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_force">--force</a></th> <td>Force execution even if mysql_upgrade has already been executed for current MySQL version</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_help">--help</a></th> <td>Display help message and exit</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_host">--host</a></th> <td>Host on which MySQL server is located</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_login-path">--login-path</a></th> <td>Read login path options from .mylogin.cnf</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_max-allowed-packet">--max-allowed-packet</a></th> <td>Maximum packet length to send to or receive from server</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_net-buffer-length">--net-buffer-length</a></th> <td>Buffer size for TCP/IP and socket communication</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_no-defaults">--no-defaults</a></th> <td>Read no option files</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_password">--password</a></th> <td>Password to use when connecting to server</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_pipe">--pipe</a></th> <td>Connect to server using named pipe (Windows only)</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_plugin-dir">--plugin-dir</a></th> <td>Directory where plugins are installed</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_port">--port</a></th> <td>TCP/IP port number for connection</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_print-defaults">--print-defaults</a></th> <td>Print default options</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_protocol">--protocol</a></th> <td>Transport protocol to use</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_skip-sys-schema">--skip-sys-schema</a></th> <td>Do not install or upgrade sys schema</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_socket">--socket</a></th> <td>Unix socket file or Windows named pipe to use</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl</a></th> <td>Enable connection encryption</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-ca</a></th> <td>File that contains list of trusted SSL Certificate Authorities</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-capath</a></th> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-cert</a></th> <td>File that contains X.509 certificate</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-cipher</a></th> <td>Permissible ciphers for connection encryption</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-crl</a></th> <td>File that contains certificate revocation lists</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-crlpath</a></th> <td>Directory that contains certificate revocation-list files</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-key</a></th> <td>File that contains X.509 key</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-mode</a></th> <td>Desired security state of connection to server</td> <td>5.7.11</td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_ssl">--ssl-verify-server-cert</a></th> <td>Verify host name against server certificate Common Name identity</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_tls-version">--tls-version</a></th> <td>Permissible TLS protocols for encrypted connections</td> <td>5.7.10</td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_upgrade-system-tables">--upgrade-system-tables</a></th> <td>Update only system tables, not user schemas</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_user">--user</a></th> <td>MySQL user name to use when connecting to server</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_verbose">--verbose</a></th> <td>Verbose mode</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_version-check">--version-check</a></th> <td>Check for proper server version</td> <td></td> </tr><tr><th><a class="link" href="mysql-upgrade.html#option_mysql_upgrade_write-binlog">--write-binlog</a></th> <td>Write all statements to binary log</td> <td></td> </tr></tbody></table>
 
 * `--help`
 
@@ -170,7 +170,7 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -178,7 +178,7 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -186,7 +186,7 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql\_upgrade** normally reads the `[client]` and `[mysql_upgrade]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql\_upgrade** also reads the `[client_other]` and `[mysql_upgrade_other]` groups.
 
@@ -194,19 +194,19 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--force`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Ignore the `mysql_upgrade_info` file and force execution even if **mysql\_upgrade** has already been executed for the current version of MySQL.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Connect to the MySQL server on the given host.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 4.6.6, “mysql\_config\_editor — MySQL Configuration Utility”.
 
@@ -214,19 +214,19 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--max-allowed-packet=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   The maximum size of the buffer for client/server communication. The default value is 24MB. The minimum and maximum values are 4KB and 2GB.
 
 * `--net-buffer-length=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   The initial size of the buffer for client/server communication. The default value is 1MB − 1KB. The minimum and maximum values are 4KB and 16MB.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
@@ -236,7 +236,7 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysql\_upgrade** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -246,37 +246,37 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysql\_upgrade** does not find it. See Section 6.2.13, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Print the program name and all options that it gets from option files.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 4.2.5, “Connection Transport Protocols”.
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -284,13 +284,13 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--skip-sys-schema`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   By default, **mysql\_upgrade** installs the `sys` schema if it is not installed, and upgrades it to the current version otherwise. The `--skip-sys-schema` option suppresses this behavior.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -302,7 +302,7 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
@@ -310,31 +310,31 @@ To upgrade in this case, remove or rename the existing `sys` schema first.
 
 * `--upgrade-system-tables`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Upgrade only the system tables in the `mysql` schema, do not upgrade user schemas.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The user name of the MySQL account to use for connecting to the server. The default user name is `root`.
 
 * `--verbose`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   Verbose mode. Print more information about what the program does.
 
 * `--version-check`, `-k`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   Check the version of the server to which **mysql\_upgrade** is connecting to verify that it is the same as the version for which **mysql\_upgrade** was built. If not, **mysql\_upgrade** exits. This option is enabled by default; to disable the check, use `--skip-version-check`.
 
 * `--write-binlog`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   By default, binary logging by **mysql\_upgrade** is disabled. Invoke the program with `--write-binlog` if you want its actions to be written to the binary log.
 

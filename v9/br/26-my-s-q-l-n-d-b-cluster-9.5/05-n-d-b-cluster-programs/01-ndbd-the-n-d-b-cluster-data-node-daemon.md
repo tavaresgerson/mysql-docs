@@ -13,7 +13,7 @@ Também é possível definir essa opção para -1, caso em que o processo do nó
 
 * `--connect-retry-delay=#`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Determina o tempo de espera entre as tentativas para contatar um servidor de gerenciamento ao iniciar (o tempo entre as tentativas é controlado pela opção `--connect-retries`). O valor padrão é 5 segundos.
 
@@ -23,19 +23,19 @@ Também é possível definir essa opção para -1, caso em que o processo do nó
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-string"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-string"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   O mesmo que `--ndb-connectstring`.
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Escreva o arquivo de código apenas em caso de erro; usado em depuração.
 
 * `--daemon`, `-d`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--daemon</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemon"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--daemon</code></td> </tr></tbody></table>
 
   Instrui **ndbd** ou **ndbmtd**") a ser executado como um processo de daemon. Esse é o comportamento padrão. `--nodaemon` pode ser usado para impedir que o processo seja executado como um daemon.
 
@@ -43,25 +43,25 @@ Também é possível definir essa opção para -1, caso em que o processo do nó
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Leia as opções padrão do arquivo fornecido apenas.
 
 * `--defaults-group-suffix`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de linha de comando</th><td><code class="literal">--character-sets-dir=caminho</code></td> </tr></table>0
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de linha de comando</th><td><code>--character-sets-dir=caminho</code></td> </tr></table>
 
   Leia também grupos com concatenação(grupo, sufixo).
 
 * `--filesystem-password`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Transmita a senha de criptografia e descriptografia do sistema de arquivos para o processo do nó de dados usando `stdin`, `tty` ou o arquivo `my.cnf`.
 
@@ -71,7 +71,7 @@ Também é possível definir essa opção para -1, caso em que o processo do nó
 
 * `--filesystem-password-from-stdin`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Transmita a senha de criptografia e descriptografia do sistema de arquivos para o processo do nó de dados a partir de `stdin` (apenas).
 
@@ -81,7 +81,7 @@ Também é possível definir essa opção para -1, caso em que o processo do nó
 
 * `--foreground`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Faz com que **ndbd** ou **ndbmtd**`) seja executado como um processo em primeiro plano, principalmente para fins de depuração. Esta opção implica na opção `--nodaemon`.
 
@@ -89,13 +89,13 @@ Esta opção não tem efeito ao executar **ndbd** ou **ndbmtd** em plataformas W
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Exibir texto de ajuda e sair.
 
 * `--initial`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Instrui o **ndbd** a realizar um início inicial. Um início inicial apaga quaisquer arquivos criados para fins de recuperação por instâncias anteriores do **ndbd**. Também recria os arquivos de log de recuperação. Em alguns sistemas operacionais, esse processo pode levar um tempo substancial.
 
@@ -125,7 +125,7 @@ Esta opção também não tem efeito na recuperação de dados por um nó de dad
 É permitido usar esta opção ao iniciar o clúster pela primeira vez (ou seja, antes que quaisquer arquivos de nó de dados tenham sido criados); no entanto, não é necessário fazê-lo.
 * `--initial-start`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th><td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th><td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
 Esta opção é usada ao realizar um início inicial parcial do clúster. Cada nó deve ser iniciado com esta opção, assim como com a opção `--nowait-nodes`.
 
@@ -145,7 +145,7 @@ Não confunda esta opção com a opção `--nowait-nodes` para **ndb\_mgmd**, qu
 
 * `--install[=name]`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Faz com que o **ndbd** seja instalado como um serviço do Windows. Opcionalmente, você pode especificar um nome para o serviço; se não definido, o nome do serviço será `ndbd`. Embora seja preferível especificar outras opções do programa **ndbd** em um arquivo de configuração `my.ini` ou `my.cnf`, é possível usá-lo junto com `--install`. No entanto, nesse caso, a opção `--install` deve ser especificada primeiro, antes de quaisquer outras opções serem fornecidas, para que a instalação do serviço do Windows seja bem-sucedida.
 
@@ -155,39 +155,39 @@ A opção `--install` não tem efeito em plataformas que não são do Windows.
 
 * `--logbuffer-size=#`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Define o tamanho do buffer de log do nó de dados. Ao depurar com grandes quantidades de registro extra, é possível que o buffer de log fique sem espaço se houver muitos mensagens de log, caso em que algumas mensagens de log podem ser perdidas. Isso não deve ocorrer durante operações normais.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Leia o caminho dado do arquivo de login.
 
 * `--no-login-paths`
 
 <table frame="box" rules="all" summary="Propriedades para connect-delay">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-delay=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-delay=#</code></td> </tr>
   <tr><th>Desatualizado</th> <td>Sim</td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">3600</code></td> </tr>
-</table>0
+  <tr><th>Valor padrão</th> <td><code>5</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>3600</code></td> </tr>
+</table>
 
 Ignora opções de leitura do arquivo de caminho de login.
 
 * `--ndb-connectstring`
 
 <table frame="box" rules="all" summary="Propriedades para connect-delay">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-delay=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-delay=#</code></td> </tr>
   <tr><th>Desatualizado</th> <td>Sim</td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">3600</code></td> </tr>
-</table>1
+  <tr><th>Valor padrão</th> <td><code>5</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>3600</code></td> </tr>
+</table>
 
 Define a string de conexão para conectar-se ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrime entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
@@ -196,7 +196,7 @@ Define a string de conexão para conectar-se ao **ndb_mgmd**. Sintaxe: `[nodeid=
 <table frame="box" rules="all" summary="Propriedades para connect-delay">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-delay=#</code></td>
+    <td><code>--connect-delay=#</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -208,15 +208,15 @@ Define a string de conexão para conectar-se ao **ndb_mgmd**. Sintaxe: `[nodeid=
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">5</code></td>
+    <td><code>5</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">3600</code></td>
+    <td><code>3600</code></td>
   </tr>
   </table>
 2
@@ -236,7 +236,7 @@ Formato `RFC 3339`, com resolução em microsegundos.
 <table frame="box" rules="all" summary="Propriedades para connect-delay">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-delay=#</code></td>
+    <td><code>--connect-delay=#</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -248,15 +248,15 @@ Formato `RFC 3339`, com resolução em microsegundos.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">5</code></td>
+    <td><code>5</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">3600</code></td>
+    <td><code>3600</code></td>
   </tr>
   </table>
 3
@@ -266,52 +266,52 @@ O mesmo que `--ndb-connectstring`.
 * `--ndb-mgm-tls`
 
 <table frame="box" rules="all" summary="Propriedades para connect-delay">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-delay=#</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--connect-delay=#</code></td> </tr>
   <tr><th>Desatualizado</th> <td>Sim</td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">3600</code></td> </tr>
-</table>4
+  <tr><th>Valor Padrão</th> <td><code>5</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>3600</code></td> </tr>
+</table>
 
 Define o nível de suporte TLS necessário para se conectar ao servidor de gerenciamento; um dos valores `relaxado` ou `estricto`. `relaxado` (o padrão) significa que uma conexão TLS é tentada, mas o sucesso não é necessário; `estricto` significa que a conexão TLS é necessária.
 
 * `--ndb-nodeid`
 
 <table frame="box" rules="all" summary="Propriedades para connect-delay">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-delay=#</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--connect-delay=#</code></td> </tr>
   <tr><th>Desatualizado</th> <td>Sim</td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">3600</code></td> </tr>
-</table>5
+  <tr><th>Valor Padrão</th> <td><code>5</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>3600</code></td> </tr>
+</table>
 
 Define o ID do nó para este nó, substituindo qualquer ID definido por `--ndb-connectstring`.
 
 * `--ndb-optimized-node-selection`
 
 <table frame="box" rules="all" summary="Propriedades para connect-delay">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-delay=#</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--connect-delay=#</code></td> </tr>
   <tr><th>Desatualizado</th> <td>Sim</td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">3600</code></td> </tr>
-</table>7
+  <tr><th>Valor Padrão</th> <td><code>5</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>3600</code></td> </tr>
+</table>
 
   Ative otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
 * `--ndb-tls-search-path`
 
   <table frame="box" rules="all" summary="Propriedades para connect-delay">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-delay=#</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--connect-delay=#</code></td> </tr>
     <tr><th>Desatualizado</th> <td>Sim</td> </tr>
     <tr><th>Tipo</th> <td>Numérico</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr>
-    <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor Máximo</th> <td><code class="literal">3600</code></td> </tr>
-  </table>7
+    <tr><th>Valor Padrão</th> <td><code>5</code></td> </tr>
+    <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor Máximo</th> <td><code>3600</code></td> </tr>
+  </table>
 
   Especifique uma lista de diretórios para pesquisar um arquivo CA. Em plataformas Unix, os nomes dos diretórios são separados por colchetes (`:`); em sistemas Windows, o caractere ponto e vírgula (`;`) é usado como separador. Uma referência de diretório pode ser relativa ou absoluta; pode conter uma ou mais variáveis de ambiente, cada uma denotada por um sinal de dólar prefixado (`$`), e expandida antes de uso.
 
@@ -321,7 +321,7 @@ Se não for fornecido um caminho de busca, o valor padrão integrado é usado. E
 
 * `--nodaemon`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-delay"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-delay=#</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">3600</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para connect-delay"><tr><th>Formato de Linha de Comando</th> <td><code>--connect-delay=#</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>5</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>3600</code></td> </tr></tbody></table>
 
   Previne que **ndbd** ou **ndbmtd**") sejam executados como um processo daemon. Esta opção substitui a opção `--daemon`. Isso é útil para redirecionar a saída para a tela ao depurar o binário.
 
@@ -332,7 +332,7 @@ Se não for fornecido um caminho de busca, o valor padrão integrado é usado. E
 <table frame="box" rules="all" summary="Propriedades para connect-delay">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-delay=#</code></td>
+    <td><code>--connect-delay=#</code></td>
   </tr>
   <tr>
     <th>Desativado</th>
@@ -344,15 +344,15 @@ Se não for fornecido um caminho de busca, o valor padrão integrado é usado. E
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">5</code></td>
+    <td><code>5</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">3600</code></td>
+    <td><code>3600</code></td>
   </tr>
 </table>
 
@@ -365,7 +365,7 @@ Não leia opções padrão de nenhum arquivo de opção, exceto o arquivo de log
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-retries=#</code></td>
+    <td><code>--connect-retries=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -373,15 +373,15 @@ Não leia opções padrão de nenhum arquivo de opção, exceto o arquivo de log
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code></td>
+    <td><code>-1</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">65535</code></td>
+    <td><code>65535</code></td>
   </tr>
 </table>
 
@@ -392,12 +392,12 @@ Instrui o **ndbd** a não iniciar automaticamente. Quando esta opção é usada,
 [`--nowait-nodes=node_id_1[, node_id_2[, ...]]`](mysql-cluster-programs-ndbd.html#option_ndbd_nowait-nodes)
 
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">12</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">-1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">65535</code></td> </tr>
-</table>1
+  <tr><th>Valor Padrão</th> <td><code>12</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>-1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr>
+</table>
 
   Esta opção recebe uma lista de nós de dados para os quais o cluster não espera, antes de começar.
 
@@ -407,13 +407,13 @@ Instrui o **ndbd** a não iniciar automaticamente. Quando esta opção é usada,
 
 * `--print-defaults`
 
-<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">-1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">65535</code></td> </tr></table>2
+<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></table>
 
   Imprime a lista de argumentos do programa e encerra.
 
 * `--remove[=nome]`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">-1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">65535</code></td> </tr></table>3
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></table>
 
   Faz com que o processo **ndbd** que foi instalado anteriormente como um serviço do Windows seja removido. Opcionalmente, você pode especificar um nome para o serviço a ser desinstalado; se não for definido, o nome do serviço será `ndbd`.
 
@@ -424,7 +424,7 @@ Instrui o **ndbd** a não iniciar automaticamente. Quando esta opção é usada,
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-retries=#</code></td>
+    <td><code>--connect-retries=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -432,17 +432,17 @@ Instrui o **ndbd** a não iniciar automaticamente. Quando esta opção é usada,
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">-1</code></td>
+    <td><code>-1</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">65535</code></td>
+    <td><code>65535</code></td>
   </tr>
-</table>4
+</table>
 
   Exibir texto de ajuda e sair; o mesmo que --help.
 
@@ -457,7 +457,7 @@ Instrui o **ndbd** a não iniciar automaticamente. Quando esta opção é usada,
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--connect-retries=#</code></td>
+      <td><code>--connect-retries=#</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -465,17 +465,17 @@ Instrui o **ndbd** a não iniciar automaticamente. Quando esta opção é usada,
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">12</code></td>
+      <td><code>12</code></td>
     </tr>
     <tr>
       <th>Valor mínimo</th>
-      <td><code class="literal">-1</code></td>
+      <td><code>-1</code></td>
     </tr>
     <tr>
       <th>Valor máximo</th>
-      <td><code class="literal">65535</code></td>
+      <td><code>65535</code></td>
     </tr>
-  </table>5
+  </table>
 
   Exibir informações da versão e sair.
 

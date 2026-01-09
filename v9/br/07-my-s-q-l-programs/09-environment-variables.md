@@ -6,24 +6,24 @@ As opções na linha de comando têm precedência sobre os valores especificados
 
 <table summary="Variáveis de ambiente que são usadas diretamente ou indiretamente pelo MySQL">
 <tr> <th>Variável</th> <th>Descrição</th> </tr>
-<tr> <td><code class="literal">AUTHENTICATION_KERBEROS_CLIENT_LOG</code></td> <td>Nível de registro de autenticação Kerberos.</td> </tr>
-<tr> <td><code class="literal">AUTHENTICATION_LDAP_CLIENT_LOG</code></td> <td>Nível de registro de autenticação LDAP no lado do cliente.</td> </tr>
-<tr> <td><code class="literal">AUTHENTICATION_PAM_LOG</code></td> <td>Configurações de registro de depuração do plugin de autenticação PAM.</td> </tr>
-<tr> <td><code class="literal">CC</code></td> <td>Nome do compilador C (para executar o <span class="command"><strong>CMake</strong></span>).</td> </tr>
-<tr> <td><code class="literal">CXX</code></td> <td>Nome do compilador C++ (para executar o <span class="command"><strong>CMake</strong></span>).</td> </tr>
-<tr> <td><code class="literal">CC</code></td> <td>Nome do compilador C (para executar o <span class="command"><strong>CMake</strong></span>).</td> </tr>
-<tr> <td><code class="literal">DBI_USER</code></td> <td>Nome de usuário padrão para o DBI Perl.</td> </tr>
-<tr> <td><code class="literal">DBI_TRACE</code></td> <td>Opções de registro de opções para o DBI Perl.</td> </tr>
-<tr> <td><code class="literal">HOME</code></td> <td>Caminho padrão para o arquivo de histórico do <a class="link" href="mysql.html" title="6.5.1 mysql — The MySQL Command-Line Client"><span class="command"><strong>mysql</strong></span></a> é <code class="filename">$HOME/.mysql_history</code>.</td> </tr>
-<tr> <td><code class="literal">LD_RUN_PATH</code></td> <td>Localização do arquivo <code class="filename">libmysqlclient.so</code>.</td> </tr>
-<tr> <td><code class="literal">LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN</code></td> <td>Habilitar o plugin de autenticação <code class="literal">mysql_clear_password</code>; veja <a class="xref" href="cleartext-pluggable-authentication.html" title="8.4.1.3 Client-Side Cleartext Pluggable Authentication">Seção 8.4.1.3, “Autenticação Cleartext Pluggable no Lado do Cliente”</a>.</td> </tr>
-<tr> <td><code class="literal">LIBMYSQL_PLUGIN_DIR</code></td> <td>Diretório onde procurar plugins do cliente.</td> </tr>
-<tr> <td><code class="literal">LIBMYSQL_PLUGINS</code></td> <td>Plugins do cliente a pré-carregar.</td> </tr>
-<tr> <td><code class="literal">MYSQL_DEBUG</code></td> <td>Opções de registro de depuração quando se está em depuração.</td> </tr>
-<tr> <td><code class="literal">MYSQL_GROUP_SUFFIX</code></td> <td>Valor do sufixo do grupo de opções (como especificar <a class="link" href="option-file-options.html#option_general_defaults-group-suffix"><code class="option">--defaults-group-suffix</code></a>).</td> </tr>
-<tr> <td><code class="literal">MYSQL_HISTFILE</code></td> <td>Caminho para o arquivo de histórico do <a class="link" href="mysql.html" title="6.5.1 mysql — The MySQL Command-Line Client"><span class="command"><strong>mysql</strong></span></a> history file. Se esta variável for definida, seu valor substitui o padrão para <code class="filename">$HOME/.mysql_history</code>.</td> </tr>
-<tr> <td><code class="literal">MYSQL_HISTIGNORE</code></td> <td>Padrões que especificam instruções que o <a class="link" href="mysql.html" title="6.5.1 mysql — The MySQL Command-Line Client"><span class="command"><strong>mysql</strong></span></a> deve ignorar no <code class="filename">$HOME/.mysql_history</code>, ou <code class="literal">syslog</code> se <a class="link" href="mysql-command-options.html#option_mysql_syslog"><code class="option">--syslog</code></a> for fornecido.</td> </tr>
-<tr> <td><code class="literal">MYSQL_HOME</code></td> <td>Caminho para o diretório onde o arquivo <code class="filename">my.cnf</code> específico do servidor reside.</td> </tr>
+<tr> <td><code>AUTHENTICATION_KERBEROS_CLIENT_LOG</code></td> <td>Nível de registro de autenticação Kerberos.</td> </tr>
+<tr> <td><code>AUTHENTICATION_LDAP_CLIENT_LOG</code></td> <td>Nível de registro de autenticação LDAP no lado do cliente.</td> </tr>
+<tr> <td><code>AUTHENTICATION_PAM_LOG</code></td> <td>Configurações de registro de depuração do plugin de autenticação PAM.</td> </tr>
+<tr> <td><code>CC</code></td> <td>Nome do compilador C (para executar o <span><strong>CMake</strong></span>).</td> </tr>
+<tr> <td><code>CXX</code></td> <td>Nome do compilador C++ (para executar o <span><strong>CMake</strong></span>).</td> </tr>
+<tr> <td><code>CC</code></td> <td>Nome do compilador C (para executar o <span><strong>CMake</strong></span>).</td> </tr>
+<tr> <td><code>DBI_USER</code></td> <td>Nome de usuário padrão para o DBI Perl.</td> </tr>
+<tr> <td><code>DBI_TRACE</code></td> <td>Opções de registro de opções para o DBI Perl.</td> </tr>
+<tr> <td><code>HOME</code></td> <td>Caminho padrão para o arquivo de histórico do <a class="link" href="mysql.html" title="6.5.1 mysql — The MySQL Command-Line Client"><span><strong>mysql</strong></span></a> é <code class="filename">$HOME/.mysql_history</code>.</td> </tr>
+<tr> <td><code>LD_RUN_PATH</code></td> <td>Localização do arquivo <code class="filename">libmysqlclient.so</code>.</td> </tr>
+<tr> <td><code>LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN</code></td> <td>Habilitar o plugin de autenticação <code>mysql_clear_password</code>; veja <a class="xref" href="cleartext-pluggable-authentication.html" title="8.4.1.3 Client-Side Cleartext Pluggable Authentication">Seção 8.4.1.3, “Autenticação Cleartext Pluggable no Lado do Cliente”</a>.</td> </tr>
+<tr> <td><code>LIBMYSQL_PLUGIN_DIR</code></td> <td>Diretório onde procurar plugins do cliente.</td> </tr>
+<tr> <td><code>LIBMYSQL_PLUGINS</code></td> <td>Plugins do cliente a pré-carregar.</td> </tr>
+<tr> <td><code>MYSQL_DEBUG</code></td> <td>Opções de registro de depuração quando se está em depuração.</td> </tr>
+<tr> <td><code>MYSQL_GROUP_SUFFIX</code></td> <td>Valor do sufixo do grupo de opções (como especificar <a class="link" href="option-file-options.html#option_general_defaults-group-suffix"><code>--defaults-group-suffix</code></a>).</td> </tr>
+<tr> <td><code>MYSQL_HISTFILE</code></td> <td>Caminho para o arquivo de histórico do <a class="link" href="mysql.html" title="6.5.1 mysql — The MySQL Command-Line Client"><span><strong>mysql</strong></span></a> history file. Se esta variável for definida, seu valor substitui o padrão para <code class="filename">$HOME/.mysql_history</code>.</td> </tr>
+<tr> <td><code>MYSQL_HISTIGNORE</code></td> <td>Padrões que especificam instruções que o <a class="link" href="mysql.html" title="6.5.1 mysql — The MySQL Command-Line Client"><span><strong>mysql</strong></span></a> deve ignorar no <code class="filename">$HOME/.mysql_history</code>, ou <code>syslog</code> se <a class="link" href="mysql-command-options.html#option_mysql_syslog"><code>--syslog</code></a> for fornecido.</td> </tr>
+<tr> <td><code>MYSQL_HOME</code></td> <td>Caminho para o diretório onde o arquivo <code class="filename">my.cnf</code> específico do servidor reside.</td> </tr>
 <tr> <td><code class="
 
 Para obter informações sobre o arquivo de histórico do **mysql**, consulte a Seção 6.5.1.3, “Registro do cliente do **mysql”].

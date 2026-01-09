@@ -103,7 +103,7 @@ After you have downloaded and imported the public build key, download your desir
 
 **Table 2.1 MySQL Package and Signature Files for Source files**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>File Type</th> <th>File Name</th> </tr></thead><tbody><tr> <td>Distribution file</td> <td><code>mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz</code></td> </tr><tr> <td>Signature file</td> <td><code>mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz.asc</code></td> </tr></tbody></table>
+<table><thead><tr> <th>File Type</th> <th>File Name</th> </tr></thead><tbody><tr> <td>Distribution file</td> <td><code>mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz</code></td> </tr><tr> <td>Signature file</td> <td><code>mysql-8.4.6-linux-glibc2.28-x86_64.tar.xz.asc</code></td> </tr></tbody></table>
 
 Make sure that both files are stored in the same directory and then run the following command to verify the signature for the distribution file:
 

@@ -76,7 +76,7 @@ Embora a conversão automática não esteja no padrão SQL, o padrão diz que ca
 
 A tabela a seguir ilustra algumas aplicações das regras anteriores.
 
-<table summary="Comparações e a cotação usada para cada comparação."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Comparações</th> <th>Cotação Usada</th> </tr></thead><tbody><tr> <td><code class="literal">column1 = 'A'</code></td> <td>Use a cotação de <code class="literal">column1</code></td> </tr><tr> <td><code class="literal">column1 = 'A' COLLATE x</code></td> <td>Use a cotação de <code class="literal">'A' COLLATE x</code></td> </tr><tr> <td><code class="literal">column1 COLLATE x = 'A' COLLATE y</code></td> <td>Erro</td> </tr></tbody></table>
+<table summary="Comparações e a cotação usada para cada comparação."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Comparações</th> <th>Cotação Usada</th> </tr></thead><tbody><tr> <td><code>column1 = 'A'</code></td> <td>Use a cotação de <code>column1</code></td> </tr><tr> <td><code>column1 = 'A' COLLATE x</code></td> <td>Use a cotação de <code>'A' COLLATE x</code></td> </tr><tr> <td><code>column1 COLLATE x = 'A' COLLATE y</code></td> <td>Erro</td> </tr></tbody></table>
 
 Para determinar a coercibilidade de uma expressão de string, use a função `COERCIBILITY()` (veja a Seção 14.15, “Funções de Informação”):
 

@@ -234,19 +234,19 @@ The following system variables are used for or by replication source servers:
 
 * `rpl_semi_sync_master_wait_no_slave`
 
-  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   Deprecated synonym for `rpl_semi_sync_source_wait_no_replica`.
 
 * `rpl_semi_sync_master_wait_point`
 
-  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   Deprecated synonym for `rpl_semi_sync_source_wait_point`.
 
 * `rpl_semi_sync_source_enabled`
 
-  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   `rpl_semi_sync_source_enabled` is available when the `rpl_semi_sync_source` (`semisync_source.so` library) plugin was installed on the replica to set up semisynchronous replication.
 
@@ -254,7 +254,7 @@ The following system variables are used for or by replication source servers:
 
 * `rpl_semi_sync_source_timeout`
 
-  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   `rpl_semi_sync_source_timeout` is available when the `rpl_semi_sync_source` (`semisync_source.so` library) plugin is installed on the replica.
 
@@ -262,7 +262,7 @@ The following system variables are used for or by replication source servers:
 
 * `rpl_semi_sync_source_trace_level`
 
-  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   `rpl_semi_sync_source_trace_level` is available when the `rpl_semi_sync_source` (`semisync_source.so` library) plugin is installed on the replica.
 
@@ -276,7 +276,7 @@ The following system variables are used for or by replication source servers:
 
 * `rpl_semi_sync_source_wait_for_replica_count`
 
-  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   `rpl_semi_sync_source_wait_for_replica_count` is available when the `rpl_semi_sync_source` (`semisync_source.so` library) plugin is installed on the replica to set up semisynchronous replication.
 
@@ -290,7 +290,7 @@ The following system variables are used for or by replication source servers:
 
 * `rpl_semi_sync_source_wait_no_replica`
 
-  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   `rpl_semi_sync_source_wait_no_replica` is available when the `rpl_semi_sync_source` (`semisync_source.so` library) plugin is installed on the replica.
 
@@ -302,7 +302,7 @@ The following system variables are used for or by replication source servers:
 
 * `rpl_semi_sync_source_wait_point`
 
-  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for show-slave-auth-info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   `rpl_semi_sync_source_wait_point` is available when the `rpl_semi_sync_source` (`semisync_source.so` library) plugin is installed on the replica.
 

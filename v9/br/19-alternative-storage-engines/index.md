@@ -126,27 +126,27 @@ Os vários motores de armazenamento fornecidos com o MySQL foram projetados com 
 **Tabela 18.1 Resumo das Características dos Motores de Armazenamento**
 
 <table frame="box" rules="all" summary="Resumo das funcionalidades suportadas por cada mecanismo de armazenamento.">
-<tr><th scope="col">Característica</th> <th>MyISAM</th> <th>Memória</th> <th>InnoDB</th> <th>Arquivamento</th> <th>NDB</th> </tr>
-<tr><th scope="row">Indekses B-tree</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr>
-<tr><th scope="row">Recuperação de backup/ponto no tempo (nota 1)</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr>
-<tr><th scope="row">Suporte a bancos de dados agrupados</th> <td>Não</td> <td>Não</td> <td>Não</td> <td>Não</td> <td>Sim</td> </tr>
-<tr><th scope="row">Indekses agrupados</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr>
-<tr><th scope="row">Dados comprimidos</th> <td>Sim (nota 2)</td> <td>Não</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr>
-<tr><th scope="row">Caches de dados</th> <td>Não</td> <td>N/A</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr>
-<tr><th scope="row">Dados criptografados</th> <td>Sim (nota 3)</td> <td>Sim (nota 3)</td> <td>Sim (nota 4)</td> <td>Sim (nota 3)</td> <td>Sim (nota 5)</td> </tr>
-<tr><th scope="row">Suporte a chaves estrangeiras</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr>
-<tr><th scope="row">Indekses de busca full-text</th> <td>Sim</td> <td>Não</td> <td>Sim (nota 6)</td> <td>Não</td> <td>Não</td> </tr>
-<tr><th scope="row">Suporte a tipos de dados geográficos</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr>
-<tr><th scope="row">Suporte a indexação geográficos</th> <td>Sim</td> <td>Não</td> <td>Sim (nota 7)</td> <td>Não</td> <td>Não</td> </tr>
-<tr><th scope="row">Indekses de hash</th> <td>Não</td> <td>Sim</td> <td>Não (nota 8)</td> <td>Não</td> <td>Sim</td> </tr>
-<tr><th scope="row">Caches de índices</th> <td>Sim</td> <td>N/A</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr>
-<tr><th scope="row">Granularidade de bloqueio</th> <td>Tabela</td> <td>Tabela</td> <td>Linha</td> <td>Linha</td> <td>Linha</td> </tr>
-<tr><th scope="row">MVCC</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr>
-<tr><th scope="row">Suporte a replicação (nota 1)</th> <td>Sim</td> <td>Limitado (nota 9)</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr>
-<tr><th scope="row">Limites de armazenamento</th> <td>256TB</td> <td>RAM</td> <td>64TB</td> <td>Nenhum</td> <td>384EB</td> </tr>
-<tr><th scope="row">Indekses T-tree</th> <td>Não</td> <td>Não</td> <td>Não</td> <td>Não</td> <td>Sim</td> </tr>
-<tr><th scope="row">Transações</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr>
-<tr><th scope="row">Estatísticas de atualização para o dicionário de dados</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
+<tr><th>Característica</th> <th>MyISAM</th> <th>Memória</th> <th>InnoDB</th> <th>Arquivamento</th> <th>NDB</th> </tr>
+<tr><th>Indekses B-tree</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr>
+<tr><th>Recuperação de backup/ponto no tempo (nota 1)</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr>
+<tr><th>Suporte a bancos de dados agrupados</th> <td>Não</td> <td>Não</td> <td>Não</td> <td>Não</td> <td>Sim</td> </tr>
+<tr><th>Indekses agrupados</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr>
+<tr><th>Dados comprimidos</th> <td>Sim (nota 2)</td> <td>Não</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr>
+<tr><th>Caches de dados</th> <td>Não</td> <td>N/A</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr>
+<tr><th>Dados criptografados</th> <td>Sim (nota 3)</td> <td>Sim (nota 3)</td> <td>Sim (nota 4)</td> <td>Sim (nota 3)</td> <td>Sim (nota 5)</td> </tr>
+<tr><th>Suporte a chaves estrangeiras</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr>
+<tr><th>Indekses de busca full-text</th> <td>Sim</td> <td>Não</td> <td>Sim (nota 6)</td> <td>Não</td> <td>Não</td> </tr>
+<tr><th>Suporte a tipos de dados geográficos</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr>
+<tr><th>Suporte a indexação geográficos</th> <td>Sim</td> <td>Não</td> <td>Sim (nota 7)</td> <td>Não</td> <td>Não</td> </tr>
+<tr><th>Indekses de hash</th> <td>Não</td> <td>Sim</td> <td>Não (nota 8)</td> <td>Não</td> <td>Sim</td> </tr>
+<tr><th>Caches de índices</th> <td>Sim</td> <td>N/A</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr>
+<tr><th>Granularidade de bloqueio</th> <td>Tabela</td> <td>Tabela</td> <td>Linha</td> <td>Linha</td> <td>Linha</td> </tr>
+<tr><th>MVCC</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr>
+<tr><th>Suporte a replicação (nota 1)</th> <td>Sim</td> <td>Limitado (nota 9)</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr>
+<tr><th>Limites de armazenamento</th> <td>256TB</td> <td>RAM</td> <td>64TB</td> <td>Nenhum</td> <td>384EB</td> </tr>
+<tr><th>Indekses T-tree</th> <td>Não</td> <td>Não</td> <td>Não</td> <td>Não</td> <td>Sim</td> </tr>
+<tr><th>Transações</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr>
+<tr><th>Estatísticas de atualização para o dicionário de dados</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
 
 **Notas:**
 

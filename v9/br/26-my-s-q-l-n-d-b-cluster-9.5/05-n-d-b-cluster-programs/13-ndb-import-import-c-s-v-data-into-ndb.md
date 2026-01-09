@@ -66,19 +66,19 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 
 * `--abort-on-error`
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--abort-on-error</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--abort-on-error</code></td> </tr></tbody></table>
 
   Arrume o núcleo em qualquer erro fatal; usado apenas para depuração.
 
 * `--ai-increment=*``#`*
 
-<table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Para uma tabela com uma chave primária oculta, especifique o incremento de autoincremento, como a variável de sistema `auto_increment_increment` faz no MySQL Server.
 
 * `--ai-offset=*``#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Para uma tabela com chave primária oculta, especifique o deslocamento de autoincremento. Semelhante à variável de sistema `auto_increment_offset`.
 
@@ -87,7 +87,7 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--ai-prefetch-sz=#</code></td>
+    <td><code>--ai-prefetch-sz=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -95,15 +95,15 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">1024</code></td>
+    <td><code>1024</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">1</code></td>
+    <td><code>1</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
   </table>
 
@@ -114,7 +114,7 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--character-sets-dir=caminho</code></td>
+      <td><code>--character-sets-dir=caminho</code></td>
     </tr>
   </tbody></table>
 
@@ -125,7 +125,7 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
   <table frame="box" rules="all" summary="Propriedades para connections">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--connections=#</code></td>
+      <td><code>--connections=#</code></td>
     </tr>
   </tbody></table>
 
@@ -134,11 +134,11 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 * `--connect-retries`
 
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
 </table>
 
   Número de vezes para tentar a conexão novamente antes de desistir.
@@ -146,11 +146,11 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 * `--connect-retry-delay`
 
   <table frame="box" rules="all" summary="Propriedades para connect-retry-delay">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">5</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>5</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>5</code></td> </tr>
   </table>
 
   Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
@@ -158,9 +158,9 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 * `--connect-string`
 
   <table frame="box" rules="all" summary="Propriedades para connect-string">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr>
   </table>
 
   O mesmo que `--ndb-connectstring`.
@@ -168,7 +168,7 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 * `--continue`
 
 <table frame="box" rules="all" summary="Propriedades para continuar">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--continue</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--continue</code></td> </tr>
 </table>
 
   Quando um trabalho falha, continue para o próximo trabalho.
@@ -177,13 +177,13 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 
   <table frame="box" rules="all" summary="Propriedades para ai-increment">
   <tbody>
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
   </tbody>
-</table>0
+</table>
 
   Escreva o arquivo de código no erro; usado em depuração.
 
@@ -191,13 +191,13 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 
   <table frame="box" rules="all" summary="Propriedades para ai-increment">
   <tbody>
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
   </tbody>
-</table>1
+</table>
 
   Fornece um método de atalho para definir opções típicas de importação de CSV. O argumento desta opção é uma string composta por um ou mais dos seguintes parâmetros:
 
@@ -216,13 +216,13 @@ Esta opção é destinada ao uso em testes em condições nas quais é difícil 
 
 * `--db-workers=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínima</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Número de threads, por nó de dados, executando operações de banco de dados.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínima</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Leia opções padrão do arquivo fornecido apenas.
 
@@ -232,96 +232,96 @@ Leia o arquivo dado após a leitura dos arquivos globais.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Leia também os grupos com concatenação(grupo, sufixo).
 
 * `--errins-type=*``nome`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Tipo de inserção de erro; use `list` como o valor de *`nome`* para obter todos os valores possíveis. Esta opção é usada apenas para fins de teste.
 
 * `--errins-delay`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Atraso de inserção de erro em milissegundos; uma variação aleatória é adicionada. Esta opção é usada apenas para fins de teste.
 
 * `--fields-enclosed-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Funciona da mesma maneira que a opção `FIELDS ENCLOSED BY` para a instrução `LOAD DATA`, especificando um caractere a ser interpretado como cotação de valores de campos. Para entrada CSV, isso é o mesmo que `--fields-optionally-enclosed-by`.
 
 * `--fields-escaped-by`=*`name`*
 
-<table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
 Especifique um caractere de escape da mesma maneira que a opção `FIELDS ESCAPED BY` faz para a instrução `LOAD DATA` do SQL.
 
 * `--fields-optionally-enclosed-by=*`char*
 
-<table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
 Isso funciona da mesma maneira que a opção `FIELDS OPTIONALLY ENCLOSED BY` faz para a instrução `LOAD DATA`, especificando um caractere para ser interpretado como opcionalmente cotizando os valores dos campos. Para entrada CSV, isso é o mesmo que `--fields-enclosed-by`.
 
 * `--fields-terminated-by=*`char*
 
-<table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
 Isso funciona da mesma maneira que a opção `FIELDS TERMINATED BY` para a instrução `LOAD DATA`, especificando um caractere a ser interpretado como o separador de campos.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Exibir texto de ajuda e sair.
 
 * `--idlesleep=*`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Número de milissegundos para dormir esperando que mais trabalho seja realizado.
 
 * `--idlespin`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></table>4
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></table>
 
   Número de vezes para tentar novamente antes de dormir.
 
 * `--ignore-lines`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></table>5
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></table>
 
   Fazer com que o ndb\_import ignore as primeiras linhas `#` do arquivo de entrada. Isso pode ser usado para ignorar o cabeçalho de um arquivo que não contém nenhum dado.
 
 * `--input-type`=*`nome`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></table>6
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></table>
 
 Defina o tipo de tipo de entrada. O padrão é `csv`; `random` é destinado apenas para fins de teste. .
 
 * `--input-workers=*`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Defina o número de threads que processam a entrada.
 
 * `--keep-state`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Por padrão, o ndb\_import remove todos os arquivos de estado (exceto arquivos `*.rej` não vazios) quando conclui um trabalho. Especifique esta opção (não é necessário argumento) para forçar o programa a reter todos os arquivos de estado.
 
 * `--lines-terminated-by=*``nome`*
 
 <table frame="box" rules="all" summary="Propriedades para ai-offset">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ai-offset=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
 </table>
 
 Isso funciona da mesma maneira que a opção `LINES TERMINATED BY` para a instrução `LOAD DATA`, especificando um caractere a ser interpretado como o final de linha.
@@ -329,12 +329,12 @@ Isso funciona da mesma maneira que a opção `LINES TERMINATED BY` para a instru
 * `--log-level=*`#*
 
 <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ai-prefetch-sz=#</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">1024</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-</table>0
+  <tr><th>Valor Padrão</th> <td><code>1024</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
+</table>
 
 Realiza o registro interno no nível especificado. Esta opção é destinada principalmente para uso interno e de desenvolvimento.
 
@@ -346,13 +346,13 @@ Leia o caminho dado a partir do arquivo de login.
 
 * `--no-caminhos-de-login`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Ignora a leitura de opções do arquivo de caminho de login.
 
 * `--max-linhas=*`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Importa apenas esse número de linhas de dados de entrada; o valor padrão é 0, o que importa todas as linhas.
 
@@ -361,7 +361,7 @@ Leia o caminho dado a partir do arquivo de login.
 <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--ai-prefetch-sz=#</code></td>
+    <td><code>--ai-prefetch-sz=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -369,18 +369,18 @@ Leia o caminho dado a partir do arquivo de login.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">1024</code></td>
+    <td><code>1024</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">1</code></td>
+    <td><code>1</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
   </tbody>
-</table>4
+</table>
 
   Esta opção pode ser usada ao importar uma única tabela ou múltiplas tabelas. Quando usada, indica que o arquivo CSV importado não contém nenhum valor para uma coluna `AUTO_INCREMENT` e que o **ndb_import** deve fornecê-los; se a opção for usada e a coluna `AUTO_INCREMENT` contiver algum valor, a operação de importação não pode prosseguir.
 
@@ -389,7 +389,7 @@ Leia o caminho dado a partir do arquivo de login.
   <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--ai-prefetch-sz=#</code></td>
+      <td><code>--ai-prefetch-sz=#</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -397,17 +397,17 @@ Leia o caminho dado a partir do arquivo de login.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">1024</code></td>
+      <td><code>1024</code></td>
     </tr>
     <tr>
       <th>Valor mínimo</th>
-      <td><code class="literal">1</code></td>
+      <td><code>1</code></td>
     </tr>
     <tr>
       <th>Valor máximo</th>
-      <td><code class="literal">4294967295</code></td>
+      <td><code>4294967295</code></td>
     </tr>
-  </table>5
+  </table>
 
   Imprimir periodicamente o status de um trabalho em execução se algo tiver mudado (status, linhas rejeitadas, erros temporários). Defina para 0 para desabilitar este relatório. Definir para 1 imprime qualquer mudança que for vista. Valores maiores reduzem a frequência deste relatório de status.
 
@@ -416,7 +416,7 @@ Leia o caminho dado a partir do arquivo de login.
 <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--ai-prefetch-sz=#</code></td>
+    <td><code>--ai-prefetch-sz=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -424,15 +424,15 @@ Leia o caminho dado a partir do arquivo de login.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">1024</code></td>
+    <td><code>1024</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">1</code></td>
+    <td><code>1</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
 </table>
 7
@@ -444,7 +444,7 @@ Leia o caminho dado a partir do arquivo de login.
   <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--ai-prefetch-sz=#</code></td>
+      <td><code>--ai-prefetch-sz=#</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -452,15 +452,15 @@ Leia o caminho dado a partir do arquivo de login.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">1024</code></td>
+      <td><code>1024</code></td>
     </tr>
     <tr>
       <th>Valor mínimo</th>
-      <td><code class="literal">1</code></td>
+      <td><code>1</code></td>
     </tr>
     <tr>
       <th>Valor máximo</th>
-      <td><code class="literal">4294967295</code></td>
+      <td><code>4294967295</code></td>
     </tr>
   </table>
 7
@@ -469,25 +469,25 @@ Leia o caminho dado a partir do arquivo de login.
 
 * `--ndb-mgm-host`
 
-<table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></table>8
+<table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></table>
 
 O mesmo que `--ndb-connectstring`.
 
 * `--ndb-nodeid`
 
-<table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></table>9
+<table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></table>
 
 Defina o ID do nó para este nó, substituindo qualquer ID definido por `--ndb-connectstring`.
 
 * `--ndb-optimized-node-selection`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></table>0
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></table>
 
 Ative otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
 * `--ndb-tls-search-path`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Especifique uma lista de diretórios para procurar um arquivo CA. Em plataformas Unix, os nomes dos diretórios são separados por colchetes (`:`); em sistemas Windows, o caractere ponto-e-vírgula (`;`) é usado como separador. Uma referência de diretório pode ser relativa ou absoluta; pode conter uma ou mais variáveis de ambiente, cada uma denotada por um sinal de dólar prefixado (`$`), e expandida antes de ser usada.
 
@@ -497,91 +497,91 @@ Ative otimizações para a seleção de nós para transações. Ativado por padr
 
 * `--no-asynch`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Execute operações de banco de dados em lotes, em transações únicas.
 
 * `--no-defaults`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></table>3
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></table>
 
   Não leia opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
 
 * `--no-hint`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></table>4
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></table>
 
   Não use a indicação de chave de distribuição para selecionar um nó de dados.
 
 * `--opbatch`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></table>5
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></table>
 
   Defina um limite para o número de operações (incluindo operações de blob) e, portanto, o número de transações assíncronas por lote de execução.
 
 * `--opbytes`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></table>6
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></table>
 
   Defina um limite para o número de bytes por lote de execução. Use 0 para sem limite.
 
 * `--output-type`=*`nome`*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></table>7
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></table>
 
   Defina o tipo de saída. `ndb` é o padrão. `null` é usado apenas para testes.
 
 * `--output-workers`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Defina o número de threads que processam a saída ou redirecionam operações de banco de dados.
 
 * `--pagesize`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Alinhe os buffers de entrada/saída ao tamanho especificado.
 
 * `--pagecnt`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Defina o tamanho dos buffers de entrada/saída como múltiplo do tamanho da página. O trabalhador de entrada de CSV aloca um buffer dobrado em tamanho.
 
 * `--polltimeout`=*`#`*
 
 <table frame="box" rules="all" summary="Propriedades para conexões">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-</table>1
+  <tr><th>Valor padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
+</table>
 
   Defina um tempo limite por consulta para transações assíncronas concluídas; a consulta continua até que todas as consultas sejam concluídas ou até que ocorra um erro.
 
 * `--print-defaults`
 
   <table frame="box" rules="all" summary="Propriedades para conexões">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-  </table>2
+    <tr><th>Valor padrão</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
+  </table>
 
   Imprima a lista de argumentos do programa e saia.
 
 * `--rejects=*`
 
   <table frame="box" rules="all" summary="Propriedades para conexões">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-  </table>3
+    <tr><th>Valor padrão</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
+  </table>
 
 Limite o número de linhas rejeitadas (linhas com erros permanentes) na carga de dados. O padrão é 0, o que significa que qualquer linha rejeitada causa um erro fatal. Quaisquer linhas que excedam o limite são adicionadas ao arquivo `.rej`.
 
@@ -589,121 +589,121 @@ O limite imposto por esta opção é eficaz durante a execução atual. Uma exec
 
 * `--resume`
 
-  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Se um trabalho for abortado (devido a um erro temporário no banco de dados ou quando interrompido pelo usuário), reinicie com quaisquer linhas ainda não processadas.
 
 * `--rowbatch`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Defina um limite para o número de linhas por fila de linhas. Use 0 para sem limite.
 
 * `--rowbytes`=*`#`*
 
 <table frame="box" rules="all" summary="Propriedades para conexões">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-</table>7
+  <tr><th>Valor padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
+</table>
 
   Defina um limite para o número de bytes por fila de conexão. Use 0 para sem limite.
 
 * `--stats`
 
   <table frame="box" rules="all" summary="Propriedades para conexões">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-  </table>7
+    <tr><th>Valor padrão</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
+  </table>
 
   Salve informações sobre opções relacionadas ao desempenho e outras estatísticas internas em arquivos com nomes `*.sto` e `*.stt`. Esses arquivos são sempre mantidos após a conclusão bem-sucedida (mesmo que `--keep-state` não seja especificado também).
 
 * `--state-dir=*``nome`*
 
 <table frame="box" rules="all" summary="Propriedades para conexões">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-</table>8
+  <tr><th>Valor padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
+</table>
 
 Onde escrever os arquivos de estado (`tbl_name.map`, `tbl_name.rej`, `tbl_name.res` e `tbl_name.stt`) produzidos por uma execução do programa; o padrão é o diretório atual.
 
 * `--table=nome`
 
 <table frame="box" rules="all" summary="Propriedades para conexões">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-</table>9
+  <tr><th>Valor padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
+</table>
 
 Por padrão, o **ndb\_import** tenta importar dados para uma tabela cujo nome é o nome base do arquivo CSV a partir do qual os dados estão sendo lidos. Você pode substituir a escolha do nome da tabela especificando-o com a opção `--table` (forma abreviada `-t`).
 
 * `--tempdelay=*`
 
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-</table>0
+  <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+</table>
 
 Número de milissegundos para dormir entre erros temporários.
 
 * `--temperrors`=*`#`*
 
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-  </table>1
+    <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+  </table>
 
 Número de vezes que uma transação pode falhar devido a um erro temporário, por lote de execução. O valor padrão é 0, o que significa que qualquer erro temporário é fatal. Erros temporários não fazem com que nenhuma linha seja adicionada ao arquivo `.rej`.
 
 * `--verbose`, `-v`
 
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-</table>2
+  <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+</table>
 
   Ative a saída detalhada.
 
 * `--usage`
 
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-  </table>3
+    <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+  </table>
 
   Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 * `--version`
 
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-  </table>4
+    <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+  </table>
 
   Exibir informações da versão e sair.
 

@@ -167,12 +167,12 @@ O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na
 
 - `--verbose`, `-v`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>0
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Modo verbose. Imprima mais informações sobre o que o programa faz. Esta opção pode ser usada várias vezes para aumentar a quantidade de informações.
 
 - `--version`, `-V`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>1
+  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Exibir informações da versão e sair.

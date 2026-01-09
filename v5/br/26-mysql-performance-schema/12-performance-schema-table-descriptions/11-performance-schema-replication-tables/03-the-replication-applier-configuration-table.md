@@ -16,4 +16,4 @@ A operação `TRUNCATE TABLE` não é permitida para a tabela `replication_appli
 
 A tabela a seguir mostra a correspondência entre as colunas de `replication_applier_configuration` e as colunas de `SHOW SLAVE STATUS`.
 
-<table summary="Correspondência entre as colunas replication_applier_configuration e as colunas SHOW SLAVE STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>[[<code class="literal">replication_applier_configuration</code>]] Coluna</th> <th>[[<code class="literal">SHOW SLAVE STATUS</code>]] Coluna</th> </tr></thead><tbody><tr> <td>[[<code class="literal">DESIRED_DELAY</code>]]</td> <td>[[<code class="literal">SQL_Delay</code>]]</td> </tr></tbody></table>
+<table summary="Correspondência entre as colunas replication_applier_configuration e as colunas SHOW SLAVE STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>[[<code>replication_applier_configuration</code>]] Coluna</th> <th>[[<code>SHOW SLAVE STATUS</code>]] Coluna</th> </tr></thead><tbody><tr> <td>[[<code>DESIRED_DELAY</code>]]</td> <td>[[<code>SQL_Delay</code>]]</td> </tr></tbody></table>

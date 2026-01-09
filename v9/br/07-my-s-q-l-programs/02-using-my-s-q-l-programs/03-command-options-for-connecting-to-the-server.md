@@ -18,19 +18,19 @@ Esta seção descreve opções que controlam como os programas clientes estabele
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação de plugin do lado do cliente"><tr><th>Formato de linha de comando</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para autenticação de plugin do lado do cliente"><tr><th>Formato de linha de comando</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. Veja a Seção 8.2.17, “Autenticação Personalizável”.
 
 * `--host=nome_do_host`, `-h nome_do_host`
 
-  <table frame="box" rules="all" summary="Propriedades para host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=nome_do_host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=nome_do_host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></table>
 
   O host em que o servidor MySQL está em execução. O valor pode ser um nome de host, endereço IPv4 ou endereço IPv6. O valor padrão é `localhost`.
 
 * `--password[=pass_val]`, `-p[pass_val]`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tr><th>Formato de linha de comando</th> <td><code class="literal">--password[=senha]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para senha"><tr><th>Formato de linha de comando</th> <td><code>--password[=senha]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhuma]</code></td> </tr></table>
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o programa cliente solicitará uma. Se fornecido, não deve haver *espaço* entre `--password=` ou `-p` e a senha que o segue. Se nenhuma opção de senha for especificada, o padrão é enviar nenhuma senha.
 
@@ -40,7 +40,7 @@ Para especificar explicitamente que não há senha e que o programa cliente não
 
 * `--password1[=pass_val]`
 
-  <table frame="box" rules="all" summary="Propriedades para password1"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--password1[=password]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para password1"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--password1[=password]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   A senha para o fator de autenticação multifator 1 da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o programa cliente solicitará uma. Se for fornecido, não deve haver *espaço* entre `--password1=` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar nenhuma senha.
 
@@ -52,37 +52,37 @@ Para especificar explicitamente que não há senha e que o programa cliente não
 
 * `--password2[=pass_val]`
 
-  <table frame="box" rules="all" summary="Propriedades para password2"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--password2[=password]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para password2"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--password2[=password]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 A senha para o fator de autenticação multifator 2 da conta MySQL usada para se conectar ao servidor. A semântica desta opção é semelhante à semântica da opção `--password1`; consulte a descrição dessa opção para obter detalhes.
 
 * `--password3[=pass_val]`
 
-  <table frame="box" rules="all" summary="Propriedades para password3"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--password3[=password]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para password3"><tbody><tr><th>Formato de linha de comando</th> <td><code>--password3[=password]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   A senha para o fator de autenticação multifator 3 da conta MySQL usada para se conectar ao servidor. A semântica desta opção é semelhante à semântica da opção `--password1`; consulte a descrição dessa opção para obter detalhes.
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Propriedades para pipe"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--pipe</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para pipe"><tbody><tr><th>Formato de linha de comando</th> <td><code>--pipe</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Em Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para plugin-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--plugin-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para plugin-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr></tbody></table>
 
 O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o programa cliente não o encontrar. Veja a Seção 8.2.17, “Autenticação Extensível”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para a porta"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--port=port_num</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">3306</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para a porta"><tr><th>Formato de Linha de Comando</th> <td><code>--port=port_num</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>3306</code></td> </tr></table>
 
   Para conexões TCP/IP, o número de porta a ser usado. O número de porta padrão é 3306.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para default-auth"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>0
+  <table frame="box" rules="all" summary="Propriedades para default-auth"><tr><th>Formato de Linha de Comando</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   Esta opção especifica explicitamente qual protocolo de transporte usar para se conectar ao servidor. É útil quando outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Por exemplo, conexões em Unix para `localhost` são feitas usando um arquivo de socket Unix por padrão:
 
@@ -98,13 +98,13 @@ O diretório onde procurar por plugins. Especifique esta opção se a opção `-
 
   A tabela a seguir mostra os valores permitidos da opção `--protocol` e indica as plataformas aplicáveis para cada valor. Os valores não são case-sensitive.
 
-<table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Veja também a Seção 6.2.7, “Protocolos de transporte de conexão”
 
 * `--shared-memory-base-name=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Em Windows, o nome da memória compartilhada a ser usado para conexões feitas usando memória compartilhada para um servidor local. O valor padrão é `MYSQL`. O nome da memória compartilhada é sensível a maiúsculas e minúsculas.
 
@@ -112,7 +112,7 @@ O diretório onde procurar por plugins. Especifique esta opção se a opção `-
 
 * `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Em Unix, o nome do arquivo de soquete Unix a ser usado para conexões feitas usando um tubo nomeado para um servidor local. O nome padrão do arquivo de soquete Unix é `/tmp/mysql.sock`.
 
@@ -122,7 +122,7 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tr><th>Formato de linha de comando</th><td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Tipo</th><td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tr><th>Formato de linha de comando</th><td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th><td>String</td> </tr></tbody></table>
 
   O nome de usuário da conta MySQL a ser usado para se conectar ao servidor. O nome de usuário padrão é `ODBC` em Windows ou o nome de login do Unix no Unix.
 
@@ -141,28 +141,28 @@ Para informações sobre o uso de conexões encriptadas a partir da API C do MyS
 <table frame="box" rules="all" summary="Propriedades para autenticação padrão">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--default-auth=plugin</code></td>
+    <td><code>--default-auth=plugin</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
     <td>String</td>
   </tr>
   </tbody>
-</table>5
+</table>
 
 * `--get-server-public-key`
 
   <table frame="box" rules="all" summary="Propriedades para autenticação padrão">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--default-auth=plugin</code></td>
+      <td><code>--default-auth=plugin</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
       <td>String</td>
     </tr>
   </tbody>
-</table>6
+</table>
 
   Solicitar ao servidor a chave pública necessária para a troca de senhas com base em pares de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `caching_sha2_password`. Para esse plugin, o servidor não envia a chave pública a menos que seja solicitado. Esta opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de senhas com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -175,14 +175,14 @@ Para informações sobre o uso de conexões encriptadas a partir da API C do MyS
   <table frame="box" rules="all" summary="Propriedades para autenticação padrão">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--default-auth=plugin</code></td>
+      <td><code>--default-auth=plugin</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
       <td>String</td>
     </tr>
   </tbody>
-</table>7
+</table>
 
 O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas baseada em pares de chaves RSA. Esta opção aplica-se a clientes que autenticam-se com o plugin de autenticação `sha256_password` (desatualizado) ou `caching_sha2_password`. Esta opção é ignorada para contas que não autenticam-se com um desses plugins. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -194,7 +194,7 @@ Para informações sobre os plugins `sha256_password` (desatualizado) e `caching
 
 * `--ssl-ca=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tr><th>Formato de Linha de Comando</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O nome do caminho do arquivo do certificado da Autoridade de Certificação (CA) no formato PEM. O arquivo contém uma lista de Autoridades de Certificação SSL confiáveis.
 
@@ -204,7 +204,7 @@ Para especificar o arquivo CA do servidor, defina a variável de sistema `ssl_ca
 
 * `--ssl-capath=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para auth-padrão"><tr><th>Formato de linha de comando</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para auth-padrão"><tr><th>Formato de linha de comando</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O nome do caminho do diretório que contém os arquivos de autoridade de certificação SSL (CA) de certificado confiáveis no formato PEM.
 
@@ -214,7 +214,7 @@ Para especificar o arquivo CA do servidor, defina a variável de sistema `ssl_ca
 
 * `--ssl-cert=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para host"><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para host"><tr><th>Formato de linha de comando</th> <td><code>--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   O nome do caminho do arquivo de certificado público da chave SSL do cliente no formato PEM. Certificados SSL em cadeia são suportados.
 
@@ -222,7 +222,7 @@ Para especificar o arquivo CA do servidor, defina a variável de sistema `ssl_ca
 
 * `--ssl-cipher=cipher_list`
 
-<table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   A lista de criptocódigos permitidos para conexões que utilizam TLSv1.2. Se nenhum criptocódigo na lista for suportado, as conexões criptografadas que utilizam esses protocolos TLS não funcionarão.
 
@@ -241,7 +241,7 @@ Para especificar o arquivo CA do servidor, defina a variável de sistema `ssl_ca
 
 * `--ssl-crl=nome_arquivo_file`
 
-  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   O nome do caminho do arquivo que contém listas de revogação de certificados no formato PEM.
 
@@ -251,7 +251,7 @@ Para especificar o arquivo CA do servidor, defina a variável de sistema `ssl_ca
 
 * `--ssl-crlpath=caminho_dir`
 
-<table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   O nome do caminho do diretório que contém arquivos da lista de revogação de certificados no formato PEM.
 
@@ -261,7 +261,7 @@ Para especificar o arquivo CA do servidor, defina a variável de sistema `ssl_ca
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   Controla se o modo FIPS deve ser habilitado no lado do cliente. A opção `--ssl-fips-mode` difere de outras opções `--ssl-xxx` porque não é usada para estabelecer conexões criptografadas, mas sim para afetar quais operações criptográficas devem ser permitidas. Consulte a Seção 8.8, “Suporte FIPS”.
 
@@ -279,7 +279,7 @@ Para especificar o modo FIPS para o servidor, defina a variável de sistema `ssl
 
 * `--ssl-key=nome_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=nome_do_host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=nome_do_host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   O nome do caminho do arquivo de chave privada SSL do cliente no formato PEM. Para maior segurança, use um certificado com um tamanho de chave RSA de pelo menos 2048 bits.
 
@@ -289,7 +289,7 @@ Para especificar o modo FIPS para o servidor, defina a variável de sistema `ssl
 
 * `--ssl-mode=modo`
 
-  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=nome_do_host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=nome_do_host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   Esta opção especifica o estado de segurança desejado da conexão com o servidor. Esses valores de modo são permitidos, em ordem crescente de rigor:
 
@@ -333,7 +333,7 @@ A cláusula `REQUIRE` permite outras opções relacionadas à criptografia, que 
 
 * `--ssl-session-data=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   O nome do caminho do arquivo de dados de sessão SSL do cliente em formato PEM para reutilização de sessão.
 
@@ -343,7 +343,7 @@ O comando **mysql**, `ssl_session_data_print`, gera o arquivo de dados da sessã
 
 * `ssl-session-data-continue-on-failed-reuse`
 
-<table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   Controla se uma nova conexão é iniciada para substituir uma conexão tentada que tentou, mas não conseguiu, reutilizar os dados de sessão especificados com a opção de linha de comando `--ssl-session-data`. Por padrão, a opção de linha de comando `--ssl-session-data-continue-on-failed-reuse` está desativada, o que faz com que um programa cliente retorne um erro de conexão quando os dados de sessão são fornecidos e não reutilizados.
 
@@ -351,7 +351,7 @@ O comando **mysql**, `ssl_session_data_print`, gera o arquivo de dados da sessã
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-<table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Propriedades para o host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   Esta opção especifica quais ciphersuites o cliente permite para conexões criptografadas que usam TLSv1.3. O valor é uma lista de zero ou mais nomes de ciphersuites separados por vírgula. Por exemplo:
 
@@ -368,11 +368,11 @@ Para especificar quais suítes de cifra o servidor permite, defina a variável d
   <table frame="box" rules="all" summary="Propriedades para senha">
     
     <tbody>
-      <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--password[=senha]</code></td> </tr>
+      <tr><th>Formato de Linha de Comando</th> <td><code>--password[=senha]</code></td> </tr>
       <tr><th>Tipo</th> <td>String</td> </tr>
-      <tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr>
+      <tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr>
     </tbody>
-  </table>0
+  </table>
 
   Essa opção especifica os protocolos TLS que o cliente permite para conexões criptografadas. O valor é uma lista de uma ou mais versões de protocolo separadas por vírgula. Por exemplo:
 
@@ -405,11 +405,11 @@ Esta seção descreve opções que permitem que os programas cliente controlem o
 
 **Tabela 6.6 Resumo das Opções de Compressão de Conexão**
 
-<table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--password[=senha]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--password[=senha]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
 * `--compress`, `-C`
 
-<table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--password[=senha]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--password[=senha]</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
 Compressar todas as informações enviadas entre o cliente e o servidor, se possível.
 
@@ -420,11 +420,11 @@ Esta opção está desatualizada. Espera-se que seja removida em uma versão fut
   <table frame="box" rules="all" summary="Propriedades para senha">
     
     <tbody>
-      <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--password[=senha]</code></td> </tr>
+      <tr><th>Formato de Linha de Comando</th> <td><code>--password[=senha]</code></td> </tr>
       <tr><th>Tipo</th> <td>String</td> </tr>
-      <tr><th>Valor Padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr>
+      <tr><th>Valor Padrão</th> <td><code>[nenhuma]</code></td> </tr>
     </tbody>
-  </table>3
+  </table>
 
   Os algoritmos de compressão permitidos para conexões com o servidor. Os algoritmos disponíveis são os mesmos que a variável de sistema `protocol_compression_algorithms`. O valor padrão é `não comprimido`.
 
@@ -433,10 +433,10 @@ Esta opção está desatualizada. Espera-se que seja removida em uma versão fut
   <table frame="box" rules="all" summary="Propriedades para senha">
     
     <tbody>
-      <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--password[=senha]</code></td> </tr>
+      <tr><th>Formato de Linha de Comando</th> <td><code>--password[=senha]</code></td> </tr>
       <tr><th>Tipo</th> <td>String</td> </tr>
-      <tr><th>Valor Padrão</th> <td><code class="literal">[nenhuma]</code></td> </tr>
+      <tr><th>Valor Padrão</th> <td><code>[nenhuma]</code></td> </tr>
     </tbody>
-  </table>4
+  </table>
 
   O nível de compressão a ser usado para conexões com o servidor que utilizam o algoritmo de compressão `zstd`. Os níveis permitidos variam de 1 a 22, com níveis maiores indicando níveis crescentes de compressão. O nível de compressão padrão `zstd` é 3. O ajuste do nível de compressão não tem efeito em conexões que não utilizam compressão `zstd`.

@@ -185,7 +185,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--allow-mismatches`, `-a`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   O número máximo de desalinhamentos de verificação de checksums permitidos antes de o **innochecksum** terminar. O valor padrão é 0. Se `--allow-mismatches=`*`N`*, onde `N>=0`, *`N`* desalinhamentos são permitidos e o **innochecksum** termina em `N+1`. Quando `--allow-mismatches` é definido como 0, o **innochecksum** termina no primeiro desalinhamento de verificação de checksums.
 
@@ -199,7 +199,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--write=nome`, `-w num`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   Reescreva um checksum. Ao reescrever um checksum inválido, a opção `--no-check` deve ser usada juntamente com a opção `--write`. A opção `--no-check` informa ao **innochecksum** para ignorar a verificação do checksum inválido. Você não precisa especificar a opção `--no-check` se o checksum atual for válido.
 
@@ -229,7 +229,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--page-type-summary`, `-S`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   Exiba um contagem de cada tipo de página em um tablespace. Exemplo de uso:
 
@@ -265,7 +265,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--page-type-dump`, `-D`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   Descarte as informações do tipo de página para cada página em um tablespace para `stderr` ou `stdout`. Exemplo de uso:
 
@@ -275,7 +275,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--log`, `-l`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   Saída de log da ferramenta **innochecksum**. Um nome de arquivo de log deve ser fornecido. A saída de log contém valores de verificação de integridade para cada página do espaço de tabelas. Para tabelas não compactadas, os valores LSN também são fornecidos. A opção `--log` substitui a opção `--debug`, que estava disponível em versões anteriores. Exemplo de uso:
 

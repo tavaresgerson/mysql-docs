@@ -50,7 +50,7 @@ No Windows, os programas do MySQL leem as opções de inicialização dos arquiv
       </tr>
       <tr>
          <td>[[<code>defaults-extra-file</code>]]</td>
-         <td>O arquivo especificado com [[<code class="option">--defaults-extra-file</code>]], se houver</td>
+         <td>O arquivo especificado com [[<code>--defaults-extra-file</code>]], se houver</td>
       </tr>
       <tr>
          <td>[[<code><code>%APPDATA%</code>]]\MySQL\.mylogin.cnf</code></td>
@@ -111,7 +111,7 @@ Em plataformas Unix, o MySQL ignora arquivos de configuração que são acessív
       </tr>
       <tr>
          <td>[[<code>defaults-extra-file</code>]]</td>
-         <td>O arquivo especificado com [[<code class="option">--defaults-extra-file</code>]], se houver</td>
+         <td>O arquivo especificado com [[<code>--defaults-extra-file</code>]], se houver</td>
       </tr>
       <tr>
          <td>[[<code>~/.my.cnf</code>]]</td>

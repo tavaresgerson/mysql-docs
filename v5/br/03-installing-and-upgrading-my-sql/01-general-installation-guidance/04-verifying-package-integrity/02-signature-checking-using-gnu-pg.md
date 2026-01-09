@@ -100,7 +100,7 @@ Depois de baixar e importar a chave de compilação pública, baixe o pacote MyS
 
 **Tabela 2.1 Arquivos de pacote e assinatura do MySQL para arquivos de origem**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Tipo de arquivo</th> <th>Nome do arquivo</th> </tr></thead><tbody><tr> <td>Arquivo de distribuição</td> <td>[[<code>mysql-standard-5.7.44-linux-i686.tar.gz</code>]]</td> </tr><tr> <td>Arquivo de assinatura</td> <td>[[<code>mysql-standard-5.7.44-linux-i686.tar.gz.asc</code>]]</td> </tr></tbody></table>
+<table><thead><tr> <th>Tipo de arquivo</th> <th>Nome do arquivo</th> </tr></thead><tbody><tr> <td>Arquivo de distribuição</td> <td>[[<code>mysql-standard-5.7.44-linux-i686.tar.gz</code>]]</td> </tr><tr> <td>Arquivo de assinatura</td> <td>[[<code>mysql-standard-5.7.44-linux-i686.tar.gz.asc</code>]]</td> </tr></tbody></table>
 
 Certifique-se de que ambos os arquivos estejam armazenados no mesmo diretório e, em seguida, execute o seguinte comando para verificar a assinatura do arquivo de distribuição:
 

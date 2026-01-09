@@ -2,7 +2,7 @@
 
 The following table shows the available servers for Windows in MySQL 5.7.
 
-<table summary="Servers available for Windows in MySQL 5.7."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Binary</th> <th>Description</th> </tr></thead><tbody><tr> <td><a class="link" href="mysqld.html" title="4.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a></td> <td>Optimized binary with named-pipe support</td> </tr><tr> <td><a class="link" href="mysqld.html" title="4.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld-debug</strong></span></a></td> <td>Like <a class="link" href="mysqld.html" title="4.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a>, but compiled with full debugging and automatic memory allocation checking</td> </tr></tbody></table>
+<table summary="Servers available for Windows in MySQL 5.7."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Binary</th> <th>Description</th> </tr></thead><tbody><tr> <td><a class="link" href="mysqld.html" title="4.3.1 mysqld — The MySQL Server"><span><strong>mysqld</strong></span></a></td> <td>Optimized binary with named-pipe support</td> </tr><tr> <td><a class="link" href="mysqld.html" title="4.3.1 mysqld — The MySQL Server"><span><strong>mysqld-debug</strong></span></a></td> <td>Like <a class="link" href="mysqld.html" title="4.3.1 mysqld — The MySQL Server"><span><strong>mysqld</strong></span></a>, but compiled with full debugging and automatic memory allocation checking</td> </tr></tbody></table>
 
 All of the preceding binaries are optimized for modern Intel processors, but should work on any Intel i386-class or higher processor.
 

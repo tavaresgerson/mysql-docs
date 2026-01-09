@@ -185,7 +185,7 @@ innochecksum [options] file_name
 
 * `--allow-mismatches`, `-a`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
 
   The maximum number of checksum mismatches allowed before **innochecksum** terminates. The default setting is 0. If `--allow-mismatches=`*`N`*, where `N>=0`, *`N`* mismatches are permitted and **innochecksum** terminates at `N+1`. When `--allow-mismatches` is set to 0, **innochecksum** terminates on the first checksum mismatch.
 
@@ -199,7 +199,7 @@ innochecksum [options] file_name
 
 * `--write=name`, `-w num`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
 
   Rewrite a checksum. When rewriting an invalid checksum, the `--no-check` option must be used together with the `--write` option. The `--no-check` option tells **innochecksum** to ignore verification of the invalid checksum. You do not have to specify the `--no-check` option if the current checksum is valid.
 
@@ -229,7 +229,7 @@ innochecksum [options] file_name
 
 * `--page-type-summary`, `-S`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
 
   Display a count of each page type in a tablespace. Example usage:
 
@@ -265,7 +265,7 @@ innochecksum [options] file_name
 
 * `--page-type-dump`, `-D`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
 
   Dump the page type information for each page in a tablespace to `stderr` or `stdout`. Example usage:
 
@@ -275,7 +275,7 @@ innochecksum [options] file_name
 
 * `--log`, `-l`
 
-  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for info"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
 
   Log output for the **innochecksum** tool. A log file name must be provided. Log output contains checksum values for each tablespace page. For uncompressed tables, LSN values are also provided. Example usage:
 

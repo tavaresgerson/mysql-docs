@@ -11,7 +11,7 @@ This section describes options that control how client programs establish connec
 
 **Table 4.4 Connection-Establishment Option Summary**
 
-<table frame="box" rules="all" summary="Command-line options available for establishing connections to the server."><col style="width: 31%"/><col style="width: 56%"/><col style="width: 12%"/><thead><tr><th scope="col">Option Name</th> <th scope="col">Description</th> <th scope="col">Deprecated</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="connection-options.html#option_general_default-auth">--default-auth</a></th> <td>Authentication plugin to use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_host">--host</a></th> <td>Host on which MySQL server is located</td> <td></td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_password">--password</a></th> <td>Password to use when connecting to server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_pipe">--pipe</a></th> <td>Connect to server using named pipe (Windows only)</td> <td></td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_plugin-dir">--plugin-dir</a></th> <td>Directory where plugins are installed</td> <td></td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_port">--port</a></th> <td>TCP/IP port number for connection</td> <td></td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_protocol">--protocol</a></th> <td>Transport protocol to use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_secure-auth">--secure-auth</a></th> <td>Do not send passwords to server in old (pre-4.1) format</td> <td>Yes</td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_socket">--socket</a></th> <td>Unix socket file or Windows named pipe to use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="connection-options.html#option_general_user">--user</a></th> <td>MySQL user name to use when connecting to server</td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for establishing connections to the server."><col style="width: 31%"/><col style="width: 56%"/><col style="width: 12%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><a class="link" href="connection-options.html#option_general_default-auth">--default-auth</a></th> <td>Authentication plugin to use</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_host">--host</a></th> <td>Host on which MySQL server is located</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_password">--password</a></th> <td>Password to use when connecting to server</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_pipe">--pipe</a></th> <td>Connect to server using named pipe (Windows only)</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_plugin-dir">--plugin-dir</a></th> <td>Directory where plugins are installed</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_port">--port</a></th> <td>TCP/IP port number for connection</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_protocol">--protocol</a></th> <td>Transport protocol to use</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_secure-auth">--secure-auth</a></th> <td>Do not send passwords to server in old (pre-4.1) format</td> <td>Yes</td> </tr><tr><th><a class="link" href="connection-options.html#option_general_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_socket">--socket</a></th> <td>Unix socket file or Windows named pipe to use</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_user">--user</a></th> <td>MySQL user name to use when connecting to server</td> <td></td> </tr></tbody></table>
 
 * `--default-auth=plugin`
 
@@ -71,7 +71,7 @@ This section describes options that control how client programs establish connec
 
   The following table shows the permissible `--protocol` option values and indicates the applicable platforms for each value. The values are not case-sensitive.
 
-  <table summary="Permissible transport protocol values, the resulting transport protocol used, and the applicable platforms for each value."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th scope="col"><a class="link" href="connection-options.html#option_general_protocol"><code class="option">--protocol</code></a> Value</th> <th scope="col">Transport Protocol Used</th> <th scope="col">Applicable Platforms</th> </tr></thead><tbody><tr> <th scope="row"><code>TCP</code></th> <td>TCP/IP transport to local or remote server</td> <td>All</td> </tr><tr> <th scope="row"><code>SOCKET</code></th> <td>Unix socket-file transport to local server</td> <td>Unix and Unix-like systems</td> </tr><tr> <th scope="row"><code>PIPE</code></th> <td>Named-pipe transport to local server</td> <td>Windows</td> </tr><tr> <th scope="row"><code>MEMORY</code></th> <td>Shared-memory transport to local server</td> <td>Windows</td> </tr></tbody></table>
+  <table summary="Permissible transport protocol values, the resulting transport protocol used, and the applicable platforms for each value."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th><a class="link" href="connection-options.html#option_general_protocol"><code>--protocol</code></a> Value</th> <th>Transport Protocol Used</th> <th>Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP transport to local or remote server</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket-file transport to local server</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named-pipe transport to local server</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared-memory transport to local server</td> <td>Windows</td> </tr></tbody></table>
 
   See also Section 4.2.5, “Connection Transport Protocols”
 
@@ -89,7 +89,7 @@ This section describes options that control how client programs establish connec
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -97,7 +97,7 @@ This section describes options that control how client programs establish connec
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   On Unix, the name of the Unix socket file to use for connections made using a named pipe to a local server. The default Unix socket file name is `/tmp/mysql.sock`.
 
@@ -107,7 +107,7 @@ This section describes options that control how client programs establish connec
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The user name of the MySQL account to use for connecting to the server. The default user name is `ODBC` on Windows or your Unix login name on Unix.
 
@@ -123,11 +123,11 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 **Table 4.5 Connection-Encryption Option Summary**
 
-<table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -139,7 +139,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -149,9 +149,9 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl`, `--skip-ssl`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Note
 
@@ -181,7 +181,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-ca=file_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The path name of the Certificate Authority (CA) certificate file in PEM format. The file contains a list of trusted SSL Certificate Authorities.
 
@@ -191,7 +191,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-capath=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for default-auth"><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The path name of the directory that contains trusted SSL certificate authority (CA) certificate files in PEM format. Support for this capability depends on the SSL library used to compile MySQL; see Section 6.3.4, “SSL Library-Dependent Capabilities”.
 
@@ -201,7 +201,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-cert=file_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   The path name of the client SSL public key certificate file in PEM format.
 
@@ -209,7 +209,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-cipher=cipher_list`
 
-  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   The list of permissible ciphers for connection encryption. If no cipher in the list is supported, encrypted connections do not work.
 
@@ -228,7 +228,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-crl=file_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   The path name of the file containing certificate revocation lists in PEM format. Support for revocation-list capability depends on the SSL library used to compile MySQL. See Section 6.3.4, “SSL Library-Dependent Capabilities”.
 
@@ -238,7 +238,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-crlpath=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   The path name of the directory that contains certificate revocation-list files in PEM format. Support for revocation-list capability depends on the SSL library used to compile MySQL. See Section 6.3.4, “SSL Library-Dependent Capabilities”.
 
@@ -248,7 +248,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-key=file_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   The path name of the client SSL private key file in PEM format. For better security, use a certificate with an RSA key size of at least 2048 bits.
 
@@ -258,7 +258,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-mode=mode`
 
-  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   This option specifies the desired security state of the connection to the server. These mode values are permissible, in order of increasing strictness:
 
@@ -304,7 +304,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-verify-server-cert`
 
-  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   Note
 
@@ -326,7 +326,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   This option specifies the TLS protocols the client permits for encrypted connections. The value is a list of one or more comma-separated protocol versions. For example:
 

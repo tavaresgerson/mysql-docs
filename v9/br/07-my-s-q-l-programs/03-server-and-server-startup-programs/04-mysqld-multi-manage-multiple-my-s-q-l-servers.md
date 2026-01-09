@@ -40,14 +40,14 @@ O **mysqld\_multi** busca arquivos de opção da seguinte forma:
 
 * Com `--no-defaults`, nenhum arquivo de opção é lido.
 
-<table frame="box" rules="all" summary="Propriedades para não-padrão"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--no-defaults</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para não-padrão"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--no-defaults</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
 * Com `--defaults-file=nome_do_arquivo`, apenas o arquivo nomeado é lido.
 
 <table frame="box" rules="all" summary="Propriedades para defaults-file">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--defaults-file=nome_do_arquivo</code></td>
+    <td><code>--defaults-file=nome_do_arquivo</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -55,7 +55,7 @@ O **mysqld\_multi** busca arquivos de opção da seguinte forma:
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">[nenhum]</code></td>
+    <td><code>[nenhum]</code></td>
   </tr>
   </tbody>
 </table>
@@ -65,7 +65,7 @@ O **mysqld\_multi** busca arquivos de opção da seguinte forma:
   <table frame="box" rules="all" summary="Propriedades para defaults-extra-file">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--defaults-extra-file=nome_do_arquivo</code></td>
+      <td><code>--defaults-extra-file=nome_do_arquivo</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -73,7 +73,7 @@ O **mysqld\_multi** busca arquivos de opção da seguinte forma:
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">[nenhum]</code></td>
+      <td><code>[nenhum]</code></td>
     </tr>
   </tbody>
 </table>
@@ -89,23 +89,23 @@ O **mysqld\_multi** suporta as seguintes opções.
 * `--help`
 
 <table frame="box" rules="all" summary="Propriedades de ajuda">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>false</code></td> </tr>
   <tr><th></th></tr>
-  <tr><th>Exemplo</th> <td><code class="literal">--example</code></td> </tr>
+  <tr><th>Exemplo</th> <td><code>--example</code></td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>false</code></td> </tr>
   <tr><th></th></tr>
-  <tr><th>Log</th> <td><code class="literal">--log=nome_do_arquivo</code></td> </tr>
+  <tr><th>Log</th> <td><code>--log=nome_do_arquivo</code></td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">/var/log/mysqld_multi.log</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>/var/log/mysqld_multi.log</code></td> </tr>
   <tr><th></th></tr>
-  <tr><th>mysqladmin</th> <td><code class="literal">--mysqladmin=nome_do_programa</code></td> </tr>
+  <tr><th>mysqladmin</th> <td><code>--mysqladmin=nome_do_programa</code></td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr>
   <tr><th></th></tr>
-  <tr><th>mysqld</th> <td><code class="literal">--mysqld=nome_do_programa</code></td> </tr>
+  <tr><th>mysqld</th> <td><code>--mysqld=nome_do_programa</code></td> </tr>
 </table>
 
 Exibir uma mensagem de ajuda e sair.
@@ -113,23 +113,23 @@ Exibir uma mensagem de ajuda e sair.
 * `--example`
 
 <table frame="box" rules="all" summary="Propriedades de exemplo">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--example</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--example</code></td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>false</code></td> </tr>
   <tr><th></th></tr>
-  <tr><th>Exemplo</th> <td><code class="literal">--example</code></td> </tr>
+  <tr><th>Exemplo</th> <td><code>--example</code></td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>false</code></td> </tr>
   <tr><th></th></tr>
-  <tr><th>Log</th> <td><code class="literal">--log=caminho</code></td> </tr>
+  <tr><th>Log</th> <td><code>--log=caminho</code></td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">/var/log/mysqld_multi.log</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>/var/log/mysqld_multi.log</code></td> </tr>
   <tr><th></th></tr>
-  <tr><th>mysqladmin</th> <td><code class="literal">--mysqladmin=arquivo</code></td> </tr>
+  <tr><th>mysqladmin</th> <td><code>--mysqladmin=arquivo</code></td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr>
   <tr><th></th></tr>
-  <tr><th>mysqld</th> <td><code class="literal">--mysqld=arquivo</code></td> </tr>
+  <tr><th>mysqld</th> <td><code>--mysqld=arquivo</code></td> </tr>
 </table>
 
 Especificar o nome do arquivo de log. Se o arquivo existir, a saída do log é anexada a ele.
@@ -137,9 +137,9 @@ Especificar o nome do arquivo de log. Se o arquivo existir, a saída do log é a
 * `--mysqladmin=nome_do_programa`
 
 <table frame="box" rules="all" summary="Propriedades de mysqladmin">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--mysqladmin=arquivo</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--mysqladmin=arquivo</code></td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr>
   <tr><th></th></tr>
 </table>
 
@@ -150,7 +150,7 @@ O **binário mysqladmin** a ser usado para parar os servidores.
 <table frame="box" rules="all" summary="Propriedades para mysqld">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--mysqld=arquivo</code></td>
+    <td><code>--mysqld=arquivo</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -158,7 +158,7 @@ O **binário mysqladmin** a ser usado para parar os servidores.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">[nenhum]</code></td>
+    <td><code>[nenhum]</code></td>
   </tr>
   </tbody>
 </table>
@@ -176,7 +176,7 @@ O **binário mysqladmin** a ser usado para parar os servidores.
   <table frame="box" rules="all" summary="Propriedades para no-log">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--no-log</code></td>
+      <td><code>--no-log</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -184,7 +184,7 @@ O **binário mysqladmin** a ser usado para parar os servidores.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">false</code></td>
+      <td><code>false</code></td>
     </tr>
   </tbody>
 </table>
@@ -196,7 +196,7 @@ O **binário mysqladmin** a ser usado para parar os servidores.
   <table frame="box" rules="all" summary="Propriedades para senha">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--password=string</code></td>
+      <td><code>--password=string</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -204,7 +204,7 @@ O **binário mysqladmin** a ser usado para parar os servidores.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">[nenhum]</code></td>
+      <td><code>[nenhum]</code></td>
     </tr>
   </tbody>
 </table>
@@ -213,29 +213,29 @@ A senha da conta MySQL a ser usada ao invocar o **mysqladmin**. Note que o valor
 
 * `--silent`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Modo silencioso; desative as mensagens de aviso.
 
 * `--tcp-ip`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Conecte-se a cada servidor MySQL através da porta TCP/IP em vez do arquivo de socket Unix. (Se um arquivo de socket estiver ausente, o servidor ainda pode estar em execução, mas acessível apenas através da porta TCP/IP.) Por padrão, as conexões são feitas usando o arquivo de socket Unix. Esta opção afeta as operações `stop` e `report`.
 
 * `--user=user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   O nome de usuário da conta MySQL a ser usado ao invocar o **mysqladmin**.
 
-<table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Seja mais detalhado.
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Exibir informações da versão e sair.
 

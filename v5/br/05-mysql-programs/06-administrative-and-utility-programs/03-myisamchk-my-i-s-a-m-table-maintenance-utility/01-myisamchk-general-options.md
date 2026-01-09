@@ -78,19 +78,19 @@ As opções descritas nesta seção podem ser usadas para qualquer tipo de opera
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para AJUDA"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para AJUDA"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>
 
   Exibir informações da versão e sair.
 
 - `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Propriedades para AJUDA"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para AJUDA"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>
 
   Em vez de encerrar com um erro se a tabela estiver bloqueada, espere até que a tabela seja desbloqueada antes de continuar. Se você estiver executando o **mysqld** com o bloqueio externo desativado, a tabela só pode ser bloqueada por outro comando **myisamchk**.
 
 Você também pode definir as seguintes variáveis usando a sintaxe `--var_name=value`:
 
-<table frame="box" rules="all" summary="Propriedades para AJUDA"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para AJUDA"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--HELP</code>]]</td> </tr></tbody></table>
 
 As possíveis variáveis **myisamchk** e seus valores padrão podem ser examinadas com **myisamchk --help**:
 

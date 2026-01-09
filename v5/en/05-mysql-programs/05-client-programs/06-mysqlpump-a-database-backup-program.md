@@ -87,7 +87,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 **Table 4.18 mysqlpump Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqlpump."><col style="width: 31%"/><col style="width: 56%"/><col style="width: 12%"/><thead><tr><th scope="col">Option Name</th> <th scope="col">Description</th> <th scope="col">Introduced</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_add-drop-database">--add-drop-database</a></th> <td>Add DROP DATABASE statement before each CREATE DATABASE statement</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_add-drop-table">--add-drop-table</a></th> <td>Add DROP TABLE statement before each CREATE TABLE statement</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_add-drop-user">--add-drop-user</a></th> <td>Add DROP USER statement before each CREATE USER statement</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_add-locks">--add-locks</a></th> <td>Surround each table dump with LOCK TABLES and UNLOCK TABLES statements</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_all-databases">--all-databases</a></th> <td>Dump all databases</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_bind-address">--bind-address</a></th> <td>Use specified network interface to connect to MySQL Server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_character-sets-dir">--character-sets-dir</a></th> <td>Directory where character sets are installed</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_complete-insert">--complete-insert</a></th> <td>Use complete INSERT statements that include column names</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_compress">--compress</a></th> <td>Compress all information sent between client and server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_compress-output">--compress-output</a></th> <td>Output compression algorithm</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_databases">--databases</a></th> <td>Interpret all name arguments as database names</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_debug">--debug</a></th> <td>Write debugging log</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_debug-check">--debug-check</a></th> <td>Print debugging information when program exits</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_debug-info">--debug-info</a></th> <td>Print debugging information, memory, and CPU statistics when program exits</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_default-auth">--default-auth</a></th> <td>Authentication plugin to use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_default-character-set">--default-character-set</a></th> <td>Specify default character set</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_default-parallelism">--default-parallelism</a></th> <td>Default number of threads for parallel processing</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_defaults-extra-file">--defaults-extra-file</a></th> <td>Read named option file in addition to usual option files</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_defaults-file">--defaults-file</a></th> <td>Read only named option file</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Option group suffix value</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_defer-table-indexes">--defer-table-indexes</a></th> <td>For reloading, defer index creation until after loading table rows</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_events">--events</a></th> <td>Dump events from dumped databases</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-databases">--exclude-databases</a></th> <td>Databases to exclude from dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-events">--exclude-events</a></th> <td>Events to exclude from dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-routines">--exclude-routines</a></th> <td>Routines to exclude from dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-tables">--exclude-tables</a></th> <td>Tables to exclude from dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-triggers">--exclude-triggers</a></th> <td>Triggers to exclude from dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-users">--exclude-users</a></th> <td>Users to exclude from dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_extended-insert">--extended-insert</a></th> <td>Use multiple-row INSERT syntax</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_get-server-public-key">--get-server-public-key</a></th> <td>Request RSA public key from server</td> <td>5.7.23</td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_help">--help</a></th> <td>Display help message and exit</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_hex-blob">--hex-blob</a></th> <td>Dump binary columns using hexadecimal notation</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_host">--host</a></th> <td>Host on which MySQL server is located</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_include-databases">--include-databases</a></th> <td>Databases to include in dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_include-events">--include-events</a></th> <td>Events to include in dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_include-routines">--include-routines</a></th> <td>Routines to include in dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_include-tables">--include-tables</a></th> <td>Tables to include in dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_include-triggers">--include-triggers</a></th> <td>Triggers to include in dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_include-users">--include-users</a></th> <td>Users to include in dump</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_insert-ignore">--insert-ignore</a></th> <td>Write INSERT IGNORE rather than INSERT statements</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_log-error-file">--log-error-file</a></th> <td>Append warnings and errors to named file</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_login-path">--login-path</a></th> <td>Read login path options from .mylogin.cnf</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_max-allowed-packet">--max-allowed-packet</a></th> <td>Maximum packet length to send to or receive from server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_net-buffer-length">--net-buffer-length</a></th> <td>Buffer size for TCP/IP and socket communication</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_no-create-db">--no-create-db</a></th> <td>Do not write CREATE DATABASE statements</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_no-create-info">--no-create-info</a></th> <td>Do not write CREATE TABLE statements that re-create each dumped table</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_no-defaults">--no-defaults</a></th> <td>Read no option files</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_parallel-schemas">--parallel-schemas</a></th> <td>Specify schema-processing parallelism</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_password">--password</a></th> <td>Password to use when connecting to server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_plugin-dir">--plugin-dir</a></th> <td>Directory where plugins are installed</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_port">--port</a></th> <td>TCP/IP port number for connection</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_print-defaults">--print-defaults</a></th> <td>Print default options</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_protocol">--protocol</a></th> <td>Transport protocol to use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_replace">--replace</a></th> <td>Write REPLACE statements rather than INSERT statements</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_result-file">--result-file</a></th> <td>Direct output to a given file</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_routines">--routines</a></th> <td>Dump stored routines (procedures and functions) from dumped databases</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_secure-auth">--secure-auth</a></th> <td>Do not send passwords to server in old (pre-4.1) format</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_server-public-key-path">--server-public-key-path</a></th> <td>Path name to file containing RSA public key</td> <td>5.7.23</td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_set-charset">--set-charset</a></th> <td>Add SET NAMES default_character_set to output</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_set-gtid-purged">--set-gtid-purged</a></th> <td>Whether to add SET @@GLOBAL.GTID_PURGED to output</td> <td>5.7.18</td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_single-transaction">--single-transaction</a></th> <td>Dump tables within single transaction</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_skip-definer">--skip-definer</a></th> <td>Omit DEFINER and SQL SECURITY clauses from view and stored program CREATE statements</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_skip-dump-rows">--skip-dump-rows</a></th> <td>Do not dump table rows</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_socket">--socket</a></th> <td>Unix socket file or Windows named pipe to use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl</a></th> <td>Enable connection encryption</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-ca</a></th> <td>File that contains list of trusted SSL Certificate Authorities</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-capath</a></th> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-cert</a></th> <td>File that contains X.509 certificate</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-cipher</a></th> <td>Permissible ciphers for connection encryption</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-crl</a></th> <td>File that contains certificate revocation lists</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-crlpath</a></th> <td>Directory that contains certificate revocation-list files</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-key</a></th> <td>File that contains X.509 key</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-mode</a></th> <td>Desired security state of connection to server</td> <td>5.7.11</td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-verify-server-cert</a></th> <td>Verify host name against server certificate Common Name identity</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_tls-version">--tls-version</a></th> <td>Permissible TLS protocols for encrypted connections</td> <td>5.7.10</td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_triggers">--triggers</a></th> <td>Dump triggers for each dumped table</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_tz-utc">--tz-utc</a></th> <td>Add SET TIME_ZONE='+00:00' to dump file</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_user">--user</a></th> <td>MySQL user name to use when connecting to server</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_users">--users</a></th> <td>Dump user accounts</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_version">--version</a></th> <td>Display version information and exit</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqlpump.html#option_mysqlpump_watch-progress">--watch-progress</a></th> <td>Display progress indicator</td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqlpump."><col style="width: 31%"/><col style="width: 56%"/><col style="width: 12%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_add-drop-database">--add-drop-database</a></th> <td>Add DROP DATABASE statement before each CREATE DATABASE statement</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_add-drop-table">--add-drop-table</a></th> <td>Add DROP TABLE statement before each CREATE TABLE statement</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_add-drop-user">--add-drop-user</a></th> <td>Add DROP USER statement before each CREATE USER statement</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_add-locks">--add-locks</a></th> <td>Surround each table dump with LOCK TABLES and UNLOCK TABLES statements</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_all-databases">--all-databases</a></th> <td>Dump all databases</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_bind-address">--bind-address</a></th> <td>Use specified network interface to connect to MySQL Server</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_character-sets-dir">--character-sets-dir</a></th> <td>Directory where character sets are installed</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_complete-insert">--complete-insert</a></th> <td>Use complete INSERT statements that include column names</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_compress">--compress</a></th> <td>Compress all information sent between client and server</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_compress-output">--compress-output</a></th> <td>Output compression algorithm</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_databases">--databases</a></th> <td>Interpret all name arguments as database names</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_debug">--debug</a></th> <td>Write debugging log</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_debug-check">--debug-check</a></th> <td>Print debugging information when program exits</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_debug-info">--debug-info</a></th> <td>Print debugging information, memory, and CPU statistics when program exits</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_default-auth">--default-auth</a></th> <td>Authentication plugin to use</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_default-character-set">--default-character-set</a></th> <td>Specify default character set</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_default-parallelism">--default-parallelism</a></th> <td>Default number of threads for parallel processing</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_defaults-extra-file">--defaults-extra-file</a></th> <td>Read named option file in addition to usual option files</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_defaults-file">--defaults-file</a></th> <td>Read only named option file</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Option group suffix value</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_defer-table-indexes">--defer-table-indexes</a></th> <td>For reloading, defer index creation until after loading table rows</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_events">--events</a></th> <td>Dump events from dumped databases</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-databases">--exclude-databases</a></th> <td>Databases to exclude from dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-events">--exclude-events</a></th> <td>Events to exclude from dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-routines">--exclude-routines</a></th> <td>Routines to exclude from dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-tables">--exclude-tables</a></th> <td>Tables to exclude from dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-triggers">--exclude-triggers</a></th> <td>Triggers to exclude from dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_exclude-users">--exclude-users</a></th> <td>Users to exclude from dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_extended-insert">--extended-insert</a></th> <td>Use multiple-row INSERT syntax</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_get-server-public-key">--get-server-public-key</a></th> <td>Request RSA public key from server</td> <td>5.7.23</td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_help">--help</a></th> <td>Display help message and exit</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_hex-blob">--hex-blob</a></th> <td>Dump binary columns using hexadecimal notation</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_host">--host</a></th> <td>Host on which MySQL server is located</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_include-databases">--include-databases</a></th> <td>Databases to include in dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_include-events">--include-events</a></th> <td>Events to include in dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_include-routines">--include-routines</a></th> <td>Routines to include in dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_include-tables">--include-tables</a></th> <td>Tables to include in dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_include-triggers">--include-triggers</a></th> <td>Triggers to include in dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_include-users">--include-users</a></th> <td>Users to include in dump</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_insert-ignore">--insert-ignore</a></th> <td>Write INSERT IGNORE rather than INSERT statements</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_log-error-file">--log-error-file</a></th> <td>Append warnings and errors to named file</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_login-path">--login-path</a></th> <td>Read login path options from .mylogin.cnf</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_max-allowed-packet">--max-allowed-packet</a></th> <td>Maximum packet length to send to or receive from server</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_net-buffer-length">--net-buffer-length</a></th> <td>Buffer size for TCP/IP and socket communication</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_no-create-db">--no-create-db</a></th> <td>Do not write CREATE DATABASE statements</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_no-create-info">--no-create-info</a></th> <td>Do not write CREATE TABLE statements that re-create each dumped table</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_no-defaults">--no-defaults</a></th> <td>Read no option files</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_parallel-schemas">--parallel-schemas</a></th> <td>Specify schema-processing parallelism</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_password">--password</a></th> <td>Password to use when connecting to server</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_plugin-dir">--plugin-dir</a></th> <td>Directory where plugins are installed</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_port">--port</a></th> <td>TCP/IP port number for connection</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_print-defaults">--print-defaults</a></th> <td>Print default options</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_protocol">--protocol</a></th> <td>Transport protocol to use</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_replace">--replace</a></th> <td>Write REPLACE statements rather than INSERT statements</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_result-file">--result-file</a></th> <td>Direct output to a given file</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_routines">--routines</a></th> <td>Dump stored routines (procedures and functions) from dumped databases</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_secure-auth">--secure-auth</a></th> <td>Do not send passwords to server in old (pre-4.1) format</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_server-public-key-path">--server-public-key-path</a></th> <td>Path name to file containing RSA public key</td> <td>5.7.23</td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_set-charset">--set-charset</a></th> <td>Add SET NAMES default_character_set to output</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_set-gtid-purged">--set-gtid-purged</a></th> <td>Whether to add SET @@GLOBAL.GTID_PURGED to output</td> <td>5.7.18</td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_single-transaction">--single-transaction</a></th> <td>Dump tables within single transaction</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_skip-definer">--skip-definer</a></th> <td>Omit DEFINER and SQL SECURITY clauses from view and stored program CREATE statements</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_skip-dump-rows">--skip-dump-rows</a></th> <td>Do not dump table rows</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_socket">--socket</a></th> <td>Unix socket file or Windows named pipe to use</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl</a></th> <td>Enable connection encryption</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-ca</a></th> <td>File that contains list of trusted SSL Certificate Authorities</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-capath</a></th> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-cert</a></th> <td>File that contains X.509 certificate</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-cipher</a></th> <td>Permissible ciphers for connection encryption</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-crl</a></th> <td>File that contains certificate revocation lists</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-crlpath</a></th> <td>Directory that contains certificate revocation-list files</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-key</a></th> <td>File that contains X.509 key</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-mode</a></th> <td>Desired security state of connection to server</td> <td>5.7.11</td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_ssl">--ssl-verify-server-cert</a></th> <td>Verify host name against server certificate Common Name identity</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_tls-version">--tls-version</a></th> <td>Permissible TLS protocols for encrypted connections</td> <td>5.7.10</td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_triggers">--triggers</a></th> <td>Dump triggers for each dumped table</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_tz-utc">--tz-utc</a></th> <td>Add SET TIME_ZONE='+00:00' to dump file</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_user">--user</a></th> <td>MySQL user name to use when connecting to server</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_users">--users</a></th> <td>Dump user accounts</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_version">--version</a></th> <td>Display version information and exit</td> <td></td> </tr><tr><th><a class="link" href="mysqlpump.html#option_mysqlpump_watch-progress">--watch-progress</a></th> <td>Display progress indicator</td> <td></td> </tr></tbody></table>
 
 #### mysqlpump Option Descriptions
 
@@ -153,13 +153,13 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible. See Section 4.2.6, “Connection Compression Control”.
 
 * `--compress-output=algorithm`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   By default, **mysqlpump** does not compress output. This option specifies output compression using the specified algorithm. Permitted algorithms are `LZ4` and `ZLIB`.
 
@@ -179,7 +179,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--databases`, `-B`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Normally, **mysqlpump** treats the first name argument on the command line as a database name and any following names as table names. With this option, it treats all name arguments as database names. `CREATE DATABASE` statements are included in the output before each new database.
 
@@ -187,7 +187,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:O,/tmp/mysqlpump.trace`.
 
@@ -195,7 +195,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Print some debugging information when the program exits.
 
@@ -203,7 +203,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -211,19 +211,19 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   A hint about which client-side authentication plugin to use. See Section 6.2.13, “Pluggable Authentication”.
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Use *`charset_name`* as the default character set. See Section 10.15, “Character Set Configuration”. If no character set is specified, **mysqlpump** uses `utf8`.
 
 * `--default-parallelism=N`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   The default number of threads for each parallel processing queue. The default is 2.
 
@@ -243,7 +243,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -251,7 +251,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -261,7 +261,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlpump** normally reads the `[client]` and `[mysqlpump]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlpump** also reads the `[client_other]` and `[mysqlpump_other]` groups.
 
@@ -269,7 +269,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--defer-table-indexes`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   In the dump output, defer index creation for each table until after its rows have been loaded. This works for all storage engines, but for `InnoDB` applies only for secondary indexes.
 
@@ -277,7 +277,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--events`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   Include Event Scheduler events for the dumped databases in the output. Event dumping requires the `EVENT` privileges for those databases.
 
@@ -289,43 +289,43 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--exclude-databases=db_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   Do not dump the databases in *`db_list`*, which is a list of one or more comma-separated database names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--exclude-events=event_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   Do not dump the databases in *`event_list`*, which is a list of one or more comma-separated event names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--exclude-routines=routine_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   Do not dump the events in *`routine_list`*, which is a list of one or more comma-separated routine (stored procedure or function) names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--exclude-tables=table_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   Do not dump the tables in *`table_list`*, which is a list of one or more comma-separated table names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--exclude-triggers=trigger_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   Do not dump the triggers in *`trigger_list`*, which is a list of one or more comma-separated trigger names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--exclude-users=user_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for add-drop-database"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-database</code></td> </tr></tbody></table>
 
   Do not dump the user accounts in *`user_list`*, which is a list of one or more comma-separated account names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--extended-insert=N`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Write `INSERT` statements using multiple-row syntax that includes several `VALUES` lists. This results in a smaller dump file and speeds up inserts when the file is reloaded.
 
@@ -333,7 +333,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -345,67 +345,67 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--hex-blob`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Dump binary columns using hexadecimal notation (for example, `'abc'` becomes `0x616263`). The affected data types are `BINARY`, `VARBINARY`, `BLOB` types, `BIT`, all spatial data types, and other non-binary data types when used with the `binary` character set.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Dump data from the MySQL server on the given host.
 
 * `--include-databases=db_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Dump the databases in *`db_list`*, which is a list of one or more comma-separated database names. The dump includes all objects in the named databases. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--include-events=event_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Dump the events in *`event_list`*, which is a list of one or more comma-separated event names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--include-routines=routine_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Dump the routines in *`routine_list`*, which is a list of one or more comma-separated routine (stored procedure or function) names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--include-tables=table_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Dump the tables in *`table_list`*, which is a list of one or more comma-separated table names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--include-triggers=trigger_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Dump the triggers in *`trigger_list`*, which is a list of one or more comma-separated trigger names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--include-users=user_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for add-drop-table"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-table</code></td> </tr></tbody></table>
 
   Dump the user accounts in *`user_list`*, which is a list of one or more comma-separated user names. Multiple instances of this option are additive. For more information, see mysqlpump Object Selection.
 
 * `--insert-ignore`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   Write `INSERT IGNORE` statements rather than `INSERT` statements.
 
 * `--log-error-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   Log warnings and errors by appending them to the named file. If this option is not given, **mysqlpump** writes warnings and errors to the standard error output.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 4.6.6, “mysql\_config\_editor — MySQL Configuration Utility”.
 
@@ -413,31 +413,31 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--max-allowed-packet=N`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   The maximum size of the buffer for client/server communication. The default is 24MB, the maximum is 1GB.
 
 * `--net-buffer-length=N`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   The initial size of the buffer for client/server communication. When creating multiple-row `INSERT` statements (as with the `--extended-insert` option), **mysqlpump** creates rows up to *`N`* bytes long. If you use this option to increase the value, ensure that the MySQL server `net_buffer_length` system variable has a value at least this large.
 
 * `--no-create-db`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   Suppress any `CREATE DATABASE` statements that might otherwise be included in the output.
 
 * `--no-create-info`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   Do not write `CREATE TABLE` statements that create each dumped table.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
@@ -447,7 +447,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--parallel-schemas=[N:]db_list`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   Create a queue for processing the databases in *`db_list`*, which is a list of one or more comma-separated database names. If *`N`* is given, the queue uses *`N`* threads. If *`N`* is not given, the `--default-parallelism` option determines the number of queue threads.
 
@@ -455,7 +455,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for add-drop-user"><tbody><tr><th>Command-Line Format</th> <td><code>--add-drop-user</code></td> </tr></tbody></table>
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlpump** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -465,19 +465,19 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlpump** does not find it. See Section 6.2.13, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   Print the program name and all options that it gets from option files.
 
@@ -485,19 +485,19 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 4.2.5, “Connection Transport Protocols”.
 
 * `--replace`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   Write `REPLACE` statements rather than `INSERT` statements.
 
 * `--result-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   Direct output to the named file. The result file is created and its previous contents overwritten, even if an error occurs while generating the dump.
 
@@ -505,7 +505,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--routines`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   Include stored routines (procedures and functions) for the dumped databases in the output. This option requires the `SELECT` privilege for the `mysql.proc` table.
 
@@ -517,7 +517,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--secure-auth`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   Do not send passwords to the server in old (pre-4.1) format. This prevents connections except for servers that use the newer password format.
 
@@ -525,7 +525,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -539,7 +539,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--set-charset`
 
-  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for add-locks"><tbody><tr><th>Command-Line Format</th> <td><code>--add-locks</code></td> </tr></tbody></table>
 
   Write `SET NAMES default_character_set` to the output.
 
@@ -547,13 +547,13 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--set-gtid-purged=value`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   This option enables control over global transaction ID (GTID) information written to the dump file, by indicating whether to add a `SET @@GLOBAL.gtid_purged` statement to the output. This option may also cause a statement to be written to the output that disables binary logging while the dump file is being reloaded.
 
   The following table shows the permitted option values. The default value is `AUTO`.
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   The `--set-gtid-purged` option has the following effect on binary logging when the dump file is reloaded:
 
@@ -567,7 +567,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--single-transaction`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   This option sets the transaction isolation mode to `REPEATABLE READ` and sends a `START TRANSACTION` SQL statement to the server before dumping data. It is useful only with transactional tables such as `InnoDB`, because then it dumps the consistent state of the database at the time when `START TRANSACTION` was issued without blocking any applications.
 
@@ -587,19 +587,19 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--skip-definer`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   Omit `DEFINER` and `SQL SECURITY` clauses from the `CREATE` statements for views and stored programs. The dump file, when reloaded, creates objects that use the default `DEFINER` and `SQL SECURITY` values. See Section 23.6, “Stored Object Access Control”.
 
 * `--skip-dump-rows`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   Do not dump table rows.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -611,7 +611,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
@@ -619,7 +619,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--triggers`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   Include triggers for each dumped table in the output.
 
@@ -627,7 +627,7 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--tz-utc`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   This option enables `TIMESTAMP` columns to be dumped and reloaded between servers in different time zones. **mysqlpump** sets its connection time zone to UTC and adds `SET TIME_ZONE='+00:00'` to the dump file. Without this option, `TIMESTAMP` columns are dumped and reloaded in the time zones local to the source and destination servers, which can cause the values to change if the servers are in different time zones. `--tz-utc` also protects against changes due to daylight saving time.
 
@@ -635,13 +635,13 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for all-databases"><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   The user name of the MySQL account to use for connecting to the server.
 
 * `--users`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Dump user accounts as logical definitions in the form of `CREATE USER` and `GRANT` statements.
 
@@ -653,13 +653,13 @@ To see a list of the options **mysqlpump** supports, issue the command **mysqlpu
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Display version information and exit.
 
 * `--watch-progress`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Periodically display a progress indicator that provides information about the completed and total number of tables, rows, and other objects.
 

@@ -22,35 +22,35 @@ As opções que podem ser usadas com o **ndb_sign_keys** são mostradas na tabel
 
 * `--bind-host`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-host"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-host=host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">mgmd, api</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-host"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--bind-host=host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>mgmd, api</code></td> </tr></tbody></table>
 
 Crie um certificado vinculado a uma lista de endereços de host de tipos de nó que devem ter vinculações de endereços de host de certificado, do conjunto `(mgmd, db, api)`.
 
 * `--bound-hostname`
 
-  <table frame="box" rules="all" summary="Propriedades para bound-hostname"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bound-hostname=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bound-hostname"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bound-hostname=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Crie um certificado vinculado ao endereço de host passado para esta opção.
 
 * `--CA-cert`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
   Use o nome passado para esta opção como nome do arquivo do certificado CA.
 
 * `--CA-key`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-key=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-private-key</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para CA-key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-key=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-private-key</code></td> </tr></tbody></table>
 
   Use o nome passado para esta opção como nome do arquivo da chave privada CA.
 
 * `--CA-ordinal`
 
 <table frame="box" rules="all" summary="Propriedades para CA-ordinal">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--CA-ordinal=nome</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--CA-ordinal=nome</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">Primeiro</code></p><p class="valid-value"><code class="literal">Segundo</code></p></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr>
   </table>
 
   Defina o nome ordinal da CA; o valor padrão é `Primeiro` para `--create-CA` e `Segundo` para `--rotate-CA`. O Nome Comum no certificado da CA é “Certificado do MySQL NDB Cluster *`ordinal`*”, onde *`ordinal`* é o nome ordinal passado para esta opção.
@@ -58,9 +58,9 @@ Crie um certificado vinculado a uma lista de endereços de host de tipos de nó 
 * `--CA-search-path`
 
   <table frame="box" rules="all" summary="Propriedades para CA-search-path">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--CA-search-path=nome</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--CA-search-path=nome</code></td> </tr>
     <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
+    <tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr>
   </table>
 
   Especifique uma lista de diretórios para pesquisar um arquivo de CA. Em plataformas Unix, os nomes dos diretórios são separados por colchetes (`:`); em sistemas Windows, o caractere ponto e vírgula (`;`) é usado como separador. Uma referência de diretório pode ser relativa ou absoluta; pode conter uma ou mais variáveis de ambiente, cada uma denotada por um sinal de dólar prefixado (`$`), e expandida antes de ser usada.
@@ -71,19 +71,19 @@ Se não for fornecido um caminho de busca, o valor padrão integrado é usado. E
 
 * `--CA-tool`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-tool"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-tool=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para CA-tool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-tool=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Designe uma ferramenta auxiliar executável, incluindo o caminho.
 
 * `--check`
 
-  <table frame="box" rules="all" summary="Propriedades para check"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para check"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check</code></td> </tr></tbody></table>
 
   Verifique as datas de validade dos certificados.
 
 * `--config-file`
 
-  <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=arquivo</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">no-config</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=arquivo</code></td> </tr><tr><th>Desabilitado por</th> <td><code>no-config</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
 Forneça o caminho para o arquivo de configuração do cluster (geralmente `config.ini`).
 
@@ -92,11 +92,11 @@ Forneça o caminho para o arquivo de configuração do cluster (geralmente `conf
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
     
     <tbody>
-      <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+      <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
       <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-      <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-      <tr><th>Valor mínimo</th> <td><code class="literal">-1</code></td> </tr>
-      <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
+      <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+      <tr><th>Valor mínimo</th> <td><code>-1</code></td> </tr>
+      <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
     </tbody>
   </table>
 
@@ -107,11 +107,11 @@ Forneça o caminho para o arquivo de configuração do cluster (geralmente `conf
   <table frame="box" rules="all" summary="Propriedades para bound-hostname">
     
     <tbody>
-      <tr><th>Formato de linha de comando</th> <td><code class="literal">--bound-hostname=hostname</code></td> </tr>
+      <tr><th>Formato de linha de comando</th> <td><code>--bound-hostname=hostname</code></td> </tr>
       <tr><th>Tipo</th> <td>String</td> </tr>
-      <tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
+      <tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr>
     </tbody>
-  </table>0
+  </table>
 
   Defina o número de segundos após uma tentativa de conexão falhada que o **ndb\_sign\_keys** aguarda antes de tentar novamente, até o número de vezes determinado por `--connect-retries`.
 
@@ -120,17 +120,17 @@ Forneça o caminho para o arquivo de configuração do cluster (geralmente `conf
   <table frame="box" rules="all" summary="Propriedades para bound-hostname">
     
     <tbody>
-      <tr><th>Formato de linha de comando</th> <td><code class="literal">--bound-hostname=hostname</code></td> </tr>
+      <tr><th>Formato de linha de comando</th> <td><code>--bound-hostname=hostname</code></td> </tr>
       <tr><th>Tipo</th> <td>String</td> </tr>
-      <tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
+      <tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr>
     </tbody>
-  </table>1
+  </table>
 
   Crie a chave e o certificado da CA.
 
 * `--CA-days`
 
-<table frame="box" rules="all" summary="Propriedades para hostname_associado"><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--hostname_associado=hostname</code></td></tr><tr><th style="width: 70%">Tipo</th><td>String</td></tr><tr><th style="width: 70%">Valor padrão</th><td><code class="literal">[nenhum]</code></td></tr></table>2
+<table frame="box" rules="all" summary="Propriedades para hostname_associado"><tr><th style="width: 30%">Formato de linha de comando</th><td><code>--hostname_associado=hostname</code></td></tr><tr><th style="width: 70%">Tipo</th><td>String</td></tr><tr><th style="width: 70%">Valor padrão</th><td><code>[nenhum]</code></td></tr></table>
 
 Defina a duração do certificado para quantos dias. O valor padrão é equivalente a 4 anos e 1 dia. `-1` significa que o certificado nunca expira.
 
@@ -138,73 +138,73 @@ Esta opção foi adicionada no NDB 8.4.1.
 
 * `--criar-chave`
 
-<table frame="box" rules="all" summary="Propriedades para hostname_associado"><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--hostname_associado=hostname</code></td></tr><tr><th style="width: 70%">Tipo</th><td>String</td></tr><tr><th style="width: 70%">Valor padrão</th><td><code class="literal">[nenhum]</code></td></tr></table>3
+<table frame="box" rules="all" summary="Propriedades para hostname_associado"><tr><th style="width: 30%">Formato de linha de comando</th><td><code>--hostname_associado=hostname</code></td></tr><tr><th style="width: 70%">Tipo</th><td>String</td></tr><tr><th style="width: 70%">Valor padrão</th><td><code>[nenhum]</code></td></tr></table>
 
 Crie ou substitua chaves privadas.
 
 * `--curva`
 
-<table frame="box" rules="all" summary="Propriedades para hostname_associado"><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--hostname_associado=hostname</code></td></tr><tr><th style="width: 70%">Tipo</th><td>String</td></tr><tr><th style="width: 70%">Valor padrão</th><td><code class="literal">[nenhum]</code></td></tr></table>4
+<table frame="box" rules="all" summary="Propriedades para hostname_associado"><tr><th style="width: 30%">Formato de linha de comando</th><td><code>--hostname_associado=hostname</code></td></tr><tr><th style="width: 70%">Tipo</th><td>String</td></tr><tr><th style="width: 70%">Valor padrão</th><td><code>[nenhum]</code></td></tr></table>
 
 Use a curva nomeada para criptografar as chaves do nó.
 
 * `--arquivo_de_configurações_extra`
 
-<table frame="box" rules="all" summary="Propriedades para hostname_associado"><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--hostname_associado=hostname</code></td></tr><tr><th style="width: 70%">Tipo</th><td>String</td></tr><tr><th style="width: 70%">Valor padrão</th><td><code class="literal">[nenhum]</code></td></tr></table>5
+<table frame="box" rules="all" summary="Propriedades para hostname_associado"><tr><th style="width: 30%">Formato de linha de comando</th><td><code>--hostname_associado=hostname</code></td></tr><tr><th style="width: 70%">Tipo</th><td>String</td></tr><tr><th style="width: 70%">Valor padrão</th><td><code>[nenhum]</code></td></tr></table>
 
 Leia este arquivo de opções após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para hostname vinculado"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bound-hostname=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para hostname vinculado"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bound-hostname=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia este arquivo de opções apenas.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para hostname vinculado"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bound-hostname=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para hostname vinculado"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bound-hostname=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`string`*.
 
 * `--duration`
 
-  <table frame="box" rules="all" summary="Propriedades para hostname vinculado"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bound-hostname=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para hostname vinculado"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bound-hostname=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Defina a vida útil dos certificados ou solicitações de assinatura, em segundos.
 
 * `--help`
 
-<table frame="box" rules="all" summary="Propriedades para hostname_conectado"><tr><th>Formato de linha de comando</th> <td><code class="literal">--hostname_conectado=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></table>9
+<table frame="box" rules="all" summary="Propriedades para hostname_conectado"><tr><th>Formato de linha de comando</th> <td><code>--hostname_conectado=hostname</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></table>
 
 Imprimir texto de ajuda e sair.
 
 * `--keys-para-diretorio`
 
-<table frame="box" rules="all" summary="Propriedades para CA-cert"><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></table>0
+<table frame="box" rules="all" summary="Propriedades para CA-cert"><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></table>
 
 Especificar o diretório de saída para as chaves privadas (apenas); para isso, ele substitui qualquer valor definido para `--para-diretório`.
 
 * `--caminho_de_login`
 
-<table frame="box" rules="all" summary="Propriedades para CA-cert"><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></table>1
+<table frame="box" rules="all" summary="Propriedades para CA-cert"><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></table>
 
 Ler este caminho a partir do arquivo de login.
 
 * `--string_de_conexão_ndb`
 
-<table frame="box" rules="all" summary="Propriedades para CA-cert"><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></table>2
+<table frame="box" rules="all" summary="Propriedades para CA-cert"><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></table>
 
 Defina a cadeia de conexão a ser usada para se conectar ao **ndb\_mgmd**, usando a sintaxe `[nodeid=id;][host=]hostname[:port]`. Se esta opção for definida, ela substitui o valor definido para `NDB_CONNECTSTRING` (se houver), bem como qualquer valor definido em um arquivo `my.cnf`.
 
 * `--ndb-mgm-tls`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
   Define o nível de suporte TLS necessário para o cliente **ndb\_mgm**, um de `relaxado` ou `estricto`. `relaxado` (o padrão) significa que uma conexão TLS é tentada, mas o sucesso não é necessário; `estricto` significa que TLS é necessário para se conectar.
 
 * `--ndb-tls-search-path`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
   Especifique uma lista de diretórios que contêm chaves e certificados TLS.
 
@@ -212,25 +212,25 @@ Defina a cadeia de conexão a ser usada para se conectar ao **ndb\_mgmd**, usand
 
 * `--no-config`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
 Não obtenha a configuração do cluster; crie um único certificado com base nas opções fornecidas (incluindo os valores padrão para aqueles não especificados).
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
   Não leia opções padrão de qualquer arquivo de opção, exceto o arquivo de login.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
   Não leia caminhos de login do arquivo de caminho de login.
 
 * `--passphrase`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NDB-Cluster-cert</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
   Especifique uma senha da chave CA.
 
@@ -239,7 +239,7 @@ Não obtenha a configuração do cluster; crie um único certificado com base na
 <table frame="box" rules="all" summary="Propriedades para CA-cert">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--CA-cert=nome</code></td>
+    <td><code>--CA-cert=nome</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -247,7 +247,7 @@ Não obtenha a configuração do cluster; crie um único certificado com base na
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">NDB-Cluster-cert</code></td>
+    <td><code>NDB-Cluster-cert</code></td>
   </tr>
 </table>
 
@@ -258,7 +258,7 @@ Não obtenha a configuração do cluster; crie um único certificado com base na
   <table frame="box" rules="all" summary="Propriedades para CA-key">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--CA-key=nome</code></td>
+      <td><code>--CA-key=nome</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -266,7 +266,7 @@ Não obtenha a configuração do cluster; crie um único certificado com base na
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">NDB-Cluster-private-key</code></td>
+      <td><code>NDB-Cluster-private-key</code></td>
     </tr>
   </table>
 
@@ -277,7 +277,7 @@ Não obtenha a configuração do cluster; crie um único certificado com base na
   <table frame="box" rules="all" summary="Propriedades para CA-key">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--CA-key=nome</code></td>
+      <td><code>--CA-key=nome</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -285,7 +285,7 @@ Não obtenha a configuração do cluster; crie um único certificado com base na
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">NDB-Cluster-private-key</code></td>
+      <td><code>NDB-Cluster-private-key</code></td>
     </tr>
   </table>
 
@@ -296,7 +296,7 @@ Não obtenha a configuração do cluster; crie um único certificado com base na
   <table frame="box" rules="all" summary="Propriedades para CA-key">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--CA-key=nome</code></td>
+      <td><code>--CA-key=nome</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -304,7 +304,7 @@ Não obtenha a configuração do cluster; crie um único certificado com base na
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">NDB-Cluster-private-key</code></td>
+      <td><code>NDB-Cluster-private-key</code></td>
     </tr>
   </table>
 
@@ -316,43 +316,43 @@ Promova os arquivos pendentes para ativos, depois saia.
 
 * `--CA-remoto`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-chave"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-chave=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">chave-privada-do-cluster-NDB</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para CA-chave"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-chave=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>chave-privada-do-cluster-NDB</code></td> </tr></tbody></table>
 
   Promova arquivos pendentes para ativos, depois saia.
 
 * `--CA-remoto`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-chave"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-chave=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">chave-privada-do-cluster-NDB</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para CA-chave"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-chave=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>chave-privada-do-cluster-NDB</code></td> </tr></tbody></table>
 
   Especifique o endereço ou o nome do host de um CA remoto.
 
 * `--caminho-executável-remoto`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-chave"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-chave=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">chave-privada-do-cluster-NDB</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para CA-chave"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-chave=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>chave-privada-do-cluster-NDB</code></td> </tr></tbody></table>
 
   Forneça o caminho completo para um executável no host CA remoto especificado com `--CA-remoto`.
 
 * `--openssl-remoto`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-chave"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-chave=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">chave-privada-do-cluster-NDB</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para CA-chave"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-chave=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>chave-privada-do-cluster-NDB</code></td> </tr></tbody></table>
 
 Use o OpenSSL para assinar chaves no host CA remoto especificado com `--remote-CA-host`.
 
 * `--replace-by`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-key=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">chave_privada_do_cluster_NDB</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para CA-key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-key=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>chave_privada_do_cluster_NDB</code></td> </tr></tbody></table>
 
   Sugira uma data de substituição de certificado para verificações periódicas, como um número de dias após a data de expiração do CA. Use um número negativo para indicar dias antes da expiração.
 
 * `--rotate-CA`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-key=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">chave_privada_do_cluster_NDB</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para CA-key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-key=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>chave_privada_do_cluster_NDB</code></td> </tr></tbody></table>
 
   Substitua um CA mais antigo por um mais novo. O novo CA pode ser criado usando o OpenSSL, ou você pode permitir que o **ndb\_sign\_keys** crie o novo, caso em que o novo CA é criado com um certificado de CA intermediário, assinado pelo CA antigo.
 
 * `--schedule`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-key=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">chave_privada_do_cluster_NDB</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para CA-key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-key=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>chave_privada_do_cluster_NDB</code></td> </tr></tbody></table>
 
 Atribua um cronograma de datas de validade para os certificados. O cronograma é definido como uma lista de seis inteiros separados por vírgula, no formato mostrado aqui:
 
@@ -388,13 +388,13 @@ Crie certificados assinados; habilitados por padrão. Use `--skip-sign` para cri
 
 * `--skip-sign`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">Primeiro</code></p><p class="valid-value"><code class="literal">Segundo</code></p></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr></tbody></table>
 
   Crie solicitações de assinatura de certificados em vez de certificados assinados.
 
 * `--stdio`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">Primeiro</code></p><p class="valid-value"><code class="literal">Segundo</code></p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr></tbody></table>
 
   Crie solicitações de assinatura de certificados em vez de certificados assinados.
 
@@ -404,13 +404,13 @@ Leia solicitações de assinatura de certificados a partir do `stdin` e escreva 
 
 * `--to-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">Primeiro</code></p><p class="valid-value"><code class="literal">Segundo</code></p></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr></tbody></table>
 
   Especifique o diretório de saída para os arquivos criados. Para arquivos de chave privada, isso pode ser sobrescrito usando `--keys-to-dir`.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">Primeiro</code></p><p class="valid-value"><code class="literal">Segundo</code></p></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr></tbody></table>
 
   Imprima o texto de ajuda e, em seguida, saia (alias para `--help`).
 
@@ -419,7 +419,7 @@ Leia solicitações de assinatura de certificados a partir do `stdin` e escreva 
 <table frame="box" rules="all" summary="Propriedades para CA-ordinal">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--CA-ordinal=nome</code></td>
+    <td><code>--CA-ordinal=nome</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -427,11 +427,11 @@ Leia solicitações de assinatura de certificados a partir do `stdin` e escreva 
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">[nenhum]</code></td>
+    <td><code>[nenhum]</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">Primeiro</code></p><p class="valid-value"><code class="literal">Segundo</code></p></td>
+    <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td>
   </tr>
 </table>
 5. Imprima as informações da versão, e então saia.

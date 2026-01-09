@@ -18,7 +18,7 @@ A tabela a seguir mostra os nomes dos arquivos do plugin e da biblioteca. O sufi
 
 **Tabela 8.17 Nomes de Plugin e Biblioteca para Autenticação PAM**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha PAM."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code class="literal">authentication_pam</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code class="literal">mysql_clear_password</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">authentication_pam.so</code></td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha PAM."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>authentication_pam</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">authentication_pam.so</code></td> </tr></tbody></table>
 
 O plugin de texto claro do lado do cliente `mysql_clear_password` que se comunica com o plugin PAM do lado do servidor está embutido na biblioteca de cliente `libmysqlclient` e está incluído em todas as distribuições, incluindo as distribuições comunitárias. A inclusão do plugin de texto claro do lado do cliente em todas as distribuições MySQL permite que clientes de qualquer distribuição se conectem a um servidor que tenha o plugin PAM do lado do servidor carregado.
 

@@ -83,7 +83,7 @@ O plugin de reescrita de consultas de reescrita `Rewriter` suporta as seguintes 
 <table frame="box" rules="all" summary="Propriedades para o plugin de reescrita de consultas `rewriter_enabled`">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled">rewriter_enabled</a></code></td>
+    <td><code><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled">rewriter_enabled</a></code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -94,7 +94,7 @@ O plugin de reescrita de consultas de reescrita `Rewriter` suporta as seguintes 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -103,11 +103,11 @@ O plugin de reescrita de consultas de reescrita `Rewriter` suporta as seguintes 
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">ON</code></td>
+    <td><code>ON</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
 </table>
 
@@ -118,7 +118,7 @@ O plugin de reescrita de consultas de reescrita `Rewriter` suporta as seguintes 
 <table frame="box" rules="all" summary="Propriedades para rewriter_enabled_for_threads_without_privilege_checks">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled_for_threads_without_privilege_checks">rewriter_enabled_for_threads_without_privilege_checks</a></code></td>
+    <td><code><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled_for_threads_without_privilege_checks">rewriter_enabled_for_threads_without_privilege_checks</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -129,7 +129,7 @@ O plugin de reescrita de consultas de reescrita `Rewriter` suporta as seguintes 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -138,11 +138,11 @@ O plugin de reescrita de consultas de reescrita `Rewriter` suporta as seguintes 
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">ON</code></td>
+    <td><code>ON</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
 </table>
 
@@ -153,10 +153,10 @@ O plugin de reescrita de consultas de reescrita `Rewriter` suporta as seguintes 
 * `rewriter_verbose`
 
 <table frame="box" rules="all" summary="Variáveis de status do plugin de reescrita de consultas do Rewriter">
-  <tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_verbose">rewriter_verbose</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_verbose">rewriter_verbose</a></code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
 </table>
 

@@ -54,13 +54,13 @@ O **mysql\_secure\_installation** suporta as seguintes opções, que podem ser e
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></table>
 
   Exibir uma mensagem de ajuda e sair.
 
 * `--defaults-extra-file=nome_arquivo_extra`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=nome_arquivo_extra</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=nome_arquivo_extra</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
 
   Ler este arquivo de opções após o arquivo de opções globais, mas (em Unix) antes do arquivo de opções do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`nome_arquivo_extra`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -68,7 +68,7 @@ O **mysql\_secure\_installation** suporta as seguintes opções, que podem ser e
 
 * `--defaults-file=nome_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=nome_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=nome_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
 
   Use apenas o arquivo de opções fornecido. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`nome_arquivo`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -76,7 +76,7 @@ O **mysql\_secure\_installation** suporta as seguintes opções, que podem ser e
 
 * `--defaults-group-suffix=str`
 
-<table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=str</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Leia não apenas os grupos de opções habituais, mas também grupos com os nomes habituais e um sufixo de *`str`*. Por exemplo, **mysql\_secure\_installation** normalmente lê os grupos `[client]` e `[mysql_secure_installation]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysql\_secure\_installation** também lê os grupos `[client_other]` e `[mysql_secure_installation_other]`.
 
@@ -84,13 +84,13 @@ O **mysql\_secure\_installation** suporta as seguintes opções, que podem ser e
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Propriedades para host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para host"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host</code></td> </tr></tbody></table>
 
   Conecte-se ao servidor MySQL no host fornecido.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para no-defaults"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-defaults</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para no-defaults"><tbody><tr><th>Formato de linha de comando</th> <td><code>--no-defaults</code></td> </tr></tbody></table>
 
   Não leia nenhum ficheiro de opções. Se o arranque do programa falhar devido à leitura de opções desconhecidas de um ficheiro de opções, `--no-defaults` pode ser usado para evitar que sejam lidas.
 
@@ -100,19 +100,19 @@ Para obter informações adicionais sobre essa e outras opções de arquivo, con
 
 * `--password=password`, `-p password`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--password=password</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para senha"><tr><th>Formato de Linha de Comando</th> <td><code>--password=password</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></table>
 
   Esta opção é aceita, mas ignorada. Se esta opção for usada ou não, o **mysql\_secure\_installation** sempre solicita ao usuário uma senha.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para porta"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--port=port_num</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">3306</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para porta"><tr><th>Formato de Linha de Comando</th> <td><code>--port=port_num</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>3306</code></td> </tr></table>
 
   Para conexões TCP/IP, o número de porta a ser usado.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para print-defaults"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--print-defaults</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para print-defaults"><tr><th>Formato de Linha de Comando</th> <td><code>--print-defaults</code></td> </tr></table>
 
 Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
@@ -120,13 +120,13 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para detalhes sobre os valores permitidos, consulte a Seção 6.2.7, “Protocolos de transporte de conexão”.
 
 * `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Para conexões com `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
@@ -141,7 +141,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 <table frame="box" rules="all" summary="Propriedades de ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
 </table>
 2
@@ -165,7 +165,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
   <table frame="box" rules="all" summary="Propriedades de ajuda">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--help</code></td>
+      <td><code>--help</code></td>
     </tr>
   </table>
 3
@@ -177,9 +177,9 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 <table frame="box" rules="all" summary="Propriedades de ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
-</table>4
+</table>
 
   Quando especificado, o nome é passado para a biblioteca de API C `libmysqlclient` usando a opção `MYSQL_OPT_TLS_SNI_SERVERNAME` de `mysql_options()`. O nome do servidor não é case-sensitive. Para mostrar qual nome do servidor o cliente especificou para a sessão atual, se houver, verifique a variável `Tls_sni_server_name`.
 
@@ -190,9 +190,9 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
   <table frame="box" rules="all" summary="Propriedades de ajuda">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--help</code></td>
+      <td><code>--help</code></td>
     </tr>
-  </table>5
+  </table>
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para essa opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e cifra TLS de conexão criptografada”.
 
@@ -201,14 +201,14 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
   <table frame="box" rules="all" summary="Propriedades de ajuda">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--help</code></td>
+      <td><code>--help</code></td>
     </tr>
-  </table>6
+  </table>
 
   Execute de forma não interativa. Esta opção pode ser usada para operações de instalação sem intervenção.
 
 * `--user=nome_do_usuário`, `-u nome_do_usuário`
 
-<table frame="box" rules="all" summary="Propriedades de ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Propriedades de ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.

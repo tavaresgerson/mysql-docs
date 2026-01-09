@@ -106,7 +106,7 @@ The sequence consists of the components shown in the following table.
 
 **Table 13.2 WKB Components Example**
 
-<table summary="Example showing component in WKB values."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th scope="col">Component</th> <th scope="col">Size</th> <th scope="col">Value</th> </tr></thead><tbody><tr> <th scope="row">Byte order</th> <td>1 byte</td> <td><code class="literal">01</code></td> </tr><tr> <th scope="row">WKB type</th> <td>4 bytes</td> <td><code class="literal">01000000</code></td> </tr><tr> <th scope="row">X coordinate</th> <td>8 bytes</td> <td><code class="literal">000000000000F03F</code></td> </tr><tr> <th scope="row">Y coordinate</th> <td>8 bytes</td> <td><code class="literal">000000000000F0BF</code></td> </tr></tbody></table>
+<table summary="Example showing component in WKB values."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Component</th> <th>Size</th> <th>Value</th> </tr></thead><tbody><tr> <th>Byte order</th> <td>1 byte</td> <td><code class="literal">01</code></td> </tr><tr> <th>WKB type</th> <td>4 bytes</td> <td><code class="literal">01000000</code></td> </tr><tr> <th>X coordinate</th> <td>8 bytes</td> <td><code class="literal">000000000000F03F</code></td> </tr><tr> <th>Y coordinate</th> <td>8 bytes</td> <td><code class="literal">000000000000F0BF</code></td> </tr></tbody></table>
 
 Component representation is as follows:
 

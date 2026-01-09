@@ -14,7 +14,7 @@ Para mais informações sobre GTIDs e como essas funções GTID são usadas na p
 
 **Tabela 14.26 Funções GTID**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções usadas com identificadores globais de transação (GTIDs)."><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="gtid-functions.html#function_wait-for-executed-gtid-set"><code class="literal">WAIT_FOR_EXECUTED_GTID_SET()</code></a></td> <td> Aguarde até que os GTIDs fornecidos tenham sido executados na replica. </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista funções usadas com identificadores globais de transação (GTIDs)."><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="gtid-functions.html#function_wait-for-executed-gtid-set"><code>WAIT_FOR_EXECUTED_GTID_SET()</code></a></td> <td> Aguarde até que os GTIDs fornecidos tenham sido executados na replica. </td> </tr></tbody></table>
 
 * `GTID_SUBSET(set1,set2)`
 

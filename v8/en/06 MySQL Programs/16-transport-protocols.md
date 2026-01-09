@@ -14,7 +14,7 @@ For a given connection, if the transport protocol is not specified explicitly, i
 
 To specify the protocol explicitly, use the `--protocol` command option. The following table shows the permissible values for `--protocol` and indicates the applicable platforms for each value. The values are not case-sensitive.
 
-<table><thead><tr> <th><code class="option">--protocol</code> Value</th> <th>Transport Protocol Used</th> <th>Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket file</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named pipe</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared memory</td> <td>Windows</td> </tr></tbody></table>
+<table><thead><tr> <th><code>--protocol</code> Value</th> <th>Transport Protocol Used</th> <th>Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket file</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named pipe</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared memory</td> <td>Windows</td> </tr></tbody></table>
 
 #### Transport Support for Local and Remote Connections
 

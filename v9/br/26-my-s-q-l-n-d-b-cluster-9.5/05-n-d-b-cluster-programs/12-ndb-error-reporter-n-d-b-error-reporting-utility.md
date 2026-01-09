@@ -16,14 +16,14 @@ O **ndb\_error\_reporter** também aceita as opções listadas aqui:
 
 * `--connection-timeout=timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para connection-timeout"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connection-timeout=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connection-timeout"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connection-timeout=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr></tbody></table>
 
   Aguarde esses segundos ao tentar se conectar aos nós antes de expirar o tempo de conexão.
 
 * `--dry-scp`
 
 <table frame="box" rules="all" summary="Propriedades para dry-scp">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--dry-scp</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--dry-scp</code></td> </tr>
 </table>
 
   Execute o **ndb_error_reporter** sem usar o scp de hosts remotos. Usado apenas para testes.
@@ -31,7 +31,7 @@ O **ndb\_error\_reporter** também aceita as opções listadas aqui:
 * `--help`
 
   <table frame="box" rules="all" summary="Propriedades para ajuda">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr>
   </table>
 
   Exibir texto de ajuda e sair.
@@ -39,7 +39,7 @@ O **ndb\_error\_reporter** também aceita as opções listadas aqui:
 * `--fs`
 
   <table frame="box" rules="all" summary="Propriedades para fs">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--fs</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--fs</code></td> </tr>
   </table>
 
   Copiar os sistemas de arquivos do nó de dados para o host de gerenciamento e incluí-los no arquivo.
@@ -49,9 +49,9 @@ O **ndb\_error\_reporter** também aceita as opções listadas aqui:
 * `--skip-nodegroup=nodegroup_id`
 
   <table frame="box" rules="all" summary="Propriedades para timeout_de_conexão">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connection-timeout=#</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--connection-timeout=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr>
+    <tr><th>Valor Padrão</th> <td><code>0</code></td> </tr>
   </table>
 
   Ignorar todos os nós pertencentes ao grupo de nós que possuem o ID de grupo de nós fornecido.

@@ -12,7 +12,7 @@
     <th>Descrição</th>
   </tr>
   <tr>
-    <td><a class="link" href="funções_aritméticas.html#operador_mod">%</a>, <code class="literal">MOD</code></td>
+    <td><a class="link" href="funções_aritméticas.html#operador_mod">%</a>, <code>MOD</code></td>
     <td> Operador de módulo </td>
   </tr>
   <tr>
@@ -52,7 +52,7 @@
     <td> Retorna o tangente </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_atan2">ATAN2(), <code class="literal">ATAN()</code></a></td>
+    <td><a class="link" href="funções_matemáticas.html#função_atan2">ATAN2(), <code>ATAN()</code></a></td>
     <td> Retorna o tangente dos dois argumentos </td>
   </tr>
   <tr>

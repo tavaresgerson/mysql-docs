@@ -12,7 +12,7 @@ Para informações sobre as opções de linha de comando usadas com outros proce
 
 * `--ndbcluster`
 
-  <table frame="box" rules="all" summary="Propriedades para ndbcluster"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndbcluster[=value]</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-ndbcluster</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">OFF</code></p><p class="valid-value"><code class="literal">FORCE</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ndbcluster"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndbcluster[=value]</code></td> </tr><tr><th>Desabilitado por</th> <td><code>skip-ndbcluster</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p></td> </tr></tbody></table>
 
 O mecanismo de armazenamento `NDBCLUSTER` é necessário para usar o NDB Cluster. Se um binário do **mysqld** incluir suporte ao mecanismo de armazenamento `NDBCLUSTER`, o mecanismo é desativado por padrão. Use a opção `--ndbcluster` para ativá-lo. Use `--skip-ndbcluster` para desativá-lo explicitamente.
 
@@ -20,25 +20,25 @@ A opção `--ndbcluster` é ignorada (e o mecanismo de armazenamento `NDB` *não
 
 * `--ndb-allow-copying-alter-table=[ON|OFF]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração da Variável"><code class="literal">SET_VAR</code></a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração da Variável"><code>SET_VAR</code></a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Deixe que as instruções `ALTER TABLE` e outras instruções DDL usem operações de cópia em tabelas `NDB`. Defina para `OFF` para impedir que isso aconteça; fazer isso pode melhorar o desempenho de aplicações críticas.
 
 * `--ndb-applier-allow-skip-epoch`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> é aplicada</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> é aplicada</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   Use junto com `--replica-skip-errors` para fazer com que o `NDB` ignore as transações de epocão ignoradas. Não tem efeito quando usado sozinho.
 
 * `--ndb-batch-size=#`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> é aplicada</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> é aplicada</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   Isso define o tamanho em bytes que é usado para lotes de transações NDB.
 
 * `--ndb-cluster-connection-pool=#`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
 
   Ao definir essa opção para um valor maior que 1 (o padrão), um processo do **mysqld** pode usar múltiplas conexões ao cluster, imitando efetivamente vários nós SQL. Cada conexão requer sua própria seção `[api]` ou `[mysqld]` no arquivo de configuração do cluster (`config.ini`), e conta para o número máximo de conexões API suportadas pelo cluster.
 
@@ -54,13 +54,13 @@ Definir um ID de nó na string de conexão ao usar a opção `--ndb-cluster-conn
 * `--ndb-cluster-connection-pool-nodeids=list`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-cluster-connection-pool-nodeids</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code class="literal">ndb_cluster_connection_pool_nodeids</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Definir</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code></code></td> </tr>
 </table>
 
 Especifica uma lista separada por vírgula de IDs de nós para conexões ao cluster usadas por um nó SQL. O número de nós nesta lista deve ser o mesmo que o valor definido para a opção `--ndb-cluster-connection-pool`.
@@ -70,11 +70,11 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--ndb-blob-read-batch-bytes</code></td>
+    <td><code>--ndb-blob-read-batch-bytes</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal">ndb_blob_read_batch_bytes</code></td>
+    <td><code>ndb_blob_read_batch_bytes</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -85,7 +85,7 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -94,15 +94,15 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">65536</code></td>
+    <td><code>65536</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
 </table>
 
@@ -119,11 +119,11 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--ndb-blob-write-batch-bytes</code></td>
+    <td><code>--ndb-blob-write-batch-bytes</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal">ndb_blob_write_batch_bytes</code></td>
+    <td><code>ndb_blob_write_batch_bytes</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -134,7 +134,7 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> se aplica</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> se aplica</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -143,15 +143,15 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">65536</code></td>
+    <td><code>65536</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
   <tr>
     <th>Unidade</th>
@@ -172,7 +172,7 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
 <table frame="box" rules="all" summary="Propriedades para ndb-connectstring">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--ndb-connectstring</code></td>
+    <td><code>--ndb-connectstring</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -188,7 +188,7 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
   <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td>
+      <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td>
     </tr>
     <tr>
       <th>Variável do Sistema</th>
@@ -212,11 +212,11 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">FIXED</code></td>
+      <td><code>FIXED</code></td>
     </tr>
     <tr>
       <th>Valores Válidos</th>
-      <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td>
+      <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td>
     </tr>
   </table>
 
@@ -225,14 +225,14 @@ Especifica uma lista separada por vírgula de IDs de nós para conexões ao clus
 * `--ndb-deferred-constraints=[0|1]`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_allow_copying_alter_table</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr>
-</table>0
+  <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
+</table>
 
 Controla se as verificações de restrições em índices únicos são adiadas até o momento do commit, quando tais verificações forem suportadas. `0` é o valor padrão.
 
@@ -241,13 +241,13 @@ Esta opção normalmente não é necessária para o funcionamento do NDB Cluster
 * `--ndb-schema-dist-timeout=#`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_allow_copying_alter_table</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe da Hinta de Definição de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe da Hinta de Definição de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
 1
 
@@ -256,13 +256,13 @@ Esta opção normalmente não é necessária para o funcionamento do NDB Cluster
 * `--ndb-distribution=[KEYHASH|LINHASH]`
 
   <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr>
-    <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_allow_copying_alter_table</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr>
+    <tr><th>Variável do Sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr>
     <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
     <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe da Hinta de Definição de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe da Hinta de Definição de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
     <tr><th>Tipo</th> <td>Booleano</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr>
+    <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
   </table>
 2
 
@@ -270,7 +270,7 @@ Controla o método de distribuição padrão para as tabelas `NDB`. Pode ser def
 
 * `--ndb-log-apply-status`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">ON</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Faz com que o **mysqld** replicador registre quaisquer atualizações recebidas de sua fonte imediata na tabela `mysql.ndb_apply_status` em seu próprio log binário usando seu próprio ID de servidor em vez do ID de servidor da fonte. Em um ambiente de replicação em cadeia ou em série, isso permite que essas atualizações sejam propagadas para as tabelas `mysql.ndb_apply_status` de quaisquer servidores MySQL configurados como replicados do **mysqld** atual.
 
@@ -282,7 +282,7 @@ Esta opção não tem efeito a menos que o servidor MySQL seja iniciado com a op
 
 * `--ndb-log-empty-epochs=[ON|OFF]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code class="literal">SET_VAR</code></a></code> Dicas de Configuração de Variáveis Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a></code> Dicas de Configuração de Variáveis Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Faz com que as épocas durante as quais não houve alterações sejam escritas nas tabelas `ndb_apply_status` e `ndb_binlog_index`, mesmo quando `log_replica_updates` está habilitado.
 
@@ -292,7 +292,7 @@ Como `--ndb-log-empty-epochs=1` faz com que o tamanho da tabela `ndb_binlog_inde
 
 * `--ndb-log-empty-update=[ON|OFF]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Faz com que as atualizações que não produziram alterações sejam escritas nas tabelas `ndb_apply_status` e `ndb_binlog_index`, mesmo quando `log_replica_updates` está habilitado.
 
@@ -301,13 +301,13 @@ Como `--ndb-log-empty-epochs=1` faz com que o tamanho da tabela `ndb_binlog_inde
 * `--ndb-log-exclusive-reads=[0|1]`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_allow_copying_alter_table</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
 
   Iniciar o servidor com esta opção faz com que as leituras de chave primária sejam registradas com bloqueios exclusivos, o que permite a detecção e resolução de conflitos de replicação do NDB Cluster com base em conflitos de leitura. Você também pode habilitar e desabilitar esses bloqueios em tempo de execução, definindo o valor da variável de sistema `ndb_log_exclusive_reads` para 1 ou 0, respectivamente. 0 (desativar o bloqueio) é o valor padrão.
@@ -319,11 +319,11 @@ Como `--ndb-log-empty-epochs=1` faz com que o tamanho da tabela `ndb_binlog_inde
 <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--ndb-log-orig[={OFF|ON}]</code></td>
+    <td><code>--ndb-log-orig[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal">ndb_log_orig</code></td>
+    <td><code>ndb_log_orig</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -334,7 +334,7 @@ Como `--ndb-log-empty-epochs=1` faz com que o tamanho da tabela `ndb_binlog_inde
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</code></a> é aplicada</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</code></a> é aplicada</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -343,9 +343,9 @@ Como `--ndb-log-empty-epochs=1` faz com que o tamanho da tabela `ndb_binlog_inde
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">ON</code></td>
+    <td><code>ON</code></td>
   </tr>
-  </tbody></table>8
+  </tbody></table>
 
   Quando esta opção é especificada e o registro completo de todos os eventos de linha de registro encontrados não é possível, o processo do **mysqld** é encerrado.
 
@@ -357,7 +357,7 @@ Para mais informações, consulte a Seção 25.7.4, “Esquema e tabelas de repl
 
 * `--ndb-log-row-slice-count`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a></code> Dicas de sintaxe de configuração de variáveis</td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">ON</code></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a></code> Dicas de sintaxe de configuração de variáveis</td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Define o número de fatias (*`count`*) usadas por este servidor ao se inscrever em fluxos de eventos de alteração de tabela NDB usados para gravação de logs binários. Se este *`count`* for maior que 1, o fluxo de eventos de alteração para uma determinada tabela é dividido em `1 / count` fatias lógicas. Cada **mysqld** que realiza o registro de logs binários pode se inscrever em uma fatia (determinada por `--ndb-log-row-slice-id`), recebendo `100 / count` por cento das alterações para cada tabela afetada.
 
@@ -365,7 +365,7 @@ Para mais informações, consulte a Seção 25.7.4, “Esquema e tabelas de repl
 
 * `--ndb-log-row-slice-id`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code class="literal">SET_VAR</a></code></th> <td>Não</td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></code></th> <td>Não</td> </tr></tbody></table>
 
   Especifica o ID do corte virtual dos fluxos de eventos de alteração de tabela NDB a que este servidor se inscreve. O valor máximo *efetivo* do ID é `--ndb-log-row-slice-count` - 1. Suponha que existem quatro servidores MySQL, todos com log binário habilitado e conectados ao mesmo NDB Cluster, que rotulamos como A, B, C e D. Podemos fazer com que cada **mysqld** registre um dos quatro cortes de tamanho igual do fluxo de eventos de alteração de tabela, especificando `--ndb-log-row-slice-count=4` ao iniciar cada **mysqld**. Para cada **mysqld**, podemos especificar qual dos quatro cortes deve ser registrado usando a opção `--ndb-log-row-slice-id`, começando com 0 para o servidor A. Usando as duas opções juntas dessa maneira resulta nas seguintes quatro invocatórias do **mysqld**:
 
@@ -427,7 +427,7 @@ Também é possível controlar o registro binário dessa maneira, mas por tabela
 
 * `--ndb-log-transaction-dependency`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr></tbody></table>
 
 Faz com que o fio de registro binário `NDB` calcule as dependências de transação para cada transação que escreve no log binário. O valor padrão é `FALSE`.
 
@@ -435,7 +435,7 @@ Esta opção não pode ser definida em tempo de execução; a variável de siste
 
 * `--ndb-log-transaction-id`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável de Sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></a> Aplica-se</th> <td>Não</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></a> Aplica-se</th> <td>Não</td> </tr></tbody></table>
 
   Faz com que a replica **mysqld** escreva o ID de transação NDB em cada linha do log binário. O valor padrão é `FALSE`.
 
@@ -443,7 +443,7 @@ Esta opção não pode ser definida em tempo de execução; a variável de siste
 
 * `--ndb-log-update-as-write`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></tbody></table>
 
   Se as atualizações na fonte forem escritas no log binário como atualizações (`OFF`) ou escritas (`ON`). Quando esta opção estiver habilitada e `--ndb-log-updated-only` e `--ndb-log-update-minimal` estiverem desabilitados, as operações de diferentes tipos serão registradas conforme a lista a seguir:
 
@@ -457,7 +457,7 @@ Esta opção não pode ser definida em tempo de execução; a variável de siste
 
 * `--ndb-log-updated-only`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></tbody></table>
 
   Se o **mysqld** escrever atualizações apenas (`ON`) ou linhas completas (`OFF`) no log binário. Quando esta opção está habilitada e tanto `--ndb-log-update-as-write` quanto `--ndb-log-update-minimal` estão desabilitados, as operações de diferentes tipos são registradas conforme descrito na lista a seguir:
 
@@ -471,7 +471,7 @@ Esta opção não pode ser definida em tempo de execução; a variável de siste
 
 * `--ndb-log-update-minimal`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></tbody></table>
 
   Atualize o log de forma mínima, escrevendo apenas os valores das chaves primárias na imagem anterior e apenas as colunas alteradas na imagem posterior. Isso pode causar problemas de compatibilidade ao replicar para motores de armazenamento diferentes do `NDB`. Quando esta opção está habilitada e `--ndb-log-updated-only` e `--ndb-log-update-as-write` estão desabilitados, as operações de diferentes tipos são registradas conforme descrito na lista a seguir:
 
@@ -485,7 +485,7 @@ Esta opção não pode ser definida em tempo de execução; a variável de siste
 
 * `--ndb-mgm-tls=[relaxed|strict]`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></tbody></table>
 
   Define o nível de suporte TLS necessário para conexões TLS ao NDB Cluster; o valor é `relaxed` ou `strict`. `relaxed` significa que uma conexão TLS é tentada, mas o sucesso não é necessário; `strict` significa que o TLS é necessário para se conectar. O padrão é `relaxed`.
 
@@ -495,7 +495,7 @@ Pode ser usado para definir o ID do nó e o número do porto de um único servid
 
 * `--ndb-nodeid=#`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sinal de sintaxe de configuração de variáveis"><code class="literal">SET_VAR</code></a></code> Hint Aplica-se</th> <td>Não</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sinal de sintaxe de configuração de variáveis"><code>SET_VAR</code></a></code> Hint Aplica-se</th> <td>Não</td> </tr></tbody></table>
 
   Defina o ID do nó deste servidor MySQL em um NDB Cluster.
 
@@ -509,75 +509,75 @@ Para obter mais informações sobre os IDs de nós para nós SQL do NDB Cluster,
 
 * `--ndbinfo={ON|OFF|FORCE}`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável de sistema</th> <td><code class="literal">ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></table>9
+  <table frame="box" rules="all" summary="Propriedades para ndb-applier-allow-skip-epoch"><tr><th>Formato de linha de comando</th> <td><code>--ndb-applier-allow-skip-epoch</code></td> </tr><tr><th>Variável de sistema</th> <td><code>ndb_applier_allow_skip_epoch</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr></table>
 
   Habilita o plugin para a base de dados de informações `ndbinfo`. Por padrão, isso está ativado quando o `NDBCLUSTER` está ativado.
 
 * `--ndb-optimization-delay=milliseconds`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-batch-size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-batch-size</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_batch_size</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">32768</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">2147483648</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>32768</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>2147483648</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>0
+</table>
 
   Defina o número de milissegundos para esperar entre conjuntos de linhas por meio das instruções `OPTIMIZE TABLE` em tabelas `NDB`. O valor padrão é 10.
 
 * `--ndb-optimized-node-selection`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-batch-size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-batch-size</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_batch_size</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">32768</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">2147483648</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>32768</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>2147483648</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>1
+</table>
 
   Ative otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
 * `ndb-tls-search-path=path`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-batch-size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-batch-size</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_batch_size</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">32768</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">2147483648</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>32768</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>2147483648</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>2
+</table>
 
 Lista de diretórios para procurar por CAs e chaves privadas para conexões NDB TLS. A lista é delimitada por vírgula em plataformas Unix e por ponto e vírgula em plataformas Windows.
 
 * `--ndb-transid-mysql-connection-map=state`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-batch-size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-batch-size</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_batch_size</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">32768</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">2147483648</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>32768</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>2147483648</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>3
+</table>
 
   Habilita ou desabilita o plugin que lida com a tabela `ndb_transid_mysql_connection_map` no banco de dados `INFORMATION_SCHEMA`. Assume um dos valores `ON`, `OFF` ou `FORCE`. `ON` (o padrão) habilita o plugin. `OFF` desabilita o plugin, o que torna `ndb_transid_mysql_connection_map` inacessível. `FORCE` impede que o MySQL Server seja iniciado se o plugin não conseguir carregar e iniciar.
 
@@ -585,19 +585,19 @@ Lista de diretórios para procurar por CAs e chaves privadas para conexões NDB 
 
 * `--ndb-wait-connected=segundos`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-wait-setup=segundos</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_wait_setup</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-wait-setup=segundos</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_wait_setup</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
 Esta opção define o período de tempo que o servidor MySQL espera para que as conexões ao NDB Cluster de gerenciamento e nós de dados sejam estabelecidas antes de aceitar conexões de clientes MySQL. O tempo é especificado em segundos. O valor padrão é `30`.
 
 * `--ndb-wait-setup=segundos`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
 Esta variável indica o período de tempo que o servidor MySQL espera que o mecanismo de armazenamento `NDB` complete a configuração antes de expirar o tempo e tratar o `NDB` como indisponível. O tempo é especificado em segundos. O valor padrão é `30`.
 
 * `--skip-ndbcluster`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
 Desative o mecanismo de armazenamento `NDBCLUSTER`. Este é o padrão para binários que foram compilados com suporte ao mecanismo de armazenamento `NDBCLUSTER`; o servidor aloca memória e outros recursos para este mecanismo de armazenamento apenas se a opção `--ndbcluster` for fornecida explicitamente. Veja a Seção 25.4.1, “Configuração rápida do NDB Cluster”, para um exemplo.
 
@@ -607,7 +607,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de sistema do 
 
 * `ndb_autoincrement_prefetch_sz`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   Determina a probabilidade de lacunas em uma coluna com autoincremento. Defina-o em `1` para minimizar isso. Definir um valor alto para otimização torna as inserções mais rápidas, mas diminui a probabilidade de números consecutivos de autoincremento serem usados em um lote de inserções.
 
@@ -617,13 +617,13 @@ Esta seção fornece informações detalhadas sobre as variáveis de sistema do 
 
   Esta variável não afeta inserções realizadas usando `INSERT ... SELECT`.
 
-<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
 Por padrão, a execução de `RESET REPLICA` faz com que uma replica do NDB Cluster apague todas as linhas de sua tabela `ndb_apply_status`. Você pode desativá-lo definindo `ndb_clear_apply_status=OFF`.
 
 * `ndb_conflict_role`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>2147483648</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   Determina o papel deste nó SQL (e do NDB Cluster) em uma configuração de replicação circular (“ativo-ativo”). `ndb_conflict_role` pode assumir qualquer um dos valores `PRIMARY`, `SECONDARY`, `PASS` ou `NULL` (o padrão). O thread SQL da replica deve ser parado antes que você possa alterar `ndb_conflict_role`. Além disso, não é possível alterar diretamente entre `PASS` e `PRIMARY` ou `SECONDARY` diretamente; nesse caso, você deve garantir que o thread SQL seja parado e, em seguida, executar `SET @@GLOBAL.ndb_conflict_role = 'NONE'` primeiro.
 
@@ -633,7 +633,7 @@ Por padrão, a execução de `RESET REPLICA` faz com que uma replica do NDB Clus
 
 * `ndb_data_node_neighbour`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">63</code></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> se aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
 
   Define o ID de um "próximo" nó de dados—ou seja, um nó de dados não local preferido é escolhido para executar a transação, em vez de um que esteja executando no mesmo host que o nó de SQL ou API. Isso costumava garantir que, quando uma tabela totalmente replicada fosse acessada, acessássemos-na neste nó de dados, para garantir que a cópia local da tabela fosse sempre usada sempre que possível. Isso também pode ser usado para fornecer dicas para transações.
 
@@ -647,47 +647,47 @@ Um método equivalente `set_data_node_neighbour()` é fornecido para uso em apli
 
 * `ndb_dbg_check_shares`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code class="literal">SET_VAR</code></a></td> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code class="literal">SET_VAR</code></a></td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">63</code></td> </tr></table>1
+<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</code></a></td> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</code></a></td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>63</code></td> </tr></table>
 
 Quando definido para 1, verifique se nenhuma partilha está em espera. Disponível apenas em builds de depuração.
 
 * `ndb_default_column_format`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">63</code></td> </tr>
-</table>2
+  <tr><th>Valor Padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>63</code></td> </tr>
+</table>
 
   Define o formato padrão de `COLUMN_FORMAT` e `ROW_FORMAT` para novas tabelas (consulte a Seção 15.1.24, “Instrução CREATE TABLE”). O padrão é `FIXED`.
 
 * `ndb_deferred_constraints`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de variável de configuração"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de variável de configuração"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de variável de configuração"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de variável de configuração"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">63</code></td> </tr>
-</table>3
+  <tr><th>Valor Padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>63</code></td> </tr>
+</table>
 
   Controla se as verificações de restrições são adiadas, quando suportadas. `0` é o valor padrão.
 
@@ -696,82 +696,82 @@ Quando definido para 1, verifique se nenhuma partilha está em espera. Disponív
 * `ndb_distribution`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">63</code></td> </tr>
-</table>4
+  <tr><th>Valor Padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>63</code></td> </tr>
+</table>
 
   Controla o método de distribuição padrão para tabelas `NDB`. Pode ser definido como `KEYHASH` (hashing de chave) ou `LINHASH` (hashing linear). `KEYHASH` é o padrão.
 
 <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">63</code></td> </tr>
-</table>5
+  <tr><th>Valor Padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>63</code></td> </tr>
+</table>
 
   Define a porcentagem da memória máxima alocada para o buffer de eventos (ndb_eventbuffer_max_alloc) que deve estar disponível no buffer de eventos após atingir o máximo, antes de começar a bufferizar novamente.
 
 <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">63</code></td> </tr>
-</table>6
+  <tr><th>Valor Padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>63</code></td> </tr>
+</table>
 
   Define a quantidade máxima de memória (em bytes) que pode ser alocada para o bufferamento de eventos pela API NDB. 0 significa que não há limite imposto, e é o valor padrão.
 
 * `ndb_extra_logging`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">63</code></td> </tr>
-</table>7
+  <tr><th>Valor Padrão</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>63</code></td> </tr>
+</table>
 
   Esta variável permite a gravação no log de erro do MySQL de informações específicas do motor de armazenamento `NDB`.
 
 Quando essa variável é definida como 0, a única informação específica do `NDB` que é escrita no log de erro do MySQL está relacionada ao gerenciamento de transações. Se o valor for maior que 0, mas menor que 10, o esquema da tabela `NDB` e os eventos de conexão também são registrados, bem como se a resolução de conflitos está em uso ou não, e outros erros e informações do `NDB`. Se o valor for definido como 10 ou mais, informações sobre o `NDB` interno, como o progresso da distribuição de dados entre os nós do cluster, também são escritas no log de erro do MySQL. O valor padrão é 1.
 
-<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável de sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável de sistema</th> <td><code class="literal">ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">63</code></td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável de sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável de sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
 
 Força o envio de buffers para o `NDB` imediatamente, sem esperar por outros threads. Tem como padrão `ON`.
 
@@ -780,15 +780,15 @@ Força o envio de buffers para o `NDB` imediatamente, sem esperar por outros thr
 <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--ndb-cluster-connection-pool</code></td>
+    <td><code>--ndb-cluster-connection-pool</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal">ndb_cluster_connection_pool</code></td>
+    <td><code>ndb_cluster_connection_pool</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal">ndb_cluster_connection_pool</code></td>
+    <td><code>ndb_cluster_connection_pool</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -807,11 +807,11 @@ Força o envio de buffers para o `NDB` imediatamente, sem esperar por outros thr
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -820,15 +820,15 @@ Força o envio de buffers para o `NDB` imediatamente, sem esperar por outros thr
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">1</code></td>
+    <td><code>1</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">1</code></td>
+    <td><code>1</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">63</code></td>
+    <td><code>63</code></td>
   </tr>
 </table>
 
@@ -836,7 +836,7 @@ Força o envio de buffers para o `NDB` imediatamente, sem esperar por outros thr
 
 * `ndb_index_stat_enable`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
 
 Use estatísticas de índice `NDB` na otimização de consultas. O padrão é `ON`.
 
@@ -854,11 +854,11 @@ Os nomes das opções que podem ser definidos usando essa variável são mostrad
 
 **Tabela 25.19 opções e valores de ndb\_index\_stat\_option**
 
-<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
 * `ndb_join_pushdown`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
 
   Esta variável controla se as junções nas tabelas `NDB` são empurradas para o kernel NDB (nós de dados). Anteriormente, uma junção era tratada usando múltiplos acessos ao `NDB` pelo nó SQL; no entanto, quando o `ndb_join_pushdown` é habilitado, uma junção empurrável é enviada na íntegra para os nós de dados, onde pode ser distribuída entre os nós de dados e executada em paralelo em múltiplas cópias dos dados, com um único resultado consolidado sendo retornado ao **mysqld**. Isso pode reduzir muito o número de viagens entre um nó SQL e os nós de dados necessárias para lidar com uma junção desse tipo.
 
@@ -954,25 +954,25 @@ Existem duas fontes adicionais de informações sobre o desempenho da junção o
 
 * `ndb_log_apply_status`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
 Uma variável somente leitura que mostra se o servidor foi iniciado com a opção `--ndb-log-apply-status`.
 
 * `ndb_log_bin`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
 
   Faz com que as atualizações das tabelas `NDB` sejam escritas no log binário. A configuração desta variável não tem efeito se o registro binário não estiver habilitado no servidor usando `log_bin`. `ndb_log_bin` tem o valor padrão de 0 (FALSO).
 
 * `ndb_log_binlog_index`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
 
 Faz com que a mapeia de épocas para posições no log binário seja inserida na tabela `ndb_binlog_index`. Definir essa variável não tem efeito se o registro binário não estiver já habilitado para o servidor usando `log_bin`. (Além disso, `ndb_log_bin` não deve ser desativado.) `ndb_log_binlog_index` tem o valor padrão de `1` (`ON`); normalmente, não há necessidade de alterar esse valor em um ambiente de produção.
 
 * `ndb_log_cache_size`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável"><code class="literal">SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
   Defina o tamanho do cache de transações usado para gravar o log binário `NDB`.
 
@@ -981,11 +981,11 @@ Faz com que a mapeia de épocas para posições no log binário seja inserida na
 <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--ndb-cluster-connection-pool-nodeids</code></td>
+    <td><code>--ndb-cluster-connection-pool-nodeids</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal">ndb_cluster_connection_pool_nodeids</code></td>
+    <td><code>ndb_cluster_connection_pool_nodeids</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -996,7 +996,7 @@ Faz com que a mapeia de épocas para posições no log binário seja inserida na
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1005,7 +1005,7 @@ Faz com que a mapeia de épocas para posições no log binário seja inserida na
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal"></code></td>
+    <td><code></code></td>
   </tr>
   </table>
 10
@@ -1014,34 +1014,34 @@ Quando essa variável estiver definida como `ON` (`1`), as transações sem alte
 
 * `ndb_log_exclusive_reads`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Essa variável determina se as leituras de chave primária são registradas com bloqueios exclusivos, o que permite a detecção e resolução de conflitos da Replicação do NDB Cluster com base em conflitos de leitura. Para habilitar esses bloqueios, defina o valor de `ndb_log_exclusive_reads` para 1, o que desabilita esse bloqueio, que é o valor padrão.
 
   Para obter mais informações, consulte Detecção e resolução de conflitos de leitura.
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-log-orig</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_log_transaction_id</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-log-orig</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_log_transaction_id</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-</table>1
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
+</table>
 
 Mostra se o ID do servidor de origem e a época são registrados na tabela `ndb_binlog_index`. Definido usando a opção de servidor `--ndb-log-orig`.
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--ndb-blob-read-batch-bytes</code></td>
+    <td><code>--ndb-blob-read-batch-bytes</code></td>
   </tr>
   <tr>
     <th>Variável de sistema</th>
-    <td><code class="literal">ndb_blob_read_batch_bytes</code></td>
+    <td><code>ndb_blob_read_batch_bytes</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1052,7 +1052,7 @@ Mostra se o ID do servidor de origem e a época são registrados na tabela `ndb_
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> se aplica</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> se aplica</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1061,15 +1061,15 @@ Mostra se o ID do servidor de origem e a época são registrados na tabela `ndb_
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">65536</code></td>
+    <td><code>65536</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
 </table>
 
@@ -1081,7 +1081,7 @@ Mostra se o ID do servidor de origem e a época são registrados na tabela `ndb_
 
 * `ndb_log_transaction_compression`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Se uma replica **mysqld** escreve transações compactadas no log binário; presente apenas se **mysqld** foi compilado com suporte para `NDB`.
 
@@ -1113,7 +1113,7 @@ Para obter mais informações sobre a compressão de transações de log binári
 
 * `ndb_log_transaction_compression_level_zstd`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de Sintaxe de Definição de Hinta `<a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Hinta de Variável"><code class="literal">SET_VAR</code></a>` Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de Sintaxe de Definição de Hinta `<a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Hinta de Variável"><code>SET_VAR</code></a>` Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   O nível de compressão `ZSTD` usado para escrever transações comprimidas no log binário da replica, se habilitado por `ndb_log_transaction_compression`. Não é suportado se o **mysqld** não foi compilado com suporte para o mecanismo de armazenamento `NDB`.
 
@@ -1124,11 +1124,11 @@ Para obter mais informações sobre a compressão de transações de log binári
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--ndb-blob-read-batch-bytes</code></td>
+    <td><code>--ndb-blob-read-batch-bytes</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal">ndb_blob_read_batch_bytes</code></td>
+    <td><code>ndb_blob_read_batch_bytes</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1139,7 +1139,7 @@ Para obter mais informações sobre a compressão de transações de log binári
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1148,15 +1148,15 @@ Para obter mais informações sobre a compressão de transações de log binári
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">65536</code></td>
+    <td><code>65536</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
 </table>
 
@@ -1165,15 +1165,15 @@ O `NDB` usa um thread de fundo para verificar alterações de metadados a cada `
 * `ndb_metadata_check_interval`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-read-batch-bytes</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_read_batch_bytes</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
 </table>
 
 O `NDB` executa um fio de detecção de alterações de metadados em segundo plano para determinar quando o dicionário NDB foi alterado em relação ao dicionário de dados MySQL. Por padrão, o intervalo entre essas verificações é de 60 segundos; isso pode ser ajustado definindo o valor de `ndb_metadata_check_interval`. Para habilitar ou desabilitar o fio, use `ndb_metadata_check`.
@@ -1183,11 +1183,11 @@ O `NDB` executa um fio de detecção de alterações de metadados em segundo pla
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--ndb-blob-read-batch-bytes</code></td>
+    <td><code>--ndb-blob-read-batch-bytes</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal">ndb_blob_read_batch_bytes</code></td>
+    <td><code>ndb_blob_read_batch_bytes</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1198,7 +1198,7 @@ O `NDB` executa um fio de detecção de alterações de metadados em segundo pla
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> se aplica</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> se aplica</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1207,15 +1207,15 @@ O `NDB` executa um fio de detecção de alterações de metadados em segundo pla
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">65536</code></td>
+    <td><code>65536</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
 </table>
 
@@ -1226,16 +1226,16 @@ O `NDB` executa um fio de detecção de alterações de metadados em segundo pla
 * `ndb_optimized_node_selection`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-read-batch-bytes</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_read_batch_bytes</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
-</table>8
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
+</table>
 
 Existem duas formas de seleção de nó otimizada, descritas aqui:
 
@@ -1265,7 +1265,7 @@ Mudanças frequentes em `ndb_data_node_neighbour` não são aconselháveis, pois
 
 * `ndb_read_backup`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal">ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de sintaxe de definição de variável</th> <td><code class="literal">SET_VAR</code></a> Aplica-se</td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de sintaxe de definição de variável</th> <td><code>SET_VAR</code></a> Aplica-se</td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Ative a leitura de qualquer replica de fragmento para qualquer tabela `NDB` posteriormente criada; isso melhora significativamente o desempenho da leitura da tabela a um custo relativamente baixo para as escritas.
 
@@ -1275,7 +1275,7 @@ Mudanças frequentes em `ndb_data_node_neighbour` não são aconselháveis, pois
 
 * `ndb_recv_thread_activation_threshold`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></table>0
+  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></table>
 
   Quando este número de threads ativas simultaneamente é alcançado, o thread de recebimento assume a tarefa de fazer o polling da conexão do cluster.
 
@@ -1284,17 +1284,17 @@ Mudanças frequentes em `ndb_data_node_neighbour` não são aconselháveis, pois
 * `ndb_recv_thread_cpu_mask`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-write-batch-bytes</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_write_batch_bytes</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>1
+</table>
 
   Máscara de CPU para bloquear threads de recebimento em CPUs específicas. Isso é especificado como uma máscara de bits hexadecimal. Por exemplo, `0x33` significa que uma CPU é usada por thread de recebimento. Uma string vazia é o valor padrão; definir `ndb_recv_thread_cpu_mask` para esse valor remove quaisquer bloqueios de thread de recebimento previamente definidos.
 
@@ -1303,34 +1303,34 @@ Mudanças frequentes em `ndb_data_node_neighbour` não são aconselháveis, pois
 * `ndb_report_thresh_binlog_epoch_slip`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-write-batch-bytes</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_write_batch_bytes</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>2
+</table>
 
 Isso representa o limiar para o número de épocas completamente armazenadas no buffer de eventos, mas ainda não consumidas pelo thread do injetor do binlog. Quando esse grau de atraso (lag) é excedido, uma mensagem de status do buffer de eventos é relatada, com `BUFFERED_EPOCHS_OVER_THRESHOLD` fornecido como a razão (veja a Seção 25.6.2.3, “Relatório do Buffer de Eventos no Log do Clúster”). O atraso é aumentado quando uma época é recebida dos nós de dados e armazenada completamente no buffer de eventos; é reduzido quando uma época é consumida pelo thread do injetor do binlog. Epocas vazias são armazenadas e colocadas em fila, e, portanto, incluídas neste cálculo apenas quando isso é habilitado usando o método `Ndb::setEventBufferQueueEmptyEpoch()` da API NDB.
 
 * `ndb_report_thresh_binlog_mem_usage`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-write-batch-bytes</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_write_batch_bytes</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>3
+</table>
 
 Este é um limiar sobre a porcentagem de memória livre restante antes de relatar o status do log binário. Por exemplo, um valor de `10` (o padrão) significa que, se a quantidade de memória disponível para receber dados do log binário dos nós de dados cair abaixo de 10%, uma mensagem de status é enviada para o log do clúster.
 
@@ -1339,11 +1339,11 @@ Este é um limiar sobre a porcentagem de memória livre restante antes de relata
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--ndb-blob-write-batch-bytes</code></td>
+    <td><code>--ndb-blob-write-batch-bytes</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal">ndb_blob_write_batch_bytes</code></td>
+    <td><code>ndb_blob_write_batch_bytes</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1354,7 +1354,7 @@ Este é um limiar sobre a porcentagem de memória livre restante antes de relata
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1363,68 +1363,68 @@ Este é um limiar sobre a porcentagem de memória livre restante antes de relata
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">65536</code></td>
+    <td><code>65536</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
   <tr>
     <th>Unidade</th>
     <td>bytes</td>
   </tr>
-  </tbody></table>4
+  </tbody></table>
 
   Tradicionalmente, o `NDB` criou tabelas com verificações de checksum de linha, o que verifica problemas de hardware em detrimento do desempenho. Definir `ndb_row_checksum` para 0 significa que os checksums de linha *não* são usados para novas ou tabelas alteradas, o que tem um impacto significativo no desempenho para todos os tipos de consultas. Esta variável é definida para 1 por padrão, para fornecer um comportamento compatível com versões anteriores.
 
 * `ndb_schema_dist_lock_wait_timeout`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-write-batch-bytes</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_write_batch_bytes</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>5
+</table>
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-write-batch-bytes</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_write_batch_bytes</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>6
+</table>
 
 Número de segundos para aguardar antes de detectar um tempo de espera durante a distribuição do esquema. Isso pode indicar que outros nós SQL estão experimentando atividade excessiva ou que estão sendo impedidos de adquirir os recursos necessários neste momento.
 
 * `ndb_schema_dist_upgrade_allowed`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-write-batch-bytes</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_write_batch_bytes</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>7
+</table>
 
   Permite a atualização da tabela de distribuição de esquema ao se conectar ao `NDB`. Quando verdadeiro (o padrão), essa alteração é adiada até que todos os nós SQL tenham sido atualizados para a mesma versão do software do NDB Cluster.
 
@@ -1437,11 +1437,11 @@ Número de segundos para aguardar antes de detectar um tempo de espera durante a
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--ndb-blob-write-batch-bytes</code></td>
+    <td><code>--ndb-blob-write-batch-bytes</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal">ndb_blob_write_batch_bytes</code></td>
+    <td><code>ndb_blob_write_batch_bytes</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1452,7 +1452,7 @@ Número de segundos para aguardar antes de detectar um tempo de espera durante a
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</code></a> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1461,47 +1461,47 @@ Número de segundos para aguardar antes de detectar um tempo de espera durante a
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">65536</code></td>
+    <td><code>65536</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
   <tr>
     <th>Unidade</th>
     <td>bytes</td>
   </tr>
-  </tbody></table>8
+  </tbody></table>
 
   Mostre as tabelas fictícias usadas pelo `NDB` para suportar `foreign_key_checks=0`. Quando habilitado, avisos extras são mostrados ao criar e excluir as tabelas. O nome real (interno) da tabela pode ser visto na saída de `SHOW CREATE TABLE`.
 
 * `ndb_slave_conflict_role`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-blob-write-batch-bytes</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal">ndb_blob_write_batch_bytes</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr>
   <tr><th>Alcance</th> <td>Global, Sessão</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">65536</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>65536</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-</table>9
+</table>
 
 Símbolo desatualizado para `ndb_conflict_role`.
 
 * `ndb_table_no_logging`
 
   <table frame="box" rules="all" summary="Propriedades para ndb-connectstring">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-connectstring</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-connectstring</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-  </table>0
+  </table>
 
 Quando esta variável é definida como `ON` ou `1`, ela faz com que todas as tabelas criadas ou alteradas usando `ENGINE NDB` sejam não-registradoras; ou seja, nenhuma alteração de dados para esta tabela é escrita no log de refazer ou pinçada no disco, assim como se a tabela tivesse sido criada ou alterada usando a opção `NOLOGGING` para `CREATE TABLE` ou `ALTER TABLE`.
 
@@ -1511,7 +1511,7 @@ Para obter mais informações sobre tabelas `NDB` não-registradoras, consulte O
 
 * `ndb_table_temporary`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Quando definido como `ON` ou `1`, essa variável faz com que as tabelas `NDB` não sejam escritas em disco: Isso significa que nenhum arquivo de esquema de tabela é criado e as tabelas não são registradas.
 
@@ -1521,37 +1521,37 @@ Para obter mais informações sobre tabelas `NDB` não-registradoras, consulte O
 
 * `ndb_use_copying_alter_table`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Força o `NDB` a usar a cópia de tabelas em caso de problemas com operações `ALTER TABLE` online. O valor padrão é `OFF`.
 
 * `ndb_use_exact_count`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Força o `NDB` a usar um contagem de registros durante o planejamento da consulta `SELECT COUNT(*)` para acelerar esse tipo de consulta. O valor padrão é `OFF`, o que permite consultas mais rápidas no geral.
 
 * `ndb_use_transactions`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Você pode desabilitar o suporte de transações `NDB` configurando o valor desta variável para `OFF`. Isso geralmente não é recomendado, embora possa ser útil desabilitar o suporte de transações dentro de uma sessão de cliente específica quando essa sessão for usada para importar um ou mais arquivos de dump com transações grandes; isso permite que uma inserção de várias linhas seja executada em partes, em vez de como uma única transação. Nesses casos, uma vez que a importação tenha sido concluída, você deve reiniciar o valor da variável para essa sessão para `ON`, ou simplesmente encerrar a sessão.
 
 * `ndb_version`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Versão do motor `NDB`, como um inteiro composto.
 
 * `ndb_version_string`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Versão do motor `NDB` no formato `ndb-x.y.z`.
 
 * `replica_allow_batching`
 
-<table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Se as atualizações em lote estão habilitadas nas réplicas do NDB Cluster.
 
@@ -1561,7 +1561,7 @@ Para obter mais informações sobre tabelas `NDB` não-registradoras, consulte O
 
 * `ndb_replica_batch_size`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Determina o tamanho do lote em bytes usado pelo thread do aplicável de replicação. Defina essa variável em vez da opção `--ndb-batch-size` para aplicar essa configuração à replica, excluindo quaisquer outras sessões.
 
@@ -1577,7 +1577,7 @@ Definir `ndb_replica_blob_write_batch_bytes` para 0 significa que o `NDB` não i
 
 * `server_id_bits`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">FIXED</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td> </tr></table>0
+  <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format"><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>FIXED</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td> </tr></table>
 
 Esta variável indica o número de bits menos significativos dentro do `server_id` de 32 bits que realmente identificam o servidor. Indicar que o servidor é realmente identificado por menos de 32 bits permite que alguns dos bits restantes sejam usados para outros propósitos, como armazenar dados do usuário gerados por aplicativos que utilizam a API de Eventos da NDB API dentro do `AnyValue` de uma estrutura `OperationOptions` (o NDB Cluster usa o `AnyValue` para armazenar o ID do servidor).
 
@@ -1592,15 +1592,15 @@ Esta variável de sistema é suportada apenas pelo NDB Cluster. Não é suportad
 * `slave_allow_batching`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">FIXED</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td> </tr>
-</table>1
+  <tr><th>Valor Padrão</th> <td><code>FIXED</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td> </tr>
+</table>
 
 Sinônimo descontinuado para `replica_allow_batching`.
 
@@ -1609,11 +1609,11 @@ Sinônimo descontinuado para `replica_allow_batching`.
 <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td>
+    <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td>
+    <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1624,7 +1624,7 @@ Sinônimo descontinuado para `replica_allow_batching`.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1633,11 +1633,11 @@ Sinônimo descontinuado para `replica_allow_batching`.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">FIXED</code></td>
+    <td><code>FIXED</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td>
+    <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td>
   </tr>
 </table>
 
@@ -1655,48 +1655,48 @@ As variáveis do sistema na lista a seguir estão todas relacionadas ao banco de
 
 * `ndbinfo_database`
 
-  <table frame="box" rules="all" summary="Propriedades para o formato de coluna ndb-default-column-format"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de Definição de Variável</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">FIXED</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td> </tr></table>3
+  <table frame="box" rules="all" summary="Propriedades para o formato de coluna ndb-default-column-format"><tr><th>Formato de Linha de Comando</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de Definição de Variável</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>FIXED</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td> </tr></table>
 
   Mostra o nome usado para o banco de dados de informações `NDB`; o padrão é `ndbinfo`. Esta é uma variável de leitura apenas cujo valor é determinado no momento da compilação.
 
 * `ndbinfo_max_bytes`
 
 <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">FIXED</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td> </tr>
-</table>4
+  <tr><th>Valor Padrão</th> <td><code>FIXED</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td> </tr>
+</table>
 
   Usado apenas em testes e depuração.
 
 <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">FIXED</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td> </tr>
-</table>5
+  <tr><th>Valor Padrão</th> <td><code>FIXED</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td> </tr>
+</table>
 
   Usado apenas em testes e depuração.
 
 <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">FIXED</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td> </tr>
-</table>6
+  <tr><th>Valor Padrão</th> <td><code>FIXED</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td> </tr>
+</table>
 
   Coloque a base de dados `ndbinfo` no modo offline, na qual as tabelas e visualizações podem ser abertas mesmo quando elas não existem na verdade, ou quando existem, mas têm definições diferentes em `NDB`. Nenhuma linha é retornada dessas tabelas (ou visualizações).
 
@@ -1705,11 +1705,11 @@ As variáveis do sistema na lista a seguir estão todas relacionadas ao banco de
 <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td>
+    <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td>
+    <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1729,11 +1729,11 @@ As variáveis do sistema na lista a seguir estão todas relacionadas ao banco de
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">FIXED</code></td>
+    <td><code>FIXED</code></td>
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td>
+    <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td>
   </tr>
 </table>
 7
@@ -1747,29 +1747,29 @@ As variáveis do sistema na lista a seguir estão todas relacionadas ao banco de
 * `ndbinfo_table_prefix`
 
 <table frame="box" rules="all" summary="Propriedades para o formato de coluna ndb-default-column-format">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">FIXED</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td> </tr>
-</table>8
+  <tr><th>Valor Padrão</th> <td><code>FIXED</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td> </tr>
+</table>
 
 O prefixo usado no nome das tabelas de base do banco de dados ndbinfo (normalmente oculto, a menos que exposto definindo `ndbinfo_show_hidden`). Esta é uma variável de leitura apenas cujo valor padrão é `ndb$`; o próprio prefixo é determinado no momento da compilação.
 
 * `ndbinfo_version`
 
 <table frame="box" rules="all" summary="Propriedades para o formato de coluna ndb-default-column-format">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">FIXED</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">FIXED</code></p><p class="valid-value"><code class="literal">DYNAMIC</code></p></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>FIXED</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td> </tr>
 </table>
 
   Mostra a versão do motor `ndbinfo` em uso; apenas para leitura.

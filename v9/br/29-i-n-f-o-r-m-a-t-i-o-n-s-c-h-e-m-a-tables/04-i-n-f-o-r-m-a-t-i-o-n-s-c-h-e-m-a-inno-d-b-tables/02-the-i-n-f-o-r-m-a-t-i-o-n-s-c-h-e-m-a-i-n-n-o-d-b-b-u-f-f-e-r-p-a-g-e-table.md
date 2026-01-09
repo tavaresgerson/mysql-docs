@@ -34,39 +34,39 @@ A tabela `INNODB_BUFFER_PAGE` tem as seguintes colunas:
 
 <table summary="Mapeamento para interpretar os valores de INNODB_BUFFER_PAGE.PAGE_TYPE.">
 <tr> <td style="width: 30%">Tipo de Página</td> <td>Descrição</td> </tr>
-<tr> <td><code class="literal">ALLOCATED</code></td> <td>Página recém-aloculada</td> </tr>
-<tr> <td><code class="literal">BLOB</code></td> <td>Página BLOB não compactada</td> </tr>
-<tr> <td><code class="literal">COMPRESSED_BLOB2</code></td> <td>Página BLOB compactada subsequente</td> </tr>
-<tr> <td><code class="literal">COMPRESSED_BLOB</code></td> <td>Página BLOB compactada inicial</td> </tr>
-<tr> <td><code class="literal">ENCRYPTED_RTREE</code></td> <td>R-tree criptografado</td> </tr>
-<tr> <td><code class="literal">EXTENT_DESCRIPTOR</code></td> <td>Página descritor de extensão</td> </tr>
-<tr> <td><code class="literal">FILE_SPACE_HEADER</code></td> <td>Cabeçalho de espaço de arquivo</td> </tr>
-<tr> <td><code class="literal">FIL_PAGE_TYPE_UNUSED</code></td> <td>Não utilizado</td> </tr>
-<tr> <td><code class="literal">IBUF_BITMAP</code></td> <td>Bitmap do buffer de inserção</td> </tr>
-<tr> <td><code class="literal">IBUF_FREE_LIST</code></td> <td>Lista de livre do buffer de inserção</td> </tr>
-<tr> <td><code class="literal">IBUF_INDEX</code></td> <td>Índice do buffer de inserção</td> </tr>
-<tr> <td><code class="literal">INDEX</code></td> <td>Núcleo de B-tree</td> </tr>
-<tr> <td><code class="literal">INODE</code></td> <td>Núcleo de índice</td> </tr>
-<tr> <td><code class="literal">LOB_DATA</code></td> <td>Dados LOB não compactados</td> </tr>
-<tr> <td><code class="literal">LOB_FIRST</code></td> <td>Primeira página de dados LOB não compactados</td> </tr>
-<tr> <td><code class="literal">LOB_INDEX</code></td> <td>Índice de dados LOB não compactados</td> </tr>
-<tr> <td><code class="literal">PAGE_IO_COMPRESSED</code></td> <td>Página compactada</td> </tr>
-<tr> <td><code class="literal">PAGE_IO_COMPRESSED_ENCRYPTED</code></td> <td>Página compactada e criptografada</td> </tr>
-<tr> <td><code class="literal">PAGE_IO_ENCRYPTED</code></td> <td>Página criptografada</td> </tr>
-<tr> <td><code class="literal">RSEG_ARRAY</code></td> <td>Array de segmento de rollback</td> </tr>
-<tr> <td><code class="literal">RTREE_INDEX</code></td> <td>Índice de R-tree</td> </tr>
-<tr> <td><code class="literal">SDI_BLOB</code></td> <td>BLOB SDI não compactado</td> </tr>
-<tr> <td><code class="literal">SDI_COMPRESSED_BLOB</code></td> <td>BLOB SDI compactado</td> </tr>
-<tr> <td><code class="literal">SDI_INDEX</code></td> <td>Índice SDI</td> </tr>
-<tr> <td><code class="literal">SYSTEM</code></td> <td>Página do sistema</td> </tr>
-<tr> <td><code class="literal">TRX_SYSTEM</code></td> <td>Dados do sistema de transação</td> </tr>
-<tr> <td><code class="literal">UNDO_LOG</code></td> <td>Página do log de desfazer</td> </tr>
-<tr> <td><code class="literal">UNKNOWN</code></td> <td>Desconhecido</td> </tr>
-<tr> <td><code class="literal">ZLOB_DATA</code></td> <td>Dados LOB comprimidos</td> </tr>
-<tr> <td><code class="literal">ZLOB_FIRST</code></td> <td>Primeira página de dados LOB comprimidos</td> </tr>
-<tr> <td><code class="literal">ZLOB_FRAG</code></td> <td>Fragmento de dados LOB comprimido</td> </tr>
-<tr> <td><code class="literal">ZLOB_FRAG_ENTRY</code></td> <td>Índice de entrada de fragmento de dados LOB comprimido</td> </tr>
-<tr> <td><code class="literal">ZLOB_INDEX</code></td> <td>Índice de dados LOB comprimido</td> </tr>
+<tr> <td><code>ALLOCATED</code></td> <td>Página recém-aloculada</td> </tr>
+<tr> <td><code>BLOB</code></td> <td>Página BLOB não compactada</td> </tr>
+<tr> <td><code>COMPRESSED_BLOB2</code></td> <td>Página BLOB compactada subsequente</td> </tr>
+<tr> <td><code>COMPRESSED_BLOB</code></td> <td>Página BLOB compactada inicial</td> </tr>
+<tr> <td><code>ENCRYPTED_RTREE</code></td> <td>R-tree criptografado</td> </tr>
+<tr> <td><code>EXTENT_DESCRIPTOR</code></td> <td>Página descritor de extensão</td> </tr>
+<tr> <td><code>FILE_SPACE_HEADER</code></td> <td>Cabeçalho de espaço de arquivo</td> </tr>
+<tr> <td><code>FIL_PAGE_TYPE_UNUSED</code></td> <td>Não utilizado</td> </tr>
+<tr> <td><code>IBUF_BITMAP</code></td> <td>Bitmap do buffer de inserção</td> </tr>
+<tr> <td><code>IBUF_FREE_LIST</code></td> <td>Lista de livre do buffer de inserção</td> </tr>
+<tr> <td><code>IBUF_INDEX</code></td> <td>Índice do buffer de inserção</td> </tr>
+<tr> <td><code>INDEX</code></td> <td>Núcleo de B-tree</td> </tr>
+<tr> <td><code>INODE</code></td> <td>Núcleo de índice</td> </tr>
+<tr> <td><code>LOB_DATA</code></td> <td>Dados LOB não compactados</td> </tr>
+<tr> <td><code>LOB_FIRST</code></td> <td>Primeira página de dados LOB não compactados</td> </tr>
+<tr> <td><code>LOB_INDEX</code></td> <td>Índice de dados LOB não compactados</td> </tr>
+<tr> <td><code>PAGE_IO_COMPRESSED</code></td> <td>Página compactada</td> </tr>
+<tr> <td><code>PAGE_IO_COMPRESSED_ENCRYPTED</code></td> <td>Página compactada e criptografada</td> </tr>
+<tr> <td><code>PAGE_IO_ENCRYPTED</code></td> <td>Página criptografada</td> </tr>
+<tr> <td><code>RSEG_ARRAY</code></td> <td>Array de segmento de rollback</td> </tr>
+<tr> <td><code>RTREE_INDEX</code></td> <td>Índice de R-tree</td> </tr>
+<tr> <td><code>SDI_BLOB</code></td> <td>BLOB SDI não compactado</td> </tr>
+<tr> <td><code>SDI_COMPRESSED_BLOB</code></td> <td>BLOB SDI compactado</td> </tr>
+<tr> <td><code>SDI_INDEX</code></td> <td>Índice SDI</td> </tr>
+<tr> <td><code>SYSTEM</code></td> <td>Página do sistema</td> </tr>
+<tr> <td><code>TRX_SYSTEM</code></td> <td>Dados do sistema de transação</td> </tr>
+<tr> <td><code>UNDO_LOG</code></td> <td>Página do log de desfazer</td> </tr>
+<tr> <td><code>UNKNOWN</code></td> <td>Desconhecido</td> </tr>
+<tr> <td><code>ZLOB_DATA</code></td> <td>Dados LOB comprimidos</td> </tr>
+<tr> <td><code>ZLOB_FIRST</code></td> <td>Primeira página de dados LOB comprimidos</td> </tr>
+<tr> <td><code>ZLOB_FRAG</code></td> <td>Fragmento de dados LOB comprimido</td> </tr>
+<tr> <td><code>ZLOB_FRAG_ENTRY</code></td> <td>Índice de entrada de fragmento de dados LOB comprimido</td> </tr>
+<tr> <td><code>ZLOB_INDEX</code></td> <td>Índice de dados LOB comprimido</td> </tr>
 </tbody></table>
 
 * `FLUSH_TYPE`
@@ -119,7 +119,7 @@ A tabela `INNODB_BUFFER_PAGE` tem as seguintes colunas:
 
   **Tabela 28.5 INNODB\_BUFFER\_PAGE.PAGE\_STATE Valores**
 
-<table summary="Mapeamento para interpretar os valores de INNODB_BUFFER_PAGE.PAGE_STATE."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Estado da Página</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code class="literal">FILE_PAGE</code></td> <td>Uma página de arquivo em buffer</td> </tr><tr> <td><code class="literal">MEMORY</code></td> <td>Contém um objeto de memória principal</td> </tr><tr> <td><code class="literal">NOT_USED</code></td> <td>Na lista de livre</td> </tr><tr> <td><code class="literal">NULL</code></td> <td>Páginas limpas comprimidas, páginas comprimidas na lista de varredura, páginas usadas como sentinelas de buffer do pool</td> </tr><tr> <td><code class="literal">READY_FOR_USE</code></td> <td>Uma página livre</td> </tr><tr> <td><code class="literal">REMOVE_HASH</code></td> <td>O índice de hash deve ser removido antes de ser colocado na lista de livre</td> </tr></tbody></table>
+<table summary="Mapeamento para interpretar os valores de INNODB_BUFFER_PAGE.PAGE_STATE."><thead><tr> <th>Estado da Página</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>FILE_PAGE</code></td> <td>Uma página de arquivo em buffer</td> </tr><tr> <td><code>MEMORY</code></td> <td>Contém um objeto de memória principal</td> </tr><tr> <td><code>NOT_USED</code></td> <td>Na lista de livre</td> </tr><tr> <td><code>NULL</code></td> <td>Páginas limpas comprimidas, páginas comprimidas na lista de varredura, páginas usadas como sentinelas de buffer do pool</td> </tr><tr> <td><code>READY_FOR_USE</code></td> <td>Uma página livre</td> </tr><tr> <td><code>REMOVE_HASH</code></td> <td>O índice de hash deve ser removido antes de ser colocado na lista de livre</td> </tr></tbody></table>
 
 * `IO_FIX`
 

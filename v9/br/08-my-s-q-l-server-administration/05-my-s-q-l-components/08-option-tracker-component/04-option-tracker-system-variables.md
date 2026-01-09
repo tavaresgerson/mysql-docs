@@ -4,7 +4,7 @@ O componente Option Tracker fornece uma série de variáveis de sistema, que sã
 
 **Tabela 7.10 Resumo das Variáveis do Sistema do Option Tracker**
 
-<table frame="box" rules="all" summary="Referência para as variáveis de status fornecidas pelo Option Tracker."><col style="width: 40%"/><col style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr><th scope="col">Nome da Variável</th> <th scope="col">Tipo da Variável</th> <th scope="col">Alcance da Variável</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="option-tracker-component-system-variables.html#sysvar_component_option_tracker.mysql_shell_support">component_option_tracker.mysql_shell_support</a></th> <td>Booleano</td> <td>Global</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Referência para as variáveis de status fornecidas pelo Option Tracker."><col style="width: 40%"/><col style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr><th>Nome da Variável</th> <th>Tipo da Variável</th> <th>Alcance da Variável</th> </tr></thead><tbody><tr><th><a class="link" href="option-tracker-component-system-variables.html#sysvar_component_option_tracker.mysql_shell_support">component_option_tracker.mysql_shell_support</a></th> <td>Booleano</td> <td>Global</td> </tr></tbody></table>
 
 * `component_option_tracker.mysql_shell_support`
 

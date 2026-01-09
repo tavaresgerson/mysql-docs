@@ -6,7 +6,7 @@ Para controlar a ativação do plugin `ddl_rewriter`, use esta opção:
 
 * `--ddl-rewriter[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para ddl-rewriter"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ddl-rewriter[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">ON</code></p><p class="valid-value"><code class="literal">OFF</code></p><p class="valid-value"><code class="literal">FORCE</code></p><p class="valid-value"><code class="literal">FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ddl-rewriter"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ddl-rewriter[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Esta opção controla como o servidor carrega o plugin `ddl_rewriter` no início. Está disponível apenas se o plugin tiver sido registrado anteriormente com `INSTALL PLUGIN` ou tiver sido carregado com `--plugin-load` ou `--plugin-load-add`. Veja a Seção 7.6.5.1, “Instalando ou Desinstalando ddl\_rewriter”.
 

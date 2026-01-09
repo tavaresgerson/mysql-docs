@@ -18,13 +18,13 @@ O **comp\_err** suporta as seguintes opções.
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
   Exibir uma mensagem de ajuda e sair.
 
 * `--charset=dir_name`, `-C dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para charset"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--charset</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">../share/charsets</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para charset"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--charset</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>../share/charsets</code></td> </tr></tbody></table>
 
   O diretório do conjunto de caracteres. O padrão é `../sql/share/charsets`.
 
@@ -33,7 +33,7 @@ O **comp\_err** suporta as seguintes opções.
 <table frame="box" rules="all" summary="Propriedades para depuração">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--debug=opções</code></td>
+    <td><code>--debug=opções</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -41,14 +41,14 @@ O **comp\_err** suporta as seguintes opções.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">d:t:O,/tmp/comp_err.trace</code></td>
+    <td><code>d:t:O,/tmp/comp_err.trace</code></td>
   </tr>
 </table>
 
   <table frame="box" rules="all" summary="Propriedades para debug-info">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--debug-info</code></td>
+      <td><code>--debug-info</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -56,7 +56,7 @@ O **comp\_err** suporta as seguintes opções.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">false</code></td>
+      <td><code>false</code></td>
     </tr>
   </table>
 
@@ -67,7 +67,7 @@ O **comp\_err** suporta as seguintes opções.
   <table frame="box" rules="all" summary="Propriedades para errmsg-file">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--errmsg-file=nome</code></td>
+      <td><code>--errmsg-file=nome</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -75,7 +75,7 @@ O **comp\_err** suporta as seguintes opções.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">mysqld_errmsg.h</code></td>
+      <td><code>mysqld_errmsg.h</code></td>
     </tr>
   </table>
 
@@ -86,7 +86,7 @@ O **comp\_err** suporta as seguintes opções.
 <table frame="box" rules="all" summary="Propriedades para o arquivo de cabeçalho">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--header-file=nome</code></td>
+    <td><code>--header-file=nome</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -94,7 +94,7 @@ O **comp\_err** suporta as seguintes opções.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">mysqld_error.h</code></td>
+    <td><code>mysqld_error.h</code></td>
   </tr>
 </table>
 
@@ -105,7 +105,7 @@ O **comp\_err** suporta as seguintes opções.
   <table frame="box" rules="all" summary="Propriedades para in-file-errlog">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--in-file-errlog</code></td>
+      <td><code>--in-file-errlog</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -113,7 +113,7 @@ O **comp\_err** suporta as seguintes opções.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">../share/messages_to_error_log.txt</code></td>
+      <td><code>../share/messages_to_error_log.txt</code></td>
     </tr>
   </table>
 
@@ -124,7 +124,7 @@ O **comp\_err** suporta as seguintes opções.
   <table frame="box" rules="all" summary="Propriedades para in-file-toclient">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--in-file-toclient=caminho</code></td>
+      <td><code>--in-file-toclient=caminho</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -132,7 +132,7 @@ O **comp\_err** suporta as seguintes opções.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">../share/messages_to_clients.txt</code></td>
+      <td><code>../share/messages_to_clients.txt</code></td>
     </tr>
   </table>
 
@@ -143,7 +143,7 @@ O **comp\_err** suporta as seguintes opções.
 <table frame="box" rules="all" summary="Propriedades para nome-arquivo">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--nome-arquivo=nome</code></td>
+    <td><code>--nome-arquivo=nome</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -151,7 +151,7 @@ O **comp\_err** suporta as seguintes opções.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">mysqld_ername.h</code></td>
+    <td><code>mysqld_ername.h</code></td>
   </tr>
   </tbody>
 </table>
@@ -163,7 +163,7 @@ O **comp\_err** suporta as seguintes opções.
   <table frame="box" rules="all" summary="Propriedades para diretório_saída">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--diretório_saída=caminho</code></td>
+      <td><code>--diretório_saída=caminho</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -171,7 +171,7 @@ O **comp\_err** suporta as seguintes opções.
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">../share/</code></td>
+      <td><code>../share/</code></td>
     </tr>
   </tbody>
 </table>
@@ -183,7 +183,7 @@ O **comp\_err** suporta as seguintes opções.
   <table frame="box" rules="all" summary="Propriedades para charset">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--charset</code></td>
+      <td><code>--charset</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -191,7 +191,7 @@ O **comp\_err** suporta as seguintes opções.
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">../share/charsets</code></td>
+      <td><code>../share/charsets</code></td>
     </tr>
   </tbody>
 </table>
@@ -205,7 +205,7 @@ O **comp\_err** suporta as seguintes opções.
   <table frame="box" rules="all" summary="Propriedades para charset">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--charset</code></td>
+      <td><code>--charset</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -213,7 +213,7 @@ O **comp\_err** suporta as seguintes opções.
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">../share/charsets</code></td>
+      <td><code>../share/charsets</code></td>
     </tr>
   </tbody>
 </table>

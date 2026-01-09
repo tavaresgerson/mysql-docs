@@ -236,13 +236,13 @@ Essas variáveis não estão disponíveis, a menos que o plugin do lado do servi
   <table frame="box" rules="all" summary="Propriedades para authentication_kerberos_service_key_tab">
     
     <tbody>
-      <tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-kerberos-service-key-tab=nome_do_arquivo</code></td> </tr>
-      <tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_kerberos_service_key_tab">authentication_kerberos_service_key_tab</a></code></td> </tr>
+      <tr><th>Formato de linha de comando</th> <td><code>--authentication-kerberos-service-key-tab=nome_do_arquivo</code></td> </tr>
+      <tr><th>Variável do sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_kerberos_service_key_tab">authentication_kerberos_service_key_tab</a></code></td> </tr>
       <tr><th>Alcance</th> <td>Global</td> </tr>
       <tr><th>Dinâmico</th> <td>Não</td> </tr>
       <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
       <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
-      <tr><th>Valor padrão</th> <td><code class="literal">datadir/mysql.keytab</code></td> </tr>
+      <tr><th>Valor padrão</th> <td><code>datadir/mysql.keytab</code></td> </tr>
     </tbody>
   </table>
 
@@ -260,7 +260,7 @@ Para obter informações sobre arquivos keytab, consulte <https://web.mit.edu/ke
 
 * `authentication_kerberos_service_principal`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_kerberos_service_principal"><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-kerberos-service-principal=nome</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_kerberos_service_principal">authentication_kerberos_service_principal</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">mysql/host_name@realm_name</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_kerberos_service_principal"><tr><th>Formato de linha de comando</th> <td><code>--authentication-kerberos-service-principal=nome</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_kerberos_service_principal">authentication_kerberos_service_principal</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>mysql/host_name@realm_name</code></td> </tr></tbody></table>
 
   O nome do principal de serviço Kerberos (SPN) que o servidor MySQL envia aos clientes.
 
@@ -274,7 +274,7 @@ Pode haver nomes de métodos de autenticação de serviço que diferem apenas pe
 
 * `authentication_ldap_sasl_auth_method_name`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Dicas de configuração da variável</a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">SCRAM-SHA-256</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">SCRAM-SHA-1</code></p><p class="valid-value"><code class="literal">SCRAM-SHA-256</code></p><p class="valid-value"><code class="literal">GSSAPI</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas de configuração da variável</a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-256</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>SCRAM-SHA-1</code></p><p class="valid-value"><code>SCRAM-SHA-256</code></p><p class="valid-value"><code>GSSAPI</code></p></td> </tr></tbody></table>
 
   Para a autenticação SASL LDAP, o nome do método de autenticação. A comunicação entre o plugin de autenticação e o servidor LDAP ocorre de acordo com este método de autenticação para garantir a segurança da senha.
 
@@ -303,11 +303,11 @@ O plugin de autenticação `authentication_ldap_sasl_client` do lado do cliente 
 <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_bind_base_dn">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--authentication-ldap-sasl-bind-base-dn=value</code></td>
+    <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_bind_base_dn">authentication_ldap_sasl_bind_base_dn</a></code></td>
+    <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_bind_base_dn">authentication_ldap_sasl_bind_base_dn</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -318,7 +318,7 @@ O plugin de autenticação `authentication_ldap_sasl_client` do lado do cliente 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -327,7 +327,7 @@ O plugin de autenticação `authentication_ldap_sasl_client` do lado do cliente 
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">NULL</code></td>
+    <td><code>NULL</code></td>
   </tr>
 </table>
 
@@ -357,7 +357,7 @@ O plugin de autenticação `authentication_ldap_sasl_client` do lado do cliente 
 
 * `authentication_ldap_sasl_bind_root_dn`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_root_dn"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-ldap-sasl-bind-root-dn=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_bind_root_dn">authentication_ldap_sasl_bind_root_dn</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">NULL</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_root_dn"><tr><th>Formato de Linha de Comando</th> <td><code>--authentication-ldap-sasl-bind-root-dn=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_bind_root_dn">authentication_ldap_sasl_bind_root_dn</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></table>
 
   Para a autenticação SASL LDAP, o nome distinto raiz (DN). Esta variável é usada em conjunto com `authentication_ldap_sasl_bind_root_pwd` como as credenciais para autenticar-se no servidor LDAP com o propósito de realizar pesquisas. A autenticação usa uma ou duas operações de vinculação LDAP, dependendo se o nome da conta MySQL nomeia um DN de usuário LDAP:
 
@@ -367,13 +367,13 @@ O plugin de autenticação `authentication_ldap_sasl_client` do lado do cliente 
 
 * `authentication_ldap_sasl_bind_root_pwd`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_root_pwd"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-ldap-sasl-bind-root-pwd=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_bind_root_pwd">authentication_ldap_sasl_bind_root_pwd</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variável"><code class="literal">SET_VAR</code></a></code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_root_pwd"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--authentication-ldap-sasl-bind-root-pwd=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_bind_root_pwd">authentication_ldap_sasl_bind_root_pwd</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variável"><code>SET_VAR</code></a></code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Para a autenticação SASL LDAP, a senha para o nome distinto raiz. Esta variável é usada em conjunto com `authentication_ldap_sasl_bind_root_dn`. Veja a descrição dessa variável.
 
 * `authentication_ldap_sasl_ca_path`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_ca_path"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-ldap-sasl-ca-path=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_ca_path">authentication_ldap_sasl_ca_path</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Dicas de configuração da variável</a> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_ca_path"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-ca-path=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_ca_path">authentication_ldap_sasl_ca_path</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas de configuração da variável</a> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para a autenticação SASL LDAP, o caminho absoluto do arquivo da autoridade de certificação. Especifique este arquivo se desejar que o plugin de autenticação realize a verificação do certificado do servidor LDAP.
 
@@ -384,15 +384,15 @@ Para a autenticação SASL LDAP, a senha para o nome distinto raiz. Esta variáv
 * `authentication_ldap_sasl_connect_timeout`
 
 <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_connect_timeout">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-ldap-sasl-connect-timeout=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_connect_timeout">authentication_ldap_sasl_connect_timeout</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--authentication-ldap-sasl-connect-timeout=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_connect_timeout">authentication_ldap_sasl_connect_timeout</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">30</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">31536000</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>30</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>31536000</code></td> </tr>
   <tr><th>Unidade</th> <td>segundos</td> </tr>
 </table>
 
@@ -406,7 +406,7 @@ Se você definir essa variável para um valor de tempo de espera maior que o val
 
 * `authentication_ldap_sasl_group_search_attr`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_group_search_attr"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-ldap-sasl-group-search-attr=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_group_search_attr">authentication_ldap_sasl_group_search_attr</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">cn</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_group_search_attr"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-group-search-attr=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_group_search_attr">authentication_ldap_sasl_group_search_attr</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>cn</code></td> </tr></tbody></table>
 
   Para a autenticação SASL LDAP, o nome do atributo que especifica os nomes de grupos nas entradas de diretório LDAP. Se `authentication_ldap_sasl_group_search_attr` tiver seu valor padrão de `cn`, as pesquisas retornam o valor `cn` como o nome do grupo. Por exemplo, se uma entrada LDAP com um valor de `uid` de `user1` tem um atributo `cn` de `mygroup`, pesquisas para `user1` retornam `mygroup` como o nome do grupo.
 
@@ -416,7 +416,7 @@ Se o atributo de busca de grupo for `isMemberOf`, a autenticação LDAP recupera
 
 * `authentication_ldap_sasl_group_search_filter`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_kerberos_service_key_tab"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-kerberos-service-key-tab=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_kerberos_service_key_tab">authentication_kerberos_service_key_tab</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de hint de configuração de variável"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">datadir/mysql.keytab</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para authentication_kerberos_service_key_tab"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-kerberos-service-key-tab=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_kerberos_service_key_tab">authentication_kerberos_service_key_tab</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de hint de configuração de variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>datadir/mysql.keytab</code></td> </tr></tbody></table>
 
   Para a autenticação LDAP SASL, o filtro de busca de grupo personalizado.
 
@@ -448,7 +448,7 @@ O Windows não precisa de configurações como as descritas. Dado o endereço do
 
 * `authentication_ldap_simple_server_port`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code class="literal">SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">SCRAM-SHA-256</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">SCRAM-SHA-1</code></p><p class="valid-value"><code class="literal">SCRAM-SHA-256</code></p><p class="valid-value"><code class="literal">GSSAPI</code></p></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-256</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>SCRAM-SHA-1</code></p><p class="valid-value"><code>SCRAM-SHA-256</code></p><p class="valid-value"><code>GSSAPI</code></p></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o número da porta TCP/IP do servidor LDAP.
 
@@ -457,14 +457,14 @@ O Windows não precisa de configurações como as descritas. Dado o endereço do
 * `authentication_ldap_simple_tls`
 
 <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-ldap-sasl-auth-method-name=value</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">SCRAM-SHA-256</code></td> </tr>
-  <tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">SCRAM-SHA-1</code></p><p class="valid-value"><code class="literal">SCRAM-SHA-256</code></p><p class="valid-value"><code class="literal">GSSAPI</code></p></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>SCRAM-SHA-256</code></td> </tr>
+  <tr><th>Valores válidos</th> <td><p class="valid-value"><code>SCRAM-SHA-1</code></p><p class="valid-value"><code>SCRAM-SHA-256</code></p><p class="valid-value"><code>GSSAPI</code></p></td> </tr>
 </table>
 
   Para autenticação LDAP simples, se as conexões do plugin com o servidor LDAP são seguras. Se essa variável estiver habilitada, o plugin usa TLS para se conectar de forma segura ao servidor LDAP. Essa variável pode ser definida para substituir a configuração padrão de TLS do OpenLDAP; consulte LDAP Pluggable Authentication e ldap.conf. Se você habilitar essa variável, também pode querer definir a variável `authentication_ldap_simple_ca_path`.
@@ -475,7 +475,7 @@ O Windows não precisa de configurações como as descritas. Dado o endereço do
 
 * `authentication_ldap_simple_user_search_attr`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">SCRAM-SHA-256</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">SCRAM-SHA-1</code></p><p class="valid-value"><code class="literal">SCRAM-SHA-256</code></p><p class="valid-value"><code class="literal">GSSAPI</code></p></td> </tr></table>8
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-256</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>SCRAM-SHA-1</code></p><p class="valid-value"><code>SCRAM-SHA-256</code></p><p class="valid-value"><code>GSSAPI</code></p></td> </tr></table>
 
   Para autenticação simples LDAP, o nome do atributo que especifica os nomes de usuário nas entradas de diretório LDAP. Se o nome do nome de usuário do usuário não for fornecido, o plugin de autenticação busca o nome usando este atributo. Por exemplo, se o valor de `authentication_ldap_simple_user_search_attr` for `uid`, uma busca pelo nome do usuário `user1` encontra entradas com um valor de `uid` de `user1`.
 
@@ -484,11 +484,11 @@ O Windows não precisa de configurações como as descritas. Dado o endereço do
 <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--authentication-ldap-sasl_auth_method_name=value</code></td>
+    <td><code>--authentication-ldap-sasl_auth_method_name=value</code></td>
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td>
+    <td><code><a class="link" href="pluggable-authentication-system-variables.html#sysvar_authentication_ldap_sasl_auth_method_name">authentication_ldap_sasl_auth_method_name</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -508,10 +508,10 @@ O Windows não precisa de configurações como as descritas. Dado o endereço do
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">SCRAM-SHA-256</code></td>
+    <td><code>SCRAM-SHA-256</code></td>
   </tr>
   <tr>
     <th>Valores válidos</th>
-    <td><p class="valid-value"><code class="literal">SCRAM-SHA-1</code></p><p class="valid-value"><code class="literal">SCRAM-SHA-256</code></p><p class="valid-value"><code class="literal">GSSAPI</code></p></td>
+    <td><p class="valid-value"><code>SCRAM-SHA-1</code></p><p class="valid-value"><code>SCRAM-SHA-256</code></p><p class="valid-value"><code>GSSAPI</code></p></td>
   </tr>
-</table>9
+</table>

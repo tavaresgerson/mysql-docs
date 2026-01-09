@@ -641,7 +641,7 @@ A Tabela 15.1, “Tipos de Índices por Motor de Armazenamento”, mostra os val
 
 **Tabela 15.1 Tipos de Índices por Motor de Armazenamento**
 
-<table summary="Tipos de índice permitidos por motor de armazenamento."><col style="width: 20%"/><col style="width: 50%"/><thead><tr> <th>Motor de Armazenamento</th> <th>Tipos de Índices Permitidos</th> </tr></thead><tbody><tr> <td><a class="link" href="innodb-storage-engine.html" title="Capítulo 17 O Motor de Armazenamento InnoDB"><code class="literal">InnoDB</code></a></td> <td><code class="literal">BTREE</code></td> </tr><tr> <td><a class="link" href="myisam-storage-engine.html" title="18.2 O Motor de Armazenamento MyISAM"><code class="literal">MyISAM</code></a></td> <td><code class="literal">BTREE</code></td> </tr><tr> <td><a class="link" href="memory-storage-engine.html" title="18.3 O Motor de Armazenamento MEMORY"><code class="literal">MEMORY</code>>/<code class="literal">HEAP</code></td> <td><code class="literal">HASH</code>, <code class="literal">BTREE</code></td> </tr><tr> <td><a class="link" href="mysql-cluster.html" title="Capítulo 25 MySQL NDB Cluster 9.5"><code class="literal">NDB</code></a></td> <td><code class="literal">HASH</code>, <code class="literal">BTREE</code> (veja a nota no texto)</td> </tr></tbody></table>
+<table summary="Tipos de índice permitidos por motor de armazenamento."><col style="width: 20%"/><col style="width: 50%"/><thead><tr> <th>Motor de Armazenamento</th> <th>Tipos de Índices Permitidos</th> </tr></thead><tbody><tr> <td><a class="link" href="innodb-storage-engine.html" title="Capítulo 17 O Motor de Armazenamento InnoDB"><code>InnoDB</code></a></td> <td><code>BTREE</code></td> </tr><tr> <td><a class="link" href="myisam-storage-engine.html" title="18.2 O Motor de Armazenamento MyISAM"><code>MyISAM</code></a></td> <td><code>BTREE</code></td> </tr><tr> <td><a class="link" href="memory-storage-engine.html" title="18.3 O Motor de Armazenamento MEMORY"><code>MEMORY</code>>/<code>HEAP</code></td> <td><code>HASH</code>, <code>BTREE</code></td> </tr><tr> <td><a class="link" href="mysql-cluster.html" title="Capítulo 25 MySQL NDB Cluster 9.5"><code>NDB</code></a></td> <td><code>HASH</code>, <code>BTREE</code> (veja a nota no texto)</td> </tr></tbody></table>
 
 A cláusula *`index_type`* não pode ser usada para especificações de ÍNDICE DE TEXTO COMPLETO. A implementação de índice de texto completo depende do motor de armazenamento. Índices espaciais são implementados como índices R-tree.
 
@@ -667,67 +667,67 @@ As tabelas a seguir mostram as características dos índices para os motores de 
 
 **Tabela 15.2 Características de Índice do Motor de Armazenamento InnoDB**
 
-<table summary="Características de índice do motor de armazenamento InnoDB."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Classe de Índice</th> <th scope="col">Tipo de Índice</th> <th scope="col">Armazena VALORES NULL</th> <th scope="col">Permite VÁRIOS VALORES NULL</th> <th scope="col">Tipo de Scan IS NULL</th> <th scope="col">Tipo de Scan IS NOT NULL</th> </tr></thead><tbody><tr> <th scope="row">Chave Primária</th> <td><code class="literal">BTREE</code></td> <td>Não</td> <td>Não</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unieke</th> <td><code class="literal">BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th scope="row">Chave</th> <td><code class="literal">BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th scope="row"><code class="literal">FULLTEXT</code></th> <td>N/A</td> <td>Sim</td> <td>Sim</td> <td>Tabela</td> <td>Tabela</td> </tr><tr> <th scope="row"><code class="literal">SPATIAL</code></th> <td>N/A</td> <td>Não</td> <td>Não</td> <td>N/A</td> <td>N/A</td> </tr></tbody></table>
+<table summary="Características de índice do motor de armazenamento InnoDB."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Classe de Índice</th> <th>Tipo de Índice</th> <th>Armazena VALORES NULL</th> <th>Permite VÁRIOS VALORES NULL</th> <th>Tipo de Scan IS NULL</th> <th>Tipo de Scan IS NOT NULL</th> </tr></thead><tbody><tr> <th>Chave Primária</th> <td><code>BTREE</code></td> <td>Não</td> <td>Não</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th>Unieke</th> <td><code>BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th>Chave</th> <td><code>BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th><code>FULLTEXT</code></th> <td>N/A</td> <td>Sim</td> <td>Sim</td> <td>Tabela</td> <td>Tabela</td> </tr><tr> <th><code>SPATIAL</code></th> <td>N/A</td> <td>Não</td> <td>Não</td> <td>N/A</td> <td>N/A</td> </tr></tbody></table>
 
 **Tabela 15.3 Características dos Índices do Motor de Armazenamento MyISAM**
 
-<table summary="Características dos índices do motor de armazenamento MyISAM."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Classe do Índice</th> <th scope="col">Tipo do Índice</th> <th scope="col">Armazena VALORES NULL</th> <th scope="col">Permite VÁRIOS VALORES NULL</th> <th scope="col">Tipo de Scan para IS NULL</th> <th scope="col">Tipo de Scan para IS NOT NULL</th> </tr></thead><tbody><tr> <th scope="row">Chave Primária</th> <td><code class="literal">BTREE</code></td> <td>Não</td> <td>Não</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unico</th> <td><code class="literal">BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th scope="row">Chave</th> <td><code class="literal">BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th scope="row"><code class="literal">FULLTEXT</code></th> <td>N/A</td> <td>Sim</td> <td>Sim</td> <td>Tabela</td> <td>Tabela</td> </tr><tr> <th scope="row"><code class="literal">SPATIAL</code></th> <td>N/A</td> <td>Não</td> <td>Não</td> <td>N/A</td> <td>N/A</td> </tr></tbody></table>
+<table summary="Características dos índices do motor de armazenamento MyISAM."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Classe do Índice</th> <th>Tipo do Índice</th> <th>Armazena VALORES NULL</th> <th>Permite VÁRIOS VALORES NULL</th> <th>Tipo de Scan para IS NULL</th> <th>Tipo de Scan para IS NOT NULL</th> </tr></thead><tbody><tr> <th>Chave Primária</th> <td><code>BTREE</code></td> <td>Não</td> <td>Não</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th>Unico</th> <td><code>BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th>Chave</th> <td><code>BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th><code>FULLTEXT</code></th> <td>N/A</td> <td>Sim</td> <td>Sim</td> <td>Tabela</td> <td>Tabela</td> </tr><tr> <th><code>SPATIAL</code></th> <td>N/A</td> <td>Não</td> <td>Não</td> <td>N/A</td> <td>N/A</td> </tr></tbody></table>
 
   **Tabela 15.4 Características dos Índices do Motor de Armazenamento MEMORY**
 
 <table summary="Características do motor de armazenamento de memória NDB">
 <col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/>
 <thead><tr>
-<th scope="col">Classe do índice</th>
-<th scope="col">Tipo de índice</th>
-<th scope="col">Armazena VALORES NULL</th>
-<th scope="col">Permite múltiplos valores NULL</th>
-<th scope="col">Tipo de varredura IS NULL</th>
-<th scope="col">Tipo de varredura IS NOT NULL</th>
+<th>Classe do índice</th>
+<th>Tipo de índice</th>
+<th>Armazena VALORES NULL</th>
+<th>Permite múltiplos valores NULL</th>
+<th>Tipo de varredura IS NULL</th>
+<th>Tipo de varredura IS NOT NULL</th>
 </tr></thead><tbody>
 <tr>
-<th scope="row">Chave primária</th>
-<td><code class="literal">BTREE</code></td>
+<th>Chave primária</th>
+<td><code>BTREE</code></td>
 <td>Não</td>
 <td>Não</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
 <tr>
-<th scope="row">Unico</th>
-<td><code class="literal">BTREE</code></td>
+<th>Unico</th>
+<td><code>BTREE</code></td>
 <td>Sim</td>
 <td>Sim</td>
 <td>Índice</td>
 <td>Índice</td>
 </tr>
 <tr>
-<th scope="row">Chave</th>
-<td><code class="literal">BTREE</code></td>
+<th>Chave</th>
+<td><code>BTREE</code></td>
 <td>Sim</td>
 <td>Sim</td>
 <td>Índice</td>
 <td>Índice</td>
 </tr>
 <tr>
-<th scope="row">Chave primária</th>
-<td><code class="literal">HASH</code></td>
+<th>Chave primária</th>
+<td><code>HASH</code></td>
 <td>Não</td>
 <td>Não</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
 <tr>
-<th scope="row">Unico</th>
-<td><code class="literal">HASH</code></td>
+<th>Unico</th>
+<td><code>HASH</code></td>
 <td>Sim</td>
 <td>Sim</td>
 <td>Índice</td>
 <td>Índice</td>
 </tr>
 <tr>
-<th scope="row">Chave</th>
-<td><code class="literal">HASH</code></td>
+<th>Chave</th>
+<td><code>HASH</code></td>
 <td>Sim</td>
 <td>Sim</td>
 <td>Índice</td>
@@ -735,7 +735,7 @@ As tabelas a seguir mostram as características dos índices para os motores de 
 </tr>
 </tbody></table>
 
-<table summary="Características do motor de armazenamento NDB."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Classe do índice</th> <th scope="col">Tipo do índice</th> <th scope="col">Armazena VALORES NULL</th> <th scope="col">Permite múltiplos valores NULL</th> <th scope="col">Tipo de varredura IS NULL</th> <th scope="col">Tipo de varredura IS NOT NULL</th> </tr></thead><tbody><tr> <th scope="row">Chave primária</th> <td><code class="literal">BTREE</code></td> <td>Não</td> <td>Não</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th scope="row">Unico</th> <td><code class="literal">BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th scope="row">Chave</th> <td><code class="literal">BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th scope="row">Chave primária</th> <td><code class="literal">HASH</code></td> <td>Não</td> <td>Não</td> <td>Tabela (ver nota 1)</td> <td>Tabela (ver nota 1)</td> </tr><tr> <th scope="row">Unico</th> <td><code class="literal">HASH</code></td> <td>Sim</td> <td>Sim</td> <td>Tabela (ver nota 1)</td> <td>Tabela (ver nota 1)</td> </tr><tr> <th scope="row">Chave</th> <td><code class="literal">HASH</code></td> <td>Sim</td> <td>Sim</td> <td>Tabela (ver nota 1)</td> <td>Tabela (ver nota 1)</td> </tr></tbody></table>
+<table summary="Características do motor de armazenamento NDB."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Classe do índice</th> <th>Tipo do índice</th> <th>Armazena VALORES NULL</th> <th>Permite múltiplos valores NULL</th> <th>Tipo de varredura IS NULL</th> <th>Tipo de varredura IS NOT NULL</th> </tr></thead><tbody><tr> <th>Chave primária</th> <td><code>BTREE</code></td> <td>Não</td> <td>Não</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th>Unico</th> <td><code>BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th>Chave</th> <td><code>BTREE</code></td> <td>Sim</td> <td>Sim</td> <td>Índice</td> <td>Índice</td> </tr><tr> <th>Chave primária</th> <td><code>HASH</code></td> <td>Não</td> <td>Não</td> <td>Tabela (ver nota 1)</td> <td>Tabela (ver nota 1)</td> </tr><tr> <th>Unico</th> <td><code>HASH</code></td> <td>Sim</td> <td>Sim</td> <td>Tabela (ver nota 1)</td> <td>Tabela (ver nota 1)</td> </tr><tr> <th>Chave</th> <td><code>HASH</code></td> <td>Sim</td> <td>Sim</td> <td>Tabela (ver nota 1)</td> <td>Tabela (ver nota 1)</td> </tr></tbody></table>
 
   Nota da tabela:
 

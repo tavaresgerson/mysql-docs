@@ -4,7 +4,7 @@ A tabela a seguir lista as mensagens mais comuns do log do cluster `NDB`. Para o
 
 **Tabela 25.25 Mensagens comuns do log do cluster NDB**
 
-" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code class="literal">NDB</code></a> error codes, see <a class="ulink" href="/doc/ndb-internals/en/ndb-internals-ndb-error-codes.html" target="_top">NDB Error Codes</a>.</td> <td><code class="literal">NDBStopCompleted</code></td> <td><code class="literal">StartUp</code></td> <td>1</td> <td><code class="literal">INFO</code></td> </tr></tbody></table>
+" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code>NDB</code></a> error codes, see <a class="ulink" href="/doc/ndb-internals/en/ndb-internals-ndb-error-codes.html" target="_top">NDB Error Codes</a>.</td> <td><code>NDBStopCompleted</code></td> <td><code>StartUp</code></td> <td>1</td> <td><code>INFO</code></td> </tr></tbody></table>
 python
 
 

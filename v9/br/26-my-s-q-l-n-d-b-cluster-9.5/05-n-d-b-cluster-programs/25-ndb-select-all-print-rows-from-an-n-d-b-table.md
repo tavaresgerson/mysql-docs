@@ -12,31 +12,31 @@ As opções que podem ser usadas com **ndb\_select\_all** estão mostradas na ta
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Diretório que contém conjuntos de caracteres.
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>12</code></td> </tr><tr><th>Valor Mínima</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
   Número de vezes para tentar a conexão novamente antes de desistir.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>5</code></td> </tr><tr><th>Valor Mínima</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
 Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-string"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-string"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   O mesmo que `--ndb-connectstring`.
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Escreva o arquivo de código fonte em caso de erro; usado em depuração.
 
@@ -50,7 +50,7 @@ Número de segundos para esperar entre as tentativas de contato com o servidor d
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia o arquivo fornecido após a leitura dos arquivos globais.
 
@@ -60,7 +60,7 @@ Leia opções padrão apenas a partir do arquivo especificado.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia também grupos com concatenação (grupo, sufixo).
 
@@ -85,7 +85,7 @@ Leia opções padrão apenas a partir do arquivo especificado.
 * `--help`
 
 <table frame="box" rules="all" summary="Propriedades para ajuda">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr>
 </table>
 
   Exibir texto de ajuda e sair.
@@ -103,9 +103,9 @@ Leia opções padrão apenas a partir do arquivo especificado.
 * `--login-path`
 
   <table frame="box" rules="all" summary="Propriedades para login-path">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--login-path=caminho</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--login-path=caminho</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr>
   </table>
 
   Ler o caminho fornecido a partir do arquivo de login.
@@ -113,12 +113,12 @@ Leia opções padrão apenas a partir do arquivo especificado.
 * `--no-login-paths`
 
   <table frame="box" rules="all" summary="Propriedades para tentativas de conexão">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-  </table>0
+    <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+  </table>
 
   Ignorar opções de leitura a partir do arquivo de caminho de login.
 
@@ -135,7 +135,7 @@ Leia opções padrão apenas a partir do arquivo especificado.
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-retries=#</code></td>
+    <td><code>--connect-retries=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -143,15 +143,15 @@ Leia opções padrão apenas a partir do arquivo especificado.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
 </table>
 1
@@ -163,7 +163,7 @@ Leia opções padrão apenas a partir do arquivo especificado.
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--connect-retries=#</code></td>
+      <td><code>--connect-retries=#</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -171,15 +171,15 @@ Leia opções padrão apenas a partir do arquivo especificado.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">12</code></td>
+      <td><code>12</code></td>
     </tr>
     <tr>
       <th>Valor mínimo</th>
-      <td><code class="literal">0</code></td>
+      <td><code>0</code></td>
     </tr>
     <tr>
       <th>Valor máximo</th>
-      <td><code class="literal">12</code></td>
+      <td><code>12</code></td>
     </tr>
   </table>
 2
@@ -191,7 +191,7 @@ Leia opções padrão apenas a partir do arquivo especificado.
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-retries=#</code></td>
+    <td><code>--connect-retries=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -199,15 +199,15 @@ Leia opções padrão apenas a partir do arquivo especificado.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
   </table>
 3
@@ -219,7 +219,7 @@ Leia opções padrão apenas a partir do arquivo especificado.
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--connect-retries=#</code></td>
+      <td><code>--connect-retries=#</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -227,15 +227,15 @@ Leia opções padrão apenas a partir do arquivo especificado.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">12</code></td>
+      <td><code>12</code></td>
     </tr>
     <tr>
       <th>Valor mínimo</th>
-      <td><code class="literal">0</code></td>
+      <td><code>0</code></td>
     </tr>
     <tr>
       <th>Valor máximo</th>
-      <td><code class="literal">12</code></td>
+      <td><code>12</code></td>
     </tr>
   </table>
 4
@@ -247,7 +247,7 @@ Leia opções padrão apenas a partir do arquivo especificado.
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--connect-retries=#</code></td>
+      <td><code>--connect-retries=#</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -255,15 +255,15 @@ Leia opções padrão apenas a partir do arquivo especificado.
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">12</code></td>
+      <td><code>12</code></td>
     </tr>
     <tr>
       <th>Valor mínimo</th>
-      <td><code class="literal">0</code></td>
+      <td><code>0</code></td>
     </tr>
     <tr>
       <th>Valor máximo</th>
-      <td><code class="literal">12</code></td>
+      <td><code>12</code></td>
     </tr>
   </table>
 5
@@ -272,7 +272,7 @@ Habilitar otimizações para a seleção de nós para transações. Ativado por 
 
 * `--ndb-tls-search-path`
 
-  <table frame="box" rules="all" summary="Propriedades para retries de conexão"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr> </tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para retries de conexão"><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr> </tbody></table>
 
   Especificar uma lista de diretórios para procurar um arquivo CA. Em plataformas Unix, os nomes dos diretórios são separados por colchetes (`:`); em sistemas Windows, o caractere ponto e vírgula (`;`) é usado como separador. Uma referência de diretório pode ser relativa ou absoluta; pode conter uma ou mais variáveis de ambiente, cada uma denotada por um sinal de dólar prefixado (`$`), e expandida antes de ser usada.
 
@@ -283,12 +283,12 @@ Habilitar otimizações para a seleção de nós para transações. Ativado por 
 * `--no-defaults`
 
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-</table>8
+  <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+</table>
 
 Não leia opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
 
@@ -306,12 +306,12 @@ Especifica o grau de paralelismo.
 
 * `--print-defaults`
 
-<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-</table>8
+  <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+</table>
 
 Imprime a lista de argumentos do programa e encerra.
 
@@ -328,7 +328,7 @@ Analisa a tabela na ordem dos tuplos.
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-retries=#</code></td>
+    <td><code>--connect-retries=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -336,15 +336,15 @@ Analisa a tabela na ordem dos tuplos.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
 </table>
 
@@ -359,7 +359,7 @@ Exibir texto de ajuda e sair; o mesmo que `--help`.
 <table frame="box" rules="all" summary="Propriedades para connect-retry-delay">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-retry-delay=#</code></td>
+    <td><code>--connect-retry-delay=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -367,15 +367,15 @@ Exibir texto de ajuda e sair; o mesmo que `--help`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">5</code></td>
+    <td><code>5</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">5</code></td>
+    <td><code>5</code></td>
   </tr>
 </table>
 

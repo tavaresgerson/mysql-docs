@@ -41,13 +41,13 @@ O **mysql_migrate_keyring** suporta as seguintes opções, que podem ser especif
 
 * `--help`, `-h`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></table>
 
   Exibir uma mensagem de ajuda e sair.
 
 * `--component-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para component-dir"><tr><th>Formato de linha de comando</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para component-dir"><tr><th>Formato de linha de comando</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></table>
 
   O diretório onde os componentes do keyring estão localizados. Geralmente, é o valor da variável de sistema `plugin_dir` do servidor MySQL local.
 
@@ -57,7 +57,7 @@ O **mysql_migrate_keyring** suporta as seguintes opções, que podem ser especif
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
 
   Ler este arquivo de opções após o arquivo de opções globais, mas (no Unix) antes do arquivo de opções do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -66,7 +66,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 * `--defaults-file=nome_do_arquivo`
 
   <table frame="box" rules="all" summary="Propriedades para defaults-file">
-    <tr><th>Formato da linha de comando</th> <td><code class="literal">--defaults-file=nome_do_arquivo</code></td> </tr>
+    <tr><th>Formato da linha de comando</th> <td><code>--defaults-file=nome_do_arquivo</code></td> </tr>
     <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   </table>
 
@@ -79,7 +79,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 * `--defaults-group-suffix=str`
 
   <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix">
-    <tr><th>Formato da linha de comando</th> <td><code class="literal">--defaults-group-suffix=str</code></td> </tr>
+    <tr><th>Formato da linha de comando</th> <td><code>--defaults-group-suffix=str</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
   </table>
 
@@ -89,7 +89,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--destination-keyring=nome`
 
-<table frame="box" rules="all" summary="Propriedades para destination-keyring"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--destination-keyring=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para destination-keyring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--destination-keyring=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O componente de chave de destino para migração de chaves. O formato e a interpretação do valor da opção são os mesmos descritos para a opção `--source-keyring`.
 
@@ -99,7 +99,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--destination-keyring-configuration-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para destination-keyring-configuration-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--destination-keyring-configuration-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para destination-keyring-configuration-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--destination-keyring-configuration-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Esta opção só se aplica se o arquivo de configuração global do componente de chave de destino contiver `"read_local_config": true`, indicando que a configuração do componente está contida no arquivo de configuração local. O valor da opção especifica o diretório que contém esse arquivo local.
 
@@ -108,7 +108,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 <table frame="box" rules="all" summary="Propriedades para get-server-public-key">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--get-server-public-key</code></td>
+    <td><code>--get-server-public-key</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -128,7 +128,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
   <table frame="box" rules="all" summary="Propriedades para host">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--host=host_name</code></td>
+      <td><code>--host=host_name</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -136,7 +136,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">localhost</code></td>
+      <td><code>localhost</code></td>
     </tr>
   </tbody>
   </table>
@@ -148,7 +148,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 <table frame="box" rules="all" summary="Propriedades de ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
 </table>
 0
@@ -162,7 +162,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivos de 
 <table frame="box" rules="all" summary="Propriedades de ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
 </table>
 1
@@ -178,7 +178,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivos de 
 <table frame="box" rules="all" summary="Propriedades de ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
 </table>
 2
@@ -191,7 +191,7 @@ Para obter informações adicionais sobre essa e outras opções de arquivo, con
 
 * `--online-migration`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Esta opção é obrigatória quando um servidor em execução está usando o chaveiro. Ela indica ao **mysql\_migrate\_keyring** que realize uma migração de chave online. A opção tem esses efeitos:
 
@@ -201,7 +201,7 @@ Para obter informações adicionais sobre essa e outras opções de arquivo, con
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
 A senha da conta MySQL usada para se conectar ao servidor em execução que está atualmente usando um dos keystores de migração de chaves. O valor da senha é opcional. Se não for fornecido, o **mysql_migrate_keyring** solicita uma senha. Se for fornecida, não deve haver **espaço** entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar a senha.
 
@@ -211,13 +211,13 @@ Para especificar explicitamente que não há senha e que o **mysql_migrate_keyri
 
 * `--port=port_num`, `-P port_num`
 
-<table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Para conexões TCP/IP, o número de porta para se conectar ao servidor em execução que está atualmente usando um dos keystores de migração de chaves.
 
 * `--print-defaults`
 
-<table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Imprima o nome do programa e todas as opções que ele obtém de arquivos de opções.
 
@@ -228,9 +228,9 @@ Para especificar explicitamente que não há senha e que o **mysql_migrate_keyri
 <table frame="box" rules="all" summary="Propriedades de ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
-</table>7
+</table>
 
   O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas baseada em pares de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -245,9 +245,9 @@ Para especificar explicitamente que não há senha e que o **mysql_migrate_keyri
   <table frame="box" rules="all" summary="Propriedades de ajuda">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--help</code></td>
+      <td><code>--help</code></td>
     </tr>
-  </table>8
+  </table>
 
   Para conexões de arquivo de socket Unix ou tubo nomeado do Windows, o arquivo de socket ou tubo nomeado para se conectar ao servidor em execução que está atualmente usando um dos keystores de migração de chaves.
 
@@ -255,7 +255,7 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
 
 * `--source-keyring=name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O componente de chave de origem para migração de chaves. Este é o nome do arquivo da biblioteca de componentes especificado sem qualquer extensão específica da plataforma, como `.so` ou `.dll`. Por exemplo, para usar o componente para o qual o arquivo da biblioteca é `component_keyring_file.so`, especifique a opção como `--source-keyring=component_keyring_file`.
 
@@ -265,7 +265,7 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
 
 * `--source-keyring-configuration-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para component-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para component-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
 Esta opção só se aplica se o arquivo de configuração global do componente do chaveiro de origem contiver `"read_local_config": true`, indicando que a configuração do componente está contida no arquivo de configuração local. O valor da opção especifica o diretório que contém esse arquivo local.
 
@@ -275,7 +275,7 @@ Esta opção só se aplica se o arquivo de configuração global do componente d
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Propriedades para component-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para component-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Controla se o modo FIPS deve ser habilitado no lado do cliente. A opção `--ssl-fips-mode` difere de outras opções `--ssl-xxx` porque não é usada para estabelecer conexões criptografadas, mas sim para afetar quais operações criptográficas devem ser permitidas. Veja Seção 8.8, “Suporte FIPS”.
 
@@ -293,13 +293,13 @@ Esta opção só se aplica se o arquivo de configuração global do componente d
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-<table frame="box" rules="all" summary="Propriedades para component-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para component-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   As suíte de cifra permitidas para conexões criptografadas que usam TLSv1.3. O valor é uma lista de um ou mais nomes de suíte de cifra separados por vírgula. As suíte de cifra que podem ser nomeadas para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e suíte de cifra TLS de Conexão Criptografada”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Propriedades para component-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para component-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Quando especificada, o nome é passado para a biblioteca de API C `libmysqlclient` usando a opção `MYSQL_OPT_TLS_SNI_SERVERNAME` de `mysql_options()`. O nome do servidor não é case-sensitive. Para mostrar qual nome do servidor o cliente especificou para a sessão atual, se houver, verifique a variável `Tls_sni_server_name`.
 
@@ -310,14 +310,14 @@ Esta opção só se aplica se o arquivo de configuração global do componente d
 <table frame="box" rules="all" summary="Propriedades para component-dir">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--component-dir=dir_name</code></td>
+    <td><code>--component-dir=dir_name</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
     <td>Nome do diretório</td>
   </tr>
   </tbody>
-</table>4
+</table>
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e cifra TLS de Conexão Criptografada”.
 
@@ -326,14 +326,14 @@ Esta opção só se aplica se o arquivo de configuração global do componente d
   <table frame="box" rules="all" summary="Propriedades para component-dir">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--component-dir=dir_name</code></td>
+      <td><code>--component-dir=dir_name</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
       <td>Nome do diretório</td>
     </tr>
   </tbody>
-  </table>5
+  </table>
 
   O nome do usuário da conta MySQL usada para se conectar ao servidor em execução que está atualmente usando um dos keystores de migração de chaves.
 
@@ -342,14 +342,14 @@ Esta opção só se aplica se o arquivo de configuração global do componente d
   <table frame="box" rules="all" summary="Propriedades para component-dir">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--component-dir=dir_name</code></td>
+      <td><code>--component-dir=dir_name</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
       <td>Nome do diretório</td>
     </tr>
   </tbody>
-  </table>6
+  </table>
 
   Modo de verbosidade. Produza mais saída sobre o que o programa faz.
 
@@ -358,13 +358,13 @@ Esta opção só se aplica se o arquivo de configuração global do componente d
   <table frame="box" rules="all" summary="Propriedades para component-dir">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--component-dir=dir_name</code></td>
+      <td><code>--component-dir=dir_name</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
       <td>Nome do diretório</td>
     </tr>
   </tbody>
-  </table>7
+  </table>
 
 Exibir informações da versão e sair.

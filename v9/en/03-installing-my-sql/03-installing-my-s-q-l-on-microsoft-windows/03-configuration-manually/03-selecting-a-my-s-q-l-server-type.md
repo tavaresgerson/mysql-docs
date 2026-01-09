@@ -2,7 +2,7 @@
 
 The following table shows the available servers for Windows in MySQL 9.5.
 
-<table summary="Servers available for Windows in MySQL 9.5."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Binary</th> <th>Description</th> </tr></thead><tbody><tr> <td><a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a></td> <td>Optimized binary with named-pipe support</td> </tr><tr> <td><a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld-debug</strong></span></a></td> <td>Like <a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a>, but compiled with full debugging and automatic memory allocation checking</td> </tr></tbody></table>
+<table summary="Servers available for Windows in MySQL 9.5."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Binary</th> <th>Description</th> </tr></thead><tbody><tr> <td><a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span><strong>mysqld</strong></span></a></td> <td>Optimized binary with named-pipe support</td> </tr><tr> <td><a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span><strong>mysqld-debug</strong></span></a></td> <td>Like <a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span><strong>mysqld</strong></span></a>, but compiled with full debugging and automatic memory allocation checking</td> </tr></tbody></table>
 
 Each of the servers in a distribution support the same set of storage engines. The `SHOW ENGINES` statement displays which engines a given server supports.
 

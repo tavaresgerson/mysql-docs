@@ -70,15 +70,15 @@ Você pode ver os dados subjacentes na tabela `INFORMATION_SCHEMA` `INNODB_TRX` 
 
 A tabela a seguir mostra alguns conteúdos de amostra da tabela `INNODB_TRX`.
 
-<table summary="Dados de amostra da tabela INFORMATION_SCHEMA.INNODB_TRX, mostrando os tipos típicos de entradas para cada coluna."><col style="width: 10%"/><col style="width: 13%"/><col style="width: 36%"/><col style="width: 30%"/><col style="width: 36%"/><col style="width: 19%"/><col style="width: 23%"/><col style="width: 45%"/><thead><tr> <th scope="col">id_trx</th> <th scope="col">estado_trx</th> <th scope="col">iniciado_trx</th> <th scope="col">id_lock_pedido</th> <th scope="col">iniciado_espera_trx</th> <th scope="col">peso_trx</th> <th scope="col">id_thread_mysql_trx</th> <th scope="col">consulta_trx</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">A3</code></th> <td><code class="literal">EM_CORRIDA</code></td> <td><code class="literal">2008-01-15 16:44:54</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">2</code></td> <td><code class="literal">5</code></td> <td><code class="literal">SELECT SLEEP(100)</code></td> </tr><tr> <th scope="row"><code class="literal">A4</code></th> <td><code class="literal">espera_lock</code></td> <td><code class="literal">2008-01-15 16:45:09</code></td> <td><code class="literal">A4:1:3:2</code></td> <td><code class="literal">2008-01-15 16:45:09</code></td> <td><code class="literal">2</code></td> <td><code class="literal">6</code></td> <td><code class="literal">SELECT b FROM t FOR UPDATE</code></td> </tr><tr> <th scope="row"><code class="literal">A5</code></th> <td><code class="literal">espera_lock</code></td> <td><code class="literal">2008-01-15 16:45:14</code></td> <td><code class="literal">A5:1:3:2</code></td> <td><code class="literal">2008-01-15 16:45:14</code></td> <td><code class="literal">2</code></td> <td><code class="literal">7</code></td> <td><code class="literal">SELECT c FROM t FOR UPDATE</code></td> </tr></tbody></table>
+<table summary="Dados de amostra da tabela INFORMATION_SCHEMA.INNODB_TRX, mostrando os tipos típicos de entradas para cada coluna."><col style="width: 10%"/><col style="width: 13%"/><col style="width: 36%"/><col style="width: 30%"/><col style="width: 36%"/><col style="width: 19%"/><col style="width: 23%"/><col style="width: 45%"/><thead><tr> <th>id_trx</th> <th>estado_trx</th> <th>iniciado_trx</th> <th>id_lock_pedido</th> <th>iniciado_espera_trx</th> <th>peso_trx</th> <th>id_thread_mysql_trx</th> <th>consulta_trx</th> </tr></thead><tbody><tr> <th><code>A3</code></th> <td><code>EM_CORRIDA</code></td> <td><code>2008-01-15 16:44:54</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>2</code></td> <td><code>5</code></td> <td><code>SELECT SLEEP(100)</code></td> </tr><tr> <th><code>A4</code></th> <td><code>espera_lock</code></td> <td><code>2008-01-15 16:45:09</code></td> <td><code>A4:1:3:2</code></td> <td><code>2008-01-15 16:45:09</code></td> <td><code>2</code></td> <td><code>6</code></td> <td><code>SELECT b FROM t FOR UPDATE</code></td> </tr><tr> <th><code>A5</code></th> <td><code>espera_lock</code></td> <td><code>2008-01-15 16:45:14</code></td> <td><code>A5:1:3:2</code></td> <td><code>2008-01-15 16:45:14</code></td> <td><code>2</code></td> <td><code>7</code></td> <td><code>SELECT c FROM t FOR UPDATE</code></td> </tr></tbody></table>
 
 A tabela a seguir mostra alguns conteúdos de amostra da tabela `data_locks`.
 
-<table summary="Dados de amostra da tabela Performance Schema data_locks, mostrando os tipos típicos de entradas para cada coluna."><col style="width: 26%"/><col style="width: 13%"/><col style="width: 14%"/><col style="width: 21%"/><col style="width: 16%"/><col style="width: 15%"/><col style="width: 29%"/><col style="width: 20%"/><thead><tr> <th scope="col">id do bloqueio</th> <th scope="col">id do transação do bloqueio</th> <th scope="col">modo do bloqueio</th> <th scope="col">tipo de bloqueio</th> <th scope="col">esquema do bloqueio</th> <th scope="col">tabela do bloqueio</th> <th scope="col">índice do bloqueio</th> <th scope="col">dados do bloqueio</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">A3:1:3:2</code></th> <td><code class="literal">A3</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">0x0200</code></td> </tr><tr> <th scope="row"><code class="literal">A4:1:3:2</code></th> <td><code class="literal">A4</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">0x0200</code></td> </tr><tr> <th scope="row"><code class="literal">A5:1:3:2</code></th> <td><code class="literal">A5</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">0x0200</code></td> </tr></tbody></table>
+<table summary="Dados de amostra da tabela Performance Schema data_locks, mostrando os tipos típicos de entradas para cada coluna."><col style="width: 26%"/><col style="width: 13%"/><col style="width: 14%"/><col style="width: 21%"/><col style="width: 16%"/><col style="width: 15%"/><col style="width: 29%"/><col style="width: 20%"/><thead><tr> <th>id do bloqueio</th> <th>id do transação do bloqueio</th> <th>modo do bloqueio</th> <th>tipo de bloqueio</th> <th>esquema do bloqueio</th> <th>tabela do bloqueio</th> <th>índice do bloqueio</th> <th>dados do bloqueio</th> </tr></thead><tbody><tr> <th><code>A3:1:3:2</code></th> <td><code>A3</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t</code></td> <td><code>PRIMARY</code></td> <td><code>0x0200</code></td> </tr><tr> <th><code>A4:1:3:2</code></th> <td><code>A4</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t</code></td> <td><code>PRIMARY</code></td> <td><code>0x0200</code></td> </tr><tr> <th><code>A5:1:3:2</code></th> <td><code>A5</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t</code></td> <td><code>PRIMARY</code></td> <td><code>0x0200</code></td> </tr></tbody></table>
 
 A tabela a seguir mostra alguns conteúdos de amostra da tabela `data_lock_waits`.
 
-<table summary="Dados de amostra da tabela Performance Schema data_lock_waits, mostrando os tipos típicos de entradas para cada coluna." width="10%"> <col style="width: 10%"/><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"> <thead><tr> <th>id_trx solicitante</th> <th>id_lock solicitado</th> <th>id_trx bloqueante</th> <th>id_lock bloqueante</th> </tr> </thead><tbody> <tr> <th><code class="literal">A4</code></th> <td><code class="literal">A4:1:3:2</code></td> <td><code class="literal">A3</code></td> <td><code class="literal">A3:1:3:2</code></td> </tr> <tr> <th><code class="literal">A5</code></th> <td><code class="literal">A5:1:3:2</code></td> <td><code class="literal">A3</code></td> <td><code class="literal">A3:1:3:2</code></td> </tr> <tr> <th><code class="literal">A5</code></th> <td><code class="literal">A5:1:3:2</code></td> <td><code class="literal">A4</code></td> <td><code class="literal">A4:1:3:2</code></td> </tr> </tbody></table>
+<table summary="Dados de amostra da tabela Performance Schema data_lock_waits, mostrando os tipos típicos de entradas para cada coluna." width="10%"> <col style="width: 10%"/><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"> <thead><tr> <th>id_trx solicitante</th> <th>id_lock solicitado</th> <th>id_trx bloqueante</th> <th>id_lock bloqueante</th> </tr> </thead><tbody> <tr> <th><code>A4</code></th> <td><code>A4:1:3:2</code></td> <td><code>A3</code></td> <td><code>A3:1:3:2</code></td> </tr> <tr> <th><code>A5</code></th> <td><code>A5:1:3:2</code></td> <td><code>A3</code></td> <td><code>A3:1:3:2</code></td> </tr> <tr> <th><code>A5</code></th> <td><code>A5:1:3:2</code></td> <td><code>A4</code></td> <td><code>A4:1:3:2</code></td> </tr> </tbody></table>
 
 ##### Identificando uma Consulta Bloqueada Após a Sessão de Emissão Torna-se Idilizada
 
@@ -136,82 +136,82 @@ Pode haver inconsistências entre as consultas exibidas nas tabelas `INFORMATION
 
 A tabela a seguir mostra o conteúdo da tabela `PROCESSLIST` para um sistema que está executando uma carga de trabalho pesada.
 
-<table summary="Dados de amostra da tabela INFORMATION_SCHEMA.PROCESSLIST, mostrando o funcionamento interno dos processos do MySQL sob uma carga de trabalho pesada."><col style="width: 8%"/><col style="width: 11%"/><col style="width: 21%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 25%"/><thead><tr> <th scope="col">ID</th> <th scope="col">USER</th> <th scope="col">HOST</th> <th scope="col">DB</th> <th scope="col">COMMAND</th> <th scope="col">TIME</th> <th scope="col">STATE</th> <th scope="col">INFO</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">384</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">10</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">257</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">3</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">130</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">0</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">61</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">1</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">8</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">1</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">4</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">0</code></td> <td><code class="literal">preparing</code></td> <td><code class="literal">SELECT * FROM PROCESSLIST</code></td> </tr><tr> <th scope="row"><code class="literal">2</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Sleep</code></td> <td><code class="literal">566</code></td> <td><code class="literal"></code></td> <td><code class="literal">NULL</code></td> </tr></tbody></table>
+<table summary="Dados de amostra da tabela INFORMATION_SCHEMA.PROCESSLIST, mostrando o funcionamento interno dos processos do MySQL sob uma carga de trabalho pesada."><col style="width: 8%"/><col style="width: 11%"/><col style="width: 21%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 25%"/><thead><tr> <th>ID</th> <th>USER</th> <th>HOST</th> <th>DB</th> <th>COMMAND</th> <th>TIME</th> <th>STATE</th> <th>INFO</th> </tr></thead><tbody><tr> <th><code>384</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>10</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>257</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>3</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>130</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>0</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>61</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>1</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>8</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>1</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th><code>4</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>0</code></td> <td><code>preparing</code></td> <td><code>SELECT * FROM PROCESSLIST</code></td> </tr><tr> <th><code>2</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Sleep</code></td> <td><code>566</code></td> <td><code></code></td> <td><code>NULL</code></td> </tr></tbody></table>
 
 A tabela a seguir mostra o conteúdo da tabela `INNODB_TRX` para um sistema que executa uma carga de trabalho pesada.
 
 <table summary="Dados de amostra da tabela INFORMATION_SCHEMA.INNODB_TRX, mostrando o funcionamento interno das transações InnoDB sob carga pesada." width="8%"|width="10%"|width="19%"|width="21%"|width="19%"|width="10%"|width="10%"|width="31%">
 <thead><tr>
-<th scope="col">ID da transação</th>
-<th scope="col">Estado da transação</th>
-<th scope="col">Iniciado</th>
-<th scope="col">ID do bloqueio solicitado</th>
-<th scope="col">Início da espera da transação</th>
-<th scope="col">Peso da transação</th>
-<th scope="col">ID do thread do MySQL</th>
-<th scope="col">Consulta</th>
+<th>ID da transação</th>
+<th>Estado da transação</th>
+<th>Iniciado</th>
+<th>ID do bloqueio solicitado</th>
+<th>Início da espera da transação</th>
+<th>Peso da transação</th>
+<th>ID do thread do MySQL</th>
+<th>Consulta</th>
 </tr></thead><tbody>
 <tr>
-<th scope="row"><code class="literal">77F</code></th>
-<td><code class="literal">LOCK WAIT</code></td>
-<td><code class="literal">2008-01-15 13:10:16</code></td>
-<td><code class="literal">77F</code></td>
-<td><code class="literal">2008-01-15 13:10:16</code></td>
-<td><code class="literal">1</code></td>
-<td><code class="literal">876</code></td>
-<td><code class="literal">INSERT INTO t09 (D, B, C) VALUES …</code></td>
+<th><code>77F</code></th>
+<td><code>LOCK WAIT</code></td>
+<td><code>2008-01-15 13:10:16</code></td>
+<td><code>77F</code></td>
+<td><code>2008-01-15 13:10:16</code></td>
+<td><code>1</code></td>
+<td><code>876</code></td>
+<td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">77E</code></th>
-<td><code class="literal">LOCK WAIT</code></td>
-<td><code class="literal">2008-01-15 13:10:16</code></td>
-<td><code class="literal">77E</code></td>
-<td><code class="literal">2008-01-15 13:10:16</code></td>
-<td><code class="literal">1</code></td>
-<td><code class="literal">875</code></td>
-<td><code class="literal">INSERT INTO t09 (D, B, C) VALUES …</code></td>
+<th><code>77E</code></th>
+<td><code>LOCK WAIT</code></td>
+<td><code>2008-01-15 13:10:16</code></td>
+<td><code>77E</code></td>
+<td><code>2008-01-15 13:10:16</code></td>
+<td><code>1</code></td>
+<td><code>875</code></td>
+<td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">77D</code></th>
-<td><code class="literal">LOCK WAIT</code></td>
-<td><code class="literal">2008-01-15 13:10:16</code></td>
-<td><code class="literal">77D</code></td>
-<td><code class="literal">2008-01-15 13:10:16</code></td>
-<td><code class="literal">1</code></td>
-<td><code class="literal">874</code></td>
-<td><code class="literal">INSERT INTO t09 (D, B, C) VALUES …</code></td>
+<th><code>77D</code></th>
+<td><code>LOCK WAIT</code></td>
+<td><code>2008-01-15 13:10:16</code></td>
+<td><code>77D</code></td>
+<td><code>2008-01-15 13:10:16</code></td>
+<td><code>1</code></td>
+<td><code>874</code></td>
+<td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">77B</code></th>
-<td><code class="literal">LOCK WAIT</code></td>
-<td><code class="literal">2008-01-15 13:10:16</code></td>
-<td><code class="literal">77B:733:12:1</code></td>
-<td><code class="literal">2008-01-15 13:10:16</code></td>
-<td><code class="literal">4</code></td>
-<td><code class="literal">873</code></td>
-<td><code class="literal">INSERT INTO t09 (D, B, C) VALUES …</code></td>
+<th><code>77B</code></th>
+<td><code>LOCK WAIT</code></td>
+<td><code>2008-01-15 13:10:16</code></td>
+<td><code>77B:733:12:1</code></td>
+<td><code>2008-01-15 13:10:16</code></td>
+<td><code>4</code></td>
+<td><code>873</code></td>
+<td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">77A</code></th>
-<td><code class="literal">RUN­NING</code></td>
-<td><code class="literal">2008-01-15 13:10:16</code></td>
-<td><code class="literal">NULL</code></td>
-<td><code class="literal">NULL</code></td>
-<td><code class="literal">4</code></td>
-<td><code class="literal">872</code></td>
-<td><code class="literal">SELECT b, c FROM t09 WHERE …</code></td>
+<th><code>77A</code></th>
+<td><code>RUN­NING</code></td>
+<td><code>2008-01-15 13:10:16</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>4</code></td>
+<td><code>872</code></td>
+<td><code>SELECT b, c FROM t09 WHERE …</code></td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">E56</code></th>
-<td><code class="literal">LOCK WAIT</code></td>
-<td><code class="literal">2008-01-15 13:10:06</code></td>
-<td><code class="literal">E56:743:6:2</code></td>
-<td><code class="literal">2008-01-1
+<th><code>E56</code></th>
+<td><code>LOCK WAIT</code></td>
+<td><code>2008-01-15 13:10:06</code></td>
+<td><code>E56:743:6:2</code></td>
+<td><code>2008-01-1
 
 A tabela a seguir mostra o conteúdo da tabela `data_lock_waits` para um sistema que executa uma carga de trabalho pesada.
 
-<table summary="Dados de amostra da tabela Performance Schema data_lock_waits, mostrando o funcionamento interno do bloqueio InnoDB sob uma carga de trabalho pesada."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">ID da transação solicitando</th> <th scope="col">ID do bloqueio solicitado</th> <th scope="col">ID da transação bloqueando</th> <th scope="col">ID do bloqueio bloqueando</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">77F</code></th> <td><code class="literal">77F:806</code></td> <td><code class="literal">77E</code></td> <td><code class="literal">77E:806</code></td> </tr><tr> <th scope="row"><code class="literal">77F</code></th> <td><code class="literal">77F:806</code></td> <td><code class="literal">77D</code></td> <td><code class="literal">77D:806</code></td> </tr><tr> <th scope="row"><code class="literal">77F</code></th> <td><code class="literal">77F:806</code></td> <td><code class="literal">77B</code></td> <td><code class="literal">77B:806</code></td> </tr><tr> <th scope="row"><code class="literal">77E</code></th> <td><code class="literal">77E:806</code></td> <td><code class="literal">77D</code></td> <td><code class="literal">77D:806</code></td> </tr><tr> <th scope="row"><code class="literal">77E</code></th> <td><code class="literal">77E:806</code></td> <td><code class="literal">77B</code></td> <td><code class="literal">77B:806</code></td> </tr><tr> <th scope="row"><code class="literal">77D</code></th> <td><code class="literal">77D:806</code></td> <td><code class="literal">77B</code></td> <td><code class="literal">77B:806</code></td> </tr><tr> <th scope="row"><code class="literal">77B</code></th> <td><code class="literal">77B:733:12:1</code></td> <td><code class="literal">77A</code></td> <td><code class="literal">77A:733:12:1</code></td> </tr><tr> <th scope="row"><code class="literal">E56</code></th> <td><code class="literal">E56:743:6:2</code></td> <td><code class="literal">E55</code></td> <td><code class="literal">E55:743:6:2</code></td> </tr><tr> <th scope="row"><code class="literal">E55</code></th> <td><code class="literal">E55:743:38:2</code></td> <td><code class="literal">19C</code></td> <td><code class="literal">19C:743:38:2</code></td> </tr></tbody></table>
+<table summary="Dados de amostra da tabela Performance Schema data_lock_waits, mostrando o funcionamento interno do bloqueio InnoDB sob uma carga de trabalho pesada."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>ID da transação solicitando</th> <th>ID do bloqueio solicitado</th> <th>ID da transação bloqueando</th> <th>ID do bloqueio bloqueando</th> </tr></thead><tbody><tr> <th><code>77F</code></th> <td><code>77F:806</code></td> <td><code>77E</code></td> <td><code>77E:806</code></td> </tr><tr> <th><code>77F</code></th> <td><code>77F:806</code></td> <td><code>77D</code></td> <td><code>77D:806</code></td> </tr><tr> <th><code>77F</code></th> <td><code>77F:806</code></td> <td><code>77B</code></td> <td><code>77B:806</code></td> </tr><tr> <th><code>77E</code></th> <td><code>77E:806</code></td> <td><code>77D</code></td> <td><code>77D:806</code></td> </tr><tr> <th><code>77E</code></th> <td><code>77E:806</code></td> <td><code>77B</code></td> <td><code>77B:806</code></td> </tr><tr> <th><code>77D</code></th> <td><code>77D:806</code></td> <td><code>77B</code></td> <td><code>77B:806</code></td> </tr><tr> <th><code>77B</code></th> <td><code>77B:733:12:1</code></td> <td><code>77A</code></td> <td><code>77A:733:12:1</code></td> </tr><tr> <th><code>E56</code></th> <td><code>E56:743:6:2</code></td> <td><code>E55</code></td> <td><code>E55:743:6:2</code></td> </tr><tr> <th><code>E55</code></th> <td><code>E55:743:38:2</code></td> <td><code>19C</code></td> <td><code>19C:743:38:2</code></td> </tr></tbody></table>
 
 A tabela a seguir mostra o conteúdo da tabela `data_locks` para um sistema que executa uma carga de trabalho pesada.
 
-<table summary="Dados de amostra da tabela Performance Schema data_locks, mostrando o funcionamento interno do bloqueio InnoDB sob uma carga de trabalho pesada."><col style="width: 18%"/><col style="width: 9%"/><col style="width: 12%"/><col style="width: 12%"/><col style="width: 9%"/><col style="width: 8%"/><col style="width: 15%"/><col style="width: 17%"/><thead><tr> <th scope="col">id do bloqueio</th> <th scope="col">id da transação</th> <th scope="col">modo do bloqueio</th> <th scope="col">tipo de bloqueio</th> <th scope="col">esquema do bloqueio</th> <th scope="col">tabela do bloqueio</th> <th scope="col">índice do bloqueio</th> <th scope="col">dados do bloqueio</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">77F:806</code></th> <td><code class="literal">77F</code></td> <td><code class="literal">AUTO_INC</code></td> <td><code class="literal">TABLE</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> </tr><tr> <th scope="row"><code class="literal">77E:806</code></th> <td><code class="literal">77E</code></td> <td><code class="literal">AUTO_INC</code></td> <td><code class="literal">TABLE</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> </tr><tr> <th scope="row"><code class="literal">77D:806</code></th> <td><code class="literal">77D</code></td> <td><code class="literal">AUTO_INC</code></td> <td><code class="literal">TABLE</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> </tr><tr> <th scope="row"><code class="literal">77B:806</code></th> <td><code class="literal">77B</code></td> <td><code class="literal">AUTO_INC</code></td> <td><code class="literal">TABLE</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> </tr><tr> <th scope="row"><code class="literal">77B:733:12:1</code></th> <td><code class="literal">77B</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">supremum pseudo-record</code></td> </tr><tr> <th scope="row"><code class="literal">77A:733:12:1</code></th> <td><code class="literal">77A</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td rowspan="2"><td><code class="literal">test</code></td> <td rowspan="2"><td><code class="literal">t09</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">supremum pseudo-record</code></td> </tr><tr> <td rowspan="2"><td><code class="literal">E56:743:6:2</code></td> <td><code class="literal">E56</code></td> <td><code class="literal">S</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t2</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">0, 0</code></td> </tr><tr> <td rowspan="2"><td><code class="literal">E55:743:6:2</code></td> <td><code class="literal">E55
+<table summary="Dados de amostra da tabela Performance Schema data_locks, mostrando o funcionamento interno do bloqueio InnoDB sob uma carga de trabalho pesada."><col style="width: 18%"/><col style="width: 9%"/><col style="width: 12%"/><col style="width: 12%"/><col style="width: 9%"/><col style="width: 8%"/><col style="width: 15%"/><col style="width: 17%"/><thead><tr> <th>id do bloqueio</th> <th>id da transação</th> <th>modo do bloqueio</th> <th>tipo de bloqueio</th> <th>esquema do bloqueio</th> <th>tabela do bloqueio</th> <th>índice do bloqueio</th> <th>dados do bloqueio</th> </tr></thead><tbody><tr> <th><code>77F:806</code></th> <td><code>77F</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th><code>77E:806</code></th> <td><code>77E</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th><code>77D:806</code></th> <td><code>77D</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th><code>77B:806</code></th> <td><code>77B</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th><code>77B:733:12:1</code></th> <td><code>77B</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>PRIMARY</code></td> <td><code>supremum pseudo-record</code></td> </tr><tr> <th><code>77A:733:12:1</code></th> <td><code>77A</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td rowspan="2"><td><code>test</code></td> <td rowspan="2"><td><code>t09</code></td> <td><code>PRIMARY</code></td> <td><code>supremum pseudo-record</code></td> </tr><tr> <td rowspan="2"><td><code>E56:743:6:2</code></td> <td><code>E56</code></td> <td><code>S</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t2</code></td> <td><code>PRIMARY</code></td> <td><code>0, 0</code></td> </tr><tr> <td rowspan="2"><td><code>E55:743:6:2</code></td> <td><code>E55

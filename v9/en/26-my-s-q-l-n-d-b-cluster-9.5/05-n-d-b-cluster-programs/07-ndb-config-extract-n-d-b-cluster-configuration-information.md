@@ -10,13 +10,13 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Directory containing character sets.
 
 * `cluster-config-suffix`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Override defaults group suffix when reading cluster configuration sections in `my.cnf`; used in testing.
 
@@ -69,7 +69,7 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--config-binary-file=path-to-file`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Gives the path to the management server's cached binary configuration file (`ndb_nodeID_config.bin.seqno`). This may be a relative or absolute path. If the management server and the **ndb\_config** binary used reside on different hosts, you must use an absolute path.
 
@@ -133,13 +133,13 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--config-file=path-to-file`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Gives the path to the cluster configuration file (`config.ini`). This may be a relative or absolute path. If the management server and the **ndb\_config** binary used reside on different hosts, you must use an absolute path.
 
 * `--config_from_node=#`
 
-  <table frame="box" rules="all" summary="Properties for config_from_node"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">1</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">48</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config_from_node"><tbody><tr><th>Command-Line Format</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>48</code></td> </tr></tbody></table>
 
   Obtain the cluster's configuration data from the data node that has this ID.
 
@@ -147,25 +147,25 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
   Number of times to retry connection before giving up.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
 
   Number of seconds to wait between attempts to contact management server.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Same as `--ndb-connectstring`.
 
 * `--connections`
 
-  <table frame="box" rules="all" summary="Properties for connections"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connections</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connections"><tbody><tr><th>Command-Line Format</th> <td><code>--connections</code></td> </tr></tbody></table>
 
   Tells **ndb\_config** to print `CONNECTIONS` information only—that is, information about parameters found in the `[tcp]`, `[tcp default]`, `[shm]`, or `[shm default]` sections of the cluster configuration file (see Section 25.4.3.10, “NDB Cluster TCP/IP Connections”, and Section 25.4.3.12, “NDB Cluster Shared-Memory Connections”, for more information).
 
@@ -173,37 +173,37 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Also read groups with concat(group, suffix).
 
 * `--diff-default`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Print only configuration parameters that have non-default values.
 
 * `--fields=delimiter`, `-f` *`delimiter`*
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Specifies a *`delimiter`* string used to separate the fields in the result. The default is `,` (the comma character).
 
@@ -213,13 +213,13 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Display help text and exit.
 
 * `--host=hostname`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Specifies the host name of the node for which configuration information is to be obtained.
 
@@ -229,49 +229,49 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read given path from login file.
 
 * `--mycnf`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read configuration data from the `my.cnf` file.
 
 * `--ndb-connectstring=connection_string`, `-c connection_string`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Specifies the connection string to use in connecting to the management server. The format for the connection string is the same as described in Section 25.4.3.3, “NDB Cluster Connection Strings”, and defaults to `localhost:1186`.
 
 * `--ndb-mgm-tls`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Sets the level of TLS support required to connect to the management server; one of `relaxed` or `strict`. `relaxed` (the default) means that a TLS connection is attempted, but success is not required; `strict` means that TLS is required to connect.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Same as `--ndb-connectstring`.
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Set node ID for this node, overriding any ID set by `--ndb-connectstring`.
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
 * `--ndb-tls-search-path`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Specify a list of directories to search for a CA file. On Unix platforms, the directory names are separated by colons (`:`); on Windows systems, the semicolon character (`;`) is used as the separator. A directory reference may be relative or absolute; it may contain one or more environment variables, each denoted by a prefixed dollar sign (`$`), and expanded prior to use.
 
@@ -281,25 +281,25 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Do not read default options from any option file other than login file.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Skips reading options from the login path file.
 
 * `--nodeid=node_id`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Specify the node ID of the node for which configuration information is to be obtained.
 
 * `--nodes`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Tells **ndb\_config** to print information relating only to parameters defined in an `[ndbd]` or `[ndbd default]` section of the cluster configuration file (see Section 25.4.3.6, “Defining NDB Cluster Data Nodes”).
 
@@ -307,13 +307,13 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for config-binary-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-binary-file=path/to/file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Print program argument list and exit.
 
 * `--query=query-options`, `-q` *`query-options`*
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   This is a comma-delimited list of query options—that is, a list of one or more node attributes to be returned. These include `nodeid` (node ID), type (node type—that is, `ndbd`, `mysqld`, or `ndb_mgmd`), and any configuration parameters whose values are to be obtained.
 
@@ -325,13 +325,13 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--query-all`, `-a`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Returns a comma-delimited list of all query options (node attributes; note that this list is a single string.
 
 * `--rows=separator`, `-r` *`separator`*
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Specifies a *`separator`* string used to separate the rows in the result. The default is a space character.
 
@@ -341,7 +341,7 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--system`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Tells **ndb\_config** to print `SYSTEM` information only. This consists of system variables that cannot be changed at run time; thus, there is no corresponding section of the cluster configuration file for them. They can be seen (prefixed with `****** SYSTEM ******`) in the output of **ndb\_config** `--configinfo`.
 
@@ -349,25 +349,25 @@ All options that can be used with **ndb\_config** are shown in the following tab
 
 * `--type=node_type`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Filters results so that only configuration values applying to nodes of the specified *`node_type`* (`ndbd`, `mysqld`, or `ndb_mgmd`) are returned.
 
 * `--usage`, `--help`, or `-?`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Causes **ndb\_config** to print a list of available options, and then exit.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Causes **ndb\_config** to print a version information string, and then exit.
 
 * `--configinfo` `--xml`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal"></code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
   Cause **ndb\_config** `--configinfo` to provide output as XML by adding this option. A portion of such output is shown in this example:
 

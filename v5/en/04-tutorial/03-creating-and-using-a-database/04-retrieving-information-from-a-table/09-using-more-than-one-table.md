@@ -24,69 +24,69 @@ As with the `pet` table, it is easiest to load the initial records by creating a
    <col style="width: 35%"/>
    <thead>
       <tr>
-         <th scope="col">name</th>
-         <th scope="col">date</th>
-         <th scope="col">type</th>
-         <th scope="col">remark</th>
+         <th>name</th>
+         <th>date</th>
+         <th>type</th>
+         <th>remark</th>
       </tr>
    </thead>
    <tbody>
       <tr>
-         <th scope="row">Fluffy</th>
+         <th>Fluffy</th>
          <td>1995-05-15</td>
          <td>litter</td>
          <td>4 kittens, 3 female, 1 male</td>
       </tr>
       <tr>
-         <th scope="row">Buffy</th>
+         <th>Buffy</th>
          <td>1993-06-23</td>
          <td>litter</td>
          <td>5 puppies, 2 female, 3 male</td>
       </tr>
       <tr>
-         <th scope="row">Buffy</th>
+         <th>Buffy</th>
          <td>1994-06-19</td>
          <td>litter</td>
          <td>3 puppies, 3 female</td>
       </tr>
       <tr>
-         <th scope="row">Chirpy</th>
+         <th>Chirpy</th>
          <td>1999-03-21</td>
          <td>vet</td>
          <td>needed beak straightened</td>
       </tr>
       <tr>
-         <th scope="row">Slim</th>
+         <th>Slim</th>
          <td>1997-08-03</td>
          <td>vet</td>
          <td>broken rib</td>
       </tr>
       <tr>
-         <th scope="row">Bowser</th>
+         <th>Bowser</th>
          <td>1991-10-12</td>
          <td>kennel</td>
          <td></td>
       </tr>
       <tr>
-         <th scope="row">Fang</th>
+         <th>Fang</th>
          <td>1991-10-12</td>
          <td>kennel</td>
          <td></td>
       </tr>
       <tr>
-         <th scope="row">Fang</th>
+         <th>Fang</th>
          <td>1998-08-28</td>
          <td>birthday</td>
          <td>Gave him a new chew toy</td>
       </tr>
       <tr>
-         <th scope="row">Claws</th>
+         <th>Claws</th>
          <td>1998-03-17</td>
          <td>birthday</td>
          <td>Gave him a new flea collar</td>
       </tr>
       <tr>
-         <th scope="row">Whistler</th>
+         <th>Whistler</th>
          <td>1998-12-09</td>
          <td>birthday</td>
          <td>First birthday</td>

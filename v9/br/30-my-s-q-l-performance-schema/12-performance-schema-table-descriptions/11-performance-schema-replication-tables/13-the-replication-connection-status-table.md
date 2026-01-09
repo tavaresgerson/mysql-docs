@@ -96,36 +96,36 @@ A tabela a seguir mostra a correspondência entre as colunas `replication_connec
 <table summary="Correspondência entre as colunas `replication_connection_status` e `SHOW REPLICA STATUS`">
 <col style="width: 60%"/><col style="width: 40%"/>
 <thead><tr>
-<th><code class="literal">replication_connection_status</code></th>
-<th><code class="literal">SHOW REPLICA STATUS</code></th>
+<th><code>replication_connection_status</code></th>
+<th><code>SHOW REPLICA STATUS</code></th>
 </tr></thead>
 <tbody>
 <tr>
-<td><code class="literal">SOURCE_UUID</code></td>
-<td><code class="literal">Master_UUID</code></td>
+<td><code>SOURCE_UUID</code></td>
+<td><code>Master_UUID</code></td>
 </tr>
 <tr>
-<td><code class="literal">THREAD_ID</code></td>
+<td><code>THREAD_ID</code></td>
 <td>Nenhum</td>
 </tr>
 <tr>
-<td><code class="literal">SERVICE_STATE</code></td>
-<td><code class="literal">Replica_IO_Running</code></td>
+<td><code>SERVICE_STATE</code></td>
+<td><code>Replica_IO_Running</code></td>
 </tr>
 <tr>
-<td><code class="literal">RECEIVED_TRANSACTION_SET</code></td>
-<td><code class="literal">Retrieved_Gtid_Set</code></td>
+<td><code>RECEIVED_TRANSACTION_SET</code></td>
+<td><code>Retrieved_Gtid_Set</code></td>
 </tr>
 <tr>
-<td><code class="literal">LAST_ERROR_NUMBER</code></td>
-<td><code class="literal">Last_IO_Errno</code></td>
+<td><code>LAST_ERROR_NUMBER</code></td>
+<td><code>Last_IO_Errno</code></td>
 </tr>
 <tr>
-<td><code class="literal">LAST_ERROR_MESSAGE</code></td>
-<td><code class="literal">Last_IO_Error</code></td>
+<td><code>LAST_ERROR_MESSAGE</code></td>
+<td><code>Last_IO_Error</code></td>
 </tr>
 <tr>
-<td><code class="literal">LAST_ERROR_TIMESTAMP</code></td>
-<td><code class="literal">Last_IO_Error_Timestamp</code></td>
+<td><code>LAST_ERROR_TIMESTAMP</code></td>
+<td><code>Last_IO_Error_Timestamp</code></td>
 </tr>
 </tbody></table>

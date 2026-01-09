@@ -42,7 +42,7 @@
     <td></td>
   </tr>
   <tr>
-    <th><&gt;</th>, <code class="literal">!=</code></td>
+    <th><&gt;</th>, <code>!=</code></td>
     <td> Diferente de (NOT EQUAL)</td>
     <td></td>
   </tr>
@@ -108,7 +108,7 @@
   </tr>
   <tr>
     <th>=</th>
-    <td> Atribuição de valor (como parte de uma declaração <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code class="literal">SET</code></a> ou como parte da cláusula <code class="literal">SET</code> em uma declaração <a class="link" href="update.html" title="15.2.17 UPDATE Statement"><code class="literal">UPDATE</code></a>)</td>
+    <td> Atribuição de valor (como parte de uma declaração <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code>SET</code></a> ou como parte da cláusula <code>SET</code> em uma declaração <a class="link" href="update.html" title="15.2.17 UPDATE Statement"><code>UPDATE</code></a>)</td>
     <td></td>
   </tr>
   <tr>

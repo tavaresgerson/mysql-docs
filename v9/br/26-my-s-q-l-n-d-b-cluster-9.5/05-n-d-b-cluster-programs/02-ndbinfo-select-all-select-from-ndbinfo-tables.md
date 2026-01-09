@@ -45,13 +45,13 @@ As opções que podem ser usadas com **ndbinfo_select_all** estão mostradas na 
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Diretório contendo conjuntos de caracteres.
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Escrever arquivo de núcleo em caso de erro; usado em depuração.
 
@@ -60,7 +60,7 @@ As opções que podem ser usadas com **ndbinfo_select_all** estão mostradas na 
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--connect-retries=#</code></td>
+    <td><code>--connect-retries=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -68,15 +68,15 @@ As opções que podem ser usadas com **ndbinfo_select_all** estão mostradas na 
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">12</code></td>
+    <td><code>12</code></td>
   </tr>
 </table>
 
@@ -87,7 +87,7 @@ As opções que podem ser usadas com **ndbinfo_select_all** estão mostradas na 
   <table frame="box" rules="all" summary="Propriedades para connect-retry-delay">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--connect-retry-delay=#</code></td>
+      <td><code>--connect-retry-delay=#</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -95,15 +95,15 @@ As opções que podem ser usadas com **ndbinfo_select_all** estão mostradas na 
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">5</code></td>
+      <td><code>5</code></td>
     </tr>
     <tr>
       <th>Valor mínimo</th>
-      <td><code class="literal">0</code></td>
+      <td><code>0</code></td>
     </tr>
     <tr>
       <th>Valor máximo</th>
-      <td><code class="literal">5</code></td>
+      <td><code>5</code></td>
     </tr>
   </table>
 
@@ -114,7 +114,7 @@ As opções que podem ser usadas com **ndbinfo_select_all** estão mostradas na 
   <table frame="box" rules="all" summary="Propriedades para connect-string">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--connect-string=connection-string</code></td>
+      <td><code>--connect-string=connection-string</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -122,7 +122,7 @@ As opções que podem ser usadas com **ndbinfo_select_all** estão mostradas na 
     </tr>
     <tr>
       <th>Valor padrão</th>
-      <td><code class="literal">[none]</code></td>
+      <td><code>[none]</code></td>
     </tr>
   </table>
 
@@ -134,24 +134,24 @@ Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Leia as opções padrão do arquivo fornecido.
 
 * `--defaults-grupo-sufixo`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-grupo-sufixo"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-grupo-sufixo=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-grupo-sufixo"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-grupo-sufixo=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr></tbody></table>
 
   Leia também os grupos com concatenação (grupo, sufixo).
 
 * `--delay=segundos`
 
 <table frame="box" rules="all" summary="Propriedades para atraso">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--delay=#</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--delay=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">MAX_INT</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>5</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>MAX_INT</code></td> </tr>
   </tr>
 </table>
 
@@ -159,73 +159,73 @@ Esta opção define o número de segundos para esperar entre a execução de loo
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></table>
 
   Exibe texto de ajuda e sai.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--core-file</code></td> </tr></table>0
+  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tr><th>Formato de Linha de Comando</th> <td><code>--core-file</code></td> </tr></table>
 
   Leia o caminho dado a partir do arquivo de login.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--core-file</code></td> </tr></table>1
+  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tr><th>Formato de Linha de Comando</th> <td><code>--core-file</code></td> </tr></table>
 
   Ignora a leitura de opções a partir do arquivo de caminho de login.
 
 * `--loops=número`, `-l número`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--core-file</code></td> </tr></table>2
+  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tr><th>Formato de Linha de Comando</th> <td><code>--core-file</code></td> </tr></table>
 
 Esta opção define o número de vezes que o comando será executado. Use `--delay` para definir o tempo entre os loops.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrime entradas no `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   O mesmo que `--ndb-connectstring`.
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Defina o ID do nó para este nó, sobrescrevendo qualquer ID definido por `--ndb-connectstring`.
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Ative otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
 Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de código-fonte"><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr></table>8
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de código-fonte"><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></table>
 
   Imprima a lista de argumentos do programa e saia.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de tentativas de conexão"><tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr></table>9
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de tentativas de conexão"><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></table>
 
   Exiba o texto de ajuda e saia; o mesmo que `--help`.
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></table>0
+  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão"><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></table>
 
   Exiba as informações da versão e saia.
 

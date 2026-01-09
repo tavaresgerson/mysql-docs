@@ -814,39 +814,39 @@ A tabela a seguir fornece um resumo das regras que o MySQL segue ao converter en
 <table summary="Regras de conversão para o tipo de dados JSON">
 <col style="width: 20%"/><col style="width: 40%"/><col style="width: 40%"/>
 <thead><tr>
-<th scope="col">outro tipo</th>
-<th scope="col">CAST(outro tipo AS JSON)</th>
-<th scope="col">CAST(JSON AS outro tipo)</th>
+<th>outro tipo</th>
+<th>CAST(outro tipo AS JSON)</th>
+<th>CAST(JSON AS outro tipo)</th>
 </tr></thead><tbody>
 <tr>
-<th scope="row">JSON</th>
+<th>JSON</th>
 <td>Sem mudança</td>
 <td>Sem mudança</td>
 </tr>
 <tr>
-<th scope="row">tipo de caractere utf8 (<code class="literal">utf8mb4</code>, <code class="literal">utf8mb3</code>, <code class="literal">ascii</code>)</th>
+<th>tipo de caractere utf8 (<code>utf8mb4</code>, <code>utf8mb3</code>, <code>ascii</code>)</th>
 <td>A string é analisada como um valor JSON.</td>
-<td>O valor JSON é serializado em uma string <code class="literal">utf8mb4</code>.</td>
+<td>O valor JSON é serializado em uma string <code>utf8mb4</code>.</td>
 </tr>
 <tr>
-<th scope="row">Outros tipos de caractere</th>
-<td>Outras codificações de caracteres são convertidas implicitamente em <code class="literal">utf8mb4</code> e tratadas conforme descrito para esse tipo de caractere.</td>
-<td>O valor JSON é serializado em uma string <code class="literal">utf8mb4</code>, depois convertido para a outra codificação de caracteres. O resultado pode não ser significativo.</td>
+<th>Outros tipos de caractere</th>
+<td>Outras codificações de caracteres são convertidas implicitamente em <code>utf8mb4</code> e tratadas conforme descrito para esse tipo de caractere.</td>
+<td>O valor JSON é serializado em uma string <code>utf8mb4</code>, depois convertido para a outra codificação de caracteres. O resultado pode não ser significativo.</td>
 </tr>
 <tr>
-<th scope="row"><code class="literal">NULL</code></th>
-<td>Resulta em um valor <code class="literal">NULL</code> do tipo JSON.</td>
+<th><code>NULL</code></th>
+<td>Resulta em um valor <code>NULL</code> do tipo JSON.</td>
 <td>Não aplicável.</td>
 </tr>
 <tr>
-<th scope="row">Tipos de geometria</th>
-<td>O valor de geometria é convertido em um documento JSON chamando <a class="link" href="spatial-geojson-functions.html#function_st-asgeojson"><code class="literal">ST_AsGeoJSON()</code></a>.</td>
-<td>Operação ilegal. Solução: passe o resultado de <a class="link" href="cast-functions.html#function_cast"><code class="literal">CAST(<em class="replaceable"><code>json_val</code></em> AS CHAR)</code></a> para <a class="link" href="spatial-geojson-functions.html#function_st-geomfromgeojson"><code class="literal">ST_GeomFromGeoJSON()</code></a>.</td>
+<th>Tipos de geometria</th>
+<td>O valor de geometria é convertido em um documento JSON chamando <a class="link" href="spatial-geojson-functions.html#function_st-asgeojson"><code>ST_AsGeoJSON()</code></a>.</td>
+<td>Operação ilegal. Solução: passe o resultado de <a class="link" href="cast-functions.html#function_cast"><code>CAST(<em class="replaceable"><code>json_val</code></em> AS CHAR)</code></a> para <a class="link" href="spatial-geojson-functions.html#function_st-geomfromgeojson"><code>ST_GeomFromGeoJSON()</code></a>.</td>
 </tr>
 <tr>
-<th scope="row">Todos os outros tipos</th>
+<th>Todos os outros tipos</th>
 <td>Resulta em um documento JSON consistindo de um único valor escalar.</td>
-<td>Tem sucesso se o documento JSON consistir em um único valor escalar do tipo alvo e se esse valor escalar puder ser convertido para o tipo alvo. Caso contrário, retorna <code class="literal">NULL</code> e produz um aviso.</td>
+<td>Tem sucesso se o documento JSON consistir em um único valor escalar do tipo alvo e se esse valor escalar puder ser convertido para o tipo alvo. Caso contrário, retorna <code>NULL</code> e produz um aviso.</td>
 </tr>
 </tbody></table>
 

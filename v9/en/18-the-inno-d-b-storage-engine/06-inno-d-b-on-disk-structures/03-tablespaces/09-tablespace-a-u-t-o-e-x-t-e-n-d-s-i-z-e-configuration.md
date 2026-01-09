@@ -40,7 +40,7 @@ The maximum allowed `AUTOEXTEND_SIZE` is 4GB. The maximum tablespace size is des
 
 The minimum `AUTOEXTEND_SIZE` setting depends on the `InnoDB` page size, as shown in the following table:
 
-<table summary="The minimum AUTOEXTEND_SIZE for each InnoDB page size"><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>InnoDB Page Size</th> <th>Minimum AUTOEXTEND_SIZE</th> </tr></thead><tbody><tr> <td><code class="literal">4K</code></td> <td><code class="literal">4M</code></td> </tr><tr> <td><code class="literal">8K</code></td> <td><code class="literal">4M</code></td> </tr><tr> <td><code class="literal">16K</code></td> <td><code class="literal">4M</code></td> </tr><tr> <td><code class="literal">32K</code></td> <td><code class="literal">8M</code></td> </tr><tr> <td><code class="literal">64K</code></td> <td><code class="literal">16M</code></td> </tr></tbody></table>
+<table summary="The minimum AUTOEXTEND_SIZE for each InnoDB page size"><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>InnoDB Page Size</th> <th>Minimum AUTOEXTEND_SIZE</th> </tr></thead><tbody><tr> <td><code>4K</code></td> <td><code>4M</code></td> </tr><tr> <td><code>8K</code></td> <td><code>4M</code></td> </tr><tr> <td><code>16K</code></td> <td><code>4M</code></td> </tr><tr> <td><code>32K</code></td> <td><code>8M</code></td> </tr><tr> <td><code>64K</code></td> <td><code>16M</code></td> </tr></tbody></table>
 
 The default `InnoDB` page size is 16K (16384 bytes). To determine the `InnoDB` page size for your MySQL instance, query the `innodb_page_size` setting:
 

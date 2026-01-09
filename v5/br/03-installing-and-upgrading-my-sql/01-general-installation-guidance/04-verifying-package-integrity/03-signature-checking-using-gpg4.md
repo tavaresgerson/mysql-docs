@@ -26,7 +26,7 @@ Em seguida, verifique o arquivo do pacote MySQL baixado. Isso requer arquivos ta
 
 **Tabela 2.2 Arquivos de pacote e assinatura do MySQL para o instalador do MySQL para o Microsoft Windows**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Tipo de arquivo</th> <th>Nome do arquivo</th> </tr></thead><tbody><tr> <td>Arquivo de distribuição</td> <td>[[<code>mysql-installer-community-5.7.44.msi</code>]]</td> </tr><tr> <td>Arquivo de assinatura</td> <td>[[<code>mysql-installer-community-5.7.44.msi.asc</code>]]</td> </tr></tbody></table>
+<table><thead><tr> <th>Tipo de arquivo</th> <th>Nome do arquivo</th> </tr></thead><tbody><tr> <td>Arquivo de distribuição</td> <td>[[<code>mysql-installer-community-5.7.44.msi</code>]]</td> </tr><tr> <td>Arquivo de assinatura</td> <td>[[<code>mysql-installer-community-5.7.44.msi.asc</code>]]</td> </tr></tbody></table>
 
 Certifique-se de que ambos os arquivos estejam armazenados no mesmo diretório e, em seguida, execute o seguinte comando para verificar a assinatura do arquivo de distribuição. Arraste e solte o arquivo de assinatura (`.asc`) para o Kleopatra ou carregue o diálogo a partir de Arquivo, Desencriptar/Verificar Arquivos..., e, em seguida, escolha o arquivo `.msi` ou `.asc`.
 

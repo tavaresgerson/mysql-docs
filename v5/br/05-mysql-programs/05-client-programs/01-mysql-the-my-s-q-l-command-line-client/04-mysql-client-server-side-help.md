@@ -1,6 +1,6 @@
 #### 4.5.1.4 Ajuda no lado do servidor do cliente MySQL
 
-```sql
+```sh
 mysql> help search_string
 ```
 
@@ -8,7 +8,7 @@ Se você fornecer um argumento ao comando `help`, o **mysql** usa-o como uma str
 
 Se não houver correspondência com a string de pesquisa, a pesquisa falhará:
 
-```sql
+```sh
 mysql> help me
 
 Nothing found
@@ -17,7 +17,7 @@ Please try to run 'help contents' for a list of all accessible topics
 
 Use os **conteúdos de ajuda** para ver uma lista das categorias de ajuda:
 
-```sql
+```sh
 mysql> help contents
 You asked for help about help category: "Contents"
 For more information, type 'help <item>', where <item> is one of the

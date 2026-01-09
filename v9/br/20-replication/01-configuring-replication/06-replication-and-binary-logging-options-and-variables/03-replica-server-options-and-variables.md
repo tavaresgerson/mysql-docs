@@ -21,31 +21,31 @@ Esta seção explica as opções de inicialização para controlar servidores de
 * `--master-retry-count=count`
 
 <table frame="box" rules="all" summary="Propriedades para master-retry-count">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--master-retry-count=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--master-retry-count=#</code></td> </tr>
   <tr><th>Desatualizado</th> <td>Sim</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">10</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo (plataformas de 64 bits)</th> <td><code class="literal">18446744073709551615</code></td> </tr>
-  <tr><th>Valor máximo (plataformas de 32 bits)</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>10</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo (plataformas de 64 bits)</th> <td><code>18446744073709551615</code></td> </tr>
+  <tr><th>Valor máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr>
 </table>
 
 * `--max-relay-log-size=size`
 * A opção está desatualizada; espere-se que seja removida em uma futura versão do MySQL. Use, em vez disso, a opção `SOURCE_RETRY_COUNT` da instrução `CHANGE REPLICATION SOURCE TO`.
 
 <table frame="box" rules="all" summary="Propriedades para max_relay_log_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--max-relay-log-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-replica.html#sysvar_max_relay_log_size">max_relay_log_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--max-relay-log-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-replica.html#sysvar_max_relay_log_size">max_relay_log_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Dica de Sintaxe para Configuração de Variável</th> <td><code class="literal">SET_VAR</code></td> </tr>
+  <tr><th>Dica de Sintaxe para Configuração de Variável</th> <td><code>SET_VAR</code></td> </tr>
   <tr><th>Aplica Dicas</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1073741824</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-  <tr><th>Tamanho do Bloco</th> <td><code class="literal">4096</code></td> </tr>
+  <tr><th>Tamanho do Bloco</th> <td><code>4096</code></td> </tr>
 </table>
 
   O tamanho em que o servidor rotação de arquivos de log de relé é rotacionado automaticamente. Se esse valor for diferente de zero, o log de relé é rotacionado automaticamente quando seu tamanho exceder esse valor. Se esse valor for zero (o padrão), o tamanho em que a rotação do log de relé ocorre é determinado pelo valor de `max_binlog_size`. Para mais informações, consulte a Seção 19.2.4.1, “O Log de Relé”.
@@ -55,11 +55,11 @@ Esta seção explica as opções de inicialização para controlar servidores de
 <table frame="box" rules="all" summary="Propriedades para relay_log_purge">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--relay-log-purge[={OFF|ON}]</code></td>
+    <td><code>--relay-log-purge[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="replication-options-replica.html#sysvar_relay_log_purge">relay_log_purge</a></code></td>
+    <td><code><a class="link" href="replication-options-replica.html#sysvar_relay_log_purge">relay_log_purge</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -70,7 +70,7 @@ Esta seção explica as opções de inicialização para controlar servidores de
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -79,7 +79,7 @@ Esta seção explica as opções de inicialização para controlar servidores de
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">ON</code></td>
+    <td><code>ON</code></td>
   </tr>
 </table>
 
@@ -90,11 +90,11 @@ Esta seção explica as opções de inicialização para controlar servidores de
 <table frame="box" rules="all" summary="Propriedades para relay_log_space_limit">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--relay-log-space-limit=#</code></td>
+    <td><code>--relay-log-space-limit=#</code></td>
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="replication-options-replica.html#sysvar_relay_log_space_limit">relay_log_space_limit</a></code></td>
+    <td><code><a class="link" href="replication-options-replica.html#sysvar_relay_log_space_limit">relay_log_space_limit</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -105,7 +105,7 @@ Esta seção explica as opções de inicialização para controlar servidores de
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -114,15 +114,15 @@ Esta seção explica as opções de inicialização para controlar servidores de
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">18446744073709551615</code></td>
+    <td><code>18446744073709551615</code></td>
   </tr>
   <tr>
     <th>Unidade</th>
@@ -134,7 +134,7 @@ Esta opção define um limite superior para o tamanho total em bytes de todos os
 
 * `--replicate-do-db=db_name`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-do-db"><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-do-db=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para replicate-do-db"><tr><th>Formato de linha de comando</th> <td><code>--replicate-do-db=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Cria um filtro de replicação usando o nome de um banco de dados. Esses filtros também podem ser criados usando `ALTERAR FILTRO DE REPLICA REPLICATE_DO_DB`.
 
@@ -206,7 +206,7 @@ Outra diferença importante na forma como `--replicate-do-db` é tratada na repl
 <table frame="box" rules="all" summary="Propriedades para replicar-ignorar-db">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--replicate-ignore-db=nome</code></td>
+    <td><code>--replicate-ignore-db=nome</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -252,7 +252,7 @@ Esta opção não tem efeito sobre as instruções `BEGIN`, `COMMIT` ou `ROLLBAC
 
 * `--replicate-do-table=db_name.tbl_name`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-do-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--replicate-do-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Cria um filtro de replicação, informando ao thread de SQL de replicação para restringir a replicação a uma tabela específica. Para especificar mais de uma tabela, use esta opção várias vezes, uma vez para cada tabela. Isso funciona tanto para atualizações cruzadas de bancos de dados quanto para atualizações padrão de bancos de dados, em contraste com `--replicate-do-db`. Veja a Seção 19.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma instrução `CHANGE REPLICATION FILTER REPLICATE_DO_TABLE`.
 
@@ -266,7 +266,7 @@ Esta opção afeta apenas declarações que se aplicam a tabelas. Não afeta dec
 
 * `--replicate-ignore-table=db_name.tbl_name`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--replicate-ignore-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Cria um filtro de replicação dizendo ao thread SQL de replicação para não replicar nenhuma declaração que atualize a tabela especificada, mesmo que outras tabelas possam ser atualizadas pela mesma declaração. Para especificar mais de uma tabela a ser ignorada, use esta opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos, em contraste com `--replicate-ignore-db`. Veja a Seção 19.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_IGNORE_TABLE`.
 
@@ -280,7 +280,7 @@ Esta opção afeta apenas declarações que se aplicam a tabelas. Não afeta dec
 
 * `--replicate-rewrite-db=de_nome_antigo-&gt;para_nome_novo`
 
-<table frame="box" rules="all" summary="Propriedades para replicate-rewrite-db"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-rewrite-db=nome_antigo-&gt;nome_novo</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para replicate-rewrite-db"><tr><th>Formato de Linha de Comando</th> <td><code>--replicate-rewrite-db=nome_antigo-&gt;nome_novo</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Diz ao replica que crie um filtro de replicação que traduza o banco de dados especificado para *`to_name`* se ele fosse *`from_name`* na fonte. Apenas as instruções que envolvem tabelas são afetadas, não instruções como `CREATE DATABASE`, `DROP DATABASE` e `ALTER DATABASE`.
 
@@ -318,7 +318,7 @@ Os filtros de replicação global não podem ser usados em uma instância do ser
 
 * `--replicate-same-server-id`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-same-server-id"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-same-server-id[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para replicate-same-server-id"><tbody><tr><th>Formato de linha de comando</th> <td><code>--replicate-same-server-id[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Esta opção é para uso em réplicas. O valor padrão é 0 (`FALSE`). Com esta opção definida para 1 (`TRUE`), a replica não pula eventos que têm seu próprio ID de servidor. Esta configuração normalmente é útil apenas em configurações raras.
 
@@ -329,18 +329,18 @@ Por padrão, o thread de I/O de replicação (receptor) não escreve eventos de 
 * `--replicate-wild-do-table=db_name.tbl_name`
 
 <table frame="box" rules="all" summary="Propriedades para max_relay_log_size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--max-relay-log-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-replica.html#sysvar_max_relay_log_size">max_relay_log_size</a></code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--max-relay-log-size=#</code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-replica.html#sysvar_max_relay_log_size">max_relay_log_size</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">1073741824</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr>
   <tr><th>Unidade</th> <td>bytes</td> </tr>
-  <tr><th>Tamanho do Bloco</th> <td><code class="literal">4096</code></td> </tr>
-</table>0
+  <tr><th>Tamanho do Bloco</th> <td><code>4096</code></td> </tr>
+</table>
 
 Cria um filtro de replicação, informando ao thread SQL (aplicador) de replicação para restringir a replicação a declarações onde qualquer uma das tabelas atualizadas corresponder aos padrões especificados de nomes de banco de dados e tabelas. Os padrões podem conter os caracteres curinga `%` e `_`, que têm o mesmo significado que o operador de correspondência de padrões `LIKE`. Para especificar mais de uma tabela, use esta opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos de dados. Veja a Seção 19.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_WILD_DO_TABLE`.
 
@@ -364,7 +364,7 @@ Para incluir caracteres wildcard literais nos padrões de nomes de banco de dado
 
 * `--replicate-wild-ignore-table=db_name.tbl_name`
 
-  <table frame="box" rules="all" summary="Propriedades para max_relay_log_size"><tr><th>Formato de linha de comando</th> <td><code class="literal">--max-relay-log-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code class="literal"><a class="link" href="replication-options-replica.html#sysvar_max_relay_log_size">max_relay_log_size</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Dicas de configuração</a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Tamanho do bloco</a></th> <td><code class="literal">4096</code></td> </tr></table>1
+  <table frame="box" rules="all" summary="Propriedades para max_relay_log_size"><tr><th>Formato de linha de comando</th> <td><code>--max-relay-log-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="replication-options-replica.html#sysvar_max_relay_log_size">max_relay_log_size</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas de configuração</a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Tamanho do bloco</a></th> <td><code>4096</code></td> </tr></table>
 
   Cria um filtro de replicação que impede que o thread SQL de replicação replique uma instrução na qual qualquer tabela corresponda ao padrão de wildcard fornecido. Para especificar mais de uma tabela a ser ignorada, use esta opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos de dados. Veja a Seção 19.2.5, “Como os servidores avaliam as regras de filtragem de replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_WILD_IGNORE_TABLE`.
 
@@ -390,13 +390,13 @@ Por exemplo, se `--replicate-ignore-db=nonreplicated` estiver configurado no ser
   ```4qb9AGdMTz
 * `slave_sql_verify_checksum`
 
-<table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-do-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--replicate-do-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Alias desatualizado para `replica_sql_verify_checksum`.
 
 * `slave_transaction_retries`
 
-<table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-do-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--replicate-do-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Alias desatualizado para `replica_transaction_retries`.
 
@@ -405,7 +405,7 @@ Alias desatualizado para `replica_transaction_retries`.
 <table frame="box" rules="all" summary="Propriedades para replicate-do-table">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--replicate-do-table=nome</code></td>
+    <td><code>--replicate-do-table=nome</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -423,7 +423,7 @@ Alias desatualizado para `replica_type_conversions`.
   <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--replicate-ignore-table=nome</code></td>
+      <td><code>--replicate-ignore-table=nome</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -444,19 +444,19 @@ Se ignorar o número de eventos especificados ao definir essa variável causaria
 
 * `sql_slave_skip_counter`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Alias desatualizado para `sql_replica_skip_counter`.
 
 * `sync_master_info`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Alias desatualizado para `sync_source_info`.
 
 * `sync_relay_log`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Se o valor dessa variável for maior que 0, o servidor MySQL sincroniza seu log de retransmissão no disco (usando `fdatasync()`) após cada evento `sync_relay_log` ser escrito no log de retransmissão. Definir essa variável tem efeito imediatamente em todos os canais de replicação, incluindo os canais em execução.
 
@@ -466,7 +466,7 @@ Um valor de 1 é a escolha mais segura, pois, em caso de uma parada inesperada, 
 
 * `sync_relay_log_info`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O número de transações após as quais a replica atualiza o repositório de metadados do aplicável. Quando o repositório de metadados do aplicável é armazenado como uma tabela `InnoDB`, que é o padrão, ela é atualizada após cada transação e essa variável do sistema é ignorada. Se o repositório de metadados do aplicável for armazenado como um arquivo (desatualizado), a replica sincroniza seu arquivo `relay-log.info` no disco (usando `fdatasync()`) após esse número de transações. `0` (zero) significa que o conteúdo do arquivo é limpo pelo sistema operacional apenas. A definição dessa variável entra em vigor para todos os canais de replicação imediatamente, incluindo canais em execução.
 
@@ -474,13 +474,13 @@ Como o armazenamento de metadados do aplicador como um arquivo foi descontinuado
 
 * `sync_source_info`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   `sync_source_info` especifica o número de eventos após os quais a replica atualiza o repositório de metadados de conexão. Quando o repositório de metadados de conexão é armazenado como uma tabela `InnoDB` (o padrão, ela é atualizada após esse número de eventos. Se o repositório de metadados de conexão for armazenado como um arquivo (descontinuado), a replica sincroniza seu arquivo `master.info` no disco (usando `fdatasync()`) após esse número de eventos. O valor padrão é 10000, e um valor zero significa que o repositório nunca é atualizado. Definir essa variável tem efeito imediatamente para todos os canais de replicação, incluindo canais em execução.
 
 * `terminology_use_previous`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Alterações incompatíveis foram feitas no MySQL 8.0 para os nomes de instrumentação que contêm os termos `master`, `slave` e `mts` (para “Multi-Threaded Slave”), que foram alterados, respectivamente, para `source`, `replica` e `mta` (para “Multi-Threaded Applier”). Se essas alterações incompatíveis afetarem suas aplicações, defina `terminology_use_previous` para `BEFORE_8_0_26` para fazer o servidor MySQL usar as versões antigas dos nomes para os objetos especificados na lista anterior. Isso permite que as ferramentas de monitoramento que dependem dos nomes antigos continuem funcionando até que possam ser atualizadas para usar os novos nomes.
 

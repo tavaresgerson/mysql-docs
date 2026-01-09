@@ -155,7 +155,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `bind_address`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>0
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O servidor MySQL escuta em uma única porta de rede para conexões TCP/IP. Essa porta está vinculada a um único endereço, mas é possível que um endereço seja mapeado para múltiplas interfaces de rede. Para especificar um endereço, defina `bind_address=addr` no início do servidor, onde *`addr`* é um endereço IPv4 ou IPv6 ou um nome de host. Se *`addr`* for um nome de host, o servidor resolve o nome para um endereço IP e se vincula a esse endereço. Se um nome de host resolver para múltiplos endereços IP, o servidor usa o primeiro endereço IPv4, se houver algum, ou o primeiro endereço IPv6, caso contrário.
 
@@ -179,7 +179,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `block_encryption_mode`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>1
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável controla o modo de criptografia de bloco para algoritmos baseados em blocos, como o AES. Ela afeta a criptografia para `AES_ENCRYPT()` e `AES_DECRYPT()`.
 
@@ -201,13 +201,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `bulk_insert_buffer_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>2
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   `MyISAM` usa um cache especial semelhante a uma árvore para tornar as inserções em massa mais rápidas para `INSERT ... SELECT` (insert-select.html), `INSERT ... VALUES (...), (...), ...` e `LOAD DATA` (load-data.html) ao adicionar dados a tabelas não vazias. Esta variável limita o tamanho da árvore de cache em bytes por thread. Definindo-a como 0, essa otimização é desativada. O valor padrão é de 8 MB.
 
 - `character_set_client`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>3
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O conjunto de caracteres para as declarações que chegam do cliente. O valor da sessão desta variável é definido usando o conjunto de caracteres solicitado pelo cliente quando este se conecta ao servidor. (Muitos clientes suportam a opção `--default-character-set` para permitir que este conjunto de caracteres seja especificado explicitamente. Veja também Seção 10.4, “Conjunto de caracteres de conexão e colagens”.) O valor global da variável é usado para definir o valor da sessão em casos em que o valor solicitado pelo cliente é desconhecido ou não está disponível, ou o servidor está configurado para ignorar solicitações do cliente:
 
@@ -221,13 +221,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `character_set_connection`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>4
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O conjunto de caracteres usado para literais especificados sem um introduzir de conjunto de caracteres e para conversão de número para string. Para informações sobre introdutores, consulte Seção 10.3.8, “Introdutores de Conjunto de Caracteres”.
 
 - `character_set_database`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>5
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O conjunto de caracteres usado pelo banco de dados padrão. O servidor define essa variável sempre que o banco de dados padrão muda. Se não houver um banco de dados padrão, a variável terá o mesmo valor que `character_set_server`.
 
@@ -237,37 +237,37 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `character_set_filesystem`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>6
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O conjunto de caracteres do sistema de arquivos. Esta variável é usada para interpretar literais de string que se referem a nomes de arquivos, como nas instruções `LOAD DATA` e `SELECT ... INTO OUTFILE` e na função `LOAD_FILE()`. Esses nomes de arquivos são convertidos de `character_set_client` para \[`character_set_filesystem`]\(server-system-variables.html#sysvar\_character\_set\_filesystem] antes da tentativa de abertura do arquivo. O valor padrão é `binary`, o que significa que nenhuma conversão ocorre. Para sistemas em que nomes de arquivos multibyte são permitidos, um valor diferente pode ser mais apropriado. Por exemplo, se o sistema representar nomes de arquivos usando UTF-8, defina `character_set_filesystem` para `'utf8mb4'`.
 
 - `character_set_results`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>7
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O conjunto de caracteres usado para retornar os resultados da consulta ao cliente. Isso inclui dados de resultado, como valores de coluna, metadados de resultado, como nomes de colunas e mensagens de erro.
 
 - `character_set_server`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>8
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O conjunto de caracteres padrão dos servidores. Consulte Seção 10.15, “Configuração de Conjunto de Caracteres”. Se você definir essa variável, também deve definir `collation_server` para especificar a collation para o conjunto de caracteres.
 
 - `character_set_system`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>9
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O conjunto de caracteres usado pelo servidor para armazenar identificadores. O valor é sempre `utf8`.
 
 - `character_sets_dir`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Consulte Seção 10.15, “Configuração de Conjunto de Caracteres”.
 
 - `check_proxy_users`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Alguns plugins de autenticação implementam mapeamento de usuários proxy para si mesmos (por exemplo, os plugins de autenticação PAM e Windows). Outros plugins de autenticação não suportam usuários proxy por padrão. Destes, alguns podem solicitar que o próprio servidor MySQL mapeie usuários proxy de acordo com os privilégios de proxy concedidos: `mysql_native_password`, `sha256_password`.
 
@@ -281,13 +281,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `collation_connection`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   A combinação do conjunto de caracteres de conexão é importante para comparações de strings literais. Para comparações de strings com valores de coluna, `collation_connection` não importa, porque as colunas têm sua própria collation, que tem precedência de collation mais alta (veja Seção 10.8.4, “Coercibilidade de collation em expressões”).
 
 - `collation_database`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   A collation usada pelo banco de dados padrão. O servidor define essa variável sempre que o banco de dados padrão muda. Se não houver um banco de dados padrão, a variável terá o mesmo valor que `collation_server`.
 
@@ -297,29 +297,29 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `collation_server`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   A collation padrão do servidor. Consulte Seção 10.15, “Configuração de Conjunto de Caracteres”.
 
 - `completion_type`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O tipo de conclusão da transação. Esta variável pode assumir os valores mostrados na tabela a seguir. A variável pode ser atribuída usando os valores de nome ou os valores inteiros correspondentes.
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O `completion_type` afeta as transações que começam com `START TRANSACTION` ou `BEGIN` e terminam com `COMMIT` ou `ROLLBACK`. Ele não se aplica a compromissos implícitos resultantes da execução das instruções listadas em Seção 13.3.3, “Instruções que Causam um Compromisso Implícito”. Ele também não se aplica para `XA COMMIT`, `XA ROLLBACK` ou quando `autocommit=1`.
 
 - `concurrent_insert`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se for `AUTO` (o padrão), o MySQL permite que as instruções `INSERT` e `SELECT` sejam executadas simultaneamente para tabelas `MyISAM` que não têm blocos livres no meio do arquivo de dados.
 
   Essa variável pode assumir os valores mostrados na tabela a seguir. A variável pode ser atribuída usando os valores de nome ou os valores inteiros correspondentes.
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se você iniciar **mysqld** com `--skip-new`, `concurrent_insert` é definido como `NEVER`.
 
@@ -327,7 +327,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `connect_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O número de segundos que o servidor **mysqld** espera por um pacote de conexão antes de responder com `Mau handshake`. O valor padrão é de 10 segundos.
 
@@ -335,13 +335,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `core_file`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se deve escrever um arquivo de núcleo caso o servidor saia inesperadamente. Essa variável é definida pela opção `--core-file`.
 
 - `datadir`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O caminho para o diretório de dados do servidor MySQL. Os caminhos relativos são resolvidos em relação ao diretório atual. Se você espera que o servidor seja iniciado automaticamente (ou seja, em contextos para os quais você não pode assumir qual é o diretório atual), é melhor especificar o valor `datadir` como um caminho absoluto.
 
@@ -355,7 +355,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `debug`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável indica as configurações atuais de depuração. Ela está disponível apenas para servidores construídos com suporte de depuração. O valor inicial vem do valor das instâncias da opção `--debug` fornecida durante o início do servidor. Os valores globais e de sessão podem ser definidos em tempo de execução.
 
@@ -393,7 +393,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `debug_sync`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável é a interface de usuário para a ferramenta Debug Sync. O uso do Debug Sync exige que o MySQL seja configurado com a opção **CMake** `-DWITH_DEBUG=ON` (consulte Seção 2.8.7, “Opções de Configuração de Código-Fonte do MySQL”); caso contrário, essa variável do sistema não estará disponível.
 
@@ -407,7 +407,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `default_authentication_plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O plugin de autenticação padrão. Esses valores são permitidos:
 
@@ -443,7 +443,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `default_password_lifetime`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável define a política global de expiração automática da senha. O valor padrão de `default_password_lifetime` é 0, o que desativa a expiração automática da senha. Se o valor de `default_password_lifetime` for um inteiro positivo *`N`*, ele indica o tempo de vida permitido da senha; as senhas devem ser alteradas a cada *`N`* dias.
 
@@ -463,7 +463,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `default_storage_engine`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O motor de armazenamento padrão para tabelas. Veja Capítulo 15, *Motores de Armazenamento Alternativos*. Esta variável define o motor de armazenamento para tabelas permanentes apenas. Para definir o motor de armazenamento para tabelas `TEMPORARY`, defina a variável de sistema `default_tmp_storage_engine`.
 
@@ -473,7 +473,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `default_tmp_storage_engine`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O mecanismo de armazenamento padrão para tabelas `TEMPORARY` (criadas com `CREATE TEMPORARY TABLE`). Para definir o mecanismo de armazenamento para tabelas permanentes, defina a variável de sistema `default_storage_engine`. Veja também a discussão sobre essa variável em relação aos possíveis valores.
 
@@ -481,19 +481,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `default_week_format`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O valor padrão a ser usado para a função `WEEK()`. Consulte Seção 12.7, "Funções de data e hora".
 
 - `delay_key_write`
 
-  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para autocommit"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--autocommit[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_autocommit">autocommit</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável especifica como usar escritas de chave com atraso. Ela se aplica apenas a tabelas `MyISAM`. A escrita de chave com atraso faz com que os buffers de chave não sejam descarregados entre as escritas. Veja também Seção 15.2.1, “Opções de inicialização do MyISAM”.
 
   Essa variável pode ter um dos seguintes valores para afetar o tratamento da opção da tabela `DELAY_KEY_WRITE`, que pode ser usada em instruções de `CREATE TABLE` (create-table.html).
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Nota
 
@@ -509,25 +509,25 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `limite_de_inserção_atrasada`
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável de sistema está desatualizada (porque as inserções `DELAYED` não são suportadas); espere que ela seja removida em uma futura versão.
 
 - `delayed_insert_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável de sistema está desatualizada (porque as inserções `DELAYED` não são suportadas); espere que ela seja removida em uma futura versão.
 
 - `tamanho_fila_atrasada`
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável de sistema está desatualizada (porque as inserções `DELAYED` não são suportadas); espere que ela seja removida em uma futura versão.
 
 - `dispositivos de armazenamento desativados`
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável indica quais motores de armazenamento não podem ser usados para criar tabelas ou espaços de tabelas. Por exemplo, para impedir que novas tabelas `MyISAM` ou `FEDERATED` sejam criadas, inicie o servidor com essas linhas no arquivo de opção do servidor:
 
@@ -550,7 +550,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `desconectar_na_expiração_da_senha`
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável controla como o servidor lida com clientes com senhas expiradas:
 
@@ -566,7 +566,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `div_precision_increment`
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável indica o número de dígitos pelo qual a escala do resultado das operações de divisão realizadas com o operador `/` deve ser aumentada. O valor padrão é 4. Os valores mínimo e máximo são, respectivamente, 0 e 30. O exemplo a seguir ilustra o efeito de aumentar o valor padrão.
 
@@ -588,13 +588,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `end_markers_in_json`
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se a saída do otimizador JSON deve adicionar marcadores de fim. Consulte Seção 8.15.9, “A variável de sistema end\_markers\_in\_json”.
 
 - `eq_range_index_dive_limit`
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável indica o número de intervalos de igualdade em uma condição de comparação de igualdade quando o otimizador deve mudar de usar mergulhos de índice para estatísticas de índice na estimativa do número de linhas qualificadoras. Ela se aplica à avaliação de expressões que têm uma das seguintes formas equivalentes, onde o otimizador usa um índice não único para procurar valores de *`col_name`*:
 
@@ -615,13 +615,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `event_scheduler`
 
-  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para automatic_sp_privileges"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--automatic-sp-privileges[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável habilita ou desabilita, e inicia ou para o Cronômetro de Eventos. Os valores de status possíveis são `ON`, `OFF` e `DISABLED`. Desativar o Cronômetro de Eventos não é o mesmo que desabilitar o Cronômetro de Eventos, o que requer definir o status para `DISABLED`. Essa variável e seus efeitos na operação do Cronômetro de Eventos são discutidos em mais detalhes em Seção 23.4.2, “Configuração do Cronômetro de Eventos”
 
 - `explicit_defaults_for_timestamp`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável de sistema determina se o servidor habilita certos comportamentos não padrão para valores padrão e o tratamento de valores `NULL` nas colunas de `TIMESTAMP`. Por padrão, \`explicit\_defaults\_for\_timestamp está desativado, o que habilita os comportamentos não padrão.
 
@@ -669,13 +669,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `external_user`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O nome de usuário externo usado durante o processo de autenticação, conforme definido pelo plugin usado para autenticar o cliente. Com autenticação nativa (incorporada) do MySQL ou se o plugin não definir o valor, essa variável é `NULL`. Veja Seção 6.2.14, “Usuários Proxy”.
 
 - `flush`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se `ON`, o servidor esvazia (sincroniza) todas as alterações no disco após cada instrução SQL. Normalmente, o MySQL escreve todas as alterações no disco apenas após cada instrução SQL e permite que o sistema operacional gere a sincronização com o disco. Veja Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar”. Esta variável é definida como `ON` se você iniciar o **mysqld** com a opção `--flush`.
 
@@ -685,7 +685,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `flush_time`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se este valor for diferente de zero, todas as tabelas serão fechadas a cada `[`flush\_time\`]\(server-system-variables.html#sysvar\_flush\_time) segundos para liberar recursos e sincronizar os dados não descarregados no disco. Esta opção é melhor usada apenas em sistemas com recursos mínimos.
 
@@ -695,7 +695,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `foreign_key_checks`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se definido para 1 (o padrão), as restrições de chave estrangeira são verificadas. Se definido para 0, as restrições de chave estrangeira são ignoradas, com algumas exceções. Ao recriar uma tabela que foi excluída, um erro é retornado se a definição da tabela não atender às restrições de chave estrangeira que a referenciam. Da mesma forma, uma operação de `ALTER TABLE` retorna um erro se uma definição de chave estrangeira for formada incorretamente. Para mais informações, consulte Seção 13.1.18.5, “Restrições de Chave Estrangeira”.
 
@@ -711,7 +711,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `ft_boolean_syntax`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   A lista de operadores suportados por pesquisas de texto completo booleanas realizadas usando `IN BOOLEAN MODE`. Veja Seção 12.9.2, “Pesquisas de Texto Completo Booleanas”.
 
@@ -731,7 +731,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `ft_max_word_len`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O comprimento máximo da palavra a ser incluída em um índice `FULLTEXT` de `MyISAM`.
 
@@ -741,7 +741,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `ft_min_word_len`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O comprimento mínimo da palavra a ser incluída em um índice `FULLTEXT` de `MyISAM`.
 
@@ -751,13 +751,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `ft_query_expansion_limit`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O número de partidas principais a serem usadas para pesquisas de texto completo realizadas com `WITH QUERY EXPANSION`.
 
 - `ft_stopword_file`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para auto_generate_certs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-certs[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_auto_generate_certs">auto_generate_certs</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O arquivo a partir do qual ler a lista de palavras-chave para pesquisas de texto completo em tabelas `MyISAM`. O servidor procura o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar um diretório diferente. Todas as palavras do arquivo são usadas; os comentários *não* são considerados. Por padrão, uma lista integrada de palavras-chave é usada (conforme definido no arquivo `storage/myisam/ft_static.c`). Definir essa variável como uma string vazia (`''`) desabilita o filtro de palavras-chave. Veja também Seção 12.9.4, “Palavras-chave de Texto Completo”.
 
@@ -767,19 +767,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `general_log`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Se o log de consulta geral está habilitado. O valor pode ser 0 (ou `OFF`) para desabilitar o log ou 1 (ou `ON`) para habilitar o log. O destino para a saída do log é controlado pela variável de sistema `log_output`; se esse valor for `NONE`, nenhuma entrada de log é escrita, mesmo que o log esteja habilitado.
 
 - `general_log_file`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   O nome do arquivo de log de consulta geral. O valor padrão é `host_name.log`, mas o valor inicial pode ser alterado com a opção `--general_log_file`.
 
 - `group_concat_max_len`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   O comprimento máximo permitido do resultado em bytes para a função `GROUP_CONCAT()`. O padrão é 1024.
 
@@ -827,13 +827,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `have_ssl`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   `SIM` se o **mysqld** suportar conexões SSL, `DESABILITADO` se o servidor foi compilado com suporte SSL, mas não foi iniciado com as opções de criptografia de conexão apropriadas. Para mais informações, consulte Seção 2.8.6, “Configurando Suporte à Biblioteca SSL”.
 
 - `have_statement_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Se a funcionalidade de limite de tempo de execução da declaração está disponível (consulte Dicas de otimização do tempo de execução da declaração). O valor pode ser `NO` se o thread de fundo usado por essa funcionalidade não puder ser inicializado.
 
@@ -845,7 +845,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `host_cache_size`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   O servidor MySQL mantém um cache de hosts em memória que contém informações sobre o nome do host e o endereço IP do cliente e é usado para evitar consultas no Sistema de Nomes de Domínio (DNS); consulte Seção 5.1.11.2, “Consultas DNS e o Cache de Hosts”.
 
@@ -865,7 +865,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `hostname`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   O servidor define essa variável com o nome do host do servidor durante a inicialização.
 
@@ -875,7 +875,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `ignore_db_dirs`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Uma lista separada por vírgula de nomes que não são considerados diretórios de banco de dados no diretório de dados. O valor é definido a partir de quaisquer instâncias de `--ignore-db-dir` fornecidas durante o início do servidor.
 
@@ -885,7 +885,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `init_connect`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Uma cadeia a ser executada pelo servidor para cada cliente que se conecta. A cadeia consiste em uma ou mais instruções SQL, separadas por caracteres ponto e vírgula.
 
@@ -897,7 +897,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `init_file`
 
-  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para avoid_temporal_upgrade"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--avoid-temporal-upgrade[={OFF|ON}]</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_avoid_temporal_upgrade">avoid_temporal_upgrade</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Se especificado, essa variável nomeia um arquivo que contém instruções SQL a serem lidas e executadas durante o processo de inicialização. Cada instrução deve estar em uma única linha e não deve incluir comentários.
 
@@ -913,13 +913,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `interactive_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   O número de segundos que o servidor espera por atividade em uma conexão interativa antes de fechá-la. Um cliente interativo é definido como um cliente que usa a opção `CLIENT_INTERACTIVE` para `mysql_real_connect()` (/doc/c-api/5.7/pt-BR/mysql-real-connect.html). Veja também `wait_timeout` (server-system-variables.html#sysvar\_wait\_timeout).
 
 - `internal_tmp_disk_storage_engine`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   O mecanismo de armazenamento para tabelas internas temporárias no disco (consulte Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”). Os valores permitidos são `MYISAM` e `INNODB` (o padrão).
 
@@ -929,7 +929,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `join_buffer_size`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   O tamanho mínimo do buffer usado para varreduras de índice simples, varreduras de índice de intervalo e junções que não usam índices e, portanto, realizam varreduras completas da tabela. Normalmente, a melhor maneira de obter junções rápidas é adicionar índices. Aumente o valor de `join_buffer_size` para obter uma junção completa mais rápida quando não for possível adicionar índices. Um buffer de junção é alocado para cada junção completa entre duas tabelas. Para uma junção complexa entre várias tabelas para as quais não são usados índices, pode ser necessário múltiplos buffers de junção.
 
@@ -945,7 +945,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `keep_files_on_create`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   Se uma tabela `MyISAM` for criada sem a opção `DATA DIRECTORY`, o arquivo `.MYD` será criado no diretório do banco de dados. Por padrão, se o `MyISAM` encontrar um arquivo `.MYD` existente nesse caso, ele o sobrescreverá. O mesmo se aplica aos arquivos `.MYI` para tabelas criadas sem a opção `INDEX DIRECTORY`. Para suprimir esse comportamento, defina a variável `keep_files_on_create` para `ON` (1), caso em que o `MyISAM` não sobrescreverá os arquivos existentes e retornará um erro. O valor padrão é `OFF` (0).
 
@@ -953,7 +953,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `key_buffer_size`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   Os blocos de índice para tabelas `MyISAM` são armazenados em cache e são compartilhados por todos os threads. `key_buffer_size` é o tamanho do buffer usado para os blocos de índice. O buffer de chave também é conhecido como cache de chave.
 
@@ -981,37 +981,37 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `key_cache_age_threshold`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   Esse valor controla a redução dos buffers da sublista quente de um cache de chaves para a sublista quente. Valores menores fazem com que a redução ocorra mais rapidamente. O valor mínimo é 100. O valor padrão é 300. Consulte Seção 8.10.2, “O Cache de Chaves MyISAM”.
 
 - `key_cache_block_size`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   O tamanho em bytes dos blocos na cache de chaves. O valor padrão é 1024. Consulte Seção 8.10.2, “A Cache de Chaves MyISAM”.
 
 - `key_cache_division_limit`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   O ponto de divisão entre as sublistas quentes e quentes da lista de cache de chave da memória cache. O valor é a porcentagem da lista de cache a ser usada para a sublista quente. Os valores permitidos variam de 1 a 100. O valor padrão é 100. Consulte Seção 8.10.2, “O Cache de Chave MyISAM”.
 
 - `large_files_support`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   Se o **mysqld** foi compilado com opções para suporte a arquivos grandes.
 
 - `large_pages`
 
-  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--back-log=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_back_log">back_log</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>-1</code>]] (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
 
   Se o suporte a páginas grandes estiver habilitado (através da opção `--large-pages`). Consulte Seção 8.12.4.3, “Habilitar Suporte a Páginas Grandes”.
 
 - `large_page_size`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Se o suporte a páginas grandes estiver habilitado, isso mostrará o tamanho das páginas de memória. Páginas de memória grandes são suportadas apenas no Linux; em outras plataformas, o valor desta variável é sempre 0. Consulte Seção 8.12.4.3, “Habilitar Suporte a Páginas Grandes”.
 
@@ -1021,31 +1021,31 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `lc_messages`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   O local a ser usado para mensagens de erro. O padrão é `en_US`. O servidor converte o argumento em um nome de idioma e combina-o com o valor de `lc_messages_dir` para produzir a localização do arquivo de mensagem de erro. Veja Seção 10.12, “Definindo o Idioma da Mensagem de Erro”.
 
 - `lc_messages_dir`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   O diretório onde as mensagens de erro estão localizadas. O servidor usa o valor junto com o valor de `lc_messages` para determinar a localização do arquivo de mensagem de erro. Veja Seção 10.12, “Definindo o Idioma da Mensagem de Erro”.
 
 - `lc_time_names`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Esta variável especifica o local que controla o idioma usado para exibir os nomes e abreviações de dia e mês. Esta variável afeta a saída das funções `DATE_FORMAT()`, `DAYNAME()` e `MONTHNAME()`. Os nomes do local são valores no estilo POSIX, como `'ja_JP'` ou `'pt_BR'`. O valor padrão é `'en_US'` independentemente da configuração do local do sistema. Para mais informações, consulte Seção 10.16, “Suporte ao Local do MySQL Server”.
 
 - `licença`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   O tipo de licença que o servidor tem.
 
 - `local_infile`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Esta variável controla a capacidade `LOCAL` do servidor para as instruções de `LOAD DATA` (load-data.html). Dependendo da configuração de `local_infile` (server-system-variables.html#sysvar\_local\_infile), o servidor pode recusar ou permitir o carregamento de dados locais por clientes que tenham `LOCAL` habilitado no lado do cliente.
 
@@ -1053,7 +1053,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `lock_wait_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Esta variável especifica o tempo de espera em segundos para tentativas de adquirir bloqueios de metadados. Os valores permitidos variam de 1 a 31536000 (1 ano). O valor padrão é 31536000.
 
@@ -1067,29 +1067,29 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `locked_in_memory`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Se o **mysqld** foi bloqueado na memória com `--memlock`.
 
 - `log_error`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   O destino da saída do log de erro. Se o destino for o console, o valor é `stderr`. Caso contrário, o destino é um arquivo e o valor de `log_error` é o nome do arquivo. Veja Seção 5.4.2, “O Log de Erro”.
 
 - `log_error_verbosity`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   A verbosidade do servidor ao escrever mensagens de erro, aviso e nota no log de erro. A tabela a seguir mostra os valores permitidos. O padrão é 3.
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   `log_error_verbosity` foi adicionado no MySQL 5.7.2. Ele é preferido e deve ser usado em vez da antiga variável de sistema `log_warnings`. Consulte a descrição de `log_warnings` para obter informações sobre como essa variável se relaciona com `log_error_verbosity`. Em particular, atribuir um valor a `log_warnings` atribui um valor a `log_error_verbosity` e vice-versa.
 
 - `log_output`
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   O(s) destino(s) para a saída do log de consulta geral e do log de consultas lentas. O valor é uma lista de uma ou mais palavras separadas por vírgula escolhidas entre `TABLE`, `FILE` e `NONE`. `TABLE` seleciona o registro nas tabelas `general_log` e `slow_log` no banco de dados do sistema `mysql`. `FILE` seleciona o registro em arquivos de log. `NONE` desabilita o registro. Se `NONE` estiver presente no valor, ele terá precedência sobre quaisquer outras palavras presentes. `TABLE` e `FILE` podem ser usados para selecionar ambos os destinos de saída de log.
 
@@ -1097,19 +1097,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `log_queries_not_using_indexes`
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Se você ativar essa variável com o registro de consultas lentas ativado, as consultas que devem recuperar todas as linhas serão registradas. Veja Seção 5.4.5, “O Registro de Consultas Lentas”. Esta opção não significa necessariamente que nenhum índice é usado. Por exemplo, uma consulta que usa uma varredura completa do índice usa um índice, mas seria registrada porque o índice não limitaria o número de linhas.
 
 - `log_slow_admin_statements`
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Inclua declarações administrativas lentas nas declarações escritas para o log de consultas lentas. As declarações administrativas incluem `ALTER TABLE`, `ANALYZE TABLE`, `CHECK TABLE`, `CREATE INDEX`, `DROP INDEX`, `OPTIMIZE TABLE` e `REPAIR TABLE`.
 
 - `log_syslog`
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Se deve escrever a saída do log de erros no log do sistema. Isso é o Registro de Eventos no Windows e o `syslog` em sistemas Unix e Unix-like. O valor padrão é específico da plataforma:
 
@@ -1122,7 +1122,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `log_syslog_facility`
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   A opção para a saída do log de erros no `syslog` (que tipo de programa está enviando a mensagem). Esta variável não tem efeito a menos que a variável de sistema `log_syslog` esteja habilitada. Veja Seção 5.4.2.3, “Registro de Erros no Log do Sistema”.
 
@@ -1132,7 +1132,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `log_syslog_include_pid`
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Se incluir o ID do processo do servidor em cada linha de saída do log de erro escrito no `syslog`. Essa variável não tem efeito a menos que a variável de sistema `log_syslog` esteja habilitada. Veja Seção 5.4.2.3, “Registro de Erros no Log do Sistema”.
 
@@ -1140,7 +1140,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `log_syslog_tag`
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   A tag a ser adicionada ao identificador do servidor na saída do log de erro escrito no `syslog`. Essa variável não tem efeito a menos que a variável de sistema `log_syslog` esteja habilitada. Veja Seção 5.4.2.3, “Registro de Erros no Log do Sistema”.
 
@@ -1150,7 +1150,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `log_timestamps`
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Essa variável controla o fuso horário dos timestamps nas mensagens escritas no log de erros e, de forma geral, nas mensagens do log de consultas lentas e do log de consultas lentas escritas em arquivos. Ela não afeta o fuso horário das mensagens do log de consultas lentas e do log de consultas lentas escritas em tabelas (`mysql.general_log`, `mysql.slow_log`). As linhas recuperadas dessas tabelas podem ser convertidas do fuso horário do sistema local para qualquer fuso horário desejado com `CONVERT_TZ()` ou definindo a variável de sistema de sessão `time_zone`.
 
@@ -1160,13 +1160,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `log_throttle_queries_not_using_indexes`
 
-  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para big_tables"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--big-tables[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_big_tables">big_tables</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Se `log_queries_not_using_indexes` estiver habilitado, a variável `log_throttle_queries_not_using_indexes` limita o número de consultas desse tipo por minuto que podem ser escritas no log de consultas lentas. Um valor de 0 (o padrão) significa “sem limite”. Para mais informações, consulte Seção 5.4.5, “O Log de Consultas Lentas”.
 
 - `log_warnings`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>00
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se deve produzir mensagens de aviso adicionais no log de erros. A partir do MySQL 5.7.2, os itens de informações anteriormente regidos por `log_warnings` são regidos por `log_error_verbosity`, que é preferível e deve ser usado em vez da antiga variável de sistema `log_warnings`. (A variável de sistema `log_warnings` e a opção de linha de comando `--log-warnings` são desatualizadas; espere-os serem removidos em uma futura versão do MySQL.)
 
@@ -1196,7 +1196,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `long_query_time`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>01
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se uma consulta demorar mais do que esse número de segundos, o servidor incrementa a variável de status `Slow_queries`. Se o log de consultas lentas estiver habilitado, a consulta é registrada no arquivo de log de consultas lentas. Esse valor é medido em tempo real, não em tempo de CPU, então uma consulta que está abaixo do limite em um sistema levemente carregado pode estar acima do limite em um sistema fortemente carregado. Os valores mínimo e padrão de `long_query_time` são 0 e 10, respectivamente. O máximo é 31536000, que é 365 dias em segundos. O valor pode ser especificado com uma resolução de microsegundos. Veja Seção 5.4.5, “O Log de Consultas Lentas”.
 
@@ -1204,19 +1204,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `low_priority_updates`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>02
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se definido como `1`, os comandos `INSERT`, `UPDATE`, `DELETE` e `LOCK TABLE WRITE` aguardam até que não haja nenhum `SELECT` pendente ou `LOCK TABLE READ` na tabela afetada. O mesmo efeito pode ser obtido usando `{INSERT | REPLACE | DELETE | UPDATE} LOW_PRIORITY ...` para diminuir a prioridade de apenas uma consulta. Esta variável afeta apenas os motores de armazenamento que usam apenas bloqueio de nível de tabela (como `MyISAM`, `MEMORY` e `MERGE`). Veja Seção 8.11.2, “Problemas de Bloqueio de Tabela”.
 
 - `lower_case_file_system`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>03
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Esta variável descreve a sensibilidade à maiúscula ou minúscula dos nomes de arquivos no sistema de arquivos onde o diretório de dados está localizado. `OFF` significa que os nomes de arquivos são sensíveis à maiúscula e minúscula, `ON` significa que não são sensíveis à maiúscula e minúscula. Esta variável é apenas de leitura porque reflete um atributo do sistema de arquivos e definir isso não teria efeito no sistema de arquivos.
 
 - `lower_case_table_names`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>04
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se definido como 0, os nomes das tabelas são armazenados conforme especificado e as comparações são sensíveis ao caso. Se definido como 1, os nomes das tabelas são armazenados em minúsculas no disco e as comparações não são sensíveis ao caso. Se definido como 2, os nomes das tabelas são armazenados conforme fornecidos, mas comparados em minúsculas. Esta opção também se aplica aos nomes de banco de dados e aos aliases das tabelas. Para obter detalhes adicionais, consulte Seção 9.2.3, “Sensibilidade ao Caso dos Identificadores”.
 
@@ -1230,7 +1230,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_allowed_packet`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>05
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho máximo de um pacote ou de qualquer string gerada/intermediária, ou qualquer parâmetro enviado pela função da API C `mysql_stmt_send_long_data()`. O padrão é de 4 MB.
 
@@ -1244,13 +1244,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_connect_errors`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>06
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Após que sucessivas solicitações de conexão de um host sejam interrompidas sem uma conexão bem-sucedida, o servidor bloqueia essa conexão. Se uma conexão de um host for estabelecida com sucesso em menos de `max_connect_errors` tentativas após uma conexão anterior ter sido interrompida, o contador de erros para o host é zerado. Para desbloquear hosts bloqueados, limpe o cache do host; veja Limpar o Cache do Host.
 
 - `max_connections`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>07
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número máximo de conexões de clientes simultâneos permitido. O valor efetivo máximo é o menor entre o valor efetivo de `open_files_limit` `- 810` e o valor realmente definido para `max_connections`.
 
@@ -1258,13 +1258,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_delayed_threads`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>08
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável de sistema está desatualizada (porque as inserções `DELAYED` não são suportadas); espere que ela seja removida em uma futura versão.
 
 - `max_digest_length`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>09
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número máximo de bytes de memória reservados por sessão para a computação de resumos normalizados de declarações. Quando essa quantidade de espaço é usada durante a computação do resumo, ocorre a redução: mais tokens de uma declaração analisada não são coletados ou incluídos no valor do resumo. Declarações que diferem apenas após esse número de bytes de tokens analisados produzem o mesmo resumo normalizado de declarações e são consideradas idênticas quando comparadas ou quando agregadas para estatísticas de resumo.
 
@@ -1282,13 +1282,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_error_count`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>10
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número máximo de mensagens de erro, aviso e informação que serão armazenadas para serem exibidas pelas declarações `SHOW ERRORS` e `SHOW WARNINGS`. Isso é o mesmo número de áreas de condição na área de diagnóstico, e, portanto, o número de condições que podem ser inspecionadas pelo `GET DIAGNOSTICS`.
 
 - `max_execution_time`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>11
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tempo de espera para a execução de instruções `[SELECT]` (select.html), em milissegundos. Se o valor for 0, os tempos de espera não serão habilitados.
 
@@ -1302,7 +1302,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_heap_table_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>12
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Esta variável define o tamanho máximo permitido para as tabelas `MEMORY` criadas pelo usuário crescer. O valor da variável é usado para calcular os valores `MAX_ROWS` das tabelas `MEMORY`.
 
@@ -1314,7 +1314,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_insert_delayed_threads`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>13
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável é sinônimo de `max_delayed_threads`.
 
@@ -1322,7 +1322,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_join_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>14
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Não permita declarações que provavelmente precisem examinar mais de `max_join_size` linhas (para declarações de uma única tabela) ou combinações de linhas (para declarações de múltiplas tabelas) ou que provavelmente realizem mais de `max_join_size` buscas no disco. Ao definir esse valor, você pode detectar declarações em que as chaves não são usadas corretamente e que provavelmente levarão muito tempo. Defina-o se seus usuários tendem a realizar junções que não têm uma cláusula `WHERE`, que levam muito tempo ou que retornam milhões de linhas. Para mais informações, consulte Usando o Modo Safe-Updates (--safe-updates).
 
@@ -1332,31 +1332,31 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_length_for_sort_data`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>15
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O limite de tamanho dos valores do índice que determina qual algoritmo de `filesort` deve ser usado. Veja Seção 8.2.1.14, “Otimização de ORDER BY”.
 
 - `max_points_in_geometry`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>16
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O valor máximo do argumento *`points_per_circle`* da função `ST_Buffer_Strategy()`.
 
 - `max_prepared_stmt_count`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>17
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável limita o número total de declarações preparadas no servidor. Ela pode ser usada em ambientes onde há o potencial de ataques de negação de serviço, baseados em esgotar a memória do servidor ao preparar um grande número de declarações. Se o valor for definido como menor que o número atual de declarações preparadas, as declarações existentes não serão afetadas e podem ser usadas, mas novas declarações não poderão ser preparadas até que o número atual caia abaixo do limite. Definir o valor para 0 desabilita as declarações preparadas.
 
 - `max_seeks_for_key`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>18
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Limite o número máximo de buscas assumido ao procurar linhas com base em uma chave. O otimizador do MySQL assume que não são necessários mais que esse número de buscas por chave ao procurar linhas correspondentes em uma tabela, realizando uma varredura em um índice, independentemente da cardinalidade real do índice (veja Seção 13.7.5.22, “Instrução SHOW INDEX”). Ao definir esse valor para um valor baixo (digamos, 100), você pode forçar o MySQL a preferir índices em vez de varreduras de tabela.
 
 - `max_sort_length`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>19
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número de bytes a serem usados ao ordenar os valores dos dados. O servidor usa apenas os primeiros max\_sort\_length bytes de cada valor e ignora o resto. Consequentemente, os valores que diferem apenas após os primeiros max\_sort\_length bytes são considerados iguais nas operações `GROUP BY`, `ORDER BY` e `DISTINCT`.
 
@@ -1364,7 +1364,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_sp_recursion_depth`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>20
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número de vezes que um procedimento armazenado específico pode ser chamado recursivamente. O valor padrão para essa opção é 0, que desabilita completamente a recursão em procedimentos armazenados. O valor máximo é 255.
 
@@ -1376,7 +1376,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_user_connections`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>21
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número máximo de conexões simultâneas permitidas para qualquer conta de usuário do MySQL. Um valor de 0 (o padrão) significa "sem limite".
 
@@ -1390,13 +1390,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `max_write_lock_count`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>22
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Após muitas tentativas de escrita, permita que alguns pedidos de bloqueio de leitura pendentes sejam processados entre eles. Os pedidos de bloqueio de escrita têm prioridade maior do que os pedidos de bloqueio de leitura. No entanto, se `max_write_lock_count` estiver definido para um valor baixo (digamos, 10), os pedidos de bloqueio de leitura podem ser preferidos em relação aos pedidos de bloqueio de escrita pendentes, se os pedidos de bloqueio de leitura já tiverem sido atendidos em favor de 10 pedidos de bloqueio de escrita. Normalmente, esse comportamento não ocorre porque `max_write_lock_count` tem um valor muito grande por padrão.
 
 - `mecab_rc_file`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>23
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   A opção `mecab_rc_file` é usada ao configurar o analisador de texto completo MeCab.
 
@@ -1408,7 +1408,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `metadata_locks_cache_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>24
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho do cache de bloqueios de metadados. O servidor usa esse cache para evitar a criação e destruição de objetos de sincronização. Isso é particularmente útil em sistemas onde essas operações são caras, como o Windows XP.
 
@@ -1416,7 +1416,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `metadata_locks_hash_instances`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>25
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O conjunto de bloqueios de metadados pode ser dividido em hashes separados para permitir que conexões que acessam diferentes objetos usem hashes de bloqueio diferentes e reduzam a concorrência. A variável de sistema `metadata_locks_hash_instances` especifica o número de hashes (padrão 8).
 
@@ -1424,19 +1424,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `min_examined_row_limit`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>26
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   As consultas que examinam menos de esse número de linhas não são registradas no log de consultas lentas.
 
 - `multi_range_count`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>27
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Esta variável não tem efeito. Ela foi descontinuada e será removida no MySQL 8.0.
 
 - `myisam_data_pointer_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>28
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho padrão do ponteiro em bytes, a ser usado por `CREATE TABLE` para tabelas `MyISAM` quando nenhuma opção `MAX_ROWS` é especificada. Esta variável não pode ser menor que 2 ou maior que 7. O valor padrão é
 
@@ -1444,7 +1444,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `myisam_max_sort_file_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>29
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho máximo do arquivo temporário que o MySQL é permitido usar enquanto recria um índice `MyISAM` (durante `REPAIR TABLE`, `ALTER TABLE` ou `LOAD DATA`). Se o tamanho do arquivo for maior que esse valor, o índice é criado usando o cache de chaves em vez disso, o que é mais lento. O valor é dado em bytes.
 
@@ -1452,19 +1452,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `myisam_mmap_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>30
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O valor máximo de memória a ser usado para mapear a memória de arquivos comprimidos de `MyISAM` (myisam-storage-engine.html). Se muitas tabelas `MyISAM` comprimidas forem usadas, o valor pode ser reduzido para diminuir a probabilidade de problemas de troca de memória.
 
 - `myisam_recover_options`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>31
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Defina o modo de recuperação do mecanismo de armazenamento `MyISAM`. O valor da variável é qualquer combinação dos valores `OFF`, `DEFAULT`, `BACKUP`, `FORCE` ou `QUICK`. Se você especificar múltiplos valores, separe-os por vírgula. Especificar a variável sem valor no início do servidor é o mesmo que especificar `DEFAULT`, e especificar com um valor explícito de `""` desabilita a recuperação (mesmo que seja um valor de `OFF`). Se a recuperação estiver habilitada, cada vez que o **mysqld** abre uma tabela `MyISAM`, ele verifica se a tabela está marcada como quebrada ou se não foi fechada corretamente. (A última opção só funciona se você estiver executando com o bloqueio externo desativado.) Nesse caso, o **mysqld** executa uma verificação na tabela. Se a tabela estiver corrompida, o **mysqld** tenta repará-la.
 
   As seguintes opções afetam o funcionamento da reparação.
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>32
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Antes que o servidor repare automaticamente uma tabela, ele escreve uma nota sobre a reparação no log de erros. Se você quiser ser capaz de recuperar a maioria dos problemas sem intervenção do usuário, você deve usar as opções `BACKUP,FORCE`. Isso força uma reparação de uma tabela, mesmo que algumas linhas sejam excluídas, mas mantém o arquivo de dados antigo como uma cópia de segurança para que você possa examinar mais tarde o que aconteceu.
 
@@ -1472,7 +1472,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `myisam_repair_threads`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>33
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Nota
 
@@ -1488,13 +1488,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `myisam_sort_buffer_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>34
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho do buffer que é alocado ao ordenar índices `MyISAM` durante uma `REPAIR TABLE` (reparo de tabela) ou ao criar índices com `CREATE INDEX` (criar índice) ou `ALTER TABLE` (alterar tabela).
 
 - `myisam_stats_method`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>35
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Como o servidor trata os valores `NULL` ao coletar estatísticas sobre a distribuição dos valores de índice para tabelas `MyISAM`. Esta variável tem três valores possíveis, `nulls_equal`, `nulls_unequal` e `nulls_ignored`. Para `nulls_equal`, todos os valores de índice `NULL` são considerados iguais e formam um único grupo de valores que tem um tamanho igual ao número de valores `NULL`. Para `nulls_unequal`, os valores `NULL` são considerados diferentes, e cada `NULL` forma um grupo de valores distinto de tamanho igual a
 
@@ -1504,25 +1504,25 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `myisam_use_mmap`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>36
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Use mapeamento de memória para leitura e escrita de tabelas `MyISAM`.
 
 - `mysql_native_password_proxy_users`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>37
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável controla se o plugin de autenticação integrado `mysql_native_password` suporta usuários proxy. Ela não tem efeito a menos que a variável de sistema `check_proxy_users` esteja habilitada. Para informações sobre o proxeamento de usuários, consulte Seção 6.2.14, “Usuários Proxy”.
 
 - `named_pipe`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>38
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   (Apenas para Windows.) Indica se o servidor suporta conexões por meio de tubos nomeados.
 
 - `named_pipe_full_access_group`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>39
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   (Apenas para Windows.) O controle de acesso concedido aos clientes na pipe nomeada criada pelo servidor MySQL está configurado para o mínimo necessário para uma comunicação bem-sucedida quando a variável de sistema `named_pipe` está habilitada para suportar conexões por pipe nomeada. Alguns softwares de cliente MySQL podem abrir conexões por pipe nomeada sem nenhuma configuração adicional; no entanto, outros softwares de cliente ainda podem exigir acesso total para abrir uma conexão por pipe nomeada.
 
@@ -1534,7 +1534,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `net_buffer_length`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>40
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Cada fio de cliente está associado a um buffer de conexão e um buffer de resultados. Ambos começam com um tamanho definido por `net_buffer_length`, mas são ampliados dinamicamente até \[`max_allowed_packet`]\(server-system-variables.html#sysvar\_max\_allowed\_packet] bytes conforme necessário. O buffer de resultados diminui para \[`net_buffer_length`]\(server-system-variables.html#sysvar\_net\_buffer\_length] após cada instrução SQL.
 
@@ -1544,25 +1544,25 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `net_read_timeout`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>41
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número de segundos para esperar por mais dados de uma conexão antes de abortar a leitura. Quando o servidor está lendo do cliente, `net_read_timeout` é o valor de tempo de espera que controla quando abortar. Quando o servidor está escrevendo para o cliente, `net_write_timeout` é o valor de tempo de espera que controla quando abortar. Veja também `slave_net_timeout`.
 
 - `net_retry_count`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>42
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se uma leitura ou gravação em um port de comunicação for interrompida, tente novamente esse número de vezes antes de desistir. Esse valor deve ser configurado bastante alto no FreeBSD, pois interrupções internas são enviadas para todos os threads.
 
 - `net_write_timeout`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>43
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número de segundos para esperar que um bloco seja escrito em uma conexão antes de abortar a escrita. Veja também `net_read_timeout`.
 
 - `novo`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>44
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável foi usada no MySQL 4.0 para ativar alguns comportamentos do 4.1 e foi mantida para compatibilidade reversa. Seu valor é sempre `OFF`.
 
@@ -1570,7 +1570,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `ngram_token_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>45
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Define o tamanho do token de n-gramas para o analisador de texto completo de n-gramas. A opção `ngram_token_size` é somente de leitura e só pode ser modificada durante o inicialização. O valor padrão é 2 (bigram). O valor máximo é 10.
 
@@ -1578,7 +1578,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `offline_mode`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>46
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se o servidor estiver no modo "offline", que possui essas características:
 
@@ -1592,7 +1592,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `antigo`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>47
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   `old` é uma variável de compatibilidade. Ela é desabilitada por padrão, mas pode ser habilitada durante o início para reverter o servidor para comportamentos presentes em versões mais antigas.
 
@@ -1600,13 +1600,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `old_alter_table`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>48
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Quando essa variável estiver habilitada, o servidor não usará o método otimizado para processar uma operação de `ALTER TABLE`. Ele voltará a usar uma tabela temporária, copiando os dados e renomeando a tabela temporária para a original, como era feito pelo MySQL 5.0 e versões anteriores. Para mais informações sobre a operação de `ALTER TABLE`, consulte Seção 13.1.8, “Instrução ALTER TABLE”.
 
 - `old_passwords`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>49
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Nota
 
@@ -1616,7 +1616,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   A tabela a seguir mostra, para cada método de hashing de senha, o valor permitido de `old_passwords` e quais plugins de autenticação usam o método de hashing.
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>50
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se você definir `old_passwords=2`, siga as instruções para usar o plugin `sha256_password` na Seção 6.4.1.5, “Autenticação Pluggable SHA-256”.
 
@@ -1628,7 +1628,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `open_files_limit`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>51
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número de descritores de arquivo disponíveis para **mysqld** a partir do sistema operacional:
 
@@ -1654,19 +1654,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `optimizer_prune_level`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>52
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Controla as heurísticas aplicadas durante a otimização da consulta para eliminar planos parciais menos promissores do espaço de busca do otimizador. Um valor de 0 desabilita as heurísticas para que o otimizador realize uma busca exaustiva. Um valor de 1 faz com que o otimizador elimine planos com base no número de linhas recuperadas pelos planos intermediários.
 
 - `optimizer_search_depth`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>53
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   A profundidade máxima de pesquisa realizada pelo otimizador de consultas. Valores maiores que o número de relações em um resultado de consulta resultam em melhores planos de consulta, mas demoram mais para gerar um plano de execução para uma consulta. Valores menores que o número de relações em uma consulta retornam um plano de execução mais rápido, mas o plano resultante pode estar longe de ser ótimo. Se definido para 0, o sistema escolhe automaticamente um valor razoável.
 
 - `optimizer_switch`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>54
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   A variável de sistema `optimizer_switch` permite controlar o comportamento do otimizador. O valor dessa variável é um conjunto de flags, cada uma com um valor de `on` ou `off` para indicar se o comportamento do otimizador correspondente está habilitado ou desabilitado. Essa variável tem valores globais e de sessão e pode ser alterada em tempo de execução. O valor padrão global pode ser definido na inicialização do servidor.
 
@@ -1694,31 +1694,31 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `optimizer_trace`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>55
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável controla o rastreamento do otimizador. Para obter detalhes, consulte Seção 8.15, “Rastreamento do Otimizador”.
 
 - `optimizer_trace_features`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>56
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável habilita ou desabilita as funcionalidades de rastreamento do otimizador selecionadas. Para obter detalhes, consulte Seção 8.15, “Rastreamento do Otimizador”.
 
 - `optimizer_trace_limit`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>57
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número máximo de traços do otimizador a serem exibidos. Para detalhes, consulte Seção 8.15, “Rastrear o Otimizador”.
 
 - `optimizer_trace_max_mem_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>58
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho cumulativo máximo de registros armazenados do otimizador. Para obter detalhes, consulte Seção 8.15, “Rastreamento do Otimizador”.
 
 - `optimizer_trace_offset`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>59
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O deslocamento das traças do otimizador para exibição. Para obter detalhes, consulte Seção 8.15, “Rastrear o Otimizador”.
 
@@ -1728,13 +1728,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `parser_max_mem_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>60
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O valor máximo de memória disponível para o analisador. O valor padrão não define nenhum limite para a memória disponível. O valor pode ser reduzido para proteger contra situações de falta de memória causadas pela análise de instruções SQL longas ou complexas.
 
 - `pid_file`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>61
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O nome do caminho do arquivo no qual o servidor escreve seu ID de processo. O servidor cria o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar um diretório diferente. Se você especificar essa variável, deve especificar um valor. Se você não especificar essa variável, o MySQL usa um valor padrão de `host_name.pid`, onde *`host_name`* é o nome da máquina do host.
 
@@ -1742,7 +1742,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `plugin_dir`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>62
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O nome do caminho do diretório do plugin.
 
@@ -1750,13 +1750,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `port`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>63
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O número do porto no qual o servidor escuta as conexões TCP/IP. Essa variável pode ser definida com a opção `--port`.
 
 - `preload_buffer_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>64
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho do buffer que é alocado durante o pré-carregamento de índices.
 
@@ -1774,19 +1774,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `protocol_version`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>65
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   A versão do protocolo cliente/servidor usado pelo servidor MySQL.
 
 - `proxy_user`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>66
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se o cliente atual for um proxy para outro usuário, essa variável é o nome da conta do usuário proxy. Caso contrário, essa variável é `NULL`. Veja Seção 6.2.14, “Usuários Proxy”.
 
 - `pseudo_slave_mode`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>67
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Esta variável de sistema é para uso interno do servidor. `pseudo_slave_mode` auxilia no tratamento correto das transações que foram geradas em servidores mais antigos ou mais novos do que o servidor que está processando-as atualmente. **mysqlbinlog** define o valor de `pseudo_slave_mode` para true antes de executar quaisquer instruções SQL.
 
@@ -1798,7 +1798,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `pseudo_thread_id`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>68
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Esta variável é para uso interno do servidor.
 
@@ -1808,7 +1808,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `query_alloc_block_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>69
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho da alocação em bytes dos blocos de memória que são alocados para objetos criados durante a análise e execução da instrução. Se você tiver problemas com a fragmentação de memória, pode ser útil aumentar este parâmetro.
 
@@ -1816,7 +1816,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `query_cache_limit`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>70
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Não cache resultados que sejam maiores que este número de bytes. O valor padrão é de 1 MB.
 
@@ -1826,7 +1826,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `query_cache_min_res_unit`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>71
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho mínimo (em bytes) para blocos alocados pelo cache de consultas. O valor padrão é 4096 (4 KB). As informações de ajuste para essa variável estão disponíveis em Seção 8.10.3.3, “Configuração do Cache de Consultas”.
 
@@ -1836,7 +1836,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `query_cache_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>72
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   A quantidade de memória alocada para o cache de resultados de consultas. Por padrão, o cache de consultas está desativado. Isso é feito usando um valor padrão de 1M, com um valor padrão para `query_cache_type` de 0. (Para reduzir significativamente o overhead se você definir o tamanho para 0, você também deve iniciar o servidor com `query_cache_type=0`.
 
@@ -1850,11 +1850,11 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `query_cache_type`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>73
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Defina o tipo de cache de consulta. Definir o valor `GLOBAL` define o tipo para todos os clientes que se conectarem posteriormente. Clientes individuais podem definir o valor `SESSION` para afetar o uso próprio do cache de consulta. Os valores possíveis estão mostrados na tabela a seguir.
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>74
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável tem o valor padrão `OFF`.
 
@@ -1866,7 +1866,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `query_cache_wlock_invalidate`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>75
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Normalmente, quando um cliente adquire um bloqueio `WRITE` em uma tabela, outros clientes não são impedidos de emitir instruções que leem a tabela se os resultados da consulta estiverem presentes no cache de consultas. Definir essa variável para 1 faz com que a aquisição de um bloqueio `WRITE` para uma tabela in valide quaisquer consultas no cache de consultas que se referem à tabela. Isso obriga outros clientes que tentam acessar a tabela a aguardar enquanto o bloqueio estiver em vigor.
 
@@ -1876,13 +1876,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `query_prealloc_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>76
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho em bytes do buffer persistente usado para a análise e execução das instruções. Esse buffer não é liberado entre as instruções. Se você estiver executando consultas complexas, um valor maior para `query_prealloc_size` pode ser útil para melhorar o desempenho, pois pode reduzir a necessidade do servidor de realizar a alocação de memória durante as operações de execução da consulta. Você deve estar ciente de que fazer isso não elimina necessariamente a alocação completamente; o servidor ainda pode alocar memória em algumas situações, como para operações relacionadas a transações ou a programas armazenados.
 
 - `rand_seed1`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>77
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   As variáveis `rand_seed1` e `rand_seed2` existem apenas como variáveis de sessão e podem ser definidas, mas não lidas. As variáveis — mas não seus valores — são exibidas na saída da consulta `SHOW VARIABLES`.
 
@@ -1894,7 +1894,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `range_alloc_block_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>78
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O tamanho em bytes dos blocos alocados durante a otimização de intervalo.
 
@@ -1902,13 +1902,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `range_optimizer_max_mem_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>79
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O limite de consumo de memória para o otimizador de intervalo. Um valor de 0 significa "sem limite". Se um plano de execução considerado pelo otimizador usar o método de acesso de intervalo, mas o otimizador estimar que a quantidade de memória necessária para esse método excederia o limite, ele abandona o plano e considera outros planos. Para mais informações, consulte Limitar o uso de memória para otimização de intervalo.
 
 - `rbr_exec_mode`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>80
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Para uso interno por **mysqlbinlog**. Esta variável troca o servidor entre o modo `IDEMPOTENT` e o modo `STRICT`. O modo `IDEMPOTENT` causa a supressão de erros de chave duplicada e sem chave encontrada nas instruções `BINLOG` geradas por **mysqlbinlog**. Este modo é útil ao reproduzir um log binário baseado em linhas em um servidor que causa conflitos com dados existentes. **mysqlbinlog** define este modo quando você especifica a opção `--idempotent` (mysqlbinlog.html#option\_mysqlbinlog\_idempotent) escrevendo o seguinte na saída:
 
@@ -1918,7 +1918,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `read_buffer_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>81
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Cada fio que realiza uma varredura sequencial em uma tabela `MyISAM` aloca um buffer desse tamanho (em bytes) para cada tabela que ele varre. Se você fizer muitas varreduras sequenciais, talvez queira aumentar esse valor, que tem o valor padrão de 131072. O valor dessa variável deve ser um múltiplo de 4KB. Se ele for definido para um valor que não é um múltiplo de 4KB, seu valor é arredondado para baixo para o próximo múltiplo de 4KB.
 
@@ -1936,7 +1936,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `read_only`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>82
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se a variável de sistema `read_only` estiver habilitada, o servidor não permite atualizações de clientes, exceto por usuários que tenham o privilégio `SUPER`. Essa variável está desabilitada por padrão.
 
@@ -1976,7 +1976,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `read_rnd_buffer_size`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>83
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável é usada para leituras de tabelas `MyISAM` e, para qualquer mecanismo de armazenamento, para otimização de leitura de Multi-Range.
 
@@ -1986,7 +1986,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `require_secure_transport`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>84
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se as conexões do cliente com o servidor são necessárias para usar algum tipo de transporte seguro. Quando essa variável é habilitada, o servidor permite apenas conexões TCP/IP criptografadas usando TLS/SSL, ou conexões que usam um arquivo de soquete (no Unix) ou memória compartilhada (no Windows). O servidor rejeita tentativas de conexão não seguras, que falham com um erro `ER_SECURE_TRANSPORT_REQUIRED`.
 
@@ -1998,7 +1998,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `secure_auth`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>85
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Se essa variável estiver habilitada, o servidor bloqueia as conexões de clientes que tentam usar contas com senhas armazenadas no formato antigo (pré-4.1). Habilite essa variável para impedir o uso de senhas que empregam o formato antigo (e, portanto, a comunicação insegura na rede).
 
@@ -2012,7 +2012,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `secure_file_priv`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>86
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Essa variável é usada para limitar o efeito das operações de importação e exportação de dados, como as realizadas pelas instruções `LOAD DATA` e `SELECT ... INTO OUTFILE` e a função `LOAD_FILE()`. Essas operações são permitidas apenas para usuários que possuem o privilégio `FILE`.
 
@@ -2026,7 +2026,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   O valor padrão é específico da plataforma e depende do valor da opção **CMake** `INSTALL_LAYOUT`, conforme mostrado na tabela a seguir. Para especificar explicitamente o valor da variável de sistema `secure_file_priv` se você estiver compilando a partir da fonte, use a opção **CMake** `INSTALL_SECURE_FILE_PRIVDIR`.
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>87
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Para definir o valor padrão de `secure_file_priv` para o servidor integrado `libmysqld`, use a opção **CMake** `INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR`. O valor padrão para essa opção é `NULL`.
 
@@ -2034,7 +2034,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `session_track_gtids`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>88
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Controla se o servidor retorna GTIDs ao cliente, permitindo que o cliente os use para rastrear o estado do servidor. Dependendo do valor da variável, no final da execução de cada transação, os GTIDs do servidor são capturados e retornados ao cliente como parte do reconhecimento. Os valores possíveis para `session_track_gtids` são os seguintes:
 
@@ -2050,7 +2050,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `session_track_schema`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>89
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Controla se o servidor registra quando o esquema padrão (banco de dados) é definido na sessão atual e notifica o cliente para disponibilizar o nome do esquema.
 
@@ -2060,7 +2060,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `session_track_state_change`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>90
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Controla se o servidor acompanha as alterações no estado da sessão atual e notifica o cliente quando ocorrem alterações de estado. As alterações podem ser relatadas para esses atributos do estado da sessão do cliente:
 
@@ -2082,7 +2082,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `session_track_system_variables`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>91
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Controla se o servidor registra as atribuições às variáveis do sistema de sessão e notifica o cliente sobre o nome e o valor de cada variável atribuída. O valor da variável é uma lista de variáveis separadas por vírgula para as quais deseja-se rastrear as atribuições. Por padrão, a notificação está habilitada para `time_zone`, `autocommit`, `character_set_client`, `character_set_results` e `character_set_connection`. (Os três últimos são as variáveis afetadas por `SET NAMES`.)
 
@@ -2096,7 +2096,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `session_track_transaction_info`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>92
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Controla se o servidor registra o estado e as características das transações dentro da sessão atual e notifica o cliente para disponibilizar essas informações. Esses valores de `session_track_transaction_info` são permitidos:
 
@@ -2119,7 +2119,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sha256_password_auto_generate_rsa_keys`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>93
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Esta variável está disponível se o servidor foi compilado com o OpenSSL (consulte Seção 6.3.4, “Capacidades Dependentes da Biblioteca SSL”). Ela controla se o servidor gera automaticamente os arquivos de par de chaves privadas/públicas RSA no diretório de dados, se eles ainda não existirem.
 
@@ -2131,7 +2131,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sha256_password_private_key_path`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>94
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Esta variável está disponível se o MySQL foi compilado com o OpenSSL (consulte Seção 6.3.4, “Capacidades Dependentes da Biblioteca SSL”). Seu valor é o nome do caminho do arquivo da chave privada RSA para o plugin de autenticação `sha256_password`. Se o arquivo estiver nomeado como um caminho relativo, ele será interpretado em relação ao diretório de dados do servidor. O arquivo deve estar no formato PEM.
 
@@ -2143,13 +2143,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sha256_password_proxy_users`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>95
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Esta variável controla se o plugin de autenticação integrado `sha256_password` suporta usuários proxy. Ela não tem efeito a menos que a variável de sistema `check_proxy_users` esteja habilitada. Para informações sobre o proxying de usuários, consulte Seção 6.2.14, “Usuários Proxy”.
 
 - `sha256_password_public_key_path`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>96
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   Esta variável está disponível se o MySQL foi compilado com o OpenSSL (consulte Seção 6.3.4, “Capacidades Dependentes da Biblioteca SSL”). Seu valor é o nome do caminho do arquivo de chave pública RSA para o plugin de autenticação `sha256_password`. Se o arquivo estiver nomeado como um caminho relativo, ele será interpretado em relação ao diretório de dados do servidor. O arquivo deve estar no formato PEM. Como este arquivo armazena uma chave pública, as cópias podem ser distribuídas livremente aos usuários do cliente. (Os clientes que especificam explicitamente uma chave pública ao se conectar ao servidor usando criptografia de senha RSA devem usar a mesma chave pública usada pelo servidor.)
 
@@ -2157,13 +2157,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `shared_memory`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>97
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   (Apenas para Windows.) Se o servidor permite conexões de memória compartilhada.
 
 - `shared_memory_base_name`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>98
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   (Apenas para Windows.) O nome da memória compartilhada a ser usado para conexões de memória compartilhada. Isso é útil ao executar múltiplas instâncias do MySQL em uma única máquina física. O nome padrão é `MYSQL`. O nome é sensível a maiúsculas e minúsculas.
 
@@ -2171,7 +2171,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `show_compatibility_56`
 
-  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>99
+  <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
   O `INFORMATION_SCHEMA` possui tabelas que contêm informações sobre variáveis de sistema e status (consulte Seção 24.3.11, “As tabelas GLOBAL\_VARIABLES e SESSION\_VARIABLES do INFORMATION\_SCHEMA” e Seção 24.3.10, “As tabelas GLOBAL\_STATUS e SESSION\_STATUS do INFORMATION\_SCHEMA”). A partir do MySQL 5.7.6, o Performance Schema também contém tabelas de variáveis de sistema e status (consulte Seção 25.12.13, “Tabelas de variáveis de sistema do Performance Schema” e Seção 25.12.14, “Tabelas de variáveis de status do Performance Schema”). As tabelas do Performance Schema são destinadas a substituir as tabelas do `INFORMATION_SCHEMA`, que são desaconselhadas a partir do MySQL 5.7.6 e serão removidas no MySQL 8.0.
 
@@ -2306,7 +2306,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   - `OFF`: Algumas dessas variáveis de replicação não são exibidas na tabela de variáveis de status do Schema de Desempenho `SHOW STATUS` ou nas tabelas de variáveis de status do Schema de Desempenho. As informações que elas fornecem estão disponíveis nas tabelas relacionadas à replicação do Schema de Desempenho. A tabela a seguir mostra quais variáveis de status `Slave_xxx` ficam indisponíveis em `SHOW STATUS` e seus locais nas tabelas de replicação do Schema de Desempenho.
 
-    <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>00
+    <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   #### Efeito do show\_compatibility\_56 no estado de FLUSH
 
@@ -2318,13 +2318,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `show_create_table_verbosity`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>01
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   `SHOW CREATE TABLE` normalmente não exibe a opção `ROW_FORMAT` da tabela se o formato da linha for o formato padrão. Ativação desta variável faz com que `SHOW CREATE TABLE` exiba `ROW_FORMAT` independentemente de ser o formato padrão.
 
 - `show_old_temporals`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>02
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se a saída de `SHOW CREATE TABLE` incluir comentários para marcar colunas temporais encontradas no formato anterior a 5.6.4 (colunas `TIME`, `DATETIME` e `TIMESTAMP` sem suporte para precisão de frações de segundo), essa variável está desabilitada por padrão. Se ativada, a saída de `SHOW CREATE TABLE` ficará assim:
 
@@ -2342,7 +2342,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `skip_external_locking`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>03
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta opção está desativada se o **mysqld** usar o bloqueio externo (bloqueio do sistema), e ativada se o bloqueio externo estiver desativado. Isso afeta apenas o acesso à tabela `**MyISAM**`.
 
@@ -2352,7 +2352,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `skip_name_resolve`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>04
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se resolver nomes de host ao verificar conexões de clientes. Se essa variável for `OFF`, o **mysqld** resolve nomes de host ao verificar conexões de clientes. Se for `ON`, o **mysqld** usa apenas números de IP; nesse caso, todos os valores da coluna `Host` nas tabelas de concessão devem ser endereços IP. Veja Seção 5.1.11.2, “Consultas DNS e Cache de Host”.
 
@@ -2367,13 +2367,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `skip_networking`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>05
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável controla se o servidor permite conexões TCP/IP. Por padrão, ela está desabilitada (permitir conexões TCP). Se habilitada, o servidor permite apenas conexões locais (não TCP/IP) e toda interação com **mysqld** deve ser feita usando tubos nomeados ou memória compartilhada (no Windows) ou arquivos de soquetes Unix (no Unix). Esta opção é altamente recomendada para sistemas onde apenas clientes locais são permitidos. Veja Seção 5.1.11.2, “Consultas DNS e Cache de Anfitriões”.
 
 - `skip_show_database`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>06
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Isso impede que as pessoas usem a instrução `SHOW DATABASES` se não tiverem o privilégio `SHOW DATABASES`. Isso pode melhorar a segurança se você tiver preocupações sobre os usuários poderem ver bancos de dados pertencentes a outros usuários. Seu efeito depende do privilégio `SHOW DATABASES`: Se o valor da variável for `ON`, a instrução `SHOW DATABASES` só é permitida para usuários que têm o privilégio `SHOW DATABASES`, e a instrução exibe todos os nomes dos bancos de dados. Se o valor for `OFF`, a instrução `SHOW DATABASES` é permitida para todos os usuários, mas exibe os nomes apenas dos bancos de dados para os quais o usuário tem o privilégio `SHOW DATABASES` ou outro privilégio.
 
@@ -2383,13 +2383,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `slow_launch_time`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>07
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se a criação de um fio levar mais tempo do que esse número de segundos, o servidor incrementa a variável de status `Slow_launch_threads`.
 
 - `slow_query_log`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>08
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se o registro de consultas lentas está habilitado. O valor pode ser 0 (ou `OFF`) para desabilitar o registro ou 1 (ou `ON`) para habilitar o registro. O destino da saída do log é controlado pela variável de sistema `log_output`; se esse valor for `NONE`, nenhuma entrada de log será escrita, mesmo que o log esteja habilitado.
 
@@ -2397,13 +2397,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `slow_query_log_file`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>09
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O nome do arquivo de registro de consultas lentas. O valor padrão é `host_name-slow.log`, mas o valor inicial pode ser alterado com a opção `--slow_query_log_file`.
 
 - `socket`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>10
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Em plataformas Unix, essa variável é o nome do arquivo de soquete usado para conexões locais do cliente. O padrão é `/tmp/mysql.sock`. (Para alguns formatos de distribuição, o diretório pode ser diferente, como `/var/lib/mysql` para RPMs.)
 
@@ -2411,7 +2411,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sort_buffer_size`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>11
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Cada sessão que precisa realizar uma ordenação aloca um buffer desse tamanho. `sort_buffer_size` não é específico de nenhum motor de armazenamento e é aplicado de maneira geral para otimização. No mínimo, o valor de `sort_buffer_size` deve ser grande o suficiente para acomodar quinze tuplas no buffer de ordenação. Além disso, o aumento do valor de `max_sort_length` pode exigir o aumento do valor de `sort_buffer_size`. Para mais informações, consulte Seção 8.2.1.14, “Otimização de ORDER BY”
 
@@ -2423,7 +2423,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sql_auto_is_null`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>12
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se essa variável estiver habilitada, após uma instrução que insere com sucesso um valor `AUTO_INCREMENT` gerado automaticamente, você poderá encontrar esse valor executando uma instrução do seguinte formato:
 
@@ -2439,7 +2439,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sql_big_selects`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>13
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se configurado para `OFF`, o MySQL interrompe as instruções `SELECT` que provavelmente levarão muito tempo para serem executadas (ou seja, instruções para as quais o otimizador estima que o número de linhas examinadas exceda o valor de `max_join_size`). Isso é útil quando uma instrução `WHERE` desaconselhável foi emitida. O valor padrão para uma nova conexão é `ON`, que permite todas as instruções `SELECT`.
 
@@ -2447,13 +2447,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sql_buffer_result`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>14
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se ativado, `sql_buffer_result` obriga os resultados das instruções `SELECT` a serem colocados em tabelas temporárias. Isso ajuda o MySQL a liberar os bloqueios da tabela mais cedo e pode ser benéfico em casos em que leva muito tempo para enviar os resultados ao cliente. O valor padrão é `OFF`.
 
 - `sql_log_off`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>15
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável controla se o registro no log de consultas gerais é desativado para a sessão atual (assumindo que o próprio log de consultas gerais esteja habilitado). O valor padrão é `OFF` (ou seja, habilite o registro). Para desabilitar ou habilitar o registro de consultas gerais para a sessão atual, defina a variável da sessão `sql_log_off` para `ON` ou `OFF`.
 
@@ -2461,7 +2461,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sql_mode`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>16
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O modo SQL do servidor atual, que pode ser definido dinamicamente. Para mais detalhes, consulte Seção 5.1.10, “Modos SQL do Servidor”.
 
@@ -2471,19 +2471,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sql_notes`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>17
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se ativado (padrão), os diagnósticos de nível `Note` incrementam `warning_count` e o servidor os registra. Se desativado, os diagnósticos de nível `Note` não incrementam `warning_count` e o servidor não os registra. **mysqldump** inclui a saída para desabilitar essa variável, para que a recarga do arquivo de dump não produza avisos para eventos que não afetam a integridade da operação de recarga.
 
 - `sql_quote_show_create`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>18
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se habilitado (padrão), o servidor cita identificadores para as instruções `SHOW CREATE TABLE` (show-create-table.html) e `SHOW CREATE DATABASE` (show-create-database.html). Se desabilitado, a citação é desativada. Esta opção é habilitada por padrão para que a replicação funcione para identificadores que exigem citação. Veja Seção 13.7.5.10, “Instrução SHOW CREATE TABLE” e Seção 13.7.5.6, “Instrução SHOW CREATE DATABASE”.
 
 - `sql_safe_updates`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>19
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se essa variável estiver habilitada, as instruções `UPDATE` e `DELETE` que não utilizam uma chave na cláusula `WHERE` ou na cláusula `LIMIT` produzem um erro. Isso permite capturar instruções `UPDATE` e `DELETE` em que as chaves não são usadas corretamente e que provavelmente alterariam ou excluiriam um grande número de linhas. O valor padrão é `OFF`.
 
@@ -2491,7 +2491,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sql_select_limit`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>20
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O número máximo de linhas a serem retornadas a partir das instruções `SELECT`. Para mais informações, consulte Usando o modo Safe-Updates (--safe-updates.
 
@@ -2501,19 +2501,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sql_warnings`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>21
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável controla se as instruções de inserção de uma única linha (`INSERT` - insert.html) produzem uma string de informações se ocorrerem avisos. O valor padrão é `OFF`. Defina o valor para `ON` para produzir uma string de informações.
 
 - `ssl_ca`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>22
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O nome do caminho do arquivo de certificado da Autoridade de Certificação (CA) no formato PEM. O arquivo contém uma lista de Autoridades de Certificação SSL confiáveis.
 
 - `ssl_capath`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>23
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O nome do caminho do diretório que contém os arquivos de certificado da Autoridade de Certificação SSL (CA) confiável no formato PEM. Você deve executar o `rehash` do OpenSSL no diretório especificado por esta opção antes de usá-lo. Em sistemas Linux, você pode invocar o `rehash` da seguinte maneira:
 
@@ -2533,7 +2533,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `ssl_cert`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>24
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O nome do caminho do arquivo de certificado de chave pública SSL do servidor no formato PEM.
 
@@ -2541,7 +2541,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `ssl_cipher`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>25
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   A lista de cifra permitida para a criptografia da conexão. Se nenhuma cifra na lista for suportada, as conexões criptografadas não funcionarão.
 
@@ -2558,19 +2558,19 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `ssl_crl`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>26
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O nome do caminho do arquivo que contém as listas de revogação de certificados no formato PEM. O suporte para a capacidade de listas de revogação depende da biblioteca SSL usada para compilar o MySQL. Consulte Seção 6.3.4, “Capacidades Dependentes da Biblioteca SSL”.
 
 - `ssl_crlpath`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>27
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O caminho do diretório que contém arquivos da lista de revogação de certificados no formato PEM. O suporte para a capacidade de lista de revogação depende da biblioteca SSL usada para compilar o MySQL. Consulte Seção 6.3.4, “Capacidades Dependentes da Biblioteca SSL”.
 
 - `ssl_key`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>28
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O nome do caminho do arquivo de chave privada SSL do servidor no formato PEM. Para maior segurança, use um certificado com um tamanho de chave RSA de pelo menos 2048 bits.
 
@@ -2578,7 +2578,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `cache de programas armazenados`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>29
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Define um limite superior suave para o número de rotinas armazenadas em cache por conexão. O valor desta variável é especificado em termos do número de rotinas armazenadas mantidas em cada um dos dois caches mantidos pelo MySQL Server para procedimentos armazenados e funções armazenadas, respectivamente.
 
@@ -2586,7 +2586,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `super_read_only`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>30
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se a variável de sistema `read_only` estiver habilitada, o servidor não permite atualizações de clientes, exceto por usuários que tenham o privilégio `SUPER`. Se a variável de sistema `super_read_only` também estiver habilitada, o servidor proíbe atualizações de clientes, mesmo por usuários que tenham o privilégio `SUPER`. Consulte a descrição da variável de sistema `read_only` para obter uma descrição do modo de leitura apenas e informações sobre como `read_only` e `super_read_only` interagem.
 
@@ -2596,7 +2596,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `sync_frm`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>31
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se essa variável estiver definida como 1, quando qualquer tabela não temporária for criada, seu arquivo `.frm` será sincronizado com o disco (usando `fdatasync()`). Isso é mais lento, mas mais seguro em caso de falha. O padrão é 1.
 
@@ -2604,7 +2604,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `system_time_zone`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>32
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O fuso horário do sistema do servidor. Quando o servidor começa a ser executado, ele herda um ajuste do fuso horário das configurações padrão da máquina, possivelmente modificado pelo ambiente da conta usada para executar o servidor ou pelo script de inicialização. O valor é usado para definir `system_time_zone`. Para especificar explicitamente o fuso horário do sistema, defina a variável de ambiente `TZ` ou use a opção `--timezone` do script **mysqld\_safe** **mysqld\_safe**.
 
@@ -2612,7 +2612,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `cache de definição de tabela`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>33
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O número de definições de tabela (de arquivos `.frm`) que podem ser armazenadas no cache de definição de tabela. Se você usar um grande número de tabelas, pode criar um cache de definição de tabela grande para acelerar a abertura das tabelas. O cache de definição de tabela ocupa menos espaço e não usa descritores de arquivo, ao contrário do cache normal de tabela. O valor mínimo é 400. O valor padrão é baseado na seguinte fórmula, limitada a um limite de 2000:
 
@@ -2628,7 +2628,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `cache_de_abertura_da_tabela`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>34
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O número de tabelas abertas para todos os threads. Aumentar esse valor aumenta o número de descritores de arquivo que o **mysqld** requer. O valor efetivo dessa variável é o maior entre o valor efetivo de `open_files_limit` `- 10 -` o valor efetivo de `max_connections` `/ 2`, e 400; ou seja
 
@@ -2643,7 +2643,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `table_open_cache_instances`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>35
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Número de instâncias de cache de tabelas abertas. Para melhorar a escalabilidade, reduzindo a concorrência entre as sessões, o cache de tabelas abertas pode ser dividido em várias instâncias menores de tamanho `table_open_cache` / `table_open_cache_instances`. Uma sessão precisa bloquear apenas uma instância para acessá-la para instruções DML. Isso segmenta o acesso ao cache entre as instâncias, permitindo um desempenho maior para operações que usam o cache quando há muitas sessões acessando tabelas. (As instruções DDL ainda requerem um bloqueio em todo o cache, mas essas instruções são muito menos frequentes do que as instruções DML.)
 
@@ -2651,7 +2651,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `thread_cache_size`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>36
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Quantos fios o servidor deve armazenar para reutilização. Quando um cliente se desconecta, os fios do cliente são colocados na cache se houver menos de `thread_cache_size` fios. As solicitações de fios são atendidas reutilizando fios da cache, se possível, e apenas quando a cache estiver vazia, um novo fio é criado. Essa variável pode ser aumentada para melhorar o desempenho se você tiver muitas novas conexões. Normalmente, isso não proporciona uma melhoria notável no desempenho se você tiver uma boa implementação de fios. No entanto, se o seu servidor receber centenas de conexões por segundo, você deve definir `thread_cache_size` o suficiente para que a maioria das novas conexões use fios armazenados na cache. Ao examinar a diferença entre as variáveis de status `Connections` e `Threads_created`, você pode ver quão eficiente é a cache de fios. Para detalhes, consulte Seção 5.1.9, “Variáveis de Status do Servidor”.
 
@@ -2665,7 +2665,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `thread_handling`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>37
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O modelo de manipulação de threads usado pelo servidor para threads de conexão. Os valores permitidos são `no-threads` (o servidor usa um único thread para lidar com uma conexão), `one-thread-per-connection` (o servidor usa um único thread para lidar com cada conexão de cliente) e `loaded-dynamically` (definido pelo plugin do pool de threads ao ser inicializado). `no-threads` é útil para depuração no Linux; veja Seção 5.8, “Depuração do MySQL”.
 
@@ -2673,7 +2673,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `thread_pool_algorithm`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>38
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável controla qual algoritmo o plugin de pool de threads utiliza:
 
@@ -2685,7 +2685,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `thread_pool_high_priority_connection`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>39
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável afeta a fila de espera de novas declarações antes da execução. Se o valor for 0 (falso, o padrão), a fila de espera de declarações usa as filas de baixa e alta prioridade. Se o valor for 1 (verdadeiro), as declarações em fila sempre vão para a fila de alta prioridade.
 
@@ -2693,7 +2693,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `thread_pool_max_unused_threads`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>40
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O número máximo permitido de threads não utilizadas na pilha de threads. Esta variável permite limitar a quantidade de memória usada por threads em estado de espera.
 
@@ -2705,7 +2705,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `thread_pool_prio_kickup_timer`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>41
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável afeta as instruções que estão aguardando execução na fila de baixa prioridade. O valor é o número de milissegundos antes que uma instrução em espera seja movida para a fila de alta prioridade. O valor padrão é 1000 (1 segundo).
 
@@ -2713,7 +2713,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `thread_pool_size`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>42
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O número de grupos de threads no pool de threads. Este é o parâmetro mais importante que controla o desempenho do pool de threads. Ele afeta quantos comandos podem ser executados simultaneamente. Se um valor fora do intervalo de valores permitidos for especificado, o plugin do pool de threads não é carregado e o servidor escreve uma mensagem no log de erro.
 
@@ -2721,7 +2721,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `thread_pool_stall_limit`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>43
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Esta variável afeta a execução de instruções. O valor é o tempo que uma instrução tem para terminar após começar a ser executada antes de ser definida como travada, momento em que o grupo de threads permite que o grupo de threads comece a executar outra instrução. O valor é medido em unidades de 10 milissegundos, então o valor padrão de 6 significa 60ms. Valores de espera curtos permitem que os threads comecem mais rapidamente. Valores curtos também são melhores para evitar situações de deadlock. Valores de espera longos são úteis para cargas de trabalho que incluem instruções de execução longa, para evitar iniciar muitas novas instruções enquanto as atuais estão sendo executadas.
 
@@ -2729,7 +2729,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `thread_stack`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>44
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O tamanho da pilha para cada thread. O padrão é suficiente para o funcionamento normal. Se o tamanho da pilha da thread for muito pequeno, isso limita a complexidade das instruções SQL que o servidor pode manipular, a profundidade de recursividade de procedimentos armazenados e outras ações que consomem memória.
 
@@ -2739,7 +2739,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `time_zone`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>45
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O fuso horário atual. Esta variável é usada para inicializar o fuso horário para cada cliente que se conecta. Por padrão, o valor inicial desta é `'SYSTEM'` (o que significa, “use o valor de `system_time_zone`). O valor pode ser especificado explicitamente na inicialização do servidor com a opção `--default-time-zone`. Veja Seção 5.1.13, “Suporte de Fuso Horário do MySQL Server”.
 
@@ -2749,7 +2749,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `timestamp`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>46
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Defina o horário para este cliente. Isso é usado para obter o timestamp original se você usar o log binário para restaurar linhas. *`timestamp_value`* deve ser um timestamp do epoch Unix (um valor como o retornado por `UNIX_TIMESTAMP()`, não um valor no formato `'YYYY-MM-DD hh:mm:ss'` ou `DEFAULT`).
 
@@ -2761,7 +2761,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `tls_version`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>47
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Quais protocolos o servidor permite para conexões criptografadas. O valor é uma lista separada por vírgula contendo uma ou mais versões de protocolo. Os protocolos que podem ser nomeados para essa variável dependem da biblioteca SSL usada para compilar o MySQL. Os protocolos permitidos devem ser escolhidos para não deixar "buracos" na lista. Para detalhes, consulte Seção 6.3.2, "Protocolos e cifra TLS de Conexão Criptografada".
 
@@ -2773,7 +2773,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `tmp_table_size`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>48
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O tamanho máximo de tabelas temporárias internas de memória. Esta variável não se aplica a tabelas `MEMORY` criadas pelo usuário.
 
@@ -2787,7 +2787,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `tmpdir`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>49
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O caminho do diretório a ser usado para criar arquivos temporários. Isso pode ser útil se o diretório padrão `/tmp` estiver em uma partição que é muito pequena para armazenar tabelas temporárias. Essa variável pode ser definida como uma lista de vários caminhos que são usados de forma rotativa. Os caminhos devem ser separados por colchetes (`:`) no Unix e por pontos e vírgulas (`;`) no Windows.
 
@@ -2797,13 +2797,13 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `transaction_alloc_block_size`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>50
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O valor em bytes pelo qual aumentar o pool de memória por transação que precisa de memória. Veja a descrição de `transaction_prealloc_size`.
 
 - `transaction_isolation`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>51
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O nível de isolamento de transação. O padrão é `REPEATABLE-READ`.
 
@@ -2872,7 +2872,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `transaction_prealloc_size`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>52
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Existe um pool de memória por transação a partir do qual várias alocações relacionadas à transação pegam memória. O tamanho inicial do pool em bytes é `transaction_prealloc_size`. Para cada alocação que não pode ser atendida a partir do pool porque não há memória disponível suficiente, o pool é aumentado em \[`transaction_alloc_block_size`]\(server-system-variables.html#sysvar\_transaction\_alloc\_block\_size] bytes. Quando a transação termina, o pool é truncado para \[`transaction_prealloc_size`]\(server-system-variables.html#sysvar\_transaction\_prealloc\_size] bytes.
 
@@ -2880,7 +2880,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `transaction_read_only`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>53
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O modo de acesso à transação. O valor pode ser `OFF` (leitura/escrita; o padrão) ou `ON` (somente leitura).
 
@@ -2949,7 +2949,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `tx_isolation`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>54
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O nível de isolamento de transação padrão. Definiu como `REPEATABLE-READ`.
 
@@ -2959,7 +2959,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `tx_read_only`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>55
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O modo de acesso padrão à transação. O valor pode ser `OFF` (leitura/escrita, o padrão) ou `ON` (somente leitura).
 
@@ -2969,7 +2969,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `unique_checks`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>56
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se definido para 1 (o padrão), as verificações de unicidade para índices secundários em tabelas `InnoDB` são realizadas. Se definido para 0, os motores de armazenamento são autorizados a assumir que chaves duplicadas não estão presentes nos dados de entrada. Se você tem certeza de que seus dados não contêm violações de unicidade, você pode definir isso para 0 para acelerar a importação de grandes tabelas para `InnoDB`.
 
@@ -2977,7 +2977,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `updatable_views_with_limit`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>57
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Essa variável controla se as atualizações de uma visualização podem ser feitas quando a visualização não contém todas as colunas da chave primária definida na tabela subjacente, se a instrução de atualização contiver uma cláusula `LIMIT` (Tais atualizações são frequentemente geradas por ferramentas de interface gráfica). Uma atualização é uma instrução `[UPDATE]` (update.html) ou `DELETE` (delete.html). Chave primária aqui significa uma `PRIMARY KEY`, ou um índice `UNIQUE` no qual nenhuma coluna pode conter `NULL`.
 
@@ -2997,25 +2997,25 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 - `version_comment`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>58
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O programa de configuração **CMake** tem uma opção `COMPILATION_COMMENT` que permite especificar um comentário durante a compilação do MySQL. Essa variável contém o valor desse comentário. Veja Seção 2.8.7, “Opções de Configuração de Código-Fonte do MySQL”.
 
 - `version_compile_machine`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>59
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O tipo do binário do servidor.
 
 - `version_compile_os`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>60
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O tipo de sistema operacional no qual o MySQL foi construído.
 
 - `wait_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>61
+  <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-windows-use-principal-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_authentication_windows_use_principal_name">authentication_windows_use_principal_name</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   O número de segundos que o servidor espera por atividade em uma conexão não interativa antes de fechá-la.
 

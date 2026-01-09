@@ -190,7 +190,7 @@ O valor padrão para este parâmetro é o diretório em que o **ndb\_mgmd** est�
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagamento e restauração do sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup online do NDB Cluster">backup</a>, e, em seguida, reiniciar o clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>0
+</table>
 
 Este parâmetro especifica o número de porta usado para obter informações estatísticas de um servidor de gerenciamento do NDB Cluster. Não tem valor padrão.
 
@@ -217,7 +217,7 @@ Este parâmetro especifica o número de porta usado para obter informações est
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagamento e restauração do sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup online do NDB Cluster">backup</a>, e, em seguida, reiniciar o clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>1
+</table>
 
 Use a configuração de TCP WAN como padrão.
 
@@ -244,7 +244,7 @@ Use a configuração de TCP WAN como padrão.
     <th>Tipo de reinício</th>
     <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td>
   </tr>
-</table>2
+</table>
 
   Defina a política de agendamento e a prioridade das threads de batida de coração para nós de gerenciamento e API.
 
@@ -261,13 +261,13 @@ Use a configuração de TCP WAN como padrão.
 
 * `ExtraSendBufferMemory`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó de gerenciamento de NID, tipo e informações de valor"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício inicial do sistema: </strong></span></p><p><a class="link" href="mysql-cluster-backup.html" title="Backup online do NDB Cluster 25.6.8">Backup online do NDB Cluster</a></p>Requer o desligamento completo do clúster, apagamento e restauração do sistema de arquivos do clúster a partir de um backup, e depois reiniciar o clúster. (NDB 9.5.0)</p></td></tr></tbody></table>4
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó de gerenciamento de NID, tipo e informações de valor"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício inicial do sistema: </strong></span></p><p><a class="link" href="mysql-cluster-backup.html" title="Backup online do NDB Cluster 25.6.8">Backup online do NDB Cluster</a></p>Requer o desligamento completo do clúster, apagamento e restauração do sistema de arquivos do clúster a partir de um backup, e depois reiniciar o clúster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Se este parâmetro for definido como `true`, um cliente, uma vez conectado a este nó de gerenciamento, deve ser autenticado usando TLS antes que a conexão possa ser usada para qualquer outra coisa.
 
 * `TotalSendBufferMemory`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de gerenciamento do NDB, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>1 - 255</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de gerenciamento do NDB, tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>1 - 255</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   Este parâmetro é usado para determinar a quantidade total de memória a ser alocada neste nó para a memória do buffer de envio compartilhada entre todos os transportadores configurados.
 
@@ -310,4 +310,4 @@ Para adicionar novos servidores de gerenciamento a um clúster NDB em execução
 
 **Tabela 25.8 Tipos de reinício do clúster NDB**
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó de gerenciamento de NID: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>1 - 255</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó de gerenciamento de NID: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>1 - 255</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB 25.6.8" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0) </p></td> </tr></tbody></table>

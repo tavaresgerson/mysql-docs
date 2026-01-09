@@ -12,7 +12,7 @@ A lista a seguir descreve as opções de inicialização para controlar os servi
 
 * `--show-replica-auth-info`
 
-  <table frame="box" rules="all" summary="Propriedades para show-replica-auth-info"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--show-replica-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para show-replica-auth-info"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--show-replica-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Use `--show-replica-auth-info`, que exibe os nomes e senhas dos usuários de replicação na saída do `SHOW REPLICAS` no servidor de origem para replicas iniciadas com as opções `--report-user` e `--report-password`.
 
@@ -21,7 +21,7 @@ A lista a seguir descreve as opções de inicialização para controlar os servi
 <table frame="box" rules="all" summary="Propriedades para mostrar-slave-auth-info">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td>
+    <td><code>--show-slave-auth-info[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -33,7 +33,7 @@ A lista a seguir descreve as opções de inicialização para controlar os servi
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
   </table>
 
@@ -49,7 +49,7 @@ As seguintes variáveis de sistema são usadas para ou por servidores de fonte d
   <tbody>
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--auto-increment-increment=#</code></td>
+      <td><code>--auto-increment-increment=#</code></td>
     </tr>
     <tr>
       <th>Variável de Sistema</th>
@@ -64,7 +64,7 @@ As seguintes variáveis de sistema são usadas para ou por servidores de fonte d
       <td>Sim</td>
     </tr>
     <tr>
-      <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</code></a> Hint Aplica-se</th>
+      <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th>
       <td>Sim</td>
     </tr>
     <tr>
@@ -73,15 +73,15 @@ As seguintes variáveis de sistema são usadas para ou por servidores de fonte d
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">1</code></td>
+      <td><code>1</code></td>
     </tr>
     <tr>
       <th>Valor Mínimo</th>
-      <td><code class="literal">1</code></td>
+      <td><code>1</code></td>
     </tr>
     <tr>
       <th>Valor Máximo</th>
-      <td><code class="literal">65535</code></td>
+      <td><code>65535</code></td>
     </tr>
   </tbody>
 </table>
@@ -234,7 +234,7 @@ O valor padrão de `auto_increment_increment` é
 
 * `auto_increment_offset`
 
-<table frame="box" rules="all" summary="Propriedades para auto_increment_offset"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-increment-offset=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_auto_increment_offset">auto_increment_offset</a></code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variáveis"><code class="literal">SET_VAR</a></code> Dicas Aplicam-se</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para auto_increment_offset"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-increment-offset=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-source.html#sysvar_auto_increment_offset">auto_increment_offset</a></code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variáveis"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Esta variável tem um valor padrão de 1. Se for deixada com seu valor padrão e a Replicação em Grupo for iniciada no servidor no modo multi-primário, ela é alterada para o ID do servidor. Para mais informações, consulte a descrição para `auto_increment_increment`.
 
@@ -244,7 +244,7 @@ Nota
 
 * `immediate_server_version`
 
-  <table frame="box" rules="all" summary="Propriedades para immediate_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_immediate_server_version">immediate_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">999999</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para immediate_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-source.html#sysvar_immediate_server_version">immediate_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>999999</code></td> </tr></tbody></table>
 
   Para uso interno pela replicação. Esta variável do sistema de sessão contém o número de versão do MySQL Server do servidor que é a fonte imediata em uma topologia de replicação (por exemplo, `90500` para uma instância de servidor MySQL 9.5.0). Se este servidor imediato estiver em uma versão que não suporte a variável do sistema de sessão, o valor da variável é definido como 0 (`UNKNOWN_SERVER_VERSION`).
 
@@ -254,7 +254,7 @@ Definir o valor da sessão desta variável do sistema é uma operação restrita
 
 * `original_server_version`
 
-<table frame="box" rules="all" summary="Propriedades para original_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_original_server_version">original_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variável"><code class="literal">SET_VAR</a></code> Dicas Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">999999</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para original_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-source.html#sysvar_original_server_version">original_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variável"><code>SET_VAR</a></code> Dicas Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>999999</code></td> </tr></tbody></table>
 
   Para uso interno pela replicação. Esta variável de sistema de sessão contém o número de versão do servidor MySQL do servidor onde uma transação foi originalmente comprometida (por exemplo, `90500` para uma instância de servidor MySQL 9.5.0). Se este servidor original estiver em uma versão que não suporte a variável de sistema de sessão, o valor da variável é definido como 0 (`UNKNOWN_SERVER_VERSION`). Note que, quando um número de versão é definido pelo servidor original, o valor da variável é redefinido para 0 se o servidor imediato ou qualquer outro servidor intermediário na topologia de replicação não suportar a variável de sistema de sessão, e, portanto, não replica seu valor.
 
@@ -269,7 +269,7 @@ Definir o valor da sessão desta variável de sistema é uma operação restrita
 <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_enabled">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--rpl-semi-sync-master-enabled[={OFF|ON}]</code></td>
+    <td><code>--rpl-semi-sync-master-enabled[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -277,7 +277,7 @@ Definir o valor da sessão desta variável de sistema é uma operação restrita
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_enabled">rpl_semi_sync_master_enabled</a></code></td>
+    <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_enabled">rpl_semi_sync_master_enabled</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -288,7 +288,7 @@ Definir o valor da sessão desta variável de sistema é uma operação restrita
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -297,23 +297,23 @@ Definir o valor da sessão desta variável de sistema é uma operação restrita
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
 </table>
 
 Sinônimo desatualizado de `rpl_semi_sync_source_enabled`.
 
 <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_timeout">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--rpl-semi-sync-master-timeout=#</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--rpl-semi-sync-master-timeout=#</code></td> </tr>
   <tr><th>Desatualizado</th> <td>Sim (removido na versão 9.5.0)</td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_timeout">rpl_semi_sync_master_timeout</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_timeout">rpl_semi_sync_master_timeout</a></code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">10000</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>10000</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
   <tr><th>Unidade</th> <td>milissegundos</td> </tr>
 </table>
 
@@ -322,7 +322,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_timeout`.
 <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_trace_level">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--rpl-semi-sync-master-trace-level=#</code></td>
+    <td><code>--rpl-semi-sync-master-trace-level=#</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -330,7 +330,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_timeout`.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_trace_level">rpl_semi_sync_master_trace_level</a></code></td>
+    <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_trace_level">rpl_semi_sync_master_trace_level</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -341,7 +341,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_timeout`.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -350,15 +350,15 @@ Sinônimo desatualizado de `rpl_semi_sync_source_timeout`.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">32</code></td>
+    <td><code>32</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">0</code></td>
+    <td><code>0</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">4294967295</code></td>
+    <td><code>4294967295</code></td>
   </tr>
 </table>
 
@@ -367,7 +367,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_trace_level`.
 <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_wait_for_slave_count">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--rpl-semi-sync-master-wait-for-slave-count=#</code></td>
+    <td><code>--rpl-semi-sync-master-wait-for-slave-count=#</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -375,7 +375,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_trace_level`.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_wait-for-slave-count">rpl_semi_sync_master_wait-for-slave-count</a></code></td>
+    <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_wait-for-slave-count">rpl_semi_sync_master_wait-for-slave-count</a></code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -386,7 +386,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_trace_level`.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code class="literal">SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -395,15 +395,15 @@ Sinônimo desatualizado de `rpl_semi_sync_source_trace_level`.
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">1</code></td>
+    <td><code>1</code></td>
   </tr>
   <tr>
     <th>Valor Mínimo</th>
-    <td><code class="literal">1</code></td>
+    <td><code>1</code></td>
   </tr>
   <tr>
     <th>Valor Máximo</th>
-    <td><code class="literal">65535</code></td>
+    <td><code>65535</code></td>
   </tr>
 </table>
 
@@ -414,7 +414,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_trace_level`.
   <table frame="box" rules="all" summary="Propriedades para show-slave-auth-info">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td>
+      <td><code>--show-slave-auth-info[={OFF|ON}]</code></td>
     </tr>
     <tr>
       <th>Desatualizado</th>
@@ -426,21 +426,21 @@ Sinônimo desatualizado de `rpl_semi_sync_source_trace_level`.
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">OFF</code></td>
+      <td><code>OFF</code></td>
     </tr>
-  </table>0
+  </table>
 
   Símbolo desatualizado para `rpl_semi_sync_source_wait-no-replica`.
 
 * `rpl_semi_sync_master_wait-point`
 
-<table frame="box" rules="all" summary="Propriedades para mostrar-slave-auth-info"><tr><th>Formato de linha de comando</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></table>1
+<table frame="box" rules="all" summary="Propriedades para mostrar-slave-auth-info"><tr><th>Formato de linha de comando</th> <td><code>--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
 
 Sinônimo de `rpl_semi_sync_source_wait_point` para `rpl_semi_sync_source`.
 
 * `rpl_semi_sync_source_enabled`
 
-<table frame="box" rules="all" summary="Propriedades para mostrar-slave-auth-info"><tr><th>Formato de linha de comando</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></table>2
+<table frame="box" rules="all" summary="Propriedades para mostrar-slave-auth-info"><tr><th>Formato de linha de comando</th> <td><code>--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
 
 `rpl_semi_sync_source_enabled` está disponível quando o plugin `rpl_semi_sync_source` (`biblioteca semisync_source.so`) foi instalado no replica para configurar a replicação semiesincronizada.
 
@@ -451,7 +451,7 @@ Sinônimo de `rpl_semi_sync_source_wait_point` para `rpl_semi_sync_source`.
 <table frame="box" rules="all" summary="Propriedades para mostrar-slave-auth-info">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td>
+    <td><code>--show-slave-auth-info[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -463,9 +463,9 @@ Sinônimo de `rpl_semi_sync_source_wait_point` para `rpl_semi_sync_source`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
-</table>4
+</table>
 
 `rpl_semi_sync_source_timeout` está disponível quando o plugin `rpl_semi_sync_source` (`biblioteca semisynsync_source.so`) é instalado na replica.
 
@@ -476,7 +476,7 @@ Sinônimo de `rpl_semi_sync_source_wait_point` para `rpl_semi_sync_source`.
 <table frame="box" rules="all" summary="Propriedades para mostrar-slave-auth-info">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td>
+    <td><code>--show-slave-auth-info[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -488,9 +488,9 @@ Sinônimo de `rpl_semi_sync_source_wait_point` para `rpl_semi_sync_source`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
-</table>5
+</table>
 
 `rpl_semi_sync_source_trace_level` está disponível quando o plugin `rpl_semi_sync_source` (`biblioteca semisynsync_source.so`) é instalado na replica.
 
@@ -504,7 +504,7 @@ Sinônimo de `rpl_semi_sync_source_wait_point` para `rpl_semi_sync_source`.
 
 * `rpl_semi_sync_source_wait_for_replica_count`
 
-  <table frame="box" rules="all" summary="Propriedades para mostrar-auth-info-escravo"><tr><th>Formato de linha de comando</th> <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr> </table>5
+  <table frame="box" rules="all" summary="Propriedades para mostrar-auth-info-escravo"><tr><th>Formato de linha de comando</th> <td><code>--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr> </table>
 
   `rpl_semi_sync_source_wait_for_replica_count` está disponível quando o plugin `rpl_semi_sync_source` (`biblioteca semisync_source.so`) é instalado na replica para configurar a replicação semiconsoante.
 
@@ -521,7 +521,7 @@ Sinônimo de `rpl_semi_sync_source_wait_point` para `rpl_semi_sync_source`.
 <table frame="box" rules="all" summary="Propriedades para mostrar-slave-auth-info">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td>
+    <td><code>--show-slave-auth-info[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -533,7 +533,7 @@ Sinônimo de `rpl_semi_sync_source_wait_point` para `rpl_semi_sync_source`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
 </table>
 
@@ -550,7 +550,7 @@ Quando o valor de `rpl_semi_sync_source_wait_no_replica` é `OFF`, se o número 
 <table frame="box" rules="all" summary="Propriedades para mostrar-auth-info-escravo">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--show-slave-auth-info[={OFF|ON}]</code></td>
+    <td><code>--show-slave-auth-info[={OFF|ON}]</code></td>
   </tr>
   <tr>
     <th>Desatualizado</th>
@@ -562,7 +562,7 @@ Quando o valor de `rpl_semi_sync_source_wait_no_replica` é `OFF`, se o número 
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">OFF</code></td>
+    <td><code>OFF</code></td>
   </tr>
 </table>
 

@@ -18,43 +18,43 @@ Like **ndb\_print\_schema\_file** and **ndb\_print\_sys\_file** (and unlike most
 
 * `--file-key`, `-K`
 
-  <table frame="box" rules="all" summary="Properties for file-key"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=hex_data</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for file-key"><tbody><tr><th>Command-Line Format</th> <td><code>--file-key=hex_data</code></td> </tr></tbody></table>
 
   Supply file system encryption or decryption key from `stdin`, `tty`, or a `my.cnf` file.
 
 * `--file-key-from-stdin`
 
-  <table frame="box" rules="all" summary="Properties for file-key-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key-from-stdin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr><tr><th>Valid Values</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for file-key-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--file-key-from-stdin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr><tr><th>Valid Values</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
   Supply file system encryption or decryption key from `stdin`.
 
 * `--help`, `-h`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Print help message and exit.
 
 * `--quiet`, `-q`
 
-  <table frame="box" rules="all" summary="Properties for quiet"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--quiet</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for quiet"><tbody><tr><th>Command-Line Format</th> <td><code>--quiet</code></td> </tr></tbody></table>
 
   Suppress output (quiet mode).
 
 * `--usage`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for usage"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--usage</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for usage"><tbody><tr><th>Command-Line Format</th> <td><code>--usage</code></td> </tr></tbody></table>
 
   Print help message and exit.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Make output verbose.
 
 * `--version`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for version"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--version</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for version"><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr></tbody></table>
 
   Print version information and exit.
 

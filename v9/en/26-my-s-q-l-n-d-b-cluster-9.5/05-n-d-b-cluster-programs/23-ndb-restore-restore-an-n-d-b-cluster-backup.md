@@ -12,7 +12,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--allow-pk-changes`
 
-  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-pk-changes"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
 
   When this option is set to `1`, **ndb\_restore** allows the primary keys in a table definition to differ from that of the same table in the backup. This may be desirable when backing up and restoring between different schema versions with primary key changes on one or more tables, and it appears that performing the restore operation using ndb\_restore is simpler or more efficient than issuing many `ALTER TABLE` statements after restoring table schemas and data.
 
@@ -46,13 +46,13 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--append`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   When used with the `--tab` and `--print-data` options, this causes the data to be appended to any existing files having the same names.
 
 * `--backup-path`=*`dir_name`*
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   The path to the backup directory is required; this is supplied to **ndb\_restore** using the `--backup-path` option, and must include the subdirectory corresponding to the ID backup of the backup to be restored. For example, if the data node's `DataDir` is `/var/lib/mysql-cluster`, then the backup directory is `/var/lib/mysql-cluster/BACKUP`, and the backup files for the backup with the ID 3 can be found in `/var/lib/mysql-cluster/BACKUP/BACKUP-3`. The path may be absolute or relative to the directory in which the **ndb\_restore** executable is located, and may be optionally prefixed with `backup-path=`.
 
@@ -68,7 +68,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--backup-password=password`
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   This option specifies a password to be used when decrypting an encrypted backup with the `--decrypt` option. This must be the same password that was used to encrypt the backup.
 
@@ -78,13 +78,13 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--backup-password-from-stdin[=TRUE|FALSE]`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   When used in place of `--backup-password`, this option enables input of the backup password from the system shell (`stdin`), similar to how this is done when supplying the password interactively to **mysql** when using the `--password` without supplying the password on the command line.
 
 * `--backupid`=*`#`*, `-b`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   This option is required; it is used to specify the ID or sequence number of the backup, and is the same number shown by the management client in the `Backup backup_id completed` message displayed upon completion of a backup. (See Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”.)
 
@@ -94,67 +94,67 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Directory containing character sets.
 
 * `--connect`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost:1186</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
   Alias for `--ndb-connectstring`.
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
   Number of times to retry connection before giving up.
 
 * `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
 
   Number of seconds to wait between attempts to contact management server.
 
 * `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   Same as `--ndb-connectstring`.
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
 * `--decrypt`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   Decrypt an encrypted backup using the password supplied by the `--backup-password` option.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   Also read groups with concat(group, suffix).
 
 * `--disable-indexes`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   Disable restoration of indexes during restoration of the data from a native `NDB` backup. Afterwards, you can restore indexes for all tables at once with multithreaded building of indexes using `--rebuild-indexes`, which should be faster than rebuilding indexes concurrently for very large tables.
 
@@ -170,13 +170,13 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--dont-ignore-systab-0`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   Normally, when restoring table data and metadata, **ndb\_restore** ignores the copy of the `NDB` system table that is present in the backup. `--dont-ignore-systab-0` causes the system table to be restored. *This option is intended for experimental and development use only, and is not recommended in a production environment*.
 
 * `--exclude-databases`=*`db-list`*
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   Comma-delimited list of one or more databases which should not be restored.
 
@@ -184,25 +184,25 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * [`--exclude-intermediate-sql-tables`=*`TRUE|FALSE]`*
 
-  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--append</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for append"><tbody><tr><th>Command-Line Format</th> <td><code>--append</code></td> </tr></tbody></table>
 
   When performing copying `ALTER TABLE` operations, **mysqld** creates intermediate tables (whose names are prefixed with `#sql-`). When `TRUE`, the `--exclude-intermediate-sql-tables` option keeps **ndb\_restore** from restoring such tables that may have been left over from these operations. This option is `TRUE` by default.
 
 * `--exclude-missing-columns`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   It is possible to restore only selected table columns using this option, which causes **ndb\_restore** to ignore any columns missing from tables being restored as compared to the versions of those tables found in the backup. This option applies to all tables being restored. If you wish to apply this option only to selected tables or databases, you can use it in combination with one or more of the `--include-*` or `--exclude-*` options described elsewhere in this section to do so, then restore data to the remaining tables using a complementary set of these options.
 
 * `--exclude-missing-tables`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   It is possible to restore only selected tables using this option, which causes **ndb\_restore** to ignore any tables from the backup that are not found in the target database.
 
 * `--exclude-tables`=*`table-list`*
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   List of one or more tables to exclude; each table reference must include the database name. Often used together with `--exclude-databases`.
 
@@ -212,7 +212,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
   **Table 25.23 Several invocations of ndb\_restore using --exclude-\* options, and the effects these options have on restoring from an NDB Cluster backup.**
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   You can use these two options together. For example, the following causes all tables in all databases *except for* databases `db1` and `db2`, and tables `t1` and `t2` in database `db3`, to be restored:
 
@@ -244,37 +244,37 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--fields-enclosed-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   Each column value is enclosed by the string passed to this option (regardless of data type; see the description of `--fields-optionally-enclosed-by`).
 
 * `--fields-optionally-enclosed-by`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   The string passed to this option is used to enclose column values containing character data (such as `CHAR`, `VARCHAR`, `BINARY`, `TEXT`, or `ENUM`).
 
 * `--fields-terminated-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   The string passed to this option is used to separate column values. The default value is a tab character (`\t`).
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   Display help text and exit.
 
 * `--hex`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   If this option is used, all binary values are output in hexadecimal format.
 
 * `--ignore-extended-pk-updates`
 
-  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">./</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for backup-path"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-path=path</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>./</code></td> </tr></tbody></table>
 
   When using `--allow-pk-changes`, columns which become part of a table's primary key must not be updated while the backup is being taken; such columns should keep the same values from the time values are inserted into them until the rows containing the values are deleted. If **ndb\_restore** encounters updates to these columns when restoring a backup, the restore fails. Because some applications may set values for all columns when updating a row, even when some column values are not changed, the backup may include log events appearing to update columns which are not in fact modified. In such cases you can set `--ignore-extended-pk-updates` to `1`, forcing **ndb\_restore** to ignore such updates.
 
@@ -286,19 +286,19 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--include-databases`=*`db-list`*
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Comma-delimited list of one or more databases to restore. Often used together with `--include-tables`; see the description of that option for further information and examples.
 
 * `--include-stored-grants`
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   **ndb\_restore** does not by default restore shared users and grants (see Section 25.6.13, “Privilege Synchronization and NDB\_STORED\_USER”) to the `ndb_sql_metadata` table. Specifying this option causes it to do so.
 
 * `--include-tables`=*`table-list`*
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Comma-delimited list of tables to restore; each table reference must include the database name.
 
@@ -308,7 +308,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
   **Table 25.24 Several invocations of ndb\_restore using --include-\* options, and their effects on restoring from an NDB Cluster backup.**
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   You can also use these two options together. For example, the following causes all tables in databases `db1` and `db2`, together with the tables `t1` and `t2` in database `db3`, to be restored (and no other databases or tables):
 
@@ -330,25 +330,25 @@ Options that can be used with **ndb\_restore** are shown in the following table.
   + One or more tables from a single database
 * `--lines-terminated-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Specifies the string used to end each line of output. The default is a linefeed character (`\n`).
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read given path from login file.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Skips reading options from the login path file.
 
 * `--lossy-conversions`, `-L`
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   This option is intended to complement the `--promote-attributes` option. Using `--lossy-conversions` allows lossy conversions of column values (type demotions or changes in sign) when restoring data from backup. With some exceptions, the rules governing demotion are the same as for MySQL replication; see Section 19.5.1.9.2, “Replication of Columns Having Different Data Types”, for information about specific type conversions currently supported by attribute demotion.
 
@@ -358,61 +358,61 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--no-binlog`
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   This option prevents any connected SQL nodes from writing data restored by **ndb\_restore** to their binary logs.
 
 * `--no-restore-disk-objects`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for backup-password"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   This option stops **ndb\_restore** from restoring any NDB Cluster Disk Data objects, such as tablespaces and log file groups; see Section 25.6.11, “NDB Cluster Disk Data Tables”, for more information about these.
 
 * `--no-upgrade`, `-u`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   When using **ndb\_restore** to restore a backup, `VARCHAR` columns created using the old fixed format are resized and recreated using the variable-width format now employed. This behavior can be overridden by specifying `--no-upgrade`.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Sets the level of TLS support required to connect to the management server; one of `relaxed` or `strict`. `relaxed` (the default) means that a TLS connection is attempted, but success is not required; `strict` means that TLS is required to connect.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Same as `--ndb-connectstring`.
 
 * `--ndb-nodegroup-map`=*`map`*, `-z`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Any value set for this option is ignored, and the option itself does nothing.
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Set node ID for this node, overriding any ID set by `--ndb-connectstring`.
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
 * `--ndb-tls-search-path`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Specify a list of directories to search for a CA file. On Unix platforms, the directory names are separated by colons (`:`); on Windows systems, the semicolon character (`;`) is used as the separator. A directory reference may be relative or absolute; it may contain one or more environment variables, each denoted by a prefixed dollar sign (`$`), and expanded prior to use.
 
@@ -422,13 +422,13 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Do not read default options from any option file other than login file.
 
 * `--nodeid`=*`#`*, `-n`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Specify the node ID of the data node on which the backup was taken; required.
 
@@ -436,7 +436,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--num-slices`=*`#`*
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   When restoring a backup by slices, this option sets the number of slices into which to divide the backup. This allows multiple instances of **ndb\_restore** to restore disjoint subsets in parallel, potentially reducing the amount of time required to perform the restore operation.
 
@@ -517,7 +517,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--parallelism`=*`#`*, `-p`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   **ndb\_restore** uses single-row transactions to apply many rows concurrently. This parameter determines the number of parallel transactions (concurrent rows) that an instance of **ndb\_restore** tries to use. By default, this is 128; the minimum is 1, and the maximum is 1024.
 
@@ -525,7 +525,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--preserve-trailing-spaces`, `-P`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   Cause trailing spaces to be preserved when promoting a fixed-width character data type to its variable-width equivalent—that is, when promoting a `CHAR` column value to `VARCHAR`, or a `BINARY` column value to `VARBINARY`. Otherwise, any trailing spaces are dropped from such column values when they are inserted into the new columns.
 
@@ -535,7 +535,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--print`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   Causes **ndb\_restore** to print all data, metadata, and logs to `stdout`. Equivalent to using the `--print-data`, `--print-meta`, and `--print-log` options together.
 
@@ -545,7 +545,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--print-data`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   Cause **ndb\_restore** to direct its output to `stdout`. Often used together with one or more of `--tab`, `--fields-enclosed-by`, `--fields-optionally-enclosed-by`, `--fields-terminated-by`, `--hex`, and `--append`.
 
@@ -553,25 +553,25 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   Print program argument list and exit.
 
 * `--print-log`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   Cause **ndb\_restore** to output its log to `stdout`.
 
 * `--print-meta`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   Print all metadata to `stdout`.
 
 * `print-sql-log`
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   Log SQL statements to `stdout`. Use the option to enable; normally this behavior is disabled. The option checks before attempting to log whether all the tables being restored have explicitly defined primary keys; queries on a table having only the hidden primary key implemented by `NDB` cannot be converted to valid SQL.
 
@@ -579,13 +579,13 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--progress-frequency`=*`N`*
 
-  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">none</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for backupid"><tbody><tr><th>Command-Line Format</th> <td><code>--backupid=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr></tbody></table>
 
   Print a status report each *`N`* seconds while the backup is in progress. 0 (the default) causes no status reports to be printed. The maximum is 65535.
 
 * `--promote-attributes`, `-A`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   **ndb\_restore** supports limited attribute promotion in much the same way that it is supported by MySQL replication; that is, data backed up from a column of a given type can generally be restored to a column using a “larger, similar” type. For example, data from a `CHAR(20)` column can be restored to a column declared as `VARCHAR(20)`, `VARCHAR(30)`, or `CHAR(30)`; data from a `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column can be restored to a column of type `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") or `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). See Section 19.5.1.9.2, “Replication of Columns Having Different Data Types”, for a table of type conversions currently supported by attribute promotion.
 
@@ -605,7 +605,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--rebuild-indexes`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Enable multithreaded rebuilding of the ordered indexes while restoring a native `NDB` backup. The number of threads used for building ordered indexes by **ndb\_restore** with this option is controlled by the `BuildIndexThreads` data node configuration parameter and the number of LDMs.
 
@@ -617,7 +617,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--remap-column=db.tbl.col:fn:args`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   When used together with `--restore-data`, this option applies a function to the value of the indicated column. Values in the argument string are listed here:
 
@@ -656,19 +656,19 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--restore-data`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Output `NDB` table data and logs.
 
 * `--restore-epoch`, `-e`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Add (or restore) epoch information to the cluster replication status table. This is useful for starting replication on an NDB Cluster replica. When this option is used, the row in the `mysql.ndb_apply_status` having `0` in the `id` column is updated if it already exists; such a row is inserted if it does not already exist. (See Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”.)
 
 * `--restore-meta`, `-m`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   This option causes **ndb\_restore** to print `NDB` table metadata.
 
@@ -684,7 +684,7 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--rewrite-database`=*`olddb,newdb`*
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   This option makes it possible to restore to a database having a different name from that used in the backup. For example, if a backup is made of a database named `products`, you can restore the data it contains to a database named `inventory`, use this option as shown here (omitting any other options that might be required):
 
@@ -702,13 +702,13 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--skip-broken-objects`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   This option causes **ndb\_restore** to ignore corrupt tables while reading a native `NDB` backup, and to continue restoring any remaining tables (that are not also corrupted). Currently, the `--skip-broken-objects` option works only in the case of missing blob parts tables.
 
 * `--skip-table-check`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   It is possible to restore data without restoring table metadata. By default when doing this, **ndb\_restore** fails with an error if a mismatch is found between the table data and the table schema; this option overrides that behavior.
 
@@ -722,13 +722,13 @@ Options that can be used with **ndb\_restore** are shown in the following table.
   + Different distribution key settings
 * `--skip-unknown-objects`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
   This option causes **ndb\_restore** to ignore any schema objects it does not recognize while reading a native `NDB` backup. This can be used for restoring a backup made from a cluster running (for example) NDB 7.6 to a cluster running NDB Cluster 7.5.
 
 * `--slice-id`=*`#`*
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost:1186</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
   When restoring by slices, this is the ID of the slice to restore. This option is always used together with `--num-slices`, and its value must be always less than that of `--num-slices`.
 
@@ -736,13 +736,13 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--tab`=*`dir_name`*, `-T` *`dir_name`*
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost:1186</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
   Causes `--print-data` to create dump files, one per table, each named `tbl_name.txt`. It requires as its argument the path to the directory where the files should be saved; use `.` for the current directory.
 
 * `--timestamp-printouts`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost:1186</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
   Causes info, error, and debug log messages to be prefixed with timestamps.
 
@@ -750,25 +750,25 @@ Options that can be used with **ndb\_restore** are shown in the following table.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost:1186</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
   Display help text and exit; same as `--help`.
 
 * `--verbose`=*`#`*
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost:1186</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
   Sets the level for the verbosity of the output. The minimum is 0; the maximum is 255. The default value is 1.
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost:1186</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
   Display version information and exit.
 
 * `--with-apply-status`
 
-  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost:1186</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for connect"><tbody><tr><th>Command-Line Format</th> <td><code>--connect=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost:1186</code></td> </tr></tbody></table>
 
   Restore all rows from the backup's `ndb_apply_status` table (except for the row having `server_id = 0`, which is generated using `--restore-epoch`). This option requires that `--restore-data` also be used.
 

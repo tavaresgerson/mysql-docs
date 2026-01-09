@@ -5,9 +5,9 @@
 <table frame="box" rules="all" summary="Uma referência que lista as funções e operadores de castagem.">
 <col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/>
 <thead><tr><th>Nome</th> <th>Descrição</th> <th>Desatualizado</th> </tr></thead><tbody>
-<tr><th scope="row"><a class="link" href="cast-functions.html#operator_binary"><code class="literal">BINARY</code></a></th> <td> Casta uma string para uma string binária </td> <td>Sim</td> </tr>
-<tr><th scope="row"><a class="link" href="cast-functions.html#function_cast"><code class="literal">CAST()</code></a></th> <td> Casta um valor como um determinado tipo </td> <td></td> </tr>
-<tr><th scope="row"><a class="link" href="cast-functions.html#function_convert"><code class="literal">CONVERT()</code></a></th> <td> Casta um valor como um determinado tipo </td> <td></td> </tr>
+<tr><th><a class="link" href="cast-functions.html#operator_binary"><code>BINARY</code></a></th> <td> Casta uma string para uma string binária </td> <td>Sim</td> </tr>
+<tr><th><a class="link" href="cast-functions.html#function_cast"><code>CAST()</code></a></th> <td> Casta um valor como um determinado tipo </td> <td></td> </tr>
+<tr><th><a class="link" href="cast-functions.html#function_convert"><code>CONVERT()</code></a></th> <td> Casta um valor como um determinado tipo </td> <td></td> </tr>
 </tbody></table>
 
 As funções e operadores de castagem permitem a conversão de valores de um tipo de dado para outro.

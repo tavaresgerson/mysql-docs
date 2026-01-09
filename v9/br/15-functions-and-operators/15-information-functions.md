@@ -4,24 +4,24 @@
 
 <table frame="box" rules="all" summary="Uma referência que lista funções de informações.">
 <tr><th>Nome</th> <th>Descrição</th> </tr>
-<tr><td><a class="link" href="information-functions.html#function_benchmark"><code class="literal">BENCHMARK()</code></a></td> <td> Realizar repetidamente uma expressão </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_charset"><code class="literal">CHARSET()</code></a></td> <td> Retornar o conjunto de caracteres do argumento </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_coercibility"><code class="literal">COERCIBILITY()</code></a></td> <td> Retornar o valor de coercibilidade da colagem de string </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_collation"><code class="literal">COLLATION()</code></a></td> <td> Retornar a colagem da string argumento </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_connection-id"><code class="literal">CONNECTION_ID()</code></a></td> <td> Retornar o ID de conexão (ID de thread) para a conexão </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_current-role"><code class="literal">CURRENT_ROLE()</code></td> <td> Retornar os papéis ativos atuais </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_current-user"><code class="literal">CURRENT_USER()</code>, <code class="literal">CURRENT_USER</code></a></td> <td> O nome e o nome do host do usuário autenticado </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_database"><code class="literal">DATABASE()</code></a></td> <td> Retornar o nome padrão (atual) da base de dados </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_found-rows"><code class="literal">FOUND_ROWS()</code></a></td> <td> Para um SELECT com uma cláusula LIMIT, o número de linhas que seriam retornadas se não houvesse cláusula LIMIT </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_icu-version"><code class="literal">ICU_VERSION()</code></a></td> <td> Versão da biblioteca ICU </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_last-insert-id"><code class="literal">LAST_INSERT_ID()</code></a></td> <td> Valor da coluna AUTOINCREMENT para a última inserção </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_roles-graphml"><code class="literal">ROLES_GRAPHML()</code></a></td> <td> Retornar um documento GraphML representando subgrafos de papéis de memória </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_row-count"><code class="literal">ROW_COUNT()</code></a></td> <td> O número de linhas atualizadas </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_schema"><code class="literal">SCHEMA()</code></a></td> <td> Símbolo para DATABASE() </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_session-user"><code class="literal">SESSION_USER()</code></a></td> <td> Símbolo para USER() </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_system-user"><code class="literal">SYSTEM_USER()</code></a></td> <td> Símbolo para USER() </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_user"><code class="literal">USER()</code></a></td> <td> O nome e o nome do host do usuário fornecido pelo cliente </td> </tr>
-<tr><td><a class="link" href="information-functions.html#function_version"><code class="literal">VERSION()</code></a></td> <td> Retornar uma string que indica a versão do servidor MySQL </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_benchmark"><code>BENCHMARK()</code></a></td> <td> Realizar repetidamente uma expressão </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_charset"><code>CHARSET()</code></a></td> <td> Retornar o conjunto de caracteres do argumento </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_coercibility"><code>COERCIBILITY()</code></a></td> <td> Retornar o valor de coercibilidade da colagem de string </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_collation"><code>COLLATION()</code></a></td> <td> Retornar a colagem da string argumento </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_connection-id"><code>CONNECTION_ID()</code></a></td> <td> Retornar o ID de conexão (ID de thread) para a conexão </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_current-role"><code>CURRENT_ROLE()</code></td> <td> Retornar os papéis ativos atuais </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_current-user"><code>CURRENT_USER()</code>, <code>CURRENT_USER</code></a></td> <td> O nome e o nome do host do usuário autenticado </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_database"><code>DATABASE()</code></a></td> <td> Retornar o nome padrão (atual) da base de dados </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_found-rows"><code>FOUND_ROWS()</code></a></td> <td> Para um SELECT com uma cláusula LIMIT, o número de linhas que seriam retornadas se não houvesse cláusula LIMIT </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_icu-version"><code>ICU_VERSION()</code></a></td> <td> Versão da biblioteca ICU </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_last-insert-id"><code>LAST_INSERT_ID()</code></a></td> <td> Valor da coluna AUTOINCREMENT para a última inserção </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_roles-graphml"><code>ROLES_GRAPHML()</code></a></td> <td> Retornar um documento GraphML representando subgrafos de papéis de memória </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_row-count"><code>ROW_COUNT()</code></a></td> <td> O número de linhas atualizadas </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_schema"><code>SCHEMA()</code></a></td> <td> Símbolo para DATABASE() </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_session-user"><code>SESSION_USER()</code></a></td> <td> Símbolo para USER() </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_system-user"><code>SYSTEM_USER()</code></a></td> <td> Símbolo para USER() </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_user"><code>USER()</code></a></td> <td> O nome e o nome do host do usuário fornecido pelo cliente </td> </tr>
+<tr><td><a class="link" href="information-functions.html#function_version"><code>VERSION()</code></a></td> <td> Retornar uma string que indica a versão do servidor MySQL </td> </tr>
 </table>
 
 * `BENCHMARK(count,expr)`
@@ -78,7 +78,7 @@ Executar uma instrução `SELECT expr` *`N`* vezes difere da execução de `SELE
 
   Os valores de retorno têm os significados mostrados na tabela a seguir. Valores menores têm precedência maior.
 
-<table summary="Valores de retorno da coercibilidade da collation, o significado de cada valor e um exemplo de cada um"><col style="width: 15%"/><col style="width: 15%"/><col style="width: 70%"/><thead><tr> <th scope="col">Coercibilidade</th> <th scope="col">Significado</th> <th scope="col">Exemplo</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">0</code></th> <td>Collation explícita</td> <td>Valor com cláusula <code class="literal">COLLATE</code></td> </tr><tr> <th scope="row"><code class="literal">2</code></th> <td>Collation implícita</td> <td>Valor da coluna, parâmetro de rotina armazenado ou variável local</td> </tr><tr> <th scope="row"><code class="literal">3</code></th> <td>Constante do sistema</td> <td><a class="link" href="information-functions.html#function_user"><code class="literal">USER()</code></a> valor de retorno</td> </tr><tr> <th scope="row"><code class="literal">4</code></th> <td>Coercível</td> <td>String literal</td> </tr><tr> <th scope="row"><code class="literal">5</code></th> <td>Numérico</td> <td>Valor numérico ou temporal</td> </tr><tr> <th scope="row"><code class="literal">6</code></th> <td>Nulo</td> <td><code class="literal">NULL</code> ou uma expressão derivada de <code class="literal">NULL</code></td> </tr><tr> <th scope="row"><code class="literal">7</code></th> <td>Sem collation</td> <td>Concatenação de strings com diferentes collations</td> </tr></tbody></table>
+<table summary="Valores de retorno da coercibilidade da collation, o significado de cada valor e um exemplo de cada um"><col style="width: 15%"/><col style="width: 15%"/><col style="width: 70%"/><thead><tr> <th>Coercibilidade</th> <th>Significado</th> <th>Exemplo</th> </tr></thead><tbody><tr> <th><code>0</code></th> <td>Collation explícita</td> <td>Valor com cláusula <code>COLLATE</code></td> </tr><tr> <th><code>2</code></th> <td>Collation implícita</td> <td>Valor da coluna, parâmetro de rotina armazenado ou variável local</td> </tr><tr> <th><code>3</code></th> <td>Constante do sistema</td> <td><a class="link" href="information-functions.html#function_user"><code>USER()</code></a> valor de retorno</td> </tr><tr> <th><code>4</code></th> <td>Coercível</td> <td>String literal</td> </tr><tr> <th><code>5</code></th> <td>Numérico</td> <td>Valor numérico ou temporal</td> </tr><tr> <th><code>6</code></th> <td>Nulo</td> <td><code>NULL</code> ou uma expressão derivada de <code>NULL</code></td> </tr><tr> <th><code>7</code></th> <td>Sem collation</td> <td>Concatenação de strings com diferentes collations</td> </tr></tbody></table>
 
 `1` era anteriormente usado para “Sem collation”. Ele não é usado no MySQL 9.5, mas ainda é considerado válido para compatibilidade reversa. (Bug
   #37285902)

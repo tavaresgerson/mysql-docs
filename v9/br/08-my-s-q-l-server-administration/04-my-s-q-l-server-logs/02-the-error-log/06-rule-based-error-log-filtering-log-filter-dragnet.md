@@ -267,7 +267,7 @@ A gramática `log_filter_dragnet` na Linguagem de Regras para o Idioma de Regras
 
   A tabela a seguir mostra os níveis de prioridade permitidos.
 
-  <table summary="Níveis de prioridade de eventos de erro."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Tipo de Evento</th> <th scope="col">Símbolo de Prioridade</th> <th scope="col">Prioridade Numérica</th> </tr></thead><tbody><tr> <th align="left" scope="row">Evento de Erro</th> <td><code class="literal">ERROR</code></td> <td>1</td> </tr><tr> <th align="left" scope="row">Evento de Aviso</th> <td><code class="literal">WARNING</code></td> <td>2</td> </tr><tr> <th align="left" scope="row">Evento de Nota/Informação</th> <td><code class="literal">INFORMATION</code></td> <td>3</td> </tr></tbody></table>
+  <table summary="Níveis de prioridade de eventos de erro."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Tipo de Evento</th> <th>Símbolo de Prioridade</th> <th>Prioridade Numérica</th> </tr></thead><tbody><tr> <th align="left">Evento de Erro</th> <td><code>ERROR</code></td> <td>1</td> </tr><tr> <th align="left">Evento de Aviso</th> <td><code>WARNING</code></td> <td>2</td> </tr><tr> <th align="left">Evento de Nota/Informação</th> <td><code>INFORMATION</code></td> <td>3</td> </tr></tbody></table>
 
   Há também uma prioridade de mensagem de `SYSTEM`, mas mensagens de sistema não podem ser filtradas e são sempre escritas no log de erro.
 

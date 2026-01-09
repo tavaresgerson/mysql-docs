@@ -92,13 +92,13 @@ O **myisampack** suporta as seguintes opções. Ele também lê arquivos de opç
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--backup</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--backup</code>]]</td> </tr></tbody></table>
 
   Exibir informações da versão e sair.
 
 - `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--backup</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--backup</code>]]</td> </tr></tbody></table>
 
   Aguarde e tente novamente se a tabela estiver em uso. Se o servidor **mysqld** foi invocado com o bloqueio externo desativado, não é uma boa ideia invocar **myisampack** se a tabela for atualizada pelo servidor durante o processo de compactação.
 

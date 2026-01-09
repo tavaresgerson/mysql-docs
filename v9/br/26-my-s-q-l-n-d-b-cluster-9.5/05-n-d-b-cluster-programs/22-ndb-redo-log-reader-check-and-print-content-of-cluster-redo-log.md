@@ -21,7 +21,7 @@ O nome do arquivo a ser lido pode ser seguido por uma ou mais das opções lista
 * `-dump`
 
 <table frame="box" rules="all" summary="Propriedades para dump">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">-dump</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>-dump</code></td> </tr>
 </table>
 
   Imprima as informações do dump.
@@ -29,7 +29,7 @@ O nome do arquivo a ser lido pode ser seguido por uma ou mais das opções lista
 * `--file-key`, `-K`
 
   <table frame="box" rules="all" summary="Propriedades para file-key">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--file-key=chave</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--file-key=chave</code></td> </tr>
   </table>
 
   Forneça a chave de descriptografia do arquivo usando `stdin`, `tty` ou um arquivo `my.cnf`.
@@ -37,19 +37,19 @@ O nome do arquivo a ser lido pode ser seguido por uma ou mais das opções lista
 * `--file-key-from-stdin`
 
   <table frame="box" rules="all" summary="Propriedades para file-key-from-stdin">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--file-key-from-stdin</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--file-key-from-stdin</code></td> </tr>
   </table>
 
   Forneça a chave de descriptografia do arquivo usando `stdin`.
 
 * <table frame="box" rules="all" summary="Propriedades para filedescriptors">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">-filedescriptors</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>-filedescriptors</code></td> </tr>
   </table>
 
   `-filedescriptors`: Imprima apenas os descritores de arquivo.
 
 * <table frame="box" rules="all" summary="Propriedades para help">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr>
   </table>
 
   `--help`: Imprima informações de uso.
@@ -57,7 +57,7 @@ O nome do arquivo a ser lido pode ser seguido por uma ou mais das opções lista
 * `-lap`
 
   <table frame="box" rules="all" summary="Propriedades para lap">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">-lap</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>-lap</code></td> </tr>
   </table>
 
   Forneça informações de lap, com GCI máximo iniciado e concluído.
@@ -66,11 +66,11 @@ O nome do arquivo a ser lido pode ser seguido por uma ou mais das opções lista
 Este é o texto traduzido para o português brasileiro, mantendo a estrutura e o conteúdo da versão original em inglês.
 
 * <table frame="box" rules="all" summary="Propriedades para mbyte">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">-mbyte #</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>-mbyte #</code></td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">15</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>15</code></td> </tr>
   </tr>
 </table>
 
@@ -80,37 +80,37 @@ Este é o texto traduzido para o português brasileiro, mantendo a estrutura e o
   *`#`* é um inteiro no intervalo de 0 a 15, inclusive.
 
 * <table frame="box" rules="all" summary="Propriedades para mbyteheaders">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">-mbyteheaders</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>-mbyteheaders</code></td> </tr>
   </tbody></table>
 
   `-mbyteheaders`: Mostrar apenas o cabeçalho da primeira página de cada megabyte no arquivo.
 
 * <table frame="box" rules="all" summary="Propriedades para noprint">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">-noprint</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>-noprint</code></td> </tr>
   </tbody></table>
 
   `-noprint`: Não imprimir o conteúdo do arquivo de log.
 
 * <table frame="box" rules="all" summary="Propriedades para nocheck">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">-nocheck</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>-nocheck</code></td> </tr>
   </tbody></table>
 
   `-nocheck`: Não verificar o arquivo de log em busca de erros.
 
 * <table frame="box" rules="all" summary="Propriedades para file-key">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--file-key=key</code></td> </tr>
-  </tbody></table>0
+  <tr><th>Formato de Linha de Comando</th> <td><code>--file-key=key</code></td> </tr>
+  </tbody></table>
 
 [`-page
   #`](mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_page): Comece nesta página.
 
   *`#`* é um número inteiro no intervalo de 0 a 31, inclusive.
 
-* <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>1
+* <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--file-key=key</code></td> </tr></tbody></table>
 
   `-pageheaders`: Mostrar apenas os cabeçalhos da página.
 
-* <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>2
+* <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--file-key=key</code></td> </tr></tbody></table>
 
   [`-pageindex
   #`](mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex): Comece neste índice de página.
@@ -119,7 +119,7 @@ Este é o texto traduzido para o português brasileiro, mantendo a estrutura e o
 
 * `-twiddle`
 
-  <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--file-key=key</code></td> </tr></tbody></table>
 
   Dump deslocado para a esquerda.
 

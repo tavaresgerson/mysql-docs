@@ -283,7 +283,7 @@ Para obter informações sobre o uso de conexões criptografadas a partir da API
 
 **Tabela 4.5 Resumo da opção de criptografia de conexão**
 
-<table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+<table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 - `--get-server-public-key`
 

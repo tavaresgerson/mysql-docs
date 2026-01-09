@@ -40,4 +40,4 @@ O `TRUNCATE TABLE` não é permitido para a tabela `replication_applier_configur
 
 A tabela a seguir mostra a correspondência entre as colunas da `replication_applier_configuration` e as colunas do `SHOW REPLICA STATUS`.
 
-<table summary="Correspondência entre as colunas da replication_applier_configuration e as colunas do SHOW REPLICA STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code class="literal">replication_applier_configuration</code> Coluna</th> <th><code class="literal">SHOW REPLICA STATUS</code> Coluna</th> </tr></thead><tbody><tr> <td><code class="literal">DESIRED_DELAY</code></td> <td><code class="literal">SQL_Delay</code></td> </tr></tbody></table>
+<table summary="Correspondência entre as colunas da replication_applier_configuration e as colunas do SHOW REPLICA STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_configuration</code> Coluna</th> <th><code>SHOW REPLICA STATUS</code> Coluna</th> </tr></thead><tbody><tr> <td><code>DESIRED_DELAY</code></td> <td><code>SQL_Delay</code></td> </tr></tbody></table>

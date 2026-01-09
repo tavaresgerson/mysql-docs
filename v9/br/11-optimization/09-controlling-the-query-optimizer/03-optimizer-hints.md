@@ -66,7 +66,7 @@ A tabela a seguir resume as dicas de otimização disponíveis, as estratégias 
 </tr>
 <tr>
 <th>GROUP_INDEX</th>
-<td>Usa ou ignora o índice especificado ou índices para varreduras em operações <code class="literal">GROUP BY</code></td>
+<td>Usa ou ignora o índice especificado ou índices para varreduras em operações <code>GROUP BY</code></td>
 <td>Índice</td>
 </tr>
 <tr>
@@ -76,7 +76,7 @@ A tabela a seguir resume as dicas de otimização disponíveis, as estratégias 
 </tr>
 <tr>
 <th>INDEX</th>
-<td>Atua como combinação de <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code class="literal">JOIN_INDEX</code></a>, <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code class="literal">GROUP_INDEX</code></a> e <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code class="literal">ORDER_INDEX</code></a>, ou como combinação de <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code class="literal">NO_JOIN_INDEX</code></a>, <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code class="literal">NO_GROUP_INDEX</code></a> e <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code class="literal">NO_ORDER_INDEX</code></a></td>
+<td>Atua como combinação de <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>JOIN_INDEX</code></a>, <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>GROUP_INDEX</code></a> e <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>ORDER_INDEX</code></a>, ou como combinação de <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>NO_JOIN_INDEX</code></a>, <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>NO_GROUP_INDEX</code></a> e <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>NO_ORDER_INDEX</code></a></td>
 <td>Índice</td>
 </tr>
 <tr>
@@ -86,7 +86,7 @@ A tabela a seguir resume as dicas de otimização disponíveis, as estratégias 
 </tr>
 <tr>
 <th>JOIN_FIXED_ORDER</th>
-<td>Usa a ordem de tabela especificada na cláusula <code class="literal">FROM</code> para a ordem de junção</td>
+<td>Usa a ordem de tabela especificada na cláusula <code>FROM</code> para a ordem de junção</td>
 <td>Bloco de consulta</td>
 </tr>
 <tr>

@@ -72,40 +72,40 @@ O nome do dia ou mês para cada uma das funções afetadas é convertido do `utf
 
 <table summary="Valores do local que podem ser definidos para lc_time_names. Os valores do local são apresentados em uma tabela de duas colunas e em ordem alfabética de cima para baixo." style="width: 50%;">
 <tr> <th>Valor do local</th> <th>Significado</th> </tr>
-<tr> <td><code class="literal">ar_AE</code></td> <td>Árabe - Emirados Árabes Unidos</td> </tr>
-<tr> <td><code class="literal">ar_BH</code></td> <td>Árabe - Bahrein</td> </tr>
-<tr> <td><code class="literal">ar_DZ</code></td> <td>Árabe - Argélia</td> </tr>
-<tr> <td><code class="literal">ar_EG</code></td> <td>Árabe - Egito</td> </tr>
-<tr> <td><code class="literal">ar_IN</code></td> <td>Árabe - Índia</td> </tr>
-<tr> <td><code class="literal">ar_IQ</code></td> <td>Árabe - Iraque</td> </tr>
-<tr> <td><code class="literal">ar_JO</code></td> <td>Árabe - Jordânia</td> </tr>
-<tr> <td><code class="literal">ar_KW</code></td> <td>Árabe - Kuwait</td> </tr>
-<tr> <td><code class="literal">ar_LB</code></td> <td>Árabe - Líbano</td> </tr>
-<tr> <td><code class="literal">ar_LY</code></td> <td>Árabe - Líbia</td> </tr>
-<tr> <td><code class="literal">ar_MA</code></td> <td>Árabe - Marrocos</td> </tr>
-<tr> <td><code class="literal">ar_OM</code></td> <td>Árabe - Omã</td> </tr>
-<tr> <td><code class="literal">ar_QA</code></td> <td>Árabe - Catar</td> </tr>
-<tr> <td><code class="literal">ar_SA</code></td> <td>Árabe - Arábia Saudita</td> </tr>
-<tr> <td><code class="literal">ar_SD</code></td> <td>Árabe - Sudão</td> </tr>
-<tr> <td><code class="literal">ar_SY</code></td> <td>Árabe - Síria</td> </tr>
-<tr> <td><code class="literal">ar_TN</code></td> <td>Árabe - Tunísia</td> </tr>
-<tr> <td><code class="literal">ar_YE</code></td> <td>Árabe - Iêmen</td> </tr>
-<tr> <td><code class="literal">be_BY</code></td> <td>Bielorrusso - Bielorrússia</td> </tr>
-<tr> <td><code class="literal">bg_BG</code></td> <td>Búlgaro - Bulgária</td> </tr>
-<tr> <td><code class="literal">ca_ES</code></td> <td>Catalão - Espanha</td> </tr>
-<tr> <td><code class="literal">cs_CZ</code></td> <td>Tcheco - República Tcheca</td> </tr>
-<tr> <td><code class="literal">da_DK</code></td> <td>Dinamarquês - Dinamarca</td> </tr>
-<tr> <td><code class="literal">de_AT</code></td> <td>Alemão - Áustria</td> </tr>
-<tr> <td><code class="literal">de_BE</code></td> <td>Alemão - Bélgica</td> </tr>
-<tr> <td><code class="literal">de_CH</code></td> <td>Alemão - Suíça</td> </tr>
-<tr> <td><code class="literal">de_DE</code></td> <td>Alemão - Alemanha</td> </tr>
-<tr> <td><code class="literal">de_LU</code></td> <td>Alemão - Luxemburgo</td> </tr>
-<tr> <td><code class="literal">el_GR</code></td> <td>Grego - Grécia</td> </tr>
-<tr> <td><code class="literal">en_AU</code></td> <td>Inglês - Austrália</td> </tr>
-<tr> <td><code class="literal">en_CA</code></td> <td>Inglês - Canadá</td> </tr>
-<tr> <td><code class="literal">en_GB</code></td> <td>Inglês - Reino Unido</td> </tr>
-<tr> <td><code class="literal">en_IN</code></td> <td>Inglês - Índia</td> </tr>
-<tr> <td><code class="literal">en_NZ</code></td> <td>Inglês - Nova Zelândia</td> </tr>
-<tr> <td><code class="literal">en_PH</code></td> <td>Inglês - Filipinas</td> </tr>
-<tr> <td><code class="literal">en_US</code></td> <td>Inglês - Estados Unidos</td> </tr>
-<tr> <td><code class="literal">en_ZA</code></td> <td>Inglês -
+<tr> <td><code>ar_AE</code></td> <td>Árabe - Emirados Árabes Unidos</td> </tr>
+<tr> <td><code>ar_BH</code></td> <td>Árabe - Bahrein</td> </tr>
+<tr> <td><code>ar_DZ</code></td> <td>Árabe - Argélia</td> </tr>
+<tr> <td><code>ar_EG</code></td> <td>Árabe - Egito</td> </tr>
+<tr> <td><code>ar_IN</code></td> <td>Árabe - Índia</td> </tr>
+<tr> <td><code>ar_IQ</code></td> <td>Árabe - Iraque</td> </tr>
+<tr> <td><code>ar_JO</code></td> <td>Árabe - Jordânia</td> </tr>
+<tr> <td><code>ar_KW</code></td> <td>Árabe - Kuwait</td> </tr>
+<tr> <td><code>ar_LB</code></td> <td>Árabe - Líbano</td> </tr>
+<tr> <td><code>ar_LY</code></td> <td>Árabe - Líbia</td> </tr>
+<tr> <td><code>ar_MA</code></td> <td>Árabe - Marrocos</td> </tr>
+<tr> <td><code>ar_OM</code></td> <td>Árabe - Omã</td> </tr>
+<tr> <td><code>ar_QA</code></td> <td>Árabe - Catar</td> </tr>
+<tr> <td><code>ar_SA</code></td> <td>Árabe - Arábia Saudita</td> </tr>
+<tr> <td><code>ar_SD</code></td> <td>Árabe - Sudão</td> </tr>
+<tr> <td><code>ar_SY</code></td> <td>Árabe - Síria</td> </tr>
+<tr> <td><code>ar_TN</code></td> <td>Árabe - Tunísia</td> </tr>
+<tr> <td><code>ar_YE</code></td> <td>Árabe - Iêmen</td> </tr>
+<tr> <td><code>be_BY</code></td> <td>Bielorrusso - Bielorrússia</td> </tr>
+<tr> <td><code>bg_BG</code></td> <td>Búlgaro - Bulgária</td> </tr>
+<tr> <td><code>ca_ES</code></td> <td>Catalão - Espanha</td> </tr>
+<tr> <td><code>cs_CZ</code></td> <td>Tcheco - República Tcheca</td> </tr>
+<tr> <td><code>da_DK</code></td> <td>Dinamarquês - Dinamarca</td> </tr>
+<tr> <td><code>de_AT</code></td> <td>Alemão - Áustria</td> </tr>
+<tr> <td><code>de_BE</code></td> <td>Alemão - Bélgica</td> </tr>
+<tr> <td><code>de_CH</code></td> <td>Alemão - Suíça</td> </tr>
+<tr> <td><code>de_DE</code></td> <td>Alemão - Alemanha</td> </tr>
+<tr> <td><code>de_LU</code></td> <td>Alemão - Luxemburgo</td> </tr>
+<tr> <td><code>el_GR</code></td> <td>Grego - Grécia</td> </tr>
+<tr> <td><code>en_AU</code></td> <td>Inglês - Austrália</td> </tr>
+<tr> <td><code>en_CA</code></td> <td>Inglês - Canadá</td> </tr>
+<tr> <td><code>en_GB</code></td> <td>Inglês - Reino Unido</td> </tr>
+<tr> <td><code>en_IN</code></td> <td>Inglês - Índia</td> </tr>
+<tr> <td><code>en_NZ</code></td> <td>Inglês - Nova Zelândia</td> </tr>
+<tr> <td><code>en_PH</code></td> <td>Inglês - Filipinas</td> </tr>
+<tr> <td><code>en_US</code></td> <td>Inglês - Estados Unidos</td> </tr>
+<tr> <td><code>en_ZA</code></td> <td>Inglês -

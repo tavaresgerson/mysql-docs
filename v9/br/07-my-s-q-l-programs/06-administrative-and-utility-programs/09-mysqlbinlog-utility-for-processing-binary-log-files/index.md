@@ -88,13 +88,13 @@ O **mysqlbinlog** suporta as seguintes opções, que podem ser especificadas na 
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></table>
 
   Exibir uma mensagem de ajuda e sair.
 
 * `--base64-output=value`
 
-  <table frame="box" rules="all" summary="Propriedades para base64-output"><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para base64-output"><tr><th>Formato de Linha de Comando</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></table>
 
   Esta opção determina quando os eventos devem ser exibidos codificados como strings base64 usando as instruções `BINLOG`. A opção tem esses valores permitidos (não case-sensitive):
 
@@ -112,25 +112,25 @@ Para exemplos que mostram o efeito de `--base64-output` e `--verbose` na saída 
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Em um computador com múltiplas interfaces de rede, use esta opção para selecionar qual interface usar para se conectar ao servidor MySQL.
 
 * `--binlog-row-event-max-size=N`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">256</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>4294967040</code></td> </tr><tr><th>Valor Mínima</th> <td><code>256</code></td> </tr><tr><th>Valor Máximo</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
 Especifique o tamanho máximo de um evento de log binário baseado em linhas, em bytes. As linhas são agrupadas em eventos menores que esse tamanho, se possível. O valor deve ser um múltiplo de 256. O padrão é 4 GB.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Consulte a Seção 12.15, “Configuração de Conjunto de Caracteres”.
 
 * `--compress`
 
-  <table frame="box" rules="all" summary="Propriedades para compress"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para compress"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Compressar todas as informações enviadas entre o cliente e o servidor, se possível. Consulte a Seção 6.2.8, “Controle de Compressão de Conexão”.
 
@@ -139,10 +139,10 @@ Especifique o tamanho máximo de um evento de log binário baseado em linhas, em
 * `--compression-algorithms=value`
 
 <table frame="box" rules="all" summary="Propriedades para algoritmos de compressão">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--compression-algorithms=valor</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--compression-algorithms=valor</code></td> </tr>
   <tr><th>Tipo</th> <td>Definido</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">não comprimido</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">não comprimido</code></p></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>não comprimido</code></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não comprimido</code></p></td> </tr>
 </table>
 
   Os algoritmos de compressão permitidos para conexões com o servidor. Os algoritmos disponíveis são os mesmos da variável de sistema `protocol_compression_algorithms`. O valor padrão é `não comprimido`.
@@ -152,11 +152,11 @@ Especifique o tamanho máximo de um evento de log binário baseado em linhas, em
 * `--connection-server-id=id_do_servidor`
 
   <table frame="box" rules="all" summary="Propriedades para id_do_servidor_de_conexão">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connection-server-id=#]</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--connection-server-id=#]</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor Padrão</th> <td><code class="literal">0 (1)</code></td> </tr>
-    <tr><th>Valor Mínimo</th> <td><code class="literal">0 (1)</code></td> </tr>
-    <tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr>
+    <tr><th>Valor Padrão</th> <td><code>0 (1)</code></td> </tr>
+    <tr><th>Valor Mínimo</th> <td><code>0 (1)</code></td> </tr>
+    <tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr>
   </table>
 
   `--connection-server-id` especifica o ID do servidor que o **mysqlbinlog** reporta quando se conecta ao servidor. Ele pode ser usado para evitar um conflito com o ID de um servidor replica ou outro processo **mysqlbinlog**.
@@ -165,7 +165,7 @@ Se a opção `--read-from-remote-server` for especificada, o **mysqlbinlog** rep
 
 * `--database=db_name`, -d db_name
 
-  <table frame="box" rules="all" summary="Propriedades para o banco de dados"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--database=db_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o banco de dados"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--database=db_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Esta opção faz com que o **mysqlbinlog** exiba entradas do log binário (apenas log local) que ocorrem enquanto *`db_name`* é selecionado como o banco de dados padrão pelo `USE`.
 
@@ -208,7 +208,7 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O padrão é `d:t:o,/tmp/mysqlbinlog.trace`.
 
@@ -216,7 +216,7 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Imprima algumas informações de depuração quando o programa sair.
 
@@ -224,7 +224,7 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
 
 * `--debug-info`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Imprima informações de depuração e estatísticas de uso de memória e CPU quando o programa sair.
 
@@ -235,9 +235,9 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
 <table frame="box" rules="all" summary="Propriedades para ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
-</table>4
+</table>
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -248,9 +248,9 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
   <table frame="box" rules="all" summary="Propriedades para ajuda">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--help</code></td>
+      <td><code>--help</code></td>
     </tr>
-  </table>5
+  </table>
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -263,9 +263,9 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
 <table frame="box" rules="all" summary="Propriedades de ajuda">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--help</code></td>
+    <td><code>--help</code></td>
   </tr>
-</table>6
+</table>
 
   Leia não apenas os grupos de opções habituais, mas também grupos com os nomes habituais e um sufixo de *`str`*. Por exemplo, **mysqlbinlog** normalmente lê os grupos `[client]` e `[mysqlbinlog]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysqlbinlog** também lê os grupos `[client_other]` e `[mysqlbinlog_other]`.
 
@@ -276,9 +276,9 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
   <table frame="box" rules="all" summary="Propriedades de ajuda">
     <tr>
       <th>Formato de linha de comando</th>
-      <td><code class="literal">--help</code></td>
+      <td><code>--help</code></td>
     </tr>
-  </table>7
+  </table>
 
   Desative o registro binário. Isso é útil para evitar um loop infinito se você usar a opção `--to-last-log` e estiver enviando a saída para o mesmo servidor MySQL. Esta opção também é útil ao restaurar após uma saída inesperada para evitar a duplicação das declarações que você registrou.
 
@@ -287,16 +287,16 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
 * `--exclude-gtids=gtid_set`
 
 <table frame="box" rules="all" summary="Propriedades de ajuda">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr>
-</table>8
+  <tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr>
+</table>
 
   Não exiba nenhum dos grupos listados no *`gtid_set`*.
 
 * `--force-if-open`, `-F`
 
   <table frame="box" rules="all" summary="Propriedades de ajuda">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr>
-  </table>9
+    <tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr>
+  </table>
 
   Leia arquivos de log binários mesmo que estejam abertos ou não tenham sido fechados corretamente (a bandeira `IN_USE` está definida); não falhe se o arquivo terminar com um evento truncado.
 
@@ -305,17 +305,17 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
 * `--force-read`, `-f`
 
   <table frame="box" rules="all" summary="Propriedades de saída em base64">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--base64-output=valor</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">AUTO</code></td> </tr>
-    <tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr>
-  </table>0
+    <tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr>
+    <tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr>
+  </table>
 
 Com esta opção, se o **mysqlbinlog** ler um evento de log binário que ele não reconhece, ele imprime um aviso, ignora o evento e continua. Sem esta opção, o **mysqlbinlog** para se ele ler tal evento.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Propriedades para saída em base64"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para saída em base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Peça ao servidor para obter a chave pública necessária para a troca de senha com base em um par de chaves RSA. Esta opção se aplica a clientes que se autenticam com o plugin de autenticação `caching_sha2_password`. Para esse plugin, o servidor não envia a chave pública a menos que seja solicitado. Esta opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -325,19 +325,19 @@ Com esta opção, se o **mysqlbinlog** ler um evento de log binário que ele nã
 
 * `--hexdump`, `-H`
 
-<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Exibir um dump hexadecimal do log em comentários, conforme descrito na Seção 6.6.9.1, “Formato de Dump Hexadecimal de mysqlbinlog”. A saída hexadecimal pode ser útil para depuração de replicação.
 
 * `--host=nome_do_host`, `-h nome_do_host`
 
-  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Obter o log binário do servidor MySQL no host fornecido.
 
 * `--idempotent`
 
-<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Informe ao servidor MySQL para usar o modo idempotente durante o processamento de atualizações; isso causa a supressão de quaisquer erros de chave duplicada ou chave não encontrada que o servidor encontre na sessão atual durante o processamento de atualizações. Esta opção pode ser útil sempre que seja desejável ou necessário reproduzir um ou mais logs binários para um servidor MySQL que pode não conter todos os dados a que os logs se referem.
 
@@ -345,13 +345,13 @@ Com esta opção, se o **mysqlbinlog** ler um evento de log binário que ele nã
 
 * `--include-gtids=gtid_set`
 
-  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Exiba apenas os grupos listados no *`gtid_set`*.
 
 * `--local-load=nome_diretório`, `-l nome_diretório`
 
-  <table frame="box" rules="all" summary="Propriedades para saída em base64"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para saída em base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Para operações de carregamento de dados correspondentes às instruções `LOAD DATA`, o **mysqlbinlog** extrai os arquivos dos eventos do log binário, escreve-os como arquivos temporários no sistema de arquivos local e escreve instruções `LOAD DATA LOCAL` para carregar os arquivos. Por padrão, o **mysqlbinlog** escreve esses arquivos temporários em um diretório específico do sistema operacional. A opção `--local-load` pode ser usada para especificar explicitamente o diretório onde o **mysqlbinlog** deve preparar arquivos temporários locais.
 
@@ -366,7 +366,7 @@ Com esta opção, se o **mysqlbinlog** ler um evento de log binário que ele nã
 
   Esses arquivos temporários não são removidos automaticamente pelo **mysqlbinlog** ou por qualquer outro programa do MySQL.
 
-<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
 Leia opções de entrada do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e com qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
@@ -380,7 +380,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Não leia nenhum arquivo de configuração. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de configuração, o `--no-defaults` pode ser usado para evitar que sejam lidas.
 
@@ -390,19 +390,19 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--offset=N`, `-o N`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Pular as primeiras *`N`* entradas no log.
 
 * `--open-files-limit=N`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Especifique o número de descritores de arquivo abertos a serem reservados.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlbinlog** solicitará uma senha. Se for fornecida, não deve haver **espaço** entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar a senha.
 
@@ -412,19 +412,19 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysqlbinlog** não o encontrar. Veja a Seção 8.2.17, “Autenticação Extensível”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></table>4
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></table>
 
   O número de porta TCP/IP a ser usado para se conectar a um servidor remoto.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></table>5
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></table>
 
   Imprima o nome do programa e todas as opções que ele obtém de arquivos de opções.
 
@@ -432,19 +432,19 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--print-table-metadata`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></table>6
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></table>
 
   Imprima metadados relacionados à tabela do log binário. Configure a quantidade de metadados binários relacionados à tabela registrados no log binário usando `binlog-row-metadata`.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></table>7
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></table>
 
 O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para obter detalhes sobre os valores permitidos, consulte a Seção 6.2.7, “Protocolos de Transporte de Conexão”.
 
 * `--raw`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Por padrão, o **mysqlbinlog** lê arquivos de log binário e escreve eventos no formato de texto. A opção `--raw` indica ao **mysqlbinlog** que escreva-os em seu formato binário original. Seu uso requer que a opção `--read-from-remote-server` também seja usada, pois os arquivos são solicitados a partir de um servidor. O **mysqlbinlog** escreve um arquivo de saída para cada arquivo lido do servidor. A opção `--raw` pode ser usada para fazer um backup de um log binário de servidor. Com a opção `--stop-never`, o backup é “ativo” porque o **mysqlbinlog** permanece conectado ao servidor. Por padrão, os arquivos de saída são escritos no diretório atual com os mesmos nomes dos arquivos de log originais. Os nomes dos arquivos de saída podem ser modificados usando a opção `--result-file`. Para obter mais informações, consulte a Seção 6.6.9.3, “Usando o mysqlbinlog para fazer backup de arquivos de log binário”.
 
@@ -458,13 +458,13 @@ O privilégio `REPLICATION SLAVE` é necessário para usar essas opções.
 
 * `--read-from-remote-master=type`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">256</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>4294967040</code></td> </tr><tr><th>Valor mínimo</th> <td><code>256</code></td> </tr><tr><th>Valor máximo</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
 Sinônimo desatualizado para `--read-from-remote-source`.
 
 * `--read-from-remote-server=file_name`, `-R`
 
-<table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">256</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>4294967040</code></td> </tr><tr><th>Valor mínimo</th> <td><code>256</code></td> </tr><tr><th>Valor máximo</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
 Leia o log binário de um servidor MySQL em vez de ler um arquivo de log local. Esta opção exige que o servidor remoto esteja em execução. Funciona apenas para arquivos de log binário no servidor remoto e não para arquivos de log de retransmissão. Aceita o nome do arquivo de log binário (incluindo o sufixo numérico) sem o caminho do arquivo.
 
@@ -479,7 +479,7 @@ Esta opção é como `--read-from-remote-source=BINLOG-DUMP-NON-GTIDS`.
 <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size">
   <tr>
     <th>Formato de linha de comando</th>
-    <td><code class="literal">--binlog-row-event-max-size=#</code></td>
+    <td><code>--binlog-row-event-max-size=#</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -487,15 +487,15 @@ Esta opção é como `--read-from-remote-source=BINLOG-DUMP-NON-GTIDS`.
   </tr>
   <tr>
     <th>Valor padrão</th>
-    <td><code class="literal">4294967040</code></td>
+    <td><code>4294967040</code></td>
   </tr>
   <tr>
     <th>Valor mínimo</th>
-    <td><code class="literal">256</code></td>
+    <td><code>256</code></td>
   </tr>
   <tr>
     <th>Valor máximo</th>
-    <td><code class="literal">18446744073709547520</code></td>
+    <td><code>18446744073709547520</code></td>
   </tr>
   </tbody>
 </table>
@@ -510,7 +510,7 @@ Exija o formato de registro binário baseado em linhas para eventos. Esta opçã
 
 * `--rewrite-db='from_name->to_name'`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">256</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>4294967040</code></td> </tr><tr><th>Valor Mínima</th> <td><code>256</code></td> </tr><tr><th>Valor Máximo</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
   Ao ler de um log baseado em linhas ou baseado em instruções, reescreva todas as ocorrências de *`from_name`* para *`to_name`*. A reescrita é feita nas linhas, para logs baseados em linhas, bem como nas cláusulas `USE`, para logs baseados em instruções.
 
@@ -537,7 +537,7 @@ Exiba apenas os eventos criados pelo servidor com o ID do servidor fornecido.
 
 * `--server-id-bits=N`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">256</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>4294967040</code></td> </tr><tr><th>Valor mínimo</th> <td><code>256</code></td> </tr><tr><th>Valor máximo</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
   Use apenas os primeiros *`N`* bits do `server_id` para identificar o servidor. Se o log binário foi escrito por um **mysqld** com server-id-bits configurados para menos de 32 e os dados do usuário armazenados no bit mais significativo, executar **mysqlbinlog** com `--server-id-bits` configurado para 32 permite que esses dados sejam vistos.
 
@@ -545,7 +545,7 @@ Exiba apenas os eventos criados pelo servidor com o ID do servidor fornecido.
 
 * `--server-public-key-path=caminho_do_arquivo_nome`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">256</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>4294967040</code></td> </tr><tr><th>Valor mínimo</th> <td><code>256</code></td> </tr><tr><th>Valor máximo</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
 O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas baseada em pares de chaves RSA. Esta opção aplica-se a clientes que autenticam-se com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não autenticam-se com um desses plugins. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -557,18 +557,18 @@ Para informações sobre os plugins `sha256_password` e `caching_sha2_password`,
 
 * `--set-charset=charset_name`
 
-<table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">256</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>4294967040</code></td> </tr><tr><th>Valor Mínima</th> <td><code>256</code></td> </tr><tr><th>Valor Máximo</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
 Adicione uma declaração `SET NAMES charset_name` à saída para especificar o conjunto de caracteres a ser usado para processar arquivos de log.
 
 * `--shared-memory-base-name=name`
 
 <table frame="box" rules="all" summary="Propriedades para binlog-row-event-max-size">
-  <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr>
+  <tr><th>Formato de Linha de Comando</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
-  <tr><th>Valor Padrão</th> <td><code class="literal">4294967040</code></td> </tr>
-  <tr><th>Valor Mínimo</th> <td><code class="literal">256</code></td> </tr>
-  <tr><th>Valor Máximo</th> <td><code class="literal">18446744073709547520</code></td> </tr>
+  <tr><th>Valor Padrão</th> <td><code>4294967040</code></td> </tr>
+  <tr><th>Valor Mínimo</th> <td><code>256</code></td> </tr>
+  <tr><th>Valor Máximo</th> <td><code>18446744073709547520</code></td> </tr>
 </table>
 
   Em Windows, o nome de memória compartilhada a ser usado para conexões feitas usando memória compartilhada a um servidor local. O valor padrão é `MYSQL`. O nome de memória compartilhada é sensível a maiúsculas e minúsculas.
@@ -578,7 +578,7 @@ Adicione uma declaração `SET NAMES charset_name` à saída para especificar o 
 * `--short-form`, `-s`
 
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
-    <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr>
+    <tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr>
     <tr><th>Tipo</th> <td>Nome de diretório</td> </tr>
   </table>
 
@@ -597,7 +597,7 @@ Não inclua os GTIDs dos arquivos de log binário no arquivo de dump de saída. 
 
 * `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho_nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho_nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Para conexões com `localhost`, o arquivo de socket Unix a ser usado ou, no Windows, o nome do pipe nomeado a ser usado.
 
@@ -609,7 +609,7 @@ Não inclua os GTIDs dos arquivos de log binário no arquivo de dump de saída. 
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Controla se o modo FIPS deve ser habilitado no lado do cliente. A opção `--ssl-fips-mode` difere de outras opções `--ssl-xxx` porque não é usada para estabelecer conexões criptografadas, mas sim para afetar quais operações criptográficas devem ser permitidas. Veja a Seção 8.8, “Suporte FIPS”.
 
@@ -631,7 +631,7 @@ Esta opção é útil para a recuperação em um ponto no tempo. Veja a Seção 
 
 * `--start-position=N`, `-j N`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Comece a decodificar o log binário na posição de log *`N`*, incluindo na saída quaisquer eventos que comecem na posição *`N`* ou depois. A posição é um ponto de byte no arquivo de log, não um contador de eventos; ela precisa apontar para a posição inicial de um evento para gerar uma saída útil. Esta opção se aplica ao primeiro arquivo de log nomeado na linha de comando.
 
@@ -641,7 +641,7 @@ Esta opção é útil para a recuperação em um ponto no tempo. Veja a Seção 
 
 * `--stop-datetime=datetime`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Pare de ler o log binário no primeiro evento com um timestamp igual ou posterior ao argumento *`datetime`*. Veja a descrição da opção `--start-datetime` para informações sobre o valor de *`datetime`*.
 
@@ -649,7 +649,7 @@ Esta opção é útil para a recuperação em um ponto específico. Veja a Seç�
 
 * `--stop-never`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Esta opção é usada com `--read-from-remote-server`. Ela indica que o **mysqlbinlog** deve permanecer conectado ao servidor. Caso contrário, o **mysqlbinlog** encerra quando o último arquivo de log tiver sido transferido do servidor. `--stop-never` implica em `--to-last-log`, então apenas o primeiro arquivo de log a ser transferido precisa ser nomeado na linha de comando.
 
@@ -663,7 +663,7 @@ Esta opção está desatualizada; espere-se que seja removida em uma futura vers
 
 * `--stop-position=N`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Pare de decodificar o log binário na posição de log *`N`*, excluindo da saída quaisquer eventos que comecem na posição *`N`* ou após. A posição é um ponto de byte no arquivo de log, não um contador de eventos; ela precisa apontar para um local após a posição inicial do último evento que você deseja incluir na saída. O evento que começa antes da posição *`N`* e termina na ou após a posição é o último evento a ser processado. Esta opção se aplica ao último arquivo de log nomeado na linha de comando.
 
@@ -671,7 +671,7 @@ Esta opção está desatualizada; espere-se que seja removida em uma futura vers
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Propriedades para compress"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para compress"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 As sequências de cifra permitidas para conexões criptografadas que utilizam TLSv1.3. O valor é uma lista de um ou mais nomes de sequências de cifra separados por vírgula. As sequências de cifra que podem ser nomeadas para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e cifra TLS de Conexão Encriptada”.
 
@@ -679,7 +679,7 @@ As sequências de cifra permitidas para conexões criptografadas que utilizam TL
 
   <table frame="box" rules="all" summary="Propriedades para compressão">
     <tr>
-      <th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td>
+      <th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td>
     </tr>
     <tr>
       <th>Desatualizado</th> <td>Sim</td>
@@ -688,10 +688,10 @@ As sequências de cifra permitidas para conexões criptografadas que utilizam TL
       <th>Tipo</th> <td>Booleano</td>
     </tr>
     <tr>
-      <th>Valor padrão</th> <td><code class="literal">OFF</code></td>
+      <th>Valor padrão</th> <td><code>OFF</code></td>
     </tr>
   </tbody>
-  </table>1
+  </table>
 
   Quando especificado, o nome é passado para a biblioteca de API C `libmysqlclient` usando a opção `MYSQL_OPT_TLS_SNI_SERVERNAME` de `mysql_options()`. O nome do servidor não é case-sensitive. Para mostrar qual nome do servidor o cliente especificou para a sessão atual, se houver, verifique a variável `Tls_sni_server_name`.
 
@@ -701,7 +701,7 @@ As sequências de cifra permitidas para conexões criptografadas que utilizam TL
 
   <table frame="box" rules="all" summary="Propriedades para compressão">
     <tr>
-      <th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td>
+      <th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td>
     </tr>
     <tr>
       <th>Desatualizado</th> <td>Sim</td>
@@ -710,22 +710,22 @@ As sequências de cifra permitidas para conexões criptografadas que utilizam TL
       <th>Tipo</th> <td>Booleano</td>
     </tr>
     <tr>
-      <th>Valor padrão</th> <td><code class="literal">OFF</code></td>
+      <th>Valor padrão</th> <td><code>OFF</code></td>
     </tr>
   </tbody>
-  </table>2
+  </table>
 
 Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e cifra TLS de conexão criptografada”.
 
 * `--to-last-log`, `-t`
 
-  <table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Não pare no final do log binário solicitado de um servidor MySQL, mas sim continue imprimindo até o final do último log binário. Se você enviar a saída para o mesmo servidor MySQL, isso pode levar a um loop infinito. Esta opção requer `--read-from-remote-server`.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O nome de usuário da conta MySQL a ser usado ao se conectar a um servidor remoto.
 
@@ -733,7 +733,7 @@ Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista
 
 * `--verbose`, `-v`
 
-<table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Reconstrua eventos de linha e exiba-os como instruções SQL comentadas, com informações de partição da tabela, quando aplicável. Se esta opção for fornecida duas vezes (através da passagem de "-vv" ou "--verbose --verbose"), a saída inclui comentários para indicar os tipos de dados das colunas e alguns metadados, e eventos de log informativos, como eventos de log de consulta de linhas do `binlog_rows_query_log_events`, se a variável de sistema `binlog_rows_query_log_events` estiver definida como `TRUE`.
 
@@ -741,19 +741,19 @@ Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista
 
 * `--verify-binlog-checksum`, `-c`
 
-<table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Verifique os checksums em arquivos de log binário.
 
 * `--version`, `-V`
 
-<table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Exibir informações de versão e sair.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O nível de compressão a ser usado para conexões com o servidor que utilizam o algoritmo de compressão `zstd`. Os níveis permitidos são de 1 a 22, com valores maiores indicando níveis crescentes de compressão. O nível de compressão padrão do `zstd` é 3. O ajuste do nível de compressão não tem efeito em conexões que não utilizam compressão `zstd`.
 

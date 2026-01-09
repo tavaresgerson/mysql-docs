@@ -66,24 +66,24 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Diretório contendo conjuntos de caracteres.
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
   Número de vezes para tentar a conexão antes de desistir.
 
 * `--connect-retry-delay`
 
   <table frame="box" rules="all" summary="Propriedades para connect-retry-delay">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">5</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>5</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>5</code></td> </tr>
   </table>
 
   Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
@@ -91,9 +91,9 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
 * `--connect-string`
 
   <table frame="box" rules="all" summary="Propriedades para connect-string">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr>
   </table>
 
   O mesmo que `--ndb-connectstring`.
@@ -101,7 +101,7 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
 * `--core-file`
 
   <table frame="box" rules="all" summary="Propriedades para core-file">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--core-file</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr>
   </table>
 
   Escreva o arquivo de código fonte em caso de erro; usado em depuração.
@@ -109,11 +109,11 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
 * `--database=name`, `-d name`
 
 <table frame="box" rules="all" summary="Propriedades para o arquivo de banco de dados">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--database=nome</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--database=nome</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal"></code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal"></code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code></code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code></code></td> </tr>
 </table>
 
   O nome do banco de dados que contém a tabela consultada.
@@ -121,9 +121,9 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
 * `--defaults-extra-file`
 
   <table frame="box" rules="all" summary="Propriedades para o arquivo de defaults-extra-file">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=caminho</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr>
   </table>
 
   Leia o arquivo fornecido após a leitura dos arquivos globais.
@@ -131,9 +131,9 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
 * `--defaults-file`
 
   <table frame="box" rules="all" summary="Propriedades para o arquivo de defaults-file">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--defaults-file=caminho</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr>
   </table>
 
   Leia as opções padrão do arquivo fornecido apenas.
@@ -143,7 +143,7 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
 <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix">
   <tr>
     <th>Formato de Linha de Comando</th>
-    <td><code class="literal">--defaults-group-suffix=string</code></td>
+    <td><code>--defaults-group-suffix=string</code></td>
   </tr>
   <tr>
     <th>Tipo</th>
@@ -151,7 +151,7 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
   </tr>
   <tr>
     <th>Valor Padrão</th>
-    <td><code class="literal">[none]</code></td>
+    <td><code>[none]</code></td>
   </tr>
 </table>
 
@@ -162,7 +162,7 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
   <table frame="box" rules="all" summary="Propriedades para delete">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--delete</code></td>
+      <td><code>--delete</code></td>
     </tr>
   </table>
 
@@ -173,7 +173,7 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
     <tr>
       <th>Formato de Linha de Comando</th>
-      <td><code class="literal">--connect-retries=#</code></td>
+      <td><code>--connect-retries=#</code></td>
     </tr>
     <tr>
       <th>Tipo</th>
@@ -181,94 +181,94 @@ A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **
     </tr>
     <tr>
       <th>Valor Padrão</th>
-      <td><code class="literal">12</code></td>
+      <td><code>12</code></td>
     </tr>
     <tr>
       <th>Valor Mínimo</th>
-      <td><code class="literal">0</code></td>
+      <td><code>0</code></td>
     </tr>
     <tr>
       <th>Valor Máximo</th>
-      <td><code class="literal">12</code></td>
+      <td><code>12</code></td>
     </tr>
-  </table>0
+  </table>
 
   Exiba o conteúdo do cache de consultas.
 
 * `--help`
 
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-</table>1
+  <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+</table>
 
   Exibir texto de ajuda e sair.
 
 * `--login-path`
 
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-  </table>2
+    <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+  </table>
 
   Ler o caminho dado a partir do arquivo de login.
 
 * `--no-login-paths`
 
   <table frame="box" rules="all" summary="Propriedades para connect-retries">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
-  </table>3
+    <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
+  </table>
 
   Ignorar a leitura de opções a partir do arquivo de caminho de login.
 
 * `--loops=#`
 
-<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></table>4
+<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></table>
 
 Repita os comandos quantas vezes este número (para uso em testes).
 
 * `--ndb-connectstring`
 
-<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></table>5
+<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></table>
 
 Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrime entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 
-<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></table>6
+<table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></table>
 
 Define o nível de suporte TLS necessário para se conectar ao servidor de gerenciamento; `relaxed` ou `strict`. `relaxed` (o padrão) significa que uma conexão TLS é tentada, mas o sucesso não é necessário; `strict` significa que o TLS é necessário para se conectar.
 
 * `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
   O mesmo que `--ndb-connectstring`.
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
   Defina o ID do nó para este nó, substituindo qualquer ID definido por `--ndb-connectstring`.
 
 * `--ndb-optimized-node-selection`
 
 <table frame="box" rules="all" summary="Propriedades para connect-retries">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr>
-  <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-  <tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr>
+  <tr><th>Valor padrão</th> <td><code>12</code></td> </tr>
+  <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+  <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
 </table>
 
   Ative otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
@@ -276,11 +276,11 @@ Define o nível de suporte TLS necessário para se conectar ao servidor de geren
 * `--ndb-tls-search-path`
 
   <table frame="box" rules="all" summary="Propriedades para delay-connect-retry">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr>
-    <tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
-    <tr><th>Valor máximo</th> <td><code class="literal">5</code></td> </tr>
+    <tr><th>Valor padrão</th> <td><code>5</code></td> </tr>
+    <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
+    <tr><th>Valor máximo</th> <td><code>5</code></td> </tr>
   </table>
 
   Especifique uma lista de diretórios para pesquisar por um arquivo CA. Em plataformas Unix, os nomes dos diretórios são separados por colchetes (`:`); em sistemas Windows, o caractere ponto e vírgula (`;`) é usado como separador. Uma referência de diretório pode ser relativa ou absoluta; pode conter uma ou mais variáveis de ambiente, cada uma denotada por um sinal de dólar prefixado (`$`), e expandida antes de ser usada.
@@ -291,43 +291,43 @@ Se não for fornecido um caminho de busca, o valor padrão integrado é usado. E
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">5</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>5</code></td> </tr><tr><th>Valor Mínima</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
   Não leia opções padrão de nenhum arquivo de opção que não seja o arquivo de login.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">5</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>5</code></td> </tr><tr><th>Valor Mínima</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
   Imprima a lista de argumentos do programa e saia.
 
 * `--query=#`
 
-<table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">5</code></td> </tr></table>3
+<table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>5</code></td> </tr></table>
 
 Realize consultas aleatórias em um intervalo de valores na primeira propriedade de chave (deve ser um número inteiro sem sinal).
 
 * `--sys-drop`
 
-<table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">5</code></td> </tr></table>4
+<table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>5</code></td> </tr></table>
 
 Exclua todas as tabelas de estatísticas e eventos no kernel NDB. *Isso faz com que todas as estatísticas sejam perdidas*.
 
 * `--sys-create`
 
-<table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">5</code></td> </tr></table>5
+<table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>5</code></td> </tr></table>
 
 Crie todas as tabelas de estatísticas e eventos no kernel NDB. Isso funciona apenas se nenhuma delas já existir anteriormente.
 
 * `--sys-create-if-not-exist`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">5</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
   Crie quaisquer tabelas de estatísticas ou eventos do sistema NDB que ainda não existam quando o programa for invocado.
 
 * `--sys-create-if-not-valid`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">5</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">5</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
   Crie quaisquer tabelas de estatísticas ou eventos do sistema NDB que ainda não existam, após descartar quaisquer que sejam inválidas.
 
@@ -335,16 +335,16 @@ Crie todas as tabelas de estatísticas e eventos no kernel NDB. Isso funciona ap
 
 <table frame="box" rules="all" summary="Propriedades para connect-retry-delay">
   <tr>
-    <th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr>
+    <th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr>
     <th>Tipo</th> <td>Inteiro</td> </tr>
     <tr>
-      <th>Valor padrão</th> <td><code class="literal">5</code></td> </tr>
+      <th>Valor padrão</th> <td><code>5</code></td> </tr>
     <tr>
-      <th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
+      <th>Valor mínimo</th> <td><code>0</code></td> </tr>
     <tr>
-      <th>Valor máximo</th> <td><code class="literal">5</code></td> </tr>
+      <th>Valor máximo</th> <td><code>5</code></td> </tr>
   </tr>
-</table>8
+</table>
 
   Verifique se todas as tabelas de estatísticas de sistema necessárias e eventos existem no kernel NDB.
 
@@ -352,16 +352,16 @@ Crie todas as tabelas de estatísticas e eventos no kernel NDB. Isso funciona ap
 
   <table frame="box" rules="all" summary="Propriedades para connect-retry-delay">
     <tr>
-      <th>Formato de linha de comando</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr>
+      <th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr>
       <th>Tipo</th> <td>Inteiro</td> </tr>
       <tr>
-        <th>Valor padrão</th> <td><code class="literal">5</code></td> </tr>
+        <th>Valor padrão</th> <td><code>5</code></td> </tr>
       <tr>
-        <th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr>
+        <th>Valor mínimo</th> <td><code>0</code></td> </tr>
       <tr>
-        <th>Valor máximo</th> <td><code class="literal">5</code></td> </tr>
+        <th>Valor máximo</th> <td><code>5</code></td> </tr>
     </tr>
-  </table>9
+  </table>
 
   Não aplique nenhuma opção `--sys-*` a nenhuma tabela de estatísticas.
 
@@ -369,52 +369,52 @@ Crie todas as tabelas de estatísticas e eventos no kernel NDB. Isso funciona ap
 
   <table frame="box" rules="all" summary="Propriedades para connect-string">
     <tr>
-      <th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr>
+      <th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr>
       <th>Tipo</th> <td>String</td> </tr>
       <tr>
-        <th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
+        <th>Valor padrão</th> <td><code>[none]</code></td> </tr>
     </tr>
-  </table>0
+  </table>
 
   Não aplique nenhuma opção `--sys-*` a nenhum evento.
 
 * `--update`
 
 <table frame="box" rules="all" summary="Propriedades para connect-string">
-  <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr>
+  <tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
-  <tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
-</table>1
+  <tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr>
+</table>
 
   Atualize as estatísticas do índice para a tabela fornecida e reinicie qualquer atualização automática que foi configurada anteriormente.
 
 * `--usage`
 
   <table frame="box" rules="all" summary="Propriedades para connect-string">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
-  </table>2
+    <tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr>
+  </table>
 
   Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 * `--verbose`
 
   <table frame="box" rules="all" summary="Propriedades para connect-string">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
-  </table>3
+    <tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr>
+  </table>
 
   Ative a saída verbose.
 
 * `--version`
 
   <table frame="box" rules="all" summary="Propriedades para connect-string">
-    <tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr>
+    <tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
-    <tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr>
-  </table>4
+    <tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr>
+  </table>
 
   Exibir informações da versão e sair.
 

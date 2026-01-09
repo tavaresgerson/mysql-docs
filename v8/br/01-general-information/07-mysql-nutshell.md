@@ -56,7 +56,7 @@ Para mais informações sobre como ativar, usar e desativar `mysql_native_passwo
          <td><code>all</code></td>
       </tr>
       <tr>
-         <th><code class="option">--innodb-dedicated-server</code></th>
+         <th><code>--innodb-dedicated-server</code></th>
          <td>Se <code>ON</code>, o valor de <code>innodb_flush_method</code> não é mais alterado como no MySQL 8.0, mas o cálculo de <code>innodb_redo_log_capacity</code> é alterado de baseado em memória para baseado em CPU. Para mais informações, consulte Seção 17.8.12, “Habilitar Configuração Automática InnoDB para um Servidor MySQL Dedicado”. (O valor padrão real desta variável é <code>OFF</code>; isso não muda do MySQL 8.0.)</td>
          <td><code>OFF</code></td>
       </tr>

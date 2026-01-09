@@ -76,7 +76,706 @@ O **mysqldump** suporta as seguintes opções, que podem ser especificadas na li
 
 **Tabela 4.16 Opções do mysqldump**
 
-<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqldump."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Nome da Opção</th> <th scope="col">Descrição</th> <th scope="col">Introduzido</th> <th scope="col">Desatualizado</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_add-drop-database">--add-drop-database</a></th> <td>Adicione a instrução DROP DATABASE antes de cada instrução CREATE DATABASE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_add-drop-table">--add-drop-table</a></th> <td>Adicione a declaração DROP TABLE antes de cada declaração CREATE TABLE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_add-drop-trigger">--add-drop-trigger</a></th> <td>Adicione a declaração DROP TRIGGER antes de cada declaração CREATE TRIGGER</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_add-locks">--add-locks</a></th> <td>Cerque cada dump de tabela com as instruções LOCK TABLES e UNLOCK TABLES</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_all-databases">--all-databases</a></th> <td>Exclua todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_allow-keywords">--allow-keywords</a></th> <td>Permitir a criação de nomes de colunas que sejam palavras-chave</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_apply-slave-statements">--apply-slave-statements</a></th> <td>Incluir STOP SLAVE antes da declaração CHANGE MASTER e START SLAVE no final da saída</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_bind-address">--bind-address</a></th> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_character-sets-dir">--sets-de-caracteres-dir</a></th> <td>Diretório onde os conjuntos de caracteres são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_comments">--comentários</a></th> <td>Adicione comentários ao arquivo de dump</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_compact">--compacto</a></th> <td>Produza uma saída mais compacta</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_compatible">--compatível</a></th> <td>Produza uma saída mais compatível com outros sistemas de banco de dados ou com servidores MySQL mais antigos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_complete-insert">--complete-insert</a></th> <td>Use instruções INSERT completas que incluam os nomes das colunas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_compress">--compress</a></th> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_create-options">--create-options</a></th> <td>Incluir todas as opções de tabela específicas do MySQL nas declarações CREATE TABLE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_databases">--databases</a></th> <td>Interprete todos os argumentos de nome como nomes de banco de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_debug">--debug</a></th> <td>Escreva o log de depuração</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_debug-check">--debug-check</a></th> <td>Imprimir informações de depuração quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_debug-info">--debug-info</a></th> <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_default-auth">--default-auth</a></th> <td>Plugin de autenticação a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_default-character-set">--default-character-set</a></th> <td>Especifique o conjunto de caracteres padrão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_defaults-extra-file">--defaults-extra-file</a></th> <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_defaults-file">--defaults-file</a></th> <td>Arquivo de opção de leitura apenas nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_defaults-group-suffix">--defaults-group-suffix</a></th> <td>Valor do sufixo do grupo de opções</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_delete-master-logs">--delete-master-logs</a></th> <td>Em um servidor de fonte de replicação, exclua os logs binários após a execução da operação de dump</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_disable-keys">--disable-keys</a></th> <td>Para cada tabela, rode as instruções INSERT com instruções para desabilitar e habilitar as chaves</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_dump-date">--dump-data</a></th> <td>Incluir a data do dump como comentário "Dump concluído em" se a opção --comments for fornecida</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_dump-slave">--dump-slave</a></th> <td>Incluir a declaração CHANGE MASTER que lista as coordenadas do log binário da fonte da réplica</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_enable-cleartext-plugin">--enable-cleartext-plugin</a></th> <td>Habilitar o plugin de autenticação em texto claro</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_events">--eventos</a></th> <td>Eventos de descarte de bancos de dados descartados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_extended-insert">--insert-extended</a></th> <td>Use a sintaxe de inserção de várias linhas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_fields">--campos-cercados-por</a></th> <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_fields">--campos-escavados-por</a></th> <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_fields">--campos opcionalmente delimitados por</a></th> <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_fields">--campos-terminados-por</a></th> <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_flush-logs">--flush-logs</a></th> <td>Limpe os arquivos de log do servidor MySQL antes de iniciar o dump</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_flush-privileges">--flush-privileges</a></th> <td>Emita uma declaração FLUSH PRIVILEGES após descartar o banco de dados mysql</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_force">--force</a></th> <td>Continue mesmo que um erro SQL ocorra durante um dump de tabela</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_get-server-public-key">--get-server-public-key</a></th> <td>Solicitar chave pública RSA do servidor</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_help">--help</a></th> <td>Exibir mensagem de ajuda e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_hex-blob">--hex-blob</a></th> <td>Expor colunas binárias usando notação hexadecimal</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_host">--host</a></th> <td>Anfitrião no qual o servidor MySQL está localizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ignore-error">--ignore-error</a></th> <td>Ignorar erros especificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ignore-table">--ignore-table</a></th> <td>Não jogue fora a mesa dada</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_include-master-host-port">--include-master-host-port</a></th> <td>Incluir as opções MASTER_HOST/MASTER_PORT na declaração CHANGE MASTER produzida com --dump-slave</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_insert-ignore">--inserir-ignorar</a></th> <td>Escreva INSERT IGNORE em vez de instruções INSERT</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_lines-terminated-by">--lines-terminated-by</a></th> <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_lock-all-tables">--lock-all-tables</a></th> <td>Bloquear todas as tabelas em todos os bancos de dados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_lock-tables">--lock-tables</a></th> <td>Bloquear todas as tabelas antes de descartá-las</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_log-error">--log-error</a></th> <td>Adicione avisos e erros a um arquivo nomeado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_login-path">--login-path</a></th> <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_master-data">--master-data</a></th> <td>Escreva o nome e a posição do arquivo de log binário na saída</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_max-allowed-packet">--max-allowed-packet</a></th> <td>Comprimento máximo do pacote para enviar ou receber do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_net-buffer-length">--net-buffer-length</a></th> <td>Tamanho do buffer para comunicação TCP/IP e socket</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_no-autocommit">--no-autocommit</a></th> <td>Inclua as instruções INSERT para cada tabela descarregada dentro de SET autocommit = 0 e as instruções COMMIT</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_no-create-db">--no-create-db</a></th> <td>Não escreva declarações CREATE DATABASE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_no-create-info">--no-create-info</a></th> <td>Não escreva declarações CREATE TABLE que recriem cada tabela descarregada</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_no-data">--no-data</a></th> <td>Não despeje o conteúdo da mesa</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_no-defaults">--no-defaults</a></th> <td>Não ler arquivos de opção</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_no-set-names">--no-set-names</a></th> <td>O mesmo que --skip-set-charset</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_no-tablespaces">--no-tablespaces</a></th> <td>Não escreva quaisquer declarações de CREATE LOGFILE GROUP ou CREATE TABLESPACE no output</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_opt">--opt</a></th> <td>Abreviação para --add-drop-table --add-locks --create-options --disable-keys --extended-insert --lock-tables --quick --set-charset</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_order-by-primary">--order-by-primary</a></th> <td>Exclua as linhas de cada tabela, classificadas por sua chave primária ou pelo primeiro índice exclusivo</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_password">--senha</a></th> <td>Senha para usar ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_pipe">--pipe</a></th> <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_plugin-dir">--plugin-dir</a></th> <td>Diretório onde os plugins são instalados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_port">--port</a></th> <td>Número de porta TCP/IP para a conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_print-defaults">--print-defaults</a></th> <td>Opções padrão de impressão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_protocol">--protocolo</a></th> <td>Protocolo de transporte a ser utilizado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_quick">--rápido</a></th> <td>Recuperar linhas de uma tabela do servidor uma linha de cada vez</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_quote-names">--quote-names</a></th> <td>Identificador de citações dentro de caracteres de backtick</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_replace">--replace</a></th> <td>Escreva declarações REPLACE em vez de declarações INSERT</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_result-file">--result-file</a></th> <td>Saída direta para um arquivo específico</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_routines">--rotinas</a></th> <td>Expor rotinas armazenadas (procedimentos e funções) de bancos de dados expostos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_secure-auth">--secure-auth</a></th> <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td> <td></td> <td>Sim</td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_server-public-key-path">--server-public-key-path</a></th> <td>Nome do caminho para o arquivo que contém a chave pública RSA</td> <td>5.7.23</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_set-charset">--set-charset</a></th> <td>Adicione SET NAMES default_character_set ao output</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_set-gtid-purged">--set-gtid-purged</a></th> <td>Se adicionar SET @@GLOBAL.GTID_PURGED ao output</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_single-transaction">--single-transaction</a></th> <td>Emita uma instrução BEGIN SQL antes de drenar dados do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_add-drop-table">--skip-add-drop-table</a></th> <td>Não adicione uma instrução DROP TABLE antes de cada instrução CREATE TABLE</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_add-locks">--skip-add-locks</a></th> <td>Não adicione bloqueios</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_skip-comments">--skip-comments</a></th> <td>Não adicione comentários ao arquivo de dump</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_compact">--skip-compact</a></th> <td>Não produza uma saída mais compacta</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_disable-keys">--skip-disable-keys</a></th> <td>Não desative as teclas</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_extended-insert">--skip-extended-insert</a></th> <td>Desligue o recurso de inserção prolongada</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_skip-mysql-schema">--skip-mysql-schema</a></th> <td>Não perca o esquema do mysql</td> <td>5.7.36</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_skip-opt">--skip-opt</a></th> <td>Desative as opções definidas por --opt</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_quick">--skip-quick</a></th> <td>Não retorne linhas de uma tabela do servidor uma linha de cada vez</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_quote-names">--skip-quote-names</a></th> <td>Não cite identificadores</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_set-charset">--skip-set-charset</a></th> <td>Não escreva a declaração SET NAMES</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_triggers">--skip-triggers</a></th> <td>Não jogue gatilhos no lixo</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_tz-utc">--skip-tz-utc</a></th> <td>Desligue tz-utc</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_socket">--socket</a></th> <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl</a></th> <td>Ative a criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-ca</a></th> <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-capath</a></th> <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-cert</a></th> <td>Arquivo que contém o certificado X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-cipher</a></th> <td>Cifras permitidas para criptografia de conexão</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-crl</a></th> <td>Arquivo que contém listas de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-crlpath</a></th> <td>Diretório que contém arquivos de lista de revogação de certificados</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-chave</a></th> <td>Arquivo que contém a chave X.509</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-mode</a></th> <td>Estado de segurança desejado da conexão com o servidor</td> <td>5.7.11</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-verify-server-cert</a></th> <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_tab">--tab</a></th> <td>Produza arquivos de dados separados por tabulação</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_tables">--mesas</a></th> <td>Opção --databases ou -B para substituir</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_tls-version">--tls-version</a></th> <td>Protocolos TLS permitidos para conexões criptografadas</td> <td>5.7.10</td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_triggers">--triggers</a></th> <td>Triggers para descarte de cada tabela descartada</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_tz-utc">--tz-utc</a></th> <td>Adicione SET TIME_ZONE='+00:00' ao arquivo de dump</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_user">--user</a></th> <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_verbose">--verbose</a></th> <td>Modo verbosos</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_version">--version</a></th> <td>Exibir informações da versão e sair</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_where">--onde</a></th> <td>Exclua apenas as linhas selecionadas pela condição WHERE fornecida</td> <td></td> <td></td> </tr><tr><th scope="row"><a class="link" href="mysqldump.html#option_mysqldump_xml">--xml</a></th> <td>Produzir saída XML</td> <td></td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqldump.">
+   <col style="width: 27%"/>
+   <col style="width: 50%"/>
+   <col style="width: 11%"/>
+   <col style="width: 11%"/>
+   <thead>
+      <tr>
+         <th>Nome da Opção</th>
+         <th>Descrição</th>
+         <th>Introduzido</th>
+         <th>Desatualizado</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>--add-drop-database</th>
+         <td>Adicione a instrução DROP DATABASE antes de cada instrução CREATE DATABASE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--add-drop-table</th>
+         <td>Adicione a declaração DROP TABLE antes de cada declaração CREATE TABLE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--add-drop-trigger</th>
+         <td>Adicione a declaração DROP TRIGGER antes de cada declaração CREATE TRIGGER</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--add-locks</th>
+         <td>Cerque cada dump de tabela com as instruções LOCK TABLES e UNLOCK TABLES</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--all-databases</th>
+         <td>Exclua todas as tabelas em todos os bancos de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--allow-keywords</th>
+         <td>Permitir a criação de nomes de colunas que sejam palavras-chave</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--apply-slave-statements</th>
+         <td>Incluir STOP SLAVE antes da declaração CHANGE MASTER e START SLAVE no final da saída</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--bind-address</th>
+         <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--character-sets-dir</th>
+         <td>Diretório onde os conjuntos de caracteres são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--comments</th>
+         <td>Adicione comentários ao arquivo de dump</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--compact</th>
+         <td>Produza uma saída mais compacta</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--compatible</th>
+         <td>Produza uma saída mais compatível com outros sistemas de banco de dados ou com servidores MySQL mais antigos</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--complete-insert</th>
+         <td>Use instruções INSERT completas que incluam os nomes das colunas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--compress</th>
+         <td>Compressar todas as informações enviadas entre o cliente e o servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--create-options</th>
+         <td>Incluir todas as opções de tabela específicas do MySQL nas declarações CREATE TABLE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--databases</th>
+         <td>Interprete todos os argumentos de nome como nomes de banco de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug</th>
+         <td>Escreva o log de depuração</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-check</th>
+         <td>Imprimir informações de depuração quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--debug-info</th>
+         <td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-auth</th>
+         <td>Plugin de autenticação a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--default-character-set</th>
+         <td>Especifique o conjunto de caracteres padrão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-extra-file</th>
+         <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-file</th>
+         <td>Arquivo de opção de leitura apenas nomeado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--defaults-group-suffix</th>
+         <td>Valor do sufixo do grupo de opções</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--delete-master-logs</th>
+         <td>Em um servidor de fonte de replicação, exclua os logs binários após a execução da operação de dump</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--disable-keys</th>
+         <td>Para cada tabela, rode as instruções INSERT com instruções para desabilitar e habilitar as chaves</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--dump-data</th>
+         <td>Incluir a data do dump como comentário "Dump concluído em" se a opção --comments for fornecida</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--dump-slave</th>
+         <td>Incluir a declaração CHANGE MASTER que lista as coordenadas do log binário da fonte da réplica</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--enable-cleartext-plugin</th>
+         <td>Habilitar o plugin de autenticação em texto claro</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--events</th>
+         <td>Eventos de descarte de bancos de dados descartados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--insert-extended</th>
+         <td>Use a sintaxe de inserção de várias linhas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fields-enclosed-by</th>
+         <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fields-escaped-by</th>
+         <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fields-optionally-enclosed-by</th>
+         <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fields-terminated-by</th>
+         <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--flush-logs</th>
+         <td>Limpe os arquivos de log do servidor MySQL antes de iniciar o dump</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--flush-privileges</th>
+         <td>Emita uma declaração FLUSH PRIVILEGES após descartar o banco de dados mysql</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--force</th>
+         <td>Continue mesmo que um erro SQL ocorra durante um dump de tabela</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--get-server-public-key</th>
+         <td>Solicitar chave pública RSA do servidor</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--help</th>
+         <td>Exibir mensagem de ajuda e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--hex-blob</th>
+         <td>Expor colunas binárias usando notação hexadecimal</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--host</th>
+         <td>Anfitrião no qual o servidor MySQL está localizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ignore-error</th>
+         <td>Ignorar erros especificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ignore-table</th>
+         <td>Não jogue fora a mesa dada</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--include-master-host-port</th>
+         <td>Incluir as opções MASTER_HOST/MASTER_PORT na declaração CHANGE MASTER produzida com --dump-slave</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--insert-ignore</th>
+         <td>Escreva INSERT IGNORE em vez de instruções INSERT</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--lines-terminated-by</th>
+         <td>Esta opção é usada com a opção --tab e tem o mesmo significado que a cláusula correspondente para LOAD DATA</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--lock-all-tables</th>
+         <td>Bloquear todas as tabelas em todos os bancos de dados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--lock-tables</th>
+         <td>Bloquear todas as tabelas antes de descartá-las</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--log-error</th>
+         <td>Adicione avisos e erros a um arquivo nomeado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--login-path</th>
+         <td>Leia as opções de caminho de login a partir de .mylogin.cnf</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--master-data</th>
+         <td>Escreva o nome e a posição do arquivo de log binário na saída</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--max-allowed-packet</th>
+         <td>Comprimento máximo do pacote para enviar ou receber do servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--net-buffer-length</th>
+         <td>Tamanho do buffer para comunicação TCP/IP e socket</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-autocommit</th>
+         <td>Inclua as instruções INSERT para cada tabela descarregada dentro de SET autocommit = 0 e as instruções COMMIT</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-create-db</th>
+         <td>Não escreva declarações CREATE DATABASE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-create-info</th>
+         <td>Não escreva declarações CREATE TABLE que recriem cada tabela descarregada</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-data</th>
+         <td>Não despeje o conteúdo da mesa</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-defaults</th>
+         <td>Não ler arquivos de opção</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-set-names</th>
+         <td>O mesmo que --skip-set-charset</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--no-tablespaces</th>
+         <td>Não escreva quaisquer declarações de CREATE LOGFILE GROUP ou CREATE TABLESPACE no output</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--opt</th>
+         <td>Abreviação para --add-drop-table --add-locks --create-options --disable-keys --extended-insert --lock-tables --quick --set-charset</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--order-by-primary</th>
+         <td>Exclua as linhas de cada tabela, classificadas por sua chave primária ou pelo primeiro índice exclusivo</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--password</th>
+         <td>Senha para usar ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--pipe</th>
+         <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--plugin-dir</th>
+         <td>Diretório onde os plugins são instalados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--port</th>
+         <td>Número de porta TCP/IP para a conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--print-defaults</th>
+         <td>Opções padrão de impressão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--protocol</th>
+         <td>Protocolo de transporte a ser utilizado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--fast</th>
+         <td>Recuperar linhas de uma tabela do servidor uma linha de cada vez</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--quote-names</th>
+         <td>Identificador de citações dentro de caracteres de backtick</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--replace</th>
+         <td>Escreva declarações REPLACE em vez de declarações INSERT</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--result-file</th>
+         <td>Saída direta para um arquivo específico</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--routines</th>
+         <td>Expor rotinas armazenadas (procedimentos e funções) de bancos de dados expostos</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--secure-auth</th>
+         <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td>
+         <td></td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>--server-public-key-path</th>
+         <td>Nome do caminho para o arquivo que contém a chave pública RSA</td>
+         <td>5.7.23</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--set-charset</th>
+         <td>Adicione SET NAMES default_character_set ao output</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--set-gtid-purged</th>
+         <td>Se adicionar SET @@GLOBAL.GTID_PURGED ao output</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--shared-memory-base-name</th>
+         <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--single-transaction</th>
+         <td>Emita uma instrução BEGIN SQL antes de drenar dados do servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-add-drop-table</th>
+         <td>Não adicione uma instrução DROP TABLE antes de cada instrução CREATE TABLE</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-add-locks</th>
+         <td>Não adicione bloqueios</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-comments</th>
+         <td>Não adicione comentários ao arquivo de dump</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-compact</th>
+         <td>Não produza uma saída mais compacta</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-disable-keys</th>
+         <td>Não desative as teclas</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-extended-insert</th>
+         <td>Desligue o recurso de inserção prolongada</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-mysql-schema</th>
+         <td>Não perca o esquema do mysql</td>
+         <td>5.7.36</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-opt</th>
+         <td>Desative as opções definidas por --opt</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-quick</th>
+         <td>Não retorne linhas de uma tabela do servidor uma linha de cada vez</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-quote-names</th>
+         <td>Não cite identificadores</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-set-charset</th>
+         <td>Não escreva a declaração SET NAMES</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-triggers</th>
+         <td>Não jogue gatilhos no lixo</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--skip-tz-utc</th>
+         <td>Desligue tz-utc</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--socket</th>
+         <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl</th>
+         <td>Ative a criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-ca</th>
+         <td>Arquivo que contém a lista de Autoridades de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-capath</th>
+         <td>Diretório que contém arquivos de certificados de Autoridade de Certificação SSL confiáveis</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cert</th>
+         <td>Arquivo que contém o certificado X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-cipher</th>
+         <td>Cifras permitidas para criptografia de conexão</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crl</th>
+         <td>Arquivo que contém listas de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-crlpath</th>
+         <td>Diretório que contém arquivos de lista de revogação de certificados</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-chave</th>
+         <td>Arquivo que contém a chave X.509</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-mode</th>
+         <td>Estado de segurança desejado da conexão com o servidor</td>
+         <td>5.7.11</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--ssl-verify-server-cert</th>
+         <td>Verifique o nome do host contra a identidade do Nome comum do certificado do servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tab</th>
+         <td>Produza arquivos de dados separados por tabulação</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tables</th>
+         <td>Opção --databases ou -B para substituir</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tls-version</th>
+         <td>Protocolos TLS permitidos para conexões criptografadas</td>
+         <td>5.7.10</td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--triggers</th>
+         <td>Triggers para descarte de cada tabela descartada</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--tz-utc</th>
+         <td>Adicione SET TIME_ZONE='+00:00' ao arquivo de dump</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--user</th>
+         <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--verbose</th>
+         <td>Modo verbosos</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--version</th>
+         <td>Exibir informações da versão e sair</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--where</th>
+         <td>Exclua apenas as linhas selecionadas pela condição WHERE fornecida</td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>--xml</th>
+         <td>Produzir saída XML</td>
+         <td></td>
+         <td></td>
+      </tr>
+   </tbody>
+</table>
 
 #### Opções de conexão
 
@@ -152,25 +851,25 @@ O comando **mysqldump** faz login em um servidor MySQL para extrair informaçõe
 
 - `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysqldump** não encontrá-lo. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   Para conexões TCP/IP, o número de porta a ser usado.
 
 - `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para obter detalhes sobre os valores permitidos, consulte a Seção 4.2.5, “Protocolos de Transporte de Conexão”.
 
 - `--secure-auth`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   Não envie senhas para o servidor no formato antigo (pré-4.1). Isso impede conexões, exceto para servidores que usam o formato de senha mais recente.
 
@@ -182,7 +881,7 @@ O comando **mysqldump** faz login em um servidor MySQL para extrair informaçõe
 
 - `--server-public-key-path=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas com par de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de senha com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -196,7 +895,7 @@ O comando **mysqldump** faz login em um servidor MySQL para extrair informaçõe
 
 - `--skip-mysql-schema`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   Não elimine o esquema `mysql` quando o arquivo de dump for restaurado. Por padrão, o esquema é eliminado.
 
@@ -204,7 +903,7 @@ O comando **mysqldump** faz login em um servidor MySQL para extrair informaçõe
 
 - `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   Para conexões ao `localhost`, o arquivo de socket Unix a ser usado ou, no Windows, o nome do tubo nomeado a ser usado.
 
@@ -216,7 +915,7 @@ O comando **mysqldump** faz login em um servidor MySQL para extrair informaçõe
 
 - `--tls-version=lista_protocolos`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para obter detalhes, consulte a Seção 6.3.2, “Protocolos e cifra TLS de conexão criptografada”.
 
@@ -224,7 +923,7 @@ O comando **mysqldump** faz login em um servidor MySQL para extrair informaçõe
 
 - `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.
 
@@ -234,7 +933,7 @@ Essas opções são usadas para controlar quais arquivos de opção devem ser li
 
 - `--defaults-extra-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -242,7 +941,7 @@ Essas opções são usadas para controlar quais arquivos de opção devem ser li
 
 - `--defaults-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -252,7 +951,7 @@ Essas opções são usadas para controlar quais arquivos de opção devem ser li
 
 - `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqldump** normalmente lê os grupos `[client]` e `[mysqldump]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysqldump** também lê os grupos `[client_other]` e `[mysqldump_other]`.
 
@@ -260,7 +959,7 @@ Essas opções são usadas para controlar quais arquivos de opção devem ser li
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Não leia nenhum arquivo de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas.
 
@@ -270,7 +969,7 @@ Essas opções são usadas para controlar quais arquivos de opção devem ser li
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
@@ -282,37 +981,37 @@ Os cenários de uso do **mysqldump** incluem a configuração de uma nova instâ
 
 - `--add-drop-database`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Escreva uma instrução `DROP DATABASE` antes de cada instrução `CREATE DATABASE`. Esta opção é normalmente usada em conjunto com a opção `--all-databases` ou `--databases`, pois nenhuma instrução `CREATE DATABASE` é escrita a menos que uma dessas opções seja especificada.
 
 - `--add-drop-table`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Escreva uma declaração `DROP TABLE` antes de cada declaração `CREATE TABLE`.
 
 - `--add-drop-trigger`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Escreva uma declaração `DROP TRIGGER` antes de cada declaração `CREATE TRIGGER`.
 
 - `--all-tablespaces`, `-Y`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Adiciona a uma varredura de tabela todas as instruções SQL necessárias para criar quaisquer espaços de tabela usados por uma tabela `NDB`. Essas informações não estão incluídas de outra forma na saída do **mysqldump**. Esta opção atualmente é relevante apenas para tabelas do NDB Cluster, que não são suportadas no MySQL 5.7.
 
 - `--no-create-db`, `-n`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Retire as instruções `CREATE DATABASE` que, de outra forma, estão incluídas na saída se a opção `--databases` ou `--all-databases` for fornecida.
 
 - `--no-create-info`, `-t`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para comprimir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--compress[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Não escreva declarações `CREATE TABLE` que criem cada tabela descarregada.
 
@@ -322,13 +1021,13 @@ Os cenários de uso do **mysqldump** incluem a configuração de uma nova instâ
 
 - `--no-tablespaces`, `-y`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Essa opção suprime todos os comandos `CREATE LOGFILE GROUP` e `CREATE TABLESPACE` na saída do **mysqldump**.
 
 - `--replace`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Escreva declarações `REPLACE` em vez de declarações `INSERT`.
 
@@ -338,19 +1037,19 @@ As seguintes opções imprimem informações de depuração, codificam informaç
 
 - `--allow-keywords`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Permita a criação de nomes de colunas que sejam palavras-chave. Isso funciona prefixando cada nome de coluna com o nome da tabela.
 
 - `--comments`, `-i`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Escreva informações adicionais no arquivo de dump, como a versão do programa, a versão do servidor e o host. Esta opção está habilitada por padrão. Para suprimir essas informações adicionais, use `--skip-comments`.
 
 - `--debug[=opções_de_depuração]`, `-# [opções_de_depuração]`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O valor padrão é `d:t:o,/tmp/mysqldump.trace`.
 
@@ -358,7 +1057,7 @@ As seguintes opções imprimem informações de depuração, codificam informaç
 
 - `--debug-check`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Imprima algumas informações de depuração quando o programa sair.
 
@@ -366,7 +1065,7 @@ As seguintes opções imprimem informações de depuração, codificam informaç
 
 - `--debug-info`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Imprima informações de depuração, estatísticas de uso de memória e CPU quando o programa sair.
 
@@ -374,7 +1073,7 @@ As seguintes opções imprimem informações de depuração, codificam informaç
 
 - `--dump-date`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Se a opção `--comments` for fornecida, o **mysqldump** produz um comentário no final do dump da seguinte forma:
 
@@ -386,7 +1085,7 @@ As seguintes opções imprimem informações de depuração, codificam informaç
 
 - `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Ignore todos os erros; continue mesmo que um erro SQL ocorra durante um dump de tabela.
 
@@ -396,19 +1095,19 @@ As seguintes opções imprimem informações de depuração, codificam informaç
 
 - `--log-error=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para autenticação padrão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--default-auth=plugin</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Registre avisos e erros anexando-os ao arquivo nomeado. O padrão é não registrar.
 
 - `--skip-comments`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Veja a descrição da opção `--comments`.
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Modo verbose. Imprima mais informações sobre o que o programa faz.
 
@@ -418,13 +1117,13 @@ As seguintes opções exibem informações sobre o próprio comando **mysqldump*
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Exibir informações da versão e sair.
 
@@ -434,25 +1133,25 @@ As opções a seguir alteram a forma como o comando **mysqldump** representa dad
 
 - `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Consulte a Seção 10.15, “Configuração de Conjunto de Caracteres”.
 
 - `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 10.15, “Configuração do Conjunto de Caracteres”. Se nenhum conjunto de caracteres for especificado, o **mysqldump** usa `utf8`.
 
 - `--no-set-names`, `-N`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Desativa a configuração `--set-charset`, o mesmo que especificar `--skip-set-charset`.
 
 - `--set-charset`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Escreva `SET NAMES default_character_set` na saída. Esta opção está habilitada por padrão. Para suprimir a declaração `SET NAMES`, use `--skip-set-charset`.
 
@@ -462,19 +1161,19 @@ O comando **mysqldump** é frequentemente usado para criar uma instância vazia 
 
 - `--apply-slave-statements`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Para um dump de replicação produzido com a opção `--dump-slave`, adicione uma declaração `STOP SLAVE` antes da declaração `CHANGE MASTER TO` e uma declaração `START SLAVE` no final da saída.
 
 - `--delete-master-logs`
 
-  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para habilitar o plugin enable-cleartext"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enable-cleartext-plugin</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Em um servidor de replicação de fonte, exclua os logs binários enviando uma instrução `PURGE BINARY LOGS` para o servidor após realizar a operação de dump. Esta opção requer o privilégio `RELOAD`, além de privilégios suficientes para executar essa instrução. Esta opção habilita automaticamente `--master-data`.
 
 - `--dump-slave[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Esta opção é semelhante à `--master-data`, exceto que é usada para drenar um servidor de réplica para produzir um arquivo de dump que pode ser usado para configurar outro servidor como uma réplica que tenha a mesma fonte que o servidor descarregado. Isso faz com que a saída do dump inclua uma declaração `CHANGE MASTER TO` que indica as coordenadas do log binário (nome do arquivo e posição) da fonte da réplica descarregada. A declaração `CHANGE MASTER TO` lê os valores de `Relay_Master_Log_File` e `Exec_Master_Log_Pos` da saída do `SHOW SLAVE STATUS` e os usa para `MASTER_LOG_FILE` e `MASTER_LOG_POS`, respectivamente. Essas são as coordenadas do servidor fonte do qual a réplica deve começar a replicar.
 
@@ -498,13 +1197,13 @@ O comando **mysqldump** é frequentemente usado para criar uma instância vazia 
 
 - `--include-master-host-port`
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Para a declaração `CHANGE MASTER TO` em um dump de replicação produzido com a opção `--dump-slave`, adicione as opções `MASTER_HOST` e `MASTER_PORT` para o nome do host e o número de porta TCP/IP da fonte da replicação.
 
 - `--master-data[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Use esta opção para descartar um servidor de replicação de origem para produzir um arquivo de dump que pode ser usado para configurar outro servidor como uma réplica do servidor de origem. Isso faz com que a saída do dump inclua uma declaração `CHANGE MASTER TO` que indica as coordenadas do log binário (nome do arquivo e posição) do servidor descartado. Essas são as coordenadas do servidor de origem a partir das quais a réplica deve começar a replicar após você carregar o arquivo de dump na réplica.
 
@@ -518,13 +1217,13 @@ O comando **mysqldump** é frequentemente usado para criar uma instância vazia 
 
 - `--set-gtid-purged=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Essa opção permite o controle sobre as informações de ID de transação global (GTID) escritas no arquivo de depuração, indicando se deve adicionar uma declaração `SET @@GLOBAL.gtid_purged` à saída. Essa opção também pode causar a escrita de uma declaração na saída que desabilita o registro binário enquanto o arquivo de depuração está sendo recarregado.
 
   A tabela a seguir mostra os valores de opção permitidos. O valor padrão é `AUTO`.
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Um descarte parcial de um servidor que está usando a replicação baseada em GTID requer a especificação da opção `--set-gtid-purged={ON|OFF}`. Use `ON` se a intenção for implantar uma nova réplica de replicação usando apenas alguns dos dados do servidor descartado. Use `OFF` se a intenção for reparar uma tabela copiando-a dentro de uma topologia. Use `OFF` se a intenção for copiar uma tabela entre topologias de replicação que são disjuntas e para que permaneçam assim.
 
@@ -546,13 +1245,13 @@ As seguintes opções especificam como representar todo o arquivo de registro ou
 
 - `--compact`
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Produza uma saída mais compacta. Esta opção habilita as opções `--skip-add-drop-table`, `--skip-add-locks`, `--skip-comments`, `--skip-disable-keys` e `--skip-set-charset`.
 
 - `--compatible=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Produza uma saída mais compatível com outros sistemas de banco de dados ou com servidores MySQL mais antigos. O valor de *`name`* pode ser `ansi`, `mysql323`, `mysql40`, `postgresql`, `oracle`, `mssql`, `db2`, `maxdb`, `no_key_options`, `no_table_options` ou `no_field_options`. Para usar vários valores, separe-os por vírgula. Esses valores têm o mesmo significado das opções correspondentes para definir o modo SQL do servidor. Veja a Seção 5.1.10, “Modos SQL do Servidor”.
 
@@ -560,31 +1259,31 @@ As seguintes opções especificam como representar todo o arquivo de registro ou
 
 - `--complete-insert`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Use declarações `INSERT` completas que incluam os nomes das colunas.
 
 - `--create-options`
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
   Inclua todas as opções de tabela específicas do MySQL nas instruções `CREATE TABLE`.
 
-- `--campos-terminados-por=...`, `--campos-envolvidos-por=...`, `--campos-opcionalmente-envolvidos-por=...`, `--campos-e-escapedos-por=...`
+- `--fields-terminated-by=...`, `--campos-envolvidos-por=...`, `--campos-opcionalmente-envolvidos-por=...`, `--campos-e-escapedos-por=...`
 
-  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para get-server-public-key"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--get-server-public-key</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.23</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
   Essas opções são usadas com a opção `--tab` e têm o mesmo significado das cláusulas `FIELDS` correspondentes para `LOAD DATA`. Veja a Seção 13.2.6, “Instrução LOAD DATA”.
 
 - `--hex-blob`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
   Arrume colunas binárias usando notação hexadecimal (por exemplo, `'abc'` se torna `0x616263`). Os tipos de dados afetados são os tipos `BINARY`, `VARBINARY`, `BLOB`, `BIT`, todos os tipos de dados espaciais e outros tipos de dados não binários quando usados com o conjunto de caracteres `binary`.
 
@@ -592,19 +1291,19 @@ As seguintes opções especificam como representar todo o arquivo de registro ou
 
 - `--lines-terminated-by=...`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
   Esta opção é usada com a opção `--tab` e tem o mesmo significado que a cláusula `LINES` correspondente para `LOAD DATA`. Veja a Seção 13.2.6, “Instrução LOAD DATA”.
 
 - `--quote-names`, `-Q`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
   Identifique os identificadores (como nomes de banco de dados, tabelas e colunas) entre \`\`\` caracteres. Se o modo SQL `ANSI_QUOTES` estiver habilitado, os identificadores são citados entre caracteres `"`. Esta opção está habilitada por padrão. Pode ser desabilitada com `--skip-quote-names`, mas esta opção deve ser dada após qualquer opção como `--compatible` que possa habilitar `--quote-names`.
 
 - `--result-file=file_name`, `-r file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
   Saída direta para o arquivo nomeado. O arquivo de resultado é criado e seus conteúdos anteriores são sobrescritos, mesmo que um erro ocorra durante a geração do dump.
 
@@ -612,7 +1311,7 @@ As seguintes opções especificam como representar todo o arquivo de registro ou
 
 - `--tab=nome_do_diretório`, `-T nome_do_diretório`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
   Produza arquivos de dados no formato de texto separados por tabulação. Para cada tabela descarregada, o **mysqldump** cria um arquivo `tbl_name.sql` que contém a instrução `CREATE TABLE` que cria a tabela, e o servidor escreve um arquivo `tbl_name.txt` que contém seus dados. O valor da opção é o diretório onde os arquivos serão escritos.
 
@@ -626,19 +1325,19 @@ As seguintes opções especificam como representar todo o arquivo de registro ou
 
 - `--tz-utc`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
   Essa opção permite que as colunas `TIMESTAMP` sejam descarregadas e recarregadas entre servidores em diferentes fusos horários. O **mysqldump** define seu fuso horário de conexão como UTC e adiciona `SET TIME_ZONE='+00:00'` ao arquivo de dump. Sem essa opção, as colunas `TIMESTAMP` são descarregadas e recarregadas nos fusos horários locais dos servidores de origem e destino, o que pode causar alterações nos valores se os servidores estiverem em fusos horários diferentes. O `--tz-utc` também protege contra alterações devido ao horário de verão. O `--tz-utc` está habilitado por padrão. Para desabilitá-lo, use `--skip-tz-utc`.
 
 - `--xml`, `-X`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host</code>]]</td> </tr></tbody></table>
 
   Escreva a saída do dump em formato bem formado de XML.
 
   **`NULL`, `'NULL'` e Valores Vazios**: Para uma coluna com o nome *`column_name`*, o valor `NULL`, uma string vazia e o valor da string `'NULL'` são distinguidos uns dos outros na saída gerada por esta opção da seguinte forma.
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   A saída do cliente **mysql** quando executado com a opção `--xml` também segue as regras anteriores. (Veja a Seção 4.5.1.1, “Opções do Cliente mysql”.)
 
@@ -692,13 +1391,13 @@ As seguintes opções controlam quais tipos de objetos do esquema são escritos 
 
 - `--all-databases`, `-A`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Exclua todas as tabelas em todos os bancos de dados. Isso é o mesmo que usar a opção `--databases` e nomear todos os bancos de dados na linha de comando.
 
 - `--databases`, `-B`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Exclua várias bases de dados. Normalmente, o **mysqldump** trata o argumento de nome do primeiro banco de dados na linha de comando como um nome de banco de dados e os nomes seguintes como nomes de tabelas. Com esta opção, ele trata todos os argumentos de nome como nomes de bancos de dados. As instruções `CREATE DATABASE` e `USE` são incluídas na saída antes de cada novo banco de dados.
 
@@ -706,7 +1405,7 @@ As seguintes opções controlam quais tipos de objetos do esquema são escritos 
 
 - `--events`, `-E`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Inclua eventos do Agendamento de Eventos para as bases de dados descartadas na saída. Esta opção requer os privilégios `EVENT` para essas bases de dados.
 
@@ -716,25 +1415,25 @@ As seguintes opções controlam quais tipos de objetos do esquema são escritos 
 
 - `--ignore-error=error[,error]...`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Ignore os erros especificados. O valor da opção é uma lista de números de erro separados por vírgula, especificando os erros a serem ignorados durante a execução do **mysqldump**. Se a opção `--force` também for fornecida para ignorar todos os erros, a `--force` tem precedência.
 
 - `--ignore-table=db_name.tbl_name`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Não descarte a tabela fornecida, que deve ser especificada usando tanto os nomes do banco de dados quanto da tabela. Para ignorar múltiplas tabelas, use essa opção várias vezes. Essa opção também pode ser usada para ignorar visualizações.
 
 - `--no-data`, `-d`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Não escreva nenhuma informação da linha da tabela (ou seja, não descarregue o conteúdo da tabela). Isso é útil se você quiser descarregar apenas a instrução `CREATE TABLE` para a tabela (por exemplo, para criar uma cópia vazia da tabela carregando o arquivo de descarregamento).
 
 - `--routines`, `-R`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Inclua rotinas armazenadas (procedimentos e funções) para os bancos de dados descartados na saída. Esta opção requer o privilégio `SELECT` para a tabela `mysql.proc`.
 
@@ -744,13 +1443,13 @@ As seguintes opções controlam quais tipos de objetos do esquema são escritos 
 
 - `--tables`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Supere a opção `--databases` ou `-B`. O **mysqldump** considera todos os argumentos de nome que seguem a opção como nomes de tabela.
 
 - `--triggers`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Inclua os gatilhos de cada tabela descarregada na saída. Esta opção está habilitada por padrão; desabilite-a com `--skip-triggers`.
 
@@ -760,7 +1459,7 @@ As seguintes opções controlam quais tipos de objetos do esquema são escritos 
 
 - `--where='where_condition'`, `-w 'where_condition'`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Exclua apenas as linhas selecionadas pela condição `WHERE` fornecida. As aspas ao redor da condição são obrigatórias se ela contiver espaços ou outros caracteres especiais para o interpretador do comando.
 
@@ -780,25 +1479,25 @@ O desempenho também é afetado pelas opções transacionais, principalmente par
 
 - `--disable-keys`, `-K`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Para cada tabela, rode as instruções `INSERT` com as instruções `/*!40000 ALTER TABLE tbl_name DISABLE KEYS */;` e `/*!40000 ALTER TABLE tbl_name ENABLE KEYS */;` Isso torna o carregamento do arquivo de dump mais rápido, pois os índices são criados após todas as linhas serem inseridas. Esta opção é eficaz apenas para índices não únicos de tabelas `MyISAM`.
 
 - `--extended-insert`, `-e`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Escreva instruções `INSERT` usando a sintaxe de múltiplas linhas que inclui várias listas `VALUES`. Isso resulta em um arquivo de dump menor e acelera as inserções quando o arquivo é carregado novamente.
 
 - `--insert-ignore`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Escreva instruções `INSERT IGNORE` em vez de instruções `INSERT`.
 
 - `--max-allowed-packet=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O tamanho máximo do buffer para a comunicação cliente/servidor. O padrão é de 24 MB, e o máximo é de 1 GB.
 
@@ -808,13 +1507,13 @@ O desempenho também é afetado pelas opções transacionais, principalmente par
 
 - `--net-buffer-length=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O tamanho inicial do buffer para a comunicação cliente/servidor. Ao criar instruções `INSERT` de várias linhas (como com a opção `--extended-insert` ou `--opt`), o **mysqldump** cria linhas com até `--net-buffer-length` bytes de comprimento. Se você aumentar essa variável, certifique-se de que a variável de sistema `net_buffer_length` do servidor MySQL tenha um valor pelo menos desse tamanho.
 
 - `--opt`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Esta opção, ativada por padrão, é uma abreviação da combinação de `--add-drop-table` `--add-locks` `--create-options` `--disable-keys` `--extended-insert` `--lock-tables` `--quick` `--set-charset`. Ela oferece uma operação de dump rápida e produz um arquivo de dump que pode ser carregado rapidamente em um servidor MySQL.
 
@@ -822,13 +1521,13 @@ O desempenho também é afetado pelas opções transacionais, principalmente par
 
 - `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Esta opção é útil para descartar tabelas grandes. Ela obriga o **mysqldump** a recuperar linhas de uma tabela do servidor uma linha de cada vez, em vez de recuperar todo o conjunto de linhas e armazená-lo em memória antes de gravá-lo.
 
 - `--skip-opt`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Veja a descrição da opção `--opt`.
 
@@ -838,19 +1537,19 @@ As seguintes opções sacrificam o desempenho da operação de exclusão em favo
 
 - `--add-locks`
 
-  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password[=password]</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Cerque cada dump de tabela com as instruções `LOCK TABLES` e `UNLOCK TABLES`. Isso resulta em inserções mais rápidas quando o arquivo de dump é recarregado. Veja a Seção 8.2.4.1, “Otimizando instruções INSERT”.
 
 - `--flush-logs`, `-F`
 
-  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Limpe os arquivos de log do servidor MySQL antes de iniciar o dump. Esta opção requer o privilégio `RELOAD`. Se você usar esta opção em combinação com a opção `--all-databases`, os logs serão limpos *para cada banco de dados dumpado*. A exceção é quando você usa `--lock-all-tables`, `--master-data` ou `--single-transaction`: Nesse caso, os logs são limpos apenas uma vez, correspondendo ao momento em que todas as tabelas são bloqueadas por `FLUSH TABLES WITH READ LOCK`. Se você deseja que seu dump e o flush de log ocorram exatamente no mesmo momento, você deve usar `--flush-logs` junto com `--lock-all-tables`, `--master-data` ou `--single-transaction`.
 
 - `--flush-privileges`
 
-  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Adicione uma declaração `FLUSH PRIVILEGES` à saída do dump após o dumping do banco de dados `mysql`. Esta opção deve ser usada sempre que o dump contiver o banco de dados `mysql` e qualquer outro banco de dados que dependa dos dados do banco de dados `mysql` para uma restauração adequada.
 
@@ -862,13 +1561,13 @@ As seguintes opções sacrificam o desempenho da operação de exclusão em favo
 
 - `--lock-all-tables`, `-x`
 
-  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Bloquear todas as tabelas em todos os bancos de dados. Isso é feito ao adquirir um bloqueio de leitura global por toda a duração do dump. Esta opção desativa automaticamente `--single-transaction` e `--lock-tables`.
 
 - `--lock-tables`, `-l`
 
-  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Para cada banco de dados descartado, bloqueie todas as tabelas que serão descartadas antes de descartá-las. As tabelas são bloqueadas com `READ LOCAL` para permitir inserções concorrentes no caso de tabelas `MyISAM`. Para tabelas transacionais, como `InnoDB`, `--single-transaction` é uma opção muito melhor do que `--lock-tables`, pois não é necessário bloquear as tabelas.
 
@@ -878,19 +1577,19 @@ As seguintes opções sacrificam o desempenho da operação de exclusão em favo
 
 - `--no-autocommit`
 
-  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Inclua as instruções `INSERT` para cada tabela descarregada dentro de `SET autocommit = 0` e as instruções `COMMIT`.
 
 - `--order-by-primary`
 
-  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Exclua as linhas de cada tabela ordenadas por sua chave primária ou pelo primeiro índice exclusivo, se houver. Isso é útil ao excluir uma tabela `MyISAM` para ser carregada em uma tabela `InnoDB`, mas faz com que a operação de exclusão demore consideravelmente mais tempo.
 
 - `--shared-memory-base-name=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Em Windows, o nome de memória compartilhada a ser usado para conexões feitas usando memória compartilhada com um servidor local. O valor padrão é `MYSQL`. O nome de memória compartilhada é case-sensitive.
 
@@ -898,7 +1597,7 @@ As seguintes opções sacrificam o desempenho da operação de exclusão em favo
 
 - `--single-transaction`
 
-  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para tubulação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--pipe</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Essa opção define o modo de isolamento de transação como `REPEATABLE READ` e envia uma instrução SQL `START TRANSACTION` para o servidor antes de drenar os dados. Ela é útil apenas com tabelas transacionais, como `InnoDB`, porque, nesse caso, ela drenará o estado consistente do banco de dados no momento em que a instrução `START TRANSACTION` foi emitida, sem bloquear nenhuma aplicação.
 

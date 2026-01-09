@@ -2,25 +2,25 @@
 
 O cliente **mysql** é normalmente usado de forma interativa, como este:
 
-```sql
+```sh
 mysql db_name
 ```
 
 No entanto, também é possível colocar suas instruções SQL em um arquivo e, em seguida, informar o **mysql** para ler sua entrada desse arquivo. Para fazer isso, crie um arquivo de texto *`text_file`* que contenha as instruções que deseja executar. Em seguida, inicie o **mysql** conforme mostrado aqui:
 
-```sql
+```sh
 mysql db_name < text_file
 ```
 
 Se você colocar uma declaração `USE db_name` como a primeira declaração no arquivo, não é necessário especificar o nome do banco de dados na linha de comando:
 
-```sql
+```sh
 mysql < text_file
 ```
 
 Se você já estiver executando o **mysql**, você pode executar um arquivo de script SQL usando o comando `source` ou o comando `\.`:
 
-```sql
+```sh
 mysql> source file_name
 mysql> \. file_name
 ```

@@ -7,12 +7,12 @@ Suponha que os registros de seus animais de estimação possam ser descritos da 
 <table>
    <thead>
       <tr>
-         <th scope="col">name</th>
-         <th scope="col">owner</th>
-         <th scope="col">species</th>
-         <th scope="col">sex</th>
-         <th scope="col">birth</th>
-         <th scope="col">death</th>
+         <th>name</th>
+         <th>owner</th>
+         <th>species</th>
+         <th>sex</th>
+         <th>birth</th>
+         <th>death</th>
       </tr>
    </thead>
    <tbody>
